@@ -1,58 +1,4 @@
- html {
-   font-size: 16px;
- }
- body{
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #111;
-  font-family: 'Open Sans', sans-serif;
 
-  /* font-family: "NonBreakingSpaceOverride", "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif; */
-  font-weight: 400;
-  font-size: 1em;
-  line-height: 1.8;
-  margin: 0;
-  text-rendering: optimizeLegibility;
- }
- h1:not(.site-title):before, h2:before {
-    background: transparent;
-    content: "\020";
-    display: none;
-    height: 0px;
-    margin: 0rem 0;
-    width: 0em;
-}
-a:visited {
-    color: #60adb8;
-}
-
-.wp-block-gallery .blocks-gallery-image, .wp-block-gallery .blocks-gallery-item{
-	border:1px solid #ddd;
-}
-.sub-menu.dropdown-menu{
-	padding:10px;
-	min-width: 220px;
-	max-width:100%;
-}
-.dropdown .menu-item {
-    border-bottom: 1px solid #eee;
-    padding: 4px 0;
-	line-height: 20px;
-    font-size: 14px;
-    text-transform: uppercase;
-}
-.breadcrumb{
-	font-size: 16px;
-	background-color:transparent !important;
-	padding:2px;
-	margin:0;
-	position:absolute;
-	top: 10px;
-    right: 10px;
-}
-.section-descr{
-	position:relative;
-}
 html, body {
   max-width: 100%;
   min-height: 100%; }
@@ -671,3 +617,58 @@ ul.list {
     display: block; }
   .work .filterDiv {
     display: inline-block; } }
+ html {
+   font-size: 16px;
+ }
+ body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #111;
+  font-family: 'Open Sans', sans-serif;
+
+  /* font-family: "NonBreakingSpaceOverride", "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif; */
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1.8;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+ }
+ h1:not(.site-title):before, h2:before {
+    background: transparent;
+    content: "\020";
+    display: none;
+    height: 0px;
+    margin: 0rem 0;
+    width: 0em;
+}
+a:visited {
+    color: #60adb8;
+}
+
+.wp-block-gallery .blocks-gallery-image, .wp-block-gallery .blocks-gallery-item{
+	border:1px solid #ddd;
+}
+.sub-menu.dropdown-menu{
+	padding:10px;
+	min-width: 220px;
+	max-width:100%;
+}
+.dropdown .menu-item {
+    border-bottom: 1px solid #eee;
+    padding: 4px 0;
+	line-height: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.breadcrumb{
+	font-size: 16px;
+	background-color:transparent !important;
+	padding:2px;
+	margin:0;
+	position:absolute;
+	top: 10px;
+    right: 10px;
+}
+.section-descr{
+	position:relative;
+}
