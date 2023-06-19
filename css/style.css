@@ -109,7 +109,7 @@ a {
     outline: none !important;
     box-shadow: none !important; }
 
-a:visited{
+a, a:visited, .dropdown-item{
   color: #60adb8;
 }
 .btn.focus, .btn:focus {
