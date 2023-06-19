@@ -92,8 +92,20 @@
 
   </div>
 
-  <div id="content">
+  <div id="">
   <!-- showcase.php -->
+<div class="section-descr pad100">
+  <div class="container">
+  <div class="row">
+  <div id="info" class="col-lg-4 col-md-4 col-sm-12"></div>
+  <div id="details" class="col-lg-8 col-md-8 col-sm-12 m100"></div>
+  </div>
+  </div>
+  </div>
+  
+  <div id="content" class="content">
+
+  </div>
  
 
   </div>
@@ -169,6 +181,8 @@ var previousLinks = document.getElementsByClassName("previousLink");
 var nextLinks = document.getElementsByClassName("nextLink");
 var contentDiv = document.getElementById("content");
 var heroDiv = document.getElementById("hero");
+var infoDiv = document.getElementById("info");
+var detailDiv = document.getElementById("details");
 
 function loadPreviousPost() {
   if (currentPost > 0) {
@@ -192,6 +206,17 @@ function loadPost() {
     <center>
       <img class="responsive showcase" src="${post.image}" class="${post.title}" data-id="Pulsegale 2015" data-link="${post.link}" alt="${post.title}">
     </center>
+  `;
+
+  infoDiv.innerHTML = `
+        <h3>CLIENT / COMPANY</h3>
+        <p>${post.client}</p>
+        <h3>ROLE</h3>
+        <p>${post.role}</p>
+        <h3>UTILIZED SKILLS</h3>
+        <p>${post.skills}</p> <p>&nbsp;</p><p>&nbsp;</p> 
+  `;
+  detailDiv.innerHTML = `<h3 class="project-heading">${post.title} - ${post.id}</h3>${post.content}
   `;
 
   fetch(link)

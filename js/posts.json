@@ -1,46 +1,124 @@
 {
     "posts": [
       {
-        "title": "Pulsegala 2015",
+        "title": "THE PULSE GALA 2015",
         "image": "showcase/img/pulse2015-header.jpg",
         "link": "showcase/pulse2015.html",
-        "content": "<div><h1>Title 0</h1><p>Content of post 0.</p></div>"
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS",
+        "content": "<p>The 2015 Pulse Gala is an annual fundraiser hosted by CRF to promote Cardiovascular health. Each year CRF invites renowned scholars to join them as an honored guess. In 2015 CRF invited one of the world’s most accomplished and respected public servants to be the honoree. Dr. Henry Kissinger, a renowned scholar, foreign policy advisor, and prolific author.</p><p>Pulse Gala is updated yearly for CRF Annual Foundraiser. As the Junior Front End Developer at CRF I had the honor of handling all components of developing this website from 2013 – 2016.</p><p>The Pulse Gala is 1-3 page bootstrap website hosted annually. This website has no database and as such is a standard static html website built with twitter bootstrap, Javascript, jQuery, a slider, forms processed through  wufoo forms and a gallery.</p><p>At CRF I handled all the development of smaller websites and majority of all front end development at the company.</p><p>Visit this website &gt;&gt; <a href=\"http://www.pulsegala.org/2015/index.html\" target=\"blank\" rel=\"noopener noreferrer\">www.pulsegala.org/2015</a></p>",
+        "id":"0"
       },
       {
-        "title": "TCT 2015",
+        "title": "Transcatheter Cardiovascular Therapeutics (<em>TCT</em>) 2015",
         "image": "showcase/img/tct2015-header.jpg",
         "link": "showcase/tct2015.html",
-        "content": "<div><h1>Title 1</h1><p>Content of post 1.</p></div>"
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "<p>Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>SVG<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+        "content": " <p>The Transcatheter Cardiovascular Therapeutics (<em>TCT</em>)  is an annual conference hosted by CRF focusing on the future of interventional cardiology. Each year CRF invites millions of medical professional and scholars to join them at TCT. In 2015 CRF invited special guest speakers Arnold Schwarzenegger and Carlo Ancelotti. </p><p>TCT is updated yearly for CRF Annual TCT Conference. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the TCT materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 TCT related websites for conferences, sponsors, and partners. As well as the front end development of TCT Industry website, App features and various related interfaces. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The TCT website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. TCT website housed dynamic schedules built using various technologies including Ajax, Restful Api and Javascript. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+        "id":"1"
       },
       {
-        "title": "Ali HairStylist",
+        "title": "Ali HairStylist Website",
         "image": "showcase/img/ali-header.jpg",
         "link": "showcase/ali.html",
-        "content": "<div><h1>Title 2</h1><p>Content of post 2.</p></div>"
+        "client":"ALI HAIRSTYLIST",
+        "role":"Front End Developer<br>Graphic Designer<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Wordpress<br>Scss<br>HTML 5<br>CSS",
+        "content": "<p>Ali is a master hairstylist. Working as a stylist since 1968, Ali has crafted his skills at Astor Place Hairstylists as well as MOI, alongside his own barbershop that he operated back in Morocco. Ali has had the pleasure of working in some of the most well-known fashion shows and hairstyling competitions in the world.&nbsp;He was ranked in 5th place during the World Hairstyling Competition of 1982. He is also a member of many different hairstyling federations, organizations, and associations that deal with barbers. </p><p>I had the pleasure of designing and developing Ali’s first website while a student in College. </p><p>I handled the entire design and development of Ali’s entire website. The website was build in wordpress as a custom theme with a responsive layout. Responsive and adaptive techiques were still fairly new at the time I developed this website so I was very pleased to see the results.</p><p>Since then his website site has been rebranded however he is an exceptional hair stylist and if you were interested in learning more about him please visit his website at &gt;&gt; <a href=\"https://www.alihairstylist.net/\">https://www.alihairstylist.net/</a></p>",
+        "id":"2"
       },
       {
-        "title": "I Write NY",
+        "title": "I WRITE NY CHALLENGE",
         "image": "showcase/img/iwriteny-header.jpg",
         "link": "showcase/iwriteny.html",
-        "content": "<div><h1>Title 3</h1><p>Content of post 3.</p></div>"
+        "client":"The Knowledge Project (The Know)",
+        "role":"Front End Developer<br>Graphic Designer<br>",
+        "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Wordpress",
+        "content": "<p>The I WRITE NY CHALLENGE is an initiative was created by The Know in partnership with the Writers Guild of America and other organizations to help to cultivate the next generation of writers, journalists and communicators.</p><p>For this I Write NY created both print and digital design were created. A unique design was developed to highlight I Write NY Challenge on The Knows website. The Know website is built in wordpress as a child theme of WordPress Twentynineteen theme using twitter bootstrap,  Javascript, jQuery, and a form processed through wordpress plugins.</p><p>As a private consultant to The Know I handle all design and development for many of their projects including the I Write NY Challenge as the solo designer and developer. This project later expanded to re-development of the entire Know website. I have been working with The Know on various materials, designs and webdevelopment for 10+ years.</p><p>Visit this website &gt;&gt; <a href=\"https://theknowledgeproject.org/i-write/\">theknowledgeproject.org/i-write-ny/</a></p>",
+        "id":"3"
       },
       {
         "title": "Chip at ACC 2016",
         "image": "showcase/img/chipatACC-header.jpg",
         "link": "showcase/chip-at-acc-2016.html",
-        "content": "<div><h1>Title 4</h1><p>Content of post 4.</p></div>"
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>Angular Js<br>PHP<br>HTML 5<br>CSS",
+        "content": "<p>This website was build for an educational meeting as sponsored by CRF. The website was built in php using angular, gulp, bootstrap and various javascript technologies.</p>",
+        "id":"4"
       },
       {
-        "title": "TCT Industry 2015",
+        "title": "Transcatheter Cardiovascular Therapeutics (<em>TCT</em>) Industry 2015",
         "image": "showcase/img/itct2015-header.jpg",
         "link": "showcase/tctIndustry2015.html",
-        "content": "<div><h1>Title 5</h1><p>Content of post 5.</p></div>"
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>SVG<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+        "content": "<p>The Transcatheter Cardiovascular Therapeutics (<em>TCT</em>)  is an annual conference hosted by CRF focusing on the future of interventional cardiology. Each year CRF invites millions of medical professional and scholars to join them at TCT. In 2015 CRF invited special guest speakers Arnold Schwarzenegger and Carlo Ancelotti. </p><p>TCT is updated yearly for CRF Annual TCT Conference. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the TCT materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 TCT related websites for conferences, sponsors, and partners. As well as the front end development of TCT Industry website, App features and various related interfaces. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The TCT Industry website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. TCT website housed dynamic schedules built using various technologies including Ajax, Restful Api and Javascript. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+        "id":"5"
       },
       {
         "title": "TCT360 Webcast",
         "image": "showcase/img/TCT360-header.jpg",
         "link": "showcase/tct360.html",
-        "content": "<div><h1>Title 6</h1><p>Content of post 6.</p></div>"
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+        "content": "<p>TCT360 Webcast was a live interactive webcast hosted by CRF featuring exclusive content captured at TCT 2016 in Washington, DC.</p><p>This email was sent each week with update content to over 80,000 audience. As the Junior Front End Developer at CRF I handled all the development of emails on behalf of TCT International, CRF and other health care leaders in the industry that participated in TCT and other CRF conferences.</p>",
+        "id":"6"
+      },
+      {
+        "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2016",
+        "image": "showcase/img/cto-2016-header.jpg",
+        "link": "showcase/cto2016.html",
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+        "content": "<p>The Chronic Total Occlusion (<em>CTO</em>) is an annual conference hosted by CRF brings together the most skillful operators in the CTO PCI field to perform over a dozen live cases with real-time analysis by world-renowned faculty.</p><p>CTO is updated yearly for CRF’s annual summit. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the CTO materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 websites for conferences, sponsors, and partners. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, CTO, sponsors, and partners.</p><p>The CTO website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+        "id":"7"
+      },
+      {
+        "title": "CRF Women’s Heart Health Initiative",
+        "image": "showcase/img/WHHI17-header.jpg",
+        "link": "showcase/whhi.html",
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Email Development<br>HTML<br>CSS",
+        "content": "<p>CRF Women’s Heart Health Initiative was a campaign started by CRF to empower women to defy heart disease during American Heart Month through a educational seminars on in the spring of 2017. </p><p>This email was sent each week with update content to over 80,000 audience. As the Junior Front End Developer at CRF I handled all the development of emails on behalf of TCT International, CRF and other health care leaders in the industry that participated in TCT and other CRF conferences.</p>",
+        "id":"8"
+      },
+      {
+        "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2016",
+        "image": "showcase/img/cto-2015-header.jpg",
+        "link": "showcase/cto2015.html",
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+        "content": "<p>The Chronic Total Occlusion (<em>CTO</em>)  is an annual conference hosted by CRF brings together the most skillful operators in the CTO PCI field to perform over a dozen live cases with real-time analysis by world-renowned faculty. </p><p>CTO is updated yearly for CRF’s annual summit. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the CTO materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 websites for conferences, sponsors, and partners. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, CTO, sponsors, and partners.</p><p>The CTO website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+        "id":"9"
+      },
+      {
+        "title": "THE PARENTS CLUB OF WEST POINTS MEMBERS DIRECTORY (2018-2019)",
+        "image": "showcase/img/PCWP-header.jpg",
+        "link": "showcase/pcwp.html",
+        "client":"The Parents Club of West Point (PCWP)",
+        "role":"Developer<br>Designer<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Wordpress<br>Scss<br>HTML 5<br>CSS<br>Photoshop<br>Illustrator<br>",
+        "content": "<p>The Parents Club of West Point is an official club of West Point Military Academy. The club serves to enrich parents and cadet experience as they become part of the West Point community. Each year the club invites new members to join and connect with the community. As a result PCWP updated their directory annually.</p><p>As the designer and developer for PCWP I designed and developed their website and various materials over the course of several years.</p><p>Visit this website &gt;&gt; <a href=\"https://www.west-point.org/parent/pcwpnyandnj\">https://www.west-point.org/parent/pcwpnyandnj</a></p>",
+        "id":"10"
+      },
+      {
+        "title": "The Columbia Primary Care 2014 (CPC14)",
+        "image": "showcase/img/columbia-banner.jpg",
+        "link": "showcase/cpc14.html",
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Email Development",
+        "content": "<p>The Columbia Primary Care 2014 (CPC14) was a conference and expo handled by CRF. Each year CRF handles a number of conference websites for companies. </p><p>As the Junior Front End Developer at CRF in 2014 worked as the developer that handled CPC14’s Conference website and emails. From 2013-2017 I was the solo front end developer at CRF. Each year I handled the development of 8 – 15 conference websites for sponsors, and partners. As well as the front end development of the CRF’s internal websites. In addition to website development I handled all the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The CPC14 website is a Joomla website built in bootstrap, jQuery, Javascript and Sass. This website housed a simple agenda schedule built with Javascript using AJAX and jQuery. This website is no longer available online.</p>",
+        "id":"11"
       }
     ]
   }

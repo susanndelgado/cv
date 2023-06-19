@@ -1,6 +1,6 @@
 // /**
 //   * @desc Main Javascript file contains user interactions
-//   * @author Susan Delgado sdelgado@crf.org
+//   * @author Susan Delgado 
 //   * @required jquery
 // */
 // $(function() {
@@ -60,6 +60,3 @@
     });
     }
 // });
-
-
-   
