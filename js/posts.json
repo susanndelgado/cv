@@ -91,7 +91,7 @@
         "id":"8"
       },
       {
-        "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2016",
+        "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2015",
         "image": "showcase/img/cto-2015-header.jpg",
         "link": "showcase/cto2015.html",
         "client":"The Cardiovascular Research Foundation (CRF)",
@@ -118,6 +118,16 @@
         "role":"Front End Developer<br>CRF Employee<br>",
         "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Email Development",
         "content": "<p>The Columbia Primary Care 2014 (CPC14) was a conference and expo handled by CRF. Each year CRF handles a number of conference websites for companies. </p><p>As the Junior Front End Developer at CRF in 2014 worked as the developer that handled CPC14’s Conference website and emails. From 2013-2017 I was the solo front end developer at CRF. Each year I handled the development of 8 – 15 conference websites for sponsors, and partners. As well as the front end development of the CRF’s internal websites. In addition to website development I handled all the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The CPC14 website is a Joomla website built in bootstrap, jQuery, Javascript and Sass. This website housed a simple agenda schedule built with Javascript using AJAX and jQuery. This website is no longer available online.</p>",
+        "id":"11"
+      },
+      {
+        "title": "DALLAS LEIPZIG",
+        "image": "showcase/img/dallas-header.jpg",
+        "link": "showcase/dallas.html",
+        "client":"The Cardiovascular Research Foundation (CRF)",
+        "role":"Front End Developer<br>CRF Employee<br>",
+        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Scss<br>HTML 5<br>CSS",
+        "content": "<p>The Dallas Leipzig Conference is designed for cardiothoracic surgeons, primary cardiologists, interventional cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists, cardiac imaging specialists, and other healthcare providers of cardiovascular teams.</p><p>As the Frontend Developer at CRF I was the assigned developer to handle the development of the Dallas Leipzig website.This website features rich animations between transitions of slider, collapsing element and active states. Built in php with use of various technologies including Scss, jQuery, Bootstrap and custom javascript module I built independently years before working with CRF to handle animations using animate.css. I had a lot of time to enrich this website and I experimented with all the tools available to me.</p><p>View this website at <a href=\"https://dallasleipzig.com/\">https://dallasleipzig.com/</a></p>",
         "id":"11"
       }
     ]
