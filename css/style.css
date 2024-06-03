@@ -63,7 +63,14 @@ h1, h2, h3, h4, h5, h6 {
        margin: 0rem 0;
        width: 0em;
     }
-
+    .nav-tabs {
+      font-family: 'Verdana', serif;
+      font-size: 16px;
+      background-color: #eff8ff;
+  }
+  .nav-tabs a:hover, .nav-tabs a:focus {
+    /* color: #fa7ca7; */
+}
 .button:focus, button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, .navbar-light .navbar-toggler {
   background-color: transparent; }
 
@@ -603,7 +610,8 @@ h3 {
   display: block; }
 
 .collapse {
-  border-top: 1px solid #dee2e6; }
+  /* border-top: 1px solid #dee2e6;  */
+}
   .collapse .card-body {
     background: #fff;
     font-size: 16px;
