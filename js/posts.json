@@ -128,7 +128,7 @@
         "role":"Front End Developer<br>CRF Employee<br>",
         "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Scss<br>HTML 5<br>CSS",
         "content": "<p>The Dallas Leipzig Conference is designed for cardiothoracic surgeons, primary cardiologists, interventional cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists, cardiac imaging specialists, and other healthcare providers of cardiovascular teams.</p><p>As the Frontend Developer at CRF I was the assigned developer to handle the development of the Dallas Leipzig website.This website features rich animations between transitions of slider, collapsing element and active states. Built in php with use of various technologies including Scss, jQuery, Bootstrap and custom javascript module I built independently years before working with CRF to handle animations using animate.css. I had a lot of time to enrich this website and I experimented with all the tools available to me.</p><p>View this website at <a href=\"https://dallasleipzig.com/\">https://dallasleipzig.com/</a></p>",
-        "id":"11"
+        "id":"12"
       }
     ]
   }
