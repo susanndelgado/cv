@@ -329,5 +329,15 @@
 </footer>
 
 <script src="js/script.js"></script>
+      <style>
+   .grid-item { width: 200px; }
+.grid-item--width2 { width: 400px; }
+</style>
+      <script>
+      $('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});</script>
 </body>
 </html>
