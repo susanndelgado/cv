@@ -370,6 +370,7 @@ h3 {
     color: #bcbcbc; }
 .section-zero {background-color: black;color: white;}
 .section-zero-gallery {background-color: fafafa;}
+.section-zero img, .section-zero-gallery img{max-width:100%;}
 .section-one {
   background: #fff; }
 
