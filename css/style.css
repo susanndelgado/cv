@@ -368,9 +368,10 @@ h3 {
     letter-spacing: 2px;
     font-weight: 100px;
     color: #bcbcbc; }
-.section-zero {background-color: black;color: white;}
+.section-zero {background-color: #000;color: white;}
 .section-zero-gallery {background-color: fafafa;}
 .section-zero img, .section-zero-gallery img{max-width:100%;}
+.section-zero-gallery svg{max-width:100%; background-color:#fff;}
 .section-one {
   background: #fff; }
 
