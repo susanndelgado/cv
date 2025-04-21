@@ -874,7 +874,7 @@ ul.list {
     background-size: cover;
     padding: 60px 0;
 }
-.wyzant div{
+.wyzant div.wyzant-content{
 	text-align:center;
 	font-size:36px;
 }
