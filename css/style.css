@@ -93,6 +93,10 @@ h1, h2, h3, h4, h5, h6 {
   border: 4px solid #60ADB8;
   text-transform: uppercase;
   margin: 10px; }
+.btn.btn-blk{
+	background-color:#000 !important;
+	color:#fff !important;
+}
   .sub-menu.dropdown-menu{
   	padding:10px;
   	min-width: 220px;
@@ -865,7 +869,9 @@ ul.list {
       margin-right: 0;
       width: 100%
   }
- .banner-span {padding: 60px 0;}
-.wyzant{     /* font-size: 36px; */
+.wyzant{
     background-image: url(/img/wyzant.jpg);
-    background-size: cover; }
+    background-size: cover;
+    padding: 60px 0;
+}
+	
