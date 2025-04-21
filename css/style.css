@@ -873,6 +873,8 @@ ul.list {
     background-image: url(/img/wyzant.jpg);
     background-size: cover;
     padding: 60px 0;
+}
+.banner-wyzant{
 	text-align:center;
 	font-size:36px;
 }
