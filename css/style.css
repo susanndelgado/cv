@@ -94,8 +94,8 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   margin: 10px; }
 .btn.btn-blk{
-	background-color:#000;
-	color:#fff;
+	background-color:#000 !important;
+	color:#fff !important;
 }
   .sub-menu.dropdown-menu{
   	padding:10px;
@@ -866,7 +866,6 @@ ul.list {
       width: 100%
   }
 .wyzant{
-	 */
     background-image: url(/img/wyzant.jpg);
     background-size: cover;
     padding: 60px 0;
