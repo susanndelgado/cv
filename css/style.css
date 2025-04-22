@@ -774,30 +774,31 @@ ul.list {
 .banner-span{
 	background-color: #171a1e;
 	background-size: 100%;
-	 padding: 40px 0;
+	 padding: 130px 0;
 	 background-repeat: no-repeat;
 	
     background-position: center;
 	 color: #fff;
-min-height:450px;
+/* min-height:450px; */
 }
 .banner-span div.bcontent{
 	text-align:center;
 	font-size:36px;
 }
 .blkdesc{
-	padding: 20px 0 40px 0;
-	min-height:150px;
+	padding: 20px 0;
+/* 	min-height:150px; */
 }
 .blkdesc div.bcontent{
 }
 .wyzant{
+background-repeat:repeat;
     background-image: url(/img/wyzant.jpg);
     color: #000;
 }
 
 .freesvg101{
-	height:600px;
+/* 	height:600px; */
     background-image: url(/img/FreeSVG.jpg);
 }
 .traceables{
