@@ -102,17 +102,17 @@
                         </div>
                         
                         <div id="product-details" class="col-lg-6 col-md-6 col-sm-12 m100">
-          
+                           
                         </div>
           </div>
           </div>
           </div> 
- <div id="content" class="content">
-
-  </div>
+ 
 
 </div>
-
+ <div id="content" class="content">
+                           
+                             </div>
 
   
 <!--   <div id="content" class="content">
@@ -221,7 +221,8 @@ function loadPost() {
   fetch(link)
     .then(response => response.text())
     .then(html => {
-      contentDiv.innerHTML = html;
+        contentDiv.innerHTML = html;
+       
       // updateLinkStates();
     })
     .catch(error => {
@@ -265,6 +266,6 @@ if (!isNaN(productIndex)) {
   loadProductsFromJSON();
 }
 </script>
-<script src="js/script.js"></script>
+<!-- <script src="js/script.js"></script> -->
 </body>
 </html>
