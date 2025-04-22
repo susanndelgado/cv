@@ -161,25 +161,7 @@ var products = [];
 var contentDiv = document.getElementById("content");
 var imagePreview = document.getElementById("imagePreview");
 var infoDiv = document.getElementById("product-details");
-   
-// "products": [
-//       {
-//         "title": "The Mask of Preservation Painting",
-   // type
-//         "thumb": "Products/Mask-Blue.jpg",
-//         "image": "Products/Mask-Blue.jpg",
-//        "gallery1":"Products/Mask-Blue.jpg", 
-            // "gallery2":"Products/Mask-Blue.jpg", 
-            // "videoThumb":"Products/Mask-Blue.jpg"],
-            // "videoURL":""],
-//         "link": "showcase/pulse2015.html",
-//         "price": "$600",
-//         "Materials":"18x24 Stretched Cotton Canvas",
-//         "descr": "<p>The Mask of Preservation, Original Artwork created by Susan Nicole Delgado, is an exquisite artwork showcasing a blue venetian mask. This artwork reflects themes related to Cluster B Disorders, symbolizing the experience of feeling like a mere shell of oneself while hiding behind a mask. Painted with acrylics on an 18x24-inch stretched cotton canvas, it is signed by the artist. It serves as an ideal enhancement for collectors and enthusiasts of dark classical or gothic aesthetics.</p>",
-//         
-//         "purchaseUrl":"https://buy.stripe.com/7sIeVO0xm3PcaLmfYY",
-   //       "id":"0"
-//       }
+
 function loadPost() {
   var product = products[currentPost];
   var link = product.link;
@@ -222,25 +204,15 @@ function loadPost() {
     .then(response => response.text())
     .then(html => {
         contentDiv.innerHTML = html;
-       
-      // updateLinkStates();
+
     })
     .catch(error => {
       console.log("Error fetching HTML file:", error);
     });
 
-  // updateLinkStates();
+
 }
 
-// function updateLinkStates() {
-//   for (var i = 0; i < previousLinks.length; i++) {
-//     previousLinks[i].classList.toggle("hide", currentProduct === 0);
-//   }
-
-//   for (var i = 0; i < nextLinks.length; i++) {
-//     nextLinks[i].classList.toggle("hide", currentProduct === products.length - 1);
-//   }
-// }
 
 function loadProductsFromJSON(initialProduct = 0) {
   var xhr = new XMLHttpRequest();
