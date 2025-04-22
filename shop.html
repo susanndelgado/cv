@@ -405,13 +405,13 @@ function loadPostsFromJSON(initialPost = 0) {
     }
   };
 
-  xhr.open("GET", "js/posts.json", true);
+  xhr.open("GET", "js/products.json", true);
   xhr.send();
 }
 
 // Get the post index from the query string parameter
 var urlParams = new URLSearchParams(window.location.search);
-var postIndex = parseInt(urlParams.get("post"));
+var postIndex = parseInt(urlParams.get("products"));
 if (!isNaN(postIndex)) {
   loadPostsFromJSON(postIndex);
 } else {
