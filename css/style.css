@@ -786,10 +786,12 @@ ul.list {
 
 .freesvg101{
 
+    background-image: url(/img/FreeSVG.jpg);
 	color:#fff;
 }
 .traceables{
 
+    background-image: url(/img/Trables.jpg);
 	color:#fff;
 
 }
@@ -799,6 +801,7 @@ ul.list {
 }
 
 
+      
 
 
 
