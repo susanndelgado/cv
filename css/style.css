@@ -773,44 +773,42 @@ ul.list {
 
 .banner-span{
 	background-color: #171a1e;
-	 padding: 40px 0;
+	 padding:0;
 	 color: #fff;
-/* min-height:450px; */
 }
 .banner-span div.bcontent{
 	text-align:center;
 	font-size:36px;
 }
-.blkdesc{
+/* .blkdesc{
 	padding:0;
-/* 	min-height:150px; */
+
 }
 .blkdesc div.bcontent{
-}
+} */
 .wyzant{
-    background-image: url(/img/wyzant.jpg);    background-size: cover;
-	 padding: 200px 0;
-	background-repeat:repeat;
-    background-position: top;
+    background-image: url(/img/wyzant.jpg);    
+	background-size: cover;
+ padding: 60px 0;
     color: #000;
 }
 .freesvg101{
 /* 	height:600px; */
-    background-image: url(/img/FreeSVG.jpg);    background-size: cover;
+/*     background-image: url(/img/FreeSVG.jpg);    background-size: cover;
 	 padding: 200px 0;
 	 background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; */
 }
 .traceables{
     background-image: url(/img/Trables.jpg);    background-size: cover;
-	 padding: 200px 0;
+/* 	 padding: 200px 0;
 	 background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; */
 
 }
 .gardening{
     background-image: url(/img/garden.jpg);    background-size: cover;
-	 padding: 200px 0;
+/* 	 padding: 200px 0; */
 	 background-repeat: no-repeat;
     background-position: center;
 }
