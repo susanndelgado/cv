@@ -44,7 +44,7 @@
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYaQ_h4LNEnfVOsy_Erg0T2bVIjRmZaSo"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYaQ_h4LNEnfVOsy_Erg0T2bVIjRmZaSo"></script> -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
@@ -119,35 +119,12 @@
 
            
 <div class="grid">
-  <div class="grid-item">
-    <img class="responsive" src="img/Mask-Blue.jpg" alt="Blue Venetian Mask Acrylic Painting">
-  </div>
-  <div class="grid-item grid-item--width2">
-  
-                  <img class="responsive" src="img/maskRed.jpg"  alt="Red Venetian Mask Acrylic Painting">
-  </div>
-  <div class="grid-item">
-   
-                  <img class="responsive" src="img/beth.jpg" alt="Emotional Mixed Media Painting Acrylics and Oil Of a Women Overcoming Internal Fears">
-  
-  </div>
-  <div class="grid-item">
-   
-                  <img class="responsive" src="img/GirlwPearlVermeer.jpg" alt="Oil Study Painting of Girl with the Pearl Earring by Vermeer">
-  
-  </div>
-  <div class="grid-item">
-   
-                  <img class="responsive" src="img/BirdBlueLight.jpg" alt="acrylic painting of Blue Bird with unfocused background">
-  
-  </div>
-  <div class="grid-item">
-   
-                  <img class="responsive" src="img/BirdCherryBlossom.jpg" alt="Acrylic Painting of a bird in a cherry blossom tree">
-  
+  <div id="placeholder" class="grid-item">
+    <img class="responsive" src="art/thumb/Mask-Blue.jpg" alt="Blue Venetian Mask Acrylic Painting">
   </div>
  
 </div>
+<div class="container">&nbsp;</div>
 <!--    
  
            
@@ -281,15 +258,30 @@
 </footer>
 
 <script src="js/script.js"></script>
-      <style>
-   .grid-item { width: 200px; }
-.grid-item--width2 { width: 400px; }
-</style>
+    
       <script>
+   
+        var art = [
+          "TheMaskofPreservation.jpg", 
+          "TheMaskOfDisassociation.jpg", 
+          "Beth1.jpg",
+          "GirlwiththePearlEarringStudy.jpg",
+          "blueBirdBlur.jpg",
+          "birdcherryBlossom.jpg"
+        ];
+
+        for(i = 0; i < art.length; i++)
+        {
+            document.getElementById("placeholder")
+            .innerHTML += '<img src="art/img/"'+ art[i] + '" class="responsive" alt="photo of'+ art[i]+'">';
+        };
       $('.grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});</script>
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 200
+      });
+
+
+</script>
 </body>
 </html>
