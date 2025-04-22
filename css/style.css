@@ -777,6 +777,7 @@ ul.list {
 	 padding: 40px 0;
 	 background-repeat: no-repeat;
 	 color: #fff;
+min-height:450px;
 }
 .banner-span div.bcontent{
 	text-align:center;
@@ -793,11 +794,10 @@ ul.list {
 }
 
 .freesvg101{
-
+	height:600px;
     background-image: url(/img/FreeSVG.jpg);
 }
 .traceables{
-
     background-image: url(/img/Trables.jpg);
 
 }
