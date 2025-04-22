@@ -769,6 +769,39 @@ ul.list {
     #footer ahover, #footer avisited, #footer afocus {
       color: #fff; }
 
+
+
+
+.banner-span{
+    	background-size: cover;
+    	padding: 60px 0;
+}
+.banner-span div.bcontent{
+	text-align:center;
+	font-size:36px;
+}
+.wyzant{
+    background-image: url(/img/wyzant.jpg);
+}
+
+.freesvg101{
+    background-image: url(/img/freeSVG.jpg);
+	background-color:#000;
+}
+.traceable{
+    background-image: url(/img/Trables.jpg);
+	background-color:#fff;
+}
+.gardening{
+    background-image: url(/img/garden.jpg);
+	background-color:#fafafa;
+}
+
+
+
+
+
+
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
   html, body {
@@ -870,34 +903,5 @@ ul.list {
       width: 100%
   }
 
-.banner-span div.content{
-	text-align:center;
-	font-size:36px;
-    	background-size: cover;
-    	padding: 60px 0;
-}
-.wyzant{
-    background-image: url(/img/wyzant.jpg);
-    background-size: cover;
-    padding: 60px 0;
-}
-.wyzant div.wyzant-content{
-	text-align:center;
-	font-size:36px;
-}
-	
-.freesvg101{
-    background-image: url(/img/freeSVG.jpg);
-	background-color:#000;
-}
-	
-.traceable{
-    background-image: url(/img/Trables.jpg);
-	background-color:#fff;
-}
-	
-.gardening{
-    background-image: url(/img/garden.jpg);
-	background-color:#fafafa;
-}
+
 	
