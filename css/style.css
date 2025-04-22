@@ -776,6 +776,8 @@ ul.list {
 	background-size: 100%;
 	 padding: 40px 0;
 	 background-repeat: no-repeat;
+	
+    background-position: center;
 	 color: #fff;
 min-height:450px;
 }
@@ -785,6 +787,7 @@ min-height:450px;
 }
 .blkdesc{
 	padding: 20px 0 40px 0;
+	min-height:150px;
 }
 .blkdesc div.bcontent{
 }
