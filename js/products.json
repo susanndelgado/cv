@@ -5,22 +5,29 @@
         "price": "$600",
         "thumb": "Products/Mask-Blue.jpg",
         "image": "Products/Mask-Blue.jpg",
-       "gallery":["Products/Mask-Blue.jpg", "Products/Mask-Blue.jpg", "Products/Mask-Blue.jpg"],
+        "gallery1":"Products/Mask-Blue.jpg",  
+        "gallery2":"Products/Mask-Blue.jpg",
+        "videoThumb":"Products/Mask-Blue.jpg"], 
+        "videoURL":""],
         "link": "showcase/pulse2015.html",
         "purchaseUrl":"https://buy.stripe.com/7sIeVO0xm3PcaLmfYY",
-        "Materials":"18x24 Stretched Cotton Canvas",
-        "content": "<p>The Mask of Preservation, Original Artwork created by Susan Nicole Delgado, is an exquisite artwork showcasing a blue venetian mask. This artwork reflects themes related to Cluster B Disorders, symbolizing the experience of feeling like a mere shell of oneself while hiding behind a mask. Painted with acrylics on an 18x24-inch stretched cotton canvas, it is signed by the artist. It serves as an ideal enhancement for collectors and enthusiasts of dark classical or gothic aesthetics.</p>",
+        "materials":"18x24 Stretched Cotton Canvas",
+        "descr": "<p>The Mask of Preservation, Original Artwork created by Susan Nicole Delgado, is an exquisite artwork showcasing a blue venetian mask. This artwork reflects themes related to Cluster B Disorders, symbolizing the experience of feeling like a mere shell of oneself while hiding behind a mask. Painted with acrylics on an 18x24-inch stretched cotton canvas, it is signed by the artist. It serves as an ideal enhancement for collectors and enthusiasts of dark classical or gothic aesthetics.</p>",
         "id":"0"
       },   {
-        "title": "THE PULSE GALA 2015",
+       "title": "The Mask of Preservation Painting",
+        "price": "$600",
         "thumb": "Products/Mask-Blue.jpg",
         "image": "Products/Mask-Blue.jpg",
-       "gallery":["Products/Mask-Blue.jpg", "Products/Mask-Blue.jpg", "Products/Mask-Blue.jpg"],
+        "gallery1":"Products/Mask-Blue.jpg",  
+        "gallery2":"Products/Mask-Blue.jpg",
+        "videoThumb":"Products/Mask-Blue.jpg"], 
+        "videoURL":""],
         "link": "showcase/pulse2015.html",
         "purchaseUrl":"https://buy.stripe.com/7sIeVO0xm3PcaLmfYY",
-        "Materials":"18x24 Stretched Cotton Canvas",
-        "content": "<p>The Mask of Preservation, Original Artwork created by Susan Nicole Delgado, is an exquisite artwork showcasing a blue venetian mask. This artwork reflects themes related to Cluster B Disorders, symbolizing the experience of feeling like a mere shell of oneself while hiding behind a mask. Painted with acrylics on an 18x24-inch stretched cotton canvas, it is signed by the artist. It serves as an ideal enhancement for collectors and enthusiasts of dark classical or gothic aesthetics.</p>",
-        "id":"0"
+        "materials":"18x24 Stretched Cotton Canvas",
+        "descr": "<p>The Mask of Preservation, Original Artwork created by Susan Nicole Delgado, is an exquisite artwork showcasing a blue venetian mask. This artwork reflects themes related to Cluster B Disorders, symbolizing the experience of feeling like a mere shell of oneself while hiding behind a mask. Painted with acrylics on an 18x24-inch stretched cotton canvas, it is signed by the artist. It serves as an ideal enhancement for collectors and enthusiasts of dark classical or gothic aesthetics.</p>",
+        "id":"1"
       }
     ]
-  }
+}
