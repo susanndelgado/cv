@@ -96,7 +96,6 @@
           <div class="section-descr pad100">
           <div class="container">
           <div class="row">
-          <div class="TYPEOFPRODUCTHERE-layout"> 
                
                         <div id="imagePreview"class="col-lg-6 col-md-6 col-sm-12">
                           
@@ -105,11 +104,12 @@
                         <div id="product-details" class="col-lg-6 col-md-6 col-sm-12 m100">
           
                         </div>
-          </div>      
           </div>
           </div>
           </div> 
+ <div id="content" class="content">
 
+  </div>
 
 </div>
 
@@ -155,14 +155,10 @@
    *  LOAD POST
    *
    ======================================================== */
-
-   
-                 
             
-                        
-                            
 var currentPost = 0;
 var products = [];
+var contentDiv = document.getElementById("content");
 var imagePreview = document.getElementById("imagePreview");
 var infoDiv = document.getElementById("product-details");
    
@@ -190,18 +186,18 @@ function loadPost() {
 
   imagePreview.innerHTML = `
       <div class="row">
-         <a href="https://unsplash.it/1200/768.jpg?image=250" data-toggle="lightbox" data-caption="${product.title}" data-link="${product.link}" data-id="${product.title}">
+         <a href="${product.image}" data-toggle="lightbox" data-caption="${product.title}" data-link="${product.link}" data-id="${product.title}">
       	   <img src="${product.image} class="responsive showcase img-fluid ${product.type}">
          </a>
       </div>
     <div class="row">
-   	<a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-   		<img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
+   	<a href="${product.gallery1}" data-toggle="lightbox" data-gallery="preview" class="col-sm-4">
+   		<img src="${product.gallery1}" class="img-fluid">
    	</a>
-   	<a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-   		<img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
+   	<a href="${product.gallery2}" data-toggle="lightbox" data-gallery="preview" class="col-sm-4">
+   		<img src="${product.gallery2}" class="img-fluid">
    	</a>
-   	<a href="${product.videoUrl}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+   	<a href="${product.videoUrl}" data-toggle="lightbox" data-gallery="preview" class="col-sm-4">
    		<img src="${product.videoThumb}" class="img-fluid">
    	</a>
    </div>
@@ -226,24 +222,24 @@ function loadPost() {
     .then(response => response.text())
     .then(html => {
       contentDiv.innerHTML = html;
-      updateLinkStates();
+      // updateLinkStates();
     })
     .catch(error => {
       console.log("Error fetching HTML file:", error);
     });
 
-  updateLinkStates();
+  // updateLinkStates();
 }
 
-function updateLinkStates() {
-  for (var i = 0; i < previousLinks.length; i++) {
-    previousLinks[i].classList.toggle("hide", currentProduct === 0);
-  }
+// function updateLinkStates() {
+//   for (var i = 0; i < previousLinks.length; i++) {
+//     previousLinks[i].classList.toggle("hide", currentProduct === 0);
+//   }
 
-  for (var i = 0; i < nextLinks.length; i++) {
-    nextLinks[i].classList.toggle("hide", currentProduct === products.length - 1);
-  }
-}
+//   for (var i = 0; i < nextLinks.length; i++) {
+//     nextLinks[i].classList.toggle("hide", currentProduct === products.length - 1);
+//   }
+// }
 
 function loadProductsFromJSON(initialProduct = 0) {
   var xhr = new XMLHttpRequest();
