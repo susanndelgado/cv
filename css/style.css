@@ -771,8 +771,27 @@ ul.list {
 
 
 
+.wyzant{
+    background-image: url(/img/wyzant.jpg);
+}
+
+.freesvg101{
+    background-image: url(/img/freeSVG.jpg);
+	color:#fff;
+}
+.traceable{
+/*     background-image: url(/img/Trables.jpg); */
+	color:#fff;
+
+}
+.gardening{
+    background-image: url(/img/garden.jpg);
+	color:#fff;
+}
+
 
 .banner-span{
+	background-color:#000;
     	background-size: cover;
     	padding: 60px 0;
 }
@@ -780,23 +799,6 @@ ul.list {
 	text-align:center;
 	font-size:36px;
 }
-.wyzant{
-    background-image: url(/img/wyzant.jpg);
-}
-
-.freesvg101{
-    background-image: url(/img/freeSVG.jpg);
-	background-color:#000;
-}
-.traceable{
-    background-image: url(/img/Trables.jpg);
-	background-color:#fff;
-}
-.gardening{
-    background-image: url(/img/garden.jpg);
-	background-color:#fafafa;
-}
-
 
 
 
