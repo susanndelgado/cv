@@ -779,6 +779,7 @@ ul.list {
 .banner-span div.bcontent{
 	text-align:center;
 	font-size:36px;
+ padding: 40px 0;
 }
 /* .blkdesc{
 	padding:0;
@@ -789,7 +790,6 @@ ul.list {
 .wyzant{
     background-image: url(/img/wyzant.jpg);    
 	background-size: cover;
- padding: 60px 0;
     color: #000;
 }
 .freesvg101{
