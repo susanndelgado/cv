@@ -775,9 +775,6 @@ ul.list {
 	background-color: #171a1e;
 	background-size: 100%;
 	 padding: 130px 0;
-	 background-repeat: no-repeat;
-	
-    background-position: center;
 	 color: #fff;
 /* min-height:450px; */
 }
@@ -786,27 +783,33 @@ ul.list {
 	font-size:36px;
 }
 .blkdesc{
-	padding: 20px 0;
+	padding:0;
 /* 	min-height:150px; */
 }
 .blkdesc div.bcontent{
 }
 .wyzant{
-background-repeat:repeat;
     background-image: url(/img/wyzant.jpg);
+	background-repeat:repeat;
+    background-position: top;
     color: #000;
 }
-
 .freesvg101{
 /* 	height:600px; */
     background-image: url(/img/FreeSVG.jpg);
+	 background-repeat: no-repeat;
+    background-position: center;
 }
 .traceables{
     background-image: url(/img/Trables.jpg);
+	 background-repeat: no-repeat;
+    background-position: center;
 
 }
 .gardening{
     background-image: url(/img/garden.jpg);
+	 background-repeat: no-repeat;
+    background-position: center;
 }
 
 
