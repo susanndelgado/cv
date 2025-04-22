@@ -262,18 +262,27 @@
       <script>
    
         var art = [
-          "TheMaskofPreservation.jpg", 
-          "TheMaskOfDisassociation.jpg", 
-          "Beth1.jpg",
-          "GirlwiththePearlEarringStudy.jpg",
-          "blueBirdBlur.jpg",
-          "birdcherryBlossom.jpg"
+          "art/img/TheMaskofPreservation.jpg", 
+          "art/img/TheMaskOfDisassociation.jpg", 
+          "art/img/Beth1.jpg",
+          "art/img/GirlwiththePearlEarringStudy.jpg",
+          "art/img/blueBirdBlur.jpg",
+          "art/img/birdcherryBlossom.jpg"
+        ];
+
+        var alt = [
+          "The Mask of Preservation Acylic Painting", 
+          "The Mask Of Disassociation Acylic Painting", 
+          "Beth Mixed media Oil over Acylic Painting",
+          "Study of Vermeer Girl with the Pearl Earring Oil Painting",
+          "Blue Bird with out of focus blurred background and light Acrylic Painting",
+          "Bird in a Cherry Blossom Tree Acrylic Painting"
         ];
 
         for(i = 0; i < art.length; i++)
         {
             document.getElementById("placeholder")
-            .innerHTML += '<img src="art/img/"'+ art[i] + '" class="responsive" alt="photo of'+ art[i]+'">';
+            .innerHTML += '<img src="'+art[i]+ '" class="responsive" alt="photo of'+ alt[i]+'">';
         };
       $('.grid').masonry({
         // options
