@@ -780,6 +780,12 @@ ul.list {
 	text-align:center;
 	font-size:36px;
 }
+.blkdesc{
+	padding: 20px 0 60px 0;
+}
+.blkdesc div.bcontent{
+	color:#fff;
+}
 .wyzant{
     background-image: url(/img/wyzant.jpg);
 }
@@ -787,7 +793,6 @@ ul.list {
 .freesvg101{
 
     background-image: url(/img/FreeSVG.jpg);
-	color:#fff;
 }
 .traceables{
 
