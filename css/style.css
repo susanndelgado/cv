@@ -772,9 +772,12 @@ ul.list {
 
 
 .banner-span{
-	background-color:#000;
-    	background-size: cover;
-    	padding: 60px 0;
+	background-color: #171a1e;
+    background-size: 100%;
+    padding: 40px 0;
+    /* height: 600px; */
+    background-repeat: no-repeat;
+    color: #fff;
 }
 .banner-span div.bcontent{
 	text-align:center;
@@ -784,10 +787,10 @@ ul.list {
 	padding: 20px 0 60px 0;
 }
 .blkdesc div.bcontent{
-	color:#fff;
 }
 .wyzant{
     background-image: url(/img/wyzant.jpg);
+    color: #000;
 }
 
 .freesvg101{
@@ -797,12 +800,10 @@ ul.list {
 .traceables{
 
     background-image: url(/img/Trables.jpg);
-	color:#fff;
 
 }
 .gardening{
     background-image: url(/img/garden.jpg);
-	color:#fff;
 }
 
 
