@@ -869,6 +869,13 @@ ul.list {
       margin-right: 0;
       width: 100%
   }
+
+.banner-span div.content{
+	text-align:center;
+	font-size:36px;
+    	background-size: cover;
+    	padding: 60px 0;
+}
 .wyzant{
     background-image: url(/img/wyzant.jpg);
     background-size: cover;
@@ -877,5 +884,20 @@ ul.list {
 .wyzant div.wyzant-content{
 	text-align:center;
 	font-size:36px;
+}
+	
+.freesvg101{
+    background-image: url(/img/freeSVG.jpg);
+	background-color:#000;
+}
+	
+.traceable{
+    background-image: url(/img/Trables.jpg);
+	background-color:#fff;
+}
+	
+.gardening{
+    background-image: url(/img/garden.jpg);
+	background-color:#fafafa;
 }
 	
