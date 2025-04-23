@@ -79,18 +79,36 @@
     </button>
   <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
     <ul id="menu-main top-nav" class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="http://www.SusanNicoleArts.etsy.com/" target="_blank">SHOP</a></li>
-       <li class="item active"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
-       <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
-       <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>             
-   <li class="nav-item">
+      <li class="item"><a class="nav-link" href="shop.html">SHOP</a></li>
+        <li class="active item"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
+        <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
+        <!-- <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>              -->
+        <li class="item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a>
+          <ul class="sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=0">PULSEGALA 2015</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=1">TCT INTERNATIONAL 2015</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=2">ALI HAIRSTYLIST</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=3">I WRITE NY</a>
+            </li>
+          </ul>
+        </li>
+         
+      <!-- <li class="item"><a class="nav-link link" href="/code.html" null="">CODE SNIPPETS</a></li> -->
+      <li class="nav-item">
     <a class="nav-link" href="https://susannicolearts.wordpress.com/" target="_blank">ART BLOG</a>
   </li>
   <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
     </ul>
   </div>
 
-</nav>
+  </nav>
    </header>
  
    <div class="section-zero">
@@ -173,22 +191,22 @@
 
         function loadPost() {
 
-        var statustxt ="hide";
+        // var statustxt ="hide";
            
            for(i = 0; i < posts.length; i++)
             {
               // console.log(`Loading post:${posts[i].title}`);
-            if(posts[i].status === "ok"){
-              statustxt = 'hide';
-            } else{
-              statustxt ='show';
-            }
+            // if(posts[i].status === "ok"){
+            //   statustxt = 'hide';
+            // } else{
+            //   statustxt ='show';
+            // }
 
             document.getElementById("placeholder")
-            .innerHTML += '<div class="col-lg-'+posts[i].colGallery+' col-md-'+posts[i].colGallery+ ' col-sm-12 filterDiv all '+posts[i].category+' show"><div class="status '+statustxt+'">SOLD</div>'
+            .innerHTML += '<div class="col-lg-'+posts[i].colGallery+' col-md-'+posts[i].colGallery+ ' col-sm-12 filterDiv all '+posts[i].category+' show">'
               +'<a class="" href="products.html?post='+posts[i].id+'"><img style="margin-bottom: 20px;" class="responsive" src="'
               +posts[i].image+
-              '" alt="photo of'+ posts[i].alt+'"></a><p><strong>'+posts[i].title+'</strong> - '+posts[i].alt+'</p><p><a class="btn btn-blk" href="products.html?post='+posts[i].id+'">View</a></p></div>';
+              '" alt="photo of '+ posts[i].alt+'"></a><p><a class="" href="products.html?post='+posts[i].id+'" alt="'+posts[i].alt+'"><strong>'+posts[i].title+'</strong> - '+posts[i].alt+'</a></p></div>';
             }
         }
 

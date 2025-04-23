@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="">
    <head>
@@ -43,186 +44,126 @@
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-<!--         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYaQ_h4LNEnfVOsy_Erg0T2bVIjRmZaSo"></script> -->
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYaQ_h4LNEnfVOsy_Erg0T2bVIjRmZaSo"></script> -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
-
    </head>
    <body class="page-template page">
-<header id="top" class="top">    <!--[if lt IE 8]>
+<header id="top" class="top">    
+  <!--[if lt IE 8]>
            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
        <![endif]-->
                   <div class="container-fluid">
    <ul class="nav nav-tabs">
       
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">MAIN</a>
+                        <a class="nav-link" aria-current="page" href="/">MAIN</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="gallery.html">GALLERY</a>
+                        <a class="nav-link active" aria-current="page" href="gallery.html">GALLERY</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/work.html">PORTFOLIO</a>
                       </li>
-<!--                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="https://www.amazon.com/hz/wishlist/ls/2EZVEYBYJL8U7?ref_=wl_share" target="_blank">WISHLIST</a>
-                      </li> --> 
-                      <!-- <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                      </li> -->
+                   
              </ul> 
                
   </div> 
 
   <nav class="navbar navbar-expand-lg navbar-light page-nav">
-                        <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
-                        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                      <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
-                        <ul id="menu-main top-nav" class="navbar-nav ml-auto">
-                          <li class="nav-item"><a class="nav-link" href="http://www.SusanNicoleArts.etsy.com/" target="_blank">SHOP</a></li>
-                           <li class="item"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
-                           <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
-                           <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>             
-                       <li class="nav-item">
-                        <a class="nav-link" href="https://susannicolearts.wordpress.com/" target="_blank">ART BLOG</a>
-                      </li>
-                      <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
-                        </ul>
-                      </div>
+    <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+    <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+      <li class="active item"><a class="nav-link" href="shop.html">SHOP</a></li>
+        <li class="item"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
+        <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
+        <!-- <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>              -->
+        <li class="item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a>
+          <ul class="sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=0">PULSEGALA 2015</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=1">TCT INTERNATIONAL 2015</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=2">ALI HAIRSTYLIST</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=3">I WRITE NY</a>
+            </li>
+          </ul>
+        </li>
+         
+      <!-- <li class="item"><a class="nav-link link" href="/code.html" null="">CODE SNIPPETS</a></li> -->
+      <li class="nav-item">
+    <a class="nav-link" href="https://susannicolearts.wordpress.com/" target="_blank">ART BLOG</a>
+  </li>
+  <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
+    </ul>
+  </div>
 
-                    </nav>
+  </nav>
    </header>
-     
-     
-     
-   <div class="section-zero-gallery">
+ 
+   
+   <div class="section-zero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 pad100">
+            <center><h1> Shop</h1></center>
+              </div> 
+        </div>
+      </div>
+   </div>
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2 class="title-span">Filter</h2>
+        <div id="page-nav">
+          <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+          <button class="btn" onclick="filterSelection('Painting')"> Painting</button>
+          <button class="btn" onclick="filterSelection('Mini')"> Mini Painting</button>
+          <button class="btn" onclick="filterSelection('Magnet')"> Hand Painted Magnets</button>
+          <button class="btn" onclick="filterSelection('Journal')"> Journals</button>
+          <button class="btn" onclick="filterSelection('Etched')"> Etched Glass</button>
+          <button class="btn" onclick="filterSelection('Made')"> Made to Order Hand Painted</button>
+          <button class="btn" onclick="filterSelection('Prints')"> Prints</button>
+        </div>
+      </div>
+    </div>
+  </div>
+     <div class="section-zero-gallery">
       <div class="container">
-        <div class="row">
-      
-                      <div class="col-lg-4 col-md-12 col-sm-12 pad100">
-                         <div class="container">
-                           <div class="row">
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                 <a href="/showcase.html?product=0"><img class="responsive" src="img/Mask-Blue.jpg" alt="Blue Venetian Mask Acrylic Painting"></a>
-                               </div>
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                   <h3 class="title"> <a href="/showcase.html?product=0">The Mask of Preservation</a></h3>
-                                 <p>Beautiful Venetian Mask Painting. The Self Reflection: Cluster B Disorders</p>
-                               </div>
-                           </div>
-                         </div>
-                      </div>
-                      <div class="col-lg-4 col-md-12 col-sm-12 pad100">
-                      <div class="container">
-                           <div class="row">
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                 <a href="/showcase.html?product=0"><img class="responsive" src="img/maskRed.jpg" alt="Red Venetian Mask Acrylic Painting"></a>
-                               </div>
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                   <h3 class="title"><a href="/showcase.html?product=1">The Mask Of Disassociation</a></h3>
-                                 <p>Beautiful Venetian Mask Painting. The Self Reflection: Cluster B Disorders</p>
-                               </div>
-                           </div>
-                         </div>
-                      </div>
-                      <div class="col-lg-4 col-md-12 col-sm-12 pad100">
-                         <div class="container">
-                           <div class="row">
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                 <a href="/showcase.html?product=0"><img class="responsive" src="img/beth.jpg" alt="Emotional Mixed Media Painting Acrylics and Oil Of a Women Overcoming Internal Fears"></a>
-                               </div>
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                   <h3 class="title"><a href="/showcase.html?product=2">BETH</a></h3>
-                                 <p>Emotional Piece Of a Women Overcoming Internal Fears</p>
-                               </div>
-                           </div>
-                         </div>
-                      </div> 
+        <div id="placeholder" class="row pad100">
+       
 
-
-
-
-                      <div class="col-lg-4 col-md-12 col-sm-12 pad100">
-                         <div class="container">
-                           <div class="row">
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                 <img class="responsive" src="img/GirlwPearlVermeer.jpg" alt="Oil Study Painting of Girl with the Pearl Earring by Vermeer">
-                               </div>
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                   <h3 class="title">Vermeer Study</h3>
-                                 <p>Girl with the Pearl Earring</p>
-                               </div>
-                           </div>
-                         </div>
-                      </div>
-                      <div class="col-lg-4 col-md-12 col-sm-12 pad100">
-                         <div class="container">
-                           <div class="row">
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                 <img class="responsive" src="img/BirdBlueLight.jpg" alt="acrylic painting of Blue Bird with unfocused background">
-                               </div>
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                   <h3 class="title">Bird in Light</h3>
-                                 <p>Blue Bird painting with beautiful light scattered background.</p>
-                               </div>
-                           </div>
-                         </div>
-                      </div>
-                      <div class="col-lg-4 col-md-12 col-sm-12 pad100">
-                         <div class="container">
-                           <div class="row">
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                 <img class="responsive" src="img/BirdCherryBlossom.jpg" alt="Acrylic Painting of a bird in a cherry blossom tree">
-                               </div>
-                               <div class="col-lg-12 col-md-6 col-sm-12">
-                                   <h3 class="title">Bird in Cherry Blossom</h3>
-                                 <p>Lovely bird painting in a cherry blossom tree</p>
-                               </div>
-                           </div>
-                         </div>
-                      </div> 
-           </div>
+        </div>
      </div>
    </div>
+   
+<div class="container">&nbsp;</div>
+    
+      
      
-     
-<!--      <script async
-  src="https://js.stripe.com/v3/buy-button.js">
-</script>
-
-<stripe-buy-button
-  buy-button-id="buy_btn_0RGWdczGc1dzxBTlcHj76iVs"
-  publishable-key="pk_4reoJhCUlNhzYNoU5ZDfS4OsJFqdi"
->
-</stripe-buy-button>
-
-  -->
-
-     <footer id="footer">
+<footer id="footer">
 <div class="container">
   <div class="row">
      <div class="col-lg-12 col-md-12 col-sm-12"><button class="btn backtotop" href="#top" title="Back to The Top">Back To Top</button></div>
    </div>
   <div class="row">
-       <div class="journals-layout"> <div class="col-lg-3 col-md-3 col-sm-12">
+       <div class="col-lg-3 col-md-3 col-sm-12">
                               <h2 class="">Susan Delgado</h2>
       <a href="mailto:sdelgado@collabdesigns.com">sdelgado@collabdesigns.com</a> 
       <a href="/pdf/resume/2023_susan_delgado_resume.pdf" target="blank">Resume</a>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-12">
-          <!-- <ul class="nav navbar-dark">
-          <li class="nav-item"><a class="nav-link active" href="#">Showcase</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Work</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Collabdesigns Shops</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Code Snippets</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact / Resume</a></li>
-        </ul> -->
+    <div class="col-lg-9 col-md-9 col-sm-12">=
     </div>
-  </div> </div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
@@ -234,6 +175,62 @@
 </div>
 </footer>
 
-<script src="js/script.js"></script>
+    
+      <script>
+        var currentPost = 0;
+        var posts = [];
+
+        function loadPost() {
+
+        var statustxt ="hide";
+           
+           for(i = 0; i < posts.length; i++)
+            {
+              // console.log(`Loading post:${posts[i].title}`);
+            if(posts[i].status === "ok"){
+              statustxt = 'hide';
+            } else{
+              statustxt ='show';
+            }
+
+            document.getElementById("placeholder")
+            .innerHTML += '<div class="col-lg-'+posts[i].colGallery+' col-md-'+posts[i].colGallery+ ' col-sm-12 filterDiv all '+posts[i].category+' show"><div class="status '+statustxt+'">SOLD</div>'
+              +'<a class="" href="products.html?post='+posts[i].id+'"><img style="margin-bottom: 20px;" class="responsive" src="'
+              +posts[i].image+
+              '" alt="photo of'+ posts[i].alt+'"></a><p><strong>'+posts[i].title+'</strong> - '+posts[i].alt+'</p><p><a class="btn btn-blk" href="products.html?post='+posts[i].id+'">View</a></p></div>';
+            }
+        }
+
+function loadPostsFromJSON(initialPost = 0) {
+  console.log("Hello world loadPostsFromJSON!");
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+            console.log(typeof xhr.responseText);
+            console.log(xhr.responseText);
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      posts = response.post;
+      currentPost = initialPost >= 0 && initialPost < posts.length ? initialPost : 0;
+
+  console.log("Success!");
+      loadPost();
+    }
+  };
+  xhr.open("GET", "js/products.json", true);
+  xhr.send();
+}
+
+// // // Get the post index from the query string parameter
+var urlParams = new URLSearchParams(window.location.search);
+var postIndex = parseInt(urlParams.get("post"));
+if (!isNaN(postIndex)) {
+  loadPostsFromJSON(postIndex);
+} else {
+  loadPostsFromJSON();
+}
+
+  </script>
+
+<script src="js/filterscript.js"></script>
 </body>
 </html>

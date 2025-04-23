@@ -79,38 +79,66 @@
                
   </div> 
 
-   <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                      <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
-                        <ul id="menu-main top-nav" class="navbar-nav ml-auto">
-                          <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
-                           <li class="item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a>
-                            <ul class="sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
-                                <a class="dropdown-item child-item" href="/showcase.html?post=0">PULSEGALA 2015</a>
-                              </li>
-                              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
-                                <a class="dropdown-item child-item" href="/showcase.html?post=1">TCT INTERNATIONAL 2015</a>
-                              </li>
-                              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
-                                <a class="dropdown-item child-item" href="/showcase.html?post=2">ALI HAIRSTYLIST</a>
-                              </li>
-                              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
-                                <a class="dropdown-item child-item" href="/showcase.html?post=3">I WRITE NY</a>
-                              </li>
-                            </ul>
-                          </li>
-                           <li class="active item"><a class="nav-link link" href="/code.html" null="">CODE SNIPPETS</a></li>
-                      <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
-                        </ul>
-                      </div>
+  <nav class="navbar navbar-expand-lg navbar-light page-nav">
+    <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <nav class="navbar navbar-expand-lg navbar-light page-nav">
+      <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+      <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+        <li class="item"><a class="nav-link" href="shop.html">SHOP</a></li>
+          <li class="item"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
+          <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
+          <!-- <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>              -->
+          <li class="item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a>
+            <ul class="sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+                <a class="dropdown-item child-item" href="/showcase.html?post=0">PULSEGALA 2015</a>
+              </li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+                <a class="dropdown-item child-item" href="/showcase.html?post=1">TCT INTERNATIONAL 2015</a>
+              </li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+                <a class="dropdown-item child-item" href="/showcase.html?post=2">ALI HAIRSTYLIST</a>
+              </li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+                <a class="dropdown-item child-item" href="/showcase.html?post=3">I WRITE NY</a>
+              </li>
+            </ul>
+          </li>
+           
+        <li class="active item"><a class="nav-link link" href="/code.html" null="">CODE SNIPPETS</a></li>
+        <li class="nav-item">
+      <a class="nav-link" href="https://susannicolearts.wordpress.com/" target="_blank">ART BLOG</a>
+    </li>
+    <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
+      </ul>
+    </div>
 
-                    </nav>
+    </nav>
    </header>
    
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2 class="title-span">Quick Code Snippets</h2>
+        <div id="page-nav">
+          <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+          <button class="btn" onclick="filterSelection('html')"> HTML</button>
+          <button class="btn" onclick="filterSelection('css')"> CSS</button>
+          <button class="btn" onclick="filterSelection('js')"> Javascript & jQuery</button>
+          <button class="btn" onclick="filterSelection('php')"> PHP</button>
+          <button class="btn" onclick="filterSelection('tool')"> Tools</button>
+          <button class="btn" onclick="filterSelection('other')"> Other</button>
+        </div>
+      </div>
+    </div>
+  </div>
       
   <div id="content" class="site-content">
 
@@ -120,625 +148,23 @@
           <div class="col-lg-12 col-md-12 col-sm-12">
                 
                             <table class="table default list">
-                            <tbody><tr class="filterDiv expand-animate all html show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-1860" role="button" aria-expanded="false" aria-controls="collapse1860"><span class="linkname">Here’s an example of a content selector that uses a vertical menu to show/hide content based on the selection made:</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-1860">
-                       <div class="card-body">
-    
-                           <h2 class="title">Here’s an example of a content selector that uses a vertical menu to show/hide content based on the selection made:</h2>
-                           
-    <p></p>
-    
-    
-    
-    <p>This example uses HTML, CSS, and JavaScript to create a vertical menu (<code><strong>menu</strong></code>) with three items (<strong><code>Item 1</code>, <code>Item 2</code>, <code>Item 3</code></strong>). Each item is associated with a corresponding content section (<strong><code>content1</code>, <code>content2</code>, <code>content3</code></strong>) that is initially hidden (<code><strong>display: none</strong></code>).</p>
-    
-    
-    
-    <p>When a menu item is clicked, the <code><strong>showContent()</strong></code> JavaScript function is called with the ID of the corresponding content section. This function hides all content sections and then displays the selected content section by setting its display property to <code>block</code> (<code><strong>display: block</strong></code>).</p>
-    
-    
-    
-    <p>You can add additional menu items and content sections by duplicating the HTML code for each item and section, and updating the IDs accordingly.</p>
-    
-    
-    
-    <script async="" src="//jsfiddle.net/SusannDelgado/d9q8m34o/embed/"></script><iframe src="http://jsfiddle.net/d9q8m34o/embedded/?username=SusannDelgado" id="JSFEMB_19509" width="100%" height="400" frameborder="0" sandbox="allow-modals allow-forms allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation allow-downloads" allow="midi; geolocation; microphone; camera; display-capture; encrypted-media;"></iframe>
-                           <a href="/code/heres-an-example-of-a-content-selector-that-uses-a-vertical-menu-to-show-hide-content-based-on-the-selection-made/" title="Here’s an example of a content selector that uses a vertical menu to show/hide content based on the selection made:">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                               <tr class="filterDiv expand-animate all tool show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-1843" role="button" aria-expanded="false" aria-controls="collapse1843"><span class="linkname">Essential Terminal Commands Every Web Developer Should Remember</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-1843">
-                       <div class="card-body">
-    
-                           <h2 class="title">Essential Terminal Commands Every Web Developer Should Remember</h2>
-                           
-    <p>As a web developer, the command line interface (CLI) is an indispensable tool for streamlining your workflow and executing various tasks efficiently. The terminal provides a powerful and flexible environment that allows you to interact with your operating system and perform a wide range of operations. In this article, we will explore some essential terminal commands that every web developer should remember. Whether you’re a beginner or an experienced developer, mastering these commands will boost your productivity and make your development process more seamless.</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Change Directory</mark></p>
-    
-    
-    
-    <p>The “cd” command is fundamental for navigating through the file system. It allows you to change the current directory in the terminal. For example, to navigate to the “Documents” folder, you would type “cd Documents.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;cd </p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;cd “path/to/directory/”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">List</mark></p>
-    
-    
-    
-    <p>The “ls” command lists the files and directories in the current directory. Adding options such as “-l” (long format) or “-a” (including hidden files) provides more detailed information. For instance, “ls -l” displays the files and directories with their permissions, size, and modification dates.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;ls</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;ls “path/to/directory/”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Open File</mark></p>
-    
-    
-    
-    <p>The “open” command allows you to open files, directories, or applications using their default programs. For example, “open index.html” will open the HTML file in the default browser.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;open </p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;open “filename”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Copy a file to another directory</mark></p>
-    
-    
-    
-    <p>The “cp” command is used to copy files and directories. To copy a file named “style.css” to another location, use the command “cp style.css /path/to/destination.” Similarly, “cp -r directory /path/to/destination” copies a directory and its contents recursively.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;cp</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;cp “filename” “newfilename”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Move file</mark></p>
-    
-    
-    
-    <p>The “mv” command is used to move files and directories from one location to another or rename them. To move a file named “image.jpg” to a different directory, use the command “mv image.jpg /path/to/destination.” To rename a file, simply provide the new name as the destination, like “mv oldname.html newname.html.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;mv</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;mv “filename” “path/to/new/file/location”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Create file</mark></p>
-    
-    
-    
-    <p>The “touch” command is used to create new files. It creates an empty file or updates the modification timestamp of an existing file. To create a file named “index.html,” use the command “touch index.html.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;touch</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;touch myfile.txt</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Remove nested directories</mark></p>
-    
-    
-    
-    <p>The “rmdir” command is specifically designed for removing empty directories. Unlike “rm -R,” it only works on directories that have no files or subdirectories within them. To remove an empty directory named “folder,” simply type “rmdir folder” in the terminal.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;rm -R</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;rm -R “/path/to/root/directory”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Create directory</mark></p>
-    
-    
-    
-    <p>The “mkdir” command enables you to create new directories. Simply type “mkdir” followed by the name of the directory you want to create. For example, “mkdir website” creates a directory named “website.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;mkdir</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;mkdir “path/to/new/directory”</p>
-    
-    
-    
-    <p>Additional Tips:</p>
-    
-    
-    
-    <ul>
-    <li>When using the “rm” or “rmdir” commands, exercise caution and double-check your commands before executing them, as these operations can permanently delete files or directories.</li>
-    
-    
-    
-    <li>For added safety, consider using the “-i” flag with the “rm” command, which prompts for confirmation before deleting each file or directory.</li>
-    
-    
-    
-    <li>Be mindful of the permissions and ownership of the files and directories you are attempting to remove. Some operations may require administrative privileges using the “sudo” command.</li>
-    </ul>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Execute commands with superuser privileges</mark></p>
-    
-    
-    
-    <p>The “sudo” command allows you to execute commands with administrative privileges. It is often used to perform system-level operations or modify restricted files. For example, “sudo apt-get install packageName” installs a package on Linux systems using administrator privileges.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;sudo</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;sudo “command”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">List actively running computer processes</mark></p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;top</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;top</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">grep (Global Regular Expression Print)</mark></p>
-    
-    
-    
-    <p>The “grep” command is a powerful text-searching tool. It allows you to search for specific patterns or text within files. For example, “grep ‘error’ logfile.txt” searches for the word “error” in the file “logfile.txt.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;grep</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;grep ‘error’ logfile.txt</p>
-    
-    
-    
-    <p class="has-normal-font-size">Quit sub-screen and return to Terminal</p>
-    
-    
-    
-    <p>The “q” command is particularly useful when you need to exit a program or tool that runs in the terminal. Whether you’re viewing logs, browsing manuals, or working with version control systems, typing “q” allows you to quickly quit and return to the command prompt.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;q</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;After executing a command, such as&nbsp;<em>top</em>&nbsp;to view active processes, press “q” to exit.</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Clear the Terminal screen of all previous commands</mark></p>
-    
-    
-    
-    <p>The “clear” command clears the terminal screen, providing a clean slate to work with. It is useful when the terminal output becomes cluttered, and you want to start fresh.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;clear</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;clear</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">ditto</mark></p>
-    
-    
-    
-    <p>The “ditto” command is particularly useful for macOS developers. It allows you to create a new directory by copying an existing directory. For example, “ditto source_directory destination_directory” will create a duplicate of the source directory at the specified destination.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;ditto</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;ditto -V MyFolder MyNewFolder</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Get one-line description for a command</mark></p>
-    
-    
-    
-    <p>The “whatis” command provides a concise description of a specific command. It is ideal for quickly refreshing your memory or gaining a basic understanding of a command’s purpose. By typing “whatis command_name,” you can obtain a brief summary of the command’s functionality and usage.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;whatis</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;whatis “command”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Show manual page for a command</mark></p>
-    
-    
-    
-    <p>The “man” command is used to access the manual pages for other commands. It provides detailed information about a command’s usage, options, and examples. For instance, typing “man cp” will display the manual page for the “cp” command.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;man</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;man “command”</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">The “exit” command</mark></p>
-    
-    
-    
-    <p>The “exit” command allows you to close the current terminal session or exit a specific program. Typing “exit” will terminate the current session and return you to the command prompt.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;exit</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;exit</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Change file owner</mark></p>
-    
-    
-    
-    <p>The “chmod” command is used to change the permissions of files and directories. It allows you to control who can read, write, or execute a file. For instance, “chmod +x script.sh” grants executable permission to the script named “script.sh.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;chown</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;chown owner_name file_name</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">Modify this permission</mark></p>
-    
-    
-    
-    <p>The “chmod” command is used to change file permissions. It allows you to control who can read, write, or execute a file. For instance, “chmod +x script.sh” grants executable permission to the script named “script.sh.”</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;chmod</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;chmod [options] [mode] [File_name]</p>
-    
-    
-    
-    <p class="has-normal-font-size"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">SSH</mark></p>
-    
-    
-    
-    <p>The “ssh” command establishes a secure remote connection to another machine. It enables you to log in to a remote server and execute commands remotely. For example, “ssh user@hostname” connects to the remote server with the specified username and hostname.</p>
-    
-    
-    
-    <p><strong>Command:</strong>&nbsp;ssh</p>
-    
-    
-    
-    <p><strong>Example:</strong>&nbsp;ssh user@hostname</p>
-    
-    
-    
-    <p>Mastering the command line interface is essential for web developers as it empowers you to perform various tasks quickly and efficiently. The commands mentioned in this article are just a starting point, and there are many more commands to explore. As you continue your journey as a web developer, invest</p>
-                           <a href="/code/terminal-commands-to-remember/" title="Essential Terminal Commands Every Web Developer Should Remember">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                               <tr class="filterDiv expand-animate all components html show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-1266" role="button" aria-expanded="false" aria-controls="collapse1266"><span class="linkname">Content Selector Module</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-1266">
-                       <div class="card-body">
-    
-                           <h2 class="title">Content Selector Module</h2>
-                           
-    <p>This Content selector show/hides content through a vertical menu that can select images and text to display based on the selection made.</p>
-    
-    
-    
-    <script async="" src="//jsfiddle.net/SusannDelgado/w21o25rr/embed/js,html,result/"></script><iframe src="http://jsfiddle.net/w21o25rr/embedded/js,html,result/?username=SusannDelgado" id="JSFEMB_19509" width="100%" height="400" frameborder="0" sandbox="allow-modals allow-forms allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation allow-downloads" allow="midi; geolocation; microphone; camera; display-capture; encrypted-media;"></iframe>
-                           <a href="/code/content-selector-module/" title="Content Selector Module">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                               <tr class="filterDiv expand-animate all anim components html show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-1262" role="button" aria-expanded="false" aria-controls="collapse1262"><span class="linkname">Image Hover Caption Effect</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-1262">
-                       <div class="card-body">
-    
-                           <h2 class="title">Image Hover Caption Effect</h2>
-                           
-    <p>These hover effects are great for captions or text overlaying images.</p>
-    
-    
-    
-    <p>View code and result below:</p>
-    
-    
-    
-    <script async="" src="//jsfiddle.net/SusannDelgado/9ufrky5j/embed/html,css,result/"></script>
-    <iframe src="http://jsfiddle.net/9ufrky5j/embedded/html,css,result/?username=SusannDelgado" id="JSFEMB_19509" width="100%" height="400" frameborder="0" sandbox="allow-modals allow-forms allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation allow-downloads" allow="midi; geolocation; microphone; camera; display-capture; encrypted-media;"></iframe>
-                           <a href="/code/image-hover-caption-effect/" title="Image Hover Caption Effect">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                               <tr class="filterDiv expand-animate all anim components html show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-1259" role="button" aria-expanded="false" aria-controls="collapse1259"><span class="linkname">Css Text Hover Effects</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-1259">
-                       <div class="card-body">
-    
-                           <h2 class="title">Css Text Hover Effects</h2>
-                           
-    <p>CSS hover effects for text elements</p>
-    
-    
-    
-    <p>These CSS hover effects is great for interactions on websites with links and other elements</p>
-    
-    
-    
-    <p>View full code below:</p>
-    
-    
-    
-    <script async="" src="//jsfiddle.net/SusannDelgado/e2gekoa7/embed/html,css,result/"></script><iframe src="http://jsfiddle.net/e2gekoa7/embedded/html,css,result/?username=SusannDelgado" id="JSFEMB_19509" width="100%" height="400" frameborder="0" sandbox="allow-modals allow-forms allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation allow-downloads" allow="midi; geolocation; microphone; camera; display-capture; encrypted-media;"></iframe>
-                           <a href="/code/css-text-hover-effects/" title="Css Text Hover Effects">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                               <tr class="filterDiv expand-animate all anim components html show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-263" role="button" aria-expanded="false" aria-controls="collapse263"><span class="linkname">Flip Card Effect</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-263">
-                       <div class="card-body">
-    
-                           <h2 class="title">Flip Card Effect</h2>
-                           
-    <p>CSS Flip Card Effect using transform</p>
-    
-    
-    
-    <p>This CSS effect creates an effect that appears to make the div container flip on hover. There is content on both the front and the back of the container. </p>
-    
-    
-    
-    <p>View full code below:</p>
-    
-    
-    
-    <script async="" src="//jsfiddle.net/SusannDelgado/gn7xkm2c/embed/html,css,result/"></script><iframe src="http://jsfiddle.net/gn7xkm2c/embedded/html,css,result/?username=SusannDelgado" id="JSFEMB_19509" width="100%" height="400" frameborder="0" sandbox="allow-modals allow-forms allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation allow-downloads" allow="midi; geolocation; microphone; camera; display-capture; encrypted-media;"></iframe>
-                           <a href="/code/flip-card-effect/" title="Flip Card Effect">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                               <tr class="filterDiv expand-animate all anim experiment how show">
-                  <td>
-                    <div class="item">
-                      <a class="btn btn-sliding" data-toggle="collapse" href="#post-id-135" role="button" aria-expanded="false" aria-controls="collapse135"><span class="linkname">Be new item on test</span>
-                        <!-- <span class="svg">
-                          <svg version="1.1" id="Collected_Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 140 140" style="enable-background:new 0 0 140 140;" xml:space="preserve" width="30" height="30">
-                            <circle class="st0" cx="70" cy="70" r="64.5"></circle>
-                        </span>
-                      <g>
-                        <rect x="61.7" y="34.4" class="st1" width="16.5" height="71.2"></rect>
-                        <rect x="34.4" y="61.7" class="st1" width="71.2" height="16.5"></rect>
-                      </g>
-                      </svg> -->
-                    </a>
-                    </div>
-                     <div class="collapse" id="post-id-135">
-                       <div class="card-body">
-    
-                           <h2 class="title">Be new item on test</h2>
-                           <p>Yeah this is</p>
-                           <a href="/code/be-new-item-on-test/" title="Be new item on test">Read more &gt;&gt; </a>
-    
-                       </div>
-                     </div>
-                     </td>
-                   </tr>
-                   
-                 </tbody></table>
-                                     </div>
+                            <tbody id="tbody">
+
+                            </tbody></table>
           </div>
+        </div>
          
-         
-         <div class="container">
-             <div class="row">Emtpy container Here
-               <div class="col-lg-12 col-md-12 col-sm-12">
-                   <h2>Blank title</h2>
-                   <p>Content</p>
-               </div>
-             </div>
-          </div>
-         <div class="container">
-             <div class="row">Emtpy container Here
-               <div class="col-lg-12 col-md-12 col-sm-12">
-                   <h2>Blank title</h2>
-                   <p>Content</p>
-               </div>
-             </div>
-          </div>
-         
-         <div class="container">
-             <div class="row">Emtpy container Here
-               <div class="col-lg-12 col-md-12 col-sm-12">
-                   <h2>Blank title</h2>
-                   <p>Content</p>
-               </div>
-             </div>
-          </div>
-    <br><br><br>
+            <br><br><br>
   
-          </div>
-      <div class="wyzant banner-span">
-         <div class="col-lg-12 col-md-12 col-sm-12 "><div class="bcontent">
-            <p>ONE ON ONE <br />Private tutoring with Susan</p>
-            <a href="https://www.wyzant.com/Tutors/Collabdesigns" target="_Blank" class="btn btn-blk">LEARN MORE</a>
-         </div></div>
       </div>
+    </div>
+  </div>
+<div class="wyzant banner-span">
+    <div class="col-lg-12 col-md-12 col-sm-12 "><div class="bcontent">
+      <p>ONE ON ONE <br />Private tutoring with Susan</p>
+      <a href="https://www.wyzant.com/Tutors/Collabdesigns" target="_Blank" class="btn btn-blk">LEARN MORE</a>
+    </div></div>
+</div>
 <footer id="footer">
   <div class="container">
     <div class="row">
@@ -771,7 +197,64 @@
   </div>
   </footer>
   
-  <script src="js/script.js"></script>
+<script>
+
+  /* ========================================================
+   *
+   *  LOAD POST
+   *
+   ======================================================== */
+   var currentPost = 0;
+var posts = [];
+var previousLinks = document.getElementsByClassName("previousLink");
+var nextLinks = document.getElementsByClassName("nextLink");
+var contentDiv = document.getElementById("content");
+
+
+
+function loadPost() {
+
+      for(i = 0; i < posts.length; i++)
+      {
+      fetch(posts[i].link)
+        .then(response => response.text())
+        .then(html => {
+          contentDiv.innerHTML += html;
+      
+        })
+        .catch(error => {
+          console.log("Error fetching HTML file:", error);
+        });
+
+    }
+}
+
+function loadPostsFromJSON(initialPost = 0) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      posts = response.posts;
+      currentPost = initialPost >= 0 && initialPost < posts.length ? initialPost : 0;
+      loadPost();
+    }
+  };
+
+  xhr.open("GET", "js/code.json", true);
+  xhr.send();
+}
+
+// Get the post index from the query string parameter
+var urlParams = new URLSearchParams(window.location.search);
+var postIndex = parseInt(urlParams.get("post"));
+if (!isNaN(postIndex)) {
+  loadPostsFromJSON(postIndex);
+} else {
+  loadPostsFromJSON();
+}
+</script>
+
+  <script src="js/filterscript.js"></script>
   <script>
 
 
