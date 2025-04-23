@@ -50,7 +50,8 @@
 
    </head>
    <body class="page-template page">
-<header id="top" class="top">    <!--[if lt IE 8]>
+<header id="top" class="top">    
+  <!--[if lt IE 8]>
            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
        <![endif]-->
                   <div class="container-fluid">
@@ -70,33 +71,34 @@
                
   </div> 
 
-   <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                      <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
-                        <ul id="menu-main top-nav" class="navbar-nav ml-auto">
-                          <li class="nav-item"><a class="nav-link" href="http://www.SusanNicoleArts.etsy.com/" target="_blank">SHOP</a></li>
-                           <li class="item"><a class="nav-link link" href="/gallery.html" null="">GALLERY</a></li>
-                           <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>             
-                       <li class="nav-item">
-                        <a class="nav-link" href="https://susannicolearts.wordpress.com/" target="_blank">ART BLOG</a>
-                      </li>
-                      <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
-                        </ul>
-                      </div>
+   
+  <nav class="navbar navbar-expand-lg navbar-light page-nav">
+    <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+    <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="http://www.SusanNicoleArts.etsy.com/" target="_blank">SHOP</a></li>
+       <li class="item active"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
+       <li class="item"><a class="nav-link link" href="/work.html" null="">PROFESSIONAL PORTFOLIO</a></li>
+       <li class="item"><a class="nav-link link" href="#" null="">LEARN</a></li>             
+   <li class="nav-item">
+    <a class="nav-link" href="https://susannicolearts.wordpress.com/" target="_blank">ART BLOG</a>
+  </li>
+  <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT / RESUME</a></li>
+    </ul>
+  </div>
 
-                    </nav>
+</nav>
    </header>
-<header class="">
+ 
    <div class="section-zero">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 pad100">
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
-<!--              <img src=" alt="" style="width: 100%;"> -->
              <object data="/img/logoCircle.svg" width="300" height="300"> </object>
           </div>
           <div class="col-lg-8 col-md-6 col-sm-12 m100">
@@ -109,14 +111,28 @@
         </div>
      </div>
    </div>
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2 class="title-span">Filter</h2>
+        <div id="page-nav">
+          <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+          <button class="btn" onclick="filterSelection('Painting')"> Painting</button>
+          <button class="btn" onclick="filterSelection('Mini')"> Mini Painting</button>
+          <button class="btn" onclick="filterSelection('Magnet')"> Hand Painted Magnets</button>
+          <button class="btn" onclick="filterSelection('Journal')"> Journals</button>
+          <button class="btn" onclick="filterSelection('Etched')"> Etched Glass</button>
+          <button class="btn" onclick="filterSelection('Made')"> Made to Order Hand Painted</button>
+          <button class="btn" onclick="filterSelection('Prints')"> Prints</button>
+        </div>
+      </div>
+    </div>
+  </div>
      <div class="section-zero-gallery">
       <div class="container">
         <div id="placeholder" class="row pad100">
        
 
-  <!-- <div  class="grid-item">
-    <img class="responsive" src="art/thumb/Mask-Blue.jpg" alt="Blue Venetian Mask Acrylic Painting">
-  </div>-->
         </div>
      </div>
    </div>
@@ -136,14 +152,7 @@
       <a href="mailto:sdelgado@collabdesigns.com">sdelgado@collabdesigns.com</a> 
       <a href="/pdf/resume/2023_susan_delgado_resume.pdf" target="blank">Resume</a>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-12">
-          <!-- <ul class="nav navbar-dark">
-          <li class="nav-item"><a class="nav-link active" href="#">Showcase</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Work</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Collabdesigns Shops</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Code Snippets</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact / Resume</a></li>
-        </ul> -->
+    <div class="col-lg-9 col-md-9 col-sm-12">=
     </div>
   </div>
 </div>
@@ -157,58 +166,62 @@
 </div>
 </footer>
 
-  <script src="js/script.js"></script>
     
       <script>
-  // A $( document ).ready() block.
-  // $( document ).ready(function() {
-        var art = [
-          "TheMaskofPreservation.jpg", 
-          "TheMaskOfDisassociation.jpg", 
-          "Beth1.jpg",
-          "GirlwiththePearlEarringStudy.jpg",
-          "aCozyWinterVillage.jpg",
-          "blueBirdBlur.jpg",
-          "birdcherryBlossom.jpg"
-        ];
+        var currentPost = 0;
+        var posts = [];
 
-        var alt = [
-          "The Mask of Preservation Acylic Painting", 
-          "The Mask Of Disassociation Acylic Painting", 
-          "Beth Mixed media Oil over Acylic Painting",
-          "Study of Vermeer Girl with the Pearl Earring Oil Painting",
-          "A Cozy Winter Village Scene Acrylic Painting",
-          "Blue Bird with out of focus blurred background and light Acrylic Painting",
-          "Bird in a Cherry Blossom Tree Acrylic Painting"
-        ];
+        function loadPost() {
 
-        var colNum = [
-          "4", 
-          "4", 
-          "4",
-          "4",
-          "8",
-          "6",
-          "6"
-        ];
-       
-        for(i = 0; i < art.length; i++)
-        {
+        var statustxt ="hide";
+           
+           for(i = 0; i < posts.length; i++)
+            {
+              // console.log(`Loading post:${posts[i].title}`);
+            if(posts[i].status === "ok"){
+              statustxt = 'hide';
+            } else{
+              statustxt ='show';
+            }
+
             document.getElementById("placeholder")
-            .innerHTML += '<div class="col-lg-'+colNum[i]+' col-md-'+colNum[i]+ ' col-sm-12"><img style="margin-bottom: 20px;" class="responsive" src="art/img/'
-              +art[i]+
-              '" alt="photo of'+ alt[i]+'"></div>';
+            .innerHTML += '<div class="col-lg-'+posts[i].colGallery+' col-md-'+posts[i].colGallery+ ' col-sm-12 filterDiv all '+posts[i].category+' show"><div class="status '+statustxt+'">SOLD</div>'
+              +'<a class="" href="products.html?post='+posts[i].id+'"><img style="margin-bottom: 20px;" class="responsive" src="'
+              +posts[i].image+
+              '" alt="photo of'+ posts[i].alt+'"></a><p><strong>'+posts[i].title+'</strong> - '+posts[i].alt+'</p><p><a class="btn btn-blk" href="products.html?post='+posts[i].id+'">View</a></p></div>';
+            }
+        }
 
-        };
-        
-          $('.grid').masonry({
-            // options
-            itemSelector: '.grid-item',
-            columnWidth: 200
-          });
-    
+function loadPostsFromJSON(initialPost = 0) {
+  console.log("Hello world loadPostsFromJSON!");
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+            console.log(typeof xhr.responseText);
+            console.log(xhr.responseText);
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      posts = response.post;
+      currentPost = initialPost >= 0 && initialPost < posts.length ? initialPost : 0;
+
+  console.log("Success!");
+      loadPost();
+    }
+  };
+  xhr.open("GET", "js/products.json", true);
+  xhr.send();
+}
+
+// // // Get the post index from the query string parameter
+var urlParams = new URLSearchParams(window.location.search);
+var postIndex = parseInt(urlParams.get("post"));
+if (!isNaN(postIndex)) {
+  loadPostsFromJSON(postIndex);
+} else {
+  loadPostsFromJSON();
+}
 
   </script>
 
+<script src="js/filterscript.js"></script>
 </body>
 </html>
