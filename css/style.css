@@ -813,7 +813,19 @@ ul.list {
 	 background-repeat: no-repeat;
     background-position: center;
 }
-
+.status{
+  position: absolute;
+  background-color: #1f252d;
+  color:#fff;
+  padding: 8px;
+  margin: 10px;
+}
+.hide{
+  display: none;
+}
+.show{
+  display: inline-block;
+}
 
       
 
