@@ -80,16 +80,16 @@
         "videoThumb":"art/thumb/GirlwPearlVermeer.jpg", 
         "videoURL":"",
         "link": "",
-        "purchaseUrl":"",
+        "purchaseUrl":"https://buy.stripe.com/eVa00U0xmgBY5r2aEI",
         "medium": "Oil",
         "materials":"Stretched Cotton Canvas",
-        "Size": "18 x 24 inches",
+        "Size": "8 x 8 inches",
         "descr": "<p>This is a Study of Vermeers painting, featuring the iconic The Girl With The Pearl Earring. Painted in oil paints on Cotton Canvas.</p>",
         "category":"Painting",
         "Series":"",
         "columns":"6",
         "colGallery":"4",
-        "status":"",
+        "status":"ok",
         "id":"3"
       },   
       {
@@ -103,7 +103,7 @@
         "videoThumb":"art/thumb/GirlwPearlVermeer.jpg", 
         "videoURL":"",
         "link": "",
-        "purchaseUrl":"",
+        "purchaseUrl":"https://buy.stripe.com/4gw8xqeocclIg5GfZ4",
         "medium": "Acrylics",
         "materials":"Stretched Cotton Canvas",
         "Size": "15 x 30 inches",
@@ -112,7 +112,7 @@
         "Series":"",
         "columns":"6",
         "colGallery":"8",
-        "status":"",
+        "status":"ok",
         "id":"4"
       },   
       {
@@ -126,16 +126,16 @@
         "videoThumb":"art/thumb/BirdBlueLight.jpg", 
         "videoURL":"",
         "link": "",
-        "purchaseUrl":"",
+        "purchaseUrl":"https://buy.stripe.com/bIY00Udk83Pc1aM4gl",
         "medium": "Acrylic",
         "materials":"Stretched Cotton Canvas",
         "Size": "8 x 10 inches",
-        "descr": "<p>Descriptio</p>",
+        "descr": "<p>Hand painted Small Acrylic Blue Bird in Light. Blue Bird painting with beautiful light scattered background. </p>",
         "category":"Painting",
         "Series":"",
         "columns":"6",
         "colGallery":"4",
-        "status":"",
+        "status":"ok",
         "id":"5"
       },   
       {
@@ -149,7 +149,7 @@
         "videoThumb":"art/thumb/birdcherryBlossom.jpg", 
         "videoURL":"",
         "link": "",
-        "purchaseUrl":"",
+        "purchaseUrl":"https://buy.stripe.com/28o8xq1BqbhE6v66ov",
         "medium": "Oil",
         "materials":"Stretched Cotton Canvas",
         "Size": "8 x 10 inches",
@@ -158,8 +158,8 @@
         "Series":"",
         "columns":"6",
         "colGallery":"4",
-        "status":"",
-        "id":"5"
+        "status":"ok",
+        "id":"6"
       }
     ]
 }
