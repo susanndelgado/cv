@@ -114,30 +114,7 @@
         "colGallery":"8",
         "status":"ok",
         "id":"4"
-      },   
-      {
-        "title": "Blue Bird in Light",
-        "price": "$45",
-        "thumb": "art/thumb/BirdBlueLight.jpg",
-        "image": "art/img/blueBirdBlur.jpg",
-        "alt":"Bird perched on a branch Painting",
-        "gallery1":"art/img/blueBirdBlur.jpg",  
-        "gallery2":"art/img/blueBirdBlur.jpg",
-        "videoThumb":"art/thumb/BirdBlueLight.jpg", 
-        "videoURL":"",
-        "link": "",
-        "purchaseUrl":"https://buy.stripe.com/bIY00Udk83Pc1aM4gl",
-        "medium": "Acrylic",
-        "materials":"Stretched Cotton Canvas",
-        "size": "8 x 10 inches",
-        "descr": "<p>Hand painted Small Acrylic Blue Bird in Light. Blue Bird painting with beautiful light scattered background. </p>",
-        "category":"Painting",
-        "Series":"",
-        "columns":"6",
-        "colGallery":"4",
-        "status":"OutofStock",
-        "id":"5"
-      },   
+      },  
       {
         "title": "Cherry Blossom Bird",
         "price": "$45",
@@ -160,6 +137,29 @@
         "colGallery":"4",
         "status":"ok",
         "id":"6"
+      },  
+      {
+        "title": "Blue Bird in Light",
+        "price": "$45",
+        "thumb": "art/thumb/BirdBlueLight.jpg",
+        "image": "art/img/blueBirdBlur.jpg",
+        "alt":"Bird perched on a branch Painting",
+        "gallery1":"art/img/blueBirdBlur.jpg",  
+        "gallery2":"art/img/blueBirdBlur.jpg",
+        "videoThumb":"art/thumb/BirdBlueLight.jpg", 
+        "videoURL":"",
+        "link": "",
+        "purchaseUrl":"https://buy.stripe.com/bIY00Udk83Pc1aM4gl",
+        "medium": "Acrylic",
+        "materials":"Stretched Cotton Canvas",
+        "size": "8 x 10 inches",
+        "descr": "<p>Hand painted Small Acrylic Blue Bird in Light. Blue Bird painting with beautiful light scattered background. </p>",
+        "category":"Painting",
+        "Series":"",
+        "columns":"6",
+        "colGallery":"4",
+        "status":"OutofStock",
+        "id":"5"
       }
     ]
 }
