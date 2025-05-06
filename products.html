@@ -107,8 +107,8 @@
   </div>
 
   </nav>
-</nav>
 </header>
+
 <!-- ======================================================================== -->
         <div class="section-descr pad100">
           <div class="container">  <div ></div>
@@ -121,6 +121,27 @@
             <br />
           </div>
         </div>
+
+    <div id="content" class="content dark">
+
+      <div class="container">
+        <div class="row">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h2 class="">PREVIEW</h2>
+            </div>
+          </div>
+        <div id="videoPreview" class="col-lg-12" style="text-align: center;">
+          <!-- <center>
+            <img class="responsive showcase" src="/showcase/img/pulse2015-header.jpg" class="hero-image"  data-id="Pulsegale 2015" data-link="" alt="Pulse Gala 2015">
+            
+          </center> -->
+        
+          <script async src="https://www.tiktok.com/embed.js"></script>
+        </div>
+      </div>
+     </div>
+    </div>
 <!-- ======================================================================== -->
 <!--  
   <div id="imagePreview"class="col-lg-6 col-md-6 col-sm-12">
@@ -160,6 +181,7 @@
    ======================================================== */
 var currentPost = 0;
 var posts = [];
+var vid = document.getElementById("videoPreview");
 var div = document.getElementById("product");
 
 // console.log("Hello world!");
@@ -168,18 +190,28 @@ function loadPost() {
 
   var post = posts[currentPost];
   var link = post.link;
-
+  var videoContent= '';
+ 
+  var status = '';
+  if(post.video === "yt"){
+    videoContent ='<blockquote class="youtube-embed" style="max-width: 100%;min-width: 325px;border: 1px solid #000;padding: 20px;text-align:center;margin: 0 auto;" ><iframe width="584" height="1039"  src="https://www.youtube.com/embed/'+post.videoURL+'<Shorts_video_code>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></blockquote>';
+  }else{
+      videoContent='<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@susannicolearts/video/'+post.videoCiteId+'" data-video-id="'+post.videoCiteId+'"style="max-width: 605px;min-width: 325px;border: 1px solid #000;padding: 20px;text-align:center;margin: 0 auto;" ><section><a target="_blank" title="@susannicolearts" href="https://www.tiktok.com/@susannicolearts?refer=embed">@susannicolearts</a> '+ post.videoDescription +' <a target="_blank" title="'+post.videoMusicTitle+'" href="'+post.videoMusic+'">'+post.videoMusicTitle+'</a></section> </blockquote> ';
+  }
 
  var status = '';
  if(post.status === "ok"){
   status = '<a class="btn btn-blk" href="'+post.purchaseUrl+'" target="_blank">PURCHASE NOW</a>'
  } else{
-  status ='<a class="btn btn-blk disabled" target="_blank" disabled >OUT OF STOCK</a>'
+  status ='<a class="btn btn-blk disabled" target="_blank" disabled >Unavailable</a>'
  }
  
-  console.log(`Loading post: ${post.title}`);
+  // console.log(`Loading post: ${post.title}`);
+  
+
+  vid.innerHTML += videoContent;
  div.innerHTML=' <div id="img-preview" class="col-lg-' + post.columns + ' col-md-' + post.columns + ' col-sm-12">'
-  +'<img class="responsive" src="'+post.image+'" alt="' + post.title + '"/>'
+  + '<img class="responsive" src="'+post.image+'" alt="' + post.title + '"/>'
   +'</div><div id="product-details" class="col-lg-' + (12-post.columns) + ' col-md-' + (12-post.columns) + ' col-sm-12">'
   +'<h1 class="product-title">'+post.title+'</h1>'
   +'<h3 class="product-alt">'+post.alt+'</h3>'
@@ -188,7 +220,7 @@ function loadPost() {
   +'<p class="product-materials">'+post.materials+'</p>'
   +'<p class="product-descr">'+post.descr+'</p>'
   +'<p class="product-descr">'+status+'</p>'
-  +'</div>';
+  +'</div><div class="col-lg-12 col-md-12 col-sm-12"><br /><br /><p class="center"><img src="img/arrow.png" alt=""></p></div>';
   
  
     
@@ -222,5 +254,6 @@ if (!isNaN(postIndex)) {
 }
 </script>
 <!-- <script src="js/script.js"></script> -->
+ 
 </body>
 </html>
