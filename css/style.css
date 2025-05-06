@@ -189,6 +189,9 @@ h3 {
 .m120 {
   margin-bottom: 120px; }
 
+.m250 {
+  margin-bottom: 250px; }
+      
 .pad20 {
   padding-top: 20px; }
 
@@ -368,6 +371,10 @@ h3 {
   background: #fff;
   padding-top: 100px;
   padding-bottom: 100px; }
+  .content.dark{
+
+  background: #0f0f0f;
+  }
   .content img.responsive {
     max-width: 100%;
     width: 800px; }
