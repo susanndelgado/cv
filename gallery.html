@@ -128,13 +128,10 @@
         <h2 class="title-span">Filter</h2>
         <div id="page-nav">
           <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-          <button class="btn" onclick="filterSelection('Painting')"> Painting</button>
-          <button class="btn" onclick="filterSelection('Mini')"> Mini Painting</button>
-          <button class="btn" onclick="filterSelection('Magnet')"> Hand Painted Magnets</button>
-          <button class="btn" onclick="filterSelection('Journal')"> Journals Covers</button>
-          <button class="btn" onclick="filterSelection('Etched')"> Etched Glass</button>
-          <button class="btn" onclick="filterSelection('Made')"> Made to Order Hand Painted</button>
-          <button class="btn" onclick="filterSelection('Prints')"> Prints</button>
+          <button class="btn" onclick="filterSelection('painting')"> Paintings</button>
+          <button class="btn" onclick="filterSelection('m')"> Mini and Magenets </button>
+          <button class="btn" onclick="filterSelection('journal')"> Journals Covers</button>
+          <button class="btn" onclick="filterSelection('etched')"> Etched</button>
         </div>
       </div>
     </div>
@@ -194,13 +191,14 @@
             // } else{
             //   statustxt ='show';
             // }
-
+            if(posts[i].gallery === "yes"){
             document.getElementById("placeholder")
             .innerHTML += '<div class="col-lg-'+posts[i].colGallery+' col-md-'+posts[i].colGallery+ ' col-sm-12 filterDiv all '+posts[i].category+' show">'
               +'<a class="" href="products.html?post='+posts[i].id+'"><img style="margin-bottom: 20px;" class="responsive" src="'
               +posts[i].image+
               '" alt="photo of '+ posts[i].alt+'"></a><p><a class="" href="products.html?post='+posts[i].id+'" alt="'+posts[i].alt+'"><strong>'+posts[i].title+'</strong> - '+posts[i].alt+'</a></p></div>';
             }
+          }
         }
 
 function loadPostsFromJSON(initialPost = 0) {

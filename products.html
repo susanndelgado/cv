@@ -183,6 +183,7 @@ var currentPost = 0;
 var posts = [];
 var vid = document.getElementById("videoPreview");
 var div = document.getElementById("product");
+var cont = document.getElementById("content");
 
 // console.log("Hello world!");
 
@@ -191,26 +192,36 @@ function loadPost() {
   var post = posts[currentPost];
   var link = post.link;
   var videoContent= '';
- 
   var status = '';
+  var statusShow = '';
+  var marginB = '';
+  var arrowShow = '';
+
+// If is Product and Is Not Sold
+ if(post.status === "ok" && post.product === "yes"){
+  status = '<a class="btn btn-blk" href="'+post.purchaseUrl+'" target="_blank">PURCHASE NOW</a>'
+ } else if(post.status === "sold" && post.product === "yes"){
+  status ='<a class="btn btn-blk disabled" disabled>SOLD OUT</a>'
+ } else{
+  statusShow ="hide";
+ }
+// If Has Video
   if(post.video === "yt"){
-    videoContent ='<blockquote class="youtube-embed" style="max-width: 100%;min-width: 325px;border: 1px solid #000;padding: 20px;text-align:center;margin: 0 auto;" ><iframe width="584" height="1039"  src="https://www.youtube.com/embed/'+post.videoURL+'<Shorts_video_code>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></blockquote>';
-  }else{
-      videoContent='<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@susannicolearts/video/'+post.videoCiteId+'" data-video-id="'+post.videoCiteId+'"style="max-width: 605px;min-width: 325px;border: 1px solid #000;padding: 20px;text-align:center;margin: 0 auto;" ><section><a target="_blank" title="@susannicolearts" href="https://www.tiktok.com/@susannicolearts?refer=embed">@susannicolearts</a> '+ post.videoDescription +' <a target="_blank" title="'+post.videoMusicTitle+'" href="'+post.videoMusic+'">'+post.videoMusicTitle+'</a></section> </blockquote> ';
+     vid.innerHTML +='<blockquote class="youtube-embed" style="max-width: 100%;min-width: 325px;border: 1px solid #000;padding: 20px;text-align:center;margin: 0 auto;" ><iframe width="584" height="1039"  src="https://www.youtube.com/embed/'+post.videoURL+'<Shorts_video_code>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></blockquote>';
+  }else if(post.video === "tt"){
+       vid.innerHTML +='<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@susannicolearts/video/'+post.videoCiteId+'" data-video-id="'+post.videoCiteId+'"style="max-width: 605px;min-width: 325px;border: 1px solid #000;padding: 20px;text-align:center;margin: 0 auto;" ><section><a target="_blank" title="@susannicolearts" href="https://www.tiktok.com/@susannicolearts?refer=embed">@susannicolearts</a> '+ post.videoDescription +' <a target="_blank" title="'+post.videoMusicTitle+'" href="'+post.videoMusic+'">'+post.videoMusicTitle+'</a></section> </blockquote> ';
+  } else{
+    cont.setAttribute("style", "display:none;");
+    marginB ="m250";
+    arrowShow ="hide";
   }
 
- var status = '';
- if(post.status === "ok"){
-  status = '<a class="btn btn-blk" href="'+post.purchaseUrl+'" target="_blank">PURCHASE NOW</a>'
- } else{
-  status ='<a class="btn btn-blk disabled" target="_blank" disabled >Unavailable</a>'
- }
  
   // console.log(`Loading post: ${post.title}`);
   
 
-  vid.innerHTML += videoContent;
- div.innerHTML=' <div id="img-preview" class="col-lg-' + post.columns + ' col-md-' + post.columns + ' col-sm-12">'
+
+ div.innerHTML=' <div id="img-preview" class="'+marginB +' col-lg-' + post.columns + ' col-md-' + post.columns + ' col-sm-12">'
   + '<img class="responsive" src="'+post.image+'" alt="' + post.title + '"/>'
   +'</div><div id="product-details" class="col-lg-' + (12-post.columns) + ' col-md-' + (12-post.columns) + ' col-sm-12">'
   +'<h1 class="product-title">'+post.title+'</h1>'
@@ -219,18 +230,18 @@ function loadPost() {
   +'<p class="product-size">'+post.size+'</p>'
   +'<p class="product-materials">'+post.materials+'</p>'
   +'<p class="product-descr">'+post.descr+'</p>'
-  +'<p class="product-descr">'+status+'</p>'
-  +'</div><div class="col-lg-12 col-md-12 col-sm-12"><br /><br /><p class="center"><img src="img/arrow.png" alt=""></p></div>';
+  +'<p class="product-descr '+statusShow+'">'+ status +'</p>'
+  +'</div><div class="col-lg-12 col-md-12 col-sm-12 '+arrowShow+'"><br /><br /><p class="center"><img src="img/arrow.png" alt=""></p></div>';
   
  
     
 }
 
 function loadPostsFromJSON(initialPost = 0) {
-  console.log("Hello world loadPostsFromJSON!");
+  // console.log("Hello world loadPostsFromJSON!");
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
-    console.log("Hello world onreadystatechange!");
+    // console.log("Hello world onreadystatechange!");
     if (xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       posts = response.post;
