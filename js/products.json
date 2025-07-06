@@ -359,6 +359,36 @@
       "product":"yes",
       "gallery":"yes",
       "id":"11"
+    },  
+    {
+      "title": "Fantasia Painting",
+      "price": "$150",
+      "thumb": "art/thumb/Fantasia.jpg",
+      "image": "art/img/Fantasia.jpeg",
+      "alt":"Dumbo",
+      "gallery1":"",  
+      "gallery2":"",
+      "video":"tt",
+      "videoThumb":"", 
+      "videoURL":"",
+      "videoCiteId":"",
+      "videoDescription":"8X10 Wooden Canvas Oil Painting of Fantasia.",
+      "videoMusic":"",
+      "videoMusicTitle": "",
+      "link": "",
+      "purchaseUrl":"https://buy.stripe.com/bJe7sydxddPg794eO1cZa0c",
+      "medium": "Acrylic",
+      "materials":"Wooden Canvas",
+      "size": "8 x 10 inches",
+      "descr": "<p>8X10 Stretched Wooden Canvas Oil Painting of Fantasia. </p>",
+      "category":"painting",
+      "Series":"",
+      "columns":"6",
+      "colGallery":"4",
+      "status":"ok",
+      "product":"yes",
+      "gallery":"yes",
+      "id":"12"
     }
   ]
 }
