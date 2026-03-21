@@ -384,6 +384,7 @@ h3 {
     font-weight: 100px;
     color: #bcbcbc; }
 .section-zero {background-color: #000;color: white;}
+.section-zero-display {background-color: #0a0a0a;color: white;}
 .section-zero-gallery {background-color: fafafa;}
 .section-zero img, .section-zero-gallery img,.section-zero svg{max-width:100%;}
 .section-zero svg, .section-zero object {background-color:#fff;}
