@@ -301,25 +301,25 @@
 </footer>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if the traveler's connection is known and strong
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    
-    // Select all thy guild's videos
-    const videos = document.querySelectorAll('video');
+    const allVideos = document.querySelectorAll('video');
 
-    if (connection) {
-        // If they are on a 'save-data' mode or a slow connection (2g/3g)
-        if (connection.saveData || ['slow-2g', '2g', '3g'].includes(connection.effectiveType)) {
-            console.log("The winds are weak. Keeping videos still to save thy traveler's data.");
-            videos.forEach(v => {
-                v.removeAttribute('autoplay');
+    allVideos.forEach(v => {
+        // Essential: Mute must be true for the browser to allow motion
+        v.muted = true;
+
+        if (connection) {
+            // If the winds are weak or the traveler is saving data
+            if (connection.saveData || ['slow-2g', '2g', '3g'].includes(connection.effectiveType)) {
+                console.log("The connection is thin. Staying the motion.");
                 v.pause();
-            });
-        } else {
-            // The winds are strong! Let the videos dance.
-            videos.forEach(v => v.play().catch(e => console.log("Autoplay blocked by browser laws.")));
+                v.autoplay = false;
+            } else {
+                // If the winds are fair, we bid the art to move
+                v.play().catch(err => console.log("Motion paused by browser policy."));
+            }
         }
-    }
+    });
 });
 </script>
 </body>
