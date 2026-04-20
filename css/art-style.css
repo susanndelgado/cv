@@ -85,79 +85,92 @@ header#top {
 
 
 /* ==========================================================================
-   PART 2: THE GALLERY & GERARD-INSPIRED ELEGANCE
+   PART 2: THE BOUTIQUE GALLERY (Content Styles)
    ========================================================================== */
 
-/* The Modern Art Hero (Section Zero) */
-.section-zero {
+/* The Dark Master Entry */
+.boutique-hero {
     background-color: #111111;
     color: #ffffff;
     padding: 120px 0;
     text-align: center;
+    /* This ensures it snaps to the header if you use margin: 0 */
+    margin-top: 0; 
 }
 
-/* Elegant Font Weights for Gallery Look */
-.section-zero h1 {
-    font-weight: 300; /* Lighter, like high-end exhibition text */
-    font-size: 2.5rem;
-    letter-spacing: 6px;
+.boutique-hero h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300; /* The thin, elegant weight from thy About page */
+    font-size: 3rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
-.section-zero p {
+.boutique-hero .hero-subtext {
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    font-size: 1.1rem;
     color: #999;
-    font-size: 1rem;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    max-width: 750px;
+    margin: 0 auto 40px;
     line-height: 1.8;
 }
 
-/* The Boutique Gallery Grid */
-.gallery-section {
+/* The Exhibition Grid */
+.gallery-vault {
     padding: 100px 0;
     background-color: #ffffff;
 }
 
-.portfolio-item {
-    margin-bottom: 60px;
+.vault-item {
+    margin-bottom: 70px;
 }
 
-/* Framing thy work like a fine exhibition */
-.showcase-thumb {
+/* The High-End Frame */
+.art-frame {
     position: relative;
     overflow: hidden;
     background: #fff;
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
+    /* Subtle depth instead of a border */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
 }
 
-.showcase-thumb img {
+.art-frame img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 1.2s ease;
+    transition: transform 1.5s ease;
 }
 
-/* Subtle Gallery Interaction */
-.showcase-thumb:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+/* Interaction: The Lift */
+.art-frame:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.1);
 }
 
-.showcase-thumb:hover img {
-    transform: scale(1.05);
+.art-frame:hover img {
+    transform: scale(1.04);
 }
 
-/* Gallery Imperial Button (Sleeker for Art) */
-.btn-gallery {
-    border: 1px solid #fff;
+/* The Imperial Gallery Button */
+.btn-boutique {
+    display: inline-block;
+    border: 1px solid #ffffff;
     background: transparent;
-    color: #fff;
-    padding: 10px 40px;
-    letter-spacing: 4px;
-    font-size: 11px;
-    transition: all 0.3s ease;
+    color: #ffffff;
+    padding: 12px 45px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    text-decoration: none;
 }
 
-.btn-gallery:hover {
-    background: #fff;
-    color: #000;
+.btn-boutique:hover {
+    background: #ffffff;
+    color: #111111;
 }
