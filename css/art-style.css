@@ -338,7 +338,50 @@ header .nav-tabs .nav-link.active:hover{
     background-color: #f8f8f8; /* A very soft grey so you can see the frames */
     border: 1px dashed #ddd; /* A 'Ghost' border for layout visibility */
 }
+/* --- ===============================
+THE ARTISAN'S UNIFIED SLIDESHOW 
+==========================================--- */
 
+/* 1. The Container: Keeps the 3x4 ratio and hides the overlap */
+.slideshow-frame {
+    aspect-ratio: 3 / 4; /* Maintains thy preferred ratio */
+    width: 100%; 
+    max-width: 100%;
+    position: relative;
+    overflow: hidden; /* Hides the image overlap */
+    background-color: #f4f4f4; 
+    border-radius: 4px;
+}
+
+/* 2. The Images: Stacked and ready to fade */
+.slideshow-frame img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the box without stretching */
+    object-position: center; 
+    opacity: 0; /* Hidden by default */
+    z-index: 1;
+    transition: opacity 1s ease-in-out; /* Smooth transition */
+    
+    /* Apply the animation to all images */
+    animation: fadeThroughSlides 12s infinite; /* Adjusted for 4 images */
+}
+
+/* 3. The Timing: Specific delays for each image in the cycle */
+/* This example assumes thou art using 4 images (3s each, 12s total cycle) */
+.slideshow-frame img:nth-child(1) { animation-delay: 0s; }
+.slideshow-frame img:nth-child(2) { animation-delay: 3s; }
+.slideshow-frame img:nth-child(3) { animation-delay: 6s; }
+.slideshow-frame img:nth-child(4) { animation-delay: 9s; }
+
+/* 4. The Animation Keyframes: The actual 'ghostly' fading logic */
+@keyframes fadeThroughSlides {
+    0%, 25% { opacity: 1; z-index: 2; } /* Image is visible */
+    30%, 100% { opacity: 0; z-index: 1; } /* Image fades out */
+}
 /* =========================================================================
    GUILD MASTER: COMPLETE ABOUT/PROCESS STYLES
    Includes: Black Masthead, Interactive Tree, & Grey Resource Boxes
