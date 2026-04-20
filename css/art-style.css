@@ -1,42 +1,109 @@
-/* --- ART ESTATE: MINIMALIST IMPERIAL --- */
+/* --- ART ESTATE: INDEPENDENT IMPERIAL MASTER SCROLL --- */
+
+/* 1. MASTER FONTS & FOUNDATION */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400&display=swap');
 
 :root {
-    --imperial-gold: #bfa37e;
+    --imperial-black: #1a1a1a;
+    --imperial-white: #ffffff;
+    --imperial-grey: #444444;
 }
 
-/* Use standard Bootstrap colors, but override the font for elegance */
 body {
-    font-family: 'Montserrat', sans-serif;
-    color: #212529;
+    background-color: var(--imperial-white) !important;
+    font-family: 'Open Sans', sans-serif !important; 
+    color: var(--imperial-black) !important;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2, h3, .serif {
+/* 2. NAVIGATION RECONSTRUCTION (The Bootstrap 5 Fix) */
+
+header#top, .navbar {
+    background-color: var(--imperial-white) !important;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee !important;
+}
+
+/* Force "SUSAN DELGADO" and Links to Black (Banish the Blue) */
+.navbar-brand {
+    color: var(--imperial-black) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar-nav .nav-link {
+    color: var(--imperial-grey) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 10px 15px !important;
+    transition: color 0.3s ease;
+}
+
+/* Hover & Active States */
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-link.active {
+    color: #000000 !important;
+}
+
+/* 3. THE IMPERIAL HERO (Section Zero) */
+
+.section-zero {
+    background-color: var(--imperial-white) !important;
+    color: var(--imperial-black) !important;
+    padding-top: 100px !important;
+    padding-bottom: 160px !important; 
+    text-align: center;
+}
+
+/* Applying the Trial Fonts to Headings */
+.section-zero h1, 
+.section-zero h2 {
     font-family: 'Playfair Display', serif !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem;
 }
 
-/* This replaces your 'Black Box' with an 'Imperial Gallery' look */
-.hero-imperial {
-    background-color: #ffffff;
-    border-bottom: 1px solid #eee;
-    padding: 80px 0;
+.section-zero .lead {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 300 !important;
+    max-width: 850px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    color: var(--imperial-grey) !important;
 }
 
-/* Makes images look like high-end gallery prints */
+/* 4. GALLERY FRAMES & BUTTONS */
+
+.btn-imperial {
+    border: 1px solid var(--imperial-black) !important;
+    border-radius: 0 !important;
+    padding: 12px 35px !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    background: transparent !important;
+    color: var(--imperial-black) !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-imperial:hover {
+    background: var(--imperial-black) !important;
+    color: var(--imperial-white) !important;
+}
+
 .gallery-frame {
-    border: 1px solid #f0f0f0;
-    padding: 1rem;
-    background: #fff;
-    transition: transform 0.3s ease;
+    border: 1px solid #f0f0f0 !important;
+    padding: 1.2rem !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02) !important;
+    transition: all 0.4s ease !important;
 }
 
 .gallery-frame:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.ls-imperial {
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    font-size: 0.7rem;
+    transform: translateY(-8px) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.07) !important;
 }
