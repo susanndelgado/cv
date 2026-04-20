@@ -425,78 +425,127 @@ THE ARTISAN'S UNIFIED SLIDESHOW
 }
 
 /* --- 2. THE INTERACTIVE PROCESS TREE --- */
-/* --- THE FLUID TREE (No Boxes, No Gaps) --- */
+/* --- The Process Tree Forge --- */
 
 .process-tree-section {
-    padding: 0; /* Remove padding to let sections go edge-to-edge */
-    background-color: #ffffff;
+    padding: 80px 0;
+    overflow: hidden;
 }
-
-.process-node {
-    display: flex;
-    min-height: 400px;
-    align-items: center;
-    position: relative;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 1.2s ease-in-out;
-    border-bottom: 1px solid #f0f0f0; /* Very faint separator */
-}
-
-.process-node.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Alternating Fades to fill the white space */
-.node-right { 
-    background: linear-gradient(to right, #ffffff, #fafafa); 
-    text-align: left;
-}
-.node-left { 
-    background: linear-gradient(to left, #ffffff, #fafafa); 
-    flex-direction: row-reverse;
-    text-align: right;
-}
-
-.node-content {
-    width: 100%;
-    max-width: 500px; /* Constrains text for readability while background is full width */
-    padding: 60px;
-    z-index: 2;
-    position: relative;
-}
-
-/* Large Faded Watermark to break the "Empty" feel */
-.phase-watermark {
-    position: absolute;
-    font-size: 15rem;
-    font-weight: 800;
-    color: #f7f7f7; /* Very close to white, just a whisper of a number */
-    z-index: 1;
-    user-select: none;
-    line-height: 1;
-}
-
-.node-right .phase-watermark { left: 50px; }
-.node-left .phase-watermark { right: 50px; }
 
 .process-wrap {
-    position: relative; /* This is the boundary for the line */
-    width: 100%;
+    position: relative;
+    padding: 40px 0;
 }
 
+/* The Central Spine */
 .tree-trunk {
     position: absolute;
     left: 50%;
-    top: 0;         /* Starts at the very top of the .process-wrap */
-    bottom: 0;  /* Stops before the Mastery section as before */
-    width: 1px;
-    background: linear-gradient(to bottom, #eee, #ddd, #eee);
-    z-index: 3;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #d4af37; /* A noble gold for the trunk */
     transform: translateX(-50%);
-    /* Remove 'height: 100%' - top and bottom together will set the height perfectly */
+    z-index: 1;
 }
+
+.process-node {
+    position: relative;
+    margin-bottom: 100px; /* Space between the rows */
+    z-index: 2;
+}
+
+/* Text and Image Styling */
+.node-step {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.node-title {
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #fff; /* Assuming a dark theme for thy estate */
+}
+
+.node-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* Image Frame Constraints */
+.node-image-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.node-image-frame:hover {
+    transform: scale(1.02);
+}
+
+.node-image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Placeholder for Phase I */
+.placeholder-frame {
+    border: 1px dashed #444;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Mastery Parallax (The Final Act) --- */
+.mastery-parallax-window {
+    height: 60vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.mastery-content-box {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border: 1px solid #d4af37;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive Adjustments for Handheld Mirrors (Mobile) */
+@media (max-width: 768px) {
+    .tree-trunk {
+        left: 20px; /* Move the line to the left on mobile */
+    }
+    
+    .process-node {
+        margin-bottom: 50px;
+    }
+
+    .process-node .col-md-6 {
+        padding-left: 50px !important;
+        text-align: left !important;
+    }
+
+    .placeholder-frame {
+        display: none; /* Hide empty boxes on mobile to save space */
+    }
+}
+
 /* --- STAGE 5: EXECUTION & MASTERY FULL WIDTH --- */
 
 .execution-mastery-hero {
