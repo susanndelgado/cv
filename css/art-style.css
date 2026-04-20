@@ -342,6 +342,8 @@ header .nav-tabs .nav-link.active:hover{
 THE ARTISAN'S UNIFIED SLIDESHOW 
 ==========================================--- */
 
+/* --- THE ARTISAN'S UNIFIED SLIDESHOW --- */
+
 /* 1. The Container: Keeps the 3x4 ratio and hides the overlap */
 .slideshow-frame {
     aspect-ratio: 3 / 4; /* Maintains thy preferred ratio */
