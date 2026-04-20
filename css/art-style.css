@@ -20,7 +20,7 @@ body {
   margin: 0;
   text-rendering: optimizeLegibility;
 }
-header h1, header h2, header h3, header h4, header h5, header h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: proxima-nova, "Open Sans", sans-serif;
   font-weight: 600px;
   margin-bottom: 20px; 
@@ -193,4 +193,23 @@ a, a:visited, .dropdown-item{
 .btn-boutique:hover {
     background: #ffffff;
     color: #111111;
+}
+
+
+
+/* ============================
+On screens that are 600px or less, set the background color to olive 
+=============================== */
+@media screen and (max-width: 600px) {
+  html, body {
+    width: 100%;
+    height: auto; }
+  .header {
+    max-width: 100%;
+    overflow-y: hidden; }
+  * {
+    max-width: 100%; }
+  h1, h2, h3, h4 {
+    font-size: 1.5rem; }
+  
 }
