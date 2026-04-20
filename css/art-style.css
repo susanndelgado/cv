@@ -436,14 +436,21 @@ header .nav-tabs .nav-link.active:hover{
 .node-right .phase-watermark { left: 50px; }
 .node-left .phase-watermark { right: 50px; }
 
-/* The Central Line - now thinner and more delicate */
+.process-wrap {
+    position: relative; /* This is the boundary for the line */
+    width: 100%;
+}
+
 .tree-trunk {
     position: absolute;
     left: 50%;
+    top: 0;         /* Starts at the very top of the .process-wrap */
+    bottom: 0;  /* Stops before the Mastery section as before */
     width: 1px;
-    height: calc(100% - 150px);
     background: linear-gradient(to bottom, #eee, #ddd, #eee);
     z-index: 3;
+    transform: translateX(-50%);
+    /* Remove 'height: 100%' - top and bottom together will set the height perfectly */
 }
 /* --- STAGE 5: EXECUTION & MASTERY FULL WIDTH --- */
 
