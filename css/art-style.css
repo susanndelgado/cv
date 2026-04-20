@@ -135,119 +135,225 @@ header .nav-tabs .nav-link.active:hover{
 /* ================================================================
    1. BOUTIQUE GALLERY & FILTER NAVIGATION
 ================================================================ */
-.boutique-gallery-section{padding:100px 0;background-color:#ffffff;}
-.filter-nav{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:50px;gap:20px;}
-.filter-btn{background:none;border:none;font-family:inherit;font-size:0.9rem;font-weight:300;text-transform:uppercase;letter-spacing:2px;color:#888;cursor:pointer;transition:all 0.3s ease;padding:5px 10px;position:relative;}
-.filter-btn:hover, .filter-btn.active{color:#111;}
-.filter-btn.active::after{content:'';position:absolute;bottom:0;left:10px;right:10px;height:1px;background-color:#d4af37;}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:30px;padding:0 15px;}
+/* ================================================================
+   a. CORE UI & BLACK BANNERS
+================================================================ */
+.black-banner-section{background-color:#111!important;color:#ffffff!important;padding:60px 0;width:100%;display:block;position:relative;}
+.btn-main{display:inline-block;padding:12px 35px;border:1px solid #d4af37;color:#d4af37;text-transform:uppercase;letter-spacing:2px;background:transparent;transition:all 0.3s ease;cursor:pointer;text-decoration:none;position:relative;z-index:2;}
+.btn-main:hover{background:#d4af37;color:#111;}
+
+/* ================================================================
+   b. BOUTIQUE GALLERY LAYOUT
+================================================================ */
+.boutique-gallery-section{padding:100px 0;background-color:#ffffff;position:relative;}
+.filter-nav{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:50px;gap:25px;}
+.filter-btn{background:none;border:none;font-family:inherit;letter-spacing:2px;text-transform:uppercase;color:#888;cursor:pointer;transition:all 0.3s ease;padding:5px 0;position:relative;}
+.filter-btn:hover,.filter-btn.active{color:#111;}
+.filter-btn.active::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background-color:#d4af37;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;padding:0 15px;}
 .gallery-item{position:relative;overflow:hidden;background-color:#f9f9f9;aspect-ratio:3/4;transition:transform 0.5s ease;}
 .gallery-item:hover{transform:translateY(-10px);}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:scale 0.8s ease;}
-.gallery-item:hover img{scale:1.05;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease;}
+.gallery-item:hover img{transform:scale(1.05);}
+
+/* ================================================================
+   c. ITEM OVERLAYS & HOVER LOGIC
+================================================================ */
+.item-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;padding:30px;text-align:center;z-index:3;}
+.gallery-item:hover .item-overlay{opacity:1;}
+.overlay-title{text-transform:uppercase;letter-spacing:3px;color:#111;margin-bottom:15px;display:block;}
+.overlay-desc{color:#666;line-height:1.6;display:block;}
 
 /* ================================================================
    2. ARTISAN UNIFIED SLIDESHOW
+================================================================ */
+/* ================================================================
+   2. ARTISAN UNIFIED SLIDESHOW STRUCTURE
 ================================================================ */
 .unified-slideshow-container{position:relative;width:100%;height:80vh;overflow:hidden;background-color:#000;margin:80px 0;}
 .slide-wrap{display:flex;width:100%;height:100%;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
 .artisan-slide{min-width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
 .slide-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0.6;}
 .slide-content{position:relative;z-index:10;text-align:center;color:#fff;max-width:800px;padding:0 20px;}
-.slide-category{font-size:0.8rem;text-transform:uppercase;letter-spacing:5px;margin-bottom:20px;color:#d4af37;display:block;}
-.slide-title{font-size:3rem;font-weight:300;text-transform:uppercase;letter-spacing:8px;margin-bottom:30px;}
-.slide-btn{display:inline-block;padding:15px 40px;border:1px solid #fff;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:3px;font-size:0.8rem;transition:all 0.3s ease;}
+.slide-category{text-transform:uppercase;letter-spacing:5px;margin-bottom:20px;color:#d4af37;display:block;}
+.slide-title{text-transform:uppercase;letter-spacing:8px;margin-bottom:30px;}
+.slide-btn{display:inline-block;padding:15px 40px;border:1px solid #fff;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:3px;transition:all 0.3s ease;}
 .slide-btn:hover{background:#fff;color:#000;}
 .slideshow-nav{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;gap:15px;z-index:20;}
 .nav-dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff;cursor:pointer;transition:all 0.3s;}
-.nav-dot.active{background:#fff;scale:1.2;}
+.nav-dot.active{background:#fff;transform:scale(1.2);
 
 /* ================================================================
    3. GALLERY ITEM OVERLAYS & CAPTIONS
 ================================================================ */
-.item-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;padding:20px;text-align:center;}
+.item-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;padding:30px;text-align:center;z-index:3;}
 .gallery-item:hover .item-overlay{opacity:1;}
-.overlay-title{font-size:1.1rem;font-weight:300;text-transform:uppercase;letter-spacing:3px;color:#111;margin-bottom:10px;}
-.overlay-desc{font-size:0.85rem;color:#666;line-height:1.6;font-weight:300;}
+.overlay-title{text-transform:uppercase;letter-spacing:3px;color:#111;margin-bottom:15px;display:block;}
+.overlay-desc{color:#666;line-height:1.6;display:block;}
 
 /* ================================================================
    4. BOUTIQUE RESPONSIVE (GALLERY FOCUS)
 ================================================================ */
 @media (max-width:991px){
-.gallery-grid{grid-template-columns:repeat(2, 1fr);}
-.slide-title{font-size:2.2rem;letter-spacing:4px;}
+.gallery-grid{grid-template-columns:repeat(2,1fr);}
+.item-overlay{padding:20px;}
 }
 @media (max-width:576px){
 .gallery-grid{grid-template-columns:1fr;}
 .filter-nav{gap:10px;}
-.filter-btn{font-size:0.75rem;letter-spacing:1px;}
+.filter-btn{letter-spacing:1px;}
+.boutique-gallery-section{padding:60px 0;}
 }
 /* ================================================================
-   2. INTERACTIVE PROCESS TREE & ANIMATIONS
-   ================================================================ 
-*/
-.process-tree-section{padding:80px 0;background-color:transparent;}
+   5. INTERACTIVE PROCESS TREE & ANIMATIONS
+================================================================ */
+.process-tree-section{padding:80px 0;background-color:transparent;position:relative;}
 .process-wrap{position:relative;padding:40px 0;}
 .tree-trunk{position:absolute;left:50%!important;top:0;bottom:600px!important;width:2px;background-color:#d4af37!important;transform:translateX(-50%);z-index:1;}
 .process-node{position:relative;margin-bottom:120px;z-index:5;opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
 .process-node.active{opacity:1!important;transform:translateY(0)!important;}
-.node-image-frame{width:100%;max-width:450px;margin:0 auto;border:1px solid rgba(212,175,55,0.2);overflow:hidden;}
+.node-image-frame{width:100%;max-width:450px;margin:0 auto;border:1px solid rgba(212,175,55,0.2);overflow:hidden;position:relative;}
 .node-image-frame img{width:100%;height:auto;display:block;}
 .small-frame{max-width:220px!important;}
-
+.placeholder-frame{background-color:#f9f9f9;border:1px dashed #ddd;display:flex;align-items:center;justify-content:center;aspect-ratio:3/4;}
 /* ================================================================
-   3. PROCESS TYPOGRAPHY (CLEAN & THIN)
-   ================================================================ 
-*/
-.node-step{font-size:0.9rem;font-weight:700;text-transform:uppercase;color:#d4af37;display:block;margin-bottom:5px;}
-.node-title{margin-bottom:15px;letter-spacing:2px;text-transform:uppercase;color:inherit;}
-.node-text{max-width:500px;line-height:1.7;}
-
+   6. PROCESS TYPOGRAPHY (LAYOUT ONLY)
+================================================================ */
+.node-step{color:#d4af37;text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:10px;}
+.node-title{text-transform:uppercase;letter-spacing:3px;margin-bottom:20px;color:inherit;}
+.node-text{max-width:500px;line-height:1.8;margin-bottom:0;}
+.process-node:nth-child(even) .node-text{margin-left:auto;}
 /* ================================================================
-   4. EXECUTION & MASTERY (FINAL ACT)
-   ================================================================ 
-*/
-.execution-mastery-hero{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;margin-top:150px;}
-.mastery-parallax-window{height:600px;width:100%;background-size:cover;background-position:center;background-attachment:fixed;display:flex;align-items:center;justify-content:center;position:relative;}
-.mastery-parallax-window::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.1);}
-.mastery-content-box{position:relative;z-index:10;background:#ffffff;padding:60px;max-width:800px;text-align:center;border-top:3px solid #d4af37;box-shadow:0 20px 50px rgba(0,0,0,0.05);}
-
-/* ================================================================
-   5. RESOURCE SECTION (WHITE BOXES)
-   ================================================================ 
-*/
-.boutique-education-area{padding:120px 0;background-color:#f2f2f2;border-top:1px solid #e0e0e0;}
-.white-resource-box{background-color:#ffffff;padding:60px 50px;margin:15px;border:1px solid #e0e0e0;text-align:center;transition:all 0.4s ease;height:100%;box-shadow:0 10px 30px rgba(0,0,0,0.03);}
-.white-resource-box:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.08);}
-.box-title{font-family:'Open Sans',sans-serif;font-weight:300;letter-spacing:4px;text-transform:uppercase;font-size:1.3rem;margin-bottom:25px;color:#111;}
-.box-text{font-weight:300;line-height:1.8;color:#666;margin-bottom:35px;font-size:0.95rem;}
-
-/* ================================================================
-   6. PROCESS RESPONSIVE ADJUSTMENTS
-   ================================================================ 
-*/
-@media (max-width:768px){
-.tree-trunk{left:20px!important;}
-.process-node{padding-left:50px;text-align:left;margin-bottom:60px;}
-.process-node .col-md-6{padding-left:50px!important;text-align:left!important;margin-bottom:20px;}
-.placeholder-frame{display:none;}
-.mastery-parallax-window{height:60vh;}
-.mastery-content-box{padding:40px;margin:0 20px;}
+   7. EXECUTION & MASTERY HERO (STRUCTURE RESTORED)
+================================================================ */
+.execution-mastery-hero {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 150px;
+    display: block;
 }
 
-/* ============================
-On screens that are 600px or less, set the background color to olive 
-=============================== */
-@media screen and (max-width: 600px) {
-  html, body {
+.mastery-parallax-window {
+    height: 600px;
     width: 100%;
-    height: auto; }
-  .header {
-    max-width: 100%;
-    overflow-y: hidden; }
-  * {
-    max-width: 100%; }
-  h1, h2, h3, h4 {
-    font-size: 1.5rem; }
-  
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.mastery-parallax-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+}
+
+.mastery-content-box {
+    position: relative;
+    z-index: 10;
+    background: #ffffff;
+    padding: 80px 60px;
+    max-width: 850px;
+    text-align: center;
+    border-top: 3px solid #d4af37;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+/* ================================================================
+   8. BOUTIQUE EDUCATION (RESOURCE BOXES)
+================================================================ */
+.boutique-education-area {
+    padding: 120px 0;
+    background-color: #f2f2f2;
+    border-top: 1px solid #e0e0e0;
+}
+
+.white-resource-box {
+    background-color: #ffffff;
+    padding: 60px 50px;
+    margin: 15px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.white-resource-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.box-title {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    color: #111;
+}
+
+.box-text {
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 35px;
+}
+/* ================================================================
+   9. PROCESS RESPONSIVE ADJUSTMENTS
+================================================================ */
+@media (max-width: 768px) {
+    .tree-trunk {
+        left: 20px !important;
+    }
+
+    .process-node {
+        padding-left: 50px;
+        text-align: left;
+        margin-bottom: 60px;
+    }
+
+    .process-node .row {
+        flex-direction: column !important;
+    }
+
+    .process-node .col-md-6 {
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: left !important;
+        padding-left: 20px !important;
+        margin-bottom: 30px;
+    }
+
+    .node-image-frame {
+        margin: 0 0 20px 0 !important;
+        max-width: 100%;
+    }
+
+    .node-text {
+        max-width: 100%;
+    }
+
+    .placeholder-frame {
+        display: none;
+    }
+
+    .mastery-parallax-window {
+        height: 60vh;
+    }
+
+    .mastery-content-box {
+        padding: 40px 20px;
+        margin: 0 15px;
+    }
 }
