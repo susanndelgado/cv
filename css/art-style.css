@@ -368,7 +368,7 @@ header .nav-tabs .nav-link.active:hover{
     color: #999;
     letter-spacing: 2px;
     line-height: 2;
-    max-width: 850px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -441,7 +441,7 @@ header .nav-tabs .nav-link.active:hover{
     position: absolute;
     left: 50%;
     width: 1px;
-    height: 100%;
+    height: calc(100% - 150px);
     background: linear-gradient(to bottom, #eee, #ddd, #eee);
     z-index: 3;
 }
