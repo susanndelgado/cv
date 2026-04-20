@@ -309,20 +309,18 @@ document.addEventListener('DOMContentLoaded', function() {
    
 document.addEventListener('DOMContentLoaded', function() {
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const allVideos = document.querySelectorAll('video');
+    // We now target thy existing class name: .process-video
+    const allProcessVideos = document.querySelectorAll('.process-video');
 
-    allVideos.forEach(v => {
-        // Essential: Mute must be true for the browser to allow motion
+    allProcessVideos.forEach(v => {
         v.muted = true;
 
         if (connection) {
-            // If the winds are weak or the traveler is saving data
             if (connection.saveData || ['slow-2g', '2g', '3g'].includes(connection.effectiveType)) {
-                console.log("The connection is thin. Staying the motion.");
+                console.log("The winds are weak. Staying the process-video motion.");
                 v.pause();
                 v.autoplay = false;
             } else {
-                // If the winds are fair, we bid the art to move
                 v.play().catch(err => console.log("Motion paused by browser policy."));
             }
         }
