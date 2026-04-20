@@ -133,251 +133,201 @@ header .nav-tabs .nav-link.active:hover{
 
 
 /* =========================================================================
-   BOUTIQUE GALLERY & EXHIBITION VAULT STYLES
+   GUILD MASTER: COMPLETE ABOUT/PROCESS STYLES
+   Includes: Black Masthead, Interactive Tree, & Grey Resource Boxes
    ========================================================================= */
-/* --- Block 0: Global Art Base --- */
-#gallery-curation {
-    background: #ffffff;
-    margin: 0;
-}
 
-/* Consolidating and Preserving thy Black Banner from Image 19 */
-.boutique-hero {
-    background-color: #111111;
+/* --- 1. THE ESTATE MASTHEAD (Black Box) --- */
+.process-hero {
+    background-color: #111111; /* Thy signature deep black */
     color: #ffffff;
-    padding: 120px 0;
+    padding: 120px 0 80px;
     margin-top: 0;
 }
 
-/* Thin weights for high-end look thou favoredst */
-.boutique-hero h1, 
-#gallery-curation h1, 
-#gallery-curation h2, 
-#gallery-curation h3 {
+.process-hero .master-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
-    letter-spacing: 8px;
+    font-size: 2.8rem;
+    letter-spacing: 10px;
     text-transform: uppercase;
-}
-
-.boutique-hero h1 { font-size: 3rem; }
-.boutique-hero .hero-intro { font-weight: 300; line-height: 2; margin-top: 25px; color: #999; }
-
-/* The Imperial Boutique Button */
-.btn-boutique {
-    display: inline-block;
-    border: 1px solid #ffffff;
-    padding: 12px 40px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 11px;
-    text-decoration: none;
-    transition: all 0.4s ease;
-    background: transparent;
-}
-
-.btn-boutique:hover {
-    background: #fff;
-    color: #111;
-}
-
-/* --- Block 1: Curated Vault (Exhibition Row) --- */
-.curated-vault {
-    padding: 100px 0;
-    background: #fff;
-}
-
-/* Section titles for the grid following broad wide logic */
-.section-title {
-    font-size: 2.2rem;
     margin-bottom: 20px;
 }
 
-.section-desc {
-    color: #666;
+.process-hero .hero-intro {
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
-    max-width: 800px;
-    margin: 0 auto 80px;
-    line-height: 1.8;
-}
-
-/* The Exhibition Matte with thy Grey Placeholders and Lifting interaction */
-.matte-item { padding: 15px; }
-
-.art-matte {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    background: #f2f2f2; /* Grey ghost frames for visibility */
-    border: 1px solid #e0e0e0;
-    transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
-}
-
-.art-matte:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
-}
-
-.art-matte img {
-    width: 100%;
-    height: auto;
-    display: block;
-    min-height: 450px; /* Defining thy space holders for Wide Logic */
-    transition: transform 1.5s ease;
-}
-
-.art-matte:hover img { transform: scale(1.04); }
-
-/* --- Block 2: Curated Boutique (Tight Row) --- */
-.curated-boutique {
-    padding: 100px 0;
-    background-color: #ffffff;
-}
-
-.gallery-space-wide {
-    padding-left: 5%;
-    padding-right: 5%;
-    max-width: 1600px;
+    font-size: 1.1rem;
+    color: #999;
+    letter-spacing: 2px;
+    line-height: 2;
+    max-width: 850px;
     margin: 0 auto;
 }
 
-/* Smaller holders for the boutique logic */
-.matte-small img { min-height: 320px; }
-
-/* Grayscale interaction follow tight logic thou favoredst for this part */
-.boutique-mattes .art-matte img {
-    filter: grayscale(10%) contrast(105%);
+.hero-divider {
+    width: 60px;
+    height: 1px;
+    background: #444;
+    margin: 40px auto 0;
 }
 
-.boutique-mattes .art-matte:hover img {
-    filter: grayscale(0%) contrast(100%);
-}
-
-/* --- Block 3: Curated Exhibit (The Overlap Look Thou request from Image 22) --- */
-.curated-exhibit {
+/* --- 2. THE INTERACTIVE PROCESS TREE --- */
+.process-tree-section {
+    padding: 120px 0;
+    background-color: #ffffff;
     position: relative;
-    padding: 0;
-    margin-top: 100px; /* Gap from the grid */
     overflow: hidden;
 }
 
-.exhibit-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-/* The Background Image Holder (The anchor for thy overlap) */
-.exhibit-bg img {
-    width: 100%;
-    height: auto;
-    display: block;
-    min-height: 600px; /* Crucial height for the large background holder */
-    background-color: #f2f2f2; /* Grey Placeholder */
-}
-
-/* The Floating Content Box (Following overlap logic thou favoredst) */
-.exhibit-content-box {
+/* The Central Trunk */
+.tree-trunk {
     position: absolute;
-    top: 50%;
-    right: 10%; /* Specific right alignment from Gerard inspiration */
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.95); /* Semi-transparent for elegance */
-    padding: 60px;
-    max-width: 500px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
-    text-align: left;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #e0e0e0;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
-.exhibit-title {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+/* Node Animations */
+.process-node {
+    margin-bottom: 200px;
+    display: flex;
+    position: relative;
+    z-index: 2;
+    opacity: 0; 
+    transform: translateY(50px);
+    transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Interaction: Triggers when the JS adds the 'active' class */
+.process-node.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.node-content {
+    width: 42%;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+    border-top: 2px solid #111;
+}
+
+/* Zig-Zag Alignment Logic */
+.node-right { justify-content: flex-end; }
+.node-left { justify-content: flex-start; }
+
+/* The Final Centerpiece */
+.node-center { 
+    justify-content: center; 
+    text-align: center; 
+}
+
+.node-center .node-content {
+    width: 70%; /* Grandeur for the final masterwork */
+}
+
+/* The Gold Masterpiece Finish */
+.gold-master-border {
+    border-top: 3px solid #d4af37 !important; /* Gold Leaf Accent */
+    border-bottom: 1px solid #d4af37;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Image Frames */
+.node-image-frame {
+    background: #f9f9f9;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+.node-image-frame img {
+    width: 100%;
+    display: block;
+}
+
+.small-frame { height: 220px; object-fit: cover; }
+
+/* Text Details for the Tree */
+.node-step {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.node-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin: 10px 0 20px;
+}
+
+.node-text {
+    font-weight: 300;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* --- 3. ANTIQUE STORE & EDUCATION (Grey Boxes) --- */
+.boutique-education-area {
+    padding: 100px 0;
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+}
+
+.grey-resource-box {
+    background-color: #f2f2f2; /* Thy favored light grey */
+    padding: 60px 40px;
+    margin: 15px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.grey-resource-box:hover {
+    background-color: #ebebeb;
+    transform: translateY(-5px); /* Elegant Lift */
+}
+
+.box-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
     color: #111;
 }
 
-.exhibit-desc {
+.box-text {
     font-weight: 300;
-    font-size: 0.95rem;
-    color: #666;
     line-height: 1.8;
-    margin-bottom: 40px;
+    color: #666;
+    margin-bottom: 35px;
 }
 
-/* The Imperial Button on the overlap box (matching black look thou favoredst) */
-.btn-imperial {
+.btn-box-link {
     display: inline-block;
-    border: 1px solid #111111;
-    background: transparent;
-    color: #111111;
+    border: 1px solid #111;
+    padding: 10px 25px;
+    color: #111;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     font-size: 11px;
-    padding: 10px 30px;
-    transition: all 0.3s ease;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.btn-imperial:hover {
-    background: #111111;
-    color: #ffffff;
-}
-
-/* --- Captions for Guidance --- */
-.matte-caption {
-    padding: 15px 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #888;
-    text-align: center;
-}
-
-.art-matte {
-    background-color: #f8f8f8; /* A very soft grey so you can see the frames */
-    border: 1px dashed #ddd; /* A 'Ghost' border for layout visibility */
-}
-
-/* --- FULL ABOUT PAGE SYSTEM --- */
-
-/* 1. Hero Block */
-.process-hero {
-    background-color: #111111;
-    color: #ffffff;
-    padding: 120px 0 80px;
-}
-.process-hero .master-title { letter-spacing: 10px; font-weight: 300; }
-.process-hero .hero-intro { color: #999; line-height: 2; max-width: 800px; margin: 30px auto; }
-
-/* 2. Process Tree */
-.process-tree-section { padding: 100px 0; background: #fff; position: relative; }
-.tree-trunk { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #eee; transform: translateX(-50%); }
-
-.process-node { 
-    margin-bottom: 200px; 
-    opacity: 0; 
-    transform: translateY(50px); 
-    transition: all 1s ease-out; 
-}
-.process-node.active { opacity: 1; transform: translateY(0); }
-
-.node-content { width: 42%; background: #fff; padding: 40px; box-shadow: 0 15px 45px rgba(0,0,0,0.05); border-top: 2px solid #111; }
-.node-right { justify-content: flex-end; }
-.node-left { justify-content: flex-start; }
-.node-center { justify-content: center; text-align: center; }
-
-/* 3. Resource Section (Boutique & Teaching) */
-.boutique-resources { padding: 100px 0; background: #f9f9f9; border-top: 1px solid #eee; }
-.resource-card { padding: 40px; background: #fff; border: 1px solid #eee; margin: 15px; }
-.btn-boutique-dark { 
-    display: inline-block; 
-    border: 1px solid #111; 
-    padding: 10px 30px; 
-    color: #111; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    text-decoration: none; 
+.btn-box-link:hover {
+    background-color: #111;
+    color: #fff;
 }
 /* ============================
 On screens that are 600px or less, set the background color to olive 
