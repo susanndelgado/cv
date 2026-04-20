@@ -1,0 +1,42 @@
+/* --- ART ESTATE: MINIMALIST IMPERIAL --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400&display=swap');
+
+:root {
+    --imperial-gold: #bfa37e;
+}
+
+/* Use standard Bootstrap colors, but override the font for elegance */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #212529;
+}
+
+h1, h2, h3, .serif {
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* This replaces your 'Black Box' with an 'Imperial Gallery' look */
+.hero-imperial {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    padding: 80px 0;
+}
+
+/* Makes images look like high-end gallery prints */
+.gallery-frame {
+    border: 1px solid #f0f0f0;
+    padding: 1rem;
+    background: #fff;
+    transition: transform 0.3s ease;
+}
+
+.gallery-frame:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.ls-imperial {
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
