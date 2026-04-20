@@ -20,18 +20,13 @@ body {
   margin: 0;
   text-rendering: optimizeLegibility;
 }
-.container {
-  clear: both; }
-
-img.responsive {
-  max-width: 100%; }
-
-h1, h2, h3, h4, h5, h6 {
+header h1, header h2, header h3, header h4, header h5, header h6 {
   font-family: proxima-nova, "Open Sans", sans-serif;
   font-weight: 600px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px; 
+}
  
-.nav-tabs {
+header .nav-tabs {
       font-family: 'Verdana', serif;
       font-size: 16px;
       background-color: #eff8ff;
@@ -49,12 +44,15 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent;
   /* border: 1px solid #333;  */
 }
-.btn:hover, .btn:focus, .button:hover, .button:focus, button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus {
+.btn:hover, .btn:focus, .button:hover, .button:focus, button:hover, button:focus, input[type="button"]:hover, 
+input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, 
+input[type="submit"]:focus {
   color: #f70606;
   background-color: transparent;
   outline: none !important;
   box-shadow: none !important; }
-.btn.collab-btn, .button.collab-btn, button.collab-btn, input[type="button"].collab-btn, input[type="reset"].collab-btn, input[type="submit"].collab-btn {
+.btn.collab-btn, .button.collab-btn, button.collab-btn, input[type="button"].collab-btn, input[type="reset"].collab-btn, 
+input[type="submit"].collab-btn {
   background-color: #fff;
   border-color: #60ADB8;
   color: #60ADB8;
@@ -66,38 +64,37 @@ h1, h2, h3, h4, h5, h6 {
 	background-color:#000 !important;
 	color:#fff !important;
 }
-  .sub-menu.dropdown-menu{
+.sub-menu.dropdown-menu{
   	padding:10px;
   	min-width: 220px;
-  	/*max-width:100%;*/
-  }
-  .dropdown .menu-item {
+}
+.dropdown .menu-item {
       border-bottom: 1px solid #eee;
       padding: 4px 0;
-  	line-height: 20px;
-      font-size: 14px;
-      text-transform: uppercase;
-  }
+	line-height: 20px;
+	  font-size: 14px;
+	  text-transform: uppercase;
+}
 .btn-blk{
 	background-color:#000;
 	color:#fff;
 }
-
 a {
   color: #000;
   background-color: transparent; }
-  a:hover, a:focus {
+a:hover, a:focus {
     color: #f70606;
     background-color: transparent;
     outline: none !important;
-    box-shadow: none !important; }
-
+    box-shadow: none !important; 
+}
 a, a:visited, .dropdown-item{
   color: #60adb8;
 }
 .btn.focus, .btn:focus {
   outline: none !important;
-  box-shadow: none !important; }
+  box-shadow: none !important; 
+}
 
 
 
