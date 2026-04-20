@@ -98,7 +98,7 @@ header a, header a:visited{
 	color: #495057;
 }
 header a:hover, header a:focus{
-/* color: #f70606; /* The fiery red for the active spirit */ */
+	color: rgba(0, 0, 0, 0.65); 
 }
 header .nav-tabs {
       font-family: 'Verdana', serif;
