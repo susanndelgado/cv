@@ -25,16 +25,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600px;
   margin-bottom: 20px; 
 }
- 
-header .nav-tabs {
-      font-family: 'Verdana', serif;
-      font-size: 16px;
-      background-color: #eff8ff;
-}
-.nav-tabs a:hover, .nav-tabs a:focus {
-    /* color: #fa7ca7; */
-}
-
 /* ==========================
 BUTTONS LINKS AND INPUT TREATMENT 
 ========================== */
@@ -100,8 +90,31 @@ a, a:visited, .dropdown-item{
   outline: none !important;
   box-shadow: none !important; 
 }
+ 
+/* ==========================
+NAV
+========================== */
+header .nav-tabs {
+      font-family: 'Verdana', serif;
+      font-size: 16px;
+      background-color: #eff8ff;
+}
+header .nav-tabs a:hover, header .nav-tabs a:focus {
+    /* color: #fa7ca7; */
+}
+/* Forcing the Master's Colors upon the Navigation */
+header .navbar-brand, 
+header .nav-link {
+    color: #60adb8 !important; /* The blue of the heavens ye desire */
+}
 
-
+/* Fixing the Education/Active State Overwrite */
+header .nav-tabs header .nav-link.active, 
+header .nav-tabs .nav-link:hover {
+    color: #f70606 !important; /* The fiery red for the active spirit */
+    background-color: transparent !important;
+    border-color: #e9ecef #e9ecef #dee2e6 !important;
+}
 
 
 /* ==========================================================================
