@@ -464,6 +464,7 @@ header .nav-tabs .nav-link.active:hover{
 
 .mastery-parallax-window {
     height: 600px; /* Thy fixed height */
+    width: 100%;
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Optional: adds a slight parallax depth */
