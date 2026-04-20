@@ -269,20 +269,23 @@
 </section>
 </main>
 
+
 <script>
+document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            } else {
-                entry.target.classList.remove('active');
+                // This MUST match thy CSS class name exactly
+                entry.target.classList.add('active-node');
             }
         });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll('.process-node').forEach(node => {
+    // This tells the script which elements to watch
+    document.querySelectorAll('.process-node, .mastery-parallax-window, .mastery-content-box').forEach(node => {
         observer.observe(node);
     });
+});
 </script>
 <footer class="container py-4 border-top mt-5 text-center text-muted">
     <div class="row justify-content-center">
