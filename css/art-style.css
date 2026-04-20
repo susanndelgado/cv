@@ -380,38 +380,22 @@ header .nav-tabs .nav-link.active:hover{
 }
 
 /* --- 2. THE INTERACTIVE PROCESS TREE --- */
-/* --- 2. THE TIGHTENED INTERACTIVE TREE --- */
+/* --- THE FLUID TREE (No Boxes, No Gaps) --- */
+
 .process-tree-section {
-    padding: 100px 0;
+    padding: 0; /* Remove padding to let sections go edge-to-edge */
     background-color: #ffffff;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Constrain the whole tree to a narrower column */
-.process-tree-section .container {
-    max-width: 900px; /* Brings the left and right sides much closer */
-}
-
-.tree-trunk {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #e0e0e0;
-    transform: translateX(-50%);
-    z-index: 1;
 }
 
 .process-node {
-    margin-bottom: 100px; /* Tighter vertical spacing */
     display: flex;
+    min-height: 400px;
+    align-items: center;
     position: relative;
-    z-index: 2;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease-out;
+    transform: translateY(20px);
+    transition: all 1.2s ease-in-out;
+    border-bottom: 1px solid #f0f0f0; /* Very faint separator */
 }
 
 .process-node.active {
@@ -419,33 +403,47 @@ header .nav-tabs .nav-link.active:hover{
     transform: translateY(0);
 }
 
+/* Alternating Fades to fill the white space */
+.node-right { 
+    background: linear-gradient(to right, #ffffff, #fafafa); 
+    text-align: left;
+}
+.node-left { 
+    background: linear-gradient(to left, #ffffff, #fafafa); 
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
 .node-content {
-    width: 46%; /* Takes up nearly half of the 900px container */
-    background: #fff;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    border-top: 2px solid #111;
+    width: 100%;
+    max-width: 500px; /* Constrains text for readability while background is full width */
+    padding: 60px;
+    z-index: 2;
+    position: relative;
 }
 
-/* Aligning the boxes close to the trunk */
-.node-right { justify-content: flex-end; }
-.node-left { justify-content: flex-start; }
-.node-center { justify-content: center; text-align: center; }
-
-.node-center .node-content {
-    width: 80%; /* The final masterpiece still commands the center */
+/* Large Faded Watermark to break the "Empty" feel */
+.phase-watermark {
+    position: absolute;
+    font-size: 15rem;
+    font-weight: 800;
+    color: #f7f7f7; /* Very close to white, just a whisper of a number */
+    z-index: 1;
+    user-select: none;
+    line-height: 1;
 }
 
-/* Typography Refinements for the Smaller Scale */
-.node-title {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    margin: 10px 0;
-}
+.node-right .phase-watermark { left: 50px; }
+.node-left .phase-watermark { right: 50px; }
 
-.node-text {
-    font-size: 0.95rem;
-    line-height: 1.6;
+/* The Central Line - now thinner and more delicate */
+.tree-trunk {
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, #eee, #ddd, #eee);
+    z-index: 3;
 }
 /* --- STAGE 5: EXECUTION & MASTERY FULL WIDTH --- */
 
