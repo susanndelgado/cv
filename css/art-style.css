@@ -94,6 +94,9 @@ a, a:visited, .dropdown-item{
 /* ==========================
 NAV
 ========================== */
+header a{
+
+}
 header .nav-tabs {
       font-family: 'Verdana', serif;
       font-size: 16px;
@@ -106,8 +109,7 @@ header .nav-tabs .nav-link{
 	color: #495057;
 }
 /* Forcing the Master's Colors upon the Navigation */
-header .navbar-brand, 
-header .nav-link {
+header .nav-tabs .nav-link {
     color: #60adb8; /* The blue of the heavens ye desire */
 }
 header .nav-tabs .nav-link.active{
