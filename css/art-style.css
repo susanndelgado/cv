@@ -440,7 +440,7 @@ THE ARTISAN'S UNIFIED SLIDESHOW
     position: absolute;
     left: 50% !important;
     top: 0;
-    bottom: 600px !important; /* Stops before the Phase V Hero */
+    bottom: 0 !important; /* Stops before the Phase V Hero */
     width: 2px;
     background-color: #d4af37 !important;
     transform: translateX(-50%);
@@ -573,12 +573,15 @@ THE ARTISAN'S UNIFIED SLIDESHOW
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .tree-trunk {
-        left: 20px !important;
+        /* left: 20px !important; */
+		display:none;
     }
     .process-node {
-        padding-left: 50px;
+        /* padding-left: 50px;
         text-align: left;
-        margin-bottom: 50px;
+        margin-bottom: 50px; */
+		padding-left:0 !important;
+		margin-left:0 !important;
     }
     .mastery-content-box {
         padding: 30px;
