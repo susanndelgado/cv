@@ -135,118 +135,192 @@ header .nav-tabs .nav-link.active:hover{
 /* =========================================================================
    BOUTIQUE GALLERY & EXHIBITION VAULT STYLES
    ========================================================================= */
-
-#gallery-estate {
-    background: #fff;
+/* --- Block 0: Global Art Base --- */
+#gallery-curation {
+    background: #ffffff;
     margin: 0;
 }
 
-/* --- Block 1: The Deep Black Masthead --- */
-.gallery-masthead {
-    background-color: #111111; /* Thy deep black banner */
+/* Consolidating and Preserving thy Black Banner from Image 19 */
+.boutique-hero {
+    background-color: #111111;
     color: #ffffff;
-    padding: 120px 0; /* Giving thy masters breathing room */
+    padding: 120px 0;
+    margin-top: 0;
 }
 
-/* Elegant Thin font-weights for Gallery feel */
-.gallery-masthead .master-title {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300; /* Sophisticated thin weight */
-    font-size: 3rem;
-    letter-spacing: 8px; /* High-end letter spacing */
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-.gallery-masthead .master-intro {
+/* Thin weights for high-end look thou favoredst */
+.boutique-hero h1, 
+#gallery-curation h1, 
+#gallery-curation h2, 
+#gallery-curation h3 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
-    font-size: 1.1rem;
-    color: #999;
-    letter-spacing: 2px;
-    line-height: 2; /* Airy line height */
-    max-width: 800px;
-    margin: 0 auto 50px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
 }
+
+.boutique-hero h1 { font-size: 3rem; }
+.boutique-hero .hero-intro { font-weight: 300; line-height: 2; margin-top: 25px; color: #999; }
 
 /* The Imperial Boutique Button */
 .btn-boutique {
     display: inline-block;
     border: 1px solid #ffffff;
-    background: transparent;
+    padding: 12px 40px;
     color: #ffffff;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 4px;
-    font-size: 10px;
-    padding: 12px 35px;
+    font-size: 11px;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.4s ease;
+    background: transparent;
 }
 
 .btn-boutique:hover {
-    background: #ffffff;
-    color: #111111;
+    background: #fff;
+    color: #111;
 }
 
-/* --- Block 2: The Exhibition Vault --- */
-.vault-exhibition {
+/* --- Block 1: Curated Vault (Exhibition Row) --- */
+.curated-vault {
     padding: 100px 0;
-    background-color: #ffffff; /* White Gallery Walls */
+    background: #fff;
 }
 
-/* The Custom Gallery Matte Container (Wide) */
-.gallery-mattes {
+/* Section titles for the grid following broad wide logic */
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.section-desc {
+    color: #666;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto 80px;
+    line-height: 1.8;
+}
+
+/* The Exhibition Matte with thy Grey Placeholders and Lifting interaction */
+.matte-item { padding: 15px; }
+
+.art-matte {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #f2f2f2; /* Grey ghost frames for visibility */
+    border: 1px solid #e0e0e0;
+    transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
+}
+
+.art-matte:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+}
+
+.art-matte img {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 450px; /* Defining thy space holders for Wide Logic */
+    transition: transform 1.5s ease;
+}
+
+.art-matte:hover img { transform: scale(1.04); }
+
+/* --- Block 2: Curated Boutique (Tight Row) --- */
+.curated-boutique {
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.gallery-space-wide {
     padding-left: 5%;
     padding-right: 5%;
     max-width: 1600px;
     margin: 0 auto;
 }
 
-.vault-mattes {
-    margin-bottom: 70px; /* Strong vertical grid rhythm */
+/* Smaller holders for the boutique logic */
+.matte-small img { min-height: 320px; }
+
+/* Grayscale interaction follow tight logic thou favoredst for this part */
+.boutique-mattes .art-matte img {
+    filter: grayscale(10%) contrast(105%);
 }
 
-.matte-item {
-    padding: 15px; /* Spacing between mattes */
-}
-
-/* The Exhibition Matte Frame */
-.art-matte {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
-    background: #fff;
-    /* Subtle depth, not a border, keeps look clean */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
-}
-
-.art-matte img {
-    transition: transform 1.5s ease; /* Long, delicate zoom */
-}
-
-/* High-End Interaction: The Matte 'Lifts' and Zooms */
-.art-matte:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
-}
-
-.art-matte:hover img {
-    transform: scale(1.05); /* Subtle growth */
-}
-
-/* Professional Grayscale finish */
-.boutique-mattes .matte-item img {
-    filter: grayscale(10%) contrast(105%); /* Professional gallery finish */
-    transition: all 0.8s ease;
-}
-
-.boutique-mattes .matte-item:hover img {
+.boutique-mattes .art-matte:hover img {
     filter: grayscale(0%) contrast(100%);
 }
 
+/* --- Block 3: Curated Exhibit (The Overlap Look Thou request from Image 22) --- */
+.curated-exhibit {
+    position: relative;
+    padding: 0;
+    margin-top: 100px; /* Gap from the grid */
+    overflow: hidden;
+}
+
+.exhibit-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* The Background Image Holder (The anchor for thy overlap) */
+.exhibit-bg img {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 600px; /* Crucial height for the large background holder */
+    background-color: #f2f2f2; /* Grey Placeholder */
+}
+
+/* The Floating Content Box (Following overlap logic thou favoredst) */
+.exhibit-content-box {
+    position: absolute;
+    top: 50%;
+    right: 10%; /* Specific right alignment from Gerard inspiration */
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.95); /* Semi-transparent for elegance */
+    padding: 60px;
+    max-width: 500px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.exhibit-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.exhibit-desc {
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* The Imperial Button on the overlap box (matching black look thou favoredst) */
+.btn-imperial {
+    display: inline-block;
+    border: 1px solid #111111;
+    background: transparent;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-imperial:hover {
+    background: #111111;
+    color: #ffffff;
+}
 
 
 /* ============================
