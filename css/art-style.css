@@ -644,22 +644,11 @@ THE ARTISAN'S UNIFIED SLIDESHOW
 
 /* The Main Titles */
 .node-title {
-    color: #ffffff !important; /* Pure white for maximum contrast */
-    font-weight: 800 !important; /* Thickest weight */
-    font-size: 2.2rem !important;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Shadow to lift it off the page */
-    margin-bottom: 15px;
+
 }
 
 /* The Descriptive Lore */
 .node-text {
-    color: #efefef !important; /* Bright off-white */
-    font-weight: 500 !important; /* Medium-heavy weight */
-    font-size: 1.2rem !important;
-    line-height: 1.6;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.9); /* Ensures readability against light images */
     max-width: 500px;
 }
 
