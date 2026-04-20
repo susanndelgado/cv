@@ -425,9 +425,7 @@ THE ARTISAN'S UNIFIED SLIDESHOW
 }
 
 /* --- 2. THE INTERACTIVE PROCESS TREE --- */
-/* --- The Process Tree Forge --- */
-/* --- PROCESS TREE COMPLETE STYLES --- */
-
+/* --- THE INTERACTIVE PROCESS TREE --- */
 .process-tree-section {
     padding: 80px 0;
     background-color: transparent;
@@ -443,7 +441,7 @@ THE ARTISAN'S UNIFIED SLIDESHOW
     position: absolute;
     left: 50% !important;
     top: 0;
-    bottom: 0;
+    bottom: 600px !important; /* Stops before the Phase V Hero */
     width: 2px;
     background-color: #d4af37 !important;
     transform: translateX(-50%);
@@ -452,11 +450,19 @@ THE ARTISAN'S UNIFIED SLIDESHOW
 
 .process-node {
     position: relative;
-    margin-bottom: 120px; /* Space to prevent overlapping */
+    margin-bottom: 120px;
     z-index: 5;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
 }
 
-/* Constrain all image frames to half-width */
+.process-node.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Image Frames */
 .node-image-frame {
     width: 100%;
     max-width: 450px;
@@ -473,45 +479,112 @@ THE ARTISAN'S UNIFIED SLIDESHOW
     display: block;
 }
 
-/* Specific size for those two side-by-side images */
-.small-frame {
-    max-width: 220px !important;
-}
-
-/* Placeholder for Phase I - Empty box */
-.placeholder-frame {
-    min-height: 250px;
-    border: 1px dashed rgba(212, 175, 55, 0.2);
-    background: rgba(255, 255, 255, 0.03);
-}
-
-/* Text styles */
-.node-title {
+/* Typography - Cleaned of Shadows and Effects */
+.node-step {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
     color: #d4af37;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.node-title {
+    font-size: 2rem;
     font-weight: 300;
     letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333; /* Darker for better contrast on white background */
+    margin-bottom: 15px;
 }
 
 .node-text {
     font-size: 1.05rem;
     line-height: 1.7;
+    color: #666;
+    max-width: 500px;
 }
 
-/* --- THE FINAL ACT PARALLAX --- */
+/* --- PHASE V: FINAL TRANSITION (Parallax) --- */
+.execution-mastery-hero {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 150px;
+}
+
 .mastery-parallax-window {
-    height: 550px;
-    background-attachment: fixed;
-    background-position: center;
+    height: 600px;
+    width: 100%;
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
-    margin-top: 60px;
+    justify-content: center;
+    position: relative;
+}
+
+/* Dark overlay for clarity without affecting text style */
+.mastery-parallax-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .mastery-content-box {
-    background: rgba(255, 255, 255, 0.95);
+    position: relative;
+    z-index: 10;
+    background: #ffffff;
     padding: 60px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    max-width: 800px;
+    text-align: center;
+    border-top: 3px solid #d4af37;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.mastery-content-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Matching the rest of the site's typography exactly */
+.mastery-content-box .node-title {
+    color: #111;
+    font-weight: 400;
+    font-size: 2.2rem;
+}
+
+.mastery-content-box .node-text {
+    color: #444;
+    font-weight: 400;
+    margin: 0 auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tree-trunk {
+        left: 20px !important;
+    }
+    .process-node {
+        padding-left: 50px;
+        text-align: left;
+        margin-bottom: 50px;
+    }
+    .mastery-content-box {
+        padding: 30px;
+        margin: 20px;
+    }
 }
 /* Initial state: Hidden and slightly shifted down */
 .process-node, .mastery-content-box {
