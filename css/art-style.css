@@ -81,7 +81,8 @@ input[type="submit"].collab-btn {
 }
 a {
   color: #000;
-  background-color: transparent; }
+  background-color: transparent; 
+}
 a:hover, a:focus {
     color: #f70606;
     background-color: transparent;
