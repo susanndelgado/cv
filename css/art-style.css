@@ -322,7 +322,22 @@ header .nav-tabs .nav-link.active:hover{
     color: #ffffff;
 }
 
+/* --- Captions for Guidance --- */
+.matte-caption {
+    padding: 15px 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    text-align: center;
+}
 
+.art-matte {
+    background-color: #f8f8f8; /* A very soft grey so you can see the frames */
+    border: 1px dashed #ddd; /* A 'Ghost' border for layout visibility */
+}
 /* ============================
 On screens that are 600px or less, set the background color to olive 
 =============================== */
