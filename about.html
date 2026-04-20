@@ -57,8 +57,24 @@
    </nav>
    </div>
 </header>
-<main id="process-guild">
-    
+<main id="process-evolution">
+
+    <section class="process-hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="master-title">The Master's Process</h1>
+                    <p class="hero-intro">
+                        Susan Nicole Arts is a sanctuary where classical technique meets modern innovation. 
+                        From the initial spark of research in the Scriptorium to the final stroke of 
+                        heavy-body acrylics, discover the alchemy behind every creation.
+                    </p>
+                    <div class="hero-divider"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="process-tree-section">
         <div class="container position-relative">
             
@@ -66,68 +82,102 @@
 
             <div class="process-node node-right">
                 <div class="node-content">
-                    <span class="node-step">Stage I</span>
-                    <h3 class="node-title">Deep Research</h3>
-                    <p class="node-text">Every masterpiece begins in the Scriptorium. Here, I gather lore, genomic philosophy, and historical references to ground the fantasy in truth.</p>
+                    <span class="node-step">Phase I</span>
+                    <h3 class="node-title">Inquiry & Research</h3>
+                    <p class="node-text">The journey begins in the Scriptorium, gathering lore, genomic philosophy, and historical references to ground the work in a deeper truth.</p>
                 </div>
             </div>
 
             <div class="process-node node-left">
                 <div class="node-content">
-                    <span class="node-step">Stage II</span>
+                    <span class="node-step">Phase II</span>
                     <h3 class="node-title">Traditional Sketching</h3>
                     <div class="node-image-frame">
-                        <img src="images/process/sketch.jpg" alt="Pencil Sketch Placeholder">
+                        <img src="images/process/sketch.jpg" alt="Pencil on Paper Sketch">
                     </div>
-                    <p class="node-text">The dance of graphite on paper. This is where the raw emotion and movement are first captured by hand.</p>
+                    <p class="node-text">Capturing raw energy. Graphite and paper allow for an organic flow that digital tools cannot mimic in the early stages.</p>
                 </div>
             </div>
 
             <div class="process-node node-right">
                 <div class="node-content">
-                    <span class="node-step">Stage III</span>
-                    <h3 class="node-title">Digital Evolution</h3>
+                    <span class="node-step">Phase III</span>
+                    <h3 class="node-title">Digital Modification</h3>
                     <div class="row no-gutters mb-3">
                         <div class="col-6 pr-1">
                             <div class="node-image-frame small-frame">
-                                <img src="images/process/procreate.jpg" alt="Procreate Mockup">
+                                <img src="images/process/procreate.jpg" alt="Procreate Interface">
                             </div>
                         </div>
                         <div class="col-6 pl-1">
                             <div class="node-image-frame small-frame">
-                                <img src="images/process/photoshop.jpg" alt="Photoshop Refinement">
+                                <img src="images/process/photoshop.jpg" alt="Photoshop Modification">
                             </div>
                         </div>
                     </div>
-                    <p class="node-text">Using the tools of the modern age—Procreate for line art and Photoshop for mock-up modification—to perfect the composition before the first drop of paint is mixed.</p>
+                    <p class="node-text">Refining mock-ups and line art within Procreate and Photoshop to perfect composition and color theory.</p>
                 </div>
             </div>
 
             <div class="process-node node-left">
                 <div class="node-content">
-                    <span class="node-step">Stage IV</span>
-                    <h3 class="node-title">The Canvas Transfer</h3>
+                    <span class="node-step">Phase IV</span>
+                    <h3 class="node-title">The Physical Transfer</h3>
                     <div class="node-image-frame">
-                        <img src="images/process/canvas-start.jpg" alt="Canvas Transfer">
+                        <img src="images/process/transfer.jpg" alt="Canvas Mapping">
                     </div>
-                    <p class="node-text">Carbon paper transfers or vinyl cut stencils bring the digital precision back to the physical realm, ready for heavy-body acrylics.</p>
+                    <p class="node-text">Moving from pixels to weave. Using stencils or carbon transfer to map the digital blueprint onto the final canvas or board.</p>
                 </div>
             </div>
 
             <div class="process-node node-center">
-                <div class="node-content gold-border">
+                <div class="node-content gold-accent">
                     <span class="node-step">Final Act</span>
-                    <h3 class="node-title">The Completed Work</h3>
-                    <div class="node-image-frame large-frame">
-                        <img src="images/portfolio/final-piece.jpg" alt="Final Painting">
-                    </div>
-                    <p class="node-text">The culmination of the Guild's efforts—a finished piece that lives between dreams and reality.</p>
+                    <h3 class="node-title">Execution & Mastery</h3>
+                    <p class="node-text">The application of heavy-body acrylics, oils, or enamel—bringing the initial research to its vibrant, tactile conclusion.</p>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <section class="boutique-resources">
+        <div class="container text-center">
+            <h2 class="section-title">Guild Resources</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="resource-card">
+                        <h4>The Boutique</h4>
+                        <p>Explore handmade mirrors, Bobo balloons, and fine art prints crafted in our technical labs.</p>
+                        <a href="shop.html" class="btn-boutique-dark">Visit Shop</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="resource-card">
+                        <h4>Teaching Scriptorium</h4>
+                        <p>Instruction for students of all ages. Master the crafts of oil, acrylic, and digital painting.</p>
+                        <a href="tutoring.html" class="btn-boutique-dark">Learn the Craft</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.process-node').forEach(node => observer.observe(node));
+</script>
 
 <footer class="container py-4 border-top mt-5 text-center text-muted">
     <div class="row justify-content-center">
