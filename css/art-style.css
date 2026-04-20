@@ -357,3 +357,19 @@ header .nav-tabs .nav-link.active:hover{
         margin: 0 15px;
     }
 }
+/* ============================
+On screens that are 600px or less, set the background color to olive 
+=============================== */
+@media screen and (max-width: 600px) {
+  html, body {
+    width: 100%;
+    height: auto; }
+  .header {
+    max-width: 100%;
+    overflow-y: hidden; }
+  * {
+    max-width: 100%; }
+  h1, h2, h3, h4 {
+    font-size: 1.5rem; }
+  
+}
