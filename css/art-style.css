@@ -100,16 +100,20 @@ header .nav-tabs {
       background-color: #eff8ff;
 }
 header .nav-tabs a:hover, header .nav-tabs a:focus {
-    /* color: #fa7ca7; */
+     color: #f70606; /* The fiery red for the active spirit */
+}
+header .nav-tabs .nav-link{
+	color: #495057;
 }
 /* Forcing the Master's Colors upon the Navigation */
 header .navbar-brand, 
 header .nav-link {
     color: #60adb8; /* The blue of the heavens ye desire */
 }
-
-/* Fixing the Education/Active State Overwrite */
-header .nav-tabs .nav-link.active, 
+header .nav-tabs .nav-link.active{
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
 header .nav-tabs .nav-link:hover {
     color: #f70606; /* The fiery red for the active spirit */
     background-color: transparent;
