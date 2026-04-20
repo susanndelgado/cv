@@ -293,6 +293,28 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(node);
     });
 });
+   
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the traveler's connection is known and strong
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    
+    // Select all thy guild's videos
+    const videos = document.querySelectorAll('video');
+
+    if (connection) {
+        // If they are on a 'save-data' mode or a slow connection (2g/3g)
+        if (connection.saveData || ['slow-2g', '2g', '3g'].includes(connection.effectiveType)) {
+            console.log("The winds are weak. Keeping videos still to save thy traveler's data.");
+            videos.forEach(v => {
+                v.removeAttribute('autoplay');
+                v.pause();
+            });
+        } else {
+            // The winds are strong! Let the videos dance.
+            videos.forEach(v => v.play().catch(e => console.log("Autoplay blocked by browser laws.")));
+        }
+    }
+});
 </script>
 <footer class="container py-4 border-top mt-5 text-center text-muted">
     <div class="row justify-content-center">
