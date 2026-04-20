@@ -125,6 +125,11 @@ header .nav-tabs .nav-link:hover {
     background-color: transparent;
     border-color: #e9ecef #e9ecef #dee2e6;
 }
+header .nav-tabs .nav-link.active:hover{
+    color: #f70606; /* The fiery red for the active spirit */
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
 
 
 /* ==========================================================================
