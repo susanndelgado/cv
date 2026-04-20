@@ -447,7 +447,63 @@ header .nav-tabs .nav-link.active:hover{
     font-size: 0.95rem;
     line-height: 1.6;
 }
+/* --- STAGE 5: EXECUTION & MASTERY FULL WIDTH --- */
 
+.execution-mastery-hero {
+    width: 100vw; /* Breaks out of the container to full screen width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 150px;
+    margin-bottom: 0 !important; /* Leads directly into the grey boxes */
+    opacity: 1 !important; /* Overriding the tree animation for this grand finale */
+    transform: none !important;
+}
+
+.mastery-parallax-window {
+    height: 600px; /* Thy fixed height */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional: adds a slight parallax depth */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Dark overlay to help the image feel like a gallery wall */
+.mastery-parallax-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Subtle dimming for text clarity */
+}
+
+.mastery-content-box {
+    position: relative;
+    z-index: 10;
+    background: #ffffff;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+    border-top: 3px solid #d4af37; /* The Gold Master Accent */
+}
+
+.mastery-content-box .node-title {
+    font-size: 1.8rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+/* Ensure the Tree Trunk stops before this section */
+.tree-trunk {
+    bottom: 600px !important; /* Stops the line at the start of the Hero */
+}
 /* --- 3. ANTIQUE STORE & EDUCATION (Grey Boxes) --- */
 .boutique-education-area {
     padding: 100px 0;
