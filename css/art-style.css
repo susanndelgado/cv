@@ -557,7 +557,50 @@ THE ARTISAN'S UNIFIED SLIDESHOW
     border: 1px solid #d4af37;
     backdrop-filter: blur(10px);
 }
+/* --- ENHANCED TEXT WEIGHT & VISIBILITY --- */
 
+/* The Phase Headings (Phase I, II, etc.) */
+.node-step {
+    font-size: 0.9rem;
+    font-weight: 700 !important; /* Makes it bold and sturdy */
+    text-transform: uppercase;
+    color: #d4af37;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* The Main Titles */
+.node-title {
+    color: #ffffff !important; /* Pure white for maximum contrast */
+    font-weight: 800 !important; /* Thickest weight */
+    font-size: 2.2rem !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Shadow to lift it off the page */
+    margin-bottom: 15px;
+}
+
+/* The Descriptive Lore */
+.node-text {
+    color: #efefef !important; /* Bright off-white */
+    font-weight: 500 !important; /* Medium-heavy weight */
+    font-size: 1.2rem !important;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.9); /* Ensures readability against light images */
+    max-width: 500px;
+}
+
+/* Specific Fix for the Mastery Box at the bottom */
+.mastery-content-box .node-title {
+    color: #111 !important; /* Keep it dark if the box is white */
+    text-shadow: none;
+}
+.mastery-content-box .node-text {
+    color: #333 !important;
+    text-shadow: none;
+    font-weight: 600 !important;
+}
 /* Responsive Adjustments for Handheld Mirrors (Mobile) */
 @media (max-width: 768px) {
     .tree-trunk {
