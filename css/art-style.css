@@ -132,95 +132,119 @@ header .nav-tabs .nav-link.active:hover{
 }
 
 
-/* ==========================================================================
-   PART 2: THE BOUTIQUE GALLERY (Content Styles)
-   ========================================================================== */
+/* =========================================================================
+   BOUTIQUE GALLERY & EXHIBITION VAULT STYLES
+   ========================================================================= */
 
-/* The Dark Master Entry */
-.boutique-hero {
-    background-color: #111111;
+#gallery-estate {
+    background: #fff;
+    margin: 0;
+}
+
+/* --- Block 1: The Deep Black Masthead --- */
+.gallery-masthead {
+    background-color: #111111; /* Thy deep black banner */
     color: #ffffff;
-    padding: 120px 0;
-    text-align: center;
-    /* This ensures it snaps to the header if you use margin: 0 */
-    margin-top: 0; 
+    padding: 120px 0; /* Giving thy masters breathing room */
 }
 
-.boutique-hero h1 {
+/* Elegant Thin font-weights for Gallery feel */
+.gallery-masthead .master-title {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300; /* The thin, elegant weight from thy About page */
+    font-weight: 300; /* Sophisticated thin weight */
     font-size: 3rem;
-    letter-spacing: 8px;
+    letter-spacing: 8px; /* High-end letter spacing */
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.boutique-hero .hero-subtext {
+.gallery-masthead .master-intro {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 1.1rem;
     color: #999;
     letter-spacing: 2px;
-    max-width: 750px;
-    margin: 0 auto 40px;
-    line-height: 1.8;
+    line-height: 2; /* Airy line height */
+    max-width: 800px;
+    margin: 0 auto 50px;
 }
 
-/* The Exhibition Grid */
-.gallery-vault {
-    padding: 100px 0;
-    background-color: #ffffff;
-}
-
-.vault-item {
-    margin-bottom: 70px;
-}
-
-/* The High-End Frame */
-.art-frame {
-    position: relative;
-    overflow: hidden;
-    background: #fff;
-    transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
-    /* Subtle depth instead of a border */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
-}
-
-.art-frame img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 1.5s ease;
-}
-
-/* Interaction: The Lift */
-.art-frame:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.1);
-}
-
-.art-frame:hover img {
-    transform: scale(1.04);
-}
-
-/* The Imperial Gallery Button */
+/* The Imperial Boutique Button */
 .btn-boutique {
     display: inline-block;
     border: 1px solid #ffffff;
     background: transparent;
     color: #ffffff;
-    padding: 12px 45px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     font-size: 10px;
-    font-weight: 600;
-    transition: all 0.4s ease;
+    padding: 12px 35px;
     text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .btn-boutique:hover {
     background: #ffffff;
     color: #111111;
+}
+
+/* --- Block 2: The Exhibition Vault --- */
+.vault-exhibition {
+    padding: 100px 0;
+    background-color: #ffffff; /* White Gallery Walls */
+}
+
+/* The Custom Gallery Matte Container (Wide) */
+.gallery-mattes {
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.vault-mattes {
+    margin-bottom: 70px; /* Strong vertical grid rhythm */
+}
+
+.matte-item {
+    padding: 15px; /* Spacing between mattes */
+}
+
+/* The Exhibition Matte Frame */
+.art-matte {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+    background: #fff;
+    /* Subtle depth, not a border, keeps look clean */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
+}
+
+.art-matte img {
+    transition: transform 1.5s ease; /* Long, delicate zoom */
+}
+
+/* High-End Interaction: The Matte 'Lifts' and Zooms */
+.art-matte:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+}
+
+.art-matte:hover img {
+    transform: scale(1.05); /* Subtle growth */
+}
+
+/* Professional Grayscale finish */
+.boutique-mattes .matte-item img {
+    filter: grayscale(10%) contrast(105%); /* Professional gallery finish */
+    transition: all 0.8s ease;
+}
+
+.boutique-mattes .matte-item:hover img {
+    filter: grayscale(0%) contrast(100%);
 }
 
 
