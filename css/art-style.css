@@ -132,100 +132,380 @@ header .nav-tabs .nav-link.active:hover{
 }
 
 
-/* ================================================================
-   1. BOUTIQUE GALLERY & FILTER NAVIGATION
-================================================================ */
-/* ================================================================
-   a. CORE UI & BLACK BANNERS
-================================================================ */
-.black-banner-section{background-color:#111!important;color:#ffffff!important;padding:60px 0;width:100%;display:block;position:relative;}
-.btn-main{display:inline-block;padding:12px 35px;border:1px solid #d4af37;color:#d4af37;text-transform:uppercase;letter-spacing:2px;background:transparent;transition:all 0.3s ease;cursor:pointer;text-decoration:none;position:relative;z-index:2;}
-.btn-main:hover{background:#d4af37;color:#111;}
-
-/* ================================================================
-   b. BOUTIQUE GALLERY LAYOUT
-================================================================ */
-.boutique-gallery-section{padding:100px 0;background-color:#ffffff;position:relative;}
-.filter-nav{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:50px;gap:25px;}
-.filter-btn{background:none;border:none;font-family:inherit;letter-spacing:2px;text-transform:uppercase;color:#888;cursor:pointer;transition:all 0.3s ease;padding:5px 0;position:relative;}
-.filter-btn:hover,.filter-btn.active{color:#111;}
-.filter-btn.active::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background-color:#d4af37;}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;padding:0 15px;}
-.gallery-item{position:relative;overflow:hidden;background-color:#f9f9f9;aspect-ratio:3/4;transition:transform 0.5s ease;}
-.gallery-item:hover{transform:translateY(-10px);}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease;}
-.gallery-item:hover img{transform:scale(1.05);}
-
-/* ================================================================
-   c. ITEM OVERLAYS & HOVER LOGIC
-================================================================ */
-.item-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;padding:30px;text-align:center;z-index:3;}
-.gallery-item:hover .item-overlay{opacity:1;}
-.overlay-title{text-transform:uppercase;letter-spacing:3px;color:#111;margin-bottom:15px;display:block;}
-.overlay-desc{color:#666;line-height:1.6;display:block;}
-
-/* ================================================================
-   2. ARTISAN UNIFIED SLIDESHOW
-================================================================ */
-/* ================================================================
-   2. ARTISAN UNIFIED SLIDESHOW STRUCTURE
-================================================================ */
-.unified-slideshow-container{position:relative;width:100%;height:80vh;overflow:hidden;background-color:#000;margin:80px 0;}
-.slide-wrap{display:flex;width:100%;height:100%;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.artisan-slide{min-width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.slide-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0.6;}
-.slide-content{position:relative;z-index:10;text-align:center;color:#fff;max-width:800px;padding:0 20px;}
-.slide-category{text-transform:uppercase;letter-spacing:5px;margin-bottom:20px;color:#d4af37;display:block;}
-.slide-title{text-transform:uppercase;letter-spacing:8px;margin-bottom:30px;}
-.slide-btn{display:inline-block;padding:15px 40px;border:1px solid #fff;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:3px;transition:all 0.3s ease;}
-.slide-btn:hover{background:#fff;color:#000;}
-.slideshow-nav{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;gap:15px;z-index:20;}
-.nav-dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff;cursor:pointer;transition:all 0.3s;}
-.nav-dot.active{background:#fff;transform:scale(1.2);
-
-/* ================================================================
-   3. GALLERY ITEM OVERLAYS & CAPTIONS
-================================================================ */
-.item-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;padding:30px;text-align:center;z-index:3;}
-.gallery-item:hover .item-overlay{opacity:1;}
-.overlay-title{text-transform:uppercase;letter-spacing:3px;color:#111;margin-bottom:15px;display:block;}
-.overlay-desc{color:#666;line-height:1.6;display:block;}
-
-/* ================================================================
-   4. BOUTIQUE RESPONSIVE (GALLERY FOCUS)
-================================================================ */
-@media (max-width:991px){
-.gallery-grid{grid-template-columns:repeat(2,1fr);}
-.item-overlay{padding:20px;}
+/* =========================================================================
+   BOUTIQUE GALLERY & EXHIBITION VAULT STYLES
+   ========================================================================= */
+/* --- Block 0: Global Art Base --- */
+#gallery-curation {
+    background: #ffffff;
+    margin: 0;
 }
-@media (max-width:576px){
-.gallery-grid{grid-template-columns:1fr;}
-.filter-nav{gap:10px;}
-.filter-btn{letter-spacing:1px;}
-.boutique-gallery-section{padding:60px 0;}
+
+/* Consolidating and Preserving thy Black Banner from Image 19 */
+.boutique-hero {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 120px 0;
+    margin-top: 0;
 }
-/* ================================================================
-   5. INTERACTIVE PROCESS TREE & ANIMATIONS
-================================================================ */
-.process-tree-section{padding:80px 0;background-color:transparent;position:relative;}
-.process-wrap{position:relative;padding:40px 0;}
-.tree-trunk{position:absolute;left:50%!important;top:0;bottom:600px!important;width:2px;background-color:#d4af37!important;transform:translateX(-50%);z-index:1;}
-.process-node{position:relative;margin-bottom:120px;z-index:5;opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
-.process-node.active{opacity:1!important;transform:translateY(0)!important;}
-.node-image-frame{width:100%;max-width:450px;margin:0 auto;border:1px solid rgba(212,175,55,0.2);overflow:hidden;position:relative;}
-.node-image-frame img{width:100%;height:auto;display:block;}
-.small-frame{max-width:220px!important;}
-.placeholder-frame{background-color:#f9f9f9;border:1px dashed #ddd;display:flex;align-items:center;justify-content:center;aspect-ratio:3/4;}
-/* ================================================================
-   6. PROCESS TYPOGRAPHY (LAYOUT ONLY)
-================================================================ */
-.node-step{color:#d4af37;text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:10px;}
-.node-title{text-transform:uppercase;letter-spacing:3px;margin-bottom:20px;color:inherit;}
-.node-text{max-width:500px;line-height:1.8;margin-bottom:0;}
-.process-node:nth-child(even) .node-text{margin-left:auto;}
-/* ================================================================
-   7. EXECUTION & MASTERY HERO (STRUCTURE RESTORED)
-================================================================ */
+
+/* Thin weights for high-end look thou favoredst */
+.boutique-hero h1, 
+#gallery-curation h1, 
+#gallery-curation h2, 
+#gallery-curation h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.boutique-hero h1 { font-size: 3rem; }
+.boutique-hero .hero-intro { font-weight: 300; line-height: 2; margin-top: 25px; color: #999; }
+
+/* The Imperial Boutique Button */
+.btn-boutique {
+    display: inline-block;
+    border: 1px solid #ffffff;
+    padding: 12px 40px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+
+.btn-boutique:hover {
+    background: #fff;
+    color: #111;
+}
+
+/* --- Block 1: Curated Vault (Exhibition Row) --- */
+.curated-vault {
+    padding: 100px 0;
+    background: #fff;
+}
+
+/* Section titles for the grid following broad wide logic */
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.section-desc {
+    color: #666;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto 80px;
+    line-height: 1.8;
+}
+
+/* The Exhibition Matte with thy Grey Placeholders and Lifting interaction */
+.matte-item { padding: 15px; }
+
+.art-matte {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #f2f2f2; /* Grey ghost frames for visibility */
+    border: 1px solid #e0e0e0;
+    transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
+}
+
+.art-matte:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+}
+
+.art-matte img {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 450px; /* Defining thy space holders for Wide Logic */
+    transition: transform 1.5s ease;
+}
+
+.art-matte:hover img { transform: scale(1.04); }
+
+/* --- Block 2: Curated Boutique (Tight Row) --- */
+.curated-boutique {
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.gallery-space-wide {
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Smaller holders for the boutique logic */
+.matte-small img { min-height: 320px; }
+
+/* Grayscale interaction follow tight logic thou favoredst for this part */
+.boutique-mattes .art-matte img {
+    filter: grayscale(10%) contrast(105%);
+}
+
+.boutique-mattes .art-matte:hover img {
+    filter: grayscale(0%) contrast(100%);
+}
+
+/* --- Block 3: Curated Exhibit (The Overlap Look Thou request from Image 22) --- */
+.curated-exhibit {
+    position: relative;
+    padding: 0;
+    margin-top: 100px; /* Gap from the grid */
+    overflow: hidden;
+}
+
+.exhibit-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* The Background Image Holder (The anchor for thy overlap) */
+.exhibit-bg img {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 600px; /* Crucial height for the large background holder */
+    background-color: #f2f2f2; /* Grey Placeholder */
+}
+
+/* The Floating Content Box (Following overlap logic thou favoredst) */
+.exhibit-content-box {
+    position: absolute;
+    top: 50%;
+    right: 10%; /* Specific right alignment from Gerard inspiration */
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.95); /* Semi-transparent for elegance */
+    padding: 60px;
+    max-width: 500px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.exhibit-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.exhibit-desc {
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* The Imperial Button on the overlap box (matching black look thou favoredst) */
+.btn-imperial {
+    display: inline-block;
+    border: 1px solid #111111;
+    background: transparent;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-imperial:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+/* --- Captions for Guidance --- */
+.matte-caption {
+    padding: 15px 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    text-align: center;
+}
+
+.art-matte {
+    background-color: #f8f8f8; /* A very soft grey so you can see the frames */
+    border: 1px dashed #ddd; /* A 'Ghost' border for layout visibility */
+}
+/* --- ===============================
+THE ARTISAN'S UNIFIED SLIDESHOW 
+==========================================--- */
+
+/* --- THE ARTISAN'S UNIFIED SLIDESHOW --- */
+
+/* 1. The Container: Keeps the 3x4 ratio and hides the overlap */
+.slideshow-frame {
+    aspect-ratio: 3 / 4; /* Maintains thy preferred ratio */
+    width: 100%; 
+    max-width: 100%;
+    position: relative;
+    overflow: hidden; /* Hides the image overlap */
+    background-color: #f4f4f4; 
+    border-radius: 4px;
+}
+
+/* 2. The Images: Stacked and ready to fade */
+.slideshow-frame img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the box without stretching */
+    object-position: center; 
+    opacity: 0; /* Hidden by default */
+    z-index: 1;
+    transition: opacity 1s ease-in-out; /* Smooth transition */
+    
+    /* Apply the animation to all images */
+    animation: fadeThroughSlides 12s infinite; /* Adjusted for 4 images */
+}
+
+/* 3. The Timing: Specific delays for each image in the cycle */
+/* This example assumes thou art using 4 images (3s each, 12s total cycle) */
+.slideshow-frame img:nth-child(1) { animation-delay: 0s; }
+.slideshow-frame img:nth-child(2) { animation-delay: 3s; }
+.slideshow-frame img:nth-child(3) { animation-delay: 6s; }
+.slideshow-frame img:nth-child(4) { animation-delay: 9s; }
+
+/* 4. The Animation Keyframes: The actual 'ghostly' fading logic */
+@keyframes fadeThroughSlides {
+    0%, 25% { opacity: 1; z-index: 2; } /* Image is visible */
+    30%, 100% { opacity: 0; z-index: 1; } /* Image fades out */
+}
+/* =========================================================================
+   GUILD MASTER: COMPLETE ABOUT/PROCESS STYLES
+   Includes: Black Masthead, Interactive Tree, & Grey Resource Boxes
+   ========================================================================= */
+
+/* --- 1. THE ESTATE MASTHEAD (Black Box) --- */
+.process-hero {
+    background-color: #111111; /* Thy signature deep black */
+    color: #ffffff;
+    padding: 120px 0 80px;
+    margin-top: 0;
+}
+
+.process-hero .master-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 2.8rem;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.process-hero .hero-intro {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: #999;
+    letter-spacing: 2px;
+    line-height: 2;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.hero-divider {
+    width: 60px;
+    height: 1px;
+    background: #444;
+    margin: 40px auto 0;
+}
+
+/* --- 2. THE INTERACTIVE PROCESS TREE --- */
+/* --- THE INTERACTIVE PROCESS TREE --- */
+.process-tree-section {
+    padding: 80px 0;
+    background-color: transparent;
+}
+
+.process-wrap {
+    position: relative;
+    padding: 40px 0;
+}
+
+/* The Gold Trunk Line */
+.tree-trunk {
+    position: absolute;
+    left: 50% !important;
+    top: 0;
+    bottom: 600px !important; /* Stops before the Phase V Hero */
+    width: 2px;
+    background-color: #d4af37 !important;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.process-node {
+    position: relative;
+    margin-bottom: 120px;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.process-node.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Image Frames */
+.node-image-frame {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+    background: #000;
+}
+
+.node-image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Typography - Cleaned of Shadows and Effects */
+.node-step {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #d4af37;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.node-title {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333; /* Darker for better contrast on white background */
+    margin-bottom: 15px;
+}
+
+.node-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #666;
+    max-width: 500px;
+}
+
+/* --- PHASE V: FINAL TRANSITION (Parallax) --- */
 .execution-mastery-hero {
     width: 100vw;
     position: relative;
@@ -234,7 +514,6 @@ header .nav-tabs .nav-link.active:hover{
     margin-left: -50vw;
     margin-right: -50vw;
     margin-top: 150px;
-    display: block;
 }
 
 .mastery-parallax-window {
@@ -249,6 +528,7 @@ header .nav-tabs .nav-link.active:hover{
     position: relative;
 }
 
+/* Dark overlay for clarity without affecting text style */
 .mastery-parallax-window::before {
     content: '';
     position: absolute;
@@ -256,40 +536,240 @@ header .nav-tabs .nav-link.active:hover{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .mastery-content-box {
     position: relative;
     z-index: 10;
     background: #ffffff;
-    padding: 80px 60px;
-    max-width: 850px;
+    padding: 60px;
+    max-width: 800px;
     text-align: center;
     border-top: 3px solid #d4af37;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
 }
-/* ================================================================
-   8. BOUTIQUE EDUCATION (RESOURCE BOXES)
-================================================================ */
+
+.mastery-content-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Matching the rest of the site's typography exactly */
+.mastery-content-box .node-title {
+    color: #111;
+    font-weight: 400;
+    font-size: 2.2rem;
+}
+
+.mastery-content-box .node-text {
+    color: #444;
+    font-weight: 400;
+    margin: 0 auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tree-trunk {
+        left: 20px !important;
+    }
+    .process-node {
+        padding-left: 50px;
+        text-align: left;
+        margin-bottom: 50px;
+    }
+    .mastery-content-box {
+        padding: 30px;
+        margin: 20px;
+    }
+}
+/* Initial state: Hidden and slightly shifted down */
+.process-node, .mastery-content-box {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* Active state: Triggered by thy JavaScript on scroll */
+.active-node {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+/* --- RESPONSIVE FIXES --- */
+@media (max-width: 768px) {
+    .tree-trunk {
+        left: 20px !important;
+    }
+    .process-node .col-md-6 {
+        padding-left: 50px !important;
+        text-align: left !important;
+        margin-bottom: 20px;
+    }
+    .placeholder-frame {
+        display: none;
+    }
+}
+/* --- Mastery Parallax (The Final Act) --- */
+.mastery-parallax-window {
+    height: 60vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.mastery-content-box {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border: 1px solid #d4af37;
+    backdrop-filter: blur(10px);
+}
+/* --- ENHANCED TEXT WEIGHT & VISIBILITY --- */
+
+/* The Phase Headings (Phase I, II, etc.) */
+.node-step {
+    font-size: 0.9rem;
+    font-weight: 700 !important; /* Makes it bold and sturdy */
+    text-transform: uppercase;
+    color: #d4af37;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* The Main Titles */
+.node-title {
+    color: #ffffff !important; /* Pure white for maximum contrast */
+    font-weight: 800 !important; /* Thickest weight */
+    font-size: 2.2rem !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Shadow to lift it off the page */
+    margin-bottom: 15px;
+}
+
+/* The Descriptive Lore */
+.node-text {
+    color: #efefef !important; /* Bright off-white */
+    font-weight: 500 !important; /* Medium-heavy weight */
+    font-size: 1.2rem !important;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.9); /* Ensures readability against light images */
+    max-width: 500px;
+}
+
+/* Specific Fix for the Mastery Box at the bottom */
+.mastery-content-box .node-title {
+    color: #111 !important; /* Keep it dark if the box is white */
+    text-shadow: none;
+}
+.mastery-content-box .node-text {
+    color: #333 !important;
+    text-shadow: none;
+    font-weight: 600 !important;
+}
+/* Responsive Adjustments for Handheld Mirrors (Mobile) */
+@media (max-width: 768px) {
+    .tree-trunk {
+        left: 20px; /* Move the line to the left on mobile */
+    }
+    
+    .process-node {
+        margin-bottom: 50px;
+    }
+
+    .process-node .col-md-6 {
+        padding-left: 50px !important;
+        text-align: left !important;
+    }
+
+    .placeholder-frame {
+        display: none; /* Hide empty boxes on mobile to save space */
+    }
+}
+
+/* --- STAGE 5: EXECUTION & MASTERY FULL WIDTH --- */
+
+.execution-mastery-hero {
+    width: 100vw; /* Breaks out of the container to full screen width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 150px;
+    margin-bottom: 0 !important; /* Leads directly into the grey boxes */
+    opacity: 1 !important; /* Overriding the tree animation for this grand finale */
+    transform: none !important;
+}
+
+.mastery-parallax-window {
+    height: 600px; /* Thy fixed height */
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional: adds a slight parallax depth */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Dark overlay to help the image feel like a gallery wall */
+.mastery-parallax-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Subtle dimming for text clarity */
+}
+
+.mastery-content-box {
+    position: relative;
+    z-index: 10;
+    background: #ffffff;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+    border-top: 3px solid #d4af37; /* The Gold Master Accent */
+}
+
+.mastery-content-box .node-title {
+    font-size: 1.8rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+/* Ensure the Tree Trunk stops before this section */
+.tree-trunk {
+    bottom: 600px !important; /* Stops the line at the start of the Hero */
+}
+/* --- 3. ANTIQUE STORE & EDUCATION (Grey Boxes) --- */
+/* --- 3. UPDATED RESOURCE SECTION (Grey Background, White Boxes) --- */
+
 .boutique-education-area {
     padding: 120px 0;
-    background-color: #f2f2f2;
+    background-color: #f2f2f2; /* The grey now flows side-to-side */
     border-top: 1px solid #e0e0e0;
 }
 
 .white-resource-box {
-    background-color: #ffffff;
+    background-color: #ffffff; /* The boxes are now clean white */
     padding: 60px 50px;
     margin: 15px;
     border: 1px solid #e0e0e0;
     text-align: center;
     transition: all 0.4s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    height: 100%; /* Ensures boxes stay the same height */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* A very subtle lift */
 }
 
 .white-resource-box:hover {
@@ -298,64 +778,38 @@ header .nav-tabs .nav-link.active:hover{
 }
 
 .box-title {
-    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
     letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 1.3rem;
     margin-bottom: 25px;
     color: #111;
 }
 
 .box-text {
+    font-weight: 300;
     line-height: 1.8;
     color: #666;
     margin-bottom: 35px;
+    font-size: 0.95rem;
 }
-/* ================================================================
-   9. PROCESS RESPONSIVE ADJUSTMENTS
-================================================================ */
-@media (max-width: 768px) {
-    .tree-trunk {
-        left: 20px !important;
-    }
 
-    .process-node {
-        padding-left: 50px;
-        text-align: left;
-        margin-bottom: 60px;
-    }
+.btn-box-link {
+    display: inline-block;
+    border: 1px solid #111;
+    padding: 12px 30px;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
 
-    .process-node .row {
-        flex-direction: column !important;
-    }
-
-    .process-node .col-md-6 {
-        width: 100% !important;
-        max-width: 100% !important;
-        text-align: left !important;
-        padding-left: 20px !important;
-        margin-bottom: 30px;
-    }
-
-    .node-image-frame {
-        margin: 0 0 20px 0 !important;
-        max-width: 100%;
-    }
-
-    .node-text {
-        max-width: 100%;
-    }
-
-    .placeholder-frame {
-        display: none;
-    }
-
-    .mastery-parallax-window {
-        height: 60vh;
-    }
-
-    .mastery-content-box {
-        padding: 40px 20px;
-        margin: 0 15px;
-    }
+.btn-box-link:hover {
+    background-color: #111;
+    color: #fff;
 }
 /* ============================
 On screens that are 600px or less, set the background color to olive 
