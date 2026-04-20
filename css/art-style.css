@@ -506,24 +506,28 @@ header .nav-tabs .nav-link.active:hover{
     bottom: 600px !important; /* Stops the line at the start of the Hero */
 }
 /* --- 3. ANTIQUE STORE & EDUCATION (Grey Boxes) --- */
+/* --- 3. UPDATED RESOURCE SECTION (Grey Background, White Boxes) --- */
+
 .boutique-education-area {
-    padding: 100px 0;
-    background-color: #ffffff;
-    border-top: 1px solid #eee;
+    padding: 120px 0;
+    background-color: #f2f2f2; /* The grey now flows side-to-side */
+    border-top: 1px solid #e0e0e0;
 }
 
-.grey-resource-box {
-    background-color: #f2f2f2; /* Thy favored light grey */
-    padding: 60px 40px;
+.white-resource-box {
+    background-color: #ffffff; /* The boxes are now clean white */
+    padding: 60px 50px;
     margin: 15px;
     border: 1px solid #e0e0e0;
     text-align: center;
     transition: all 0.4s ease;
+    height: 100%; /* Ensures boxes stay the same height */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* A very subtle lift */
 }
 
-.grey-resource-box:hover {
-    background-color: #ebebeb;
-    transform: translateY(-5px); /* Elegant Lift */
+.white-resource-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
 .box-title {
@@ -531,7 +535,7 @@ header .nav-tabs .nav-link.active:hover{
     font-weight: 300;
     letter-spacing: 4px;
     text-transform: uppercase;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 25px;
     color: #111;
 }
@@ -541,12 +545,13 @@ header .nav-tabs .nav-link.active:hover{
     line-height: 1.8;
     color: #666;
     margin-bottom: 35px;
+    font-size: 0.95rem;
 }
 
 .btn-box-link {
     display: inline-block;
     border: 1px solid #111;
-    padding: 10px 25px;
+    padding: 12px 30px;
     color: #111;
     text-transform: uppercase;
     letter-spacing: 3px;
