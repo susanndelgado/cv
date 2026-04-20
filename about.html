@@ -188,30 +188,59 @@
         <div class="row align-items-center">
             <div class="col-md-5 text-center">
                <div class="col-md-5 text-center" style="display: flex; align-items: center; justify-content: center; min-height: 250px;">
-                   <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 220px; height: auto; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5));">
+    
+                   <svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 250px; height: auto; opacity: 0.9;">
                        
-                       <path d="M20,20 L180,20 L180,120 C180,180 100,220 100,220 C100,220 20,180 20,120 Z" 
-                             fill="none" stroke="#d4af37" stroke-width="4" stroke-linejoin="round"/>
-                       
-                       <path d="M20,20 L180,20 L180,70 L20,70 Z" fill="#d4af37"/>
-                       
-                       <g fill="#111">
-                           <path d="M60,35 L64,43 L72,43 L66,49 L68,57 L60,52 L52,57 L54,49 L48,43 L56,43 Z"/> <path d="M100,35 L104,43 L112,43 L106,49 L108,57 L100,52 L92,57 L94,49 L88,43 L96,43 Z"/> <path d="M140,35 L144,43 L152,43 L146,49 L148,57 L140,52 L132,57 L134,49 L128,43 L136,43 Z"/> </g>
+                       <defs>
+                           <style type="text/css">
+                               .cre-cel-spark {fill: none; stroke: #d4af37; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0px 0px 5px rgba(212,175,55,0.4));}
+                               .cre-cel-line {fill: none; stroke: #fff; stroke-width: 1; opacity: 0.5;}
+                               .cre-cel-dot {fill: #fff; opacity: 0.8;}
+                           </style>
+                       </defs>
                
-                       <g transform="translate(100, 140)">
-                           <g stroke="#d4af37" stroke-width="2">
-                               <line x1="0" y1="-40" x2="0" y2="-60"/>
-                               <line x1="28" y1="-28" x2="42" y2="-42"/>
-                               <line x1="-28" y1="-28" x2="-42" y2="-42"/>
-                               <line x1="40" y1="0" x2="60" y2="0"/>
-                               <line x1="-40" y1="0" x2="-60" y2="0"/>
+                       <g transform="translate(150, 150)">
+                           <g class="cre-cel-spark">
+                               <line x1="0" y1="-80" x2="0" y2="-120"/>
+                               <line x1="0" y1="80" x2="0" y2="120"/>
+                               <line x1="80" y1="0" x2="120" y2="0"/>
+                               <line x1="-80" y1="0" x2="-120" y2="0"/>
+                               <line x1="56" y1="-56" x2="84" y2="-84"/>
+                               <line x1="-56" y1="-56" x2="-84" y2="-84"/>
+                               <line x1="56" y1="56" x2="84" y2="84"/>
+                               <line x1="-56" y1="56" x2="-84" y2="84"/>
                            </g>
-                           <circle r="25" fill="none" stroke="#d4af37" stroke-width="3"/>
-                           <path d="M-45,35 L0,-15 L45,35 Z" fill="#111" stroke="#d4af37" stroke-width="2"/>
+                           
+                           <path class="cre-cel-spark" d="M0,-30 L10,-10 L30,0 L10,10 L0,30 L-10,10 L-30,0 L-10,-10 Z" stroke-width="2"/>
+                           
+                           <g class="cre-cel-line">
+                               <circle cx="0" cy="-140" r="4"/>
+                               <circle cx="99" cy="-99" r="4"/>
+                               <circle cx="140" cy="0" r="4"/>
+                               <circle cx="99" cy="99" r="4"/>
+                               <circle cx="0" cy="140" r="4"/>
+                               <circle cx="-99" cy="99" r="4"/>
+                               <circle cx="-140" cy="0" r="4"/>
+                               <circle cx="-99" cy="-99" r="4"/>
+                           </g>
                        </g>
                        
-                       <path d="M30,30 L170,30 L170,120 C170,170 100,205 100,205 C100,205 30,170 30,120 Z" 
-                             fill="none" stroke="#d4af37" stroke-width="1" opacity="0.5"/>
+                       <g transform="translate(150, 150)" class="cre-cel-line">
+                           <path d="M-50,0 A50,50 0 0,1 50,0 A65,65 0 0,0 -50,0 Z" />
+                           <circle r="75" />
+                           <path d="M0,-65 v130 M-65,0 h130" />
+                           
+                           <path id="cre-cel-text-path" d="M-75,0 A75,75 0 0,1 75,0" fill="none" stroke="none" />
+                           <text class="cre-cel-line" style="font-size: 10px; text-transform: uppercase; letter-spacing: 5px;">
+                               <textPath xlink:href="#cre-cel-text-path" startOffset="50%" text-anchor="middle">
+                                   GENIUS CAELESTIS
+                               </textPath>
+                           </text>
+                       </g>
+                       
+                       <g transform="translate(150, 300)" class="cre-cel-spark">
+                           <path d="M-60,-40 A60,60 0 0,1 60,-40" stroke-width="1"/> <path d="M-80,-20 A100,100 0 0,0 80,-20" stroke-width="2"/> <circle cx="0" cy="-40" r="12" stroke-width="2" style="fill: #fff; filter: drop-shadow(0px 0px 10px rgba(212,175,55,1));"/>
+                           <path d="M0,-40 L0,-65" stroke-width="1.5" /> </g>
                    </svg>
                </div>
             </div>
