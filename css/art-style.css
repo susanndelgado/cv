@@ -339,93 +339,45 @@ header .nav-tabs .nav-link.active:hover{
     border: 1px dashed #ddd; /* A 'Ghost' border for layout visibility */
 }
 
-/* --- THE PROCESS TREE ARCHITECTURE --- */
+/* --- FULL ABOUT PAGE SYSTEM --- */
 
-.process-tree-section {
-    padding: 100px 0;
-    background-color: #ffffff;
-    overflow: hidden;
+/* 1. Hero Block */
+.process-hero {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 120px 0 80px;
 }
+.process-hero .master-title { letter-spacing: 10px; font-weight: 300; }
+.process-hero .hero-intro { color: #999; line-height: 2; max-width: 800px; margin: 30px auto; }
 
-/* The Trunk of the Tree */
-.tree-trunk {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #eeeeee;
-    transform: translateX(-50%);
-    z-index: 1;
+/* 2. Process Tree */
+.process-tree-section { padding: 100px 0; background: #fff; position: relative; }
+.tree-trunk { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #eee; transform: translateX(-50%); }
+
+.process-node { 
+    margin-bottom: 200px; 
+    opacity: 0; 
+    transform: translateY(50px); 
+    transition: all 1s ease-out; 
 }
+.process-node.active { opacity: 1; transform: translateY(0); }
 
-.process-node {
-    position: relative;
-    width: 100%;
-    margin-bottom: 150px; /* Large gap for scroll breathing room */
-    display: flex;
-    z-index: 2;
-    transition: all 0.8s ease-in-out;
-    opacity: 0.2; /* "Appears to disappear" when not in focus */
-    transform: translateY(50px);
-}
-
-/* Interaction: Highlight when near center of screen */
-/* Note: You can add a simple JS 'IntersectionObserver' to toggle this class */
-.process-node.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.node-content {
-    background: #fff;
-    padding: 40px;
-    width: 45%;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-    border-top: 3px solid #111;
-}
-
-/* Left and Right Branching */
+.node-content { width: 42%; background: #fff; padding: 40px; box-shadow: 0 15px 45px rgba(0,0,0,0.05); border-top: 2px solid #111; }
 .node-right { justify-content: flex-end; }
 .node-left { justify-content: flex-start; }
 .node-center { justify-content: center; text-align: center; }
-.node-center .node-content { width: 70%; border-top: 3px solid #f75ca7; }
 
-/* The Image Frames */
-.node-image-frame {
-    background: #f2f2f2;
-    margin: 20px 0;
-    overflow: hidden;
-}
-
-.node-image-frame img {
-    width: 100%;
-    display: block;
-    transition: transform 1s ease;
-}
-
-.small-frame { height: 200px; object-fit: cover; }
-
-/* Text Details */
-.node-step {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #999;
-}
-
-.node-title {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin: 10px 0 20px;
-}
-
-.node-text {
-    font-weight: 300;
-    line-height: 1.8;
-    color: #666;
+/* 3. Resource Section (Boutique & Teaching) */
+.boutique-resources { padding: 100px 0; background: #f9f9f9; border-top: 1px solid #eee; }
+.resource-card { padding: 40px; background: #fff; border: 1px solid #eee; margin: 15px; }
+.btn-boutique-dark { 
+    display: inline-block; 
+    border: 1px solid #111; 
+    padding: 10px 30px; 
+    color: #111; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    text-decoration: none; 
 }
 /* ============================
 On screens that are 600px or less, set the background color to olive 
