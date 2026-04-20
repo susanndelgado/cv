@@ -558,11 +558,11 @@ THE ARTISAN'S UNIFIED SLIDESHOW
 }
 
 /* Matching the rest of the site's typography exactly */
-.mastery-content-box .node-title {
+/* .mastery-content-box .node-title {
     color: #111;
     font-weight: 400;
     font-size: 2.2rem;
-}
+} */
 
 .mastery-content-box .node-text {
     color: #444;
@@ -729,12 +729,12 @@ THE ARTISAN'S UNIFIED SLIDESHOW
     border-top: 3px solid #d4af37; /* The Gold Master Accent */
 }
 
-.mastery-content-box .node-title {
+/* .mastery-content-box .node-title {
     font-size: 1.8rem;
     letter-spacing: 5px;
     text-transform: uppercase;
     margin-bottom: 25px;
-}
+} */
 
 /* Ensure the Tree Trunk stops before this section */
 .tree-trunk {
