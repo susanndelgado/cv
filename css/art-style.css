@@ -785,110 +785,84 @@ header .nav-tabs .nav-link.active:hover {
 /******************************************************************
          GALLERY COMPONENT STYLES --- 
  ******************************************************************/
+/* THE POLITE MUSEUM STYLE - Only affects the Gallery Section */
 
-/* Container for the Gallery */
 #museum-wing {
-    background-color: #121212; /* Dark floor for this section only */
-    min-height: 400px;
+    background-color: #121212; /* Dark floor ONLY for this section */
+    padding: 60px 0;
+    margin: 40px 0; /* Gives space from thy other sections */
+    color: #e0e0e0; /* Light text ONLY for this section */
+}
+
+#museum-wing .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 #main-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-/* EXHIBIT STYLE */
+/* EXHIBIT CARDS */
 .museum-exhibit {
     cursor: pointer;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 10px;
     transition: transform 0.3s ease;
 }
 
-.exhibit-frame {
-    background: #1e1e1e;
-    padding: 10px;
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    line-height: 0;
+.museum-exhibit:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
 }
 
 .exhibit-frame img {
     width: 100%;
     height: auto;
-    filter: brightness(0.9);
-    transition: filter 0.4s ease;
-}
-
-.museum-exhibit:hover .exhibit-frame img {
-    filter: brightness(1.1);
-}
-
-/* BRASS PLAQUE STYLE */
-.brass-plaque {
-    padding: 15px;
-    text-align: center;
+    display: block;
 }
 
 .exhibit-title {
-    color: #d4af37; /* Gold leaf */
-    font-family: 'Georgia', serif;
-    font-size: 1.4rem;
-    margin-bottom: 5px;
+    color: #d4af37; /* Gold leaf for titles */
+    font-family: 'serif';
     text-transform: uppercase;
+    font-size: 1.2rem;
+    margin: 15px 0 5px 0;
+    text-align: center;
 }
 
 .exhibit-meta {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #888;
+    text-align: center;
     letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
-/* THE LIGHTBOX (COVERS FULL SCREEN) */
+/* THE LIGHTBOX - Fixed so it doesn't break the page flow */
 #museum-lightbox {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    display: none; /* Hidden until clicked */
+    background: rgba(0,0,0,0.9);
+    display: none; 
+    z-index: 10000; /* Ensure it stays on top of everything */
     justify-content: center;
     align-items: center;
-    z-index: 9999;
 }
 
 #museum-lightbox.active {
     display: flex;
 }
 
-#lightbox-content {
-    background: #1a1a1a;
-    max-width: 90%;
-    max-height: 85vh;
-    display: flex;
-    box-shadow: 0 0 50px black;
-}
-
-.full-view-art {
-    max-width: 65%;
-    object-fit: contain;
-}
-
-.lore-scroll {
-    padding: 30px;
-    width: 35%;
-    overflow-y: auto;
-    color: #ddd;
-}
-
 .close-museum {
     position: absolute;
     top: 20px; right: 30px;
     color: white; font-size: 3rem; cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    #lightbox-content { flex-direction: column; }
-    .full-view-art, .lore-scroll { width: 100%; }
 }
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
