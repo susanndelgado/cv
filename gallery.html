@@ -173,7 +173,7 @@ async function fetchMuseumData() {
             const dateB = new Date(b.date ? b.date[0] : 0);
             return dateB - dateA;
         });
-
+console.log("Librarian's Delivery:", JSON.stringify(rawData, null, 2));
         console.log("Data received and sorted.");
         renderGallery(allArtworks);
 
