@@ -181,7 +181,7 @@ function renderGallery(artList) {
             imageId = rawLink.split('id=')[1].split('&')[0];
         }
 
-        const directUrl = imageId ? https://lh3.googleusercontent.com/d/${imageId} : '';
+        const directUrl = imageId ? `https://lh3.googleusercontent.com/d/${imageId}` : '';
 
         // BUILDING THE EXHIBIT (The HTML structure)
         const exhibit = document.createElement('div');
