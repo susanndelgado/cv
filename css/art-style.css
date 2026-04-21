@@ -650,6 +650,8 @@ header .nav-tabs .nav-link.active:hover {
 
 .patreon-intro {
     border-bottom: 1px solid #f0f0f0;
+    postion:relative;
+    
 }
 
 .tutoring-hero {
