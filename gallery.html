@@ -186,30 +186,27 @@ async function fetchMuseumData() {
 // 2. RENDERING THE MINIATURES (The smaller gallery thumbnails)
 function renderGallery(artList) {
     const container = document.getElementById('main-gallery');
-    container.innerHTML = ''; // Clear the halls
+    container.innerHTML = ''; 
+
+    // We ensure the container itself is ready to hold the 'Trunk'
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
+    container.style.gap = '20px';
 
     artList.forEach((item, index) => {
-        // Peek into the arrays for the thumbnail data
-        const mainImage = item.files[0] || '';
-        const displayTitle = item.title[0] || 'Untitled';
-        const displayDate = item.date[0] || 'Unknown Era';
+        // Direct URL as you requested
+        const directUrl = item.files && item.files.length > 0 ? item.files[0] : "";
         
-        // Use the first line of the description array for the card
-        const shortDescription = item.description[0] || '';
-
-        // BUILDING THE SMALL EXHIBIT CARD
         const exhibit = document.createElement('div');
         exhibit.className = 'museum-exhibit';
-        // The click now properly triggers the new side-by-side nook
-        exhibit.setAttribute('onclick', `openStudyingNook(${index})`);
-        
+        exhibit.setAttribute('onclick', openStudyingNook(${index}));
+
         exhibit.innerHTML = `
             <div class="exhibit-frame">
-                <img src="${mainImage}" alt="${displayTitle}" loading="lazy">
+                <img src="${directUrl}" alt="${item.title[0]}" style="width:100%; height:auto;">
                 <div class="brass-plaque">
-                    <h3 class="exhibit-title">${displayTitle}</h3>
-                    <p class="exhibit-meta">${displayDate} | ${item.misc.Media || 'Study'}</p>
-                    <div class="exhibit-description">${shortDescription}</div>
+                    <h3 style="color: #d4af37;">${item.title[0]}</h3>
+                    <p>${item.date[0]}</p>
                 </div>
             </div>
         `;
