@@ -158,8 +158,8 @@ header .nav-tabs .nav-link.active:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100px;        /* A modest size for a subtle mark */
-    height: 100px;
+    width: 180px;        /* A modest size for a subtle mark */
+    height: 180px;
     background: #ffffff; /* Provides the necessary canvas for the SVG */
     border: 2px solid #d4af37; /* The Guild's signature gold rim */
     border-radius: 50%;
