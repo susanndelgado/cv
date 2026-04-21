@@ -139,99 +139,42 @@
     const API_URL = 'https://script.google.com/macros/s/AKfycbw1Qw17bkC8I_6oVMfai3z-y4OsAhiq6TboAtJhOVSA-cqudaT2YzZWYItrPWl0OcQ/exec';
 
     // 2. FETCH THE DATA AND BUILD THE GRID
-   try {
-        console.log("Attempting to summon the Librarian at:", API_URL);
+  async function loadGallery() {
+    const grid = document.getElementById('gallery-grid');
+    
+    // 1. CLEAR THE DECKS
+    grid.innerHTML = '<div id="debug-log" style="color: #00ff00; font-family: monospace; background: #000; padding: 20px; border: 2px solid #333; font-size: 14px; line-height: 1.6; text-align: left;">Summoning the Librarian...</div>';
+    const log = document.getElementById('debug-log');
+
+    try {
+        // 2. ATTEMPT THE CONNECTION
+        log.innerHTML += "<br>Connecting to: " + API_URL;
         const response = await fetch(API_URL);
+        
+        if (!response.ok) {
+            throw new Error("The Gatekeeper refused entry. Status: " + response.status);
+        }
+
         const data = await response.json();
         
-        // This is the "Cancel Out" - we just print the data to the log
-        console.log("THE LIBRARIAN SPEAKS! Here is the scroll:", data);
+        // 3. SHOW THE JSON OBJECT
+        log.innerHTML = "<h2 style='color: white;'>SUCCESS: JSON OBJECT RECEIVED</h2>";
+        log.innerHTML += "<p style='color: #aaa;'>Below is the raw scroll from the Librarian:</p>";
         
-        const grid = document.getElementById('gallery-grid');
-        grid.innerHTML = "<h1>Connection Successful! Check the Console Log for the data.</h1>";
-        
+        // This converts the JSON object into a readable string on thy screen
+        const rawJson = JSON.stringify(data, null, 4);
+        log.innerHTML += "<pre style='background: #111; padding: 15px; border: 1px solid #444; overflow-x: auto; white-space: pre-wrap;'>" + rawJson + "</pre>";
+
     } catch (err) {
-        console.error("The bridge is broken:", err);
-        document.getElementById('gallery-grid').innerHTML = "No signal found.";
+        // 4. REPORT THE ERA OF FAILURE
+        console.error("The bridge hath collapsed:", err);
+        log.innerHTML = "<h2 style='color: #ff4444;'>ERROR: THE BRIDGE HATH COLLAPSED</h2>";
+        log.innerHTML += "<div style='background: #300; padding: 15px; border: 1px solid #f00;'>";
+        log.innerHTML += "<p><strong>Message:</strong> " + err.message + "</p>";
+        log.innerHTML += "<p><strong>Checklist:</strong><br>- Is the API URL endin' in /exec?<br>- Is the Google Script set to 'Anyone'?<br>- Doth the susanndelgado estate have permission to view the script?</p>";
+        log.innerHTML += "</div>";
     }
-//     async function loadGallery() {
-//     try {
-//         const response = await fetch(API_URL);
-//         const data = await response.json();
-//         const grid = document.getElementById('gallery-grid');
-//         grid.innerHTML = '';
-
-//         data.forEach((item) => {
-//             const card = document.createElement('div');
-//             card.className = 'art-card';
-//             const thumbId = item.images ? item.images[0] : '';
-            
-//             // Corrected with backticks and proper URL format
-//             card.innerHTML = `<img src="https://lh3.googleusercontent.com/d/${thumbId}" alt="Art Thumbnail">`;
-            
-//             card.onclick = () => openModal(item);
-//             grid.appendChild(card);
-//         });
-//     } catch (err) {
-//         console.error("The Librarian could not find the scroll:", err);
-//         document.getElementById('gallery-grid').innerHTML = "We're sorry. It's currently unavailable.";
-//     }
-// }
-
-function openModal(item) {
-    const modal = document.getElementById('art-modal');
-    const body = document.getElementById('modal-data');
-
-    const titleStr = item.title ? item.title.join(' | ') : 'Untitled';
-    const mediaStr = item.media ? item.media.join(', ') : '';
-    const descStr = item.description ? item.description.join('\n\n') : '';
-
-    let miscHtml = '';
-    for (const [key, value] of Object.entries(item.misc)) {
-        const valStr = Array.isArray(value) ? value.join(' | ') : value;
-        miscHtml += `<div class="misc-item"><strong>${key}:</strong> ${valStr}</div>`;
-    }
-
-    const mainImgUrl = https://lh3.googleusercontent.com/d/${item.images[0]};
-
-    // Corrected with backticks
-    body.innerHTML = `
-        <div class="image-container">
-            <img src="${mainImgUrl}" alt="Main Work">
-            <button class="zoom-btn" onclick="zoomImage('${mainImgUrl}')">🔍 VIEW FULL SIZE</button>
-        </div>
-        <div class="art-title">${titleStr}</div>
-        <div class="art-media">${mediaStr}</div>
-        <div class="art-desc">${descStr}</div>
-        ${miscHtml ? <div class="misc-section">${miscHtml}</div> : ''}
-    `;
-
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden";
 }
-
-    // 4. THE ZOOM OVERLAY LOGIC
-    function zoomImage(url) {
-        const overlay = document.getElementById('zoom-overlay');
-        const zoomImg = document.getElementById('zoomed-image');
-        zoomImg.src = url;
-        overlay.style.display = 'flex';
-    }
-
-    // 5. CLOSE THE POP-OUT
-    function closeModal() {
-        document.getElementById('art-modal').style.display = "none";
-        document.body.style.overflow = "auto"; // Restores page scrolling
-    }
-
-    // Close the window if clicking on the dark background
-    window.onclick = function(event) {
-        const modal = document.getElementById('art-modal');
-        if (event.target == modal) { closeModal(); }
-    }
-
-    // 6. ACTIVATE THE MAGIC
-    loadGallery();
 </script>
 </body>
 </html>
