@@ -99,16 +99,13 @@
                             <path d="M25 50 Q25 20 50 20 Q75 20 75 50 L75 70 Q75 85 50 85 Q25 85 25 70 Z" fill="#ffffff" />
                             <path d="M32 25 Q42 35 38 65 L48 65 Q50 35 42 22 Z" fill="#333" />
                             <path d="M68 25 Q58 35 62 65 L52 65 Q50 35 58 22 Z" fill="#333" />
-                            <circle cx="41" cy="48" r="2.5" fill="#ffffff" />
-                            <circle cx="59" cy="48" r="2.5" fill="#ffffff" />
+                            <circle cx="41" cy="48" r="2.5" fill="#ffffff" /><circle cx="59" cy="48" r="2.5" fill="#ffffff" />
                             <circle cx="50" cy="74" r="5" fill="#000" />
-                            <path d="M28 35 Q22 25 32 22" stroke="#333" stroke-width="3" fill="none" />
-                            <path d="M72 35 Q78 25 68 22" stroke="#333" stroke-width="3" fill="none" />
+                            <path d="M28 35 Q22 25 32 22" stroke="#333" stroke-width="3" fill="none" /><path d="M72 35 Q78 25 68 22" stroke="#333" stroke-width="3" fill="none" />
                         </svg>
                     </div>
 
                     <h2 id="lair-typewriter" style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; line-height: 1.6; color: #f4f1ea; margin: 0; letter-spacing: 1px; font-weight: 400; min-height: 5em;"></h2>
-                    
                     <span id="type-cursor" style="display: inline-block; width: 12px; height: 1.5rem; background: #d4af37; margin-left: 8px; vertical-align: middle; animation: blink 1s infinite;"></span>
                 </div>
 
@@ -116,6 +113,59 @@
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @media (max-width: 768px) {
+        .lair-seal { top: -50px; left: 50%; transform: translateX(-50%); }
+        .typewriter-window { padding-top: 65px; }
+        #lair-typewriter { font-size: 1.2rem; min-height: 8em; }
+    }
+</style>
+
+<script>
+    (function() {
+        const message = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
+        let charIndex = 0;
+        let hasStarted = false;
+
+        function writeLore() {
+            const el = document.getElementById("lair-typewriter");
+            if (el && charIndex < message.length) {
+                el.innerHTML += message.charAt(charIndex);
+                charIndex++;
+                setTimeout(writeLore, 35);
+            }
+        }
+
+        // The Observer: It watches for the Elf to be born!
+        const observer = new MutationObserver((mutations, obs) => {
+            // Replace 'elfsight-app' with the class or ID of your widget container
+            const elf = document.querySelector('[class*="elfsight-app"]');
+            
+            if (elf && !hasStarted) {
+                hasStarted = true;
+                obs.disconnect(); // Stop watching once found
+                setTimeout(writeLore, 1000); // Start Lair 1 second after Elf appears
+            }
+        });
+
+        // Start watching the whole document for changes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Safety fallback: if the Elf is late or missing, start after 5 seconds anyway
+        setTimeout(() => {
+            if (!hasStarted) {
+                hasStarted = true;
+                observer.disconnect();
+                writeLore();
+            }
+        }, 5000);
+    })();
+</script>
 <section class="boutique-education-area">
     <div class="container">
         <div class="row justify-content-center d-flex align-items-stretch">
@@ -159,40 +209,5 @@
 
 
 
-    
-
-<style>
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    @media (max-width: 768px) {
-        .lair-seal { top: -50px; left: 50%; transform: translateX(-50%); }
-        .typewriter-window { padding-top: 65px; }
-        #lair-typewriter { font-size: 1.2rem; min-height: 8em; }
-    }
-</style>
-
-<script>
-    /* Lair's Polite Typewriter Script */
-    (function() {
-        const message = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
-        let charIndex = 0;
-
-        function writeLore() {
-            const el = document.getElementById("lair-typewriter");
-            if (el && charIndex < message.length) {
-                el.innerHTML += message.charAt(charIndex);
-                charIndex++;
-                setTimeout(writeLore, 35);
-            }
-        }
-
-        /* We use 'load' to ensure the Elfsight script and all others 
-           have finished their heavy lifting before we start the typing.
-        */
-        window.addEventListener('load', function() {
-            // A 2-second delay ensures the "Elf" has enough time to render first
-            setTimeout(writeLore, 2000);
-        });
-    })();
-</script>
 </body>
 </html>
