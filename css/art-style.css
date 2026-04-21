@@ -52,7 +52,6 @@ input[type="submit"]:focus {
     outline: none !important;
     box-shadow: none !important;
 }
-
 .btn.collab-btn, .button.collab-btn, button.collab-btn, 
 input[type="button"].collab-btn, input[type="reset"].collab-btn, 
 input[type="submit"].collab-btn {
@@ -64,33 +63,27 @@ input[type="submit"].collab-btn {
     text-transform: uppercase;
     margin: 10px;
 }
-
 .btn.btn-blk {
     background-color: #000 !important;
     color: #fff !important;
 }
-
 .btn-blk {
     background-color: #000;
     color: #fff;
 }
-
 a {
     color: #000;
     background-color: transparent;
 }
-
 a:hover, a:focus {
     color: #f70606;
     background-color: transparent;
     outline: none !important;
     box-shadow: none !important;
 }
-
 a, a:visited, .dropdown-item {
     color: #60adb8;
 }
-
 .btn.focus, .btn:focus {
     outline: none !important;
     box-shadow: none !important;
