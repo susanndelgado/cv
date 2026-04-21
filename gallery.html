@@ -162,7 +162,7 @@ async function fetchMuseumData() {
         renderGallery(allArtworks); // Display the collection
     } catch (error) {
         console.error("The Curator found a closed gate:", error);
-        mainGallery.innerHTML = <p class="error-scroll">Alas, the Librarian could not find the scrolls. ${error}</p>;
+        mainGallery.innerHTML = `<p class="error-scroll">Alas, the Librarian could not find the scrolls. ${error}</p>`;
     }
 }
 
