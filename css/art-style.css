@@ -443,6 +443,7 @@ header .nav-tabs .nav-link.active:hover {
     background-color: #d4af37 !important;
     transform: translateX(-50%);
     z-index: 1;
+    height: 100%;
 }
 
 .process-node {
