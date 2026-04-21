@@ -962,20 +962,7 @@ header .nav-tabs .nav-link.active:hover {
     color: #b08d57;
 }
 
-/* Responsive (Mobile) - Stack them on small screens */
-@media (max-width: 768px) {
-    #lightbox-content {
-        flex-direction: column;
-        height: auto;
-        max-height: 90%;
-    }
-    .lightbox-image-side {
-        height: 300px;
-    }
-    .lightbox-lore-side {
-        padding: 30px;
-    }
-}
+
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
@@ -998,8 +985,18 @@ header .nav-tabs .nav-link.active:hover {
     h1, h2, h3, h4 {
         font-size: 1.5rem;
     }
-
-
+/* Responsive (Mobile) - Stack them on small screens */
+ #lightbox-content {
+        flex-direction: column;
+        height: auto;
+        max-height: 90%;
+    }
+    .lightbox-image-side {
+        height: 300px;
+    }
+    .lightbox-lore-side {
+        padding: 30px;
+    }
 
 /* --- ABOUT & PROCESS TREE (Responsive) --- */
     .tree-trunk {
