@@ -460,13 +460,16 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 .node-image-frame {
-    width: 100%;
+ width: 100%;
     max-width: 450px;
     margin: 0 auto;
     border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 5px;
     overflow: hidden;
     background: #000;
+    position: relative;
+    height: auto;
+    min-height: 325px;
 }
 
 .node-image-frame img {
