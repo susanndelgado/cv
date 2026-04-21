@@ -212,6 +212,7 @@ header .nav-tabs .nav-link.active:hover{
     background: #f2f2f2; /* Grey ghost frames for visibility */
     border: 1px solid #e0e0e0;
     transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
+	max-height:420px;
 }
 .art-matte:hover {
     transform: translateY(-12px);
