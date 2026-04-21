@@ -174,7 +174,7 @@ function openModal(item) {
     let miscHtml = '';
     for (const [key, value] of Object.entries(item.misc)) {
         const valStr = Array.isArray(value) ? value.join(' | ') : value;
-        miscHtml += <div class="misc-item"><strong>${key}:</strong> ${valStr}</div>;
+        miscHtml += `<div class="misc-item"><strong>${key}:</strong> ${valStr}</div>`;
     }
 
     const mainImgUrl = https://lh3.googleusercontent.com/d/${item.images[0]};
