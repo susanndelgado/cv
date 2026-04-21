@@ -136,69 +136,64 @@
     /* --- THE GALLERY LIBRARIAN LOGIC --- */
 
     // 1. THY MASTER URL (Ensure this is thy deployed Web App URL)
-    const API_URL = 'https://script.google.com/macros/s/AKfycby8nTzcOe-h9x0-BsVt7rxsax1cbBQ6eIHlOCZWFMT8cdwRFRasULEngy-3v-x3ig4/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbw1Qw17bkC8I_6oVMfai3z-y4OsAhiq6TboAtJhOVSA-cqudaT2YzZWYItrPWl0OcQ/exec';
 
     // 2. FETCH THE DATA AND BUILD THE GRID
     async function loadGallery() {
-        try {
-            const response = await fetch(API_URL);
-            const data = await response.json();
-            const grid = document.getElementById('gallery-grid');
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        const grid = document.getElementById('gallery-grid');
+        grid.innerHTML = '';
+
+        data.forEach((item) => {
+            const card = document.createElement('div');
+            card.className = 'art-card';
+            const thumbId = item.images ? item.images[0] : '';
             
-            // Clear the "Gathering treasures" message
-            grid.innerHTML = '';
+            // Corrected with backticks and proper URL format
+            card.innerHTML = <img src="https://lh3.googleusercontent.com/d/${thumbId}" alt="Art Thumbnail">;
+            
+            card.onclick = () => openModal(item);
+            grid.appendChild(card);
+        });
+    } catch (err) {
+        console.error("The Librarian could not find the scroll:", err);
+        document.getElementById('gallery-grid').innerHTML = "We're sorry. It's currently unavailable.";
+    }
+}
 
-            data.forEach((item) => {
-                const card = document.createElement('div');
-                card.className = 'art-card';
-                
-                // Uses the first image in thy array for the thumbnail
-                const thumbId = item.images[0] || ''; 
-                card.innerHTML = <img src="https://lh3.googleusercontent.com/d/${thumbId}" alt="Art Thumbnail">;
-                
-                card.onclick = () => openModal(item);
-                grid.appendChild(card);
-            });
-        } catch (err) {
-            console.error("The Librarian could not find the scroll:", err);
-            document.getElementById('gallery-grid').innerHTML = "The gallery is resting. Please check the connection.";
-        }
+function openModal(item) {
+    const modal = document.getElementById('art-modal');
+    const body = document.getElementById('modal-data');
+
+    const titleStr = item.title ? item.title.join(' | ') : 'Untitled';
+    const mediaStr = item.media ? item.media.join(', ') : '';
+    const descStr = item.description ? item.description.join('\n\n') : '';
+
+    let miscHtml = '';
+    for (const [key, value] of Object.entries(item.misc)) {
+        const valStr = Array.isArray(value) ? value.join(' | ') : value;
+        miscHtml += <div class="misc-item"><strong>${key}:</strong> ${valStr}</div>;
     }
 
-    // 3. OPEN THE POP-OUT WINDOW (MODAL)
-    function openModal(item) {
-        const modal = document.getElementById('art-modal');
-        const body = document.getElementById('modal-data');
+    const mainImgUrl = https://lh3.googleusercontent.com/d/${item.images[0]};
 
-        // Format the Master Pillars into pretty strings
-        const titleStr = item.title.join(' | ');
-        const mediaStr = item.media.join(', ');
-        const descStr = item.description.join('\n\n');
+    // Corrected with backticks
+    body.innerHTML = `
+        <div class="image-container">
+            <img src="${mainImgUrl}" alt="Main Work">
+            <button class="zoom-btn" onclick="zoomImage('${mainImgUrl}')">🔍 VIEW FULL SIZE</button>
+        </div>
+        <div class="art-title">${titleStr}</div>
+        <div class="art-media">${mediaStr}</div>
+        <div class="art-desc">${descStr}</div>
+        ${miscHtml ? <div class="misc-section">${miscHtml}</div> : ''}
+    `;
 
-        // Gather thy "Misc" treasures (Date, Price, etc.)
-        let miscHtml = '';
-        for (const [key, value] of Object.entries(item.misc)) {
-            const valStr = Array.isArray(value) ? value.join(' | ') : value;
-            miscHtml += <div class="misc-item"><strong>${key}:</strong> ${valStr}</div>;
-        }
-
-        // Direct link for display
-        const mainImgUrl = https://lh3.googleusercontent.com/d/${item.images[0]};
-
-        body.innerHTML = `
-            <div class="image-container">
-                <img src="${mainImgUrl}" alt="Main Work">
-                <button class="zoom-btn" onclick="zoomImage('${mainImgUrl}')">🔍 VIEW FULL SIZE</button>
-            </div>
-            <div class="art-title">${titleStr}</div>
-            <div class="art-media">${mediaStr}</div>
-            <div class="art-desc">${descStr}</div>
-            ${miscHtml ? <div class="misc-section"><div class="misc-title">Additional Details</div>${miscHtml}</div> : ''}
-        `;
-
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Stops page from scrolling behind the pop-out
-    }
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+}
 
     // 4. THE ZOOM OVERLAY LOGIC
     function zoomImage(url) {
