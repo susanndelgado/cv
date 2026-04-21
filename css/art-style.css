@@ -235,6 +235,7 @@ header .nav-tabs .nav-link.active:hover {
     border: 1px dashed #ddd;
     transition: all 0.7s cubic-bezier(0.15, 0, 0.15, 1);
     max-height: 620px;
+    min-height: 320px;
 }
 
 .art-matte:hover {
