@@ -199,7 +199,7 @@ function renderGallery(artList) {
         
         const exhibit = document.createElement('div');
         exhibit.className = 'museum-exhibit';
-        exhibit.setAttribute('onclick', `openStudyingNook(${index})`);
+        exhibit.setAttribute('onclick', `openStudyingNook(`+index+`)`);
 
         exhibit.innerHTML = `
             <div class="exhibit-frame">
