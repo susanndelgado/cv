@@ -152,7 +152,7 @@
             const thumbId = item.images ? item.images[0] : '';
             
             // Corrected with backticks and proper URL format
-            card.innerHTML = <img src="https://lh3.googleusercontent.com/d/${thumbId}" alt="Art Thumbnail">;
+            card.innerHTML = '<img src="https://lh3.googleusercontent.com/d/${thumbId}" alt="Art Thumbnail">';
             
             card.onclick = () => openModal(item);
             grid.appendChild(card);
