@@ -76,11 +76,156 @@
 <section class="gallery-display-area" style="padding: 60px 0; background-color: #fff;">
    
         <div class="container-fluid position-relative">
+<section id="guild-gallery-section" style="background: #1a1a1a; padding: 100px 0; color: #f4f1ea; overflow: hidden;">
+    <div class="container">
+        <div id="gallery-manifest">
+            </div>
 
+        <div style="text-align: center; margin-top: 60px;">
+            <button id="btn-load-more" style="background: transparent; border: 2px solid #d4af37; color: #d4af37; padding: 15px 40px; font-family: 'Playfair Display', serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; display: none;">
+                Unroll More Scrolls
+            </button>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* THE DRESSING: Styling thy Gallery */
+    .gallery-entry {
+        display: flex;
+        align-items: center;
+        margin-bottom: 120px;
+        gap: 50px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+    
+    .gallery-entry.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* This magic rule flips every second entry */
+    .gallery-entry:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .gallery-art, .gallery-lore {
+        flex: 1;
+    }
+
+    .gallery-art img {
+        width: 100%;
+        max-height: 700px;
+        object-fit: contain;
+        border: 1px solid #333;
+        box-shadow: 15px 15px 40px rgba(0,0,0,0.6);
+        background: #000;
+    }
+
+    .gallery-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.8rem;
+        color: #d4af37;
+        margin-bottom: 20px;
+    }
+
+    .gallery-text {
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.9;
+        color: #ccc;
+        font-size: 1.15rem;
+    }
+
+    /* Responsive adjustments for mobile scrolls */
+    @media (max-width: 992px) {
+        .gallery-entry, .gallery-entry:nth-child(even) {
+            flex-direction: column;
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .gallery-title { font-size: 2rem; }
+    }
+</style>
+
+<script>
+(function() {
+    // 1. PLACE THY MASTER KEY HERE
+    // Copy the URL from thy deployment screen and paste it between these quotes
+    const librarianUrl = "https://script.google.com/macros/s/AKfycbx4RNdT234r9Wy1Ekk74xVjcasSY17URt2Qvc45WiTQcoQmI8OHROK7pTZuFmkMmBk/exec";
+
+    let allPaintings = [];
+    let currentCount = 0;
+    const batchSize = 10;
+
+    const manifest = document.getElementById('gallery-manifest');
+    const loadBtn = document.getElementById('btn-load-more');
+
+    // Wake the Librarian and fetch the scrolls
+    async function wakeLibrarian() {
+        try {
+            const response = await fetch(librarianUrl);
+            allPaintings = await response.json();
+            
+            if (allPaintings.length > 0) {
+                renderBatch();
+                if (allPaintings.length > batchSize) {
+                    loadBtn.style.display = 'inline-block';
+                }
+            } else {
+                manifest.innerHTML = "<p style='text-align:center; font-family:Playfair Display;'>The gallery is currently being dusted. Return anon!</p>";
+            }
+        } catch (err) {
+            console.error("The Librarian has tripped over a bucket:", err);
+        }
+    }
+
+    function renderBatch() {
+        const nextBatch = allPaintings.slice(currentCount, currentCount + batchSize);
+        
+        nextBatch.forEach((item) => {
+            const entry = document.createElement('div');
+            entry.className = 'gallery-entry';
+            
+            // Using the direct Google Drive image display link
+            const imgSrc = https://lh3.googleusercontent.com/d/${item.id}=s1000;
+
+            entry.innerHTML = `
+                <div class="gallery-art">
+                    <img src="${imgSrc}" alt="${item.title}">
+                </div>
+                <div class="gallery-lore">
+                    <h2 class="gallery-title">${item.title}</h2>
+                    <div class="gallery-text">${item.description || "A masterwork silent in its beauty."}</div>
+                </div>
+            `;
+            
+            manifest.appendChild(entry);
+            
+            // Fade-in animation
+            setTimeout(() => entry.classList.add('visible'), 100);
+        });
+
+        currentCount += nextBatch.length;
+
+        // Hide button if we reached the end of the scrolls
+        if (currentCount >= allPaintings.length) {
+            loadBtn.style.display = 'none';
+        }
+    }
+
+    loadBtn.addEventListener('click', renderBatch);
+
+    // Initial call when the page is ready
+    window.addEventListener('load', wakeLibrarian);
+
+})();
+</script>
            
             <!-- Elfsight Photo Gallery | Untitled Photo Gallery -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-5415a8bb-14e2-4908-bf23-02acb10cf739" data-elfsight-app-lazy></div>
+<!-- <script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-5415a8bb-14e2-4908-bf23-02acb10cf739" data-elfsight-app-lazy></div> -->
  
 
            
