@@ -679,7 +679,85 @@ header .nav-tabs .nav-link.active:hover {
     border-radius: 2px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
+/* --- Creative Process Section --- */
 
+.process-hero-reveal {
+    /* Height and flex alignment */
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    
+    /* Background Image Styling */
+    background-size: cover;
+    background-position: center right; /* Prioritizes the character on the right */
+    background-repeat: no-repeat;
+    
+    /* Parallax Effect - Change to 'scroll' if movement feels too intense */
+    background-attachment: fixed; 
+}
+
+/* Responsive fix for mobile: Parallax often breaks on small glass screens */
+@media (max-width: 992px) {
+    .process-hero-reveal {
+        background-attachment: scroll;
+        min-height: auto;
+        padding: 60px 0;
+    }
+}
+
+/* The Left-Aligned Floating Box */
+.info-floating-box {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.96); /* High opacity for a solid parchment look */
+    padding: 50px;
+    border-top: 4px solid #d4af37; /* The Guild's gold accent */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+/* Subtle lift on hover for engagement */
+.info-floating-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Typography for the Process Section */
+.info-floating-box h2 {
+    font-family: 'Playfair Display', serif; /* Classical aesthetic */
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.info-floating-box p {
+    color: #333;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+/* The Call to Action Button */
+.btn-boutique {
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-boutique:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    text-decoration: none;
+}
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
