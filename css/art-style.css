@@ -725,8 +725,8 @@ header .nav-tabs .nav-link.active:hover {
 
 /* Typography for the Process Section */
 .info-floating-box h2 {
-    font-family: 'Playfair Display', serif; /* Classical aesthetic */
-    color: #1a1a1a;
+    /* font-family: 'Playfair Display', serif; /* Classical aesthetic */ */
+    /* color: #1a1a1a; */
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1.6rem;
@@ -734,7 +734,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 .info-floating-box p {
-    color: #333;
+    /* color: #333; */
     line-height: 1.8;
     font-size: 1rem;
     margin-bottom: 25px;
@@ -743,7 +743,7 @@ header .nav-tabs .nav-link.active:hover {
 /* The Call to Action Button */
 .btn-boutique {
     border: 1px solid #1a1a1a;
-    color: #1a1a1a;
+    /* color: #1a1a1a; */
     padding: 12px 25px;
     text-decoration: none;
     font-size: 0.85rem;
@@ -754,7 +754,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 .btn-boutique:hover {
-    background-color: #1a1a1a;
+    /* background-color: #1a1a1a; */
     color: #ffffff;
     text-decoration: none;
 }
