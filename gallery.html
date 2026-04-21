@@ -74,27 +74,17 @@
 <pre id="data-dump">Waiting for the Librarian to arrive...</pre>
 
 
-   
-<section id="master-gallery-section" style="padding: 60px 20px;">
-      <div class="container">
-    <div style="max-width: 1200px; margin: 0 auto 30px auto; text-align: center;">
+   <section id="museum-wing" class="py-5">
+    <div class="container">
+        <div id="main-gallery"></div>
     </div>
-
-    <div id="gallery-grid">Sorry Nothing to look at right now...</div>
-
-    <div id="art-modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">×</span>
-            <div id="modal-data" class="modal-body">
-                </div>
-        </div>
-    </div>
-
-    <div id="zoom-overlay" onclick="this.style.display='none'">
-        <img id="zoomed-image" src="" alt="Detailed View">
-    </div>
- </div>
 </section>
+
+<div id="museum-lightbox" onclick="closeLightbox()">
+    <span class="close-museum">&times;</span>
+    <div id="lightbox-content" onclick="event.stopPropagation()">
+        </div>
+</div>
 
 
     
