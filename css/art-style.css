@@ -258,7 +258,6 @@ header .nav-tabs .nav-link.active:hover {
     max-height: 620px;
     min-height: 320px;
 }
-
 .art-matte:hover {
     transform: translateY(-12px);
     box-shadow: 0 40px 80px rgba(0,0,0,0.08);
