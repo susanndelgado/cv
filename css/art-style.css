@@ -503,6 +503,7 @@ header .nav-tabs .nav-link.active:hover {
     line-height: 1.7;
     color: #666;
     max-width: 500px;
+    margin: 0 auto;
 }
 
 /******************************************************************
