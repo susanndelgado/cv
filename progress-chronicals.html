@@ -124,6 +124,36 @@
         </div>
     </div>
 </footer>
+<script>
+(function() {
+    const reversePosts = () => {
+        // Look for the post containers (targeting common Elfsight classes)
+        const posts = document.querySelectorAll('[class*="PostItem__Component"], .es-post');
+        
+        posts.forEach((post, index) => {
+            // We target the even-numbered posts (index 1, 3, 5...)
+            if (index % 2 !== 0) {
+                post.style.display = 'flex';
+                post.style.flexDirection = 'row-reverse';
+                post.style.alignItems = 'center';
+                post.style.gap = '30px';
+                
+                // Optional: Align text to the right for a cleaner look
+                const info = post.querySelector('[class*="PostItem__Info"], .es-post-info');
+                if (info) {
+                    info.style.textAlign = 'right';
+                }
+            }
+        });
+    };
 
+    // Run once after a short delay to let Elfsight load
+    setTimeout(reversePosts, 2000);
+
+    // Also watch for changes (in case of 'Load More' buttons)
+    const observer = new MutationObserver(reversePosts);
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 </body>
 </html>
