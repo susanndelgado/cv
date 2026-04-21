@@ -70,6 +70,11 @@
         <div class="hero-divider"></div>
     </div>
 </section>
+   <h2>Librarian Raw Data Dump</h2>
+<pre id="data-dump">Waiting for the Librarian to arrive...</pre>
+
+
+   
 <section id="master-gallery-section" style="padding: 60px 20px;">
       <div class="container">
     <div style="max-width: 1200px; margin: 0 auto 30px auto; text-align: center;">
@@ -131,47 +136,30 @@
     </div>
 </footer>
 <script>
-    /* --- THE GALLERY LIBRARIAN LOGIC --- */
 
-    // 1. THY MASTER URL (Ensure this is thy deployed Web App URL)
-    const API_URL = 'https://script.google.com/macros/s/AKfycbw1Qw17bkC8I_6oVMfai3z-y4OsAhiq6TboAtJhOVSA-cqudaT2YzZWYItrPWl0OcQ/exec';
+ // 1. THE LIBRARIAN'S ADDRESS
+const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbxDLgQNTW5lxkLvlWfspXAf78P_KZhJn__st6ciS1nsPXN0ZLkephluZSze4X9pL1cD/exec'; 
 
-    // 2. FETCH THE DATA AND BUILD THE GRID
-  async function loadGallery() {
-    const grid = document.getElementById('gallery-grid');
+async function getLibrarianData() {
+    console.log("Calling the Librarian...");
     
-    // 1. CLEAR THE DECKS
-    grid.innerHTML = '<div id="debug-log" style="color: #00ff00; font-family: monospace; background: #000; padding: 20px; border: 2px solid #333; font-size: 14px; line-height: 1.6; text-align: left;">Summoning the Librarian...</div>';
-    const log = document.getElementById('debug-log');
-
     try {
-        // 2. ATTEMPT THE CONNECTION
-        log.innerHTML += "<br>Connecting to: " + API_URL;
-        const response = await fetch(API_URL);
-        
-        if (!response.ok) {
-            throw new Error("The Gatekeeper refused entry. Status: " + response.status);
-        }
-
+        const response = await fetch(LIBRARIAN_URL);
         const data = await response.json();
-        
-        // 3. SHOW THE JSON OBJECT
-        log.innerHTML = "<h2 style='color: white;'>SUCCESS: JSON OBJECT RECEIVED</h2>";
-        log.innerHTML += "<p style='color: #aaa;'>Below is the raw scroll from the Librarian:</p>";
-        
-        // This converts the JSON object into a readable string on thy screen
-        const rawJson = JSON.stringify(data, null, 4);
-        log.innerHTML += "<pre style='background: #111; padding: 15px; border: 1px solid #444; overflow-x: auto; white-space: pre-wrap;'>" + rawJson + "</pre>";
 
-    } catch (err) {
-        // 4. REPORT THE ERA OF FAILURE
-        console.error("The bridge hath collapsed:", err);
-        log.innerHTML = "<h2 style='color: #ff4444;'>ERROR: THE BRIDGE HATH COLLAPSED</h2>";
-        log.innerHTML += "<div style='background: #300; padding: 15px; border: 1px solid #f00;'>";
-        log.innerHTML += "<p><strong>Message:</strong> " + err.message + "</p>";
-        log.innerHTML += "<p><strong>Checklist:</strong><br>- Is the API URL endin' in /exec?<br>- Is the Google Script set to 'Anyone'?<br>- Doth the susanndelgado estate have permission to view the script?</p>";
-        log.innerHTML += "</div>";
+        // 2. THE DATA DUMP
+        // This takes the raw JSON and prints it into a <pre> tag on thy page
+        document.getElementById('data-dump').textContent = JSON.stringify(data, null, 2);
+        
+        console.log("The Librarian has delivered the scrolls!", data);
+    } catch (error) {
+        console.error("The gates are barred!", error);
+        document.getElementById('data-dump').textContent = "Error: " + error;
     }
+}
+
+// Call the function as soon as the page loads
+getLibrarianData();
 }
 </script>
 </body>
