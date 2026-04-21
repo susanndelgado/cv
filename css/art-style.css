@@ -786,103 +786,110 @@ header .nav-tabs .nav-link.active:hover {
          GALLERY COMPONENT STYLES --- 
  ******************************************************************/
 
+/* Container for the Gallery */
+#museum-wing {
+    background-color: #121212; /* Dark floor for this section only */
+    min-height: 400px;
+}
 
-    #gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 25px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+#main-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+}
 
-    .art-card {
-        cursor: pointer;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease;
-        border-radius: 4px;
-    }
+/* EXHIBIT STYLE */
+.museum-exhibit {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-    .art-card:hover { transform: translateY(-8px); }
+.exhibit-frame {
+    background: #1e1e1e;
+    padding: 10px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    line-height: 0;
+}
 
-    .art-card img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        display: block;
-    }
+.exhibit-frame img {
+    width: 100%;
+    height: auto;
+    filter: brightness(0.9);
+    transition: filter 0.4s ease;
+}
 
-    /* Modal & Pop-out Styles */
-    #art-modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.85);
-        overflow-y: auto;
-    }
+.museum-exhibit:hover .exhibit-frame img {
+    filter: brightness(1.1);
+}
 
-    .modal-content {
-        background-color: #fff;
-        margin: 5% auto;
-        padding: 40px;
-        width: 90%;
-        max-width: 850px;
-        position: relative;
-        border-radius: 8px;
-        color: #333;
-    }
+/* BRASS PLAQUE STYLE */
+.brass-plaque {
+    padding: 15px;
+    text-align: center;
+}
 
-    .close-btn {
-        position: absolute;
-        right: 25px;
-        top: 15px;
-        font-size: 35px;
-        cursor: pointer;
-        color: #999;
-    }
+.exhibit-title {
+    color: #d4af37; /* Gold leaf */
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
 
-    .image-container { position: relative; width: 100%; text-align: center; margin-bottom: 25px; }
-    .modal-body img { width: 100%; max-height: 550px; object-fit: contain; border-radius: 4px; }
+.exhibit-meta {
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 1px;
+}
 
-    .zoom-btn {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid #ddd;
-        padding: 10px 18px;
-        border-radius: 30px;
-        cursor: pointer;
-        font-size: 14px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+/* THE LIGHTBOX (COVERS FULL SCREEN) */
+#museum-lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: none; /* Hidden until clicked */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
-    .art-title { font-size: 28px; margin-bottom: 8px; color: #111; }
-    .art-media { font-style: italic; color: #777; margin-bottom: 20px; font-size: 18px; }
-    .art-desc { line-height: 1.8; margin-bottom: 25px; white-space: pre-line; color: #444; }
-    
-    .misc-section { background: #f4f4f4; padding: 20px; border-radius: 4px; border-left: 4px solid #ccc; }
-    .misc-item { margin-bottom: 8px; font-size: 15px; }
+#museum-lightbox.active {
+    display: flex;
+}
 
-    #zoom-overlay {
-        display: none;
-        position: fixed;
-        z-index: 2000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.95);
-        cursor: zoom-out;
-        justify-content: center;
-        align-items: center;
-    }
-    #zoom-overlay img { max-width: 98%; max-height: 98%; object-fit: contain; }
+#lightbox-content {
+    background: #1a1a1a;
+    max-width: 90%;
+    max-height: 85vh;
+    display: flex;
+    box-shadow: 0 0 50px black;
+}
+
+.full-view-art {
+    max-width: 65%;
+    object-fit: contain;
+}
+
+.lore-scroll {
+    padding: 30px;
+    width: 35%;
+    overflow-y: auto;
+    color: #ddd;
+}
+
+.close-museum {
+    position: absolute;
+    top: 20px; right: 30px;
+    color: white; font-size: 3rem; cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #lightbox-content { flex-direction: column; }
+    .full-view-art, .lore-scroll { width: 100%; }
+}
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
