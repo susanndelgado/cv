@@ -70,78 +70,7 @@
         <div class="hero-divider"></div>
     </div>
 </section>
-<section class="lair-intro-section" style="background: #1a1a1a; padding: 100px 0; border-top: 4px solid #d4af37;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-11 col-lg-9">
-                
-                <div class="typewriter-window" style="position: relative; padding: 50px 40px 40px 40px; background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 4px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
-                    
-                    <div class="lair-seal" style="position: absolute; top: -45px; left: -45px; width: 100px; height: 100px; z-index: 10;">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="46" fill="#1a1a1a" stroke="#d4af37" stroke-width="3" />
-                            <path d="M25 50 Q25 20 50 20 Q75 20 75 50 L75 70 Q75 85 50 85 Q25 85 25 70 Z" fill="#ffffff" />
-                            <path d="M32 25 Q42 35 38 65 L48 65 Q50 35 42 22 Z" fill="#333" />
-                            <path d="M68 25 Q58 35 62 65 L52 65 Q50 35 58 22 Z" fill="#333" />
-                            <circle cx="41" cy="48" r="2.5" fill="#ffffff" /><circle cx="59" cy="48" r="2.5" fill="#ffffff" />
-                            <circle cx="50" cy="74" r="5" fill="#000" />
-                        </svg>
-                    </div>
 
-                    <h2 id="lair-type-target" style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; line-height: 1.6; color: #f4f1ea; margin: 0; letter-spacing: 1px; font-weight: 400; min-height: 5em;"></h2>
-                    <span id="lair-cursor" style="display: inline-block; width: 12px; height: 1.5rem; background: #d4af37; margin-left: 8px; vertical-align: middle; animation: lairBlink 1s infinite;"></span>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    @keyframes lairBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    @media (max-width: 768px) {
-        .lair-seal { top: -50px; left: 50%; transform: translateX(-50%); }
-        .typewriter-window { padding-top: 65px; }
-        #lair-type-target { font-size: 1.2rem; min-height: 8em; }
-    }
-</style>
-
-<script>
-/**
- * THE FORTRESS PROTOCOL
- * This script is wrapped in a private scope. 
- * Nothing inside can be seen or touched by the Elf or other Global scripts.
- */
-(function() {
-    // All variables are local to this function only
-    const lairConfig = {
-        text: "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.",
-        speed: 40,
-        delayBeforeStart: 3500, // Giving the Elf a 3.5s head start
-        targetId: "lair-type-target"
-    };
-
-    let currentIndex = 0;
-
-    function executeTypewriter() {
-        const displayElement = document.getElementById(lairConfig.targetId);
-        if (displayElement && currentIndex < lairConfig.text.length) {
-            displayElement.textContent += lairConfig.text.charAt(currentIndex);
-            currentIndex++;
-            setTimeout(executeTypewriter, lairConfig.speed);
-        }
-    }
-
-    // We use a clean listener that fires only when the full window is settled
-    window.addEventListener('load', function() {
-        // We check if the target exists, then wait for our delay
-        if (document.getElementById(lairConfig.targetId)) {
-            setTimeout(executeTypewriter, lairConfig.delayBeforeStart);
-        }
-    });
-
-})(); // The fortress walls close here
-</script>
 
 <section class="progress">
    
