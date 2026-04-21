@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
 }
 /******************************************************************
- * BUTTONS, LINKS, & INPUTS
+ * BUTTONS, LINKS, & INPUT
  ******************************************************************/
 .button:focus, button:focus, input[type="button"]:focus, 
 input[type="reset"]:focus, input[type="submit"]:focus, 
