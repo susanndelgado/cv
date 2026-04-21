@@ -74,7 +74,30 @@
 <section class="gallery-display-area" style="padding: 60px 0; background-color: #fff;">
    
         <div class="container-fluid position-relative">
+<div id="chronicles-preview-span" class="image-span-container">
+    <div class="loading-message">Gathering the latest scrolls...</div>
+</div>
 
+<style>
+.image-span-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+    gap: 10px;
+    padding: 20px;
+    background: #fdfcf9; /* Matches thy parchment feel */
+    min-height: 200px;
+}
+.image-span-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Keeps images from looking squished */
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+.image-span-container img:hover {
+    transform: scale(1.05); /* A slight "pop" when hovered */
+}
+</style>
            
            <!-- Elfsight Blog | Untitled Blog -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
@@ -125,35 +148,36 @@
     </div>
 </footer>
 <script>
-(function() {
-    const reversePosts = () => {
-        // Look for the post containers (targeting common Elfsight classes)
-        const posts = document.querySelectorAll('[class*="PostItem__Component"], .es-post');
+function extractElfImages() {
+    // 1. Find the Elfsight container (Update the class/ID if needed)
+    const elfContainer = document.querySelector('.elfsight-app-YOUR-WIDGET-ID-HERE');
+    const previewContainer = document.getElementById('chronicles-preview-span');
+
+    if (elfContainer) {
+        // 2. Find all images within the plugin
+        const images = elfContainer.querySelectorAll('img');
         
-        posts.forEach((post, index) => {
-            // We target the even-numbered posts (index 1, 3, 5...)
-            if (index % 2 !== 0) {
-                post.style.display = 'flex';
-                post.style.flexDirection = 'row-reverse';
-                post.style.alignItems = 'center';
-                post.style.gap = '30px';
-                
-                // Optional: Align text to the right for a cleaner look
-                const info = post.querySelector('[class*="PostItem__Info"], .es-post-info');
-                if (info) {
-                    info.style.textAlign = 'right';
-                }
+        if (images.length >= 4) {
+            // 3. Clear the loading message
+            previewContainer.innerHTML = '';
+            
+            // 4. Loop through the first 4 images and clone them into our span
+            for (let i = 0; i < 4; i++) {
+                let newImg = document.createElement('img');
+                newImg.src = images[i].src;
+                previewContainer.appendChild(newImg);
             }
-        });
-    };
+        }
+    }
+}
 
-    // Run once after a short delay to let Elfsight load
-    setTimeout(reversePosts, 2000);
-
-    // Also watch for changes (in case of 'Load More' buttons)
-    const observer = new MutationObserver(reversePosts);
-    observer.observe(document.body, { childList: true, subtree: true });
-})();
+// Since Elfsight takes time to load, we check every second for up to 5 seconds
+let checkCount = 0;
+const checkInterval = setInterval(() => {
+    extractElfImages();
+    checkCount++;
+    if (checkCount > 5) clearInterval(checkInterval); 
+}, 1000);
 </script>
 </body>
 </html>
