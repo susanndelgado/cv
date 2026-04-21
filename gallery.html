@@ -127,7 +127,9 @@
 </footer>
 <script>
 
- // 1. THE LIBRARIAN'S ADDRESS
+ // =========================================================
+// === THE MUSEUM CURATOR v3.0 (Updated for Layout) ===
+// =========================================================
 const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbyEj1_b0eW825igAj8qaJlHsYbItdhgZppIzzHTdlqVhhSA0iVuTIWaA7-BSeLAIH1V/exec'; 
 
 // async function getLibrarianData() {
@@ -151,10 +153,6 @@ const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbyEj1_b0eW825igAj
 // getLibrarianData();
    // 1. THE LIBRARIAN'S ADDRESS
 
-let allArtworks = []; // The Guild's master record
-
-// 1. THE LIBRARIAN'S ADDRESS
-const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycb.../exec'; // Use thy deployment URL
 
 let allArtworks = []; // The Guild's master record
 
@@ -166,47 +164,49 @@ async function fetchMuseumData() {
         const response = await fetch(LIBRARIAN_URL);
         const rawData = await response.json();
 
-        // 2. THE SORTING MAGIC
-        // Since 'date' is an array [ "YYYY-MM-DD" ], we peek at the first index [0]
+        // 1. THE CHRONICLE SORT: Organize newest to oldest
         allArtworks = rawData.sort((a, b) => {
             const dateA = new Date(a.date[0] || "1900-01-01");
             const dateB = new Date(b.date[0] || "1900-01-01");
             return dateB - dateA; // Newest first
         });
 
-        console.log("The Librarian delivered the scrolls, sorted by date!");
+        console.log("Data received and sorted.");
         renderGallery(allArtworks);
 
     } catch (error) {
-        console.error("The gates are barred!", error);
+        console.error("The Curator found a closed gate:", error);
         mainGallery.innerHTML = <p class="error-scroll">Alas, the Librarian could not find the scrolls. ${error}</p>;
     }
 }
 
+// 2. RENDERING THE MINIATURES (The smaller gallery thumbnails)
 function renderGallery(artList) {
     const container = document.getElementById('main-gallery');
-    container.innerHTML = ''; // Clear the halls for new exhibits
+    container.innerHTML = ''; // Clear the halls
 
     artList.forEach((item, index) => {
-        // Since 'files', 'title', and 'description' are arrays, we grab the first entries
+        // Peek into the arrays for the thumbnail data
         const mainImage = item.files[0] || '';
-        const displayTitle = item.title[0] || 'Untitled Masterpiece';
+        const displayTitle = item.title[0] || 'Untitled';
         const displayDate = item.date[0] || 'Unknown Era';
         
-        // We join the description array back into a story with line breaks
-        const fullDescription = item.description.join('<br>');
+        // Use the first line of the description array for the card
+        const shortDescription = item.description[0] || '';
 
-        // BUILDING THE EXHIBIT
+        // BUILDING THE SMALL EXHIBIT CARD
         const exhibit = document.createElement('div');
         exhibit.className = 'museum-exhibit';
+        // The click now properly triggers the new side-by-side nook
+        exhibit.setAttribute('onclick', openStudyingNook(${index}));
         
         exhibit.innerHTML = `
-            <div class="exhibit-frame" onclick="openLightbox(${index})">
+            <div class="exhibit-frame">
                 <img src="${mainImage}" alt="${displayTitle}" loading="lazy">
                 <div class="brass-plaque">
                     <h3 class="exhibit-title">${displayTitle}</h3>
-                    <p class="exhibit-meta">${displayDate} | ${item.misc.Media || 'Mixed Media'}</p>
-                    <div class="exhibit-description">${item.description[0] || ''}</div>
+                    <p class="exhibit-meta">${displayDate} | ${item.misc.Media || 'Study'}</p>
+                    <div class="exhibit-description">${shortDescription}</div>
                 </div>
             </div>
         `;
@@ -215,35 +215,45 @@ function renderGallery(artList) {
 }
 
 
-// THE LIGHTBOX MAGIC (For that "Wow" interactive feel)
-function openLightbox(index) {
+// =========================================================
+// === THE STUDYING NOOK (The new Intimate Lightbox) ===
+// =========================================================
+
+function openStudyingNook(index) {
     const item = allArtworks[index];
     const lightbox = document.getElementById('museum-lightbox');
     const content = document.getElementById('lightbox-content');
-    
-    let rawLink = item.files ? item.files[0] : (item.misc.Images ? item.misc.Images[0] : "");
-    let imageId = rawLink.includes('d/') ? rawLink.split('d/')[1].split('/')[0] : "";
-    const directUrl = `https://lh3.googleusercontent.com/d/`+imageId;
 
+    // We join the description array back into a story with paragraphs
+    const fullStory = item.description.join('</p><p>');
+
+    // BUILDING THE NEW SIDE-BY-SIDE LAYOUT
     content.innerHTML = `
-        <img src="${directUrl}" class="full-view-art">
-        <div class="lore-scroll">
-            <h2>${item.title}</h2>
-            <hr>
-            <p>${item.description}</p>
-            <div class="provenance">
-                <span><strong>Series:</strong> ${item.misc.Series}</span>
-                <span><strong>Technique:</strong> ${item.misc.Media}</span>
+        <span class="close-museum" onclick="closeMuseumNook()">&times;</span>
+        
+        <div class="lightbox-image-side">
+            <img src="${item.files[0]}" alt="${item.title[0]}">
+        </div>
+        
+        <div class="lightbox-lore-side">
+            <h2 class="lore-title">${item.title[0] || 'Untitled'}</h2>
+            <p class="lore-meta">Created: ${item.date[0]} | Technique: ${item.misc.Media || 'Mixed Media'}</p>
+            <div class="lore-description">
+                <p>${fullStory}</p>
+                <p><em>Series: ${item.misc.Series || 'Standalone'}</em></p>
             </div>
         </div>
     `;
+    
+    // Add the 'active' class to show the Lightbox (from the CSS)
     lightbox.classList.add('active');
 }
 
-function closeLightbox() {
-    document.getElementById('museum-lightbox').classList.remove('active');
+function closeMuseumNook() {
+    const lightbox = document.getElementById('museum-lightbox');
+    // Remove the 'active' class to hide it
+    lightbox.classList.remove('active');
 }
-
 
 // Initialize the Museum
 fetchMuseumData();
