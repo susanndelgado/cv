@@ -140,25 +140,108 @@
  // 1. THE LIBRARIAN'S ADDRESS
 const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbxDLgQNTW5lxkLvlWfspXAf78P_KZhJn__st6ciS1nsPXN0ZLkephluZSze4X9pL1cD/exec'; 
 
-async function getLibrarianData() {
-    console.log("Calling the Librarian...");
+// async function getLibrarianData() {
+//     console.log("Calling the Librarian...");
+    
+//     try {
+//         const response = await fetch(LIBRARIAN_URL);
+//         const data = await response.json();
+
+//         // 2. THE DATA DUMP
+//         // This takes the raw JSON and prints it into a <pre> tag on thy page
+//         document.getElementById('data-dump').textContent = JSON.stringify(data, null, 2);
+        
+//         console.log("The Librarian has delivered the scrolls!", data);
+//     } catch (error) {
+//         console.error("The gates are barred!", error);
+//         document.getElementById('data-dump').textContent = "Error: " + error;
+//     }
+// }
+// // Call the function as soon as the page loads
+// getLibrarianData();
+   // 1. THE LIBRARIAN'S ADDRESS
+
+let allArtworks = []; // The Guild's master record
+
+async function fetchMuseumData() {
+    const mainGallery = document.getElementById('main-gallery');
     
     try {
         const response = await fetch(LIBRARIAN_URL);
-        const data = await response.json();
-
-        // 2. THE DATA DUMP
-        // This takes the raw JSON and prints it into a <pre> tag on thy page
-        document.getElementById('data-dump').textContent = JSON.stringify(data, null, 2);
-        
-        console.log("The Librarian has delivered the scrolls!", data);
+        allArtworks = await response.json();
+        renderGallery(allArtworks); // Display the collection
     } catch (error) {
-        console.error("The gates are barred!", error);
-        document.getElementById('data-dump').textContent = "Error: " + error;
+        console.error("The Curator found a closed gate:", error);
+        mainGallery.innerHTML = <p class="error-scroll">Alas, the Librarian could not find the scrolls. ${error}</p>;
     }
 }
-// Call the function as soon as the page loads
-getLibrarianData();
+
+function renderGallery(artList) {
+    const container = document.getElementById('main-gallery');
+    container.innerHTML = ''; // Clear the halls for new exhibits
+
+    artList.forEach((item, index) => {
+        // IMAGE WELDER: Extracting the Google ID
+        let rawLink = item.files ? item.files[0] : (item.misc.Images ? item.misc.Images[0] : "");
+        let imageId = "";
+        
+        if (rawLink.includes('d/')) {
+            imageId = rawLink.split('d/')[1].split('/')[0];
+        } else if (rawLink.includes('id=')) {
+            imageId = rawLink.split('id=')[1].split('&')[0];
+        }
+
+        const directUrl = imageId ? https://lh3.googleusercontent.com/d/${imageId} : '';
+
+        // BUILDING THE EXHIBIT (The HTML structure)
+        const exhibit = document.createElement('div');
+        exhibit.className = 'museum-exhibit';
+        exhibit.innerHTML = `
+            <div class="exhibit-frame" onclick="openLightbox(${index})">
+                <div class="spotlight"></div>
+                <img src="${directUrl}" alt="${item.title}" loading="lazy">
+            </div>
+            <div class="brass-plaque">
+                <h3 class="exhibit-title">${item.title}</h3>
+                <p class="exhibit-meta">${item.misc.Media || 'Mixed Media'} | ${item.misc.Series || 'Standalone'}</p>
+                <div class="exhibit-description">${item.description}</div>
+            </div>
+        `;
+        container.appendChild(exhibit);
+    });
+}
+
+// THE LIGHTBOX MAGIC (For that "Wow" interactive feel)
+function openLightbox(index) {
+    const item = allArtworks[index];
+    const lightbox = document.getElementById('museum-lightbox');
+    const content = document.getElementById('lightbox-content');
+    
+    let rawLink = item.files ? item.files[0] : (item.misc.Images ? item.misc.Images[0] : "");
+    let imageId = rawLink.includes('d/') ? rawLink.split('d/')[1].split('/')[0] : "";
+    const directUrl = https://lh3.googleusercontent.com/d/${imageId};
+
+    content.innerHTML = `
+        <img src="${directUrl}" class="full-view-art">
+        <div class="lore-scroll">
+            <h2>${item.title}</h2>
+            <hr>
+            <p>${item.description}</p>
+            <div class="provenance">
+                <span><strong>Series:</strong> ${item.misc.Series}</span>
+                <span><strong>Technique:</strong> ${item.misc.Media}</span>
+            </div>
+        </div>
+    `;
+    lightbox.classList.add('active');
+}
+
+function closeLightbox() {
+    document.getElementById('museum-lightbox').classList.remove('active');
+}
+
+// Initialize the Gallery
+fetchMuseumData();
 
 </script>
 </body>
