@@ -349,27 +349,7 @@ header .nav-tabs .nav-link.active:hover {
     color: #888;
     text-align: center;
 }
-/* Targeted styles only for the Homepage Process Section */
-.curated-exhibit .parallax-window {
-    min-height: 600px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
 
-/* Ensure the text box stays polished within this specific window */
-.curated-exhibit .exhibit-content-box {
-    background: rgba(0, 0, 0, 0.8); /* A dark glass effect */
-    padding: 40px;
-    border: 1px solid rgba(212, 175, 55, 0.3); /* Thy signature gold border */
-    border-radius: 8px;
-    backdrop-filter: blur(10px); /* For a modern, professional feel */
-}
 /******************************************************************
  * THE ARTISAN'S UNIFIED SLIDESHOW
  ******************************************************************/
@@ -764,8 +744,5 @@ header .nav-tabs .nav-link.active:hover {
     .info-floating-box {
         padding: 25px;
     }
-    .curated-exhibit .parallax-window {
-        background-attachment: scroll; /* Releases the fixed grip for mobile */
-        min-height: 400px;             /* A bit shorter for smaller screens */
-    }
+  
 }
