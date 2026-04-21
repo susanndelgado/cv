@@ -134,6 +134,96 @@
         </div>
     </div>
 </footer>
+<script>
+    /* --- THE GALLERY LIBRARIAN LOGIC --- */
 
+    // 1. THY MASTER URL (Ensure this is thy deployed Web App URL)
+    const API_URL = 'PASTE_YOUR_DEPLOYED_URL_HERE';
+
+    // 2. FETCH THE DATA AND BUILD THE GRID
+    async function loadGallery() {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            const grid = document.getElementById('gallery-grid');
+            
+            // Clear the "Gathering treasures" message
+            grid.innerHTML = '';
+
+            data.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'art-card';
+                
+                // Uses the first image in thy array for the thumbnail
+                const thumbId = item.images[0] || ''; 
+                card.innerHTML = <img src="https://lh3.googleusercontent.com/d/${thumbId}" alt="Art Thumbnail">;
+                
+                card.onclick = () => openModal(item);
+                grid.appendChild(card);
+            });
+        } catch (err) {
+            console.error("The Librarian could not find the scroll:", err);
+            document.getElementById('gallery-grid').innerHTML = "The gallery is resting. Please check the connection.";
+        }
+    }
+
+    // 3. OPEN THE POP-OUT WINDOW (MODAL)
+    function openModal(item) {
+        const modal = document.getElementById('art-modal');
+        const body = document.getElementById('modal-data');
+
+        // Format the Master Pillars into pretty strings
+        const titleStr = item.title.join(' | ');
+        const mediaStr = item.media.join(', ');
+        const descStr = item.description.join('\n\n');
+
+        // Gather thy "Misc" treasures (Date, Price, etc.)
+        let miscHtml = '';
+        for (const [key, value] of Object.entries(item.misc)) {
+            const valStr = Array.isArray(value) ? value.join(' | ') : value;
+            miscHtml += <div class="misc-item"><strong>${key}:</strong> ${valStr}</div>;
+        }
+
+        // Direct link for display
+        const mainImgUrl = https://lh3.googleusercontent.com/d/${item.images[0]};
+
+        body.innerHTML = `
+            <div class="image-container">
+                <img src="${mainImgUrl}" alt="Main Work">
+                <button class="zoom-btn" onclick="zoomImage('${mainImgUrl}')">🔍 VIEW FULL SIZE</button>
+            </div>
+            <div class="art-title">${titleStr}</div>
+            <div class="art-media">${mediaStr}</div>
+            <div class="art-desc">${descStr}</div>
+            ${miscHtml ? <div class="misc-section"><div class="misc-title">Additional Details</div>${miscHtml}</div> : ''}
+        `;
+
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Stops page from scrolling behind the pop-out
+    }
+
+    // 4. THE ZOOM OVERLAY LOGIC
+    function zoomImage(url) {
+        const overlay = document.getElementById('zoom-overlay');
+        const zoomImg = document.getElementById('zoomed-image');
+        zoomImg.src = url;
+        overlay.style.display = 'flex';
+    }
+
+    // 5. CLOSE THE POP-OUT
+    function closeModal() {
+        document.getElementById('art-modal').style.display = "none";
+        document.body.style.overflow = "auto"; // Restores page scrolling
+    }
+
+    // Close the window if clicking on the dark background
+    window.onclick = function(event) {
+        const modal = document.getElementById('art-modal');
+        if (event.target == modal) { closeModal(); }
+    }
+
+    // 6. ACTIVATE THE MAGIC
+    loadGallery();
+</script>
 </body>
 </html>
