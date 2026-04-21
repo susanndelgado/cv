@@ -70,34 +70,66 @@
         <div class="hero-divider"></div>
     </div>
 </section>
+<section class="lair-intro-section" style="background: #1a1a1a; padding: 80px 0; border-top: 4px solid #d4af37;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                
+                <div class="typewriter-window" style="position: relative; padding: 40px; background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 4px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+                    
+                    <h2 id="lair-typewriter" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1.6; color: #f4f1ea; margin: 0; letter-spacing: 1px; font-weight: 400; min-height: 4.8em;">
+                        </h2>
+                    
+                    <span id="type-cursor" style="display: inline-block; width: 12px; height: 1.5rem; background: #d4af37; margin-left: 8px; vertical-align: middle; animation: blink 1s infinite;"></span>
+                </div>
 
-<section class="gallery-display-area" style="padding: 60px 0; background-color: #fff;">
-   
-        <div class="container-fluid position-relative">
-<div id="chronicles-preview-span" class="image-span-container">
-    <div class="loading-message">Gathering the latest scrolls...</div>
-</div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <style>
-.image-span-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
-    gap: 10px;
-    padding: 20px;
-    background: #fdfcf9; /* Matches thy parchment feel */
-    min-height: 200px;
-}
-.image-span-container img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover; /* Keeps images from looking squished */
-    border: 1px solid #ddd;
-    transition: transform 0.3s ease;
-}
-.image-span-container img:hover {
-    transform: scale(1.05); /* A slight "pop" when hovered */
-}
+    /* Keeps the cursor blinking like a heartbeat */
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    
+    /* Ensures the typewriter looks sharp on mobile devices */
+    @media (max-width: 768px) {
+        #lair-typewriter { font-size: 1.2rem; min-height: 7em; }
+    }
 </style>
+
+<script>
+    (function() {
+        const text = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
+        const speed = 40; 
+        let i = 0;
+        const target = document.getElementById("lair-typewriter");
+        const cursor = document.getElementById("type-cursor");
+
+        function typeWriter() {
+            if (i < text.length) {
+                target.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // Optional: Make the cursor stop blinking or disappear when finished
+                // cursor.style.display = 'none'; 
+            }
+        }
+
+        // Wait for the DOM to be ready before Lair begins his task
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(typeWriter, 800); 
+        });
+    })();
+</script>
+<section class="progress">
+   
+        <div class="container-fluid position-relative">
+
            
            <!-- Elfsight Blog | Untitled Blog -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
@@ -147,36 +179,6 @@
         </div>
     </div>
 </footer>
-<script>
-function extractElfImages() {
-    // 1. Find the Elfsight container (Update the class/ID if needed)
-    const elfContainer = document.querySelector('.elfsight-app-YOUR-WIDGET-ID-HERE');
-    const previewContainer = document.getElementById('chronicles-preview-span');
 
-    if (elfContainer) {
-        // 2. Find all images within the plugin
-        const images = elfContainer.querySelectorAll('img');
-        
-        if (images.length >= 4) {
-            // 3. Clear the loading message
-            previewContainer.innerHTML = '';
-            
-            // 4. Loop through the first 4 images and clone them into our span
-            for (let i = 0; i < 4; i++) {
-                let newImg = document.createElement('img');
-                newImg.src = images[i].src;
-                previewContainer.appendChild(newImg);
-            }
-        }
-    }
-}
-// Since Elfsight takes time to load, we check every second for up to 5 seconds
-let checkCount = 0;
-const checkInterval = setInterval(() => {
-    extractElfImages();
-    checkCount++;
-    if (checkCount > 5) clearInterval(checkInterval); 
-}, 1000);
-</script>
 </body>
 </html>
