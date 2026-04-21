@@ -154,7 +154,31 @@ header .nav-tabs .nav-link.active:hover {
     font-size: 14px;
     text-transform: uppercase;
 }
+.seal-contained {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;        /* A modest size for a subtle mark */
+    height: 100px;
+    background: #ffffff; /* Provides the necessary canvas for the SVG */
+    border: 2px solid #d4af37; /* The Guild's signature gold rim */
+    border-radius: 50%;
+    margin-bottom: 25px; /* Creates breathing room above the title */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
 
+.seal-contained img {
+    width: 85%;          /* Fits the curved text perfectly within the circle */
+    height: auto;
+}
+
+/* Adjusting the Title for better balance */
+.master-title {
+    margin-top: 0 !important;
+    letter-spacing: 3px;
+    font-size: 2.2rem;
+}
 /******************************************************************
  * BOUTIQUE GALLERY & EXHIBITION VAULT
  ******************************************************************/
