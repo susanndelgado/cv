@@ -209,7 +209,7 @@ function openLightbox(index) {
     
     let rawLink = item.files ? item.files[0] : (item.misc.Images ? item.misc.Images[0] : "");
     let imageId = rawLink.includes('d/') ? rawLink.split('d/')[1].split('/')[0] : "";
-    const directUrl = https://lh3.googleusercontent.com/d/${imageId};
+    const directUrl = `https://lh3.googleusercontent.com/d/${imageId}`;
 
     content.innerHTML = `
         <img src="${directUrl}" class="full-view-art">
