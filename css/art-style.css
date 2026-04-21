@@ -783,6 +783,108 @@ header .nav-tabs .nav-link.active:hover {
     color: #ffffff;
     text-decoration: none;
 }
+
+/******************************************************************
+         GALLERY COMPONENT STYLES --- 
+ ******************************************************************/
+
+
+    #gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .art-card {
+        cursor: pointer;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+        border-radius: 4px;
+    }
+
+    .art-card:hover { transform: translateY(-8px); }
+
+    .art-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Modal & Pop-out Styles */
+    #art-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        padding: 40px;
+        width: 90%;
+        max-width: 850px;
+        position: relative;
+        border-radius: 8px;
+        color: #333;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 25px;
+        top: 15px;
+        font-size: 35px;
+        cursor: pointer;
+        color: #999;
+    }
+
+    .image-container { position: relative; width: 100%; text-align: center; margin-bottom: 25px; }
+    .modal-body img { width: 100%; max-height: 550px; object-fit: contain; border-radius: 4px; }
+
+    .zoom-btn {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        padding: 10px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .art-title { font-size: 28px; margin-bottom: 8px; color: #111; }
+    .art-media { font-style: italic; color: #777; margin-bottom: 20px; font-size: 18px; }
+    .art-desc { line-height: 1.8; margin-bottom: 25px; white-space: pre-line; color: #444; }
+    
+    .misc-section { background: #f4f4f4; padding: 20px; border-radius: 4px; border-left: 4px solid #ccc; }
+    .misc-item { margin-bottom: 8px; font-size: 15px; }
+
+    #zoom-overlay {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        cursor: zoom-out;
+        justify-content: center;
+        align-items: center;
+    }
+    #zoom-overlay img { max-width: 98%; max-height: 98%; object-fit: contain; }
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
