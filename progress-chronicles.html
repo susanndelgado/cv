@@ -124,47 +124,24 @@
 </style>
 
 <script>
-    (function() {
-        const message = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
-        let charIndex = 0;
-        let hasStarted = false;
+(function() {
+    const txt = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
+    let i = 0;
 
-        function writeLore() {
-            const el = document.getElementById("lair-typewriter");
-            if (el && charIndex < message.length) {
-                el.innerHTML += message.charAt(charIndex);
-                charIndex++;
-                setTimeout(writeLore, 35);
-            }
+    function type() {
+        if (i < txt.length) {
+            document.getElementById("lair-typewriter").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(type, 40);
         }
+    }
 
-        // The Observer: It watches for the Elf to be born!
-        const observer = new MutationObserver((mutations, obs) => {
-            // Replace 'elfsight-app' with the class or ID of your widget container
-            const elf = document.querySelector('[class*="elfsight-app"]');
-            
-            if (elf && !hasStarted) {
-                hasStarted = true;
-                obs.disconnect(); // Stop watching once found
-                setTimeout(writeLore, 1000); // Start Lair 1 second after Elf appears
-            }
-        });
-
-        // Start watching the whole document for changes
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        // Safety fallback: if the Elf is late or missing, start after 5 seconds anyway
-        setTimeout(() => {
-            if (!hasStarted) {
-                hasStarted = true;
-                observer.disconnect();
-                writeLore();
-            }
-        }, 5000);
-    })();
+    // This is the "Ghost" trigger. 
+    // It waits for EVERYTHING to finish, then waits 3 more seconds for the Elf to finish rendering.
+    window.onload = function() {
+        setTimeout(type, 3000); 
+    };
+})();
 </script>
 <section class="boutique-education-area">
     <div class="container">
