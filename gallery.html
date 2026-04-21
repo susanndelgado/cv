@@ -134,22 +134,28 @@ const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbyEj1_b0eW825igAj
 
 async function getLibrarianData() {
     console.log("Calling the Librarian...");
-    
+    const dumpElement = document.getElementById('data-dump');
+
     try {
         const response = await fetch(LIBRARIAN_URL);
         const data = await response.json();
 
-        // 2. THE DATA DUMP
-        // This takes the raw JSON and prints it into a <pre> tag on thy page
-        document.getElementById('data-dump').textContent = JSON.stringify(data, null, 2);
+        // This line prints the raw scrolls directly onto thy page for thy eyes to see
+        if (dumpElement) {
+            dumpElement.textContent = JSON.stringify(data, null, 2);
+        }
         
         console.log("The Librarian has delivered the scrolls!", data);
+
     } catch (error) {
         console.error("The gates are barred!", error);
-        document.getElementById('data-dump').textContent = "Error: " + error;
+        if (dumpElement) {
+            dumpElement.textContent = "Error: " + error;
+        }
     }
 }
-// Call the function as soon as the page loads
+
+// Fire the spell immediately
 getLibrarianData();
    // 1. THE LIBRARIAN'S ADDRESS
 
