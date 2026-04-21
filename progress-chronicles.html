@@ -89,39 +89,7 @@
     </div>
 </section>
 
-<style>
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-    
-    /* Ensure the text height is managed for mobile so the page doesn't jump */
-    @media (max-width: 768px) {
-        #lair-typewriter { font-size: 1.2rem; min-height: 7em; }
-    }
-</style>
 
-<script>
-    (function() {
-        const text = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
-        const speed = 40; 
-        let i = 0;
-        const target = document.getElementById("lair-typewriter");
-
-        function typeWriter() {
-            if (i < text.length) {
-                target.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
-        }
-
-        // Trigger once the page has settled
-        window.addEventListener('load', function() {
-            setTimeout(typeWriter, 800); 
-        });
-    })();
-</script>
 <section class="progress">
    
         <div class="container-fluid position-relative">
@@ -175,6 +143,38 @@
         </div>
     </div>
 </footer>
+<style>
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    
+    /* Ensure the text height is managed for mobile so the page doesn't jump */
+    @media (max-width: 768px) {
+        #lair-typewriter { font-size: 1.2rem; min-height: 7em; }
+    }
+</style>
 
+<script>
+    (function() {
+        const text = "Hi, I'm Lair McKenzie. Here is where I archive and catalog all of Susan's progress updates as she dives into developing concepts and building worlds and bestiaries for her later works.";
+        const speed = 40; 
+        let i = 0;
+        const target = document.getElementById("lair-typewriter");
+
+        function typeWriter() {
+            if (i < text.length) {
+                target.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // Trigger once the page has settled
+        window.addEventListener('load', function() {
+            setTimeout(typeWriter, 800); 
+        });
+    })();
+</script>
 </body>
 </html>
