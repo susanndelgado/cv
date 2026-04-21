@@ -704,8 +704,7 @@ header .nav-tabs .nav-link.active:hover {
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
 
-/* --- GLOBAL RESPONSIVE FIXES (Small Screen Basis) --- */
-@media screen and (max-width: 600px) {
+@media (max-width: 768px) {
     html, body {
         width: 100%;
         height: auto;
@@ -725,8 +724,8 @@ header .nav-tabs .nav-link.active:hover {
     }
 }
 
+
 /* --- ABOUT & PROCESS TREE (Responsive) --- */
-@media (max-width: 768px) {
     .tree-trunk {
         left: 20px !important;
         display: none; /* As per thy specific request in block 2 */
@@ -752,10 +751,7 @@ header .nav-tabs .nav-link.active:hover {
     .placeholder-frame {
         display: none;
     }
-}
 
-/* --- EDUCATION PAGE (Responsive) --- */
-@media (max-width: 768px) {
     .master-title {
         font-size: 2.2rem;
     }
@@ -767,5 +763,9 @@ header .nav-tabs .nav-link.active:hover {
 
     .info-floating-box {
         padding: 25px;
+    }
+    .curated-exhibit .parallax-window {
+        background-attachment: scroll; /* Releases the fixed grip for mobile */
+        min-height: 400px;             /* A bit shorter for smaller screens */
     }
 }
