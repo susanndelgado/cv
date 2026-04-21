@@ -153,16 +153,33 @@ const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbyEj1_b0eW825igAj
 
 let allArtworks = []; // The Guild's master record
 
+// 1. THE LIBRARIAN'S ADDRESS
+const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycb.../exec'; // Use thy deployment URL
+
+let allArtworks = []; // The Guild's master record
+
 async function fetchMuseumData() {
     const mainGallery = document.getElementById('main-gallery');
     
     try {
+        console.log("Calling the Librarian...");
         const response = await fetch(LIBRARIAN_URL);
-        allArtworks = await response.json();
-        renderGallery(allArtworks); // Display the collection
+        const rawData = await response.json();
+
+        // 2. THE SORTING MAGIC
+        // Since 'date' is an array [ "YYYY-MM-DD" ], we peek at the first index [0]
+        allArtworks = rawData.sort((a, b) => {
+            const dateA = new Date(a.date[0] || "1900-01-01");
+            const dateB = new Date(b.date[0] || "1900-01-01");
+            return dateB - dateA; // Newest first
+        });
+
+        console.log("The Librarian delivered the scrolls, sorted by date!");
+        renderGallery(allArtworks);
+
     } catch (error) {
-        console.error("The Curator found a closed gate:", error);
-        mainGallery.innerHTML = `<p class="error-scroll">Alas, the Librarian could not find the scrolls.`+error+`</p>`;
+        console.error("The gates are barred!", error);
+        mainGallery.innerHTML = <p class="error-scroll">Alas, the Librarian could not find the scrolls. ${error}</p>;
     }
 }
 
@@ -171,35 +188,32 @@ function renderGallery(artList) {
     container.innerHTML = ''; // Clear the halls for new exhibits
 
     artList.forEach((item, index) => {
-        // IMAGE WELDER: Extracting the Google ID
-        let rawLink = item.files ? item.files[0] : (item.misc.Images ? item.misc.Images[0] : "");
-        let imageId = "";
+        // Since 'files', 'title', and 'description' are arrays, we grab the first entries
+        const mainImage = item.files[0] || '';
+        const displayTitle = item.title[0] || 'Untitled Masterpiece';
+        const displayDate = item.date[0] || 'Unknown Era';
         
-        if (rawLink.includes('d/')) {
-            imageId = rawLink.split('d/')[1].split('/')[0];
-        } else if (rawLink.includes('id=')) {
-            imageId = rawLink.split('id=')[1].split('&')[0];
-        }
+        // We join the description array back into a story with line breaks
+        const fullDescription = item.description.join('<br>');
 
-        const directUrl = imageId ? `https://lh3.googleusercontent.com/d/`+imageId : '';
-
-        // BUILDING THE EXHIBIT (The HTML structure)
+        // BUILDING THE EXHIBIT
         const exhibit = document.createElement('div');
         exhibit.className = 'museum-exhibit';
+        
         exhibit.innerHTML = `
             <div class="exhibit-frame" onclick="openLightbox(${index})">
-                <div class="spotlight"></div>
-                <img src="${directUrl}" alt="${item.title}" loading="lazy">
-            </div>
-            <div class="brass-plaque">
-                <h3 class="exhibit-title">${item.title}</h3>
-                <p class="exhibit-meta">${item.misc.Media || 'Mixed Media'} | ${item.misc.Series || 'Standalone'}</p>
-                <div class="exhibit-description">${item.description}</div>
+                <img src="${mainImage}" alt="${displayTitle}" loading="lazy">
+                <div class="brass-plaque">
+                    <h3 class="exhibit-title">${displayTitle}</h3>
+                    <p class="exhibit-meta">${displayDate} | ${item.misc.Media || 'Mixed Media'}</p>
+                    <div class="exhibit-description">${item.description[0] || ''}</div>
+                </div>
             </div>
         `;
         container.appendChild(exhibit);
     });
 }
+
 
 // THE LIGHTBOX MAGIC (For that "Wow" interactive feel)
 function openLightbox(index) {
@@ -230,7 +244,8 @@ function closeLightbox() {
     document.getElementById('museum-lightbox').classList.remove('active');
 }
 
-// Initialize the Gallery
+
+// Initialize the Museum
 fetchMuseumData();
 
 </script>
