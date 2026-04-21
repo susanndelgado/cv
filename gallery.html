@@ -158,17 +158,20 @@ let allArtworks = []; // The Guild's master record
 
 async function fetchMuseumData() {
     const mainGallery = document.getElementById('main-gallery');
-    
+
     try {
-        console.log("Calling the Librarian...");
         const response = await fetch(LIBRARIAN_URL);
         const rawData = await response.json();
 
-        // 1. THE CHRONICLE SORT: Organize newest to oldest
-        allArtworks = rawData.sort((a, b) => {
-            const dateA = new Date(a.date[0] || "1900-01-01");
-            const dateB = new Date(b.date[0] || "1900-01-01");
-            return dateB - dateA; // Newest first
+        // Check if the data is an array. If it's wrapped in an object, 
+        // we grab the internal list first so .sort() doesn't fail.
+        allArtworks = Array.isArray(rawData) ? rawData : (rawData.artworks || []);
+
+        // The JavaScript Sort: Organizes by date, newest first
+        allArtworks.sort((a, b) => {
+            const dateA = new Date(a.date ? a.date[0] : 0);
+            const dateB = new Date(b.date ? b.date[0] : 0);
+            return dateB - dateA;
         });
 
         console.log("Data received and sorted.");
