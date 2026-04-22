@@ -168,8 +168,8 @@
             <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             
             <div class="chronicle-description" style="flex: 1; min-width: 300px; line-height: 1.8; font-size: 1.1rem;">
-              ${item.description.map(line => `<p>${line}</p>`).join('')}
-           `</div>
+              ${item.description.map(line => '<p>'+line+'</p>').join('')}
+           </div>
           </div>
         </div>
       `;
