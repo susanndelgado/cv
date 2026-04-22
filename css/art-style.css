@@ -986,7 +986,7 @@ header .nav-tabs .nav-link.active:hover {
 .chronicle-entry.right {
     flex-direction: row-reverse;
 }
-.chronicle-title {
+.chronicle-title,.chronicle-text h3 {
     font-family: "Cinzel Decorative", serif;
     font-weight: 700;
     letter-spacing:1.5px;
