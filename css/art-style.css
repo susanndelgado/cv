@@ -836,6 +836,30 @@ header .nav-tabs .nav-link.active:hover {
   #grand-img { max-width: 90%; max-height: 90%; border: 2px solid #fff; }
 
 /******************************************************************
+ * Progress Chronicals
+ ******************************************************************/
+.chronicle-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #777;
+}
+
+.chronicle-link,
+.chronicle-media-type,
+.chronicle-download {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.chronicle-link a,
+.chronicle-download a {
+  color: #b58900;
+  text-decoration: none;
+}
+
+/******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
 
