@@ -119,10 +119,14 @@
 </footer>
 
 <script>
-  async function initiateChronicles() {
+// ==========================================================
+// === THE CHRONICLE SCRIBE v3.2 (Strict Filtering) ===
+// ==========================================================
+
+async function initiateChronicles() {
   const chronicleWing = document.getElementById('chronicle-container');
-  const dataDump = document.getElementById('raw-data-log'); // The spot for the dump!
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec"; 
+  const dataDump = document.getElementById('raw-data-log');
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
 
   try {
     console.log("Librarian: Fetching the ledger for the Chronicles...");
@@ -130,20 +134,26 @@
     if (!response.ok) throw new Error("The bridge to the Chronicles has collapsed!");
 
     const satchel = await response.json();
-
-    // --- THE DUMP: Always show the raw ledger first for thy inspection ---
+    
+    // --- THE DUMP: For thy inspection ---
     if (dataDump) {
-      dataDump.style.display = "block"; 
+      dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    // --- THE FILTER: Seeking only 'progress chronicles' ---
-    let journalItems = satchel.filter(item => 
+    // --- THE FILTER: Seeking ONLY 'progress chronicles' ---
+    // This ensures no other types (like 'gallery') sneak in.
+    const journalItems = satchel.filter(item => 
       item.type && item.type.toLowerCase().trim() === 'progress chronicles'
     );
 
-    // --- THE SORT: Ordering by ID (Descending: Newest/Highest ID first) ---
+    // --- THE SORT: Newest ID first ---
     journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+
+    if (!chronicleWing) {
+      console.error("Librarian: Cannot find 'chronicle-container'!");
+      return;
+    }
 
     if (journalItems.length === 0) {
       chronicleWing.innerHTML = "<p class='text-center'>No chronicles found with Type: progress chronicles</p>";
@@ -152,10 +162,9 @@
 
     // --- RENDER: Scribing the History ---
     chronicleWing.innerHTML = ""; 
-
     journalItems.forEach(item => {
-      const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300?text=No+Image';
-      const authorName = item.author || 'Lair McKenzie'; 
+      const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
+      const authorName = item.author || 'Lair McKenzie';
       
       const entryHtml = `
         <div class="chronicle-card" style="margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px;">
@@ -165,11 +174,11 @@
           </p>
           
           <div class="chronicle-content" style="display: flex; gap: 30px; flex-wrap: wrap;">
-            <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             
             <div class="chronicle-description" style="flex: 1; min-width: 300px; line-height: 1.8; font-size: 1.1rem;">
-              ${item.description.map(line => '<p>'+line+'</p>').join('')}
-           </div>
+              ${item.description.map(line => <p>${line}</p>).join('')}
+            </div>
           </div>
         </div>
       `;
@@ -179,15 +188,16 @@
   } catch (error) {
     console.error("Librarian's Lament:", error);
     if (chronicleWing) {
-      chronicleWing.innerHTML = `<p style="color: red;">The Chronicles are locked: ` + error.message + `</p>`;
+      chronicleWing.innerHTML = <p style="color: red;">The Chronicles are locked: ${error.message}</p>;
     }
   }
 }
 
+// Start the work when the Hall is ready
 document.addEventListener('DOMContentLoaded', initiateChronicles);
-
-    
 </script>
+
+  
 
 
 
