@@ -181,15 +181,16 @@ async function initiateGallery() {
       museumWing.innerHTML += cardHtml;
     });
 
-  } catch (error) {
+  }  catch (error) {
     console.error("Librarian's Lament:", error);
+    const museumWing = document.getElementById('gallery-container');
     if (museumWing) {
       museumWing.innerHTML = `<p style="color: red;">The Librarian lost the keys:` + error.message + `</p>`;
     }
   }
-}
 
-// --- Function for the Modal view ---
+
+
 function openGrandView(src) {
   const modal = document.getElementById('grand-view');
   const modalImg = document.getElementById('grand-img');
@@ -199,10 +200,7 @@ function openGrandView(src) {
   }
 }
 
-// Start the work when the Hall is ready
 document.addEventListener('DOMContentLoaded', initiateGallery);
-
-
 </script>
 </body>
 </html>
