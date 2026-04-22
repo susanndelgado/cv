@@ -164,23 +164,20 @@ async function initiateChronicles() {
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 }
-function getMedia(item) {
-  if (!item.files || !item.files.length) {
-    return "https://via.placeholder.com/500";
-  }
+function getMedia(url) {
+  if (!url) return "https://via.placeholder.com/600";
 
-  let url = item.files[0];
-
-  // Convert Google Drive "view" links into direct image links
-  if (url.includes("drive.google.com/file/d/")) {
+  // Fix Google Drive links
+  if (url.includes("drive.google.com")) {
     const match = url.match(/\/d\/(.*?)\//);
-    if (match) {
+    if (match && match[1]) {
       return `https://drive.google.com/uc?export=view&id=${match[1]}`;
     }
   }
 
   return url;
 }
+
 function renderChronicles() {
   const chronicleWing = document.getElementById("chronicle-container");
 
@@ -188,50 +185,53 @@ function renderChronicles() {
 
   let html = "";
 
-  nextItems.forEach((item, index) => {
+  nextItems.forEach((item, i) => {
 
-    const media = item.files?.[0] || "https://via.placeholder.com/500";
+    const isFlipped = (currentIndex + i) % 2 === 1;
 
-    const desc = item.misc?.Description ||
-      (Array.isArray(item.description)
-        ? item.description.join(" ")
-        : item.description || "");
+    const media = getMedia(item.files?.[0]);
 
-    const isEven = (currentIndex + index) % 2 === 0;
+    const desc = item.misc?.Description
+      || (Array.isArray(item.description)
+          ? item.description.join("<br>")
+          : item.description || "");
 
     html += `
-      <div class="chronicle-entry ${isEven ? "left" : "right"}">
-
-        <div class="chronicle-media">
-          <img src="${media}" alt="${item.title}">
-        </div>
+      <div class="chronicle-entry ${isFlipped ? "right" : "left"}">
 
         <div class="chronicle-text">
 
-          <div class="chronicle-category">
-            ${(item.misc?.categories || [item.type || "Progress"]).join(" · ")}
-          </div>
+          <div class="chronicle-category">${item.type || "Uncategorized"}</div>
 
           <h2 class="chronicle-title">${item.title}</h2>
 
           <div class="chronicle-desc">
-            <p>${desc}</p>
+            ${desc}
           </div>
 
           <div class="chronicle-meta">
             <span>${item.author || "Unknown"}</span>
-            <span>${item.misc?.postdate || item.date || ""}</span>
+            <span>${item.date || ""}</span>
           </div>
 
+        </div>
+
+        <div class="chronicle-media">
+          <img src="${media}" alt="${item.title}">
         </div>
 
       </div>
     `;
   });
 
-  chronicleWing.innerHTML += html;
+  chronicleWing.insertAdjacentHTML("beforeend", html);
 
   currentIndex += PAGE_SIZE;
+
+  const btn = document.getElementById("loadMoreBtn");
+  if (btn && currentIndex >= allChronicles.length) {
+    btn.style.display = "none";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
