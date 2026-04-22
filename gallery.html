@@ -70,24 +70,23 @@
         <div class="hero-divider"></div>
     </div>
 </section>
-  <h2>Librarian Raw Data Dump 2</h2>
-<pre id="data-dump">Waiting for the Librarian to arrive...</pre> 
-
-
-   <section id="museum-wing" class="py-5">
+<section class="boutique-education-area">
+    <div id="museum-wing">
+           <p>The Librarian is fetching thy masterworks...</p>
+         </div>
+         
+         <div id="grand-view" onclick="this.style.display='none'">
+           <img id="grand-img" src="">
+           <p style="color: white; position: absolute; bottom: 20px;">Click anywhere to close</p>
+         </div>
+         
     <div class="container">
-        <div id="main-gallery"></div>
-    </div>
-</section>
+         <pre id="data-dump" style="background: #f4f4f4; padding: 10px; max-height: 200px; overflow: auto;"></pre>
+               <h2>Librarian Raw Data Dump 2</h2>
+         <pre id="data-dump">Waiting for the Librarian to arrive...</pre> 
 
-<div id="museum-lightbox" onclick="closeLightbox()">
-    <span class="close-museum">&times;</span>
-    <div id="lightbox-content" onclick="event.stopPropagation()">
         </div>
-</div>
-
-
-    
+</section>
 <section class="boutique-education-area">
     <div class="container">
         <div class="row justify-content-center d-flex align-items-stretch">
@@ -178,21 +177,27 @@
         return;
       }
 
-      // RENDER: Painting the museum walls
-      museumWing.innerHTML = ""; 
+      // Function for the Modal view
+      function openGrandView(src) {
+        const modal = document.getElementById('grand-view');
+        const modalImg = document.getElementById('grand-img');
+        modal.style.display = "flex";
+        modalImg.src = src;
+      }
       
-      filteredItems.forEach(item => {
-        // We grab the first image from the array of files
-        const mainImage = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
+      // THE NEW LOOP (Put this inside thy initiateGallery function after the fetch)
+      // Replace thy old "museumWing.innerHTML +=" loop with this:
+      galleryItems.forEach(item => {
+        // Use the first image in the files array
+        const mainImg = item.files && item.files.length > 0 ? item.files[0] : '';
         
         const cardHtml = `
-          <div class="gallery-card" style="border: 2px solid #555; margin: 15px; padding: 20px; border-radius: 12px; background: #fff;">
-            <img src="${mainImage}" alt="${item.title}" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            <h2 style="color: #333; margin-top: 15px;">${item.title}</h2>
-            <p><strong>Artist:</strong> ${item.author || 'Lair McKenzie'}</p>
-            <p><strong>Media:</strong> ${item.misc.Media || 'Masterwork'}</p>
-            <div class="description-box" style="font-style: italic; color: #666;">
-              ${item.description.join('<br>')}
+          <div class="gallery-card" onclick="openGrandView('${mainImg}')">
+            <img class="gallery-media" src="${mainImg}" alt="${item.title}">
+            <div class="gallery-overlay">
+              <h3 style="margin:0;">${item.title}</h3>
+              <p style="font-size: 0.85rem; margin: 10px 0;">${item.misc.Media || 'Masterwork'}</p>
+              <p style="font-style: italic; font-size: 0.8rem;">${item.description.join(' ')}</p>
             </div>
           </div>
         `;
