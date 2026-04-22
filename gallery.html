@@ -165,7 +165,10 @@
           <img class="gallery-media" src="${mainImg}" alt="${item.title}">
           <div class="gallery-overlay">
             <h3 style="margin:0;">${item.title}</h3>
-            <p style="font-size: 0.85rem; margin: 10px 0;">
+            <p style="font-size: 0.85rem; margin: 10px 0;"> Media: 
+              ${item.misc ? item.description : ''}
+            </p>
+            <p style="font-size: 0.85rem; margin: 10px 0;"> Media: 
               ${item.misc ? item.misc.Media : 'Masterwork'}
             </p>
             <p style="font-style: italic; font-size: 0.8rem;">
