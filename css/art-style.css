@@ -886,7 +886,10 @@ header .nav-tabs .nav-link.active:hover {
 /*******************************************************
  * CHRONICLES ONLY (SAFE SCOPED FIXES)
  *******************************************************/
-
+#chronicles-wing{
+    padding-top:20px;
+    padding-bottom:20px;
+}
 /* container safety (prevents inherited white text issues) */
 #chronicles-wing,
 .chronicle-timeline,
