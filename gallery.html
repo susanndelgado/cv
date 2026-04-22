@@ -149,25 +149,28 @@ async function initiateGallery() {
     }
 
     // --- THE GALLERY: Filtering for thy art ---
-    // We name it galleryItems here so it matches the loop below!
+    // --- THE GALLERY: Filtering for thy art ---
     const galleryItems = satchel.filter(item => 
       item.type && item.type.toLowerCase().trim() === 'gallery'
     );
 
-    console.log("Librarian: Filtered Satchel (Gallery Items Only):", galleryItems);
+    // Ensure the wall exists before we try to hang art
+    const museumWing = document.getElementById('gallery-container');
+    
+    if (!museumWing) {
+      console.error("Librarian: I cannot find 'gallery-container' in thy HTML!");
+      return;
+    }
 
     if (galleryItems.length === 0) {
       museumWing.innerHTML = "<p class='text-center'>No items found with Type: gallery</p>";
       return;
     }
 
-    // --- RENDER: Painting the museum walls ---
+    // --- THE NEW LOOP: Painting the museum walls ---
     museumWing.innerHTML = ""; 
-
     galleryItems.forEach(item => {
-      // Grab the first image from the array of files
       const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
-      
       const cardHtml = `
         <div class="gallery-card" onclick="openGrandView('${mainImg}')">
           <img class="gallery-media" src="${mainImg}" alt="${item.title}">
@@ -181,16 +184,10 @@ async function initiateGallery() {
       museumWing.innerHTML += cardHtml;
     });
 
-  }  catch (error) {
+  } catch (error) {
     console.error("Librarian's Lament:", error);
-    const museumWing = document.getElementById('gallery-container');
-    if (museumWing) {
-      museumWing.innerHTML = `<p style="color: red;">The Librarian lost the keys:` + error.message + `</p>`;
-    }
   }
 }
-
-
 
 function openGrandView(src) {
   const modal = document.getElementById('grand-view');
@@ -202,7 +199,6 @@ function openGrandView(src) {
 }
 
 document.addEventListener('DOMContentLoaded', initiateGallery);
-   
    </script>
 </body>
 </html>
