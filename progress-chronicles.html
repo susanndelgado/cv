@@ -73,13 +73,17 @@
     </div>
 </section>
 
-<section id="chronicles-wing">
-  <pre id="raw-data-log" style="display:none;"></pre>
+<section id="chronicles-wing" class="chronicles-section">
+  <div class="container">
 
-  <div id="chronicle-container" class="chronicle-timeline"></div>
+    <div id="chronicle-container"></div>
 
-  <div class="load-more-wrapper">
-    <button id="loadMoreBtn">Load More</button>
+    <div class="text-center mt-5">
+      <button id="loadMoreBtn" class="btn btn-outline-dark">
+        Load More
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -180,10 +184,6 @@ function renderChronicles() {
       ? item.description.map(p => `<p>${p}</p>`).join("")
       : `<p>${item.description || ""}</p>`;
 
-    const link = item.misc?.link || "";
-    const mediaType = item.misc?.mediaType || "";
-    const download = item.misc?.download || "";
-
     html += `
       <div class="chronicle-entry ${isEven ? "left" : "right"}">
 
@@ -201,15 +201,9 @@ function renderChronicles() {
             ${desc}
           </div>
 
-          ${link ? `<p class="meta-link"><a href="${link}" target="_blank">${link}</a></p>` : ""}
-
-          ${mediaType ? `<p class="meta-type">${mediaType}</p>` : ""}
-
-          ${download ? `<p class="meta-download"><a href="${download}" target="_blank">Download</a></p>` : ""}
-
           <div class="chronicle-meta">
-            <span class="author">${item.author || "Unknown"}</span>
-            <span class="date">${item.date || "Unknown date"}</span>
+            <span>${item.author || "Unknown"}</span>
+            <span>${item.date || "Unknown date"}</span>
           </div>
 
         </div>
