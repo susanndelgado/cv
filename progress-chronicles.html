@@ -166,7 +166,7 @@
     });
   } catch (error) {
     console.error("Librarian:", error);
-    if (chronicleWing) chronicleWing.innerHTML = <p style="color:red;">Error: ${error.message}</p>;
+    if (chronicleWing) chronicleWing.innerHTML = `<p style="color:red;">Error: ` + error.message + `</p>;
   }
 }
 document.addEventListener('DOMContentLoaded', initiateChronicles);
