@@ -141,118 +141,71 @@
  * - Full Backtick Protection
  */
 
-// 1. THE SCRIPTORIUM ADDRESS
-// Replace this with thy most recent "New Deployment" URL from Google
-const SCRIPTORIUM_URL = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
 
-async function initiateGallery() {
-  const dataDump = document.getElementById('data-dump');
-  const galleryContainer = document.getElementById('main-gallery');
-
-  console.log("Librarian: Embarking on the journey to the Google Scriptorium...");
-
-  try {
-    // 2. THE MASTER FETCH
-    const response = await fetch(SCRIPTORIUM_URL);
-    if (!response.ok) throw new Error("The Scriptorium gate is barred.");
+/**
+   * The Scriptorium Dual-Engine
+   * Purpose: Displays the Gallery and the Raw Data Dump simultaneously.
+   */
+  async function initiateGallery() {
+    const museumWing = document.getElementById('museum-wing');
+    const dataDump = document.getElementById('data-dump');
     
-    const satchel = await response.json();
+    // Thy magical connection to the Google Scriptorium
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
 
-    // 3. THE TRUTH LOGS (For thy Master-eye in the console)
-    console.log("Librarian: Satchel Received!", satchel);
-    if (dataDump) {
-      dataDump.textContent = JSON.stringify(satchel, null, 2);
-    }
+    console.log("Librarian: Embarking on the journey to fetch the Satchel...");
 
-    if (galleryContainer) {
-      galleryContainer.innerHTML = ''; // Clearing the "Waiting" message
+    try {
+      const response = await fetch(scriptUrl);
+      if (!response.ok) throw new Error("The bridge between GitHub and Google has collapsed!");
 
-      /**
-       * 4. THE GALLERY FILTER
-       * We search within 'misc' for the 'Type' key.
-       * Only items marked as 'Gallery' shall pass this gate.
-       */
-      const filteredSatchel = satchel.filter(item => {
-        const type = item.misc && item.misc.Type ? item.misc.Type.toLowerCase().trim() : "";
-        return type === "gallery";
-      });
+      const satchel = await response.json();
+      console.log("Librarian: Satchel Received!", satchel);
 
-      console.log("Librarian: Filtered Satchel (Gallery Items Only):", filteredSatchel);
-
-      // 5. THE SILENT SORT (Organizing the array by ID)
-      filteredSatchel.sort((a, b) => {
-        return parseInt(a.id || 0) - parseInt(b.id || 0);
-      });
-
-      // 6. THE GALLERY BUILD
-      filteredSatchel.forEach(item => {
-        if (item.title !== "Broken") {
-          const artPiece = document.createElement('div');
-          artPiece.className = 'col-12 col-md-6 col-lg-4 mb-4'; 
-
-          // Map Miscellaneous data (excluding 'Type' for the display)
-          const miscSection = Object.entries(item.misc)
-            .filter(([key]) => key.toLowerCase() !== 'type')
-            .map(([key, value]) => `
-              <div class="small mb-1">
-                <strong style="color: #0dcaf0;">${key}:</strong> <span class="text-light">${value}</span>
-              </div>
-            `).join('');
-
-          /**
-           * THE BACKTICK PORTAL (`)
-           * This builds the card with the hidden Lore-Veil.
-           */
-          artPiece.innerHTML = `
-            <div class="card h-100 bg-dark text-white border-secondary shadow-lg gallery-card-hover">
-              
-              <div class="card-img-container" style="height: 350px; overflow: hidden; display: flex; align-items: center; background: #111;">
-                <img src="${item.files[0] || 'img/placeholder.jpg'}" 
-                     class="card-img-top" 
-                     alt="${item.title}" 
-                     style="width: 100%; height: auto; transition: transform 0.5s ease;">
-              </div>
-              
-              <div class="hover-overlay d-flex flex-column justify-content-center p-4 text-center" 
-                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); opacity: 0; transition: opacity 0.4s ease-in-out;">
-                
-                <h4 class="text-info mb-2">${item.title}</h4>
-                
-                <div class="misc-data border-bottom border-secondary pb-2 mb-2">
-                  ${miscSection}
-                </div>
-
-                <div class="lore-text text-light" style="font-size: 0.95rem; line-height: 1.5;">
-                  ${item.description.join('<br>')}
-                </div>
-                
-                <div class="mt-auto pt-3 small text-muted">
-                  By ${item.author}
-                </div>
-              </div>
-
-            </div>
-          `;
-          
-          galleryContainer.appendChild(artPiece);
-        }
-      });
-
-      // If no Gallery items are found, notify the Curator
-      if (filteredSatchel.length === 0) {
-        galleryContainer.innerHTML = '<p class="text-center text-muted">No items found with Type: Gallery</p>';
+      // --- THE DUMP: Displaying the raw ledger for thy inspection ---
+      if (dataDump) {
+        dataDump.style.display = "block"; // Ensure the ledger is visible
+        dataDump.textContent = JSON.stringify(satchel, null, 2);
       }
-    }
-  } catch (err) {
-    console.error("Librarian: The bridge between GitHub and Google has collapsed!", err);
-    if (dataDump) {
-      dataDump.textContent = "Librarian's Error: " + err.message;
+
+      // --- THE GALLERY: Filtering for thy art ---
+      const filteredItems = satchel.filter(item => 
+        item.type && item.type.toLowerCase().trim() === 'gallery'
+      );
+
+      if (filteredItems.length === 0) {
+        museumWing.innerHTML = "<p class='text-center'>No items found with Type: gallery</p>";
+        return;
+      }
+
+      // RENDER: Painting the museum walls
+      museumWing.innerHTML = ""; 
+      
+      filteredItems.forEach(item => {
+        // We grab the first image from the array of files
+        const mainImage = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
+        
+        const cardHtml = `
+          <div class="gallery-card" style="border: 2px solid #555; margin: 15px; padding: 20px; border-radius: 12px; background: #fff;">
+            <img src="${mainImage}" alt="${item.title}" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; margin-top: 15px;">${item.title}</h2>
+            <p><strong>Artist:</strong> ${item.author || 'Lair McKenzie'}</p>
+            <p><strong>Media:</strong> ${item.misc.Media || 'Masterwork'}</p>
+            <div class="description-box" style="font-style: italic; color: #666;">
+              ${item.description.join('<br>')}
+            </div>
+          </div>
+        `;
+        museumWing.innerHTML += cardHtml;
+      });
+
+    } catch (error) {
+      console.error("Librarian's Lament:", error);
+      if (museumWing) museumWing.innerHTML = <p style="color: red;">The Librarian lost the keys: ${error.message}</p>;
     }
   }
-}
 
-// 7. THE IGNITION (Starts when the DOM is ready)
-document.addEventListener('DOMContentLoaded', initiateGallery);
+  document.addEventListener('DOMContentLoaded', initiateGallery);
 
 </script>
 </body>
