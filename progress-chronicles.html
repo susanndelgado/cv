@@ -125,9 +125,15 @@
 
   async function initiateChronicles() {
   const chronicleWing = document.getElementById('chronicle-container');
-  const dataDump = document.getElementById('raw-data-log');
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
-
+      // --- THE LIBRARIAN'S DIAGNOSTIC LOG ---
+   const dataDump = document.getElementById('raw-data-log');
+   
+   if (dataDump) {
+     dataDump.style.display = "block";
+     dataDump.textContent = JSON.stringify(satchel, null, 2);
+     console.log("Librarian: Ledger contents poured into the 'raw-data-log' vessel.");
+   }
   
    try {
     const response = await fetch(scriptUrl);
@@ -135,11 +141,7 @@
     const journalItems = satchel.filter(item => item.type && item.type.toLowerCase().trim() === 'progress chronicles');
     journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
-    // --- THE DUMP: For thy inspection ---
-    if (dataDump) {
-      dataDump.style.display = "block";
-      dataDump.textContent = JSON.stringify(satchel, null, 2);
-    }
+ 
 
     if (!chronicleWing) return;
     chronicleWing.innerHTML = ""; 
