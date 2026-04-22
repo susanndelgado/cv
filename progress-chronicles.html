@@ -79,7 +79,9 @@
             <div class="tree-trunk"></div>
 
    <div id="chronicle-container" class="chronicle-timeline"></div>
-    The Librarian is fetching thy masterworks...
+       <div id="loadingMessage">
+        The Librarian is fetching thy masterworks...
+      </div>
     <div class="text-center mt-5"> 
       <button id="loadMoreBtn" class="btn btn-outline-dark">
         Load More
@@ -164,7 +166,10 @@ async function initiateChronicles() {
 
     chronicleWing.innerHTML = ""; // reset once
     renderChronicles();
-
+   const loadingMsg = document.getElementById("loadingMessage");
+      if (loadingMsg) {
+        loadingMsg.style.display = "none"; // or loadingMsg.remove();
+   }
   } catch (error) {
     console.error(error);
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
