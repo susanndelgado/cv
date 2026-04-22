@@ -60,7 +60,7 @@
          <div class="seal-contained">
             <img src="img/logoCircle.svg" alt="Susan Nicole Fine Artist Seal">
            </div>
-        <h1 class="master-title">Progress Chronicals 1</h1>
+        <h1 class="master-title">Progress Chronicals 2</h1>
         
         <p class="hero-intro" style="max-space: 800px; margin: 0 auto 30px;">
            A behind-the-scenes look at the birth of Susans art and the worlds she create. This archive documents the journey of a concept from its first sketch to its final, 
@@ -186,7 +186,7 @@ function renderChronicles() {
 
   nextItems.forEach((item, i) => {
 
-    const isFlipped = (currentIndex + i) % 2 === 1;
+    const isEven = (currentIndex + i) % 2 === 0;
 
     const media = getMedia(item.files?.[0]);
 
@@ -196,27 +196,63 @@ function renderChronicles() {
           : item.description || "");
 
     html += `
-      <div class="chronicle-entry ${isFlipped ? "right" : "left"}">
+      <div class="process-node chronicle-node">
 
-        <div class="chronicle-text">
+        <div class="row align-items-center">
 
-          <div class="chronicle-category">${item.type || "Uncategorized"}</div>
+          ${isEven ? `
+            <!-- TEXT LEFT -->
+            <div class="col-md-6 pr-md-5">
+              <span class="node-step">${item.type || "Progress"}</span>
 
-          <h2 class="chronicle-title">${item.title}</h2>
+              <h3 class="node-title chronicle-title">
+                ${item.title}
+              </h3>
 
-          <div class="chronicle-desc">
-            ${desc}
-          </div>
+              <div class="node-text chronicle-desc">
+                ${desc}
+              </div>
 
-          <div class="chronicle-meta">
-            <span>${item.author || "Unknown"}</span>
-            <span>${item.date || ""}</span>
-          </div>
+              <div class="chronicle-meta mt-3">
+                <span>${item.author || "Unknown"}</span> |
+                <span>${item.date || ""}</span>
+              </div>
+            </div>
 
-        </div>
+            <!-- IMAGE RIGHT -->
+            <div class="col-md-6 pl-md-5">
+              <div class="node-image-frame">
+                <img src="${media}" alt="${item.title}">
+              </div>
+            </div>
 
-        <div class="chronicle-media">
-          <img src="${media}" alt="${item.title}">
+          ` : `
+            <!-- IMAGE LEFT -->
+            <div class="col-md-6 pr-md-5">
+              <div class="node-image-frame">
+                <img src="${media}" alt="${item.title}">
+              </div>
+            </div>
+
+            <!-- TEXT RIGHT -->
+            <div class="col-md-6 pl-md-5">
+              <span class="node-step">${item.type || "Progress"}</span>
+
+              <h3 class="node-title chronicle-title">
+                ${item.title}
+              </h3>
+
+              <div class="node-text chronicle-desc">
+                ${desc}
+              </div>
+
+              <div class="chronicle-meta mt-3">
+                <span>${item.author || "Unknown"}</span> |
+                <span>${item.date || ""}</span>
+              </div>
+            </div>
+          `}
+
         </div>
 
       </div>
