@@ -778,182 +778,55 @@ header .nav-tabs .nav-link.active:hover {
 /* =========================================================
    === THE POLITE MUSEUM STYLE (Updated for Precision) ===
    ========================================================= */
-
-#museum-wing {
-    background-color: #f8f9fa; /* Light, clean background */
-    padding: 60px 0;
-    font-family: 'Open Sans', sans-serif;
-}
-
-#museum-wing .container {
-    max-width: 1200px;
-}
-
-/* 1. THE GALLERY (Small Thumbnails) */
-#main-gallery {
-    display: grid;
-    /* This makes them smaller! 250px max width each */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 30px;
-    padding: 30px 0;
-}
-
-/* EXHIBIT CARDS */
-.museum-exhibit {
-    cursor: pointer;
-    background: #ffffff;
-    border: 1px solid #e1e1e1;
-    border-radius: 4px; /* Small corner round */
-    padding: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.museum-exhibit:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* The Frame holding the image */
-.exhibit-frame img {
-    width: 100%;
-    height: 200px; /* Forces thumbnails to be a consistent, small height */
-    object-fit: cover; /* Crops neatly, doesn't stretch */
-    border-radius: 2px;
-}
-
-/* Brass Plaque (Thumbnail Info) */
-.brass-plaque {
-    padding-top: 15px;
-    text-align: center;
-}
-
-.exhibit-title {
-    color: #b08d57; /* Old Gold */
-    font-family: 'Open Sans Condensed', sans-serif;
-    text-transform: uppercase;
-    font-size: 1rem;
-    margin: 5px 0;
-}
-
-.exhibit-meta {
-    font-size: 0.75rem;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-/* We only show the FIRST LINE of description on the thumbnail */
-.exhibit-description {
-    font-size: 0.85rem;
-    color: #555;
-    max-height: 40px; 
-    overflow: hidden; /* Clips extra text */
-    text-overflow: ellipsis; /* Adds '...' */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Shows only 2 lines */
-    -webkit-box-orient: vertical;
-}
-
-
-/* =========================================================
-   === THE LIGHTBOX (The "Studying Nook" - Side by Side) ===
-   ========================================================= */
-#museum-lightbox {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Deep shadow overlay */
-    display: none; /* Hidden by default */
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
-
-#museum-lightbox.active {
-    display: flex; /* Shown when 'active' */
-}
-
-/* The main container in the Lightbox */
-#lightbox-content {
-    background: #ffffff;
-    width: 90%;
-    max-width: 1100px;
-    height: 85%; /* Intimate size, not full page */
-    max-height: 800px;
-    display: flex; /* Activates Side-by-Side layout */
-    border-radius: 4px;
-    overflow: hidden; /* Keeps content tidy */
+ .gallery-card-hover {
     position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-
-/* THE IMAGE SIDE (Left) */
-.lightbox-image-side {
-    flex: 1.2; /* Takes a bit more space (approx 55%) */
-    background: #222; /* Dark frame for the art */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.lightbox-image-side img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Shows full image, no cropping */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* THE LORE SIDE (Right) */
-.lightbox-lore-side {
-    flex: 1; /* Takes remaining space (approx 45%) */
-    background: #ffffff;
-    padding: 50px;
-    overflow-y: auto; /* Allows description to scroll if long */
-    display: flex;
-    flex-direction: column;
-}
-
-/* The Lore Scroll Elements */
-.lore-title {
-    font-family: 'Open Sans Condensed', sans-serif;
-    color: #b08d57;
-    text-transform: uppercase;
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
-
-.lore-meta {
-    color: #b08d57; /* Faded gold */
-    font-size: 0.8rem;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
-
-.lore-description {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #444;
-}
-
-/* THE CLOSE BUTTON */
-.close-museum {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 40px;
-    color: #aaa;
+    overflow: hidden;
     cursor: pointer;
-    z-index: 10;
-    transition: color 0.3s;
-}
+    border: 1px solid #444;
+  }
 
-.close-museum:hover {
-    color: #b08d57;
-}
+  .card-img-container {
+    height: 350px;
+    overflow: hidden;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .card-img-container img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+  }
+
+  /* The Veil: Hidden until Hover */
+  .hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark tint */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .gallery-card-hover:hover .hover-overlay {
+    opacity: 1;
+  }
+
+  .gallery-card-hover:hover .card-img-container img {
+    transform: scale(1.05);
+  }
+
+  .lore-text {
+    font-size: 0.9rem;
+    max-height: 60%;
+    overflow-y: auto;
+  }
 
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
@@ -976,18 +849,6 @@ header .nav-tabs .nav-link.active:hover {
 
     h1, h2, h3, h4 {
         font-size: 1.5rem;
-    }
-/* Responsive (Mobile) - Stack them on small screens */
- #lightbox-content {
-        flex-direction: column;
-        height: auto;
-        max-height: 90%;
-    }
-    .lightbox-image-side {
-        height: 300px;
-    }
-    .lightbox-lore-side {
-        padding: 30px;
     }
 
 /* --- ABOUT & PROCESS TREE (Responsive) --- */
