@@ -838,67 +838,50 @@ header .nav-tabs .nav-link.active:hover {
 /* ================================
    CHRONICLES (ABOUT PAGE STYLE GRID)
    ================================ */
+.chronicle-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+/* ONE ITEM = ONE ROW */
 .chronicle-entry {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    margin-bottom: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
 }
 
-.chronicle-media,
-.chronicle-text {
-    flex: 1;
+/* BOTH SIDES EQUAL WIDTH */
+.chronicle-text,
+.chronicle-media {
+  flex: 1;
 }
 
+/* IMAGE STYLE */
 .chronicle-media img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 5px;
-    display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
-/* alternating direction */
+/* DEFAULT: TEXT LEFT, IMAGE RIGHT */
+.chronicle-entry.left {
+  flex-direction: row;
+}
+
+/* FLIPPED: IMAGE LEFT, TEXT RIGHT */
 .chronicle-entry.right {
-    flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 
-/* typography matches About page */
-.chronicle-category {
-    color: #d4af37;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-}
-
-.chronicle-title {
-    font-family: "Playfair Display", serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 2rem;
-    margin-bottom: 15px;
-}
-
-.chronicle-desc p {
-    color: #666;
-    line-height: 1.7;
-}
-
-.chronicle-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    opacity: 0.7;
-    margin-top: 20px;
-}
-
-/* mobile */
+/* MOBILE STACK */
 @media (max-width: 768px) {
-    .chronicle-entry,
-    .chronicle-entry.right {
-        flex-direction: column;
-    }
+  .chronicle-entry {
+    flex-direction: column !important;
+  }
 }
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
