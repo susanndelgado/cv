@@ -188,19 +188,19 @@ function renderChronicles() {
 
   let html = "";
 
-  nextItems.forEach((item) => {
+  nextItems.forEach((item, index) => {
 
-    const media = getMedia(item);
+    const media = item.files?.[0] || "https://via.placeholder.com/500";
 
-    // IMPORTANT: your real description is here:
-    const description =
-      item.misc?.Description ||
+    const desc = item.misc?.Description ||
       (Array.isArray(item.description)
         ? item.description.join(" ")
         : item.description || "");
 
+    const isEven = (currentIndex + index) % 2 === 0;
+
     html += `
-      <div class="chronicle-row">
+      <div class="chronicle-entry ${isEven ? "left" : "right"}">
 
         <div class="chronicle-media">
           <img src="${media}" alt="${item.title}">
@@ -215,12 +215,12 @@ function renderChronicles() {
           <h2 class="chronicle-title">${item.title}</h2>
 
           <div class="chronicle-desc">
-            <p>${description}</p>
+            <p>${desc}</p>
           </div>
 
           <div class="chronicle-meta">
             <span>${item.author || "Unknown"}</span>
-            <span>${item.misc?.postdate || item.date || "Unknown date"}</span>
+            <span>${item.misc?.postdate || item.date || ""}</span>
           </div>
 
         </div>
@@ -230,12 +230,8 @@ function renderChronicles() {
   });
 
   chronicleWing.innerHTML += html;
-  currentIndex += PAGE_SIZE;
 
-  const btn = document.getElementById("loadMoreBtn");
-  if (btn && currentIndex >= allChronicles.length) {
-    btn.style.display = "none";
-  }
+  currentIndex += PAGE_SIZE;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
