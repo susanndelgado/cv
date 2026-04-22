@@ -73,12 +73,14 @@
     </div>
 </section>
 
-
 <section id="chronicles-wing">
-    <pre id="raw-data-log" style="background: #f4f4f4; padding: 15px; border: 1px solid #ccc; font-size: 12px; display: none; max-height: 300px; overflow-y: auto;"></pre>
+  <pre id="raw-data-log" style="display:none;"></pre>
 
-    <div id="chronicle-container">
-        </div>
+  <div id="chronicle-container" class="chronicle-timeline"></div>
+
+  <div class="load-more-wrapper">
+    <button id="loadMoreBtn">Load More</button>
+  </div>
 </section>
 
    
@@ -125,19 +127,20 @@
   // ==========================================================
 // === THE CHRONICLE SCRIBE v3.3 (PAGINATION ENABLED) ===
 // ==========================================================
-
+ 
 let allChronicles = [];
 let currentIndex = 0;
 const PAGE_SIZE = 4;
 
 async function initiateChronicles() {
-  const chronicleWing = document.getElementById('chronicle-container');
+  const chronicleWing = document.getElementById("chronicle-container");
+  const dataDump = document.getElementById("raw-data-log");
+
   const scriptUrl = 
  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-  const dataDump = document.getElementById('raw-data-log');
 
   try {
-    const response = await fetch(scriptUrl);
+    const response = await fetch(scriptUrl + "?t=" + Date.now()); // 🔥 cache-bust
     const satchel = await response.json();
 
     if (dataDump) {
@@ -146,26 +149,20 @@ async function initiateChronicles() {
     }
 
     allChronicles = satchel
-      .filter(item => item.type && item.type.toLowerCase().trim() === 'progress')
+      .filter(item => item.type && item.type.toLowerCase().trim() === "progress")
       .sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
-    renderChronicles(); // first render
+    chronicleWing.innerHTML = ""; // reset once
+    renderChronicles();
 
   } catch (error) {
-    console.error("Librarian:", error);
-    if (chronicleWing) {
-      chronicleWing.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-    }
+    console.error(error);
+    chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 }
 
-
-// ==========================================================
-// === RENDER FUNCTION ===
-// ==========================================================
-
 function renderChronicles() {
-  const chronicleWing = document.getElementById('chronicle-container');
+  const chronicleWing = document.getElementById("chronicle-container");
 
   const nextItems = allChronicles.slice(currentIndex, currentIndex + PAGE_SIZE);
 
@@ -173,78 +170,49 @@ function renderChronicles() {
 
   nextItems.forEach((item, index) => {
 
-    const mainMedia = item.files && item.files.length > 0
-      ? item.files[0]
-      : 'https://via.placeholder.com/400';
-
-    const descHtml = Array.isArray(item.description)
-      ? item.description.map(line => `<p>${line}</p>`).join('')
-      : `<p>${item.description || ''}</p>`;
-
     const isEven = (currentIndex + index) % 2 === 0;
 
+    const media = item.files?.length
+      ? item.files[0]
+      : "https://via.placeholder.com/500";
+
+    const desc = Array.isArray(item.description)
+      ? item.description.map(p => `<p>${p}</p>`).join("")
+      : `<p>${item.description || ""}</p>`;
+
     const link = item.misc?.link || "";
-    const mediaType = item.misc?.mediaType || item.misc?.media_type || "";
+    const mediaType = item.misc?.mediaType || "";
     const download = item.misc?.download || "";
 
     html += `
-      <div class="chronicle-entry ${isEven ? 'left' : 'right'}">
+      <div class="chronicle-entry ${isEven ? "left" : "right"}">
 
-        ${isEven ? `
-          <div class="chronicle-text">
+        <div class="chronicle-media">
+          <img src="${media}" alt="${item.title}">
+        </div>
 
-            <div class="chronicle-category">${item.type || 'Uncategorized'}</div>
+        <div class="chronicle-text">
 
-            <h2 class="chronicle-title">${item.title}</h2>
+          <div class="chronicle-category">${item.type || "Uncategorized"}</div>
 
-            <div class="chronicle-desc">
-              ${descHtml}
-            </div>
+          <h2 class="chronicle-title">${item.title}</h2>
 
-            ${link ? `<p class="chronicle-link"><a href="${link}" target="_blank">${link}</a></p>` : ""}
-
-            ${mediaType ? `<p class="chronicle-media-type">${mediaType}</p>` : ""}
-
-            ${download ? `<p class="chronicle-download"><a href="${download}" target="_blank">Download</a></p>` : ""}
-
-            <div class="chronicle-meta">
-              <span class="chronicle-author">${item.author || 'Unknown'}</span>
-              <span class="chronicle-date">${item.date || 'Unknown date'}</span>
-            </div>
-
+          <div class="chronicle-desc">
+            ${desc}
           </div>
 
-          <div class="chronicle-media">
-            <img src="${mainMedia}" />
+          ${link ? `<p class="meta-link"><a href="${link}" target="_blank">${link}</a></p>` : ""}
+
+          ${mediaType ? `<p class="meta-type">${mediaType}</p>` : ""}
+
+          ${download ? `<p class="meta-download"><a href="${download}" target="_blank">Download</a></p>` : ""}
+
+          <div class="chronicle-meta">
+            <span class="author">${item.author || "Unknown"}</span>
+            <span class="date">${item.date || "Unknown date"}</span>
           </div>
-        ` : `
-          <div class="chronicle-media">
-            <img src="${mainMedia}" />
-          </div>
 
-          <div class="chronicle-text">
-
-            <div class="chronicle-category">${item.type || 'Uncategorized'}</div>
-
-            <h2 class="chronicle-title">${item.title}</h2>
-
-            <div class="chronicle-desc">
-              ${descHtml}
-            </div>
-
-            ${link ? `<p class="chronicle-link"><a href="${link}" target="_blank">${link}</a></p>` : ""}
-
-            ${mediaType ? `<p class="chronicle-media-type">${mediaType}</p>` : ""}
-
-            ${download ? `<p class="chronicle-download"><a href="${download}" target="_blank">Download</a></p>` : ""}
-
-            <div class="chronicle-meta">
-              <span class="chronicle-author">${item.author || 'Unknown'}</span>
-              <span class="chronicle-date">${item.date || 'Unknown date'}</span>
-            </div>
-
-          </div>
-        `}
+        </div>
 
       </div>
     `;
@@ -260,16 +228,10 @@ function renderChronicles() {
   }
 }
 
-
-// ==========================================================
-// === EVENT LISTENERS ===
-// ==========================================================
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   initiateChronicles();
 
   const btn = document.getElementById("loadMoreBtn");
-
   if (btn) {
     btn.addEventListener("click", renderChronicles);
   }
