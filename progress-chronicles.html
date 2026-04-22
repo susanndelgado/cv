@@ -164,7 +164,23 @@ async function initiateChronicles() {
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 }
+function getMedia(item) {
+  if (!item.files || !item.files.length) {
+    return "https://via.placeholder.com/500";
+  }
 
+  let url = item.files[0];
+
+  // Convert Google Drive "view" links into direct image links
+  if (url.includes("drive.google.com/file/d/")) {
+    const match = url.match(/\/d\/(.*?)\//);
+    if (match) {
+      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+  }
+
+  return url;
+}
 function renderChronicles() {
   const chronicleWing = document.getElementById("chronicle-container");
 
