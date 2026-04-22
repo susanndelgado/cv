@@ -130,18 +130,10 @@
  // =========================================================
 // === THE MUSEUM CURATOR v3.0 (Updated for Layout) ===
 // =========================================================
-const SCRIPTORIUM_URL = 'https://script.google.com/macros/s/AKfycbxTX-uu7IIW9HwIDrN3SRjtcRRSHvCOqMM0mHlfn5ZaXI9B-WKbe5SuQ2zvph7wsUy8/exec'; 
-/**
- * THE GITHUB GALLERY MASTER PROTOCOL (Full Edition)
- * Crafted by Vespera for the Susan Nicole Arts Guild.
- * * Features: 
- * - External Fetch to Google Scriptorium
- * - Raw Data Dump & Console Logging
- * - Silent ID Sorting
- * - Multi-line Lore (Backtick support)
- * - Hover-Reveal interactive cards
- */
 
+// 1. THE ADDRESS
+// Replace with thy actual Google Web App URL
+const SCRIPTORIUM_URL = "https://script.google.com/macros/s/AKfycbxTX-uu7IIW9HwIDrN3SRjtcRRSHvCOqMM0mHlfn5ZaXI9B-WKbe5SuQ2zvph7wsUy8/exec";
 
 async function initiateGallery() {
   const dataDump = document.getElementById('data-dump');
@@ -150,65 +142,76 @@ async function initiateGallery() {
   console.log("Librarian: Starting the journey to the Google Cloud...");
 
   try {
-    // 2. THE MASTER FETCH
     const response = await fetch(SCRIPTORIUM_URL);
     if (!response.ok) throw new Error("The Scriptorium gate is barred.");
     
     const satchel = await response.json();
 
-    // 3. THE TRUTH LOGS
+    // Console truth for thy inspection
     console.log("Librarian: Satchel Received!", satchel);
+
     if (dataDump) {
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
     if (galleryContainer) {
-      galleryContainer.innerHTML = ''; // Clear the "Waiting" message
+      galleryContainer.innerHTML = ''; 
 
-      // 4. THE SILENT SORT (Organizing by ID)
-      satchel.sort((a, b) => {
+      /**
+       * 2. THE TYPE FILTER
+       * This looks into the 'misc' object for a key named 'Type'.
+       * It only keeps items where the Type is exactly "Gallery".
+       */
+      const filteredSatchel = satchel.filter(item => {
+        // We check if misc exists and if the Type matches (case-insensitive)
+        const itemType = item.misc && item.misc.Type ? item.misc.Type.trim().toLowerCase() : "";
+        return itemType === "gallery";
+      });
+
+      console.log("Librarian: Filtered Satchel (Gallery only):", filteredSatchel);
+
+      // 3. THE SILENT SORT (Using the filtered list)
+      filteredSatchel.sort((a, b) => {
         return parseInt(a.id || 0) - parseInt(b.id || 0);
       });
 
-      // 5. THE GALLERY BUILD
-      satchel.forEach(item => {
+      // 4. THE GALLERY BUILD
+      filteredSatchel.forEach(item => {
         if (item.title !== "Broken") {
           const artPiece = document.createElement('div');
           artPiece.className = 'col-12 col-md-6 col-lg-4 mb-4'; 
 
-          // Unpack Miscellaneous data (Medium, Type, etc.)
+          // Map Miscellaneous data for the display
           const miscSection = Object.entries(item.misc)
             .map(([key, value]) => `
               <div class="small mb-1">
-                <strong class="text-info">${key}:</strong> <span class="text-light">${value}</span>
+                <strong style="color: #0dcaf0;">${key}:</strong> <span>${value}</span>
               </div>
             `).join('');
 
           /**
            * THE BACKTICK PORTAL (`)
-           * This builds the card structure with the Hover Overlay.
+           * Weaving the hidden-hover structure.
            */
           artPiece.innerHTML = `
-            <div class="card h-100 bg-dark text-white border-secondary shadow-lg gallery-card-hover">
+            <div class="card h-100 bg-dark text-white gallery-card-hover shadow-lg">
               
               <div class="card-img-container">
-                <img src="${item.files[0] || 'img/placeholder.jpg'}" 
-                     class="card-img-top" 
-                     alt="${item.title}">
+                <img src="${item.files[0] || ''}" alt="${item.title}">
               </div>
               
-              <div class="hover-overlay d-flex flex-column justify-content-center p-3">
-                <h5 class="card-title text-info mb-1">${item.title}</h5>
+              <div class="hover-overlay d-flex flex-column justify-content-center p-4">
+                <h4 class="text-info mb-2">${item.title}</h4>
                 
                 <div class="misc-data border-bottom border-secondary pb-2 mb-2">
                   ${miscSection}
                 </div>
 
-                <div class="card-text text-light lore-text">
+                <div class="lore-text">
                   ${item.description.join('<br>')}
                 </div>
                 
-                <div class="mt-3 small text-muted">
+                <div class="mt-auto pt-3 small text-muted">
                   By ${item.author}
                 </div>
               </div>
@@ -217,20 +220,21 @@ async function initiateGallery() {
           `;
           
           galleryContainer.appendChild(artPiece);
-        } else {
-          console.warn("Librarian: Found a broken seal in the Satchel.", item);
         }
       });
+      
+      // If no items match, let the Master know
+      if (filteredSatchel.length === 0) {
+        galleryContainer.innerHTML = '<p class="text-center text-muted">No items found with Type: Gallery</p>';
+      }
     }
   } catch (err) {
-    console.error("Librarian: The bridge collapsed!", err);
-    if (dataDump) {
-      dataDump.textContent = "Librarian's Error: " + err.message;
-    }
+    console.error("Librarian Error:", err);
+    if (dataDump) dataDump.textContent = "Librarian's Error: " + err.message;
   }
 }
 
-// 6. THE TRIGGER (Ignites the script when the page is ready)
+// Ignition
 document.addEventListener('DOMContentLoaded', initiateGallery);
 
 </script>
