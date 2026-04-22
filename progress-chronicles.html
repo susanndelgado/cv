@@ -121,7 +121,8 @@
 </footer>
 
 <script>
-// ==========================================================
+
+  // ==========================================================
 // === THE CHRONICLE SCRIBE v3.3 (PAGINATION ENABLED) ===
 // ==========================================================
 
@@ -131,7 +132,8 @@ const PAGE_SIZE = 4;
 
 async function initiateChronicles() {
   const chronicleWing = document.getElementById('chronicle-container');
-  const scriptUrl =  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+  const scriptUrl = 
+ "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
   const dataDump = document.getElementById('raw-data-log');
 
   try {
@@ -143,12 +145,11 @@ async function initiateChronicles() {
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    // ✅ STORE + FILTER ONCE (no rendering yet)
     allChronicles = satchel
       .filter(item => item.type && item.type.toLowerCase().trim() === 'progress')
       .sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
-    renderChronicles(); // first load
+    renderChronicles(); // first render
 
   } catch (error) {
     console.error("Librarian:", error);
@@ -160,42 +161,99 @@ async function initiateChronicles() {
 
 
 // ==========================================================
-// === RENDER FUNCTION (handles pagination) ===
+// === RENDER FUNCTION ===
 // ==========================================================
 
 function renderChronicles() {
   const chronicleWing = document.getElementById('chronicle-container');
-  if (!chronicleWing) return;
 
   const nextItems = allChronicles.slice(currentIndex, currentIndex + PAGE_SIZE);
 
-  nextItems.forEach(item => {
-    const mainImg = item.files && item.files.length > 0
+  let html = "";
+
+  nextItems.forEach((item, index) => {
+
+    const mainMedia = item.files && item.files.length > 0
       ? item.files[0]
-      : 'https://via.placeholder.com/300';
+      : 'https://via.placeholder.com/400';
 
     const descHtml = Array.isArray(item.description)
       ? item.description.map(line => `<p>${line}</p>`).join('')
       : `<p>${item.description || ''}</p>`;
 
-    chronicleWing.innerHTML += `
-      <div class="chronicle-card" style="margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px;">
-        <h1 style="margin-bottom: 5px; color: #222;">${item.title}</h1>
-        <p style="color: #888; font-style: italic; margin-bottom: 20px;">
-          Scribed on ${item.date || 'an unknown date'} (ID: ${item.id})
-        </p>
-        <div class="chronicle-content" style="display: flex; gap: 30px; flex-wrap: wrap;">
-          <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px;">
-          <div class="chronicle-description" style="flex: 1; min-width: 300px; line-height: 1.8;">
-            ${descHtml}
+    const isEven = (currentIndex + index) % 2 === 0;
+
+    const link = item.misc?.link || "";
+    const mediaType = item.misc?.mediaType || item.misc?.media_type || "";
+    const download = item.misc?.download || "";
+
+    html += `
+      <div class="chronicle-entry ${isEven ? 'left' : 'right'}">
+
+        ${isEven ? `
+          <div class="chronicle-text">
+
+            <div class="chronicle-category">${item.type || 'Uncategorized'}</div>
+
+            <h2 class="chronicle-title">${item.title}</h2>
+
+            <div class="chronicle-desc">
+              ${descHtml}
+            </div>
+
+            ${link ? `<p class="chronicle-link"><a href="${link}" target="_blank">${link}</a></p>` : ""}
+
+            ${mediaType ? `<p class="chronicle-media-type">${mediaType}</p>` : ""}
+
+            ${download ? `<p class="chronicle-download"><a href="${download}" target="_blank">Download</a></p>` : ""}
+
+            <div class="chronicle-meta">
+              <span class="chronicle-author">${item.author || 'Unknown'}</span>
+              <span class="chronicle-date">${item.date || 'Unknown date'}</span>
+            </div>
+
           </div>
-        </div>
-      </div>`;
+
+          <div class="chronicle-media">
+            <img src="${mainMedia}" />
+          </div>
+        ` : `
+          <div class="chronicle-media">
+            <img src="${mainMedia}" />
+          </div>
+
+          <div class="chronicle-text">
+
+            <div class="chronicle-category">${item.type || 'Uncategorized'}</div>
+
+            <h2 class="chronicle-title">${item.title}</h2>
+
+            <div class="chronicle-desc">
+              ${descHtml}
+            </div>
+
+            ${link ? `<p class="chronicle-link"><a href="${link}" target="_blank">${link}</a></p>` : ""}
+
+            ${mediaType ? `<p class="chronicle-media-type">${mediaType}</p>` : ""}
+
+            ${download ? `<p class="chronicle-download"><a href="${download}" target="_blank">Download</a></p>` : ""}
+
+            <div class="chronicle-meta">
+              <span class="chronicle-author">${item.author || 'Unknown'}</span>
+              <span class="chronicle-date">${item.date || 'Unknown date'}</span>
+            </div>
+
+          </div>
+        `}
+
+      </div>
+    `;
   });
+
+  chronicleWing.innerHTML += html;
 
   currentIndex += PAGE_SIZE;
 
-  // Optional: hide button when done
   const btn = document.getElementById("loadMoreBtn");
   if (btn && currentIndex >= allChronicles.length) {
     btn.style.display = "none";
@@ -211,13 +269,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initiateChronicles();
 
   const btn = document.getElementById("loadMoreBtn");
+
   if (btn) {
     btn.addEventListener("click", renderChronicles);
   }
 });
- 
-
-  
 </script>
 
   
