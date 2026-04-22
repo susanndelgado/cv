@@ -915,22 +915,21 @@ header .nav-tabs .nav-link.active:hover {
    TITLE (THIS IS YOUR KEY FIX)
    clean, modern editorial serif
 ---------------------------- */
-.chronicle-title,
-.node-title.chronicle-title {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 400;
+
+.chronicle-title,.chronicle-text h3,#chronicles-wing .node-title.chronicle-title {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
     font-size: 1.9rem;
-    letter-spacing: 1px;
+    letter-spacing:1.5px;
     text-transform: uppercase;
     color: #111;
     margin-bottom: 15px;
 }
-
 /* ---------------------------
    DESCRIPTION TEXT
 ---------------------------- */
 .chronicle-desc,
-.node-text {
+#chronicles-wing .node-text {
     font-size: 1rem;
     line-height: 1.7;
     color: #444;
@@ -989,13 +988,7 @@ header .nav-tabs .nav-link.active:hover {
 .chronicle-entry.right {
     flex-direction: row-reverse;
 }
-.chronicle-title,.chronicle-text h3 {
-    font-family: "Cinzel Decorative", serif;
-    font-weight: 700;
-    letter-spacing:1.5px;
-    text-transform: uppercase;
-    color: #111;
-}
+
 /*******************************************************
  * MOBILE STACK (UNCHANGED STRUCTURE)
  *******************************************************/
