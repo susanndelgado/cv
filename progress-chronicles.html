@@ -75,9 +75,14 @@
 <section class="progress">
    
         <div class="container-fluid position-relative">
-  <h2>Librarian Raw Data Dump</h2>
-<pre id="data-dump">Waiting for the Librarian to arrive...</pre> 
+ 
+<div id="progress-wing" style="max-width: 1200px; margin: 0 auto; padding: 40px;">
+  <p>Gathering the Chronicles of Progress...</p>
+</div>
 
+<hr>
+<h3 style="padding: 20px;">Librarian Raw Data Dump</h3>
+<pre id="data-dump" style="background: #f9f9f9; padding: 20px; border: 1px solid #ccc; max-height: 300px; overflow: auto; margin: 20px; font-size: 12px;"></pre>
         </div>
     </section>
 <section class="boutique-education-area">
@@ -118,7 +123,76 @@
     </div>
 </footer>
 
+<script>
+  async function initiateProgressChronicles() {
+    const chroniclesWing = document.getElementById('progress-wing');
+    const dataDump = document.getElementById('data-dump');
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbu_Your_Script_ID/exec";
 
+    console.log("Librarian: Embarking to fetch the Progress Chronicles...");
+
+    try {
+      const response = await fetch(scriptUrl);
+      const satchel = await response.json();
+      
+      // THE DUMP: Show the raw ledger at the bottom
+      if (dataDump) dataDump.textContent = JSON.stringify(satchel, null, 2);
+      console.log("Librarian: Full Satchel Received", satchel);
+
+      // FILTER: Only include types called 'progress'
+      // SORT: By ID (Numerical order)
+      const progressItems = satchel
+        .filter(item => item.type && item.type.toLowerCase().trim() === 'progress')
+        .sort((a, b) => parseInt(a.id) - parseInt(b.id));
+
+      console.log("Librarian: Filtered & Sorted Progress:", progressItems);
+
+      if (progressItems.length === 0) {
+        chroniclesWing.innerHTML = "<p>No progress records found.</p>";
+        return;
+      }
+
+      chroniclesWing.innerHTML = ""; // Clear loading text
+
+      progressItems.forEach((item, index) => {
+        // We alternate the layout based on the index (even vs odd)
+        const isReversed = index % 2 !== 0;
+        const mainMedia = item.files && item.files.length > 0 ? item.files[0] : '';
+        
+        // Determine if media is video or image (simple check)
+        const mediaHtml = mainMedia.includes('video') || mainMedia.includes('mp4') 
+          ? <video src="${mainMedia}" controls style="width:100%; border-radius:8px;"></video>
+          : <img src="${mainMedia}" alt="${item.title}" style="width:100%; border-radius:8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">;
+
+        const contentHtml = `
+          <div style="flex: 1; padding: 20px;">
+            <p style="text-transform: uppercase; font-weight: bold; color: #888; margin-bottom: 5px;">${item.misc.userDate || '[No Date]'}</p>
+            <h2 style="margin: 0 0 10px 0; font-size: 1.8rem;">${item.title}</h2>
+            <p style="line-height: 1.6; color: #444;">${item.description.join('<br>')}</p>
+            <p style="margin-top: 15px; font-style: italic; color: #666;">— ${item.author || 'Lair McKenzie'}</p>
+          </div>
+        `;
+
+        const sectionHtml = `
+          <section style="display: flex; align-items: center; margin-bottom: 60px; flex-direction: ${isReversed ? 'row-reverse' : 'row'};">
+            <div style="flex: 1; padding: 20px;">
+              ${mediaHtml}
+            </div>
+            ${contentHtml}
+          </section>
+        `;
+
+        chroniclesWing.innerHTML += sectionHtml;
+      });
+
+    } catch (error) {
+      console.error("Librarian's Error:", error);
+      if (chroniclesWing) chroniclesWing.innerHTML = <p style="color:red;">The bridge collapsed: ${error.message}</p>;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initiateProgressChronicles);
+</script>
 
 
 
