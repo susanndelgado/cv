@@ -146,6 +146,9 @@ const PAGE_SIZE = 4;
 
 async function initiateChronicles() {
   const chronicleWing = document.getElementById("chronicle-container");
+   
+  const loadingMsg = document.getElementById("loadingMessage");
+  if (loadingMsg) loadingMsg.style.display = "none";
   const dataDump = document.getElementById("raw-data-log");
 
   const scriptUrl = 
@@ -166,10 +169,7 @@ async function initiateChronicles() {
 
     chronicleWing.innerHTML = ""; // reset once
     renderChronicles();
-   const loadingMsg = document.getElementById("loadingMessage");
-      if (loadingMsg) {
-        loadingMsg.style.display = "none"; // or loadingMsg.remove();
-   }
+
   } catch (error) {
     console.error(error);
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
