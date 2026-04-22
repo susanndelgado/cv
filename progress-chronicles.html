@@ -124,74 +124,70 @@
 </footer>
 
 <script>
-  async function initiateProgressChronicles() {
-    const chroniclesWing = document.getElementById('progress-wing');
-    const dataDump = document.getElementById('data-dump');
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
+  async function initiateChronicles() {
+  const chronicleWing = document.getElementById('chronicle-container');
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";; 
 
-    console.log("Librarian: Embarking to fetch the Progress Chronicles...");
+  try {
+    console.log("Librarian: Fetching the Progress Chronicles for the dedicated page...");
+    const response = await fetch(scriptUrl);
+    if (!response.ok) throw new Error("The bridge to the Chronicles has collapsed!");
 
-    try {
-      const response = await fetch(scriptUrl);
-      const satchel = await response.json();
+    const satchel = await response.json();
+
+    // --- THE FILTER: Seeking only the 'progress chronicles' ---
+    let journalItems = satchel.filter(item => 
+      item.type && item.type.toLowerCase().trim() === 'progress chronicles'
+    );
+
+    // --- THE SORT: Ordering by ID (Descending: Newest/Highest ID first) ---
+    // If thou wantest the oldest first, swap 'b.id' and 'a.id'
+    journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+
+    console.log("Librarian: Chronicles sorted and ready:", journalItems);
+
+    if (journalItems.length === 0) {
+      chronicleWing.innerHTML = "<p class='text-center'>No chronicles found in the ledger.</p>";
+      return;
+    }
+
+    // --- RENDER: Scribing the History ---
+    chronicleWing.innerHTML = ""; 
+
+    journalItems.forEach(item => {
+      const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300?text=No+Image';
+      const authorName = item.author || 'Lair McKenzie'; // Default to the Master Craftsman if none listed
       
-      // THE DUMP: Show the raw ledger at the bottom
-      if (dataDump) dataDump.textContent = JSON.stringify(satchel, null, 2);
-      console.log("Librarian: Full Satchel Received", satchel);
-
-      // FILTER: Only include types called 'progress'
-      // SORT: By ID (Numerical order)
-      const progressItems = satchel
-        .filter(item => item.type && item.type.toLowerCase().trim() === 'progress')
-        .sort((a, b) => parseInt(a.id) - parseInt(b.id));
-
-      console.log("Librarian: Filtered & Sorted Progress:", progressItems);
-
-      if (progressItems.length === 0) {
-        chroniclesWing.innerHTML = "<p>No progress records found.</p>";
-        return;
-      }
-
-      chroniclesWing.innerHTML = ""; // Clear loading text
-
-      progressItems.forEach((item, index) => {
-        // We alternate the layout based on the index (even vs odd)
-        const isReversed = index % 2 !== 0;
-        const mainMedia = item.files && item.files.length > 0 ? item.files[0] : '';
-        
-        // Determine if media is video or image (simple check)
-        const mediaHtml = mainMedia.includes('video') || mainMedia.includes('mp4') 
-          ? `<video src="${mainMedia}" controls style="width:100%; border-radius:8px;"></video>`
-          : `<img src="${mainMedia}" alt="${item.title}" style="width:100%; border-radius:8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">`;
-
-        const contentHtml = `
-          <div style="flex: 1; padding: 20px;">
-            <p style="text-transform: uppercase; font-weight: bold; color: #888; margin-bottom: 5px;">${item.misc.userDate || '[No Date]'}</p>
-            <h2 style="margin: 0 0 10px 0; font-size: 1.8rem;">${item.title}</h2>
-            <p style="line-height: 1.6; color: #444;">${item.description.join('<br>')}</p>
-            <p style="margin-top: 15px; font-style: italic; color: #666;">— ${item.author || 'Lair McKenzie'}</p>
-          </div>
-        `;
-
-        const sectionHtml = `
-          <section style="display: flex; align-items: center; margin-bottom: 60px; flex-direction: ${isReversed ? 'row-reverse' : 'row'};">
-            <div style="flex: 1; padding: 20px;">
-              ${mediaHtml}
+      const entryHtml = `
+        <div class="chronicle-card" style="margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px;">
+          <h1 style="margin-bottom: 5px;">${item.title}</h1>
+          <p style="color: #888; font-style: italic; margin-bottom: 20px;">
+            Scribed on ${item.date || 'an unknown date'} by ${authorName}
+          </p>
+          
+          <div class="chronicle-content" style="display: flex; gap: 30px; flex-wrap: wrap;">
+            <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            
+            <div class="chronicle-description" style="flex: 1; min-width: 300px; line-height: 1.8; font-size: 1.1rem;">
+              ${item.description.map(line => <p>${line}</p>).join('')}
             </div>
-            ${contentHtml}
-          </section>
-        `;
+          </div>
+        </div>
+      `;
+      chronicleWing.innerHTML += entryHtml;
+    });
 
-        chroniclesWing.innerHTML += sectionHtml;
-      });
-
-    } catch (error) {
-      console.error("Librarian's Error:", error);
-      if (chroniclesWing) chroniclesWing.innerHTML = <p style="color:red;">The bridge collapsed: ${error.message}</p>;
+  } catch (error) {
+    console.error("Librarian's Lament:", error);
+    if (chronicleWing) {
+      chronicleWing.innerHTML = <p style="color: red;">The Chronicles are locked: ${error.message}</p>;
     }
   }
+}
 
-  document.addEventListener('DOMContentLoaded', initiateProgressChronicles);
+document.addEventListener('DOMContentLoaded', initiateChronicles);
+
+    
 </script>
 
 
