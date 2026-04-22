@@ -184,7 +184,7 @@ async function initiateGallery() {
   } catch (error) {
     console.error("Librarian's Lament:", error);
     if (museumWing) {
-      museumWing.innerHTML = `<p style="color: red;">The Librarian lost the keys: ${error.message}</p>`;
+      museumWing.innerHTML = `<p style="color: red;">The Librarian lost the keys:` + error.message + `</p>`;
     }
   }
 }
