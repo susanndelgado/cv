@@ -141,7 +141,7 @@
       console.log("Librarian: Ledger contents poured into the 'raw-data-log' vessel.");
     }
 
-    const journalItems = satchel.filter(item => item.type && item.type.toLowerCase().trim() === 'progress chronicles');
+    const journalItems = satchel.filter(item => item.type && item.type.toLowerCase().trim() === 'progress');
     journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
     if (!chronicleWing) return;
