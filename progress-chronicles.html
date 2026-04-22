@@ -147,7 +147,7 @@
     journalItems.forEach(item => {
       const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
       // Pre-format the description paragraphs to avoid syntax clashes
-      const descHtml = item.description.map(line => `<p>${line}</p>`).join('');
+      const descHtml = item.description.map(line => `<p>` + line + `</p>`).join('');
       
       const entryHtml = `
         <div class="chronicle-card" style="margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px;">
