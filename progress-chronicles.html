@@ -125,34 +125,34 @@
 // === THE CHRONICLE SCRIBE v3.2 (Strict Filtering) ===
 // ==========================================================
 
-  async function initiateChronicles() {
+
+   async function initiateChronicles() {
   const chronicleWing = document.getElementById('chronicle-container');
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
-      // --- THE LIBRARIAN'S DIAGNOSTIC LOG ---
-   const dataDump = document.getElementById('raw-data-log');
-   
-   if (dataDump) {
-     dataDump.style.display = "block";
-     dataDump.textContent = JSON.stringify(satchel, null, 2);
-     console.log("Librarian: Ledger contents poured into the 'raw-data-log' vessel.");
-   }
-  
-   try {
+  const dataDump = document.getElementById('raw-data-log');
+
+  try {
     const response = await fetch(scriptUrl);
     const satchel = await response.json();
+
+    if (dataDump) {
+      dataDump.style.display = "block";
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
+      console.log("Librarian: Ledger contents poured into the 'raw-data-log' vessel.");
+    }
+
     const journalItems = satchel.filter(item => item.type && item.type.toLowerCase().trim() === 'progress chronicles');
     journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
- 
-
     if (!chronicleWing) return;
-    chronicleWing.innerHTML = ""; 
+    chronicleWing.innerHTML = "";
 
     journalItems.forEach(item => {
-      const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
-      // Pre-format the description paragraphs to avoid syntax clashes
-      const descHtml = item.description.map(line => `<p>` + line + `</p>`).join('');
-      
+      const mainImg = item.files && item.files.length > 0 ? item.files[0] : '[via.placeholder.com](https://via.placeholder.com/300)';
+      const descHtml = Array.isArray(item.description)
+        ? item.description.map(line => `<p>${line}</p>`).join('')
+        : `<p>${item.description || ''}</p>`;
+
       const entryHtml = `
         <div class="chronicle-card" style="margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px;">
           <h1 style="margin-bottom: 5px; color: #222;">${item.title}</h1>
@@ -170,12 +170,14 @@
     });
   } catch (error) {
     console.error("Librarian:", error);
-    if (chronicleWing) chronicleWing.innerHTML = `<p style="color:red;">Error: ` + error.message + `</p>;
+    if (chronicleWing) chronicleWing.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
   }
 }
-document.addEventListener('DOMContentLoaded', initiateChronicles);
-</script>
 
+document.addEventListener('DOMContentLoaded', initiateChronicles);
+
+  
+</script>
 
   
 
