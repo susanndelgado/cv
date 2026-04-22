@@ -168,7 +168,7 @@
       }
 
       // --- THE GALLERY: Filtering for thy art ---
-      const filteredItems = satchel.filter(item => 
+      const galleryItems = satchel.filter(item => 
         item.type && item.type.toLowerCase().trim() === 'gallery'
       );
 
@@ -204,10 +204,7 @@
         museumWing.innerHTML += cardHtml;
       });
 
-    } catch (error) {
-      console.error("Librarian's Lament:", error);
-      if (museumWing) museumWing.innerHTML = `<p style="color: red;">The Librarian lost the keys:` + error.message + `</p>`;
-    }
+   
   }
 
   document.addEventListener('DOMContentLoaded', initiateGallery);
