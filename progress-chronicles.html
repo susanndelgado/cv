@@ -128,74 +128,50 @@ async function initiateChronicles() {
   const dataDump = document.getElementById('raw-data-log');
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
 
-  try {
-    console.log("Librarian: Fetching the ledger for the Chronicles...");
+  
+   try {
     const response = await fetch(scriptUrl);
-    if (!response.ok) throw new Error("The bridge to the Chronicles has collapsed!");
-
     const satchel = await response.json();
-    
+    const journalItems = satchel.filter(item => item.type && item.type.toLowerCase().trim() === 'progress chronicles');
+    journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+
     // --- THE DUMP: For thy inspection ---
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    // --- THE FILTER: Seeking ONLY 'progress chronicles' ---
-    // This ensures no other types (like 'gallery') sneak in.
-    const journalItems = satchel.filter(item => 
-      item.type && item.type.toLowerCase().trim() === 'progress chronicles'
-    );
-
-    // --- THE SORT: Newest ID first ---
-    journalItems.sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
-    if (!chronicleWing) {
-      console.error("Librarian: Cannot find 'chronicle-container'!");
-      return;
-    }
-
-    if (journalItems.length === 0) {
-      chronicleWing.innerHTML = "<p class='text-center'>No chronicles found with Type: progress chronicles</p>";
-      return;
-    }
-
-    // --- RENDER: Scribing the History ---
+    if (!chronicleWing) return;
     chronicleWing.innerHTML = ""; 
+
     journalItems.forEach(item => {
       const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
-      const authorName = item.author || 'Lair McKenzie';
+      // Pre-format the description paragraphs to avoid syntax clashes
+      const descHtml = item.description.map(line => <p>${line}</p>).join('');
       
       const entryHtml = `
         <div class="chronicle-card" style="margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px;">
           <h1 style="margin-bottom: 5px; color: #222;">${item.title}</h1>
           <p style="color: #888; font-style: italic; margin-bottom: 20px;">
-            Scribed on ${item.date || 'an unknown date'} by ${authorName} (ID: ${item.id})
+            Scribed on ${item.date || 'an unknown date'} (ID: ${item.id})
           </p>
-          
           <div class="chronicle-content" style="display: flex; gap: 30px; flex-wrap: wrap;">
-            <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            
-            <div class="chronicle-description" style="flex: 1; min-width: 300px; line-height: 1.8; font-size: 1.1rem;">
-              ${item.description.map(line => <p>${line}</p>).join('')}
+            <img src="${mainImg}" style="max-width: 400px; height: auto; border-radius: 12px;">
+            <div class="chronicle-description" style="flex: 1; min-width: 300px; line-height: 1.8;">
+              ${descHtml}
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
       chronicleWing.innerHTML += entryHtml;
     });
-
   } catch (error) {
-    console.error("Librarian's Lament:", error);
-    if (chronicleWing) {
-      chronicleWing.innerHTML = <p style="color: red;">The Chronicles are locked: ${error.message}</p>;
-    }
+    console.error("Librarian:", error);
+    if (chronicleWing) chronicleWing.innerHTML = <p style="color:red;">Error: ${error.message}</p>;
   }
 }
-
-// Start the work when the Hall is ready
 document.addEventListener('DOMContentLoaded', initiateChronicles);
 </script>
+
 
   
 
