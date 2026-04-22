@@ -128,42 +128,54 @@
 // ==========================================================
 
 
-  async function initiateGallery() {
-  const museumWing = document.getElementById('gallery-container');
-     const dataDump = document.getElementById('raw-data-log');
-  const scriptUrl =  "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
+ async function initiateGallery() {
+  const museumWing = document.getElementById('museum-wing');
+  const dataDump = document.getElementById('raw-data-log');
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
 
- 
   try {
     const response = await fetch(scriptUrl);
     const satchel = await response.json();
-    const galleryItems = satchel.filter(item => item.type && item.type.toLowerCase().trim() === 'gallery');
+
+    const galleryItems = satchel.filter(item =>
+      item.type && item.type.toLowerCase().trim() === 'gallery'
+    );
 
     if (!museumWing) return;
-     
-    // --- THE DUMP: Displaying the raw ledger for thy inspection ---
+
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
-    museumWing.innerHTML = ""; 
+
+    museumWing.innerHTML = "";
 
     galleryItems.forEach(item => {
-      const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
-      // Cleanly join description before the template literal
-      const cleanDesc = item.description.join(' ');
-      
+      const mainImg = item.files && item.files.length > 0
+        ? item.files[0]
+        : 'https://via.placeholder.com/300';
+
+      const cleanDesc = Array.isArray(item.description)
+        ? item.description.join(' ')
+        : (item.description || '');
+
       const cardHtml = `
         <div class="gallery-card" onclick="openGrandView('${mainImg}')">
           <img class="gallery-media" src="${mainImg}" alt="${item.title}">
           <div class="gallery-overlay">
             <h3 style="margin:0;">${item.title}</h3>
-            <p style="font-size: 0.85rem; margin: 10px 0;">${item.misc ? item.misc.Media : 'Masterwork'}</p>
-            <p style="font-style: italic; font-size: 0.8rem;">${cleanDesc}</p>
+            <p style="font-size: 0.85rem; margin: 10px 0;">
+              ${item.misc ? item.misc.Media : 'Masterwork'}
+            </p>
+            <p style="font-style: italic; font-size: 0.8rem;">
+              ${cleanDesc}
+            </p>
           </div>
         </div>`;
+
       museumWing.innerHTML += cardHtml;
     });
+
   } catch (error) {
     console.error("Librarian:", error);
   }
@@ -172,11 +184,13 @@
 function openGrandView(src) {
   const modal = document.getElementById('grand-view');
   const modalImg = document.getElementById('grand-img');
+
   if (modal && modalImg) {
     modal.style.display = "flex";
     modalImg.src = src;
   }
 }
+
 document.addEventListener('DOMContentLoaded', initiateGallery);
 </script>
 
