@@ -82,7 +82,7 @@
          
     <div class="container">
          <pre id="data-dump" style="background: #f4f4f4; padding: 10px; max-height: 200px; overflow: auto;"></pre>
-               <h2>Librarian Raw Data Dump 4</h2>
+               <h2>Librarian Raw Data Dump 5</h2>
          <pre id="data-dump">Waiting for the Librarian to arrive...</pre> 
 
         </div>
@@ -129,86 +129,79 @@
  // =========================================================
 // === THE MUSEUM CURATOR v3.0 (Updated for Layout) ===
 // =========================================================
+async function initiateGallery() {
+  const museumWing = document.getElementById('gallery-container');
+  const dataDump = document.getElementById('raw-data-log');
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
 
-/**
- * THE GITHUB GALLERY MASTER PROTOCOL (Full Edition)
- * Crafted by Vespera for the Susan Nicole Arts Guild.
- * Features: 
- * - Silent ID Sorting
- * - [Type] Gallery Filter
- * - Hover-Reveal Interactive Cards
- * - Full Backtick Protection
- */
-
-
-/**
-   * The Scriptorium Dual-Engine
-   * Purpose: Displays the Gallery and the Raw Data Dump simultaneously.
-   */
-  async function initiateGallery() {
-    const museumWing = document.getElementById('museum-wing');
-    const dataDump = document.getElementById('data-dump');
-    
-    // Thy magical connection to the Google Scriptorium
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbzTZ_g3mPD5REsVPrFnci6iEwbnzYJlR_1nw7aF1BoQ-Gre4Ba2w1x_JBBGHGNsrugY/exec";
-
+  try {
     console.log("Librarian: Embarking on the journey to fetch the Satchel...");
+    const response = await fetch(scriptUrl);
+    if (!response.ok) throw new Error("The bridge between GitHub and Google has collapsed!");
 
-    try {
-      const response = await fetch(scriptUrl);
-      if (!response.ok) throw new Error("The bridge between GitHub and Google has collapsed!");
+    const satchel = await response.json();
+    console.log("Librarian: Satchel Received!", satchel);
 
-      const satchel = await response.json();
-      console.log("Librarian: Satchel Received!", satchel);
+    // --- THE DUMP: Displaying the raw ledger for thy inspection ---
+    if (dataDump) {
+      dataDump.style.display = "block"; 
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
+    }
 
-      // --- THE DUMP: Displaying the raw ledger for thy inspection ---
-      if (dataDump) {
-        dataDump.style.display = "block"; // Ensure the ledger is visible
-        dataDump.textContent = JSON.stringify(satchel, null, 2);
-      }
+    // --- THE GALLERY: Filtering for thy art ---
+    // We name it galleryItems here so it matches the loop below!
+    const galleryItems = satchel.filter(item => 
+      item.type && item.type.toLowerCase().trim() === 'gallery'
+    );
 
-      // --- THE GALLERY: Filtering for thy art ---
-      const galleryItems = satchel.filter(item => 
-        item.type && item.type.toLowerCase().trim() === 'gallery'
-      );
+    console.log("Librarian: Filtered Satchel (Gallery Items Only):", galleryItems);
 
-      if (galleryItems.length === 0) {
-        museumWing.innerHTML = "<p class='text-center'>No items found with Type: gallery</p>";
-        return;
-      }
+    if (galleryItems.length === 0) {
+      museumWing.innerHTML = "<p class='text-center'>No items found with Type: gallery</p>";
+      return;
+    }
 
-      // Function for the Modal view
-      function openGrandView(src) {
-        const modal = document.getElementById('grand-view');
-        const modalImg = document.getElementById('grand-img');
-        modal.style.display = "flex";
-        modalImg.src = src;
-      }
+    // --- RENDER: Painting the museum walls ---
+    museumWing.innerHTML = ""; 
+
+    galleryItems.forEach(item => {
+      // Grab the first image from the array of files
+      const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
       
-      // THE NEW LOOP (Put this inside thy initiateGallery function after the fetch)
-      // Replace thy old "museumWing.innerHTML +=" loop with this:
-      galleryItems.forEach(item => {
-        // Use the first image in the files array
-        const mainImg = item.files && item.files.length > 0 ? item.files[0] : '';
-        
-        const cardHtml = `
-          <div class="gallery-card" onclick="openGrandView('${mainImg}')">
-            <img class="gallery-media" src="${mainImg}" alt="${item.title}">
-            <div class="gallery-overlay">
-              <h3 style="margin:0;">${item.title}</h3>
-              <p style="font-size: 0.85rem; margin: 10px 0;">${item.misc.Media || 'Masterwork'}</p>
-              <p style="font-style: italic; font-size: 0.8rem;">${item.description.join(' ')}</p>
-            </div>
+      const cardHtml = `
+        <div class="gallery-card" onclick="openGrandView('${mainImg}')">
+          <img class="gallery-media" src="${mainImg}" alt="${item.title}">
+          <div class="gallery-overlay">
+            <h3 style="margin:0;">${item.title}</h3>
+            <p style="font-size: 0.85rem; margin: 10px 0;">${item.misc.Media || 'Masterwork'}</p>
+            <p style="font-style: italic; font-size: 0.8rem;">${item.description.join(' ')}</p>
           </div>
-        `;
-        museumWing.innerHTML += cardHtml;
-      });
+        </div>
+      `;
+      museumWing.innerHTML += cardHtml;
+    });
+
+  } catch (error) {
+    console.error("Librarian's Lament:", error);
+    if (museumWing) {
+      museumWing.innerHTML = <p style="color: red;">The Librarian lost the keys: ${error.message}</p>;
     }
   }
-   
+}
 
+// --- Function for the Modal view ---
+function openGrandView(src) {
+  const modal = document.getElementById('grand-view');
+  const modalImg = document.getElementById('grand-img');
+  if (modal && modalImg) {
+    modal.style.display = "flex";
+    modalImg.src = src;
+  }
+}
 
-  document.addEventListener('DOMContentLoaded', initiateGallery);
+// Start the work when the Hall is ready
+document.addEventListener('DOMContentLoaded', initiateGallery);
+
 
 </script>
 </body>
