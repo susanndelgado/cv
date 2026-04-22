@@ -883,6 +883,129 @@ header .nav-tabs .nav-link.active:hover {
     flex-direction: column !important;
   }
 }
+/*******************************************************
+ * CHRONICLES ONLY (SAFE SCOPED FIXES)
+ *******************************************************/
+
+/* container safety (prevents inherited white text issues) */
+#chronicles-wing,
+.chronicle-timeline,
+.chronicle-entry {
+    color: #111;
+}
+
+/* ---------------------------
+   CATEGORY / STEP LABEL
+   ("Progress", later "Concept Dev")
+---------------------------- */
+.chronicle-category,
+.node-step {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+/* ---------------------------
+   TITLE (THIS IS YOUR KEY FIX)
+   clean, modern editorial serif
+---------------------------- */
+.chronicle-title,
+.node-title.chronicle-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 400;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+/* ---------------------------
+   DESCRIPTION TEXT
+---------------------------- */
+.chronicle-desc,
+.node-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* ---------------------------
+   META (author + date)
+---------------------------- */
+.chronicle-meta {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 15px;
+}
+
+/* ---------------------------
+   IMAGE FIX (your "invisible images" issue)
+---------------------------- */
+.chronicle-media img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #f3f3f3;
+}
+
+/*******************************************************
+ * LAYOUT (UNCHANGED — ONLY SAFETY TUNING)
+ *******************************************************/
+
+.chronicle-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.chronicle-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+/* equal split */
+.chronicle-text,
+.chronicle-media {
+    flex: 1;
+}
+
+/* flip behavior (UNCHANGED) */
+.chronicle-entry.left {
+    flex-direction: row;
+}
+
+.chronicle-entry.right {
+    flex-direction: row-reverse;
+}
+.chronicle-title {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    letter-spacing:1.5px;
+    text-transform: uppercase;
+    color: #111;
+}
+/*******************************************************
+ * MOBILE STACK (UNCHANGED STRUCTURE)
+ *******************************************************/
+@media (max-width: 768px) {
+    .chronicle-entry {
+        flex-direction: column !important;
+        text-align: left;
+    }
+
+    .chronicle-media img {
+        max-width: 100%;
+    }
+}
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
