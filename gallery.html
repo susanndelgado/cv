@@ -131,138 +131,107 @@
 // === THE MUSEUM CURATOR v3.0 (Updated for Layout) ===
 // =========================================================
 const LIBRARIAN_URL = 'https://script.google.com/macros/s/AKfycbxTX-uu7IIW9HwIDrN3SRjtcRRSHvCOqMM0mHlfn5ZaXI9B-WKbe5SuQ2zvph7wsUy8/exec'; 
+/**
+ * THE GITHUB GALLERY MASTER PROTOCOL (Full Edition)
+ * Crafted by Vespera for the Susan Nicole Arts Guild.
+ * * Features: 
+ * - External Fetch to Google Scriptorium
+ * - Raw Data Dump & Console Logging
+ * - Silent ID Sorting
+ * - Multi-line Lore (Backtick support)
+ * - Hover-Reveal interactive cards
+ */
 
-async function getLibrarianData() {
-    console.log("Calling the Librarian...");
-    const dumpElement = document.getElementById('data-dump');
 
-    try {
-        const response = await fetch(LIBRARIAN_URL);
-        const data = await response.json();
+async function initiateGallery() {
+  const dataDump = document.getElementById('data-dump');
+  const galleryContainer = document.getElementById('main-gallery');
 
-        // This line prints the raw scrolls directly onto thy page for thy eyes to see
-        if (dumpElement) {
-            dumpElement.textContent = JSON.stringify(data, null, 2);
-        }
-        
-        console.log("The Librarian has delivered the scrolls!", data);
+  console.log("Librarian: Starting the journey to the Google Cloud...");
 
-    } catch (error) {
-        console.error("The gates are barred!", error);
-        if (dumpElement) {
-            dumpElement.textContent = "Error: " + error;
-        }
+  try {
+    // 2. THE MASTER FETCH
+    const response = await fetch(SCRIPTORIUM_URL);
+    if (!response.ok) throw new Error("The Scriptorium gate is barred.");
+    
+    const satchel = await response.json();
+
+    // 3. THE TRUTH LOGS
+    console.log("Librarian: Satchel Received!", satchel);
+    if (dataDump) {
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
+
+    if (galleryContainer) {
+      galleryContainer.innerHTML = ''; // Clear the "Waiting" message
+
+      // 4. THE SILENT SORT (Organizing by ID)
+      satchel.sort((a, b) => {
+        return parseInt(a.id || 0) - parseInt(b.id || 0);
+      });
+
+      // 5. THE GALLERY BUILD
+      satchel.forEach(item => {
+        if (item.title !== "Broken") {
+          const artPiece = document.createElement('div');
+          artPiece.className = 'col-12 col-md-6 col-lg-4 mb-4'; 
+
+          // Unpack Miscellaneous data (Medium, Type, etc.)
+          const miscSection = Object.entries(item.misc)
+            .map(([key, value]) => `
+              <div class="small mb-1">
+                <strong class="text-info">${key}:</strong> <span class="text-light">${value}</span>
+              </div>
+            `).join('');
+
+          /**
+           * THE BACKTICK PORTAL (`)
+           * This builds the card structure with the Hover Overlay.
+           */
+          artPiece.innerHTML = `
+            <div class="card h-100 bg-dark text-white border-secondary shadow-lg gallery-card-hover">
+              
+              <div class="card-img-container">
+                <img src="${item.files[0] || 'img/placeholder.jpg'}" 
+                     class="card-img-top" 
+                     alt="${item.title}">
+              </div>
+              
+              <div class="hover-overlay d-flex flex-column justify-content-center p-3">
+                <h5 class="card-title text-info mb-1">${item.title}</h5>
+                
+                <div class="misc-data border-bottom border-secondary pb-2 mb-2">
+                  ${miscSection}
+                </div>
+
+                <div class="card-text text-light lore-text">
+                  ${item.description.join('<br>')}
+                </div>
+                
+                <div class="mt-3 small text-muted">
+                  By ${item.author}
+                </div>
+              </div>
+
+            </div>
+          `;
+          
+          galleryContainer.appendChild(artPiece);
+        } else {
+          console.warn("Librarian: Found a broken seal in the Satchel.", item);
+        }
+      });
+    }
+  } catch (err) {
+    console.error("Librarian: The bridge collapsed!", err);
+    if (dataDump) {
+      dataDump.textContent = "Librarian's Error: " + err.message;
+    }
+  }
 }
 
-// Fire the spell immediately
-getLibrarianData();
-   // 1. THE LIBRARIAN'S ADDRESS
-
-
-// let allArtworks = []; // The Guild's master record
-
-// async function fetchMuseumData() {
-//     const mainGallery = document.getElementById('main-gallery');
-
-//     try {
-//         const response = await fetch(LIBRARIAN_URL);
-//         const rawData = await response.json();
-
-//         // Check if the data is an array. If it's wrapped in an object, 
-//         // we grab the internal list first so .sort() doesn't fail.
-//         allArtworks = Array.isArray(rawData) ? rawData : (rawData.artworks || []);
-
-//         // The JavaScript Sort: Organizes by date, newest first
-//         allArtworks.sort((a, b) => {
-//             const dateA = new Date(a.date ? a.date[0] : 0);
-//             const dateB = new Date(b.date ? b.date[0] : 0);
-//             return dateB - dateA;
-//         });
-// console.log("Librarian's Delivery:", JSON.stringify(rawData, null, 2));
-//         console.log("Data received and sorted.");
-//         renderGallery(allArtworks);
-
-//     } catch (error) {
-//         console.error("The Curator found a closed gate:", error);
-//         mainGallery.innerHTML = `<p class="error-scroll">Alas, the Librarian could not find the scrolls. ` + error + `</p>`;
-//     }
-// }
-
-// // 2. RENDERING THE MINIATURES (The smaller gallery thumbnails)
-// function renderGallery(artList) {
-//     const container = document.getElementById('main-gallery');
-//     container.innerHTML = ''; 
-
-//     // We ensure the container itself is ready to hold the 'Trunk'
-//     container.style.display = 'grid';
-//     container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
-//     container.style.gap = '20px';
-
-//     artList.forEach((item, index) => {
-//         // Direct URL as you requested
-//         const directUrl = item.files && item.files.length > 0 ? item.files[0] : "";
-        
-//         const exhibit = document.createElement('div');
-//         exhibit.className = 'museum-exhibit';
-//         exhibit.setAttribute('onclick', `openStudyingNook(`+index+`)`);
-
-//         exhibit.innerHTML = `
-//             <div class="exhibit-frame">
-//                 <img src="${directUrl}" alt="${item.title[0]}" style="width:100%; height:auto;">
-//                 <div class="brass-plaque">
-//                     <h3 style="color: #d4af37;">${item.title[0]}</h3>
-//                     <p>${item.date[0]}</p>
-//                 </div>
-//             </div>
-//         `;
-//         container.appendChild(exhibit);
-//     });
-// }
-
-
-// // =========================================================
-// // === THE STUDYING NOOK (The new Intimate Lightbox) ===
-// // =========================================================
-
-// function openStudyingNook(index) {
-//     const item = allArtworks[index];
-//     const lightbox = document.getElementById('museum-lightbox');
-//     const content = document.getElementById('lightbox-content');
-
-//     // We join the description array back into a story with paragraphs
-//     const fullStory = item.description.join('</p><p>');
-
-//     // BUILDING THE NEW SIDE-BY-SIDE LAYOUT
-//     content.innerHTML = `
-//         <span class="close-museum" onclick="closeMuseumNook()">&times;</span>
-        
-//         <div class="lightbox-image-side">
-//             <img src="${item.files[0]}" alt="${item.title[0]}">
-//         </div>
-        
-//         <div class="lightbox-lore-side">
-//             <h2 class="lore-title">${item.title[0] || 'Untitled'}</h2>
-//             <p class="lore-meta">Created: ${item.date[0]} | Technique: ${item.misc.Media || 'Mixed Media'}</p>
-//             <div class="lore-description">
-//                 <p>${fullStory}</p>
-//                 <p><em>Series: ${item.misc.Series || 'Standalone'}</em></p>
-//             </div>
-//         </div>
-//     `;
-    
-//     // Add the 'active' class to show the Lightbox (from the CSS)
-//     lightbox.classList.add('active');
-// }
-
-// function closeMuseumNook() {
-//     const lightbox = document.getElementById('museum-lightbox');
-//     // Remove the 'active' class to hide it
-//     lightbox.classList.remove('active');
-// }
-
-// // Initialize the Museum
-// fetchMuseumData();
+// 6. THE TRIGGER (Ignites the script when the page is ready)
+document.addEventListener('DOMContentLoaded', initiateGallery);
 
 </script>
 </body>
