@@ -838,23 +838,15 @@ header .nav-tabs .nav-link.active:hover {
 /* ================================
    CHRONICLES (ABOUT PAGE STYLE GRID)
    ================================ */
-
-.chronicles-section {
-    padding: 80px 0;
-    background: #fff;
-}
-
-/* each entry behaves like "process-node row" */
 .chronicle-entry {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 60px;
     margin-bottom: 120px;
 }
 
-/* image */
-.chronicle-media {
+.chronicle-media,
+.chronicle-text {
     flex: 1;
 }
 
@@ -865,41 +857,34 @@ header .nav-tabs .nav-link.active:hover {
     display: block;
 }
 
-/* text */
-.chronicle-text {
-    flex: 1;
-    max-width: 550px;
-}
-
-/* alternating layout */
+/* alternating direction */
 .chronicle-entry.right {
     flex-direction: row-reverse;
 }
 
-/* typography (match About page style) */
+/* typography matches About page */
 .chronicle-category {
     color: #d4af37;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    font-size: 0.85rem;
     margin-bottom: 10px;
 }
 
 .chronicle-title {
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2rem;
     margin-bottom: 15px;
 }
 
 .chronicle-desc p {
-    font-size: 1rem;
-    line-height: 1.7;
     color: #666;
+    line-height: 1.7;
 }
 
-/* meta */
 .chronicle-meta {
     display: flex;
     justify-content: space-between;
@@ -908,16 +893,11 @@ header .nav-tabs .nav-link.active:hover {
     margin-top: 20px;
 }
 
-/* responsive */
+/* mobile */
 @media (max-width: 768px) {
     .chronicle-entry,
     .chronicle-entry.right {
         flex-direction: column;
-        text-align: left;
-    }
-
-    .chronicle-media img {
-        max-width: 100%;
     }
 }
 /******************************************************************
