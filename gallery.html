@@ -124,11 +124,12 @@
         </div>
     </div>
 </footer>
-<script>
 
- // =========================================================
-// === THE MUSEUM CURATOR v3.0 (Updated for Layout) ===
-// =========================================================
+<script>
+// ==========================================================
+// === THE MUSEUM CURATOR v3.1 (Fixed Layout & Logic) ===
+// ==========================================================
+
 async function initiateGallery() {
   const museumWing = document.getElementById('gallery-container');
   const dataDump = document.getElementById('raw-data-log');
@@ -137,26 +138,23 @@ async function initiateGallery() {
   try {
     console.log("Librarian: Embarking on the journey to fetch the Satchel...");
     const response = await fetch(scriptUrl);
-    if (!response.ok) throw new Error("The bridge between GitHub and Google has collapsed!");
+    if (!response.ok) throw new Error("The bridge between GitHub and Google has collapsed.");
 
     const satchel = await response.json();
     console.log("Librarian: Satchel Received!", satchel);
 
     // --- THE DUMP: Displaying the raw ledger for thy inspection ---
     if (dataDump) {
-      dataDump.style.display = "block"; 
+      dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    // --- THE GALLERY: Filtering for thy art ---
     // --- THE GALLERY: Filtering for thy art ---
     const galleryItems = satchel.filter(item => 
       item.type && item.type.toLowerCase().trim() === 'gallery'
     );
 
     // Ensure the wall exists before we try to hang art
-    const museumWing = document.getElementById('gallery-container');
-    
     if (!museumWing) {
       console.error("Librarian: I cannot find 'gallery-container' in thy HTML!");
       return;
@@ -167,16 +165,18 @@ async function initiateGallery() {
       return;
     }
 
-    // --- THE NEW LOOP: Painting the museum walls ---
+    // --- THE RENDER: Painting the museum walls ---
     museumWing.innerHTML = ""; 
     galleryItems.forEach(item => {
       const mainImg = item.files && item.files.length > 0 ? item.files[0] : 'https://via.placeholder.com/300';
+      
+      // Mending the description join and backticks here
       const cardHtml = `
         <div class="gallery-card" onclick="openGrandView('${mainImg}')">
           <img class="gallery-media" src="${mainImg}" alt="${item.title}">
           <div class="gallery-overlay">
             <h3 style="margin:0;">${item.title}</h3>
-            <p style="font-size: 0.85rem; margin: 10px 0;">${item.misc.Media || 'Masterwork'}</p>
+            <p style="font-size: 0.85rem; margin: 10px 0;">${item.misc ? item.misc.Media : 'Masterwork'}</p>
             <p style="font-style: italic; font-size: 0.8rem;">${item.description.join(' ')}</p>
           </div>
         </div>
@@ -186,9 +186,13 @@ async function initiateGallery() {
 
   } catch (error) {
     console.error("Librarian's Lament:", error);
+    if (museumWing) {
+      museumWing.innerHTML = <p style="color: red;">The Librarian lost the keys: ${error.message}</p>;
+    }
   }
 }
 
+// --- Function for the Modal view ---
 function openGrandView(src) {
   const modal = document.getElementById('grand-view');
   const modalImg = document.getElementById('grand-img');
@@ -198,7 +202,8 @@ function openGrandView(src) {
   }
 }
 
+// Start the work only when the Hall is fully built
 document.addEventListener('DOMContentLoaded', initiateGallery);
-   </script>
+</script>
 </body>
 </html>
