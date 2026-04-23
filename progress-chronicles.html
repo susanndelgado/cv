@@ -433,7 +433,7 @@
 
 //     } catch (err) {
 
-//       console.error("🔥 Item render error:", {
+//       console.error(" Item render error:", {
 //         id: item.id,
 //         title: item.title,
 //         error: err
@@ -480,22 +480,12 @@
 <script>
 
 // ==========================================================
-// === CHRONICLE SCRIBE (FINAL MEDIA ARCHITECTURE) ===
+// === CHRONICLE SCRIBE v6.2 (DATA NORMALIZATION FIXED) ===
 // ==========================================================
 
 let allChronicles = [];
 let currentIndex = 0;
 const PAGE_SIZE = 4;
-
-// ==========================================================
-// CONFIG
-// ==========================================================
-
-const IMAGE_FALLBACK = "https://via.placeholder.com/600?text=Missing+Image";
-
-// Google Drive video stream base
-const VIDEO_BASE =
-  "https://www.googleapis.com/drive/v3/files/";
 
 // ==========================================================
 // INIT
@@ -511,16 +501,23 @@ async function initiateChronicles() {
 
   try {
 
-    const res = await fetch(scriptUrl + "?t=" + Date.now());
-    const data = await res.json();
+    const response = await fetch(scriptUrl + "?t=" + Date.now());
+    const satchel = await response.json();
 
-    // DEBUG PANEL (unchanged)
+    // DEBUG (unchanged)
     if (dataDump) {
       dataDump.style.display = "block";
-      dataDump.textContent = JSON.stringify(data, null, 2);
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    allChronicles = Array.isArray(data) ? data : [];
+    allChronicles = (Array.isArray(satchel) ? satchel : [])
+      .filter(item =>
+        (item.type || "").toLowerCase().includes("progress")
+      )
+      .sort((a, b) =>
+        new Date(a.misc?.postdate || a.date) -
+        new Date(b.misc?.postdate || b.date)
+      );
 
     chronicleWing.innerHTML = "";
     renderChronicles();
@@ -529,91 +526,65 @@ async function initiateChronicles() {
     if (loadingMsg) loadingMsg.style.display = "none";
 
   } catch (err) {
-    console.error(err);
-
-    document.body.innerHTML = `
-      <div style="padding:20px;color:red;font-family:monospace;">
-        <h2>System Error</h2>
-        <pre>${err.message}</pre>
-      </div>
-    `;
+    console.error("Chronicle error:", err);
   }
 }
 
 // ==========================================================
-// FILE PARSER (STRICT POSITION CONTRACT)
+// 🔥 CORE FIX: SAFE FILE URL EXTRACTOR
 // ==========================================================
 
-function parseFile(file) {
+function extractFileUrl(fileEntry) {
 
-  if (!file || !Array.isArray(file)) return null;
+  if (!fileEntry) return null;
 
-  return {
-    type: (file[0] || "").toLowerCase().trim(), // image | video
-    id: file[1] || null,
-    url: file[2] || null
-  };
-}
-
-// ==========================================================
-// IMAGE RENDER (USES PROVIDED URL ONLY)
-// ==========================================================
-
-function renderImage(file) {
-
-  const url = file?.url;
-
-  return `
-    <img src="${url || IMAGE_FALLBACK}"
-         onerror="this.src='${IMAGE_FALLBACK}'"
-         style="width:100%; height:100%; object-fit:cover;">
-  `;
-}
-
-// ==========================================================
-// VIDEO THUMB (NO INLINE VIDEO)
-// ==========================================================
-
-function renderVideoThumb(file) {
-
-  const videoUrl = VIDEO_BASE + file.id + "?alt=media";
-
-  return `
-    <div class="video-thumb-wrapper" data-video="${videoUrl}">
-      <img src="https://via.placeholder.com/600?text=Play+Video"
-           style="width:100%; height:100%; object-fit:cover; cursor:pointer;">
-    </div>
-  `;
-}
-
-// ==========================================================
-// MEDIA ROUTER
-// ==========================================================
-
-function renderMedia(file) {
-
-  const parsed = parseFile(file);
-
-  if (!parsed) {
-    return `<img src="${IMAGE_FALLBACK}">`;
+  // Case 1: already clean URL
+  if (typeof fileEntry === "string" && fileEntry.startsWith("http")) {
+    return fileEntry.trim();
   }
 
-  if (parsed.type === "video") {
-    return renderVideoThumb(parsed);
+  // Case 2: packed format (your current system)
+  if (typeof fileEntry === "string") {
+
+    const parts = fileEntry.split("\n");
+
+    // scan bottom-up for safety
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const line = parts[i].trim();
+      if (line.startsWith("http")) {
+        return line;
+      }
+    }
   }
 
-  return renderImage(parsed);
+  return null;
 }
 
 // ==========================================================
-// RENDER TIMELINE
+// MEDIA HANDLING
+// ==========================================================
+
+function getMedia(item) {
+
+  const raw = item?.files?.[0];
+
+  const url = extractFileUrl(raw);
+
+  return url || "https://via.placeholder.com/600?text=Missing+Image";
+}
+
+// ==========================================================
+// RENDER SINGLE NODE
 // ==========================================================
 
 function renderChronicles() {
 
   const chronicleWing = document.getElementById("chronicle-container");
 
-  const nextItems = allChronicles.slice(currentIndex, currentIndex + PAGE_SIZE);
+  const nextItems = allChronicles.slice(
+    currentIndex,
+    currentIndex + PAGE_SIZE
+  );
 
   let html = "";
 
@@ -622,15 +593,13 @@ function renderChronicles() {
     const globalIndex = currentIndex + i;
     const isEven = globalIndex % 2 === 0;
 
-    const files = item.files || [];
-
-    const mediaA = renderMedia(files[0]);
-    const mediaB = renderMedia(files[1]);
+    const media = getMedia(item);
 
     const desc =
-      item.description ||
       item.misc?.Description ||
-      "";
+      (Array.isArray(item.description)
+        ? item.description.join("<br>")
+        : item.description || "");
 
     html += `
       <div class="process-chronicals-node chronicle-node">
@@ -640,6 +609,12 @@ function renderChronicles() {
           ${isEven ? `
             <div class="col-md-6 pr-md-5">
 
+              <span class="node-step">
+                ${(item.misc?.categories?.length
+                  ? item.misc.categories.join(" ")
+                  : "Concept Development")}
+              </span>
+
               <h3 class="node-title chronicle-title">
                 ${item.title || ""}
               </h3>
@@ -649,38 +624,32 @@ function renderChronicles() {
               </div>
 
               <div class="chronicle-meta mt-3">
-                <span>${item.author || ""}</span>
-                <span>${item.misc?.postdate || item.postdate || item.date || ""}</span>
+                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
 
             <div class="col-md-6 pl-md-5">
-
               <div class="node-image-frame">
-                ${mediaA}
+                <img src="${media}" alt="${item.title || ''}">
               </div>
-
-              <div class="node-image-frame mt-3">
-                ${mediaB}
-              </div>
-
             </div>
 
           ` : `
             <div class="col-md-6 pr-md-5">
-
               <div class="node-image-frame">
-                ${mediaA}
+                <img src="${media}" alt="${item.title || ''}">
               </div>
-
-              <div class="node-image-frame mt-3">
-                ${mediaB}
-              </div>
-
             </div>
 
             <div class="col-md-6 pl-md-5">
+
+              <span class="node-step">
+                ${(item.misc?.categories?.length
+                  ? item.misc.categories.join(" ")
+                  : "Concept Development")}
+              </span>
 
               <h3 class="node-title chronicle-title">
                 ${item.title || ""}
@@ -691,14 +660,15 @@ function renderChronicles() {
               </div>
 
               <div class="chronicle-meta mt-3">
-                <span>${item.author || ""}</span>
-                <span>${item.misc?.postdate || item.postdate || item.date || ""}</span>
+                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
           `}
 
         </div>
+
       </div>
     `;
   });
@@ -706,43 +676,12 @@ function renderChronicles() {
   chronicleWing.insertAdjacentHTML("beforeend", html);
 
   currentIndex += PAGE_SIZE;
+
+  const btn = document.getElementById("loadMoreBtn");
+  if (btn && currentIndex >= allChronicles.length) {
+    btn.style.display = "none";
+  }
 }
-
-// ==========================================================
-// VIDEO POPUP PLAYER
-// ==========================================================
-
-document.addEventListener("click", function (e) {
-
-  const trigger = e.target.closest(".video-thumb-wrapper");
-  if (!trigger) return;
-
-  const url = trigger.getAttribute("data-video");
-
-  const overlay = document.createElement("div");
-
-  overlay.style.cssText = `
-    position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,0.92);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:99999;
-  `;
-
-  overlay.innerHTML = `
-    <video autoplay controls playsinline
-      style="max-width:90%; max-height:90%;">
-      <source src="${url}">
-    </video>
-  `;
-
-  overlay.addEventListener("click", () => overlay.remove());
-
-  document.body.appendChild(overlay);
-});
 
 // ==========================================================
 // BOOT
@@ -756,6 +695,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btn) {
     btn.addEventListener("click", renderChronicles);
   }
+
 });
 
 </script>
