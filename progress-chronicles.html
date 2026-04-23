@@ -164,8 +164,7 @@
 </footer>
 
 
-  <script>
-
+<!-- 
 // ==========================================================
 // === CHRONICLE SCRIBE v6.1 (FINAL ARCHIVE SYSTEM) ===
 // ==========================================================
@@ -475,12 +474,13 @@
 //     btn.addEventListener("click", renderChronicles);
 //   }
 // });
+  
+ -->
 
-// </script>
 <script>
 
 // ==========================================================
-// === CHRONICLE SCRIBE v6.2 (DATA NORMALIZATION FIXED) ===
+// === CHRONICLE SCRIBE v6.3 (CRASH-PROOF + DATA FIXED) ===
 // ==========================================================
 
 let allChronicles = [];
@@ -495,6 +495,7 @@ async function initiateChronicles() {
 
   const chronicleWing = document.getElementById("chronicle-container");
   const dataDump = document.getElementById("raw-data-log");
+  const loadingMsg = document.getElementById("loadingMessage");
 
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
@@ -504,51 +505,73 @@ async function initiateChronicles() {
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
 
-    // DEBUG (unchanged)
+    // DEBUG PANEL (unchanged)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
+    // ======================================================
+    // SAFE NORMALIZATION (prevents infinite loading crashes)
+    // ======================================================
+
     allChronicles = (Array.isArray(satchel) ? satchel : [])
       .filter(item =>
         (item.type || "").toLowerCase().includes("progress")
       )
-      .sort((a, b) =>
-        new Date(a.misc?.postdate || a.date) -
-        new Date(b.misc?.postdate || b.date)
-      );
+      .sort((a, b) => {
+
+        const aTime = new Date(
+          a.misc?.postdate ||
+          a.misc?.postDate ||
+          a.date ||
+          0
+        ).getTime();
+
+        const bTime = new Date(
+          b.misc?.postdate ||
+          b.misc?.postDate ||
+          b.date ||
+          0
+        ).getTime();
+
+        return aTime - bTime;
+      });
 
     chronicleWing.innerHTML = "";
     renderChronicles();
 
-    const loadingMsg = document.getElementById("loadingMessage");
     if (loadingMsg) loadingMsg.style.display = "none";
 
   } catch (err) {
-    console.error("Chronicle error:", err);
+
+    console.error("Chronicle load error:", err);
+
+    if (loadingMsg) {
+      loadingMsg.innerText = "The archive failed to load.";
+      loadingMsg.style.color = "red";
+    }
   }
 }
 
 // ==========================================================
-// 🔥 CORE FIX: SAFE FILE URL EXTRACTOR
+// 🔥 FILE PARSER (FIXES YOUR PACKED FORMAT)
 // ==========================================================
 
 function extractFileUrl(fileEntry) {
 
   if (!fileEntry) return null;
 
-  // Case 1: already clean URL
+  // Already clean URL
   if (typeof fileEntry === "string" && fileEntry.startsWith("http")) {
     return fileEntry.trim();
   }
 
-  // Case 2: packed format (your current system)
+  // Packed format: image\nID\nURL
   if (typeof fileEntry === "string") {
 
     const parts = fileEntry.split("\n");
 
-    // scan bottom-up for safety
     for (let i = parts.length - 1; i >= 0; i--) {
       const line = parts[i].trim();
       if (line.startsWith("http")) {
@@ -561,25 +584,26 @@ function extractFileUrl(fileEntry) {
 }
 
 // ==========================================================
-// MEDIA HANDLING
+// MEDIA RESOLVER
 // ==========================================================
 
 function getMedia(item) {
 
   const raw = item?.files?.[0];
-
   const url = extractFileUrl(raw);
 
   return url || "https://via.placeholder.com/600?text=Missing+Image";
 }
 
 // ==========================================================
-// RENDER SINGLE NODE
+// RENDER
 // ==========================================================
 
 function renderChronicles() {
 
   const chronicleWing = document.getElementById("chronicle-container");
+
+  if (!allChronicles || allChronicles.length === 0) return;
 
   const nextItems = allChronicles.slice(
     currentIndex,
