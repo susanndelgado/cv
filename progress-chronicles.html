@@ -477,21 +477,29 @@
 // });
 
 // </script>
-      <script>
+<script>
 
 // ==========================================================
-// === CHRONICLE SCRIBE (JSON SAFE VERSION) ===
+// === CHRONICLE SCRIBE (LOOSE MEDIA + POPUP VIDEO SYSTEM) ===
 // ==========================================================
 
 let allChronicles = [];
 let currentIndex = 0;
 const PAGE_SIZE = 4;
 
-// -----------------------------
-// INIT
-// -----------------------------
+// ==========================================================
+// CONFIG
+// ==========================================================
+
+const IMAGE_BASE = "https://lh3.googleusercontent.com/u/0/d/";
+const VIDEO_BASE = "https://www.googleapis.com/drive/v3/files/";
+
+// ==========================================================
+// INIT LOAD
+// ==========================================================
 
 async function initiateChronicles() {
+
   const chronicleWing = document.getElementById("chronicle-container");
   const dataDump = document.getElementById("raw-data-log");
 
@@ -499,49 +507,17 @@ async function initiateChronicles() {
  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
   try {
-    const response = await fetch(scriptUrl + "?t=" + Date.now());
-    const data = await response.json();
 
+    const res = await fetch(scriptUrl + "?t=" + Date.now());
+    const data = await res.json();
+
+    // DEBUG PANEL (unchanged behavior)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(data, null, 2);
     }
 
-    // normalize data
-    allChronicles = data.map(item => {
-
-      const files = (item.files || []).map(f => {
-
-        // case: your current format ["id\nmime\nurl"]
-        if (typeof f === "string") {
-          const parts = f.split("\n").map(x => x.trim()).filter(Boolean);
-
-          return {
-            fileId: parts[0] || null,
-            mimeType: parts.find(p => p.includes("/")) || "",
-            url: parts.find(p => p.startsWith("http")) || ""
-          };
-        }
-
-        // fallback: already structured
-        return {
-          fileId: f.fileId || null,
-          mimeType: f.mimeType || "",
-          url: f.url || ""
-        };
-      });
-
-      return {
-        id: item.id,
-        title: item.title,
-        author: item.author,
-        description: item.misc?.Description || "",
-        postDate: item.misc?.postdate || item.date,
-        type: item.type,
-        categories: item.misc?.categories || [],
-        files
-      };
-    });
+    allChronicles = Array.isArray(data) ? data : [];
 
     chronicleWing.innerHTML = "";
     renderChronicles();
@@ -549,123 +525,103 @@ async function initiateChronicles() {
     const loadingMsg = document.getElementById("loadingMessage");
     if (loadingMsg) loadingMsg.style.display = "none";
 
-  } catch (error) {
-    console.error(error);
-    chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
-  }
-}
+  } catch (err) {
+    console.error(err);
 
-// -----------------------------
-// VIDEO DETECTION (ORDER-INDEPENDENT)
-// -----------------------------
-
-function isVideo(file) {
-  const mime = (file.mimeType || "").toLowerCase();
-  return mime.includes("video/mp4") || mime.startsWith("video/");
-}
-
-// -----------------------------
-// MEDIA RENDERING
-// -----------------------------
-
-function renderSingleMedia(file) {
-
-  if (!file || !file.url) {
-    return `<img src="https://via.placeholder.com/600">`;
-  }
-
-  if (isVideo(file)) {
-    return `
-      <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
-        <source src="${file.url}" type="${file.mimeType}">
-      </video>
+    document.body.innerHTML = `
+      <div style="padding:20px;color:red;font-family:monospace;">
+        <h2>System Error</h2>
+        <pre>${err.message}</pre>
+      </div>
     `;
   }
+}
+
+// ==========================================================
+// MEDIA TYPE DETECTION (VERY LOOSE)
+// ==========================================================
+
+function detectType(raw) {
+
+  if (!raw) return "image";
+
+  raw = raw.toString().toLowerCase();
+
+  if (raw.includes("video")) return "video";
+
+  return "image";
+}
+
+// ==========================================================
+// PARSE FILE STRUCTURE
+// [type] [id] [url]
+// URL IS IGNORED
+// ==========================================================
+
+function parseFile(file) {
+
+  if (!file || !Array.isArray(file)) return null;
+
+  return {
+    type: detectType(file[0]),
+    id: file[1] || null,
+    url: file[2] || null
+  };
+}
+
+// ==========================================================
+// IMAGE RENDER (DIRECT)
+// ==========================================================
+
+function renderImage(file) {
 
   return `
-    <img src="${file.url}" style="width:100%; height:100%; object-fit:cover;">
+    <img src="${IMAGE_BASE + file.id}"
+         style="width:100%; height:100%; object-fit:cover;">
   `;
 }
 
-// -----------------------------
-// MULTI MEDIA
-// -----------------------------
+// ==========================================================
+// VIDEO THUMB (NO INLINE VIDEO)
+// ==========================================================
 
-function renderMedia(files) {
-  if (!files || files.length === 0) {
-    return `<img src="https://via.placeholder.com/600">`;
-  }
+function renderVideoThumb(file) {
 
-  if (files.length === 1) {
-    return renderSingleMedia(files[0]);
-  }
+  const videoUrl = VIDEO_BASE + file.id + "?alt=media";
 
   return `
-    <div class="auto-carousel">
-      ${files.map((file, i) => `
-        <div class="auto-slide ${i === 0 ? "active" : ""}">
-          ${renderSingleMedia(file)}
-        </div>
-      `).join("")}
+    <div class="video-thumb-wrapper" data-video="${videoUrl}">
+      <img src="https://via.placeholder.com/600?text=Play+Video"
+           style="width:100%; height:100%; object-fit:cover; cursor:pointer;">
     </div>
   `;
 }
 
-// -----------------------------
-// SLIDESHOW
-// -----------------------------
+// ==========================================================
+// MEDIA ROUTER
+// ==========================================================
 
-function startAutoSlides() {
-  const carousels = document.querySelectorAll(".auto-carousel");
+function renderMedia(file) {
 
-  carousels.forEach(carousel => {
-    const slides = carousel.querySelectorAll(".auto-slide");
+  const parsed = parseFile(file);
 
-    let index = 0;
-    let paused = false;
-    let timeoutRef;
+  if (!parsed || !parsed.id) {
+    return `<img src="https://via.placeholder.com/600">`;
+  }
 
-    if (slides.length <= 1) return;
+  if (parsed.type === "video") {
+    return renderVideoThumb(parsed);
+  }
 
-    function show(i) {
-      slides.forEach(s => s.classList.remove("active"));
-      slides[i].classList.add("active");
-    }
-
-    function next() {
-      if (paused) return;
-
-      const current = slides[index];
-      const video = current?.querySelector("video");
-
-      if (video && !video.ended) {
-        video.onended = () => next();
-        return;
-      }
-
-      timeoutRef = setTimeout(() => {
-        index = (index + 1) % slides.length;
-        show(index);
-        next();
-      }, 3500);
-    }
-
-    carousel.addEventListener("click", () => {
-      paused = !paused;
-      if (!paused) next();
-      else clearTimeout(timeoutRef);
-    });
-
-    show(index);
-    next();
-  });
+  return renderImage(parsed);
 }
 
-// -----------------------------
-// RENDER PAGE
-// -----------------------------
+// ==========================================================
+// RENDER TIMELINE
+// ==========================================================
 
 function renderChronicles() {
+
   const chronicleWing = document.getElementById("chronicle-container");
 
   const nextItems = allChronicles.slice(currentIndex, currentIndex + PAGE_SIZE);
@@ -679,55 +635,75 @@ function renderChronicles() {
 
     const files = item.files || [];
 
-    const categories = Array.isArray(item.categories)
-      ? item.categories.join(" ")
-      : (item.categories || "");
+    const imageHTML = renderMedia(files[0]);
+    const videoHTML = renderMedia(files[1]);
 
-    const desc = item.description || "";
-
-    const mediaHTML = renderMedia(files);
+    const desc =
+      item.description ||
+      item.misc?.Description ||
+      "";
 
     html += `
-      <div class="process-chronicals-node chronicle-node" data-index="${globalIndex}">
+      <div class="process-chronicals-node chronicle-node">
 
         <div class="row align-items-center">
 
           ${isEven ? `
             <div class="col-md-6 pr-md-5">
 
-              <span class="node-step">${categories}</span>
+              <h3 class="node-title chronicle-title">
+                ${item.title || ""}
+              </h3>
 
-              <h3 class="node-title chronicle-title">${item.title || ""}</h3>
-
-              <div class="node-text chronicle-desc">${desc}</div>
+              <div class="node-text chronicle-desc">
+                ${desc}
+              </div>
 
               <div class="chronicle-meta mt-3">
                 <span>${item.author || ""}</span>
-                <span>${item.postDate || ""}</span>
+                <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
 
             <div class="col-md-6 pl-md-5">
-              <div class="node-image-frame">${mediaHTML}</div>
+
+              <div class="node-image-frame">
+                ${imageHTML}
+              </div>
+
+              <div class="node-image-frame mt-3">
+                ${videoHTML}
+              </div>
+
             </div>
 
           ` : `
             <div class="col-md-6 pr-md-5">
-              <div class="node-image-frame">${mediaHTML}</div>
+
+              <div class="node-image-frame">
+                ${imageHTML}
+              </div>
+
+              <div class="node-image-frame mt-3">
+                ${videoHTML}
+              </div>
+
             </div>
 
             <div class="col-md-6 pl-md-5">
 
-              <span class="node-step">${categories}</span>
+              <h3 class="node-title chronicle-title">
+                ${item.title || ""}
+              </h3>
 
-              <h3 class="node-title chronicle-title">${item.title || ""}</h3>
-
-              <div class="node-text chronicle-desc">${desc}</div>
+              <div class="node-text chronicle-desc">
+                ${desc}
+              </div>
 
               <div class="chronicle-meta mt-3">
                 <span>${item.author || ""}</span>
-                <span>${item.postDate || ""}</span>
+                <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
@@ -741,20 +717,50 @@ function renderChronicles() {
   chronicleWing.insertAdjacentHTML("beforeend", html);
 
   currentIndex += PAGE_SIZE;
-
-  const btn = document.getElementById("loadMoreBtn");
-  if (btn && currentIndex >= allChronicles.length) {
-    btn.style.display = "none";
-  }
-
-  setTimeout(startAutoSlides, 100);
 }
 
-// -----------------------------
+// ==========================================================
+// VIDEO POPUP SYSTEM
+// ==========================================================
+
+document.addEventListener("click", function (e) {
+
+  const trigger = e.target.closest(".video-thumb-wrapper");
+  if (!trigger) return;
+
+  const url = trigger.getAttribute("data-video");
+
+  const overlay = document.createElement("div");
+
+  overlay.style.cssText = `
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.92);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+  `;
+
+  overlay.innerHTML = `
+    <video autoplay controls playsinline
+      style="max-width:90%; max-height:90%;">
+      <source src="${url}">
+    </video>
+  `;
+
+  overlay.addEventListener("click", () => overlay.remove());
+
+  document.body.appendChild(overlay);
+});
+
+// ==========================================================
 // BOOT
-// -----------------------------
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+
   initiateChronicles();
 
   const btn = document.getElementById("loadMoreBtn");
