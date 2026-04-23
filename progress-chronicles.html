@@ -437,15 +437,58 @@ function startAutoSlides() {
 
   carousels.forEach(carousel => {
     const slides = carousel.querySelectorAll(".auto-slide");
+
     let index = 0;
+    let paused = false;
+    let timeoutRef = null;
 
     if (slides.length <= 1) return;
 
-    setInterval(() => {
-      slides[index].classList.remove("active");
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 3500);
+    function showSlide(i) {
+      slides.forEach(s => s.classList.remove("active"));
+      slides[i].classList.add("active");
+    }
+
+    function getCurrentMedia(slide) {
+      return slide.querySelector("video");
+    }
+
+    function nextSlide() {
+      if (paused) return;
+
+      const currentSlide = slides[index];
+      const video = currentSlide?.querySelector("video");
+
+      // If video exists and is still playing, wait for it to end
+      if (video && !video.ended) {
+        video.onended = () => {
+          if (!paused) nextSlide();
+        };
+        return;
+      }
+
+      // Otherwise advance after delay
+      timeoutRef = setTimeout(() => {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+        nextSlide();
+      }, 3500);
+    }
+
+    // CLICK = TOGGLE PAUSE/PLAY (NO BUTTONS)
+    carousel.addEventListener("click", () => {
+      paused = !paused;
+
+      if (!paused) {
+        nextSlide();
+      } else {
+        clearTimeout(timeoutRef);
+      }
+    });
+
+    // START
+    showSlide(index);
+    nextSlide();
   });
 }
 
