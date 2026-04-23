@@ -479,7 +479,7 @@
 
 <script>
 // ==========================================================
-// === CHRONICLE SCRIBE v6.1 (FIXED FILE PARSING ONLY) =====
+// === CHRONICLE SCRIBE v6.4 (STABLE DATE + MEDIA FIX) ===
 // ==========================================================
 
 let allChronicles = [];
@@ -491,74 +491,93 @@ const PAGE_SIZE = 4;
 // -----------------------------
 
 async function initiateChronicles() {
+
   const chronicleWing = document.getElementById("chronicle-container");
   const dataDump = document.getElementById("raw-data-log");
+  const loadingMsg = document.getElementById("loadingMessage");
 
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
   try {
+
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
 
+    // Debug dump
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    allChronicles = satchel
-      .filter(item => (item.type || "").toLowerCase().includes("progress"))
-      .sort((a, b) =>
-        new Date(a.misc?.postDate || a.misc?.postdate || a.date) -
-        new Date(b.misc?.postDate || b.misc?.postdate || b.date)
-      );
+    // -----------------------------
+    // SAFE FILTER + SORT
+    // -----------------------------
+
+    allChronicles = (Array.isArray(satchel) ? satchel : [])
+      .filter(item =>
+        (item.type || "").toLowerCase().includes("progress")
+      )
+      .sort((a, b) => {
+
+        const getTime = (item) => {
+          const raw =
+            item.date ||
+            item.misc?.postdate ||
+            item.misc?.postDate;
+
+          const t = new Date(raw).getTime();
+          return isNaN(t) ? 0 : t;
+        };
+
+        // NEWEST FIRST
+        return getTime(b) - getTime(a);
+      });
 
     chronicleWing.innerHTML = "";
     renderChronicles();
 
-    const loadingMsg = document.getElementById("loadingMessage");
     if (loadingMsg) loadingMsg.style.display = "none";
 
   } catch (error) {
+
     console.error("Chronicle error:", error);
-    chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
-  }
-}
 
-// -----------------------------
-// MEDIA FIX (ONLY CHANGE)
-// -----------------------------
-
-function getImageFromFiles(files) {
-
-  if (!files || !files[0]) {
-    return "https://via.placeholder.com/600";
-  }
-
-  const raw = files[0];
-
-  if (typeof raw !== "string") {
-    return "https://via.placeholder.com/600";
-  }
-
-  const parts = raw.split("\n");
-
-  // ALWAYS USE LAST LINE THAT IS A URL
-  for (let i = parts.length - 1; i >= 0; i--) {
-    const line = parts[i].trim();
-    if (line.startsWith("http")) {
-      return line;
+    if (loadingMsg) {
+      loadingMsg.innerText = "The archive failed to load.";
+      loadingMsg.style.color = "red";
     }
   }
-
-  return "https://via.placeholder.com/600";
 }
 
 // -----------------------------
-// RENDER
+// MEDIA HANDLING (USES YOUR 3RD INDEX URL)
+// -----------------------------
+
+function extractDriveUrl(fileString) {
+  if (!fileString) return null;
+
+  if (typeof fileString !== "string") return null;
+
+  const parts = fileString.split("\n");
+
+  // YOUR RULE: ALWAYS USE 3RD LINE (URL)
+  return parts[2] ? parts[2].trim() : null;
+}
+
+function getMedia(item) {
+  const raw = item?.files?.[0];
+  const url = extractDriveUrl(raw);
+
+  return url || "https://via.placeholder.com/600";
+}
+
+// -----------------------------
+// RENDER FUNCTION
 // -----------------------------
 
 function renderChronicles() {
+
   const chronicleWing = document.getElementById("chronicle-container");
 
   const nextItems = allChronicles.slice(
@@ -570,96 +589,87 @@ function renderChronicles() {
 
   nextItems.forEach((item, i) => {
 
-    try {
+    const globalIndex = currentIndex + i;
+    const isEven = globalIndex % 2 === 0;
 
-      const globalIndex = currentIndex + i;
-      const isEven = globalIndex % 2 === 0;
+    const media = getMedia(item);
 
-      const files = item.files || [];
-      const img = getImageFromFiles(files);
+    const desc =
+      item.misc?.Description ||
+      (Array.isArray(item.description)
+        ? item.description.join("<br>")
+        : item.description || "");
 
-      const categories = item.misc?.categories;
-      const categoryDisplay = Array.isArray(categories)
-        ? categories.join(" ")
-        : (categories || "");
+    const categories =
+      Array.isArray(item.misc?.categories)
+        ? item.misc.categories.join(" ")
+        : item.misc?.categories || "Concept Development";
 
-      const desc =
-        item.misc?.Description ||
-        (Array.isArray(item.description)
-          ? item.description.join("<br>")
-          : item.description || "");
+    html += `
+      <div class="process-chronicals-node chronicle-node">
 
-      html += `
-        <div class="process-chronicals-node chronicle-node"
-             data-index="${globalIndex}">
+        <div class="row align-items-center">
 
-          <div class="row align-items-center">
+          ${isEven ? `
+            <div class="col-md-6 pr-md-5">
 
-            ${isEven ? `
-              <div class="col-md-6 pr-md-5">
+              <span class="node-step">
+                ${categories}
+              </span>
 
-                <span class="node-step">
-                  ${categoryDisplay}
-                </span>
+              <h3 class="node-title chronicle-title">
+                ${item.title || ""}
+              </h3>
 
-                <h3 class="node-title chronicle-title">
-                  ${item.title || ""}
-                </h3>
-
-                <div class="node-text chronicle-desc">
-                  ${desc}
-                </div>
-
-                <div class="chronicle-meta mt-3">
-                  <span>${item.author || "Lair McKenzie"}</span>
-                  <span>${item.misc?.postDate || item.misc?.postdate || ""}</span>
-                </div>
-
+              <div class="node-text chronicle-desc">
+                ${desc}
               </div>
 
-              <div class="col-md-6 pl-md-5">
-                <div class="node-image-frame">
-                  <img src="${img}" alt="${item.title || ""}">
-                </div>
+              <div class="chronicle-meta mt-3">
+                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.date || item.misc?.postdate || ""}</span>
               </div>
 
-            ` : `
-              <div class="col-md-6 pr-md-5">
-                <div class="node-image-frame">
-                  <img src="${img}" alt="${item.title || ""}">
-                </div>
+            </div>
+
+            <div class="col-md-6 pl-md-5">
+              <div class="node-image-frame">
+                <img src="${media}" alt="${item.title || ''}">
+              </div>
+            </div>
+
+          ` : `
+            <div class="col-md-6 pr-md-5">
+              <div class="node-image-frame">
+                <img src="${media}" alt="${item.title || ''}">
+              </div>
+            </div>
+
+            <div class="col-md-6 pl-md-5">
+
+              <span class="node-step">
+                ${categories}
+              </span>
+
+              <h3 class="node-title chronicle-title">
+                ${item.title || ""}
+              </h3>
+
+              <div class="node-text chronicle-desc">
+                ${desc}
               </div>
 
-              <div class="col-md-6 pl-md-5">
-
-                <span class="node-step">
-                  ${categoryDisplay}
-                </span>
-
-                <h3 class="node-title chronicle-title">
-                  ${item.title || ""}
-                </h3>
-
-                <div class="node-text chronicle-desc">
-                  ${desc}
-                </div>
-
-                <div class="chronicle-meta mt-3">
-                  <span>${item.author || "Lair McKenzie"}</span>
-                  <span>${item.misc?.postDate || item.misc?.postdate || ""}</span>
-                </div>
-
+              <div class="chronicle-meta mt-3">
+                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.date || item.misc?.postdate || ""}</span>
               </div>
-            `}
 
-          </div>
+            </div>
+          `}
+
         </div>
-      `;
-
-    } catch (err) {
-      console.error("Render error:", err);
-    }
-
+      </div>
+    `;
   });
 
   chronicleWing.insertAdjacentHTML("beforeend", html);
