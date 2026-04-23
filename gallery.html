@@ -124,7 +124,7 @@
     </div>
 </footer>
 
-<script>
+<!-- <script>
 // ==========================================================
 // === THE MUSEUM CURATOR v3.1 (Fixed Layout & Logic) ===
 // ==========================================================
@@ -197,7 +197,111 @@ function openGrandView(src) {
 }
 
 document.addEventListener('DOMContentLoaded', initiateGallery);
-</script>
+</script> -->
+<script>
 
+// ==========================================================
+// === THE MUSEUM CURATOR (UPDATED FILE STRUCTURE) ===
+// ==========================================================
+
+async function initiateGallery() {
+
+  const museumWing = document.getElementById('museum-wing');
+  const dataDump = document.getElementById('raw-data-log');
+
+  const scriptUrl =
+    "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+
+  try {
+
+    const response = await fetch(scriptUrl + "?t=" + Date.now());
+    const satchel = await response.json();
+
+    const galleryItems = satchel.filter(item =>
+      (item.type || "").toLowerCase().trim() === "gallery"
+    );
+
+    if (!museumWing) return;
+
+    if (dataDump) {
+      dataDump.style.display = "block";
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
+    }
+
+    museumWing.innerHTML = "";
+
+    galleryItems.forEach(item => {
+
+      // ======================================================
+      // 🔥 KEY CHANGE: USE THIRD ARRAY ITEM (IMAGE URL)
+      // ======================================================
+      const mainImg =
+        item.files && item.files.length >= 3
+          ? item.files[2]
+          : "https://via.placeholder.com/300";
+
+      const cleanDesc = Array.isArray(item.description)
+        ? item.description.join(" ")
+        : (item.description || "");
+
+      const mediaType =
+        item.misc?.Media || "Masterwork";
+
+      const cardHtml = `
+        <div class="gallery-card"
+             onclick="openGrandView('${mainImg}')">
+
+          <img class="gallery-media"
+               src="${mainImg}"
+               alt="${item.title || ''}">
+
+          <div class="gallery-overlay">
+
+            <h3 style="margin:0;">
+              ${item.title || ""}
+            </h3>
+
+            <p style="font-size: 0.85rem; margin: 10px 0;">
+              ${mediaType}
+            </p>
+
+            <p style="font-style: italic; font-size: 0.8rem;">
+              ${cleanDesc}
+            </p>
+
+          </div>
+
+        </div>`;
+
+      museumWing.innerHTML += cardHtml;
+    });
+
+  } catch (error) {
+    console.error("Librarian:", error);
+  }
+}
+
+// ==========================================================
+// MODAL VIEW (UNCHANGED)
+// ==========================================================
+
+function openGrandView(src) {
+
+  const modal = document.getElementById('grand-view');
+  const modalImg = document.getElementById('grand-img');
+
+  if (modal && modalImg) {
+    modal.style.display = "flex";
+    modalImg.src = src;
+  }
+}
+
+// ==========================================================
+// BOOT
+// ==========================================================
+
+document.addEventListener('DOMContentLoaded', initiateGallery);
+
+</script>
 </body>
 </html>
