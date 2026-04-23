@@ -500,16 +500,49 @@ async function initiateChronicles() {
 
   try {
     const response = await fetch(scriptUrl + "?t=" + Date.now());
-    const rawText = await response.text();
+    const satchel = await response.json();
 
-    // OPTIONAL DEBUG VIEW
+    // DEBUG VIEW (unchanged)
     if (dataDump) {
       dataDump.style.display = "block";
-      dataDump.textContent = rawText;
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    allChronicles = parseChronicles(rawText)
-      .filter(item => (item.type || "").toLowerCase().includes("progress"))
+    // IMPORTANT FIX: map API format → your UI format
+    allChronicles = satchel
+      .map(item => {
+
+        const files = (item.files || []).map(f => {
+          // your API gives: ["id\nmime\nurl"]
+          if (Array.isArray(f)) {
+            const parts = f[0].split("\n");
+            return {
+              fileId: parts[0],
+              mimeType: parts[1],
+              url: parts[2]
+            };
+          }
+
+          // fallback (already structured)
+          return {
+            fileId: null,
+            mimeType: "video/mp4",
+            url: f
+          };
+        });
+
+        return {
+          id: item.id,
+          title: item.title,
+          author: item.author,
+          description: item.misc?.Description || "",
+          postDate: item.misc?.postdate || item.date,
+          type: item.type,
+          categories: item.misc?.categories || [],
+          files
+        };
+      })
+      .filter(item => (item.type || "").includes("progress"))
       .sort((a, b) => new Date(a.postDate) - new Date(b.postDate));
 
     chronicleWing.innerHTML = "";
@@ -523,7 +556,6 @@ async function initiateChronicles() {
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 }
-
 // -----------------------------
 // PARSER (YOUR FORMAT: ||| + [key]: value)
 // -----------------------------
