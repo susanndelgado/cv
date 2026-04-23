@@ -477,10 +477,10 @@
 // });
 
 // </script>
-<script>
+      <script>
 
 // ==========================================================
-// === CHRONICLE SCRIBE v7.0 (FULL PARSER FIXED SYSTEM) ===
+// === CHRONICLE SCRIBE (JSON SAFE VERSION) ===
 // ==========================================================
 
 let allChronicles = [];
@@ -500,50 +500,48 @@ async function initiateChronicles() {
 
   try {
     const response = await fetch(scriptUrl + "?t=" + Date.now());
-    const satchel = await response.json();
+    const data = await response.json();
 
-    // DEBUG VIEW (unchanged)
     if (dataDump) {
       dataDump.style.display = "block";
-      dataDump.textContent = JSON.stringify(satchel, null, 2);
+      dataDump.textContent = JSON.stringify(data, null, 2);
     }
 
-    // IMPORTANT FIX: map API format → your UI format
-    allChronicles = satchel
-      .map(item => {
+    // normalize data
+    allChronicles = data.map(item => {
 
-        const files = (item.files || []).map(f => {
-          // your API gives: ["id\nmime\nurl"]
-          if (Array.isArray(f)) {
-            const parts = f[0].split("\n");
-            return {
-              fileId: parts[0],
-              mimeType: parts[1],
-              url: parts[2]
-            };
-          }
+      const files = (item.files || []).map(f => {
 
-          // fallback (already structured)
+        // case: your current format ["id\nmime\nurl"]
+        if (typeof f === "string") {
+          const parts = f.split("\n").map(x => x.trim()).filter(Boolean);
+
           return {
-            fileId: null,
-            mimeType: "video/mp4",
-            url: f
+            fileId: parts[0] || null,
+            mimeType: parts.find(p => p.includes("/")) || "",
+            url: parts.find(p => p.startsWith("http")) || ""
           };
-        });
+        }
 
+        // fallback: already structured
         return {
-          id: item.id,
-          title: item.title,
-          author: item.author,
-          description: item.misc?.Description || "",
-          postDate: item.misc?.postdate || item.date,
-          type: item.type,
-          categories: item.misc?.categories || [],
-          files
+          fileId: f.fileId || null,
+          mimeType: f.mimeType || "",
+          url: f.url || ""
         };
-      })
-      .filter(item => (item.type || "").includes("progress"))
-      .sort((a, b) => new Date(a.postDate) - new Date(b.postDate));
+      });
+
+      return {
+        id: item.id,
+        title: item.title,
+        author: item.author,
+        description: item.misc?.Description || "",
+        postDate: item.misc?.postdate || item.date,
+        type: item.type,
+        categories: item.misc?.categories || [],
+        files
+      };
+    });
 
     chronicleWing.innerHTML = "";
     renderChronicles();
@@ -556,83 +554,14 @@ async function initiateChronicles() {
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 }
+
 // -----------------------------
-// PARSER (YOUR FORMAT: ||| + [key]: value)
+// VIDEO DETECTION (ORDER-INDEPENDENT)
 // -----------------------------
 
-function parseChronicles(raw) {
-  const blocks = raw.split("|||").map(b => b.trim()).filter(Boolean);
-
-  const results = [];
-
-  for (let block of blocks) {
-
-    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
-
-    const item = {
-      files: []
-    };
-
-    let inFiles = false;
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-
-      const match = line.match(/^\[(.*?)\]:\s*(.*)$/);
-
-      if (!match) continue;
-
-      const key = match[1].toLowerCase();
-      const value = match[2];
-
-      if (key === "id") item.id = value;
-      if (key === "title") item.title = value;
-      if (key === "description") item.description = value;
-      if (key === "author") item.author = value;
-      if (key === "postdate") item.postDate = value;
-      if (key === "type") item.type = value;
-
-      if (key === "categories") {
-        item.categories = value
-          .split("\n")
-          .map(v => v.trim())
-          .filter(Boolean);
-      }
-
-      // FILE PARSING START
-      if (key === "files") {
-        inFiles = true;
-        continue;
-      }
-
-      // FILE STRUCTURE:
-      // line i   = fileId
-      // line i+1 = mime
-      // line i+2 = url
-
-      if (inFiles) {
-        const fileId = lines[i];
-        const mime = lines[i + 1];
-        const url = lines[i + 2];
-
-        if (fileId && url) {
-          item.files.push({
-            fileId,
-            mimeType: mime,
-            url
-          });
-
-          i += 2; // skip next 2 lines
-        }
-
-        inFiles = false;
-      }
-    }
-
-    if (item.id) results.push(item);
-  }
-
-  return results;
+function isVideo(file) {
+  const mime = (file.mimeType || "").toLowerCase();
+  return mime.includes("video/mp4") || mime.startsWith("video/");
 }
 
 // -----------------------------
@@ -645,9 +574,7 @@ function renderSingleMedia(file) {
     return `<img src="https://via.placeholder.com/600">`;
   }
 
-  const isVideo = (file.mimeType || "").includes("video");
-
-  if (isVideo) {
+  if (isVideo(file)) {
     return `
       <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
         <source src="${file.url}" type="${file.mimeType}">
@@ -661,7 +588,7 @@ function renderSingleMedia(file) {
 }
 
 // -----------------------------
-// MULTI MEDIA (SLIDESHOW SUPPORT)
+// MULTI MEDIA
 // -----------------------------
 
 function renderMedia(files) {
@@ -685,7 +612,7 @@ function renderMedia(files) {
 }
 
 // -----------------------------
-// SLIDESHOW ENGINE
+// SLIDESHOW
 // -----------------------------
 
 function startAutoSlides() {
