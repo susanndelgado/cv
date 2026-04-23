@@ -480,7 +480,7 @@
 <script>
 
 // ==========================================================
-// === CHRONICLE SCRIBE (LOOSE MEDIA + POPUP VIDEO SYSTEM) ===
+// === CHRONICLE SCRIBE (FINAL STABLE MEDIA SYSTEM) ===
 // ==========================================================
 
 let allChronicles = [];
@@ -511,7 +511,7 @@ async function initiateChronicles() {
     const res = await fetch(scriptUrl + "?t=" + Date.now());
     const data = await res.json();
 
-    // DEBUG PANEL (unchanged behavior)
+    // DEBUG VIEW (unchanged)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(data, null, 2);
@@ -538,24 +538,27 @@ async function initiateChronicles() {
 }
 
 // ==========================================================
-// MEDIA TYPE DETECTION (VERY LOOSE)
+// TYPE DETECTION (LOOSE BUT SAFE)
 // ==========================================================
 
-function detectType(raw) {
+function detectType(typeField, mimeField) {
 
-  if (!raw) return "image";
+  const raw = (typeField || "").toLowerCase();
 
-  raw = raw.toString().toLowerCase();
+  if (raw === "video") return "video";
+  if (raw === "image") return "image";
 
-  if (raw.includes("video")) return "video";
+  // fallback safety
+  if (mimeField && mimeField.toLowerCase().includes("video")) {
+    return "video";
+  }
 
   return "image";
 }
 
 // ==========================================================
 // PARSE FILE STRUCTURE
-// [type] [id] [url]
-// URL IS IGNORED
+// [type] [id] [mime/url]
 // ==========================================================
 
 function parseFile(file) {
@@ -563,26 +566,31 @@ function parseFile(file) {
   if (!file || !Array.isArray(file)) return null;
 
   return {
-    type: detectType(file[0]),
+    type: detectType(file[0], file[2]),
     id: file[1] || null,
-    url: file[2] || null
+    meta: file[2] || null
   };
 }
 
 // ==========================================================
-// IMAGE RENDER (DIRECT)
+// IMAGE RENDER (DIRECT ONLY)
 // ==========================================================
 
 function renderImage(file) {
 
+  if (!file?.id) {
+    return `<img src="https://via.placeholder.com/600?text=Missing+Image">`;
+  }
+
   return `
     <img src="${IMAGE_BASE + file.id}"
+         onerror="this.src='https://via.placeholder.com/600?text=Error'"
          style="width:100%; height:100%; object-fit:cover;">
   `;
 }
 
 // ==========================================================
-// VIDEO THUMB (NO INLINE VIDEO)
+// VIDEO THUMB (ALWAYS IMAGE IN GRID)
 // ==========================================================
 
 function renderVideoThumb(file) {
@@ -605,7 +613,7 @@ function renderMedia(file) {
 
   const parsed = parseFile(file);
 
-  if (!parsed || !parsed.id) {
+  if (!parsed) {
     return `<img src="https://via.placeholder.com/600">`;
   }
 
@@ -617,7 +625,7 @@ function renderMedia(file) {
 }
 
 // ==========================================================
-// RENDER TIMELINE
+// RENDER CHRONICLES
 // ==========================================================
 
 function renderChronicles() {
@@ -720,7 +728,7 @@ function renderChronicles() {
 }
 
 // ==========================================================
-// VIDEO POPUP SYSTEM
+// VIDEO POPUP PLAYER
 // ==========================================================
 
 document.addEventListener("click", function (e) {
