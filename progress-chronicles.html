@@ -71,9 +71,11 @@
         
         <div class="hero-divider"></div>
     </div>
+
+   
 </section>
 
-<section id="chronicles-wing" class="chronicles-section">
+<!-- <section id="chronicles-wing" class="chronicles-section">
    <div class="container position-relative">
    <div class="process-wrap">
             <div class="tree-trunk"></div>
@@ -90,8 +92,35 @@
 
   </div>
    </div>
-</section>
+</section> -->
+<section id="chronicles-wing" class="chronicles-section">
 
+  <div class="container position-relative">
+
+    <div class="process-wrap">
+
+      <!-- YOUR EXISTING TREE TRUNK (UNCHANGED) -->
+      <div class="tree-trunk"></div>
+
+      <!-- CHRONICLE CONTENT -->
+      <div id="chronicle-container" class="chronicle-timeline"></div>
+
+      <!-- LOADING MESSAGE (UNCHANGED) -->
+      <div id="loadingMessage">
+        The Librarian is fetching thy masterworks...
+      </div>
+
+      <!-- LOAD MORE (UNCHANGED) -->
+      <div class="text-center mt-5"> 
+        <button id="loadMoreBtn" class="btn btn-outline-dark">
+          Load More
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</section>
 <section class="boutique-education-area">
     <div class="container">
         <div class="row justify-content-center d-flex align-items-stretch">
@@ -136,23 +165,191 @@
 
 <script>
 
-  // ==========================================================
-// === THE CHRONICLE SCRIBE v3.3 (PAGINATION ENABLED) ===
-// ==========================================================
+//   // ==========================================================
+// // === THE CHRONICLE SCRIBE v3.3 (PAGINATION ENABLED) ===
+// // ==========================================================
  
+// let allChronicles = [];
+// let currentIndex = 0;
+// const PAGE_SIZE = 4;
+
+// async function initiateChronicles() {
+//   const chronicleWing = document.getElementById("chronicle-container");
+//   const dataDump = document.getElementById("raw-data-log");
+
+//   const scriptUrl = 
+//  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+
+//   try {
+//     const response = await fetch(scriptUrl + "?t=" + Date.now()); // 🔥 cache-bust
+//     const satchel = await response.json();
+
+//     if (dataDump) {
+//       dataDump.style.display = "block";
+//       dataDump.textContent = JSON.stringify(satchel, null, 2);
+//     }
+
+//     allChronicles = satchel
+//       .filter(item => item.type && item.type.toLowerCase().trim() === "progress")
+//       .sort((a, b) => parseInt(b.id) - parseInt(a.id));
+
+//     chronicleWing.innerHTML = ""; // reset once
+//     renderChronicles();
+
+   
+//   const loadingMsg = document.getElementById("loadingMessage");
+//   if (loadingMsg) loadingMsg.style.display = "none";
+//   } catch (error) {
+//     console.error(error);
+//     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
+//   }
+// }
+// function getMedia(url) {
+//   if (!url) return "https://via.placeholder.com/600";
+
+//   // Fix Google Drive links
+//   if (url.includes("drive.google.com")) {
+//     const match = url.match(/\/d\/(.*?)\//);
+//     if (match && match[1]) {
+//       return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+//     }
+//   }
+//   return url;
+// }
+
+// function renderChronicles() {
+//   const chronicleWing = document.getElementById("chronicle-container");
+
+//   const nextItems = allChronicles.slice(currentIndex, currentIndex + PAGE_SIZE);
+
+//   let html = "";
+
+//   nextItems.forEach((item, i) => {
+
+//     const isEven = (currentIndex + i) % 2 === 0;
+
+//     const media = getMedia(item.files?.[0]);
+
+//     const desc = item.misc?.Description
+//       || (Array.isArray(item.description)
+//           ? item.description.join("<br>")
+//           : item.description || "");
+
+//     html += `
+//       <div class="process-chronicals-node chronicle-node">
+
+//         <div class="row align-items-center">
+
+//           ${isEven ? `
+//             <!-- TEXT LEFT -->
+//             <div class="col-md-6 pr-md-5">
+//              <span class="node-step">
+//               ${(item.misc?.categories?.length
+//                   ? item.misc.categories.join(" ")
+//                   : "Concept Development")}
+//             </span>
+            
+//             <h3 class="node-title chronicle-title">
+//               ${item.title || ""}
+//             </h3>
+            
+//             <div class="node-text chronicle-desc">
+//               ${desc || ""}
+//             </div>
+            
+//             <div class="chronicle-meta mt-3">
+//               <span>${item.author || "Lair McKenzie"}</span>
+//               <span>${item.misc.postDate || ""}</span>
+//             </div>
+//             </div>
+
+//             <!-- IMAGE RIGHT -->
+//             <div class="col-md-6 pl-md-5">
+//               <div class="node-image-frame">
+//                 <img src="${media}" alt="${item.title}">
+//               </div>
+//             </div>
+
+//           ` : `
+//             <!-- IMAGE LEFT -->
+//             <div class="col-md-6 pr-md-5">
+//               <div class="node-image-frame">
+//                 <img src="${media}" alt="${item.title}">
+//               </div>
+//             </div>
+
+//             <!-- TEXT RIGHT -->
+//             <div class="col-md-6 pl-md-5">
+//               <span class="node-step">
+//               ${(item.misc?.categories?.length
+//                   ? item.misc.categories.join(" ")
+//                   : "Concept Development")}
+//             </span>
+            
+//             <h3 class="node-title chronicle-title">
+//               ${item.title || ""}
+//             </h3>
+            
+//             <div class="node-text chronicle-desc">
+//               ${desc || ""}
+//             </div>
+            
+//             <div class="chronicle-meta mt-3">
+//               <span>${item.author || "Lair McKenzie"}</span>
+//               <span>${item.misc.postDate || ""}</span>
+//             </div>
+//             </div>
+//           `}
+
+//         </div>
+
+//       </div>
+//     `;
+//   });
+
+//   chronicleWing.insertAdjacentHTML("beforeend", html);
+
+//   currentIndex += PAGE_SIZE;
+
+//   const btn = document.getElementById("loadMoreBtn");
+//   if (btn && currentIndex >= allChronicles.length) {
+//     btn.style.display = "none";
+//   }
+// }
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   initiateChronicles();
+
+//   const btn = document.getElementById("loadMoreBtn");
+//   if (btn) {
+//     btn.addEventListener("click", renderChronicles);
+//   }
+// });
+</script>
+
+  <script>
+
+// ==========================================================
+// === CHRONICLE SCRIBE v6.1 (FINAL ARCHIVE SYSTEM) ===
+// ==========================================================
+
 let allChronicles = [];
 let currentIndex = 0;
 const PAGE_SIZE = 4;
+
+// -----------------------------
+// INIT
+// -----------------------------
 
 async function initiateChronicles() {
   const chronicleWing = document.getElementById("chronicle-container");
   const dataDump = document.getElementById("raw-data-log");
 
-  const scriptUrl = 
+  const scriptUrl =
  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
   try {
-    const response = await fetch(scriptUrl + "?t=" + Date.now()); // 🔥 cache-bust
+    const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
 
     if (dataDump) {
@@ -161,121 +358,217 @@ async function initiateChronicles() {
     }
 
     allChronicles = satchel
-      .filter(item => item.type && item.type.toLowerCase().trim() === "progress")
-      .sort((a, b) => parseInt(b.id) - parseInt(a.id));
+      .filter(item => (item.type || "").toLowerCase().includes("progress"))
+      .sort((a, b) =>
+        new Date(a.misc?.postDate) - new Date(b.misc?.postDate)
+      );
 
-    chronicleWing.innerHTML = ""; // reset once
+    chronicleWing.innerHTML = "";
     renderChronicles();
 
-   
-  const loadingMsg = document.getElementById("loadingMessage");
-  if (loadingMsg) loadingMsg.style.display = "none";
+    const loadingMsg = document.getElementById("loadingMessage");
+    if (loadingMsg) loadingMsg.style.display = "none";
+
   } catch (error) {
     console.error(error);
     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 }
+
+// -----------------------------
+// MEDIA HELPERS
+// -----------------------------
+
 function getMedia(url) {
   if (!url) return "https://via.placeholder.com/600";
 
-  // Fix Google Drive links
   if (url.includes("drive.google.com")) {
     const match = url.match(/\/d\/(.*?)\//);
     if (match && match[1]) {
       return `https://drive.google.com/uc?export=view&id=${match[1]}`;
     }
   }
+
   return url;
 }
+
+function renderSingleMedia(url) {
+  const media = getMedia(url);
+
+  if (media.match(/\.(mp4|webm|ogg)$/i)) {
+    return `
+      <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+        <source src="${media}">
+      </video>
+    `;
+  }
+
+  return `
+    <img src="${media}" style="width:100%; height:100%; object-fit:cover;">
+  `;
+}
+
+// -----------------------------
+// AUTO SLIDESHOW
+// -----------------------------
+
+function renderMedia(files, index) {
+  if (!files || files.length === 0) {
+    return `<img src="https://via.placeholder.com/600">`;
+  }
+
+  if (files.length === 1) {
+    return renderSingleMedia(files[0]);
+  }
+
+  return `
+    <div class="auto-carousel">
+      ${files.map((file, i) => `
+        <div class="auto-slide ${i === 0 ? "active" : ""}">
+          ${renderSingleMedia(file)}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function startAutoSlides() {
+  const carousels = document.querySelectorAll(".auto-carousel");
+
+  carousels.forEach(carousel => {
+    const slides = carousel.querySelectorAll(".auto-slide");
+    let index = 0;
+
+    if (slides.length <= 1) return;
+
+    setInterval(() => {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }, 3500);
+  });
+}
+
+// -----------------------------
+// RENDER
+// -----------------------------
 
 function renderChronicles() {
   const chronicleWing = document.getElementById("chronicle-container");
 
-  const nextItems = allChronicles.slice(currentIndex, currentIndex + PAGE_SIZE);
+  const nextItems = allChronicles.slice(
+    currentIndex,
+    currentIndex + PAGE_SIZE
+  );
 
   let html = "";
 
   nextItems.forEach((item, i) => {
 
-    const isEven = (currentIndex + i) % 2 === 0;
+    try {
 
-    const media = getMedia(item.files?.[0]);
+      const globalIndex = currentIndex + i;
+      const isEven = globalIndex % 2 === 0;
+      const files = item.files || [];
 
-    const desc = item.misc?.Description
-      || (Array.isArray(item.description)
+      const categories = item.misc?.categories;
+      const categoryDisplay = Array.isArray(categories)
+        ? categories.join(" ")
+        : (categories || "");
+
+      const desc =
+        item.misc?.Description ||
+        (Array.isArray(item.description)
           ? item.description.join("<br>")
           : item.description || "");
 
-    html += `
-      <div class="process-chronicals-node chronicle-node">
+      const mediaHTML = renderMedia(files, globalIndex);
 
-        <div class="row align-items-center">
+      html += `
+        <div class="process-chronicals-node chronicle-node"
+             data-index="${globalIndex}">
 
-          ${isEven ? `
-            <!-- TEXT LEFT -->
-            <div class="col-md-6 pr-md-5">
-             <span class="node-step">
-              ${(item.misc?.categories?.length
-                  ? item.misc.categories.join(" ")
-                  : "Concept Development")}
-            </span>
-            
-            <h3 class="node-title chronicle-title">
-              ${item.title || ""}
-            </h3>
-            
-            <div class="node-text chronicle-desc">
-              ${desc || ""}
-            </div>
-            
-            <div class="chronicle-meta mt-3">
-              <span>${item.author || "Lair McKenzie"}</span>
-              <span>${item.misc.postDate || ""}</span>
-            </div>
-            </div>
+          <div class="row align-items-center">
 
-            <!-- IMAGE RIGHT -->
-            <div class="col-md-6 pl-md-5">
-              <div class="node-image-frame">
-                <img src="${media}" alt="${item.title}">
+            ${isEven ? `
+              <div class="col-md-6 pr-md-5">
+
+                <span class="node-step">
+                  ${categoryDisplay}
+                </span>
+
+                <h3 class="node-title chronicle-title">
+                  ${item.title || ""}
+                </h3>
+
+                <div class="node-text chronicle-desc">
+                  ${desc}
+                </div>
+
+                <div class="chronicle-meta mt-3">
+                  <span>${item.author || "Lair McKenzie"}</span>
+                  <span>${item.misc?.postDate || ""}</span>
+                </div>
+
               </div>
-            </div>
 
-          ` : `
-            <!-- IMAGE LEFT -->
-            <div class="col-md-6 pr-md-5">
-              <div class="node-image-frame">
-                <img src="${media}" alt="${item.title}">
+              <div class="col-md-6 pl-md-5">
+                <div class="node-image-frame">
+                  ${mediaHTML}
+                </div>
               </div>
-            </div>
 
-            <!-- TEXT RIGHT -->
-            <div class="col-md-6 pl-md-5">
-              <span class="node-step">
-              ${(item.misc?.categories?.length
-                  ? item.misc.categories.join(" ")
-                  : "Concept Development")}
-            </span>
-            
-            <h3 class="node-title chronicle-title">
-              ${item.title || ""}
-            </h3>
-            
-            <div class="node-text chronicle-desc">
-              ${desc || ""}
-            </div>
-            
-            <div class="chronicle-meta mt-3">
-              <span>${item.author || "Lair McKenzie"}</span>
-              <span>${item.misc.postDate || ""}</span>
-            </div>
-            </div>
-          `}
+            ` : `
+              <div class="col-md-6 pr-md-5">
+                <div class="node-image-frame">
+                  ${mediaHTML}
+                </div>
+              </div>
 
+              <div class="col-md-6 pl-md-5">
+
+                <span class="node-step">
+                  ${categoryDisplay}
+                </span>
+
+                <h3 class="node-title chronicle-title">
+                  ${item.title || ""}
+                </h3>
+
+                <div class="node-text chronicle-desc">
+                  ${desc}
+                </div>
+
+                <div class="chronicle-meta mt-3">
+                  <span>${item.author || "Lair McKenzie"}</span>
+                  <span>${item.misc?.postDate || ""}</span>
+                </div>
+
+              </div>
+            `}
+
+          </div>
         </div>
+      `;
 
-      </div>
-    `;
+    } catch (err) {
+
+      console.error("🔥 Item render error:", {
+        id: item.id,
+        title: item.title,
+        error: err
+      });
+
+      html += `
+        <div style="color:red; border:1px solid red; padding:10px; margin:10px 0;">
+          Error rendering item<br>
+          ID: ${item.id || "unknown"}<br>
+          Title: ${item.title || "untitled"}<br>
+          ${err.message}
+        </div>
+      `;
+    }
+
   });
 
   chronicleWing.insertAdjacentHTML("beforeend", html);
@@ -286,7 +579,13 @@ function renderChronicles() {
   if (btn && currentIndex >= allChronicles.length) {
     btn.style.display = "none";
   }
+
+  setTimeout(startAutoSlides, 100);
 }
+
+// -----------------------------
+// INIT
+// -----------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
   initiateChronicles();
@@ -296,9 +595,8 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", renderChronicles);
   }
 });
-</script>
 
-  
+</script>
 
 
 
