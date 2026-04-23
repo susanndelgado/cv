@@ -478,9 +478,8 @@
  -->
 
 <script>
-
 // ==========================================================
-// === CHRONICLE SCRIBE v6.3 (CRASH-PROOF + DATA FIXED) ===
+// === CHRONICLE SCRIBE v7.0 (ROBUST DATA PARSER) ===
 // ==========================================================
 
 let allChronicles = [];
@@ -505,36 +504,22 @@ async function initiateChronicles() {
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
 
-    // DEBUG PANEL (unchanged)
+    // Debug dump (optional)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
-    // ======================================================
-    // SAFE NORMALIZATION (prevents infinite loading crashes)
-    // ======================================================
+    // Safety guard
+    if (!Array.isArray(satchel)) {
+      throw new Error("Invalid response: expected array");
+    }
 
-    allChronicles = (Array.isArray(satchel) ? satchel : [])
-      .filter(item =>
-        (item.type || "").toLowerCase().includes("progress")
-      )
+    allChronicles = satchel
+      .filter(item => (item.type || "").toLowerCase().includes("progress"))
       .sort((a, b) => {
-
-        const aTime = new Date(
-          a.misc?.postdate ||
-          a.misc?.postDate ||
-          a.date ||
-          0
-        ).getTime();
-
-        const bTime = new Date(
-          b.misc?.postdate ||
-          b.misc?.postDate ||
-          b.date ||
-          0
-        ).getTime();
-
+        const aTime = new Date(a.date || a.misc?.postdate || 0).getTime();
+        const bTime = new Date(b.date || b.misc?.postdate || 0).getTime();
         return aTime - bTime;
       });
 
@@ -544,18 +529,17 @@ async function initiateChronicles() {
     if (loadingMsg) loadingMsg.style.display = "none";
 
   } catch (err) {
-
-    console.error("Chronicle load error:", err);
+    console.error("Chronicle error:", err);
 
     if (loadingMsg) {
-      loadingMsg.innerText = "The archive failed to load.";
+      loadingMsg.innerText = "Archive failed to load.";
       loadingMsg.style.color = "red";
     }
   }
 }
 
 // ==========================================================
-// 🔥 FILE PARSER (FIXES YOUR PACKED FORMAT)
+// FILE PARSER (CRITICAL FIX FOR YOUR DATA FORMAT)
 // ==========================================================
 
 function extractFileUrl(fileEntry) {
@@ -570,17 +554,36 @@ function extractFileUrl(fileEntry) {
   // Packed format: image\nID\nURL
   if (typeof fileEntry === "string") {
 
-    const parts = fileEntry.split("\n");
+    const parts = fileEntry.split("\n").map(p => p.trim()).filter(Boolean);
 
+    // ALWAYS take last valid URL
     for (let i = parts.length - 1; i >= 0; i--) {
-      const line = parts[i].trim();
-      if (line.startsWith("http")) {
-        return line;
+      if (parts[i].startsWith("http")) {
+        return parts[i];
       }
     }
   }
 
   return null;
+}
+
+// ==========================================================
+// CATEGORY SAFE HANDLER (FIXES YOUR CRASH)
+// ==========================================================
+
+function safeCategories(categories) {
+
+  if (!categories) return "";
+
+  if (Array.isArray(categories)) {
+    return categories.join(" ");
+  }
+
+  if (typeof categories === "string") {
+    return categories;
+  }
+
+  return "";
 }
 
 // ==========================================================
@@ -592,7 +595,7 @@ function getMedia(item) {
   const raw = item?.files?.[0];
   const url = extractFileUrl(raw);
 
-  return url || "https://via.placeholder.com/600?text=Missing+Image";
+  return url || "https://via.placeholder.com/600?text=Missing";
 }
 
 // ==========================================================
@@ -602,8 +605,6 @@ function getMedia(item) {
 function renderChronicles() {
 
   const chronicleWing = document.getElementById("chronicle-container");
-
-  if (!allChronicles || allChronicles.length === 0) return;
 
   const nextItems = allChronicles.slice(
     currentIndex,
@@ -625,6 +626,8 @@ function renderChronicles() {
         ? item.description.join("<br>")
         : item.description || "");
 
+    const categories = safeCategories(item.misc?.categories);
+
     html += `
       <div class="process-chronicals-node chronicle-node">
 
@@ -633,11 +636,7 @@ function renderChronicles() {
           ${isEven ? `
             <div class="col-md-6 pr-md-5">
 
-              <span class="node-step">
-                ${(item.misc?.categories?.length
-                  ? item.misc.categories.join(" ")
-                  : "Concept Development")}
-              </span>
+              <span class="node-step">${categories}</span>
 
               <h3 class="node-title chronicle-title">
                 ${item.title || ""}
@@ -648,7 +647,7 @@ function renderChronicles() {
               </div>
 
               <div class="chronicle-meta mt-3">
-                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.author || ""}</span>
                 <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
@@ -656,24 +655,20 @@ function renderChronicles() {
 
             <div class="col-md-6 pl-md-5">
               <div class="node-image-frame">
-                <img src="${media}" alt="${item.title || ''}">
+                <img src="${media}" alt="">
               </div>
             </div>
 
           ` : `
             <div class="col-md-6 pr-md-5">
               <div class="node-image-frame">
-                <img src="${media}" alt="${item.title || ''}">
+                <img src="${media}" alt="">
               </div>
             </div>
 
             <div class="col-md-6 pl-md-5">
 
-              <span class="node-step">
-                ${(item.misc?.categories?.length
-                  ? item.misc.categories.join(" ")
-                  : "Concept Development")}
-              </span>
+              <span class="node-step">${categories}</span>
 
               <h3 class="node-title chronicle-title">
                 ${item.title || ""}
@@ -684,7 +679,7 @@ function renderChronicles() {
               </div>
 
               <div class="chronicle-meta mt-3">
-                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.author || ""}</span>
                 <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
@@ -692,7 +687,6 @@ function renderChronicles() {
           `}
 
         </div>
-
       </div>
     `;
   });
@@ -721,7 +715,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
 </script>
 </body>
 </html>
