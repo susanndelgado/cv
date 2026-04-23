@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', initiateGallery);
 <script>
 
 // ==========================================================
-// === THE MUSEUM CURATOR (UPDATED FILE STRUCTURE) ===
+// === THE MUSEUM CURATOR v3.2 (DATA FIXED + ROBUST) ===
 // ==========================================================
 
 async function initiateGallery() {
@@ -217,9 +217,10 @@ async function initiateGallery() {
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
 
-    const galleryItems = satchel.filter(item =>
-      (item.type || "").toLowerCase().trim() === "gallery"
-    );
+    const galleryItems = (Array.isArray(satchel) ? satchel : [])
+      .filter(item =>
+        (item.type || "").toLowerCase().trim() === "gallery"
+      );
 
     if (!museumWing) return;
 
@@ -233,18 +234,17 @@ async function initiateGallery() {
     galleryItems.forEach(item => {
 
       // ======================================================
-      // 🔥 KEY CHANGE: USE THIRD ARRAY ITEM (IMAGE URL)
+      // 🔥 SAFE FILE URL EXTRACTOR (CRITICAL FIX)
       // ======================================================
-      const mainImg =
-        item.files && item.files.length >= 3
-          ? item.files[2]
-          : "https://via.placeholder.com/300";
+
+      const mainImg = extractFileUrl(item.files?.[0])
+        || "https://via.placeholder.com/300";
 
       const cleanDesc = Array.isArray(item.description)
         ? item.description.join(" ")
         : (item.description || "");
 
-      const mediaType =
+      const mediaLabel =
         item.misc?.Media || "Masterwork";
 
       const cardHtml = `
@@ -253,7 +253,8 @@ async function initiateGallery() {
 
           <img class="gallery-media"
                src="${mainImg}"
-               alt="${item.title || ''}">
+               alt="${item.title || ''}"
+               onerror="this.src='https://via.placeholder.com/300'">
 
           <div class="gallery-overlay">
 
@@ -262,7 +263,7 @@ async function initiateGallery() {
             </h3>
 
             <p style="font-size: 0.85rem; margin: 10px 0;">
-              ${mediaType}
+              ${mediaLabel}
             </p>
 
             <p style="font-style: italic; font-size: 0.8rem;">
@@ -282,6 +283,36 @@ async function initiateGallery() {
 }
 
 // ==========================================================
+// 🔧 UNIVERSAL FILE PARSER (FIXES YOUR DATA FORMAT)
+// ==========================================================
+
+function extractFileUrl(fileEntry) {
+
+  if (!fileEntry) return null;
+
+  // Case 1: already clean URL
+  if (typeof fileEntry === "string" && fileEntry.startsWith("http")) {
+    return fileEntry.trim();
+  }
+
+  // Case 2: packed format (your current Google Sheets output)
+  if (typeof fileEntry === "string") {
+
+    const parts = fileEntry.split("\n");
+
+    // scan bottom-up to guarantee URL extraction
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const line = parts[i].trim();
+      if (line.startsWith("http")) {
+        return line;
+      }
+    }
+  }
+
+  return null;
+}
+
+// ==========================================================
 // MODAL VIEW (UNCHANGED)
 // ==========================================================
 
@@ -297,7 +328,7 @@ function openGrandView(src) {
 }
 
 // ==========================================================
-// BOOT
+// INIT
 // ==========================================================
 
 document.addEventListener('DOMContentLoaded', initiateGallery);
