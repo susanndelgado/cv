@@ -1002,6 +1002,34 @@ header .nav-tabs .nav-link.active:hover {
         max-width: 100%;
     }
 }
+#chronicles-wing .auto-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#chronicles-wing .auto-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+#chronicles-wing .auto-slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+#chronicles-wing .auto-slide img,
+#chronicles-wing .auto-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 /******************************************************************
  * CONSOLIDATED MEDIA QUERIES (Bottom of File)
  ******************************************************************/
