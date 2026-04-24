@@ -169,176 +169,229 @@
 
 
 <script>
+// ==========================================================
+// === CHRONICLE SCRIBE v7.0 (PROGRESS ONLY - STABLE) ===
+// ==========================================================
+
 let allChronicles = [];
 let currentIndex = 0;
 const PAGE_SIZE = 4;
 
-// -----------------------------
+// ==========================================================
 // INIT
-// -----------------------------
+// ==========================================================
 
 async function initiateChronicles() {
 
-  const container = document.getElementById("chronicle-container");
-  const loading = document.getElementById("loadingMessage");
-  const debug = document.getElementById("raw-data-log");
+  const chronicleWing = document.getElementById("chronicle-container");
+  const dataDump = document.getElementById("raw-data-log");
+  const loadingMsg = document.getElementById("loadingMessage");
 
-  const endpoint =
+  const scriptUrl =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
   try {
 
-    const res = await fetch(endpoint + "?t=" + Date.now());
-    const data = await res.json();
+    const response = await fetch(scriptUrl + "?t=" + Date.now());
+    const satchel = await response.json();
 
-    if (debug) {
-      debug.style.display = "block";
-      debug.textContent = JSON.stringify(data, null, 2);
+    if (!Array.isArray(satchel)) {
+      throw new Error("Invalid data response");
     }
 
-    // -----------------------------
-    // FILTER + SORT (numeric order)
-    // -----------------------------
+    // DEBUG VIEW
+    if (dataDump) {
+      dataDump.style.display = "block";
+      dataDump.textContent = JSON.stringify(satchel, null, 2);
+    }
 
-    allChronicles = (Array.isArray(data) ? data : [])
+    // ======================================================
+    // FILTER ONLY PROGRESS + SORT BY NUMERIC ID
+    // ======================================================
+
+    allChronicles = satchel
       .filter(item =>
-        item?.type === "progress" || item?.type === "gallery"
+        String(item.type).trim().toLowerCase() === "progress"
       )
-      .sort((a, b) => {
-        return (Number(a.id) || 9999) - (Number(b.id) || 9999);
-      });
+      .sort((a, b) => Number(a.id) - Number(b.id));
 
-    container.innerHTML = "";
+    chronicleWing.innerHTML = "";
     renderChronicles();
 
-    if (loading) loading.style.display = "none";
+    if (loadingMsg) loadingMsg.style.display = "none";
 
   } catch (err) {
-    console.error("Chronicle load failed:", err);
-    if (loading) {
-      loading.textContent = "Archive failed to load.";
-      loading.style.color = "red";
+
+    console.error("Chronicle load error:", err);
+
+    if (chronicleWing) {
+      chronicleWing.innerHTML =
+        `<p style="color:red;">${err.message}</p>`;
+    }
+
+    if (loadingMsg) {
+      loadingMsg.innerText = "The archive failed to load.";
+      loadingMsg.style.color = "red";
     }
   }
 }
 
-// -----------------------------
-// MEDIA HANDLER (IMAGE ONLY)
-// -----------------------------
+// ==========================================================
+// 🔧 MEDIA PARSER (YOUR 3RD INDEX RULE)
+// ==========================================================
 
-function resolveImage(fileEntry) {
+function extractFileUrl(fileEntry) {
 
-  if (!fileEntry) return "https://via.placeholder.com/600";
+  if (!fileEntry || typeof fileEntry !== "string") return null;
 
-  if (typeof fileEntry === "string") {
+  const parts = fileEntry.split("\n");
 
-    // your packed format: image\nID\nURL
-    const parts = fileEntry.split("\n");
+  // STRICT: always use 3rd index if valid
+  if (parts.length >= 3 && parts[2].startsWith("http")) {
+    return parts[2].trim();
+  }
 
-    for (let i = parts.length - 1; i >= 0; i--) {
-      if (parts[i].startsWith("http")) {
-        return parts[i];
-      }
+  // fallback safety scan
+  for (let i = parts.length - 1; i >= 0; i--) {
+    if (parts[i].startsWith("http")) {
+      return parts[i].trim();
     }
   }
 
-  return "https://via.placeholder.com/600";
+  return null;
 }
 
-// -----------------------------
-// RENDER SINGLE ITEM
-// -----------------------------
+// ==========================================================
+// MEDIA RENDER (IMAGE ONLY, NO VIDEO LOGIC)
+// ==========================================================
+
+function renderImage(file) {
+
+  const url = extractFileUrl(file);
+
+  const finalUrl = url || "https://via.placeholder.com/600";
+
+  return `
+    <img 
+      src="${finalUrl}" 
+      style="width:100%; height:100%; object-fit:cover;" 
+      loading="lazy"
+    >
+  `;
+}
+
+// ==========================================================
+// RENDER CHRONICLES
+// ==========================================================
 
 function renderChronicles() {
 
-  const container = document.getElementById("chronicle-container");
+  const chronicleWing = document.getElementById("chronicle-container");
 
-  const slice = allChronicles.slice(
+  const nextItems = allChronicles.slice(
     currentIndex,
     currentIndex + PAGE_SIZE
   );
 
   let html = "";
 
-  slice.forEach((item, i) => {
+  nextItems.forEach((item, i) => {
 
-    const index = currentIndex + i;
-    const leftSide = index % 2 === 0;
+    const globalIndex = currentIndex + i;
+    const isEven = globalIndex % 2 === 0;
 
-    const image = resolveImage(item.files?.[0]);
-
-    const description =
+    // SAFE DESCRIPTION HANDLING
+    const desc =
       item.misc?.Description ||
       (Array.isArray(item.description)
         ? item.description.join("<br>")
         : item.description || "");
 
-    const category =
-      Array.isArray(item.misc?.categories)
-        ? item.misc.categories.join(" ")
-        : item.misc?.categories || "Concept Study";
+    // SAFE CATEGORY HANDLING (FIXES YOUR CRASH)
+    let categoryDisplay = "";
+
+    const categories = item.misc?.categories;
+
+    if (Array.isArray(categories)) {
+      categoryDisplay = categories.join(" ");
+    } else if (typeof categories === "string") {
+      categoryDisplay = categories;
+    }
+
+    const mediaHTML = renderImage(item.files?.[0]);
 
     html += `
-      <div class="chronicle-node">
+      <div class="process-chronicals-node chronicle-node"
+           data-index="${globalIndex}">
 
         <div class="row align-items-center">
 
-          ${leftSide ? `
-            <div class="col-md-6">
+          ${isEven ? `
 
-              <div class="node-meta">
-                <span class="node-category">${category}</span>
-                <h2 class="node-title">${item.title || ""}</h2>
+            <div class="col-md-6 pr-md-5">
+
+              <span class="node-step">
+                ${categoryDisplay || "Study"}
+              </span>
+
+              <h3 class="node-title chronicle-title">
+                ${item.title || ""}
+              </h3>
+
+              <div class="node-text chronicle-desc">
+                ${desc}
               </div>
 
-              <div class="node-description">
-                ${description}
-              </div>
-
-              <div class="node-author">
-                ${item.author || ""}
+              <div class="chronicle-meta mt-3">
+                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
 
-            <div class="col-md-6">
-              <div class="node-image">
-                <img src="${image}" alt="${item.title || ""}">
+            <div class="col-md-6 pl-md-5">
+              <div class="node-image-frame">
+                ${mediaHTML}
               </div>
             </div>
 
           ` : `
-            <div class="col-md-6">
-              <div class="node-image">
-                <img src="${image}" alt="${item.title || ""}">
+
+            <div class="col-md-6 pr-md-5">
+              <div class="node-image-frame">
+                ${mediaHTML}
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 pl-md-5">
 
-              <div class="node-meta">
-                <span class="node-category">${category}</span>
-                <h2 class="node-title">${item.title || ""}</h2>
+              <span class="node-step">
+                ${categoryDisplay || "Study"}
+              </span>
+
+              <h3 class="node-title chronicle-title">
+                ${item.title || ""}
+              </h3>
+
+              <div class="node-text chronicle-desc">
+                ${desc}
               </div>
 
-              <div class="node-description">
-                ${description}
-              </div>
-
-              <div class="node-author">
-                ${item.author || ""}
+              <div class="chronicle-meta mt-3">
+                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
+
           `}
 
         </div>
-
       </div>
     `;
   });
 
-  container.insertAdjacentHTML("beforeend", html);
+  chronicleWing.insertAdjacentHTML("beforeend", html);
 
   currentIndex += PAGE_SIZE;
 
@@ -348,17 +401,20 @@ function renderChronicles() {
   }
 }
 
-// -----------------------------
+// ==========================================================
 // BOOT
-// -----------------------------
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+
   initiateChronicles();
 
   const btn = document.getElementById("loadMoreBtn");
+
   if (btn) {
     btn.addEventListener("click", renderChronicles);
   }
+
 });
 </script>
 </body>
