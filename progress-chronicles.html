@@ -170,7 +170,7 @@
 
 <script>
 // ==========================================================
-// === CHRONICLE SCRIBE v7.0 (PROGRESS ONLY - STABLE) ===
+// === CHRONICLE SCRIBE v7.1 (PROGRESS ONLY - CLEAN SORT) ===
 // ==========================================================
 
 let allChronicles = [];
@@ -196,26 +196,32 @@ async function initiateChronicles() {
     const satchel = await response.json();
 
     if (!Array.isArray(satchel)) {
-      throw new Error("Invalid data response");
+      throw new Error("Invalid response format");
     }
 
-    // DEBUG VIEW
+    // DEBUG DUMP (optional)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
     // ======================================================
-    // FILTER ONLY PROGRESS + SORT BY NUMERIC ID
+    // FILTER: PROGRESS ONLY
+    // SORT: NUMERIC ID (YOUR ORDERING SYSTEM)
     // ======================================================
 
     allChronicles = satchel
-      .filter(item =>
-        String(item.type).trim().toLowerCase() === "progress"
-      )
-      .sort((a, b) => Number(a.id) - Number(b.id));
+      .filter(item => String(item.type).trim().toLowerCase() === "progress")
+      .sort((a, b) => {
+        const idA = Number(a.id);
+        const idB = Number(b.id);
+        return idA - idB;
+      });
 
+    // reset render state
     chronicleWing.innerHTML = "";
+    currentIndex = 0;
+
     renderChronicles();
 
     if (loadingMsg) loadingMsg.style.display = "none";
@@ -230,14 +236,14 @@ async function initiateChronicles() {
     }
 
     if (loadingMsg) {
-      loadingMsg.innerText = "The archive failed to load.";
+      loadingMsg.innerText = "Archive failed to load.";
       loadingMsg.style.color = "red";
     }
   }
 }
 
 // ==========================================================
-// 🔧 MEDIA PARSER (YOUR 3RD INDEX RULE)
+// 🔧 FILE PARSER (USES 3RD INDEX URL)
 // ==========================================================
 
 function extractFileUrl(fileEntry) {
@@ -246,8 +252,8 @@ function extractFileUrl(fileEntry) {
 
   const parts = fileEntry.split("\n");
 
-  // STRICT: always use 3rd index if valid
-  if (parts.length >= 3 && parts[2].startsWith("http")) {
+  // STRICT RULE: use 3rd index (index 2)
+  if (parts.length >= 3 && parts[2]?.startsWith("http")) {
     return parts[2].trim();
   }
 
@@ -262,7 +268,7 @@ function extractFileUrl(fileEntry) {
 }
 
 // ==========================================================
-// MEDIA RENDER (IMAGE ONLY, NO VIDEO LOGIC)
+// IMAGE ONLY RENDERER
 // ==========================================================
 
 function renderImage(file) {
@@ -272,9 +278,9 @@ function renderImage(file) {
   const finalUrl = url || "https://via.placeholder.com/600";
 
   return `
-    <img 
-      src="${finalUrl}" 
-      style="width:100%; height:100%; object-fit:cover;" 
+    <img
+      src="${finalUrl}"
+      style="width:100%; height:100%; object-fit:cover;"
       loading="lazy"
     >
   `;
@@ -300,23 +306,17 @@ function renderChronicles() {
     const globalIndex = currentIndex + i;
     const isEven = globalIndex % 2 === 0;
 
-    // SAFE DESCRIPTION HANDLING
     const desc =
       item.misc?.Description ||
       (Array.isArray(item.description)
         ? item.description.join("<br>")
         : item.description || "");
 
-    // SAFE CATEGORY HANDLING (FIXES YOUR CRASH)
-    let categoryDisplay = "";
-
     const categories = item.misc?.categories;
 
-    if (Array.isArray(categories)) {
-      categoryDisplay = categories.join(" ");
-    } else if (typeof categories === "string") {
-      categoryDisplay = categories;
-    }
+    const categoryDisplay = Array.isArray(categories)
+      ? categories.join(" ")
+      : (categories || "");
 
     const mediaHTML = renderImage(item.files?.[0]);
 
@@ -327,7 +327,6 @@ function renderChronicles() {
         <div class="row align-items-center">
 
           ${isEven ? `
-
             <div class="col-md-6 pr-md-5">
 
               <span class="node-step">
@@ -343,7 +342,7 @@ function renderChronicles() {
               </div>
 
               <div class="chronicle-meta mt-3">
-                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.author || ""}</span>
                 <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
@@ -354,9 +353,7 @@ function renderChronicles() {
                 ${mediaHTML}
               </div>
             </div>
-
           ` : `
-
             <div class="col-md-6 pr-md-5">
               <div class="node-image-frame">
                 ${mediaHTML}
@@ -378,12 +375,11 @@ function renderChronicles() {
               </div>
 
               <div class="chronicle-meta mt-3">
-                <span>${item.author || "Lair McKenzie"}</span>
+                <span>${item.author || ""}</span>
                 <span>${item.misc?.postdate || item.date || ""}</span>
               </div>
 
             </div>
-
           `}
 
         </div>
