@@ -199,9 +199,8 @@ function openGrandView(src) {
 document.addEventListener('DOMContentLoaded', initiateGallery);
 </script> -->
 <script>
-
 // ==========================================================
-// === THE MUSEUM CURATOR v3.2 (DATA FIXED + ROBUST) ===
+// === THE MUSEUM CURATOR v4.0 (SORT + DATA FORMAT FIXED) ===
 // ==========================================================
 
 async function initiateGallery() {
@@ -217,28 +216,38 @@ async function initiateGallery() {
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
 
-    const galleryItems = (Array.isArray(satchel) ? satchel : [])
-      .filter(item =>
-        (item.type || "").toLowerCase().trim() === "gallery"
-      );
+    if (!Array.isArray(satchel)) {
+      throw new Error("Invalid data format from server");
+    }
 
-    if (!museumWing) return;
-
+    // DEBUG DUMP (unchanged)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
+
+    // ======================================================
+    // FILTER + SORT (gallery only)
+    // ======================================================
+
+    const galleryItems = satchel
+      .filter(item =>
+        (item.type || "").toLowerCase().trim() === "gallery"
+      )
+      .sort((a, b) => Number(a.id) - Number(b.id)); // numeric sort
 
     museumWing.innerHTML = "";
 
     galleryItems.forEach(item => {
 
       // ======================================================
-      // 🔥 SAFE FILE URL EXTRACTOR (CRITICAL FIX)
+      // FILE PARSER: ALWAYS USE 3RD INDEX URL
       // ======================================================
 
-      const mainImg = extractFileUrl(item.files?.[0])
-        || "https://via.placeholder.com/300";
+      const mainImg = extractThirdIndexUrl(item.files?.[0]);
+
+      const finalImg =
+        mainImg || "https://via.placeholder.com/300";
 
       const cleanDesc = Array.isArray(item.description)
         ? item.description.join(" ")
@@ -249,10 +258,10 @@ async function initiateGallery() {
 
       const cardHtml = `
         <div class="gallery-card"
-             onclick="openGrandView('${mainImg}')">
+             onclick="openGrandView('${finalImg}')">
 
           <img class="gallery-media"
-               src="${mainImg}"
+               src="${finalImg}"
                alt="${item.title || ''}"
                onerror="this.src='https://via.placeholder.com/300'">
 
@@ -274,46 +283,43 @@ async function initiateGallery() {
 
         </div>`;
 
-      museumWing.innerHTML += cardHtml;
+      museumWing.insertAdjacentHTML("beforeend", cardHtml);
     });
 
   } catch (error) {
-    console.error("Librarian:", error);
+    console.error("Gallery Load Error:", error);
   }
 }
 
 // ==========================================================
-// 🔧 UNIVERSAL FILE PARSER (FIXES YOUR DATA FORMAT)
+// 🔧 CORE FIX: ALWAYS USE 3RD INDEX URL
 // ==========================================================
 
-function extractFileUrl(fileEntry) {
+function extractThirdIndexUrl(fileEntry) {
 
-  if (!fileEntry) return null;
+  if (!fileEntry || typeof fileEntry !== "string") return null;
 
-  // Case 1: already clean URL
-  if (typeof fileEntry === "string" && fileEntry.startsWith("http")) {
-    return fileEntry.trim();
+  // Your format:
+  // "image\nID\nhttps://...."
+
+  const parts = fileEntry.split("\n");
+
+  // SAFETY: return ONLY index 2 (third element)
+  if (parts.length >= 3) {
+    const url = parts[2].trim();
+    if (url.startsWith("http")) return url;
   }
 
-  // Case 2: packed format (your current Google Sheets output)
-  if (typeof fileEntry === "string") {
-
-    const parts = fileEntry.split("\n");
-
-    // scan bottom-up to guarantee URL extraction
-    for (let i = parts.length - 1; i >= 0; i--) {
-      const line = parts[i].trim();
-      if (line.startsWith("http")) {
-        return line;
-      }
-    }
+  // fallback safety scan (in case format breaks)
+  for (let i = parts.length - 1; i >= 0; i--) {
+    if (parts[i].startsWith("http")) return parts[i];
   }
 
   return null;
 }
 
 // ==========================================================
-// MODAL VIEW (UNCHANGED)
+// MODAL VIEW (unchanged)
 // ==========================================================
 
 function openGrandView(src) {
@@ -321,10 +327,10 @@ function openGrandView(src) {
   const modal = document.getElementById('grand-view');
   const modalImg = document.getElementById('grand-img');
 
-  if (modal && modalImg) {
-    modal.style.display = "flex";
-    modalImg.src = src;
-  }
+  if (!modal || !modalImg) return;
+
+  modal.style.display = "flex";
+  modalImg.src = src;
 }
 
 // ==========================================================
@@ -332,7 +338,6 @@ function openGrandView(src) {
 // ==========================================================
 
 document.addEventListener('DOMContentLoaded', initiateGallery);
-
 </script>
 </body>
 </html>
