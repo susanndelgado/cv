@@ -165,323 +165,10 @@
 
 
 
-// ==========================================================
-// === CHRONICLE SCRIBE v6.1 (FINAL ARCHIVE SYSTEM) ===
-// ==========================================================
-
-// let allChronicles = [];
-// let currentIndex = 0;
-// const PAGE_SIZE = 4;
-
-// // -----------------------------
-// // INIT
-// // -----------------------------
-
-// async function initiateChronicles() {
-//   const chronicleWing = document.getElementById("chronicle-container");
-//   const dataDump = document.getElementById("raw-data-log");
-
-//   const scriptUrl =
-//  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-
-//   try {
-//     const response = await fetch(scriptUrl + "?t=" + Date.now());
-//     const satchel = await response.json();
-
-//     if (dataDump) {
-//       dataDump.style.display = "block";
-//       dataDump.textContent = JSON.stringify(satchel, null, 2);
-//     }
-
-//     allChronicles = satchel
-//       .filter(item => (item.type || "").toLowerCase().includes("progress"))
-//       .sort((a, b) =>
-//         new Date(a.misc?.postDate) - new Date(b.misc?.postDate)
-//       );
-
-//     chronicleWing.innerHTML = "";
-//     renderChronicles();
-
-//     const loadingMsg = document.getElementById("loadingMessage");
-//     if (loadingMsg) loadingMsg.style.display = "none";
-
-//   } catch (error) {
-//     console.error(error);
-//     chronicleWing.innerHTML = `<p style="color:red;">${error.message}</p>`;
-//   }
-// }
-
-// // -----------------------------
-// // MEDIA HELPERS
-// // -----------------------------
-
-// function getMedia(url) {
-//   if (!url) return "https://via.placeholder.com/600";
-
-//   if (url.includes("drive.google.com")) {
-//     const match = url.match(/\/d\/(.*?)\//);
-//     if (match && match[1]) {
-//       return `https://drive.google.com/uc?export=view&id=${match[1]}`;
-//     }
-//   }
-
-//   return url;
-// }
-
-// function renderSingleMedia(url) {
-//   const media = getMedia(url);
-
-//   if (media.match(/\.(mp4|webm|ogg)$/i)) {
-//     return `
-//       <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
-//         <source src="${media}">
-//       </video>
-//     `;
-//   }
-
-//   return `
-//     <img src="${media}" style="width:100%; height:100%; object-fit:cover;">
-//   `;
-// }
-
-// // -----------------------------
-// // AUTO SLIDESHOW
-// // -----------------------------
-
-// function renderMedia(files, index) {
-//   if (!files || files.length === 0) {
-//     return `<img src="https://via.placeholder.com/600">`;
-//   }
-
-//   if (files.length === 1) {
-//     return renderSingleMedia(files[0]);
-//   }
-
-//   return `
-//     <div class="auto-carousel">
-//       ${files.map((file, i) => `
-//         <div class="auto-slide ${i === 0 ? "active" : ""}">
-//           ${renderSingleMedia(file)}
-//         </div>
-//       `).join("")}
-//     </div>
-//   `;
-// }
-
-// function startAutoSlides() {
-//   const carousels = document.querySelectorAll(".auto-carousel");
-
-//   carousels.forEach(carousel => {
-//     const slides = carousel.querySelectorAll(".auto-slide");
-
-//     let index = 0;
-//     let paused = false;
-//     let timeoutRef = null;
-
-//     if (slides.length <= 1) return;
-
-//     function showSlide(i) {
-//       slides.forEach(s => s.classList.remove("active"));
-//       slides[i].classList.add("active");
-//     }
-
-//     function getCurrentMedia(slide) {
-//       return slide.querySelector("video");
-//     }
-
-//     function nextSlide() {
-//       if (paused) return;
-
-//       const currentSlide = slides[index];
-//       const video = currentSlide?.querySelector("video");
-
-//       // If video exists and is still playing, wait for it to end
-//       if (video && !video.ended) {
-//         video.onended = () => {
-//           if (!paused) nextSlide();
-//         };
-//         return;
-//       }
-
-//       // Otherwise advance after delay
-//       timeoutRef = setTimeout(() => {
-//         index = (index + 1) % slides.length;
-//         showSlide(index);
-//         nextSlide();
-//       }, 3500);
-//     }
-
-//     // CLICK = TOGGLE PAUSE/PLAY (NO BUTTONS)
-//     carousel.addEventListener("click", () => {
-//       paused = !paused;
-
-//       if (!paused) {
-//         nextSlide();
-//       } else {
-//         clearTimeout(timeoutRef);
-//       }
-//     });
-
-//     // START
-//     showSlide(index);
-//     nextSlide();
-//   });
-// }
-
-// // -----------------------------
-// // RENDER
-// // -----------------------------
-
-// function renderChronicles() {
-//   const chronicleWing = document.getElementById("chronicle-container");
-
-//   const nextItems = allChronicles.slice(
-//     currentIndex,
-//     currentIndex + PAGE_SIZE
-//   );
-
-//   let html = "";
-
-//   nextItems.forEach((item, i) => {
-
-//     try {
-
-//       const globalIndex = currentIndex + i;
-//       const isEven = globalIndex % 2 === 0;
-//       const files = item.files || [];
-
-//       const categories = item.misc?.categories;
-//       const categoryDisplay = Array.isArray(categories)
-//         ? categories.join(" ")
-//         : (categories || "");
-
-//       const desc =
-//         item.misc?.Description ||
-//         (Array.isArray(item.description)
-//           ? item.description.join("<br>")
-//           : item.description || "");
-
-//       const mediaHTML = renderMedia(files, globalIndex);
-
-//       html += `
-//         <div class="process-chronicals-node chronicle-node"
-//              data-index="${globalIndex}">
-
-//           <div class="row align-items-center">
-
-//             ${isEven ? `
-//               <div class="col-md-6 pr-md-5">
-
-//                 <span class="node-step">
-//                   ${categoryDisplay}
-//                 </span>
-
-//                 <h3 class="node-title chronicle-title">
-//                   ${item.title || ""}
-//                 </h3>
-
-//                 <div class="node-text chronicle-desc">
-//                   ${desc}
-//                 </div>
-
-//                 <div class="chronicle-meta mt-3">
-//                   <span>${item.author || "Lair McKenzie"}</span>
-//                   <span>${item.misc?.postDate || ""}</span>
-//                 </div>
-
-//               </div>
-
-//               <div class="col-md-6 pl-md-5">
-//                 <div class="node-image-frame">
-//                   ${mediaHTML}
-//                 </div>
-//               </div>
-
-//             ` : `
-//               <div class="col-md-6 pr-md-5">
-//                 <div class="node-image-frame">
-//                   ${mediaHTML}
-//                 </div>
-//               </div>
-
-//               <div class="col-md-6 pl-md-5">
-
-//                 <span class="node-step">
-//                   ${categoryDisplay}
-//                 </span>
-
-//                 <h3 class="node-title chronicle-title">
-//                   ${item.title || ""}
-//                 </h3>
-
-//                 <div class="node-text chronicle-desc">
-//                   ${desc}
-//                 </div>
-
-//                 <div class="chronicle-meta mt-3">
-//                   <span>${item.author || "Lair McKenzie"}</span>
-//                   <span>${item.misc?.postDate || ""}</span>
-//                 </div>
-
-//               </div>
-//             `}
-
-//           </div>
-//         </div>
-//       `;
-
-//     } catch (err) {
-
-//       console.error(" Item render error:", {
-//         id: item.id,
-//         title: item.title,
-//         error: err
-//       });
-
-//       html += `
-//         <div style="color:red; border:1px solid red; padding:10px; margin:10px 0;">
-//           Error rendering item<br>
-//           ID: ${item.id || "unknown"}<br>
-//           Title: ${item.title || "untitled"}<br>
-//           ${err.message}
-//         </div>
-//       `;
-//     }
-
-//   });
-
-//   chronicleWing.insertAdjacentHTML("beforeend", html);
-
-//   currentIndex += PAGE_SIZE;
-
-//   const btn = document.getElementById("loadMoreBtn");
-//   if (btn && currentIndex >= allChronicles.length) {
-//     btn.style.display = "none";
-//   }
-
-//   setTimeout(startAutoSlides, 100);
-// }
-
-// // -----------------------------
-// // INIT
-// // -----------------------------
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   initiateChronicles();
-
-//   const btn = document.getElementById("loadMoreBtn");
-//   if (btn) {
-//     btn.addEventListener("click", renderChronicles);
-//   }
-// });
   
 
 
 <script>
-// ==========================================================
-// === CHRONICLE SCRIBE v6.4 (STABLE DATE + MEDIA FIX) ===
-// ==========================================================
-
 let allChronicles = [];
 let currentIndex = 0;
 const PAGE_SIZE = 4;
@@ -492,187 +179,166 @@ const PAGE_SIZE = 4;
 
 async function initiateChronicles() {
 
-  const chronicleWing = document.getElementById("chronicle-container");
-  const dataDump = document.getElementById("raw-data-log");
-  const loadingMsg = document.getElementById("loadingMessage");
+  const container = document.getElementById("chronicle-container");
+  const loading = document.getElementById("loadingMessage");
+  const debug = document.getElementById("raw-data-log");
 
-  const scriptUrl =
+  const endpoint =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
   try {
 
-    const response = await fetch(scriptUrl + "?t=" + Date.now());
-    const satchel = await response.json();
+    const res = await fetch(endpoint + "?t=" + Date.now());
+    const data = await res.json();
 
-    // Debug dump
-    if (dataDump) {
-      dataDump.style.display = "block";
-      dataDump.textContent = JSON.stringify(satchel, null, 2);
+    if (debug) {
+      debug.style.display = "block";
+      debug.textContent = JSON.stringify(data, null, 2);
     }
 
     // -----------------------------
-    // SAFE FILTER + SORT
+    // FILTER + SORT (numeric order)
     // -----------------------------
 
-    allChronicles = (Array.isArray(satchel) ? satchel : [])
+    allChronicles = (Array.isArray(data) ? data : [])
       .filter(item =>
-        (item.type || "").toLowerCase().includes("progress")
+        item?.type === "progress" || item?.type === "gallery"
       )
       .sort((a, b) => {
-
-        const getTime = (item) => {
-          const raw =
-            item.date ||
-            item.misc?.postdate ||
-            item.misc?.postDate;
-
-          const t = new Date(raw).getTime();
-          return isNaN(t) ? 0 : t;
-        };
-
-        // NEWEST FIRST
-        return getTime(b) - getTime(a);
+        return (Number(a.id) || 9999) - (Number(b.id) || 9999);
       });
 
-    chronicleWing.innerHTML = "";
+    container.innerHTML = "";
     renderChronicles();
 
-    if (loadingMsg) loadingMsg.style.display = "none";
+    if (loading) loading.style.display = "none";
 
-  } catch (error) {
-
-    console.error("Chronicle error:", error);
-
-    if (loadingMsg) {
-      loadingMsg.innerText = "The archive failed to load.";
-      loadingMsg.style.color = "red";
+  } catch (err) {
+    console.error("Chronicle load failed:", err);
+    if (loading) {
+      loading.textContent = "Archive failed to load.";
+      loading.style.color = "red";
     }
   }
 }
 
 // -----------------------------
-// MEDIA HANDLING (USES YOUR 3RD INDEX URL)
+// MEDIA HANDLER (IMAGE ONLY)
 // -----------------------------
 
-function extractDriveUrl(fileString) {
-  if (!fileString) return null;
+function resolveImage(fileEntry) {
 
-  if (typeof fileString !== "string") return null;
+  if (!fileEntry) return "https://via.placeholder.com/600";
 
-  const parts = fileString.split("\n");
+  if (typeof fileEntry === "string") {
 
-  // YOUR RULE: ALWAYS USE 3RD LINE (URL)
-  return parts[2] ? parts[2].trim() : null;
-}
+    // your packed format: image\nID\nURL
+    const parts = fileEntry.split("\n");
 
-function getMedia(item) {
-  const raw = item?.files?.[0];
-  const url = extractDriveUrl(raw);
+    for (let i = parts.length - 1; i >= 0; i--) {
+      if (parts[i].startsWith("http")) {
+        return parts[i];
+      }
+    }
+  }
 
-  return url || "https://via.placeholder.com/600";
+  return "https://via.placeholder.com/600";
 }
 
 // -----------------------------
-// RENDER FUNCTION
+// RENDER SINGLE ITEM
 // -----------------------------
 
 function renderChronicles() {
 
-  const chronicleWing = document.getElementById("chronicle-container");
+  const container = document.getElementById("chronicle-container");
 
-  const nextItems = allChronicles.slice(
+  const slice = allChronicles.slice(
     currentIndex,
     currentIndex + PAGE_SIZE
   );
 
   let html = "";
 
-  nextItems.forEach((item, i) => {
+  slice.forEach((item, i) => {
 
-    const globalIndex = currentIndex + i;
-    const isEven = globalIndex % 2 === 0;
+    const index = currentIndex + i;
+    const leftSide = index % 2 === 0;
 
-    const media = getMedia(item);
+    const image = resolveImage(item.files?.[0]);
 
-    const desc =
+    const description =
       item.misc?.Description ||
       (Array.isArray(item.description)
         ? item.description.join("<br>")
         : item.description || "");
 
-    const categories =
+    const category =
       Array.isArray(item.misc?.categories)
         ? item.misc.categories.join(" ")
-        : item.misc?.categories || "Concept Development";
+        : item.misc?.categories || "Concept Study";
 
     html += `
-      <div class="process-chronicals-node chronicle-node">
+      <div class="chronicle-node">
 
         <div class="row align-items-center">
 
-          ${isEven ? `
-            <div class="col-md-6 pr-md-5">
+          ${leftSide ? `
+            <div class="col-md-6">
 
-              <span class="node-step">
-                ${categories}
-              </span>
-
-              <h3 class="node-title chronicle-title">
-                ${item.title || ""}
-              </h3>
-
-              <div class="node-text chronicle-desc">
-                ${desc}
+              <div class="node-meta">
+                <span class="node-category">${category}</span>
+                <h2 class="node-title">${item.title || ""}</h2>
               </div>
 
-              <div class="chronicle-meta mt-3">
-                <span>${item.author || "Lair McKenzie"}</span>
-                <span>${item.date || item.misc?.postdate || ""}</span>
+              <div class="node-description">
+                ${description}
+              </div>
+
+              <div class="node-author">
+                ${item.author || ""}
               </div>
 
             </div>
 
-            <div class="col-md-6 pl-md-5">
-              <div class="node-image-frame">
-                <img src="${media}" alt="${item.title || ''}">
+            <div class="col-md-6">
+              <div class="node-image">
+                <img src="${image}" alt="${item.title || ""}">
               </div>
             </div>
 
           ` : `
-            <div class="col-md-6 pr-md-5">
-              <div class="node-image-frame">
-                <img src="${media}" alt="${item.title || ''}">
+            <div class="col-md-6">
+              <div class="node-image">
+                <img src="${image}" alt="${item.title || ""}">
               </div>
             </div>
 
-            <div class="col-md-6 pl-md-5">
+            <div class="col-md-6">
 
-              <span class="node-step">
-                ${categories}
-              </span>
-
-              <h3 class="node-title chronicle-title">
-                ${item.title || ""}
-              </h3>
-
-              <div class="node-text chronicle-desc">
-                ${desc}
+              <div class="node-meta">
+                <span class="node-category">${category}</span>
+                <h2 class="node-title">${item.title || ""}</h2>
               </div>
 
-              <div class="chronicle-meta mt-3">
-                <span>${item.author || "Lair McKenzie"}</span>
-                <span>${item.date || item.misc?.postdate || ""}</span>
+              <div class="node-description">
+                ${description}
+              </div>
+
+              <div class="node-author">
+                ${item.author || ""}
               </div>
 
             </div>
           `}
 
         </div>
+
       </div>
     `;
   });
 
-  chronicleWing.insertAdjacentHTML("beforeend", html);
+  container.insertAdjacentHTML("beforeend", html);
 
   currentIndex += PAGE_SIZE;
 
@@ -687,14 +353,12 @@ function renderChronicles() {
 // -----------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-
   initiateChronicles();
 
   const btn = document.getElementById("loadMoreBtn");
   if (btn) {
     btn.addEventListener("click", renderChronicles);
   }
-
 });
 </script>
 </body>
