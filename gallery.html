@@ -200,13 +200,13 @@ document.addEventListener('DOMContentLoaded', initiateGallery);
 </script> -->
 <script>
 // ==========================================================
-// === THE MUSEUM CURATOR v4.0 (SORT + DATA FORMAT FIXED) ===
+// === MUSEUM CURATOR v4.1 (GALLERY ONLY - SORTED + CLEAN) ===
 // ==========================================================
 
 async function initiateGallery() {
 
-  const museumWing = document.getElementById('museum-wing');
-  const dataDump = document.getElementById('raw-data-log');
+  const museumWing = document.getElementById("museum-wing");
+  const dataDump = document.getElementById("raw-data-log");
 
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
@@ -217,52 +217,46 @@ async function initiateGallery() {
     const satchel = await response.json();
 
     if (!Array.isArray(satchel)) {
-      throw new Error("Invalid data format from server");
+      throw new Error("Invalid response format");
     }
 
-    // DEBUG DUMP (unchanged)
+    // DEBUG VIEW (optional)
     if (dataDump) {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
 
     // ======================================================
-    // FILTER + SORT (gallery only)
+    // FILTER + SORT (GALLERY ONLY)
     // ======================================================
 
     const galleryItems = satchel
       .filter(item =>
-        (item.type || "").toLowerCase().trim() === "gallery"
+        String(item.type || "").trim().toLowerCase() === "gallery"
       )
-      .sort((a, b) => Number(a.id) - Number(b.id)); // numeric sort
+      .sort((a, b) => Number(a.id) - Number(b.id));
 
     museumWing.innerHTML = "";
 
-    galleryItems.forEach(item => {
+    const html = galleryItems.map(item => {
 
-      // ======================================================
-      // FILE PARSER: ALWAYS USE 3RD INDEX URL
-      // ======================================================
+      const img = extractThirdIndexUrl(item.files?.[0])
+        || "https://via.placeholder.com/300";
 
-      const mainImg = extractThirdIndexUrl(item.files?.[0]);
-
-      const finalImg =
-        mainImg || "https://via.placeholder.com/300";
-
-      const cleanDesc = Array.isArray(item.description)
+      const desc = Array.isArray(item.description)
         ? item.description.join(" ")
         : (item.description || "");
 
-      const mediaLabel =
-        item.misc?.Media || "Masterwork";
+      const mediaLabel = item.misc?.Media || "Masterwork";
 
-      const cardHtml = `
+      return `
         <div class="gallery-card"
-             onclick="openGrandView('${finalImg}')">
+             onclick="openGrandView('${img}')">
 
           <img class="gallery-media"
-               src="${finalImg}"
+               src="${img}"
                alt="${item.title || ''}"
+               loading="lazy"
                onerror="this.src='https://via.placeholder.com/300'">
 
           <div class="gallery-overlay">
@@ -276,56 +270,58 @@ async function initiateGallery() {
             </p>
 
             <p style="font-style: italic; font-size: 0.8rem;">
-              ${cleanDesc}
+              ${desc}
             </p>
 
           </div>
 
-        </div>`;
+        </div>
+      `;
+    }).join("");
 
-      museumWing.insertAdjacentHTML("beforeend", cardHtml);
-    });
+    museumWing.innerHTML = html;
 
   } catch (error) {
-    console.error("Gallery Load Error:", error);
+    console.error("Gallery Error:", error);
   }
 }
 
 // ==========================================================
-// 🔧 CORE FIX: ALWAYS USE 3RD INDEX URL
+// 🔧 FILE PARSER (STRICT: 3RD INDEX URL ONLY)
 // ==========================================================
 
 function extractThirdIndexUrl(fileEntry) {
 
   if (!fileEntry || typeof fileEntry !== "string") return null;
 
-  // Your format:
-  // "image\nID\nhttps://...."
-
   const parts = fileEntry.split("\n");
 
-  // SAFETY: return ONLY index 2 (third element)
+  // PRIMARY RULE: ALWAYS USE INDEX 2
   if (parts.length >= 3) {
-    const url = parts[2].trim();
-    if (url.startsWith("http")) return url;
+    const url = parts[2]?.trim();
+    if (url && url.startsWith("http")) {
+      return url;
+    }
   }
 
-  // fallback safety scan (in case format breaks)
+  // fallback safety scan
   for (let i = parts.length - 1; i >= 0; i--) {
-    if (parts[i].startsWith("http")) return parts[i];
+    if (parts[i]?.startsWith("http")) {
+      return parts[i];
+    }
   }
 
   return null;
 }
 
 // ==========================================================
-// MODAL VIEW (unchanged)
+// MODAL VIEW
 // ==========================================================
 
 function openGrandView(src) {
 
-  const modal = document.getElementById('grand-view');
-  const modalImg = document.getElementById('grand-img');
+  const modal = document.getElementById("grand-view");
+  const modalImg = document.getElementById("grand-img");
 
   if (!modal || !modalImg) return;
 
@@ -337,7 +333,7 @@ function openGrandView(src) {
 // INIT
 // ==========================================================
 
-document.addEventListener('DOMContentLoaded', initiateGallery);
+document.addEventListener("DOMContentLoaded", initiateGallery);
 </script>
 </body>
 </html>
