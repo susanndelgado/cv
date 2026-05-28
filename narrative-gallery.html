@@ -123,28 +123,57 @@
 </footer>
 
 
-<script>
+   <script>
 // ==========================================================
 // === MUSEUM CURATOR v4.1 (GALLERY ONLY - SORTED + CLEAN) ===
 // ==========================================================
 
 async function initiateGallery() {
 console.log("INITIATE GALLERY FIRED");
+
   const museumWing = document.getElementById("museum-wing");
   const dataDump = document.getElementById("raw-data-log");
 
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
+  // ======================================================
+  // CACHE SYSTEM (ADDED - DO NOT REMOVE VARIABLES ABOVE)
+  // ======================================================
+
+  const cacheKey = "gallery_cache_v1";
+  const cacheTimeKey = "gallery_cache_time";
+  const CACHE_DURATION = 1000 * 60 * 10; // 10 minutes
+
+  let satchel;
+  const now = Date.now();
+
+  const cached = localStorage.getItem(cacheKey);
+  const cachedTime = localStorage.getItem(cacheTimeKey);
+
   try {
 
-    const response = await fetch(scriptUrl + "?t=" + Date.now());
-    const satchel = await response.json();
-     
+    // ======================================================
+    // USE CACHE IF VALID
+    // ======================================================
+    if (cached && cachedTime && (now - cachedTime < CACHE_DURATION)) {
+      satchel = JSON.parse(cached);
+      console.log("Loaded from cache");
+    } 
+    else {
+      const response = await fetch(scriptUrl + "?t=" + now);
+      satchel = await response.json();
+
+      localStorage.setItem(cacheKey, JSON.stringify(satchel));
+      localStorage.setItem(cacheTimeKey, now);
+
+      console.log("Fetched fresh data");
+    }
+
     if (!Array.isArray(satchel)) {
       throw new Error("Invalid response format");
     }
-    console.log(response.json());
+
     // DEBUG VIEW (optional)
     if (dataDump) {
       dataDump.style.display = "block";
@@ -157,7 +186,7 @@ console.log("INITIATE GALLERY FIRED");
 
     const galleryItems = satchel
       .filter(item =>
-        String(item.type || "").trim().toLowerCase() === "gstory"
+        String(item.type || "").trim().toLowerCase() === "gdstory"
       )
       .sort((a, b) => Number(a.id) - Number(b.id));
 
@@ -221,7 +250,6 @@ function extractThirdIndexUrl(fileEntry) {
 
   const parts = fileEntry.split("\n");
 
-  // PRIMARY RULE: ALWAYS USE INDEX 2
   if (parts.length >= 3) {
     const url = parts[2]?.trim();
     if (url && url.startsWith("http")) {
@@ -229,7 +257,6 @@ function extractThirdIndexUrl(fileEntry) {
     }
   }
 
-  // fallback safety scan
   for (let i = parts.length - 1; i >= 0; i--) {
     if (parts[i]?.startsWith("http")) {
       return parts[i];
