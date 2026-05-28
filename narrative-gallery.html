@@ -129,7 +129,7 @@
 // ==========================================================
 
 async function initiateGallery() {
-
+console.log("INITIATE GALLERY FIRED");
   const museumWing = document.getElementById("museum-wing");
   const dataDump = document.getElementById("raw-data-log");
 
@@ -140,8 +140,6 @@ async function initiateGallery() {
 
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
-         const response = await fetch(scriptUrl + "?t=" + Date.now());
-         const satchel = await response.json();
          
          console.log(satchel);
     if (!Array.isArray(satchel)) {
