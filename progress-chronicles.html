@@ -181,7 +181,7 @@ const PAGE_SIZE = 4;
 // ==========================================================
 
 async function initiateChronicles() {
-
+console.log("INITIATE POST FIRED");
   const chronicleWing = document.getElementById("chronicle-container");
   const dataDump = document.getElementById("raw-data-log");
   const loadingMsg = document.getElementById("loadingMessage");
@@ -193,7 +193,7 @@ async function initiateChronicles() {
 
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
- console.log(satchel);
+ 
     if (!Array.isArray(satchel)) {
       throw new Error("Invalid response format");
     }
@@ -203,7 +203,8 @@ async function initiateChronicles() {
       dataDump.style.display = "block";
       dataDump.textContent = JSON.stringify(satchel, null, 2);
     }
-
+     console.log(satchel);
+    console.log(response.json());
     // ======================================================
     // FILTER: PROGRESS ONLY
     // SORT: NUMERIC ID (YOUR ORDERING SYSTEM)
