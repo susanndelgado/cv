@@ -10,7 +10,7 @@
   <url>
     <loc>https://sdelgado.com/index.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
 
   <url>
@@ -19,119 +19,84 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- FINE ART GALLERIES -->
+
   <url>
     <loc>https://sdelgado.com/narrative-gallery.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://sdelgado.com/wildlife-gallery.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://sdelgado.com/decorative-gallery.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://sdelgado.com/studies-gallery.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
+
+  <!-- PROCESS -->
 
   <url>
     <loc>https://sdelgado.com/progress-chronicles.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
+
+  <!-- TECH PORTFOLIO -->
 
   <url>
     <loc>https://sdelgado.com/work.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
-<url>
-<loc>https://sdelgado.com/showcase.html</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=0</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=1</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=2</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=3</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=4</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=5</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=6</loc>
-<lastmod>2025-08-10T14:14:16+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=7</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=8</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=9</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=10</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=11</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-<loc>https://sdelgado.com/showcase.html?post=12</loc>
-   <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
+
+  <url>
+    <loc>https://sdelgado.com/showcase.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SHOWCASE POSTS -->
+
+  <url><loc>https://sdelgado.com/showcase.html?post=0</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=1</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=2</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=3</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=4</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=5</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=6</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=7</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=8</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=9</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=10</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=11</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sdelgado.com/showcase.html?post=12</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- CONTACT -->
+
   <url>
     <loc>https://sdelgado.com/contact.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
-<url>
-<loc>https://sdelgado.com/pdf/resume/2023_susan_delgado_resume.pdf</loc>
+
+  <!-- RESUME -->
+
+  <url>
+    <loc>https://sdelgado.com/pdf/resume/2023_susan_delgado_resume.pdf</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-</url>
+  </url>
+
 </urlset>
