@@ -232,7 +232,7 @@ async function initiateGallery() {
 
     const galleryItems = satchel
       .filter(item =>
-        String(item.type || "").trim().toLowerCase() === "gallery"
+        String(item.type || "").trim().toLowerCase() === "nav-gallery"
       )
       .sort((a, b) => Number(a.id) - Number(b.id));
 
