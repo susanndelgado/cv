@@ -140,12 +140,11 @@ console.log("INITIATE GALLERY FIRED");
 
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
-        
-         console.log(satchel);
+     
     if (!Array.isArray(satchel)) {
       throw new Error("Invalid response format");
     }
-
+    console.log(response.json());
     // DEBUG VIEW (optional)
     if (dataDump) {
       dataDump.style.display = "block";
