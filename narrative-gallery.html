@@ -140,7 +140,10 @@ async function initiateGallery() {
 
     const response = await fetch(scriptUrl + "?t=" + Date.now());
     const satchel = await response.json();
-
+         const response = await fetch(scriptUrl + "?t=" + Date.now());
+         const satchel = await response.json();
+         
+         console.log(satchel);
     if (!Array.isArray(satchel)) {
       throw new Error("Invalid response format");
     }
@@ -157,7 +160,7 @@ async function initiateGallery() {
 
     const galleryItems = satchel
       .filter(item =>
-        String(item.type || "").trim().toLowerCase() === "Gstory"
+        String(item.type || "").trim().toLowerCase() === "gstory"
       )
       .sort((a, b) => Number(a.id) - Number(b.id));
 
