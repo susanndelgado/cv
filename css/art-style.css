@@ -361,7 +361,49 @@ header .nav-tabs .nav-link.active:hover {
     color: #888;
     text-align: center;
 }
+.hp-portfolio-grid .tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+}
 
+.hp-portfolio-grid .tile img {
+    transition: transform 0.4s ease;
+}
+
+.hp-portfolio-grid .tile:hover img {
+    transform: scale(1.05);
+}
+
+/* Overlay */
+.hp-portfolio-grid .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hp-portfolio-grid .tile:hover .overlay {
+    opacity: 1;
+}
+
+/* Keep your existing caption style intact */
+.hp-portfolio-grid .matte-caption {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+}
 /******************************************************************
  * THE ARTISAN'S UNIFIED SLIDESHOW
  ******************************************************************/
