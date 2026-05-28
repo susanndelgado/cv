@@ -47,7 +47,6 @@
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
        <ul id="menu-main top-nav" class="navbar-nav ml-auto">
          <li class="active item"><a class="nav-link link" href="about.html" null="">ABOUT</a></li>
-         <li class="item"><a class="nav-link link" href="gallery.html" null="">GALLERY</a></li>
 <li class="item"><a class="nav-link link" href="progress-chronicles.html" null="">PROGRESS CHRONICLES</a></li>
       <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT</a></li>
       </ul>
@@ -61,11 +60,10 @@
          <div class="seal-contained">
             <img src="img/logoCircle.svg" alt="Susan Nicole Fine Artist Seal">
            </div>
-        <h1 class="master-title">The Gallery</h1>
+        <h1 class="master-title">Narratives and Concept Development Arts</h1>
         
         <p class="hero-intro" style="max-space: 800px; margin: 0 auto 30px;">
-            A curated collection of academic studies and imaginative explorations, 
-            where classical foundations meet the unfolding realms of fantasy realism.
+            A curated collection of mythic and narrative works, where stories, symbols, and imagined worlds unfold through painting.
         </p>
       
         <div class="hero-divider"></div>
@@ -124,80 +122,7 @@
     </div>
 </footer>
 
-<!-- <script>
-// ==========================================================
-// === THE MUSEUM CURATOR v3.1 (Fixed Layout & Logic) ===
-// ==========================================================
 
-
- async function initiateGallery() {
-  const museumWing = document.getElementById('museum-wing');
-  const dataDump = document.getElementById('raw-data-log');
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-
-  try {
-    const response = await fetch(scriptUrl);
-    const satchel = await response.json();
-
-    const galleryItems = satchel.filter(item =>
-      item.type && item.type.toLowerCase().trim() === 'gallery'
-    );
-
-    if (!museumWing) return;
-
-    if (dataDump) {
-      dataDump.style.display = "block";
-      dataDump.textContent = JSON.stringify(satchel, null, 2);
-    }
-
-    museumWing.innerHTML = "";
-
-    galleryItems.forEach(item => {
-      const mainImg = item.files && item.files.length > 0
-        ? item.files[0]
-        : 'https://via.placeholder.com/300';
-
-      const cleanDesc = Array.isArray(item.description)
-        ? item.description.join(' ')
-        : (item.description || '');
-
-      const cardHtml = `
-        <div class="gallery-card" onclick="openGrandView('${mainImg}')">
-          <img class="gallery-media" src="${mainImg}" alt="${item.title}">
-          <div class="gallery-overlay">
-            <h3 style="margin:0;">${item.title}</h3>
-            <p style="font-size: 0.85rem; margin: 10px 0;">
-              ${item.misc ? item.description : ''}
-            </p>
-            <p style="font-size: 0.85rem; margin: 10px 0;"> 
-              ${item.misc ? item.misc.Media : 'Masterwork'}
-            </p>
-            <p style="font-style: italic; font-size: 0.8rem;">
-              ${cleanDesc}
-            </p>
-          </div>
-        </div>`;
-
-      museumWing.innerHTML += cardHtml;
-    });
-
-  } catch (error) {
-    console.error("Librarian:", error);
-  }
-}
-
-function openGrandView(src) {
-  const modal = document.getElementById('grand-view');
-  const modalImg = document.getElementById('grand-img');
-
-  if (modal && modalImg) {
-    modal.style.display = "flex";
-    modalImg.src = src;
-  }
-}
-
-document.addEventListener('DOMContentLoaded', initiateGallery);
-</script> -->
 <script>
 // ==========================================================
 // === MUSEUM CURATOR v4.1 (GALLERY ONLY - SORTED + CLEAN) ===
