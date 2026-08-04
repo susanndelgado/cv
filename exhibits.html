@@ -248,17 +248,53 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
+
 // ==========================================================
-// === EXHIBITION CURATOR v1.0 ===============================
-// Pulls records from the same Google Apps Script used by the
-// gallery and Progress Chronicles pages.
+// === EXHIBITION CURATOR v2.0 ===============================
+// One Google Doc record = one exhibition container.
+// Newest/highest ID first.
+// Displays 5 exhibitions, then loads 5 more.
 // ==========================================================
 
-const EXHIBITION_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+let allExhibitions = [];
+let currentExhibitionIndex = 0;
 
-const EXHIBITION_CACHE_KEY = "exhibitions_cache_v1";
-const EXHIBITION_CACHE_TIME_KEY = "exhibitions_cache_time_v1";
+const EXHIBITIONS_PER_PAGE = 5;
+
+const EXHIBITION_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+
+const EXHIBITION_CACHE_KEY = "exhibitions_cache_v2";
+const EXHIBITION_CACHE_TIME_KEY = "exhibitions_cache_time_v2";
 const EXHIBITION_CACHE_DURATION = 1000 * 60 * 10;
+
+
+// ==========================================================
+// TEXT HELPERS
+// ==========================================================
+
+function normalizeText(value) {
+  if (Array.isArray(value)) {
+    return value
+      .filter(value => value !== null && value !== undefined)
+      .join(" ")
+      .trim();
+  }
+
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  return String(value).trim();
+}
+
+
+function normalizeKey(value) {
+  return String(value || "")
+    .replace(/[\s_-]/g, "")
+    .toLowerCase();
+}
+
 
 function escapeHTML(value) {
   return String(value ?? "")
@@ -269,24 +305,29 @@ function escapeHTML(value) {
     .replaceAll("'", "&#039;");
 }
 
-function normalizeText(value) {
-  if (Array.isArray(value)) return value.filter(Boolean).join(" ");
-  return value == null ? "" : String(value).trim();
-}
 
-function normalizeKey(value) {
-  return String(value || "").replace(/[\s_-]/g, "").toLowerCase();
-}
+// ==========================================================
+// FIELD READER
+// Checks both the main item and item.misc.
+// Matching is case-insensitive.
+// ==========================================================
 
-// Finds a field whether the Apps Script placed it directly on
-// the item or inside item.misc. Field matching is case-insensitive.
 function getField(item, ...possibleNames) {
-  const sources = [item || {}, item?.misc || {}];
-  const wanted = possibleNames.map(normalizeKey);
+  const sources = [
+    item || {},
+    item?.misc || {}
+  ];
+
+  const wantedKeys = possibleNames.map(normalizeKey);
 
   for (const source of sources) {
+    if (!source || typeof source !== "object") continue;
+
     for (const [key, value] of Object.entries(source)) {
-      if (wanted.includes(normalizeKey(key)) && normalizeText(value)) {
+      if (
+        wantedKeys.includes(normalizeKey(key)) &&
+        normalizeText(value)
+      ) {
         return normalizeText(value);
       }
     }
@@ -295,207 +336,617 @@ function getField(item, ...possibleNames) {
   return "";
 }
 
-function extractUrls(fileEntry) {
-  if (!fileEntry) return [];
 
-  const text = typeof fileEntry === "string"
-    ? fileEntry
-    : JSON.stringify(fileEntry);
-
-  const matches = text.match(/https?:\/\/[^\s"'<>]+/g) || [];
-  return [...new Set(matches.map(url => url.trim()))];
-}
+// ==========================================================
+// IMAGE READER
+// Reads every URL in the single [Files] field.
+// Each URL line becomes one carousel image.
+// ==========================================================
 
 function extractImages(item) {
   const files = Array.isArray(item?.files)
     ? item.files
-    : (item?.files ? [item.files] : []);
+    : item?.files
+      ? [item.files]
+      : [];
 
-  const urls = files.flatMap(extractUrls);
+  const urls = [];
 
-  // Optional support for image/gallery fields outside [Files].
-  ["image", "images", "gallery", "photo", "photos"].forEach(field => {
-    const value = getField(item, field);
-    if (value) urls.push(...extractUrls(value));
+  files.forEach(fileEntry => {
+    if (!fileEntry) return;
+
+    const text = typeof fileEntry === "string"
+      ? fileEntry
+      : JSON.stringify(fileEntry);
+
+    text
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(line => line.startsWith("http://") || line.startsWith("https://"))
+      .forEach(url => urls.push(url));
   });
 
   return [...new Set(urls)];
 }
 
-function getDescription(item) {
-  return getField(item, "description", "exhibitdescription", "summary");
+
+// ==========================================================
+// IMAGE CAPTIONS
+// Expected format:
+// Caption One | Caption Two | Caption Three
+// ==========================================================
+
+function extractImageCaptions(item) {
+  const captions = getField(
+    item,
+    "imagecaptions",
+    "image captions",
+    "captions"
+  );
+
+  if (!captions) return [];
+
+  return captions
+    .split("|")
+    .map(caption => caption.trim())
+    .filter(Boolean);
 }
 
-function getStatus(item) {
-  return getField(item, "status", "exhibitstatus") || "Exhibition";
+
+// ==========================================================
+// DISPLAY HELPERS
+// ==========================================================
+
+function formatPipeSeparatedValue(value) {
+  if (!value) return "";
+
+  return value
+    .split("|")
+    .map(part => part.trim())
+    .filter(Boolean)
+    .map(part => `<span class="exhibition-work-item">${escapeHTML(part)}</span>`)
+    .join("");
 }
+
+
+function createDetailRow(label, value, options = {}) {
+  if (!value) return "";
+
+  let displayedValue;
+
+  if (options.pipeSeparated) {
+    displayedValue = `
+      <div class="exhibition-work-list">
+        ${formatPipeSeparatedValue(value)}
+      </div>
+    `;
+  } else {
+    displayedValue = `<span>${escapeHTML(value)}</span>`;
+  }
+
+  return `
+    <li>
+      <strong>${escapeHTML(label)}</strong>
+      ${displayedValue}
+    </li>
+  `;
+}
+
 
 function makeDetailRows(item) {
+  const venue = getField(item, "venue", "gallery", "institution");
+  const location = getField(item, "location", "city", "address");
+  const dates = getField(item, "dates", "exhibitiondates", "date");
+  const reception = getField(
+    item,
+    "reception",
+    "receptiondate",
+    "opening",
+    "openingreception"
+  );
+  const organizer = getField(
+    item,
+    "organizer",
+    "organization",
+    "presentedby"
+  );
+  const works = getField(
+    item,
+    "works",
+    "artworks",
+    "pieces",
+    "worksshown"
+  );
+  const award = getField(
+    item,
+    "award",
+    "recognition"
+  );
+
   const rows = [
-    ["Venue", getField(item, "venue", "gallery", "institution")],
-    ["Location", getField(item, "location", "city", "address")],
-    ["Dates", getField(item, "dates", "exhibitiondates", "date")],
-    ["Reception", getField(item, "reception", "receptiondate", "opening")],
-    ["Organizer", getField(item, "organizer", "organization", "presentedby")],
-    ["Works", getField(item, "works", "artworks", "pieces", "worksshown")],
-    ["Award", getField(item, "award", "recognition")]
-  ].filter(([, value]) => value);
+    createDetailRow("Venue", venue),
+    createDetailRow("Location", location),
+    createDetailRow("Dates", dates),
+    createDetailRow("Reception", reception),
+    createDetailRow("Organizer", organizer),
+    createDetailRow("Works", works, {
+      pipeSeparated: true
+    }),
+    createDetailRow("Award", award)
+  ].filter(Boolean);
 
   if (!rows.length) return "";
 
   return `
     <ul class="exhibition-details">
-      ${rows.map(([label, value]) => `
-        <li>
-          <strong>${escapeHTML(label)}</strong>
-          <span>${escapeHTML(value)}</span>
-        </li>
-      `).join("")}
+      ${rows.join("")}
     </ul>
   `;
 }
 
+
+// ==========================================================
+// BOOTSTRAP CAROUSEL
+// One carousel for all images from one exhibition document.
+// ==========================================================
+
 function makeCarousel(item, exhibitIndex) {
   const images = extractImages(item);
-  const carouselId = `exhibition-carousel-${exhibitIndex}`;
-  const title = getField(item, "title") || "Exhibition";
+  const captions = extractImageCaptions(item);
+
+  const title =
+    getField(item, "title") ||
+    "Exhibition";
+
+  const carouselId =
+    `exhibition-carousel-${exhibitIndex}`;
 
   if (!images.length) {
-    return `<div class="exhibition-placeholder">Images forthcoming</div>`;
+    return `
+      <div class="exhibition-placeholder">
+        Images forthcoming
+      </div>
+    `;
   }
 
-  const labels = getField(item, "imagecaptions", "captions")
-    .split("|")
-    .map(value => value.trim())
-    .filter(Boolean);
+  const indicators = images.length > 1
+    ? `
+      <div class="carousel-indicators">
+        ${images.map((image, index) => `
+          <button
+            type="button"
+            data-bs-target="#${carouselId}"
+            data-bs-slide-to="${index}"
+            class="${index === 0 ? "active" : ""}"
+            aria-current="${index === 0 ? "true" : "false"}"
+            aria-label="Image ${index + 1}">
+          </button>
+        `).join("")}
+      </div>
+    `
+    : "";
+
+  const slides = images.map((src, index) => {
+    const caption = captions[index] || "";
+
+    return `
+      <div class="carousel-item ${index === 0 ? "active" : ""}">
+        <img
+          src="${escapeHTML(src)}"
+          class="d-block w-100"
+          loading="lazy"
+          alt="${escapeHTML(title)} image ${index + 1}"
+          onerror="handleExhibitionImageError(this)"
+        >
+
+        ${caption ? `
+          <div class="carousel-caption d-none d-md-block">
+            <p>${escapeHTML(caption)}</p>
+          </div>
+        ` : ""}
+      </div>
+    `;
+  }).join("");
+
+  const controls = images.length > 1
+    ? `
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#${carouselId}"
+        data-bs-slide="prev">
+
+        <span
+          class="carousel-control-prev-icon"
+          aria-hidden="true">
+        </span>
+
+        <span class="visually-hidden">
+          Previous
+        </span>
+      </button>
+
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#${carouselId}"
+        data-bs-slide="next">
+
+        <span
+          class="carousel-control-next-icon"
+          aria-hidden="true">
+        </span>
+
+        <span class="visually-hidden">
+          Next
+        </span>
+      </button>
+    `
+    : "";
 
   return `
-    <div id="${carouselId}" class="carousel slide exhibition-carousel" data-bs-ride="false">
-      <div class="carousel-indicators">
-        ${images.map((_, index) => `
-          <button type="button"
-                  data-bs-target="#${carouselId}"
-                  data-bs-slide-to="${index}"
-                  class="${index === 0 ? "active" : ""}"
-                  aria-current="${index === 0 ? "true" : "false"}"
-                  aria-label="Image ${index + 1}"></button>
-        `).join("")}
-      </div>
+    <div
+      id="${carouselId}"
+      class="carousel slide exhibition-carousel"
+      data-bs-ride="false">
+
+      ${indicators}
 
       <div class="carousel-inner">
-        ${images.map((src, index) => `
-          <div class="carousel-item ${index === 0 ? "active" : ""}">
-            <img src="${escapeHTML(src)}"
-                 class="d-block w-100"
-                 loading="lazy"
-                 alt="${escapeHTML(title)} exhibition image ${index + 1}"
-                 onerror="this.closest('.carousel-item').style.display='none'">
-            ${labels[index] ? `
-              <div class="carousel-caption d-none d-md-block">
-                <p>${escapeHTML(labels[index])}</p>
-              </div>
-            ` : ""}
-          </div>
-        `).join("")}
+        ${slides}
       </div>
 
-      ${images.length > 1 ? `
-        <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      ` : ""}
+      ${controls}
     </div>
   `;
 }
 
-function renderExhibition(item, index) {
-  const title = getField(item, "title") || "Untitled Exhibition";
-  const description = getDescription(item);
-  const media = getField(item, "media", "medium", "category");
-  const status = getStatus(item);
-  const officialLink = getField(item, "link", "url", "website", "officiallink");
-  const reverse = index % 2 === 1;
+
+// ==========================================================
+// BROKEN IMAGE HANDLING
+// ==========================================================
+
+function handleExhibitionImageError(imageElement) {
+  const slide = imageElement.closest(".carousel-item");
+
+  if (!slide) {
+    imageElement.style.display = "none";
+    return;
+  }
+
+  slide.innerHTML = `
+    <div class="exhibition-placeholder">
+      Image unavailable
+    </div>
+  `;
+}
+
+
+// ==========================================================
+// ONE EXHIBITION CONTAINER
+// One returned Google Doc item becomes one article.
+// ==========================================================
+
+function renderExhibition(item, globalIndex) {
+  const title =
+    getField(item, "title") ||
+    "Untitled Exhibition";
+
+  const description = getField(
+    item,
+    "description",
+    "exhibitdescription",
+    "summary"
+  );
+
+  const media = getField(
+    item,
+    "media",
+    "medium",
+    "category"
+  );
+
+  const status =
+    getField(
+      item,
+      "status",
+      "exhibitstatus"
+    ) || "Exhibition";
+
+  const officialLink = getField(
+    item,
+    "link",
+    "url",
+    "website",
+    "officiallink"
+  );
+
+  const reverseLayout = globalIndex % 2 === 1;
 
   const imageColumn = `
     <div class="col-lg-6 p-0">
-      ${makeCarousel(item, index)}
+      ${makeCarousel(item, globalIndex)}
     </div>
   `;
 
   const copyColumn = `
     <div class="col-lg-6 d-flex align-items-center">
       <div class="exhibition-copy">
-        <span class="exhibition-status">${escapeHTML(status)}</span>
-        <h2 class="exhibition-title">${escapeHTML(title)}</h2>
-        ${media ? `<div class="exhibition-media">${escapeHTML(media)}</div>` : ""}
-        ${description ? `<div class="exhibition-description">${escapeHTML(description)}</div>` : ""}
+
+        <span class="exhibition-status">
+          ${escapeHTML(status)}
+        </span>
+
+        <h2 class="exhibition-title">
+          ${escapeHTML(title)}
+        </h2>
+
+        ${media ? `
+          <div class="exhibition-media">
+            ${escapeHTML(media)}
+          </div>
+        ` : ""}
+
+        ${description ? `
+          <div class="exhibition-description">
+            ${escapeHTML(description)}
+          </div>
+        ` : ""}
+
         ${makeDetailRows(item)}
-        ${officialLink ? `<a class="exhibition-link" href="${escapeHTML(officialLink)}" target="_blank" rel="noopener">Exhibition details</a>` : ""}
+
+        ${officialLink ? `
+          <a
+            class="exhibition-link"
+            href="${escapeHTML(officialLink)}"
+            target="_blank"
+            rel="noopener noreferrer">
+            Exhibition Details
+          </a>
+        ` : ""}
+
       </div>
     </div>
   `;
 
   return `
-    <article class="exhibition-card">
+    <article
+      class="exhibition-card"
+      data-exhibition-id="${escapeHTML(item?.id || "")}">
+
       <div class="row g-0">
-        ${reverse ? copyColumn + imageColumn : imageColumn + copyColumn}
+        ${
+          reverseLayout
+            ? copyColumn + imageColumn
+            : imageColumn + copyColumn
+        }
       </div>
+
     </article>
   `;
 }
 
-async function getExhibitionData() {
-  const now = Date.now();
-  const cached = localStorage.getItem(EXHIBITION_CACHE_KEY);
-  const cachedTime = Number(localStorage.getItem(EXHIBITION_CACHE_TIME_KEY));
 
-  if (cached && cachedTime && now - cachedTime < EXHIBITION_CACHE_DURATION) {
-    return JSON.parse(cached);
+// ==========================================================
+// FETCH ARCHIVE
+// Uses the same basic method as the Narrative Gallery.
+// ==========================================================
+
+async function getExhibitionArchive() {
+  const now = Date.now();
+
+  const cached =
+    localStorage.getItem(EXHIBITION_CACHE_KEY);
+
+  const cachedTime =
+    Number(
+      localStorage.getItem(
+        EXHIBITION_CACHE_TIME_KEY
+      )
+    );
+
+  if (
+    cached &&
+    cachedTime &&
+    now - cachedTime < EXHIBITION_CACHE_DURATION
+  ) {
+    try {
+      return JSON.parse(cached);
+    } catch (error) {
+      localStorage.removeItem(EXHIBITION_CACHE_KEY);
+      localStorage.removeItem(EXHIBITION_CACHE_TIME_KEY);
+    }
   }
 
-  const response = await fetch(`${EXHIBITION_SCRIPT_URL}?t=${now}`);
-  if (!response.ok) throw new Error(`Archive request failed (${response.status}).`);
+  const response = await fetch(
+    `${EXHIBITION_SCRIPT_URL}?t=${now}`
+  );
 
-  const data = await response.json();
-  if (!Array.isArray(data)) throw new Error("The exhibition archive returned an invalid format.");
+  if (!response.ok) {
+    throw new Error(
+      `Archive request failed with status ${response.status}.`
+    );
+  }
 
-  localStorage.setItem(EXHIBITION_CACHE_KEY, JSON.stringify(data));
-  localStorage.setItem(EXHIBITION_CACHE_TIME_KEY, String(now));
-  return data;
+  const archive = await response.json();
+
+  if (!Array.isArray(archive)) {
+    throw new Error(
+      "The exhibition archive returned an invalid format."
+    );
+  }
+
+  localStorage.setItem(
+    EXHIBITION_CACHE_KEY,
+    JSON.stringify(archive)
+  );
+
+  localStorage.setItem(
+    EXHIBITION_CACHE_TIME_KEY,
+    String(now)
+  );
+
+  return archive;
 }
 
+
+// ==========================================================
+// INITIALIZE EXHIBITIONS
+// Filters type=exhibit and sorts latest/highest ID first.
+// ==========================================================
+
 async function initiateExhibitions() {
-  const list = document.getElementById("exhibition-list");
+  const exhibitionList =
+    document.getElementById("exhibition-list");
+
+  const loadMoreButton =
+    document.getElementById("loadMoreExhibitions");
+
+  if (!exhibitionList) {
+    console.error(
+      "Missing #exhibition-list container."
+    );
+    return;
+  }
 
   try {
-    const archive = await getExhibitionData();
+    const archive =
+      await getExhibitionArchive();
 
-    const exhibitions = archive
-      .filter(item => normalizeText(item?.type).toLowerCase() === "exhibit")
-      .sort((a, b) => Number(a?.id || 0) - Number(b?.id || 0));
+    allExhibitions = archive
+      .filter(item => {
+        return (
+          normalizeText(item?.type)
+            .toLowerCase() === "exhibit"
+        );
+      })
+      .sort((a, b) => {
+        const idA = Number(a?.id || 0);
+        const idB = Number(b?.id || 0);
 
-    if (!exhibitions.length) {
-      list.innerHTML = `<div class="exhibition-empty">No exhibition records are published yet.</div>`;
+        return idB - idA;
+      });
+
+    exhibitionList.innerHTML = "";
+    currentExhibitionIndex = 0;
+
+    if (!allExhibitions.length) {
+      exhibitionList.innerHTML = `
+        <div class="exhibition-empty">
+          No exhibition records are published yet.
+        </div>
+      `;
+
+      if (loadMoreButton) {
+        loadMoreButton.style.display = "none";
+      }
+
       return;
     }
 
-    list.innerHTML = exhibitions.map(renderExhibition).join("");
+    renderMoreExhibitions();
+
   } catch (error) {
-    console.error("Exhibition load error:", error);
-    list.innerHTML = `
+    console.error(
+      "Exhibition load error:",
+      error
+    );
+
+    exhibitionList.innerHTML = `
       <div class="exhibition-error">
-        The exhibition archive could not be loaded. Please return shortly.
+        The exhibition archive could not be loaded.
+        Please return shortly.
       </div>
     `;
+
+    if (loadMoreButton) {
+      loadMoreButton.style.display = "none";
+    }
   }
 }
 
-document.addEventListener("DOMContentLoaded", initiateExhibitions);
+
+// ==========================================================
+// LOAD FIVE MORE
+// Appends exhibitions without removing earlier ones.
+// ==========================================================
+
+function renderMoreExhibitions() {
+  const exhibitionList =
+    document.getElementById("exhibition-list");
+
+  const loadMoreButton =
+    document.getElementById("loadMoreExhibitions");
+
+  if (!exhibitionList) return;
+
+  const nextExhibitions =
+    allExhibitions.slice(
+      currentExhibitionIndex,
+      currentExhibitionIndex +
+        EXHIBITIONS_PER_PAGE
+    );
+
+  if (!nextExhibitions.length) {
+    if (loadMoreButton) {
+      loadMoreButton.style.display = "none";
+    }
+
+    return;
+  }
+
+  const html = nextExhibitions
+    .map((item, localIndex) => {
+      const globalIndex =
+        currentExhibitionIndex + localIndex;
+
+      return renderExhibition(
+        item,
+        globalIndex
+      );
+    })
+    .join("");
+
+  exhibitionList.insertAdjacentHTML(
+    "beforeend",
+    html
+  );
+
+  currentExhibitionIndex +=
+    nextExhibitions.length;
+
+  if (loadMoreButton) {
+    loadMoreButton.style.display =
+      currentExhibitionIndex <
+      allExhibitions.length
+        ? "inline-block"
+        : "none";
+  }
+}
+
+
+// ==========================================================
+// START PAGE
+// ==========================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    const loadMoreButton =
+      document.getElementById(
+        "loadMoreExhibitions"
+      );
+
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener(
+        "click",
+        renderMoreExhibitions
+      );
+    }
+
+    initiateExhibitions();
+  }
+);
 </script>
 </body>
 </html>
