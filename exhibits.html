@@ -1,0 +1,501 @@
+<!doctype html>
+<html class="no-js" lang="en">
+   <head>
+       <meta charset="utf-8">
+       <meta http-equiv="x-ua-compatible" content="ie=edge">
+       <title>Susan Delgado</title>
+       <meta name="description" content="">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<!-- STYLESHEETS LINKS FROM SDELGADO -->
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/art-style.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+     
+  <style>
+    .exhibitions-section {
+      background: #f7f5f0;
+      padding: 80px 0;
+    }
+
+    .exhibition-list {
+      display: grid;
+      gap: 55px;
+    }
+
+    .exhibition-card {
+      background: #fff;
+      border-top: 4px solid #d4af37;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+      overflow: hidden;
+    }
+
+    .exhibition-copy {
+      padding: 42px;
+    }
+
+    .exhibition-status {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #8a6a13;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-title {
+      margin-bottom: 16px;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.15;
+    }
+
+    .exhibition-media {
+      color: #777;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-description {
+      margin: 22px 0;
+      color: #333;
+      line-height: 1.85;
+    }
+
+    .exhibition-details {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .exhibition-details li {
+      display: grid;
+      grid-template-columns: minmax(95px, 135px) 1fr;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ece8df;
+      color: #444;
+    }
+
+    .exhibition-details strong {
+      color: #111;
+      font-size: .78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-link {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 11px 22px;
+      border: 1px solid #1a1a1a;
+      color: #1a1a1a;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: .2s ease;
+    }
+
+    .exhibition-link:hover {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .exhibition-carousel,
+    .exhibition-carousel .carousel-inner,
+    .exhibition-carousel .carousel-item {
+      height: 100%;
+      min-height: 460px;
+    }
+
+    .exhibition-carousel img {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      object-fit: cover;
+      background: #181818;
+    }
+
+    .exhibition-carousel .carousel-caption {
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 28px 65px 22px;
+      background: linear-gradient(transparent, rgba(0,0,0,.82));
+      text-align: left;
+    }
+
+    .exhibition-placeholder {
+      display: flex;
+      min-height: 460px;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-loading,
+    .exhibition-empty,
+    .exhibition-error {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .exhibition-error { color: #8b1d1d; }
+
+    @media (max-width: 767.98px) {
+      .exhibition-copy { padding: 30px 24px; }
+      .exhibition-details li { grid-template-columns: 1fr; gap: 4px; }
+      .exhibition-carousel,
+      .exhibition-carousel .carousel-inner,
+      .exhibition-carousel .carousel-item,
+      .exhibition-carousel img,
+      .exhibition-placeholder { min-height: 320px; }
+    }
+  </style>
+   </head>
+   <body class="page-template page">
+<header id="top">    
+  <!--[if lt IE 8]>
+           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+       <![endif]-->
+   <div class="">
+      <ul class="nav nav-tabs">
+      
+          <li class="nav-item active">
+            <a class="nav-link active" aria-current="page" href="/">FINE ARTS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/work.html">TECHNICAL WORK</a>
+          </li>
+     
+      </ul> 
+   </div> 
+   <div class="container-fluid">
+   <nav class="navbar navbar-expand-lg navbar-light page-nav">
+       <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+     
+         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+       <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+         <li class="active item"><a class="nav-link link" href="about.html" null="">ABOUT</a></li>
+<li class="item"><a class="nav-link link" href="progress-chronicles.html" null="">PROGRESS CHRONICLES</a></li>
+      <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT</a></li>
+      </ul>
+      </div>
+   </nav>
+   </div>
+</header>
+
+<main id="exhibitions-page">
+  <section class="process-hero">
+    <div class="container text-center">
+      <div class="seal-contained">
+        <img src="img/logoCircle.svg" alt="Susan Nicole Delgado Fine Artist Seal">
+      </div>
+      <h1 class="master-title">Exhibitions</h1>
+      <p class="hero-intro" style="max-width: 800px; margin: 0 auto 30px;">
+        Current and selected exhibitions featuring the paintings and narrative work of Susan Nicole Delgado.
+      </p>
+      <div class="hero-divider"></div>
+    </div>
+  </section>
+
+  <section class="exhibitions-section">
+    <div class="container">
+      <div id="exhibition-list" class="exhibition-list" aria-live="polite">
+        <div class="exhibition-loading">The archive is gathering the exhibition records...</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+</script>
+<footer class="container py-4 border-top mt-5 text-center text-muted">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <p class="small text-uppercase mb-2">&copy; 2026 Susan Nicole Arts | Susan Nicole Delgado</p>
+            <p class="small mb-2">Grounded in the philosophy that <em>"Dreams are the Foundation of Reality."</em></p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="contact.html" class="text-muted small">Contact</a> |
+                <a href="sitemap.xml" target="_blank" class="text-muted small">Sitemap</a>
+            </div>
+        </div>
+         <pre id="raw-data-log" style="opacity:0; background: #fdf6e3; padding: 20px; border: 1px dashed #b58900; color: #586e75; font-size: 13px; display: none; max-height: 400px; overflow-y: auto; margin-bottom: 40px; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word;display:none;">
+    Waiting for the Librarian to open the ledger...
+</pre>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+// ==========================================================
+// === EXHIBITION CURATOR v1.0 ===============================
+// Pulls records from the same Google Apps Script used by the
+// gallery and Progress Chronicles pages.
+// ==========================================================
+
+const EXHIBITION_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+
+const EXHIBITION_CACHE_KEY = "exhibitions_cache_v1";
+const EXHIBITION_CACHE_TIME_KEY = "exhibitions_cache_time_v1";
+const EXHIBITION_CACHE_DURATION = 1000 * 60 * 10;
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function normalizeText(value) {
+  if (Array.isArray(value)) return value.filter(Boolean).join(" ");
+  return value == null ? "" : String(value).trim();
+}
+
+function normalizeKey(value) {
+  return String(value || "").replace(/[\s_-]/g, "").toLowerCase();
+}
+
+// Finds a field whether the Apps Script placed it directly on
+// the item or inside item.misc. Field matching is case-insensitive.
+function getField(item, ...possibleNames) {
+  const sources = [item || {}, item?.misc || {}];
+  const wanted = possibleNames.map(normalizeKey);
+
+  for (const source of sources) {
+    for (const [key, value] of Object.entries(source)) {
+      if (wanted.includes(normalizeKey(key)) && normalizeText(value)) {
+        return normalizeText(value);
+      }
+    }
+  }
+
+  return "";
+}
+
+function extractUrls(fileEntry) {
+  if (!fileEntry) return [];
+
+  const text = typeof fileEntry === "string"
+    ? fileEntry
+    : JSON.stringify(fileEntry);
+
+  const matches = text.match(/https?:\/\/[^\s"'<>]+/g) || [];
+  return [...new Set(matches.map(url => url.trim()))];
+}
+
+function extractImages(item) {
+  const files = Array.isArray(item?.files)
+    ? item.files
+    : (item?.files ? [item.files] : []);
+
+  const urls = files.flatMap(extractUrls);
+
+  // Optional support for image/gallery fields outside [Files].
+  ["image", "images", "gallery", "photo", "photos"].forEach(field => {
+    const value = getField(item, field);
+    if (value) urls.push(...extractUrls(value));
+  });
+
+  return [...new Set(urls)];
+}
+
+function getDescription(item) {
+  return getField(item, "description", "exhibitdescription", "summary");
+}
+
+function getStatus(item) {
+  return getField(item, "status", "exhibitstatus") || "Exhibition";
+}
+
+function makeDetailRows(item) {
+  const rows = [
+    ["Venue", getField(item, "venue", "gallery", "institution")],
+    ["Location", getField(item, "location", "city", "address")],
+    ["Dates", getField(item, "dates", "exhibitiondates", "date")],
+    ["Reception", getField(item, "reception", "receptiondate", "opening")],
+    ["Organizer", getField(item, "organizer", "organization", "presentedby")],
+    ["Works", getField(item, "works", "artworks", "pieces", "worksshown")],
+    ["Award", getField(item, "award", "recognition")]
+  ].filter(([, value]) => value);
+
+  if (!rows.length) return "";
+
+  return `
+    <ul class="exhibition-details">
+      ${rows.map(([label, value]) => `
+        <li>
+          <strong>${escapeHTML(label)}</strong>
+          <span>${escapeHTML(value)}</span>
+        </li>
+      `).join("")}
+    </ul>
+  `;
+}
+
+function makeCarousel(item, exhibitIndex) {
+  const images = extractImages(item);
+  const carouselId = `exhibition-carousel-${exhibitIndex}`;
+  const title = getField(item, "title") || "Exhibition";
+
+  if (!images.length) {
+    return `<div class="exhibition-placeholder">Images forthcoming</div>`;
+  }
+
+  const labels = getField(item, "imagecaptions", "captions")
+    .split("|")
+    .map(value => value.trim())
+    .filter(Boolean);
+
+  return `
+    <div id="${carouselId}" class="carousel slide exhibition-carousel" data-bs-ride="false">
+      <div class="carousel-indicators">
+        ${images.map((_, index) => `
+          <button type="button"
+                  data-bs-target="#${carouselId}"
+                  data-bs-slide-to="${index}"
+                  class="${index === 0 ? "active" : ""}"
+                  aria-current="${index === 0 ? "true" : "false"}"
+                  aria-label="Image ${index + 1}"></button>
+        `).join("")}
+      </div>
+
+      <div class="carousel-inner">
+        ${images.map((src, index) => `
+          <div class="carousel-item ${index === 0 ? "active" : ""}">
+            <img src="${escapeHTML(src)}"
+                 class="d-block w-100"
+                 loading="lazy"
+                 alt="${escapeHTML(title)} exhibition image ${index + 1}"
+                 onerror="this.closest('.carousel-item').style.display='none'">
+            ${labels[index] ? `
+              <div class="carousel-caption d-none d-md-block">
+                <p>${escapeHTML(labels[index])}</p>
+              </div>
+            ` : ""}
+          </div>
+        `).join("")}
+      </div>
+
+      ${images.length > 1 ? `
+        <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      ` : ""}
+    </div>
+  `;
+}
+
+function renderExhibition(item, index) {
+  const title = getField(item, "title") || "Untitled Exhibition";
+  const description = getDescription(item);
+  const media = getField(item, "media", "medium", "category");
+  const status = getStatus(item);
+  const officialLink = getField(item, "link", "url", "website", "officiallink");
+  const reverse = index % 2 === 1;
+
+  const imageColumn = `
+    <div class="col-lg-6 p-0">
+      ${makeCarousel(item, index)}
+    </div>
+  `;
+
+  const copyColumn = `
+    <div class="col-lg-6 d-flex align-items-center">
+      <div class="exhibition-copy">
+        <span class="exhibition-status">${escapeHTML(status)}</span>
+        <h2 class="exhibition-title">${escapeHTML(title)}</h2>
+        ${media ? `<div class="exhibition-media">${escapeHTML(media)}</div>` : ""}
+        ${description ? `<div class="exhibition-description">${escapeHTML(description)}</div>` : ""}
+        ${makeDetailRows(item)}
+        ${officialLink ? `<a class="exhibition-link" href="${escapeHTML(officialLink)}" target="_blank" rel="noopener">Exhibition details</a>` : ""}
+      </div>
+    </div>
+  `;
+
+  return `
+    <article class="exhibition-card">
+      <div class="row g-0">
+        ${reverse ? copyColumn + imageColumn : imageColumn + copyColumn}
+      </div>
+    </article>
+  `;
+}
+
+async function getExhibitionData() {
+  const now = Date.now();
+  const cached = localStorage.getItem(EXHIBITION_CACHE_KEY);
+  const cachedTime = Number(localStorage.getItem(EXHIBITION_CACHE_TIME_KEY));
+
+  if (cached && cachedTime && now - cachedTime < EXHIBITION_CACHE_DURATION) {
+    return JSON.parse(cached);
+  }
+
+  const response = await fetch(`${EXHIBITION_SCRIPT_URL}?t=${now}`);
+  if (!response.ok) throw new Error(`Archive request failed (${response.status}).`);
+
+  const data = await response.json();
+  if (!Array.isArray(data)) throw new Error("The exhibition archive returned an invalid format.");
+
+  localStorage.setItem(EXHIBITION_CACHE_KEY, JSON.stringify(data));
+  localStorage.setItem(EXHIBITION_CACHE_TIME_KEY, String(now));
+  return data;
+}
+
+async function initiateExhibitions() {
+  const list = document.getElementById("exhibition-list");
+
+  try {
+    const archive = await getExhibitionData();
+
+    const exhibitions = archive
+      .filter(item => normalizeText(item?.type).toLowerCase() === "exhibit")
+      .sort((a, b) => Number(a?.id || 0) - Number(b?.id || 0));
+
+    if (!exhibitions.length) {
+      list.innerHTML = `<div class="exhibition-empty">No exhibition records are published yet.</div>`;
+      return;
+    }
+
+    list.innerHTML = exhibitions.map(renderExhibition).join("");
+  } catch (error) {
+    console.error("Exhibition load error:", error);
+    list.innerHTML = `
+      <div class="exhibition-error">
+        The exhibition archive could not be loaded. Please return shortly.
+      </div>
+    `;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", initiateExhibitions);
+</script>
+</body>
+</html>
