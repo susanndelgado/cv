@@ -448,6 +448,156 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /******************************************************************
+ * EXHIBIT PAGE
+ ******************************************************************/
+.exhibitions-section {
+      background: #f7f5f0;
+      padding: 80px 0;
+    }
+
+    .exhibition-list {
+      display: grid;
+      gap: 55px;
+    }
+
+    .exhibition-card {
+      background: #fff;
+      border-top: 4px solid #d4af37;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+      overflow: hidden;
+    }
+
+    .exhibition-copy {
+      padding: 42px;
+    }
+
+    .exhibition-status {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #8a6a13;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-title {
+      margin-bottom: 16px;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.15;
+    }
+
+    .exhibition-media {
+      color: #777;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-description {
+      margin: 22px 0;
+      color: #333;
+      line-height: 1.85;
+    }
+
+    .exhibition-details {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .exhibition-details li {
+      display: grid;
+      grid-template-columns: minmax(95px, 135px) 1fr;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ece8df;
+      color: #444;
+    }
+
+    .exhibition-details strong {
+      color: #111;
+      font-size: .78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-link {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 11px 22px;
+      border: 1px solid #1a1a1a;
+      color: #1a1a1a;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: .2s ease;
+    }
+
+    .exhibition-link:hover {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .exhibition-carousel,
+    .exhibition-carousel .carousel-inner,
+    .exhibition-carousel .carousel-item {
+      height: 100%;
+      min-height: 460px;
+    }
+
+    .exhibition-carousel img {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      object-fit: cover;
+      background: #181818;
+    }
+
+    .exhibition-carousel .carousel-caption {
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 28px 65px 22px;
+      background: linear-gradient(transparent, rgba(0,0,0,.82));
+      text-align: left;
+    }
+
+    .exhibition-placeholder {
+      display: flex;
+      min-height: 460px;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .exhibition-loading,
+    .exhibition-empty,
+    .exhibition-error {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .exhibition-error { color: #8b1d1d; }
+
+    @media (max-width: 767.98px) {
+      .exhibition-copy { padding: 30px 24px; }
+      .exhibition-details li { grid-template-columns: 1fr; gap: 4px; }
+      .exhibition-carousel,
+      .exhibition-carousel .carousel-inner,
+      .exhibition-carousel .carousel-item,
+      .exhibition-carousel img,
+      .exhibition-placeholder { min-height: 320px; }
+    }
+/******************************************************************
  * ABOUT & PROCESS TREE SECTIONS
  ******************************************************************/
 .process-hero {
