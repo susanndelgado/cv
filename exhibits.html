@@ -622,13 +622,13 @@ function renderExhibition(
         ${makeDetailRows(item)}
 
         ${isValidWebsiteURL(officialLink) ? `
-          <a
-            class="exhibition-link"
-            href="${escapeHTML(officialLink)}"
-            target="_blank"
-            rel="noopener noreferrer">
-            Exhibition Details
-          </a>
+           <a
+             class="exhibition-link"
+             href="${escapeHTML(officialLink)}"
+             target="_blank"
+             rel="noopener noreferrer">
+             Exhibition Details
+           </a>
         ` : ""}
 
       </div>
