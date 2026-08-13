@@ -289,6 +289,26 @@
     "skills": "HTML5<br>CSS<br>Javascript<br>Web Design",
     "content": "<p>Website design and development project for Margaret Beals.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
     "id": "28"
+    },
+    {
+      "title": "THE PARENTS CLUB OF WEST POINT INAUGURAL BALL 2017",
+      "image": "showcase/img/pcwp-winterball2017-header.jpg",
+      "link": "showcase/pcwp-inaugural-ball-2017.html",
+      "client": "The Parents Club of West Point",
+      "role": "Graphic Designer<br>",
+      "skills": "Graphic Design<br>Event Design<br>Print Design<br>Digital Design",
+      "content": "<p>Designed event and promotional materials for the Parents Club of West Point Inaugural Ball in 2017.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+      "id": "29"
+    },
+    {
+      "title": "THE PARENTS CLUB OF WEST POINT TASTE & TOUR 2018",
+      "image": "showcase/img/pcwpTasteandTour2018.jpg",
+      "link": "showcase/pcwp-taste-and-tour-2018.html",
+      "client": "The Parents Club of West Point",
+      "role": "Graphic Designer<br>",
+      "skills": "Graphic Design<br>Event Design<br>Print Design<br>Digital Design",
+      "content": "<p>Designed promotional materials for the Parents Club of West Point Taste & Tour event, including the Passport to the Hudson River.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+      "id": "30"
     }
     ]
   }
