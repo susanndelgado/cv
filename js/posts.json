@@ -1,293 +1,294 @@
 {
     "posts": [
-      {
-        "title": "THE PULSE GALA 2015",
-        "image": "showcase/img/pulse2015-header.jpg",
-        "link": "showcase/pulse2015.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS",
-        "content": "<p>The 2015 Pulse Gala is an annual fundraiser hosted by CRF to promote Cardiovascular health. Each year CRF invites renowned scholars to join them as an honored guess. In 2015 CRF invited one of the world’s most accomplished and respected public servants to be the honoree. Dr. Henry Kissinger, a renowned scholar, foreign policy advisor, and prolific author.</p><p>Pulse Gala is updated yearly for CRF Annual Foundraiser. As the Junior Front End Developer at CRF I had the honor of handling all components of developing this website from 2013 – 2016.</p><p>The Pulse Gala is 1-3 page bootstrap website hosted annually. This website has no database and as such is a standard static html website built with twitter bootstrap, Javascript, jQuery, a slider, forms processed through  wufoo forms and a gallery.</p><p>At CRF I handled all the development of smaller websites and majority of all front end development at the company.</p><p>Visit this website &gt;&gt; <a href=\"http://www.pulsegala.org/2015/index.html\" target=\"blank\" rel=\"noopener noreferrer\">www.pulsegala.org/2015</a></p>",
-        "id":"0"
-      },
-      {
-        "title": "Transcatheter Cardiovascular Therapeutics (<em>TCT</em>) 2015",
-        "image": "showcase/img/tct2015-header.jpg",
-        "link": "showcase/tct2015.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "<p>Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>SVG<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
-        "content": " <p>The Transcatheter Cardiovascular Therapeutics (<em>TCT</em>)  is an annual conference hosted by CRF focusing on the future of interventional cardiology. Each year CRF invites millions of medical professional and scholars to join them at TCT. In 2015 CRF invited special guest speakers Arnold Schwarzenegger and Carlo Ancelotti. </p><p>TCT is updated yearly for CRF Annual TCT Conference. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the TCT materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 TCT related websites for conferences, sponsors, and partners. As well as the front end development of TCT Industry website, App features and various related interfaces. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The TCT website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. TCT website housed dynamic schedules built using various technologies including Ajax, Restful Api and Javascript. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
-        "id":"1"
-      },
-      {
-        "title": "Ali HairStylist Website",
-        "image": "showcase/img/ali-header.jpg",
-        "link": "showcase/ali.html",
-        "client":"ALI HAIRSTYLIST",
-        "role":"Front End Developer<br>Graphic Designer<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Wordpress<br>Scss<br>HTML 5<br>CSS",
-        "content": "<p>Ali is a master hairstylist. Working as a stylist since 1968, Ali has crafted his skills at Astor Place Hairstylists as well as MOI, alongside his own barbershop that he operated back in Morocco. Ali has had the pleasure of working in some of the most well-known fashion shows and hairstyling competitions in the world.&nbsp;He was ranked in 5th place during the World Hairstyling Competition of 1982. He is also a member of many different hairstyling federations, organizations, and associations that deal with barbers. </p><p>I had the pleasure of designing and developing Ali’s first website while a student in College. </p><p>I handled the entire design and development of Ali’s entire website. The website was build in wordpress as a custom theme with a responsive layout. Responsive and adaptive techiques were still fairly new at the time I developed this website so I was very pleased to see the results.</p><p>Since then his website site has been rebranded however he is an exceptional hair stylist and if you were interested in learning more about him please visit his website at &gt;&gt; <a href=\"https://www.alihairstylist.net/\">https://www.alihairstylist.net/</a></p>",
-        "id":"2"
-      },
-      {
-        "title": "I WRITE NY CHALLENGE",
-        "image": "showcase/img/iwriteny-header.jpg",
-        "link": "showcase/iwriteny.html",
-        "client":"The Knowledge Project (The Know)",
-        "role":"Front End Developer<br>Graphic Designer<br>",
-        "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Wordpress",
-        "content": "<p>The I WRITE NY CHALLENGE is an initiative was created by The Know in partnership with the Writers Guild of America and other organizations to help to cultivate the next generation of writers, journalists and communicators.</p><p>For this I Write NY created both print and digital design were created. A unique design was developed to highlight I Write NY Challenge on The Knows website. The Know website is built in wordpress as a child theme of WordPress Twentynineteen theme using twitter bootstrap,  Javascript, jQuery, and a form processed through wordpress plugins.</p><p>As a private consultant to The Know I handle all design and development for many of their projects including the I Write NY Challenge as the solo designer and developer. This project later expanded to re-development of the entire Know website. I have been working with The Know on various materials, designs and webdevelopment for 10+ years.</p><p>Visit this website &gt;&gt; <a href=\"https://theknowledgeproject.org/i-write/\">theknowledgeproject.org/i-write-ny/</a></p>",
-        "id":"3"
-      },
-      {
-        "title": "Chip at ACC 2016",
-        "image": "showcase/img/chipatACC-header.jpg",
-        "link": "showcase/chip-at-acc-2016.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>Angular Js<br>PHP<br>HTML 5<br>CSS",
-        "content": "<p>This website was build for an educational meeting as sponsored by CRF. The website was built in php using angular, gulp, bootstrap and various javascript technologies.</p>",
-        "id":"4"
-      },
-      {
-        "title": "Transcatheter Cardiovascular Therapeutics (<em>TCT</em>) Industry 2015",
-        "image": "showcase/img/itct2015-header.jpg",
-        "link": "showcase/tctIndustry2015.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>SVG<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
-        "content": "<p>The Transcatheter Cardiovascular Therapeutics (<em>TCT</em>)  is an annual conference hosted by CRF focusing on the future of interventional cardiology. Each year CRF invites millions of medical professional and scholars to join them at TCT. In 2015 CRF invited special guest speakers Arnold Schwarzenegger and Carlo Ancelotti. </p><p>TCT is updated yearly for CRF Annual TCT Conference. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the TCT materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 TCT related websites for conferences, sponsors, and partners. As well as the front end development of TCT Industry website, App features and various related interfaces. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The TCT Industry website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. TCT website housed dynamic schedules built using various technologies including Ajax, Restful Api and Javascript. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
-        "id":"5"
-      },
-      {
-        "title": "TCT360 Webcast",
-        "image": "showcase/img/TCT360-header.jpg",
-        "link": "showcase/tct360.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
-        "content": "<p>TCT360 Webcast was a live interactive webcast hosted by CRF featuring exclusive content captured at TCT 2016 in Washington, DC.</p><p>This email was sent each week with update content to over 80,000 audience. As the Junior Front End Developer at CRF I handled all the development of emails on behalf of TCT International, CRF and other health care leaders in the industry that participated in TCT and other CRF conferences.</p>",
-        "id":"6"
-      },
-      {
-        "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2016",
-        "image": "showcase/img/cto-2016-header.jpg",
-        "link": "showcase/cto2016.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
-        "content": "<p>The Chronic Total Occlusion (<em>CTO</em>) is an annual conference hosted by CRF brings together the most skillful operators in the CTO PCI field to perform over a dozen live cases with real-time analysis by world-renowned faculty.</p><p>CTO is updated yearly for CRF’s annual summit. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the CTO materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 websites for conferences, sponsors, and partners. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, CTO, sponsors, and partners.</p><p>The CTO website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
-        "id":"7"
-      },
-      {
-        "title": "CRF Women’s Heart Health Initiative",
-        "image": "showcase/img/WHHI17-header.jpg",
-        "link": "showcase/whhi.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Email Development<br>HTML<br>CSS",
-        "content": "<p>CRF Women’s Heart Health Initiative was a campaign started by CRF to empower women to defy heart disease during American Heart Month through a educational seminars on in the spring of 2017. </p><p>This email was sent each week with update content to over 80,000 audience. As the Junior Front End Developer at CRF I handled all the development of emails on behalf of TCT International, CRF and other health care leaders in the industry that participated in TCT and other CRF conferences.</p>",
-        "id":"8"
-      },
-      {
-        "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2015",
-        "image": "showcase/img/cto-2015-header.jpg",
-        "link": "showcase/cto2015.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
-        "content": "<p>The Chronic Total Occlusion (<em>CTO</em>)  is an annual conference hosted by CRF brings together the most skillful operators in the CTO PCI field to perform over a dozen live cases with real-time analysis by world-renowned faculty. </p><p>CTO is updated yearly for CRF’s annual summit. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the CTO materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 websites for conferences, sponsors, and partners. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, CTO, sponsors, and partners.</p><p>The CTO website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
-        "id":"9"
-      },
-      {
-        "title": "THE PARENTS CLUB OF WEST POINTS MEMBERS DIRECTORY (2018-2019)",
-        "image": "showcase/img/pcwp-header.jpg",
-        "link": "showcase/pcwp.html",
-        "client":"The Parents Club of West Point (PCWP)",
-        "role":"Developer<br>Designer<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Wordpress<br>Scss<br>HTML 5<br>CSS<br>Photoshop<br>Illustrator<br>",
-        "content": "<p>The Parents Club of West Point is an official club of West Point Military Academy. The club serves to enrich parents and cadet experience as they become part of the West Point community. Each year the club invites new members to join and connect with the community. As a result PCWP updated their directory annually.</p><p>As the designer and developer for PCWP I designed and developed their website and various materials over the course of several years.</p><p>Visit this website &gt;&gt; <a href=\"https://www.west-point.org/parent/pcwpnyandnj\">https://www.west-point.org/parent/pcwpnyandnj</a></p>",
-        "id":"10"
-      },
-      {
-        "title": "The Columbia Primary Care 2014 (CPC14)",
-        "image": "showcase/img/columbia-banner.jpg",
-        "link": "showcase/cpc14.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Email Development",
-        "content": "<p>The Columbia Primary Care 2014 (CPC14) was a conference and expo handled by CRF. Each year CRF handles a number of conference websites for companies. </p><p>As the Junior Front End Developer at CRF in 2014 worked as the developer that handled CPC14’s Conference website and emails. From 2013-2017 I was the solo front end developer at CRF. Each year I handled the development of 8 – 15 conference websites for sponsors, and partners. As well as the front end development of the CRF’s internal websites. In addition to website development I handled all the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The CPC14 website is a Joomla website built in bootstrap, jQuery, Javascript and Sass. This website housed a simple agenda schedule built with Javascript using AJAX and jQuery. This website is no longer available online.</p>",
-        "id":"11"
-      },
-      {
-        "title": "DALLAS LEIPZIG",
-        "image": "showcase/img/dallas-header.jpg",
-        "link": "showcase/dallas.html",
-        "client":"The Cardiovascular Research Foundation (CRF)",
-        "role":"Front End Developer<br>CRF Employee<br>",
-        "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Scss<br>HTML 5<br>CSS",
-        "content": "<p>The Dallas Leipzig Conference is designed for cardiothoracic surgeons, primary cardiologists, interventional cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists, cardiac imaging specialists, and other healthcare providers of cardiovascular teams.</p><p>As the Frontend Developer at CRF I was the assigned developer to handle the development of the Dallas Leipzig website.This website features rich animations between transitions of slider, collapsing element and active states. Built in php with use of various technologies including Scss, jQuery, Bootstrap and custom javascript module I built independently years before working with CRF to handle animations using animate.css. I had a lot of time to enrich this website and I experimented with all the tools available to me.</p><p>View this website at <a href=\"https://dallasleipzig.com/\">https://dallasleipzig.com/</a></p>",
-        "id":"12"
-      },{
-  "title": "THE KNOWLEDGE PROJECT",
-  "image": "showcase/thumbs/tkp-website2019.jpg",
-  "link": "showcase/the-knowledge-project.html",
-  "client": "The Knowledge Project",
-  "role": "Front End Developer<br>Graphic Designer<br>",
-  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>WordPress",
-  "content": "<p>Website redesign and development for The Knowledge Project.</p><p>PLACEHOLDER: Add full project description here.</p>",
-  "id": "13"
-},
-{
-  "title": "COLORSTREET MARKETING BUNDLES",
-  "image": "showcase/thumbs/colorstreets-marketingbundle1.jpg",
-  "link": "showcase/colorstreet.html",
-  "client": "Colorstreet",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Photoshop<br>Illustrator",
-  "content": "<p>Designed various printable marketing material bundles for independent Colorstreet consultants.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "14"
-},
-{
-  "title": "DFW PRIVATE EDUCATION FAMILIES OF COLOR CONFERENCE 2019",
-  "image": "showcase/img/dfwconf2019-header.jpg",
-  "link": "showcase/dfw-conference-2019.html",
-  "client": "DFW Private Education",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
-  "content": "<p>Designed conference materials including print collateral and digital graphics for web.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "15"
-},
-{
-  "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2019",
-  "image": "showcase/thumbs/dfw-summerbanner2019.jpg",
-  "link": "showcase/dfw-summer-camp-2019.html",
-  "client": "DFW Private Education",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
-  "content": "<p>Designed Summer Camp banners for the website and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "16"
-},
-{
-  "title": "FIVE NINE",
-  "image": "showcase/img/fivenine-header.jpg",
-  "link": "showcase/five-nine.html",
-  "client": "Five Nine",
-  "role": "Graphic Designer<br>",
-  "skills": "Branding<br>Label Design<br>Packaging Design<br>Print Design<br>Illustrator<br>Photoshop",
-  "content": "<p>Designed various labels and stickers for a product launch into retail stores.</p><p>PLACEHOLDER: Add additional information about the company, products and design process here.</p>",
-  "id": "17"
-},
-{
-  "title": "THE PARENTS CLUB OF WEST POINT WINTER BALL 2019",
-  "image": "showcase/img/pcwp-winterball2019-header.jpg",
-  "link": "showcase/pcwp-winter-ball-2019.html",
-  "client": "The Parents Club of West Point",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Event Design<br>Print Design<br>Digital Design",
-  "content": "<p>Handled the Winter Ball design and assembly from concept to finish.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "18"
-},
-{
-  "title": "THE PARENTS CLUB OF WEST POINT WINTER BALL 2018",
-  "image": "showcase/img/pcwp-winterball2018-header.jpg",
-  "link": "showcase/pcwp-winter-ball-2018.html",
-  "client": "The Parents Club of West Point",
-  "role": "Graphic Designer<br>Email Developer<br>",
-  "skills": "Graphic Design<br>Email Development<br>HTML<br>CSS<br>Print Design",
-  "content": "<p>Designed, developed and deployed email materials for Winter Ball announcements.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "19"
-},
-{
-  "title": "DFW PRIVATE EDUCATION FAMILIES OF COLOR CONFERENCE 2018",
-  "image": "showcase/thumbs/dfw-conferenceeflyer2018.jpg",
-  "link": "showcase/dfw-conference-2018.html",
-  "client": "DFW Private Education",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
-  "content": "<p>Designed conference materials and banners for web and social media for DFW Private Education in Texas.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "20"
-},
-{
-  "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2018",
-  "image": "showcase/thumbs/dfw-summerbanner2018.jpg",
-  "link": "showcase/dfw-summer-camp-2018.html",
-  "client": "DFW Private Education",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
-  "content": "<p>Designed Summer Camp materials and banners for web and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "21"
-},
-{
-  "title": "ETSY CUSTOM THANK YOU STICKERS",
-  "image": "showcase/thumbs/etsystickers1.jpg",
-  "link": "showcase/etsy-thank-you-stickers.html",
-  "client": "Etsy Customers",
-  "role": "Graphic Designer<br>",
-  "skills": "Graphic Design<br>Sticker Design<br>Print Design<br>Illustrator<br>Photoshop",
-  "content": "<p>Designed custom thank-you stickers for customers and small businesses.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-  "id": "22"
-},
-{
-  "title": "SUGARHILL BRANDING",
-  "image": "showcase/thumbs/sugarhillbranding.jpg",
-  "link": "showcase/sugarhill-branding.html",
-  "client": "Sugarhill",
-  "role": "Graphic Designer<br>",
-  "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
-  "content": "<p>Branding and graphic design project for Sugarhill.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
-  "id": "23"
-},
-{
-  "title": "ELI & SIR BRANDING",
-  "image": "showcase/thumbs/elisirbranding.jpg",
-  "link": "showcase/eli-and-sir-branding.html",
-  "client": "Eli & Sir",
-  "role": "Graphic Designer<br>",
-  "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
-  "content": "<p>Branding and graphic design project for Eli & Sir.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
-  "id": "24"
-},
-{
-  "title": "FELLOWS 2016 CONFERENCE WEBSITE & EMAIL",
-  "image": "showcase/thumbs/web-fellows2016-1.jpg",
-  "link": "showcase/fellows-2016.html",
-  "client": "The Cardiovascular Research Foundation (CRF)",
-  "role": "Front End Developer<br>CRF Employee<br>",
-  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>Email Development",
-  "content": "<p>Conference website and email development for the 2016 Fellows conference.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
-  "id": "25"
-},
-{
-  "title": "ABIOMED 2017 CONFERENCE WEBSITE & EMAIL",
-  "image": "showcase/thumbs/dfw-conferencebanner2018.jpg",
-  "link": "showcase/abiomed-2017.html",
-  "client": "PLACEHOLDER",
-  "role": "Front End Developer<br>Email Developer<br>",
-  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>Email Development",
-  "content": "<p>Conference website and email development project.</p><p>PLACEHOLDER: Replace client, image, project description and technical details.</p>",
-  "id": "26"
-},
-{
-  "title": "FETOSCOPY 2014 CONFERENCE",
-  "image": "showcase/thumbs/web-Fetoscopy2014-1.jpg",
-  "link": "showcase/fetoscopy-2014.html",
-  "client": "PLACEHOLDER",
-  "role": "Front End Developer<br>",
-  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery",
-  "content": "<p>Conference website development project completed in 2014.</p><p>PLACEHOLDER: Add client, project details, role and technologies used.</p>",
-  "id": "27"
-},
-{
-  "title": "MARGARET BEALS",
-  "image": "showcase/thumbs/web-beals-3.jpg",
-  "link": "showcase/margaret-beals.html",
-  "client": "Margaret Beals",
-  "role": "Front End Developer<br>Web Designer<br>",
-  "skills": "HTML5<br>CSS<br>Javascript<br>Web Design",
-  "content": "<p>Website design and development project for Margaret Beals.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
-  "id": "28"
-}
+          {
+            "title": "THE PULSE GALA 2015",
+            "image": "showcase/img/pulse2015-header.jpg",
+            "link": "showcase/pulse2015.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS",
+            "content": "<p>The 2015 Pulse Gala is an annual fundraiser hosted by CRF to promote Cardiovascular health. Each year CRF invites renowned scholars to join them as an honored guess. In 2015 CRF invited one of the world’s most accomplished and respected public servants to be the honoree. Dr. Henry Kissinger, a renowned scholar, foreign policy advisor, and prolific author.</p><p>Pulse Gala is updated yearly for CRF Annual Foundraiser. As the Junior Front End Developer at CRF I had the honor of handling all components of developing this website from 2013 – 2016.</p><p>The Pulse Gala is 1-3 page bootstrap website hosted annually. This website has no database and as such is a standard static html website built with twitter bootstrap, Javascript, jQuery, a slider, forms processed through  wufoo forms and a gallery.</p><p>At CRF I handled all the development of smaller websites and majority of all front end development at the company.</p><p>Visit this website &gt;&gt; <a href=\"http://www.pulsegala.org/2015/index.html\" target=\"blank\" rel=\"noopener noreferrer\">www.pulsegala.org/2015</a></p>",
+            "id":"0"
+          },
+          {
+            "title": "Transcatheter Cardiovascular Therapeutics (<em>TCT</em>) 2015",
+            "image": "showcase/img/tct2015-header.jpg",
+            "link": "showcase/tct2015.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "<p>Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>SVG<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+            "content": " <p>The Transcatheter Cardiovascular Therapeutics (<em>TCT</em>)  is an annual conference hosted by CRF focusing on the future of interventional cardiology. Each year CRF invites millions of medical professional and scholars to join them at TCT. In 2015 CRF invited special guest speakers Arnold Schwarzenegger and Carlo Ancelotti. </p><p>TCT is updated yearly for CRF Annual TCT Conference. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the TCT materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 TCT related websites for conferences, sponsors, and partners. As well as the front end development of TCT Industry website, App features and various related interfaces. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The TCT website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. TCT website housed dynamic schedules built using various technologies including Ajax, Restful Api and Javascript. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+            "id":"1"
+          },
+          {
+            "title": "Ali HairStylist Website",
+            "image": "showcase/img/ali-header.jpg",
+            "link": "showcase/ali.html",
+            "client":"ALI HAIRSTYLIST",
+            "role":"Front End Developer<br>Graphic Designer<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Wordpress<br>Scss<br>HTML 5<br>CSS",
+            "content": "<p>Ali is a master hairstylist. Working as a stylist since 1968, Ali has crafted his skills at Astor Place Hairstylists as well as MOI, alongside his own barbershop that he operated back in Morocco. Ali has had the pleasure of working in some of the most well-known fashion shows and hairstyling competitions in the world.&nbsp;He was ranked in 5th place during the World Hairstyling Competition of 1982. He is also a member of many different hairstyling federations, organizations, and associations that deal with barbers. </p><p>I had the pleasure of designing and developing Ali’s first website while a student in College. </p><p>I handled the entire design and development of Ali’s entire website. The website was build in wordpress as a custom theme with a responsive layout. Responsive and adaptive techiques were still fairly new at the time I developed this website so I was very pleased to see the results.</p><p>Since then his website site has been rebranded however he is an exceptional hair stylist and if you were interested in learning more about him please visit his website at &gt;&gt; <a href=\"https://www.alihairstylist.net/\">https://www.alihairstylist.net/</a></p>",
+            "id":"2"
+          },
+          {
+            "title": "I WRITE NY CHALLENGE",
+            "image": "showcase/img/iwriteny-header.jpg",
+            "link": "showcase/iwriteny.html",
+            "client":"The Knowledge Project (The Know)",
+            "role":"Front End Developer<br>Graphic Designer<br>",
+            "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Wordpress",
+            "content": "<p>The I WRITE NY CHALLENGE is an initiative was created by The Know in partnership with the Writers Guild of America and other organizations to help to cultivate the next generation of writers, journalists and communicators.</p><p>For this I Write NY created both print and digital design were created. A unique design was developed to highlight I Write NY Challenge on The Knows website. The Know website is built in wordpress as a child theme of WordPress Twentynineteen theme using twitter bootstrap,  Javascript, jQuery, and a form processed through wordpress plugins.</p><p>As a private consultant to The Know I handle all design and development for many of their projects including the I Write NY Challenge as the solo designer and developer. This project later expanded to re-development of the entire Know website. I have been working with The Know on various materials, designs and webdevelopment for 10+ years.</p><p>Visit this website &gt;&gt; <a href=\"https://theknowledgeproject.org/i-write/\">theknowledgeproject.org/i-write-ny/</a></p>",
+            "id":"3"
+          },
+          {
+            "title": "Chip at ACC 2016",
+            "image": "showcase/img/chipatACC-header.jpg",
+            "link": "showcase/chip-at-acc-2016.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>Angular Js<br>PHP<br>HTML 5<br>CSS",
+            "content": "<p>This website was build for an educational meeting as sponsored by CRF. The website was built in php using angular, gulp, bootstrap and various javascript technologies.</p>",
+            "id":"4"
+          },
+          {
+            "title": "Transcatheter Cardiovascular Therapeutics (<em>TCT</em>) Industry 2015",
+            "image": "showcase/img/itct2015-header.jpg",
+            "link": "showcase/tctIndustry2015.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>SVG<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+            "content": "<p>The Transcatheter Cardiovascular Therapeutics (<em>TCT</em>)  is an annual conference hosted by CRF focusing on the future of interventional cardiology. Each year CRF invites millions of medical professional and scholars to join them at TCT. In 2015 CRF invited special guest speakers Arnold Schwarzenegger and Carlo Ancelotti. </p><p>TCT is updated yearly for CRF Annual TCT Conference. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the TCT materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 TCT related websites for conferences, sponsors, and partners. As well as the front end development of TCT Industry website, App features and various related interfaces. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The TCT Industry website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. TCT website housed dynamic schedules built using various technologies including Ajax, Restful Api and Javascript. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+            "id":"5"
+          },
+          {
+            "title": "TCT360 Webcast",
+            "image": "showcase/img/TCT360-header.jpg",
+            "link": "showcase/tct360.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+            "content": "<p>TCT360 Webcast was a live interactive webcast hosted by CRF featuring exclusive content captured at TCT 2016 in Washington, DC.</p><p>This email was sent each week with update content to over 80,000 audience. As the Junior Front End Developer at CRF I handled all the development of emails on behalf of TCT International, CRF and other health care leaders in the industry that participated in TCT and other CRF conferences.</p>",
+            "id":"6"
+          },
+          {
+            "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2016",
+            "image": "showcase/img/cto-2016-header.jpg",
+            "link": "showcase/cto2016.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+            "content": "<p>The Chronic Total Occlusion (<em>CTO</em>) is an annual conference hosted by CRF brings together the most skillful operators in the CTO PCI field to perform over a dozen live cases with real-time analysis by world-renowned faculty.</p><p>CTO is updated yearly for CRF’s annual summit. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the CTO materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 websites for conferences, sponsors, and partners. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, CTO, sponsors, and partners.</p><p>The CTO website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+            "id":"7"
+          },
+          {
+            "title": "CRF Women’s Heart Health Initiative",
+            "image": "showcase/img/WHHI17-header.jpg",
+            "link": "showcase/whhi.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Email Development<br>HTML<br>CSS",
+            "content": "<p>CRF Women’s Heart Health Initiative was a campaign started by CRF to empower women to defy heart disease during American Heart Month through a educational seminars on in the spring of 2017. </p><p>This email was sent each week with update content to over 80,000 audience. As the Junior Front End Developer at CRF I handled all the development of emails on behalf of TCT International, CRF and other health care leaders in the industry that participated in TCT and other CRF conferences.</p>",
+            "id":"8"
+          },
+          {
+            "title": "CHRONIC TOTAL OCCLUSION (CTO) SUMMIT 2015",
+            "image": "showcase/img/cto-2015-header.jpg",
+            "link": "showcase/cto2015.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>Scss<br>HTML 5<br>CSS<br><a href=\"#email\">Email Development | Sales Force Pardot</a>",
+            "content": "<p>The Chronic Total Occlusion (<em>CTO</em>)  is an annual conference hosted by CRF brings together the most skillful operators in the CTO PCI field to perform over a dozen live cases with real-time analysis by world-renowned faculty. </p><p>CTO is updated yearly for CRF’s annual summit. As the Junior Front End Developer at CRF I worked along a team of designers and developers to develop the CTO materials each year. From 2013-2017 I was the front end developer at CRF. Each year I handled the development of 8 – 15 websites for conferences, sponsors, and partners. In addition to website development I handled the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, CTO, sponsors, and partners.</p><p>The CTO website is a Joomla website built in bootstrap, jQuery, Javascript and just about any tool that accomplished the task. </p><p>At CRF I handled all the development of smaller websites, majority of all front end development at the company and all of the CRF publication emails.</p>",
+            "id":"9"
+          },
+          {
+            "title": "THE PARENTS CLUB OF WEST POINTS MEMBERS DIRECTORY (2018-2019)",
+            "image": "showcase/img/pcwp-header.jpg",
+            "link": "showcase/pcwp.html",
+            "client":"The Parents Club of West Point (PCWP)",
+            "role":"Developer<br>Designer<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Wordpress<br>Scss<br>HTML 5<br>CSS<br>Photoshop<br>Illustrator<br>",
+            "content": "<p>The Parents Club of West Point is an official club of West Point Military Academy. The club serves to enrich parents and cadet experience as they become part of the West Point community. Each year the club invites new members to join and connect with the community. As a result PCWP updated their directory annually.</p><p>As the designer and developer for PCWP I designed and developed their website and various materials over the course of several years.</p><p>Visit this website &gt;&gt; <a href=\"https://www.west-point.org/parent/pcwpnyandnj\">https://www.west-point.org/parent/pcwpnyandnj</a></p>",
+            "id":"10"
+          },
+          {
+            "title": "The Columbia Primary Care 2014 (CPC14)",
+            "image": "showcase/img/columbia-banner.jpg",
+            "link": "showcase/cpc14.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>HTML 5<br>CSS<br>Email Development",
+            "content": "<p>The Columbia Primary Care 2014 (CPC14) was a conference and expo handled by CRF. Each year CRF handles a number of conference websites for companies. </p><p>As the Junior Front End Developer at CRF in 2014 worked as the developer that handled CPC14’s Conference website and emails. From 2013-2017 I was the solo front end developer at CRF. Each year I handled the development of 8 – 15 conference websites for sponsors, and partners. As well as the front end development of the CRF’s internal websites. In addition to website development I handled all the development of over 200 emails sent each year through Salesforce’s Pardot on behalf of CRF, TCT, sponsors, and partners.</p><p>The CPC14 website is a Joomla website built in bootstrap, jQuery, Javascript and Sass. This website housed a simple agenda schedule built with Javascript using AJAX and jQuery. This website is no longer available online.</p>",
+            "id":"11"
+          },
+          {
+            "title": "DALLAS LEIPZIG",
+            "image": "showcase/img/dallas-header.jpg",
+            "link": "showcase/dallas.html",
+            "client":"The Cardiovascular Research Foundation (CRF)",
+            "role":"Front End Developer<br>CRF Employee<br>",
+            "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Scss<br>HTML 5<br>CSS",
+            "content": "<p>The Dallas Leipzig Conference is designed for cardiothoracic surgeons, primary cardiologists, interventional cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists, cardiac imaging specialists, and other healthcare providers of cardiovascular teams.</p><p>As the Frontend Developer at CRF I was the assigned developer to handle the development of the Dallas Leipzig website.This website features rich animations between transitions of slider, collapsing element and active states. Built in php with use of various technologies including Scss, jQuery, Bootstrap and custom javascript module I built independently years before working with CRF to handle animations using animate.css. I had a lot of time to enrich this website and I experimented with all the tools available to me.</p><p>View this website at <a href=\"https://dallasleipzig.com/\">https://dallasleipzig.com/</a></p>",
+            "id":"12"
+          },
+        {
+          "title": "THE KNOWLEDGE PROJECT",
+          "image": "showcase/thumbs/tkp-website2019.jpg",
+          "link": "showcase/the-knowledge-project.html",
+          "client": "The Knowledge Project",
+          "role": "Front End Developer<br>Graphic Designer<br>",
+          "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>WordPress",
+          "content": "<p>Website redesign and development for The Knowledge Project.</p><p>PLACEHOLDER: Add full project description here.</p>",
+          "id": "13"
+        },
+        {
+          "title": "COLORSTREET MARKETING BUNDLES",
+          "image": "showcase/thumbs/colorstreets-marketingbundle1.jpg",
+          "link": "showcase/colorstreet.html",
+          "client": "Colorstreet",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Photoshop<br>Illustrator",
+          "content": "<p>Designed various printable marketing material bundles for independent Colorstreet consultants.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "14"
+        },
+        {
+          "title": "DFW PRIVATE EDUCATION FAMILIES OF COLOR CONFERENCE 2019",
+          "image": "showcase/img/dfwconf2019-header.jpg",
+          "link": "showcase/dfw-conference-2019.html",
+          "client": "DFW Private Education",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
+          "content": "<p>Designed conference materials including print collateral and digital graphics for web.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "15"
+        },
+        {
+          "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2019",
+          "image": "showcase/thumbs/dfw-summerbanner2019.jpg",
+          "link": "showcase/dfw-summer-camp-2019.html",
+          "client": "DFW Private Education",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
+          "content": "<p>Designed Summer Camp banners for the website and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "16"
+        },
+        {
+          "title": "FIVE NINE",
+          "image": "showcase/img/fivenine-header.jpg",
+          "link": "showcase/five-nine.html",
+          "client": "Five Nine",
+          "role": "Graphic Designer<br>",
+          "skills": "Branding<br>Label Design<br>Packaging Design<br>Print Design<br>Illustrator<br>Photoshop",
+          "content": "<p>Designed various labels and stickers for a product launch into retail stores.</p><p>PLACEHOLDER: Add additional information about the company, products and design process here.</p>",
+          "id": "17"
+        },
+        {
+          "title": "THE PARENTS CLUB OF WEST POINT WINTER BALL 2019",
+          "image": "showcase/img/pcwp-winterball2019-header.jpg",
+          "link": "showcase/pcwp-winter-ball-2019.html",
+          "client": "The Parents Club of West Point",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Event Design<br>Print Design<br>Digital Design",
+          "content": "<p>Handled the Winter Ball design and assembly from concept to finish.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "18"
+        },
+        {
+          "title": "THE PARENTS CLUB OF WEST POINT WINTER BALL 2018",
+          "image": "showcase/img/pcwp-winterball2018-header.jpg",
+          "link": "showcase/pcwp-winter-ball-2018.html",
+          "client": "The Parents Club of West Point",
+          "role": "Graphic Designer<br>Email Developer<br>",
+          "skills": "Graphic Design<br>Email Development<br>HTML<br>CSS<br>Print Design",
+          "content": "<p>Designed, developed and deployed email materials for Winter Ball announcements.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "19"
+        },
+        {
+          "title": "DFW PRIVATE EDUCATION FAMILIES OF COLOR CONFERENCE 2018",
+          "image": "showcase/thumbs/dfw-conferenceeflyer2018.jpg",
+          "link": "showcase/dfw-conference-2018.html",
+          "client": "DFW Private Education",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
+          "content": "<p>Designed conference materials and banners for web and social media for DFW Private Education in Texas.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "20"
+        },
+        {
+          "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2018",
+          "image": "showcase/thumbs/dfw-summerbanner2018.jpg",
+          "link": "showcase/dfw-summer-camp-2018.html",
+          "client": "DFW Private Education",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
+          "content": "<p>Designed Summer Camp materials and banners for web and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "21"
+        },
+        {
+          "title": "ETSY CUSTOM THANK YOU STICKERS",
+          "image": "showcase/thumbs/etsystickers1.jpg",
+          "link": "showcase/etsy-thank-you-stickers.html",
+          "client": "Etsy Customers",
+          "role": "Graphic Designer<br>",
+          "skills": "Graphic Design<br>Sticker Design<br>Print Design<br>Illustrator<br>Photoshop",
+          "content": "<p>Designed custom thank-you stickers for customers and small businesses.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+          "id": "22"
+        },
+        {
+          "title": "SUGARHILL BRANDING",
+          "image": "showcase/thumbs/sugarhillbranding.jpg",
+          "link": "showcase/sugarhill-branding.html",
+          "client": "Sugarhill",
+          "role": "Graphic Designer<br>",
+          "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
+          "content": "<p>Branding and graphic design project for Sugarhill.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
+          "id": "23"
+        },
+        {
+          "title": "ELI & SIR BRANDING",
+          "image": "showcase/thumbs/elisirbranding.jpg",
+          "link": "showcase/eli-and-sir-branding.html",
+          "client": "Eli & Sir",
+          "role": "Graphic Designer<br>",
+          "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
+          "content": "<p>Branding and graphic design project for Eli & Sir.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
+          "id": "24"
+        },
+        {
+          "title": "FELLOWS 2016 CONFERENCE WEBSITE & EMAIL",
+          "image": "showcase/thumbs/web-fellows2016-1.jpg",
+          "link": "showcase/fellows-2016.html",
+          "client": "The Cardiovascular Research Foundation (CRF)",
+          "role": "Front End Developer<br>CRF Employee<br>",
+          "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>Email Development",
+          "content": "<p>Conference website and email development for the 2016 Fellows conference.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
+          "id": "25"
+        },
+        {
+          "title": "ABIOMED 2017 CONFERENCE WEBSITE & EMAIL",
+          "image": "showcase/thumbs/dfw-conferencebanner2018.jpg",
+          "link": "showcase/abiomed-2017.html",
+          "client": "PLACEHOLDER",
+          "role": "Front End Developer<br>Email Developer<br>",
+          "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>Email Development",
+          "content": "<p>Conference website and email development project.</p><p>PLACEHOLDER: Replace client, image, project description and technical details.</p>",
+          "id": "26"
+        },
+        {
+          "title": "FETOSCOPY 2014 CONFERENCE",
+          "image": "showcase/thumbs/web-Fetoscopy2014-1.jpg",
+          "link": "showcase/fetoscopy-2014.html",
+          "client": "PLACEHOLDER",
+          "role": "Front End Developer<br>",
+          "skills": "HTML5<br>CSS<br>Javascript<br>jQuery",
+          "content": "<p>Conference website development project completed in 2014.</p><p>PLACEHOLDER: Add client, project details, role and technologies used.</p>",
+          "id": "27"
+        },
+        {
+          "title": "MARGARET BEALS",
+          "image": "showcase/thumbs/web-beals-3.jpg",
+          "link": "showcase/margaret-beals.html",
+          "client": "Margaret Beals",
+          "role": "Front End Developer<br>Web Designer<br>",
+          "skills": "HTML5<br>CSS<br>Javascript<br>Web Design",
+          "content": "<p>Website design and development project for Margaret Beals.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
+          "id": "28"
+        }
     ]
   }
