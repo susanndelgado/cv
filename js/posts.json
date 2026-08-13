@@ -129,6 +129,165 @@
         "skills": "Javascript<br>jQuery<br>PHP<br>Bootstrap<br>Scss<br>HTML 5<br>CSS",
         "content": "<p>The Dallas Leipzig Conference is designed for cardiothoracic surgeons, primary cardiologists, interventional cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists, cardiac imaging specialists, and other healthcare providers of cardiovascular teams.</p><p>As the Frontend Developer at CRF I was the assigned developer to handle the development of the Dallas Leipzig website.This website features rich animations between transitions of slider, collapsing element and active states. Built in php with use of various technologies including Scss, jQuery, Bootstrap and custom javascript module I built independently years before working with CRF to handle animations using animate.css. I had a lot of time to enrich this website and I experimented with all the tools available to me.</p><p>View this website at <a href=\"https://dallasleipzig.com/\">https://dallasleipzig.com/</a></p>",
         "id":"12"
-      }
+      },{
+  "title": "THE KNOWLEDGE PROJECT",
+  "image": "showcase/thumbs/tkp-website2019.jpg",
+  "link": "showcase/the-knowledge-project.html",
+  "client": "The Knowledge Project",
+  "role": "Front End Developer<br>Graphic Designer<br>",
+  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>WordPress",
+  "content": "<p>Website redesign and development for The Knowledge Project.</p><p>PLACEHOLDER: Add full project description here.</p>",
+  "id": "13"
+},
+{
+  "title": "COLORSTREET MARKETING BUNDLES",
+  "image": "showcase/thumbs/colorstreets-marketingbundle1.jpg",
+  "link": "showcase/colorstreet.html",
+  "client": "Colorstreet",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Photoshop<br>Illustrator",
+  "content": "<p>Designed various printable marketing material bundles for independent Colorstreet consultants.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "14"
+},
+{
+  "title": "DFW PRIVATE EDUCATION FAMILIES OF COLOR CONFERENCE 2019",
+  "image": "showcase/img/dfwconf2019-header.jpg",
+  "link": "showcase/dfw-conference-2019.html",
+  "client": "DFW Private Education",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
+  "content": "<p>Designed conference materials including print collateral and digital graphics for web.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "15"
+},
+{
+  "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2019",
+  "image": "showcase/thumbs/dfw-summerbanner2019.jpg",
+  "link": "showcase/dfw-summer-camp-2019.html",
+  "client": "DFW Private Education",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
+  "content": "<p>Designed Summer Camp banners for the website and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "16"
+},
+{
+  "title": "FIVE NINE",
+  "image": "showcase/img/fivenine-header.jpg",
+  "link": "showcase/five-nine.html",
+  "client": "Five Nine",
+  "role": "Graphic Designer<br>",
+  "skills": "Branding<br>Label Design<br>Packaging Design<br>Print Design<br>Illustrator<br>Photoshop",
+  "content": "<p>Designed various labels and stickers for a product launch into retail stores.</p><p>PLACEHOLDER: Add additional information about the company, products and design process here.</p>",
+  "id": "17"
+},
+{
+  "title": "THE PARENTS CLUB OF WEST POINT WINTER BALL 2019",
+  "image": "showcase/img/pcwp-winterball2019-header.jpg",
+  "link": "showcase/pcwp-winter-ball-2019.html",
+  "client": "The Parents Club of West Point",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Event Design<br>Print Design<br>Digital Design",
+  "content": "<p>Handled the Winter Ball design and assembly from concept to finish.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "18"
+},
+{
+  "title": "THE PARENTS CLUB OF WEST POINT WINTER BALL 2018",
+  "image": "showcase/img/pcwp-winterball2018-header.jpg",
+  "link": "showcase/pcwp-winter-ball-2018.html",
+  "client": "The Parents Club of West Point",
+  "role": "Graphic Designer<br>Email Developer<br>",
+  "skills": "Graphic Design<br>Email Development<br>HTML<br>CSS<br>Print Design",
+  "content": "<p>Designed, developed and deployed email materials for Winter Ball announcements.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "19"
+},
+{
+  "title": "DFW PRIVATE EDUCATION FAMILIES OF COLOR CONFERENCE 2018",
+  "image": "showcase/thumbs/dfw-conferenceeflyer2018.jpg",
+  "link": "showcase/dfw-conference-2018.html",
+  "client": "DFW Private Education",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
+  "content": "<p>Designed conference materials and banners for web and social media for DFW Private Education in Texas.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "20"
+},
+{
+  "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2018",
+  "image": "showcase/thumbs/dfw-summerbanner2018.jpg",
+  "link": "showcase/dfw-summer-camp-2018.html",
+  "client": "DFW Private Education",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
+  "content": "<p>Designed Summer Camp materials and banners for web and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "21"
+},
+{
+  "title": "ETSY CUSTOM THANK YOU STICKERS",
+  "image": "showcase/thumbs/etsystickers1.jpg",
+  "link": "showcase/etsy-thank-you-stickers.html",
+  "client": "Etsy Customers",
+  "role": "Graphic Designer<br>",
+  "skills": "Graphic Design<br>Sticker Design<br>Print Design<br>Illustrator<br>Photoshop",
+  "content": "<p>Designed custom thank-you stickers for customers and small businesses.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+  "id": "22"
+},
+{
+  "title": "SUGARHILL BRANDING",
+  "image": "showcase/thumbs/sugarhillbranding.jpg",
+  "link": "showcase/sugarhill-branding.html",
+  "client": "Sugarhill",
+  "role": "Graphic Designer<br>",
+  "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
+  "content": "<p>Branding and graphic design project for Sugarhill.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
+  "id": "23"
+},
+{
+  "title": "ELI & SIR BRANDING",
+  "image": "showcase/thumbs/elisirbranding.jpg",
+  "link": "showcase/eli-and-sir-branding.html",
+  "client": "Eli & Sir",
+  "role": "Graphic Designer<br>",
+  "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
+  "content": "<p>Branding and graphic design project for Eli & Sir.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
+  "id": "24"
+},
+{
+  "title": "FELLOWS 2016 CONFERENCE WEBSITE & EMAIL",
+  "image": "showcase/thumbs/web-fellows2016-1.jpg",
+  "link": "showcase/fellows-2016.html",
+  "client": "The Cardiovascular Research Foundation (CRF)",
+  "role": "Front End Developer<br>CRF Employee<br>",
+  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>Email Development",
+  "content": "<p>Conference website and email development for the 2016 Fellows conference.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
+  "id": "25"
+},
+{
+  "title": "ABIOMED 2017 CONFERENCE WEBSITE & EMAIL",
+  "image": "showcase/thumbs/dfw-conferencebanner2018.jpg",
+  "link": "showcase/abiomed-2017.html",
+  "client": "PLACEHOLDER",
+  "role": "Front End Developer<br>Email Developer<br>",
+  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>Email Development",
+  "content": "<p>Conference website and email development project.</p><p>PLACEHOLDER: Replace client, image, project description and technical details.</p>",
+  "id": "26"
+},
+{
+  "title": "FETOSCOPY 2014 CONFERENCE",
+  "image": "showcase/thumbs/web-Fetoscopy2014-1.jpg",
+  "link": "showcase/fetoscopy-2014.html",
+  "client": "PLACEHOLDER",
+  "role": "Front End Developer<br>",
+  "skills": "HTML5<br>CSS<br>Javascript<br>jQuery",
+  "content": "<p>Conference website development project completed in 2014.</p><p>PLACEHOLDER: Add client, project details, role and technologies used.</p>",
+  "id": "27"
+},
+{
+  "title": "MARGARET BEALS",
+  "image": "showcase/thumbs/web-beals-3.jpg",
+  "link": "showcase/margaret-beals.html",
+  "client": "Margaret Beals",
+  "role": "Front End Developer<br>Web Designer<br>",
+  "skills": "HTML5<br>CSS<br>Javascript<br>Web Design",
+  "content": "<p>Website design and development project for Margaret Beals.</p><p>PLACEHOLDER: Add full project description and technologies used here.</p>",
+  "id": "28"
+}
     ]
   }
