@@ -24,6 +24,9 @@ COMMUNITY_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
+WORK_FILTERS = '<div id="page-nav"><button class="btn active" data-filter="all">Show all</button><button class="btn" data-filter="brand">Branding & Logo</button><button class="btn" data-filter="conf">Conferences & Campaigns</button><button class="btn" data-filter="dig">Digital</button><button class="btn" data-filter="email">Email Development</button><button class="btn" data-filter="print">Print Collateral</button><button class="btn" data-filter="web">Websites</button></div>'
+WORK_FILTER_RE = re.compile(r'<div id="page-nav">.*?</div>', re.IGNORECASE | re.DOTALL)
+
 
 def sync_community(path: Path) -> int:
     text = path.read_text(encoding='utf-8')
@@ -54,6 +57,13 @@ def align_tech_header(path: Path) -> None:
     path.write_text(text, encoding='utf-8')
 
 
+def normalize_work_filter_bar(path: Path) -> None:
+    text = path.read_text(encoding='utf-8')
+    updated, count = WORK_FILTER_RE.subn(WORK_FILTERS, text, count=1)
+    if count:
+        path.write_text(updated, encoding='utf-8')
+
+
 community_count = 0
 for page in ROOT.rglob('*.html'):
     try:
@@ -67,5 +77,9 @@ for name in ('work.html', 'showcase.html'):
     path = ROOT / name
     if path.exists():
         align_tech_header(path)
+
+work_path = ROOT / 'work.html'
+if work_path.exists():
+    normalize_work_filter_bar(work_path)
 
 print(f'Final display patches applied. Guild/community sections synchronized: {community_count}')
