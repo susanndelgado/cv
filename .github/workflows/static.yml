@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -24,6 +24,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # These shared display corrections must live in the repository itself.
+      # GitHub also performs a branch-based Pages build, so relying only on
+      # artifact-time transformations can cause the raw source to reappear.
+      - name: Normalize shared source sections
+        run: python3 scripts/finalize_display.py
+
+      - name: Persist normalized HTML source
+        run: |
+          if git diff --quiet -- '*.html'; then
+            echo "Shared HTML source is already normalized."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -u -- '*.html'
+            git commit -m "Persist shared layout and community fixes [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Ignore JavaScript template paths during static link validation
         run: |
