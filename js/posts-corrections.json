@@ -1,0 +1,97 @@
+{
+  "overrides": {
+    "11": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig",
+      "content": "<p>ABIOMED 2017 was a sponsor microsite developed within CRF’s conference ecosystem to provide dedicated conference content for the sponsoring company.</p><p>Developed the responsive microsite and website content as a CRF employee, along with supporting Salesforce Pardot email development, scheduling and distribution for the program.</p>"
+    },
+    "16": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>JavaScript<br>jQuery<br>PHP<br>Bootstrap<br>SCSS<br>HTML5<br>CSS<br>Front End Animation<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig"
+    },
+    "18": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig",
+      "content": "<p>SCAI 2016 website and email materials were developed through CRF’s conference production program.</p><p>Developed the responsive conference website and supporting Salesforce Pardot email communications as a CRF employee, including email development, scheduling and distribution.</p>"
+    },
+    "20": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>JavaScript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>SCSS<br>HTML5<br>CSS<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig"
+    },
+    "22": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig"
+    },
+    "29": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution<br>Webcast Promotion",
+      "filters": "conf web email dig",
+      "content": "<p>MAQUET 2014 was a sponsor microsite developed through CRF’s conference web production program.</p><p>Developed the responsive microsite and conference content as a CRF employee, along with supporting Salesforce Pardot email development, scheduling and distribution, including webcast promotion.</p>"
+    },
+    "38": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig",
+      "summary": "CRF-built satellite conference website and supporting email campaign.",
+      "content": "<p>VEINS was a satellite conference website developed through CRF’s conference web program.</p><p>Developed the responsive desktop and mobile website as a CRF employee, implemented program content, and developed, scheduled and distributed supporting Salesforce Pardot email communications.</p>"
+    },
+    "39": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee"
+    },
+    "41": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee"
+    },
+    "43": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Joomla<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig"
+    },
+    "45": {
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "content": "<p>SCAI 2017 website and responsive email materials were developed through CRF’s conference production program.</p><p>Developed the conference web content and supporting Salesforce Pardot email communications as a CRF employee, including email development, scheduling and distribution.</p>"
+    },
+    "47": {
+      "title": "WLNCMD WEBSITE & EMAIL",
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "conf web email dig",
+      "summary": "CRF-built satellite website and supporting email communications.",
+      "content": "<p>WLNCMD was a satellite website developed through CRF’s conference web program.</p><p>Developed the responsive website and program content as a CRF employee, together with supporting Salesforce Pardot email development, scheduling and distribution.</p>"
+    }
+  },
+  "posts": [
+    {
+      "id": 52,
+      "title": "CHLOE & CARL LOGO DESIGN",
+      "client": "Chloe & Carl",
+      "year": "",
+      "image": "showcase/img/Logo-chloeandcarl.jpg",
+      "thumb": "showcase/img/Logo-chloeandcarl.jpg",
+      "heroLayout": "compact",
+      "link": "showcase/chloe-carl-logo.html",
+      "summary": "Custom logo design and visual identity mark for Chloe & Carl.",
+      "filters": "brand dig",
+      "role": "Graphic Designer",
+      "skills": "Logo Design<br>Branding<br>Graphic Design",
+      "content": "<p>A custom logo was developed for Chloe & Carl as a standalone identity design.</p><p>The project focused on creating a distinctive visual mark suitable for consistent use across branded materials.</p>"
+    }
+  ]
+}
