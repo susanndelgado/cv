@@ -45,9 +45,9 @@
     "image": "showcase/img/chipatACC-header.jpg",
     "link": "showcase/chip-at-acc-2016.html",
     "client":"The Cardiovascular Research Foundation (CRF)",
-    "role":"Front End Developer<br>CRF Employee<br>",
-    "skills": "Javascript<br>jQuery<br>Angular Js<br>PHP<br>HTML 5<br>CSS",
-    "content": "<p>This website was build for an educational meeting as sponsored by CRF. The website was built in php using angular, gulp, bootstrap and various javascript technologies.</p>",
+    "role":"Front End Developer<br>Email Developer<br>CRF Employee<br>",
+    "skills": "Javascript<br>jQuery<br>AngularJS<br>PHP<br>Go<br>Bootstrap<br>Gulp<br>HTML 5<br>CSS<br>Email Development<br>Website Content",
+    "content": "<p>CHIP at ACC 2016 was one of several templated conference microsites developed for the Cardiovascular Research Foundation to support educational programs hosted during the TCT conference.</p><p>The microsite was developed using PHP, AngularJS, Go, Bootstrap, Gulp, JavaScript and other front-end technologies, with conference content implemented and maintained within the established site template.</p><p>Supporting conference emails were developed and distributed along with the website content, combining microsite development, content implementation and email production for the event.</p>",
     "id":"4"
     },
     {
