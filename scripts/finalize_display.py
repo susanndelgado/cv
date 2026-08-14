@@ -4,19 +4,21 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Keep the existing visual treatment from the art pages. Only the membership
+# names/order are normalized. The motto remains a separate, smaller faded line.
 COMMUNITY_CONTENT = '''<h3 style="color: #fff; letter-spacing: 5px; text-transform: uppercase; font-size: 1rem; margin-bottom: 15px;">
                   GUILDS AND COMMUNITY
                 </h3>
                 <p style="color: #999; font-family: 'Open Sans', sans-serif; font-weight: 300; line-height: 2; font-style: italic;">
-                  Susan is a member of <a href="https://burlcoartguild.com/" target="_blank" rel="noopener" style="font-weight: inherit;">Burlington County Art Guild</a>,
-                  <a href="https://willingboroart.org/" target="_blank" rel="noopener" style="font-weight: inherit;">Willingboro Art Alliance</a>,
-                  <a href="https://perkinsarts.org/" target="_blank" rel="noopener" style="font-weight: inherit;">Perkins Center for the Arts</a> and the
-                  <a href="https://www.sjca.net/" target="_blank" rel="noopener" style="font-weight: inherit;">South Jersey Cultural Alliance</a>
+                  Susan is a member of <a href="https://burlcoartguild.com/" target="_blank">Burlington County Art Guild</a>,<br />
+                  <a href="https://willingboroart.org/" target="_blank">Willingboro Art Alliance</a>,<br />
+                  <a href="https://perkinsarts.org/" target="_blank">Perkins Center for the Arts</a><br />
+                  and the <a href="https://www.sjca.net/" target="_blank">South Jersey Cultural Alliance</a>
                 </p>
                 <span style="color: #555; font-size: 0.8rem; letter-spacing: 2px;">— DO WHAT IS HARD BUT MAKES YOU PROUD! —</span>'''
 
 # Match both the former Burlington Guild text and the current Guilds & Community
-# block. The paragraph closing tag is optional because one older source copy was
+# block. The paragraph closing tag is optional because one older About copy was
 # missing it; the replacement always writes valid, consistent markup.
 COMMUNITY_RE = re.compile(
     r'<h3[^>]*>\s*(?:The Burlington Guild Of Master Craftsmen & Fine Arts|GUILDS AND COMMUNITY)\s*</h3>\s*'
@@ -39,20 +41,26 @@ def sync_community(path: Path) -> int:
 def align_tech_header(path: Path) -> None:
     text = path.read_text(encoding='utf-8')
 
-    # Match index.html: tabs are full-width; the main navbar is inside container-fluid.
+    # Match index.html exactly in structure: tabs are full width and the main
+    # navbar (including SUSAN DELGADO) sits inside Bootstrap's container-fluid.
     text = text.replace(
         '<div class="container-fluid"><ul class="nav nav-tabs">',
         '<div><ul class="nav nav-tabs">',
         1,
     )
 
-    marker = '<div class="container-fluid tech-main-nav">'
     nav_start = '<nav class="navbar navbar-expand-lg navbar-light page-nav">'
-    if marker not in text and nav_start in text:
+    exact_wrapper = '<div class="container-fluid">\n  ' + nav_start
+    legacy_wrapper = '<div class="container-fluid tech-main-nav">'
+
+    # Normalize an earlier temporary wrapper if it exists.
+    text = text.replace(legacy_wrapper, '<div class="container-fluid">', 1)
+
+    if exact_wrapper not in text and nav_start in text:
         start = text.index(nav_start)
         end = text.index('</nav>', start) + len('</nav>')
         nav = text[start:end]
-        text = text[:start] + marker + '\n  ' + nav + '\n  </div>' + text[end:]
+        text = text[:start] + '<div class="container-fluid">\n  ' + nav + '\n  </div>' + text[end:]
 
     path.write_text(text, encoding='utf-8')
 
