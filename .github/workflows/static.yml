@@ -25,6 +25,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Ignore JavaScript template paths during static link validation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/prepare_site.py')
+          text = path.read_text(encoding='utf-8')
+          old = "if not raw or raw.startswith(('#', 'mailto:', 'tel:', 'javascript:', 'data:')):"
+          new = "if not raw or '${' in raw or raw.startswith(('#', 'mailto:', 'tel:', 'javascript:', 'data:')):"
+          if old not in text:
+              raise SystemExit('Validator pattern was not found; preparation script changed unexpectedly.')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
       - name: Prepare site and validate links
         run: python3 scripts/prepare_site.py
 
