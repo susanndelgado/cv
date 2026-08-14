@@ -1,0 +1,76 @@
+{
+  "overrides": {
+    "4": {
+      "image": "showcase/img/DFW-Summer2019-header.jpg"
+    },
+    "7": {
+      "image": "showcase/img/dfw-confWebsite_banner-2018.jpg"
+    },
+    "8": {
+      "image": "showcase/img/DFW-Summer2018-header.jpg"
+    },
+    "9": {
+      "image": "showcase/img/pcwp-Taste-and-Tour-2018-Passport-to-hudson-river-preview-0.jpg",
+      "heroLayout": "compact"
+    },
+    "11": {
+      "role": "Front End Developer<br>Email Developer",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "filters": "all conf web email dig",
+      "content": "<p>ABIOMED 2017 was a sponsor microsite developed within CRF’s conference ecosystem to provide dedicated event content for the sponsoring company.</p><p>Developed the responsive sponsor microsite and supporting conference content, along with Salesforce Pardot email development, scheduling and distribution used to promote and support the program.</p>"
+    },
+    "17": {
+      "image": "showcase/img/fellows-2016-header.png"
+    },
+    "32": {
+      "image": "showcase/img/elisirbranding-preview.jpg",
+      "heroLayout": "compact"
+    }
+  },
+  "posts": [
+    {
+      "id": 39,
+      "title": "TVT 2015 CONFERENCE WEBSITE & EMAIL",
+      "client": "CARDIOVASCULAR RESEARCH FOUNDATION (CRF)",
+      "year": "2015",
+      "image": "showcase/img/TVT2015-website-desktop-home-P21.jpg",
+      "thumb": "showcase/img/TVT2015-website-desktop-home-P21.jpg",
+      "heroLayout": "compact",
+      "link": "showcase/tvt-2015.html",
+      "summary": "Responsive CRF conference microsite and supporting email campaign development.",
+      "filters": "all conf web email dig",
+      "role": "Front End Developer<br>Email Developer",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "content": "<p>TVT 2015 was a CRF conference microsite developed as part of the organization’s cardiovascular education programming.</p><p>Developed the responsive website experience across desktop, tablet and mobile layouts, implemented conference content, and developed, scheduled and distributed supporting Salesforce Pardot email communications.</p>"
+    },
+    {
+      "id": 40,
+      "title": "THE PARENTS CLUB OF WEST POINT INAUGURAL BALL 2020",
+      "client": "THE PARENTS CLUB OF WEST POINT",
+      "year": "2020",
+      "image": "showcase/img/pcwp-Inugaralballprogram-2020-1.png",
+      "thumb": "showcase/img/pcwp-Inugaralballprogram-2020-1.png",
+      "heroLayout": "compact",
+      "link": "showcase/pcwp-inaugural-ball-2020.html",
+      "summary": "Coordinated print materials for the 2020 Inaugural Ball.",
+      "filters": "all conf print dig",
+      "role": "Graphic Designer<br>Print Production",
+      "skills": "Event Design<br>Program Design<br>Print Design<br>Layout Design<br>Adobe InDesign<br>Adobe Illustrator<br>Adobe Photoshop",
+      "content": "<p>The Parents Club of West Point Inaugural Ball is a formal club event supported by coordinated guest and event materials.</p><p>Designed the 2020 event program, RSVP materials, hotel and accommodation information, and related event pieces as a consistent print package prepared for production and distribution.</p>"
+    },
+    {
+      "id": 41,
+      "title": "TCTMD WEBSITE & DIGITAL CONTENT",
+      "client": "CARDIOVASCULAR RESEARCH FOUNDATION (CRF)",
+      "year": "",
+      "image": "showcase/img/tctmd-header.jpg",
+      "thumb": "showcase/img/tctmd-header.jpg",
+      "link": "showcase/tctmd.html",
+      "summary": "Development work for CRF’s TCTMD cardiovascular news and education platform.",
+      "filters": "all web email dig",
+      "role": "Front End Developer<br>Email Developer",
+      "skills": "Joomla<br>Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "content": "<p>TCTMD is CRF’s comprehensive online news and education resource for interventional cardiovascular medicine, combining news, conference coverage, multimedia and educational content.</p><p>Developed and maintained front-end website content and interactive presentation within the larger Joomla platform, supported multimedia and interview content areas, and developed, scheduled and distributed related Salesforce Pardot email communications.</p>"
+    }
+  ]
+}
