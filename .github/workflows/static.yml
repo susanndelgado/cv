@@ -31,7 +31,7 @@ jobs:
       - name: Normalize shared source sections
         run: python3 scripts/finalize_display.py
 
-      - name: Persist normalized HTML source
+      - name: Publish normalized HTML source branch
         run: |
           if git diff --quiet -- '*.html'; then
             echo "Shared HTML source is already normalized."
@@ -39,8 +39,8 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -u -- '*.html'
-            git commit -m "Persist shared layout and community fixes [skip ci]"
-            git push origin HEAD:main
+            git commit -m "Persist shared layout and community fixes"
+            git push --force origin HEAD:refs/heads/automation/site-source-sync
           fi
 
       - name: Ignore JavaScript template paths during static link validation
