@@ -1,76 +1,246 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Technical Work | Susan Delgado</title>
+  <title>Susan Delgado</title>
+  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+
+  <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- STYLESHEETS LINKS FROM SDELGADO -->
+  <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"/>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .work-intro{padding:70px 0 35px}.work-intro h1{margin-bottom:15px}.work-filters{padding:0 0 35px}.work-filters .btn{margin:4px 2px}.work-grid{display:flex;flex-wrap:wrap;margin:0 -15px 60px}.work-card{width:33.333%;padding:0 15px 36px}.work-card-inner{height:100%;background:#fff}.work-card-image{display:block;overflow:hidden;background:#f2f2f2}.work-card-image img{width:100%;height:245px;object-fit:cover;display:block;transition:transform .25s ease}.work-card-image:hover img{transform:scale(1.02)}.work-card-copy{padding:18px 4px}.work-card-copy h3{font-size:20px;line-height:1.25;margin:0 0 8px}.work-card-copy h3 a{color:inherit}.work-card-copy p{font-size:14px;line-height:1.5;margin:0}.work-card.hidden-project{display:none}@media(max-width:991px){.work-card{width:50%}}@media(max-width:575px){.work-card{width:100%}.work-card-image img{height:auto}}
-  </style>
+
+  <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYaQ_h4LNEnfVOsy_Erg0T2bVIjRmZaSo"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 </head>
 <body class="page-template page">
 <header id="top" class="top">
+  <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
   <div class="container-fluid">
     <ul class="nav nav-tabs">
-      <li class="nav-item"><a class="nav-link" href="/">FINE ARTS</a></li>
-      <li class="nav-item"><a class="nav-link active" href="/work.html">TECHNICAL WORK</a></li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/">FINE ARTS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/work.html">TECHNICAL WORK</a>
+      </li>
     </ul>
   </div>
+
   <nav class="navbar navbar-expand-lg navbar-light page-nav">
-    <a class="navbar-brand" href="/index.html">SUSAN DELGADO</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+      <ul id="menu-main top-nav" class="navbar-nav ml-auto">
         <li class="active item"><a class="nav-link link" href="/work.html">TECHNICAL WORK</a></li>
-        <li class="item"><a class="nav-link link" href="/showcase.html">SHOWCASE</a></li>
+        <li class="item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a>
+          <ul class="sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=22">PULSEGALA 2015</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=23">TCT INTERNATIONAL 2015</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=37">ALI HAIRSTYLIST</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-link link">
+              <a class="dropdown-item child-item" href="/showcase.html?post=34">I WRITE NY</a>
+            </li>
+          </ul>
+        </li>
         <li class="item"><a class="nav-link link" href="/contact.html">CONTACT / RESUME</a></li>
       </ul>
     </div>
   </nav>
 </header>
-<main>
-  <section class="work-intro">
+
+<header class="">
+  <div class="container">
+    <div class="row">
+      <div class="hero">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1 class="red-title bx">FRONT END DEVELOPER / GRAPHIC DESIGNER</h1>
+          <h2>CREATIVE PERSON <br />PASSIONATE ABOUT WEB</h2>
+          <p>I’m a front end web and email developer with a good deal of experience creating amazing things as a graphic designer, artist, and etsian. As a creative thinker and I have learned anything you put my mind to is attainable. Learning is second nature and a life long hobby for people like me.</p>
+          <p class="m100">I literally love what I do and spend hours on expanding my genius in all areas of my field and interest. </p>
+          <p class="center"><img src="/img/arrow.png" alt="arrow image"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-two">
     <div class="container">
-      <h1>TECHNICAL WORK</h1>
-      <p>Selected web development, digital design, branding, email, print and conference work.</p>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 pad100">
+          <h2>SKILLS & KNOWLEDGE</h2>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <h3>Web Development</h3>
+          <p>HTML5/CSS: Understanding standard compliant html4, html5, Css3, Responsive, Adaptive, Elastic Web development, Cross-browse compatibility for Mobile browsers, iOS, Chrome, Safari, Opera, monzilla, Bing and most Enternet Explorer. CMS: WordPress, WP Themes, WP Child Themes, JoomlaVersion control: Git version control, Bitbucket, Source Tree, Terminal Command, SSH, and more PHP, Javascript, jQuery, AJAX, Angularjs, Node, Gulp, Less, Sass, Compass, TweenLight, Animation.css, Modernizr, Bootstrap, jQuery UI, Zurb, Masonary, Rapheal Js, etc.. APIs and Restful Services. Email Campaign Development in Pardot, Mailchimp, and more.</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 m100">
+          <h3>Designer</h3>
+          <p>Experienced in Adobe Illustrator, Photoshop, Indesign and Acrobat, Experience designing digital Marketing Materials, Marketing Kits, Booklet: Catalogs, Directory, Magazines, Programs, Branding & Identity, Product Packaging, Logo Design, Website Design, Interface Design, Print Collateral, Social Media Facebook and instagram, Advertisements, Sales materials, Event designs, and more...</p>
+          <p>Strong understanding of User Experience (UX) on modern technologies and User interface (UI) design for enhanced user interaction. </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <p class="center"><img src="img/arrow.png" alt=""></p>
+        </div>
+      </div>
     </div>
-  </section>
-  <section class="work-filters">
-    <div class="container" id="workFilters">
-      <button class="btn btn-dark active" data-filter="all">ALL</button>
-      <button class="btn btn-outline-dark" data-filter="web">WEB</button>
-      <button class="btn btn-outline-dark" data-filter="dig">DIGITAL</button>
-      <button class="btn btn-outline-dark" data-filter="brand">BRANDING</button>
-      <button class="btn btn-outline-dark" data-filter="conf">CONFERENCE / EVENT</button>
-      <button class="btn btn-outline-dark" data-filter="email">EMAIL</button>
-      <button class="btn btn-outline-dark" data-filter="print">PRINT</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h2 class="title-span">SHOW2CASE</h2>
     </div>
-  </section>
-  <section>
-    <div class="container"><div id="workGrid" class="work-grid"></div></div>
-  </section>
-</main>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="row showcase-thumbs">
+        <div class="col-lg-6 col-md-12 col-sm-12 item">
+          <a href="/showcase.html?post=22">
+            <img src="img/pulsegala1.jpg" alt="">
+          </a>
+          <p><a class="hyperproj" href="/showcase.html?post=22">Pulse Gala 2016</a> FRONT END DEVELOPER / <a href="https://www.crf.org/" target="_blank">CRF</a> / 2016 </p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 item">
+          <a href="/showcase.html?post=16">
+            <img src="img/dallas-thumb.jpg" alt="">
+          </a>
+          <p><a class="hyperproj" href="/showcase.html?post=16">Dallas Leipzig</a> FRONT END WEB /<a href="https://dallasleipzig.com/" target="_blank">CRF</a> / 2016 </p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 item">
+          <a href="/showcase.html?post=25">
+            <img src="img/web-columbia-1.jpg" alt="">
+          </a>
+          <p><a class="hyperproj" href="/showcase.html?post=25">CPC14 COLUMBIA PRIMARY CARE</a> FRONT END DEVELOPER / <a href="https://www.crf.org/" target="_blank">CRF</a> / 2014 </p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 item">
+          <a href="/showcase.html?post=23">
+            <img src="img/tct20151.jpg" alt="">
+          </a>
+          <p><a class="hyperproj" href="/showcase.html?post=23">TCT International 2015</a> FRONT END WEB &amp; EMAIL DEVELOPER /<a href="https://www.crf.org/" target="_blank">CRF</a> / 2016 </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h2 class="title-span">WORK</h2>
+      <div id="page-nav">
+        <button class="btn active" onclick="filterSelection('all')">Show all</button>
+        <button class="btn" onclick="filterSelection('brand')">Branding & Logo</button>
+        <button class="btn" onclick="filterSelection('conf')">Conferences, Events & Campaigns</button>
+        <button class="btn" onclick="filterSelection('dig')">Digital Materials</button>
+        <button class="btn" onclick="filterSelection('email')">Emails Development</button>
+        <button class="btn" onclick="filterSelection('print')">Print Collateral</button>
+        <button class="btn" onclick="filterSelection('web')">Websites</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #workGrid.work-grid{display:flex;flex-wrap:wrap;margin:0 -15px 60px}
+  #workGrid .work-card{width:33.333%;padding:0 15px 36px}
+  #workGrid .work-card-inner{height:100%;background:#fff}
+  #workGrid .work-card-image{display:block;overflow:hidden;background:#f2f2f2}
+  #workGrid .work-card-image img{width:100%;height:245px;object-fit:cover;display:block;transition:transform .25s ease}
+  #workGrid .work-card-image:hover img{transform:scale(1.02)}
+  #workGrid .work-card-copy{padding:18px 4px}
+  #workGrid .work-card-copy h3{font-size:20px;line-height:1.25;margin:0 0 8px}
+  #workGrid .work-card-copy h3 a{color:inherit}
+  #workGrid .work-card-copy p{font-size:14px;line-height:1.5;margin:0}
+  #workGrid .work-card.hidden-project{display:none}
+  @media(max-width:991px){#workGrid .work-card{width:50%}}
+  @media(max-width:575px){#workGrid .work-card{width:100%}#workGrid .work-card-image img{height:auto}}
+</style>
+
+<div class="work">
+  <div class="container-fluid">
+    <div id="workGrid" class="work-grid"></div>
+  </div>
+</div>
+
 <footer id="footer">
-  <div class="container"><div class="row"><div class="col-lg-12"><button class="btn backtotop" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back To Top</button></div></div></div>
-  <div class="container"><div class="row"><div class="col-lg-3 col-md-3 col-sm-12"><h2>Susan Delgado</h2><a href="mailto:sdelgado@collabdesigns.com">sdelgado@collabdesigns.com</a></div></div></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12"><button class="btn backtotop" href="#top" title="Back to The Top">Back To Top</button></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <h2>Susan Delgado</h2>
+        <a href="mailto:sdelgado@collabdesigns.com">sdelgado@collabdesigns.com</a>
+        <a href="/pdf/resume/2023_susan_delgado_resume.pdf" target="blank">Resume</a>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <p>Copyright © 2021 SDELGADO | COLLABDESIGNS. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <script>
 (function(){
   var grid=document.getElementById('workGrid');
-  var buttons=document.querySelectorAll('#workFilters [data-filter]');
+  var buttons=document.querySelectorAll('#page-nav .btn');
   var posts=[];
+  var currentFilter='all';
+
   function projectURL(post){return '/showcase.html?post='+encodeURIComponent(post.id);}
+  function cleanTitle(value){return String(value||'').replace(/<[^>]*>/g,'');}
+
+  function applyFilter(filter){
+    currentFilter=filter||'all';
+    document.querySelectorAll('#workGrid .work-card').forEach(function(card){
+      var show=currentFilter==='all'||(' '+card.dataset.filters+' ').indexOf(' '+currentFilter+' ')!==-1;
+      card.classList.toggle('hidden-project',!show);
+    });
+  }
+
+  window.filterSelection=function(filter){applyFilter(filter);};
+
+  buttons.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      buttons.forEach(function(other){other.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+
   function render(){
     grid.innerHTML='';
     posts.forEach(function(post){
@@ -79,24 +249,17 @@
       card.dataset.filters=post.filters||'';
       var url=projectURL(post);
       card.innerHTML='<div class="work-card-inner">'+
-        '<a class="work-card-image" href="'+url+'"><img src="/'+(post.thumb||post.image)+'" alt="'+String(post.title).replace(/<[^>]*>/g,'')+'"></a>'+
+        '<a class="work-card-image" href="'+url+'"><img src="/'+(post.thumb||post.image)+'" alt="'+cleanTitle(post.title)+'"></a>'+
         '<div class="work-card-copy"><h3><a href="'+url+'">'+post.title+'</a></h3><p>'+(post.summary||'')+'</p></div></div>';
       grid.appendChild(card);
     });
-    applyFilter('all');
+    applyFilter(currentFilter);
   }
-  function applyFilter(filter){
-    document.querySelectorAll('.work-card').forEach(function(card){
-      var show=filter==='all'||(' '+card.dataset.filters+' ').indexOf(' '+filter+' ')!==-1;
-      card.classList.toggle('hidden-project',!show);
-    });
-    buttons.forEach(function(btn){
-      var active=btn.dataset.filter===filter;
-      btn.classList.toggle('btn-dark',active);btn.classList.toggle('btn-outline-dark',!active);btn.classList.toggle('active',active);
-    });
-  }
-  buttons.forEach(function(btn){btn.addEventListener('click',function(){applyFilter(btn.dataset.filter);});});
-  fetch('/js/posts.json').then(function(r){if(!r.ok)throw new Error('Unable to load projects');return r.json();}).then(function(data){posts=data.posts||[];render();}).catch(function(){grid.innerHTML='<p>Project list could not be loaded.</p>';});
+
+  fetch('/js/posts.json')
+    .then(function(r){if(!r.ok)throw new Error('Unable to load projects');return r.json();})
+    .then(function(data){posts=data.posts||[];render();})
+    .catch(function(){grid.innerHTML='<p>Project list could not be loaded.</p>';});
 })();
 </script>
 </body>
