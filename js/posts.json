@@ -58,7 +58,7 @@
     },
     {
       "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2019",
-      "image": "showcase/img/dfw-summercapms2019-header.png",
+      "image": "showcase/img/DFW-Summer2019-header.jpg",
       "thumb": "showcase/thumbs/dfw-summerbanner2019.jpg",
       "link": "showcase/dfw-summer-camp-2019.html",
       "client": "DFW Private Education",
@@ -114,7 +114,7 @@
     },
     {
       "title": "DFW PRIVATE EDUCATION SUMMER CAMP 2018",
-      "image": "showcase/img/dfw-camps-2018-header.png",
+      "image": "showcase/img/DFW-Summer2018-header.jpg",
       "thumb": "showcase/thumbs/dfw-summerbanner2018.jpg",
       "link": "showcase/dfw-summer-camp-2018.html",
       "client": "DFW Private Education",
@@ -136,7 +136,7 @@
       "skills": "Graphic Design<br>Illustration<br>Map Illustration<br>Event Design<br>Print Design<br>Adobe Illustrator<br>Adobe Photoshop<br>Adobe InDesign<br>Print Production<br>Z-Fold Production<br>Project Coordination",
       "filters": "conf print dig",
       "summary": "Illustrated passport map and Z-fold event piece.",
-      "content": "<p>Taste &amp; Tour featured the <em>Passport to the Hudson River</em>, a custom-designed illustrated map and promotional piece highlighting participating local businesses.</p><p>The complete visual design included the map, business listings, advertising spaces and sponsor placements, coordinated with PCWP, the event planner and participating businesses according to sponsorship level.</p><p>The piece was developed in Adobe Illustrator, Photoshop and InDesign and produced as a Z-fold with passport-like proportions when folded. Print production included printing and machine folding.</p>",
+      "content": "<p>Taste &amp; Tour is an annual Parents Club of West Point event. The 2018 event featured the <em>Passport to the Hudson River</em>, a custom-designed map and promotional piece highlighting participating local businesses.</p><p>The complete visual design and layout for the Passport included the illustrated map, business listings, advertising spaces and sponsor placements. Coordination with PCWP, the event planner and participating local businesses ensured that business locations and advertising were organized according to sponsorship level and incorporated into the map and overall design.</p><p>The project was developed using Adobe Illustrator, Photoshop and InDesign, including the map illustration, graphic elements, typography, advertising layouts and print-ready production files. The finished piece was designed as a Z-fold so that, when folded, it resembled a passport.</p><p>Physical print production included printing and machine-folding the finished pieces.</p>",
       "year": "2018",
       "id": "9"
     },
@@ -385,10 +385,10 @@
       "link": "showcase/tct2014.html",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee<br>",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Email Development",
+      "skills": "JavaScript<br>jQuery<br>Joomla<br>Bootstrap<br>HTML5<br>CSS<br>Responsive Web Development<br>Dynamic Agenda Development<br>Data Integration<br>Email Development<br>Salesforce Pardot",
       "filters": "conf web email",
-      "summary": "TCT conference website, responsive agenda and email campaign.",
-      "content": "<p>TCT 2014 was CRF’s annual Transcatheter Cardiovascular Therapeutics scientific symposium.</p><p>Front-end work included desktop, tablet and mobile conference views, agenda interfaces and supporting promotional emails using responsive HTML, CSS, JavaScript, jQuery and Bootstrap.</p>",
+      "summary": "Dynamic TCT conference websites, agenda interfaces and high-volume email development.",
+      "content": "<p>TCT 2014 was CRF’s annual Transcatheter Cardiovascular Therapeutics scientific symposium and one of the organization’s largest conference web properties.</p><p>Front-end development included responsive, standards-compliant TCT and TCT Industry interfaces, a dynamic agenda with interactive transitions and smoothly loaded content connected to the same data source used by CRF’s conference app, along with additional dynamic features throughout both conference websites.</p><p>A large volume of responsive conference emails was developed, scheduled and distributed through Salesforce Pardot in support of TCT and its related programs.</p>",
       "year": "2014",
       "id": "27"
     },
@@ -458,7 +458,7 @@
       "skills": "Branding<br>Logo Design<br>Digital Design<br>Print Design<br>Packaging Design<br>Adobe Illustrator<br>Adobe Photoshop",
       "filters": "brand dig print",
       "summary": "Complete identity package for an Etsy vintage shop.",
-      "content": "<p>Eli &amp; Sir was a vintage shop operating on Etsy.</p><p>A complete custom branding package was developed for the shop, including the logo, Etsy shop banner, business card and branded sticker, creating a consistent identity across the online storefront, printed customer materials and packaging.</p>",
+      "content": "<p>Eli &amp; Sir was a vintage shop operating on Etsy.</p><p>A complete custom branding package was created for the shop. Custom materials included the Etsy shop banner, logo, business card and branded sticker, creating a consistent identity across the online storefront, printed customer materials and packaging.</p>",
       "year": "",
       "id": "32"
     },
