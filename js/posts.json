@@ -131,14 +131,14 @@
     "id":"12"
     },
     {
-    "title": "THE KNOWLEDGE PROJECT",
-    "image": "showcase/thumbs/tkp-website2019.jpg",
-    "link": "showcase/the-knowledge-project.html",
-    "client": "The Knowledge Project",
-    "role": "Front End Developer<br>Graphic Designer<br>",
-    "skills": "HTML5<br>CSS<br>Javascript<br>jQuery<br>WordPress",
-    "content": "<p>Website redesign and development for The Knowledge Project.</p><p>PLACEHOLDER: Add full project description here.</p>",
-    "id": "13"
+      "title": "THE KNOWLEDGE PROJECT",
+      "image": "showcase/img/tkp-header.png",
+      "link": "showcase/the-knowledge-project.html",
+      "client": "The Knowledge Project",
+      "role": "Web Developer<br>",
+      "skills": "Web Development<br>Front End Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>WordPress<br>Website Maintenance<br>Website Updates<br>Design Implementation",
+      "content": "<p>I worked as the web developer for The Knowledge Project, maintaining and updating their existing website.</p><p>My work included implementing new content and functionality, making front-end updates, and adapting pages and visual elements while maintaining the organization's established design and branding. When additional graphic or layout elements were needed, I created them to fit within the existing visual style rather than redesigning the site.</p><p>The project involved ongoing WordPress development and front-end work using HTML, CSS, JavaScript and jQuery.</p>",
+      "id": "13"
     },
     {
     "title": "COLORSTREET MARKETING BUNDLES",
