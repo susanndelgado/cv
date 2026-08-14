@@ -11,7 +11,9 @@
     },
     "9": {
       "image": "showcase/img/pcwp-Taste-and-Tour-2018-Passport-to-hudson-river-preview-0.jpg",
-      "heroLayout": "compact"
+      "heroLayout": "compact",
+      "summary": "Passport-style map and sponsorship materials for PCWP’s recurring Taste & Tour event.",
+      "content": "<p>Taste & Tour was a recurring Parents Club of West Point event that connected participants with local businesses and destinations along the Hudson River. The featured Passport to the Hudson River was developed as the event’s compact guide and promotional piece.</p><p>Designed and planned the complete passport-style Z-fold layout, including the illustrated map, participating-business listings, advertising and sponsorship placements. Coordinated the design with PCWP, the event planner and local businesses, created the artwork in Adobe Illustrator, Photoshop and InDesign, and handled printing and machine folding so the finished piece folded into a passport format.</p>"
     },
     "11": {
       "role": "Front End Developer<br>Email Developer",
@@ -24,7 +26,11 @@
     },
     "32": {
       "image": "showcase/img/elisirbranding-preview.jpg",
-      "heroLayout": "compact"
+      "heroLayout": "compact",
+      "summary": "Custom Etsy vintage-shop branding including logo, shop banner, business card and sticker.",
+      "content": "<p>Eli & Sir was an Etsy vintage shop that needed a cohesive identity that could carry from its online storefront into printed customer materials.</p><p>Created the complete custom branding package, including the logo, Etsy shop banner, business card and branded sticker, with a consistent visual system designed for both the online shop and physical packaging/customer touchpoints.</p>",
+      "skills": "Branding<br>Logo Design<br>Etsy Shop Banner Design<br>Business Card Design<br>Sticker Design<br>Print Design<br>Adobe Illustrator<br>Adobe Photoshop",
+      "filters": "all brand print dig"
     }
   },
   "posts": [
