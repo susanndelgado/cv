@@ -157,7 +157,7 @@
     "client": "DFW Private Education",
     "role": "Graphic Designer<br>",
     "skills": "Graphic Design<br>Print Design<br>Digital Design<br>Web Graphics",
-    "content": "<p>Conference branding and promotional materials were developed for DFW Private Education’s 2019 Families of Color Conference, including print, digital and multilingual outreach materials. The visual system was adapted across conference graphics, flyers and supporting materials for consistent use across web, social and print communications.</p>",
+    "content": "<p>DFW Private Education was an online resource and directory created to help Dallas–Fort Worth families explore local private-school options and connect with schools in the area. The 2019 Families of Color Conference brought families together with private schools, speakers and community voices to discuss education, diversity and the private-school experience.</p><p>Conference branding and promotional materials were developed for the 2019 Families of Color Conference, including print, digital and multilingual outreach materials. The visual system was adapted across conference graphics, flyers and supporting materials for consistent use across web, social and print communications.</p>",
     "id": "15"
     },
     {
@@ -167,7 +167,7 @@
     "client": "DFW Private Education",
     "role": "Graphic Designer<br>",
     "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
-    "content": "<p>A summer event banner was designed for the DFW Private Education website to promote the 2019 Summer Camp program. The banner was created in Adobe Photoshop and Illustrator and developed to match the event’s visual style while presenting the information clearly for web use.</p>",
+    "content": "<p>DFW Private Education was an online resource and directory for Dallas–Fort Worth families exploring local private-school options. Its Summer Camp promotion provided seasonal camp information to families using the site.</p><p>A summer event banner was designed for the DFW Private Education website to promote the 2019 Summer Camp program. The banner was created in Adobe Photoshop and Illustrator and developed to match the event’s visual style while presenting the information clearly for web use.</p>",
     "id": "16"
     },
     {
@@ -217,27 +217,17 @@
     "client": "DFW Private Education",
     "role": "Graphic Designer<br>",
     "skills": "Graphic Design<br>Digital Design<br>Web Graphics<br>Social Media Graphics",
-    "content": "<p>Designed Summer Camp materials and banners for web and social media.</p><p>PLACEHOLDER: Add additional project details here.</p>",
+    "content": "<p>DFW Private Education was an online resource and directory for Dallas–Fort Worth families exploring local private-school options. Its Summer Camp promotion provided seasonal camp information to families using the site.</p><p>A summer event banner was designed for the DFW Private Education website to promote the 2018 Summer Camp program. The banner was created in Adobe Photoshop and Illustrator and developed to match the event’s visual style while presenting the information clearly for web use.</p>",
     "id": "21"
     },
     {
-    "title": "ETSY CUSTOM THANK YOU STICKERS",
-    "image": "showcase/img/etsystickers-header.png",
-    "link": "showcase/etsy-thank-you-stickers.html",
-    "client": "Etsy Customers",
-    "role": "Graphic Designer<br>",
-    "skills": "Graphic Design<br>Sticker Design<br>Print Design<br>Illustrator<br>Photoshop",
-    "content": "<p>Designed custom thank-you stickers for customers and small businesses.</p><p>PLACEHOLDER: Add additional project details here.</p>",
-    "id": "22"
-    },
-    {
     "title": "SUGARHILL BRANDING",
-    "image": "showcase/thumbs/sugarhillbranding.jpg",
+    "image": "showcase/img/sugarhill-header.jpg",
     "link": "showcase/sugarhill-branding.html",
     "client": "Sugarhill",
     "role": "Graphic Designer<br>",
     "skills": "Branding<br>Logo Design<br>Print Design<br>Illustrator<br>Photoshop",
-    "content": "<p>Branding and graphic design project for Sugarhill.</p><p>PLACEHOLDER: Add information about the brand, deliverables and design process here.</p>",
+    "content": "<p>Sugarhill was a bakery brand serving customers through baked goods and café-style offerings.</p><p>A complete branding package was developed for the business, beginning with the logo and extending across the full collection of custom-designed materials shown in the project preview. The system established a consistent visual identity across the bakery’s branded print and promotional pieces, with artwork prepared in Adobe Illustrator and Photoshop.</p>",
     "id": "23"
     },
     {
