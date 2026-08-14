@@ -1,5 +1,11 @@
 {
   "overrides": {
+    "4": {
+      "hidden": true
+    },
+    "8": {
+      "hidden": true
+    },
     "11": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
@@ -51,6 +57,11 @@
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee"
     },
+    "40": {
+      "image": "showcase/img/pcwp-inaguralBall2020rsvppdf.png",
+      "thumb": "showcase/img/pcwp-inaguralBall2020rsvppdf.png",
+      "heroLayout": "compact"
+    },
     "41": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee"
@@ -62,6 +73,8 @@
       "filters": "conf web email dig"
     },
     "45": {
+      "image": "showcase/img/SCAI17_combo_eblast_header.jpg",
+      "heroLayout": "normal",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
