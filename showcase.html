@@ -32,7 +32,7 @@
     <a class="navbar-brand" href="/index.html">SUSAN DELGADO</a>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto"><li class="item"><a class="nav-link link" href="/work.html">TECHNICAL WORK</a></li><li class="active item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a><div id="projectMenu" class="dropdown-menu showcase-project-menu"></div></li><li class="item"><a class="nav-link link" href="/contact.html">CONTACT / RESUME</a></li></ul>
+      <ul class="navbar-nav ml-auto"><li class="item"><a class="nav-link link" href="/work.html">TECHNICAL WORK</a></li><li class="active item dropdown"><a class="nav-link dropdown-toggle" href="/showcase.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOWCASE</a><div id="projectMenu" class="dropdown-menu showcase-project-menu"><a class="dropdown-item child-item" href="/showcase.html?post=22">PULSEGALA 2015</a><a class="dropdown-item child-item" href="/showcase.html?post=23">TCT INTERNATIONAL 2015</a><a class="dropdown-item child-item" href="/showcase.html?post=37">ALI HAIRSTYLIST</a><a class="dropdown-item child-item" href="/showcase.html?post=34">I WRITE NY</a></div></li><li class="item"><a class="nav-link link" href="/contact.html">CONTACT / RESUME</a></li></ul>
     </div>
   </nav>
 </header>
@@ -48,17 +48,15 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 (function(){
-  var posts=[],currentPost=0;var hero=document.getElementById('hero'),info=document.getElementById('info'),details=document.getElementById('details'),content=document.getElementById('content'),menu=document.getElementById('projectMenu');
+  var posts=[],currentPost=0;var hero=document.getElementById('hero'),info=document.getElementById('info'),details=document.getElementById('details'),content=document.getElementById('content');
   var prev=[document.getElementById('previousLinkTop'),document.getElementById('previousLinkBottom')],next=[document.getElementById('nextLinkTop'),document.getElementById('nextLinkBottom')];
   var lightbox=document.getElementById('previewLightbox'),lightboxImg=lightbox.querySelector('img');
   function cleanTitle(v){return String(v||'').replace(/<[^>]*>/g,'');}
   function yearValue(v){var m=String(v||'').match(/\d{4}/);return m?parseInt(m[0],10):0;}
   function sortPosts(a,b){var y=yearValue(b.year)-yearValue(a.year);if(y)return y;var c=String(a.client||'').localeCompare(String(b.client||''));return c||cleanTitle(a.title).localeCompare(cleanTitle(b.title));}
   function mergeData(base,extra){var overrides=(extra&&extra.overrides)||{};var result=(base||[]).map(function(p){return Object.assign({},p,overrides[String(p.id)]||{});});((extra&&extra.posts)||[]).forEach(function(p){if(!result.some(function(x){return String(x.id)===String(p.id);})){result.push(p);}});return result.sort(sortPosts);}
-  function postURL(post){return '/showcase.html?post='+encodeURIComponent(post.id);}
   function setURL(){var u=new URL(location.href);u.searchParams.set('post',posts[currentPost].id);history.pushState({post:posts[currentPost].id},'',u);}
   function setStates(){prev.forEach(function(a){a.classList.toggle('disabled',currentPost===0);});next.forEach(function(a){a.classList.toggle('disabled',currentPost===posts.length-1);});}
-  function renderMenu(){menu.innerHTML='';posts.forEach(function(p){var a=document.createElement('a');a.className='dropdown-item child-item';a.href=postURL(p);a.textContent=(p.year?p.year+' — ':'')+cleanTitle(p.title);menu.appendChild(a);});}
   function renderHero(post){
     var compact=post.heroLayout==='compact';var src='/'+(post.image||post.thumb||'');var title=cleanTitle(post.title);
     if(compact){hero.innerHTML='<div class="showcase-hero-compact"><div class="hero-image"><img id="heroImage" src="'+src+'" alt="'+title+'"></div><div class="hero-title"><h1>'+title+'</h1></div></div>';}else{hero.innerHTML='<div class="showcase-hero-normal"><img id="heroImage" src="'+src+'" alt="'+title+'"></div>';}
@@ -73,7 +71,7 @@
   prev.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();move(-1);});});next.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();move(1);});});
   function setCurrentFromURL(){var q=new URLSearchParams(location.search).get('post');var idx=posts.findIndex(function(p){return String(p.id)===String(q);});currentPost=idx>=0?idx:0;}
   window.addEventListener('popstate',function(){setCurrentFromURL();loadPost(false);});
-  Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){posts=mergeData(data[0].posts||[],data[1]||{});renderMenu();setCurrentFromURL();loadPost(false);});
+  Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){posts=mergeData(data[0].posts||[],data[1]||{});setCurrentFromURL();loadPost(false);});
 })();
 </script>
 </body>
