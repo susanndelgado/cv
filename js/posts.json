@@ -231,10 +231,10 @@
       "link": "showcase/dallas.html",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>CRF Employee<br>",
-      "skills": "JavaScript<br>jQuery<br>PHP<br>Bootstrap<br>SCSS<br>HTML5<br>CSS<br>Front End Animation",
+      "skills": "JavaScript<br>jQuery<br>AngularJS<br>PHP<br>Bootstrap<br>SCSS<br>HTML5<br>CSS<br>Front End Animation",
       "filters": "conf web",
       "summary": "Responsive conference website with custom interface animation.",
-      "content": "<p>Dallas Leipzig was a cardiovascular education conference website developed through CRF.</p><p>The responsive site used PHP, SCSS, jQuery, Bootstrap and custom JavaScript, with animated sliders, collapsing elements and interface state transitions integrated into the front-end experience.</p>",
+      "content": "<p>Dallas Leipzig was a cardiovascular education conference website developed through CRF.</p><p>Developed the responsive conference website as the assigned CRF front-end developer, including animated transitions between sliders, collapsing elements and active interface states.</p><p>The site used PHP, SCSS, jQuery, AngularJS, Bootstrap and custom JavaScript, including front-end animation used to enrich the interface and transitions.</p>",
       "year": "2016",
       "id": "16"
     },
