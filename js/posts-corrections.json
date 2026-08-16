@@ -17,26 +17,29 @@
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>JavaScript<br>jQuery<br>PHP<br>Bootstrap<br>SCSS<br>HTML5<br>CSS<br>Front End Animation<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "conf web email dig"
+      "filters": "conf web email dig",
+      "content": "<p>Dallas Leipzig was a cardiovascular education conference designed for multidisciplinary cardiovascular teams, including cardiothoracic surgeons, cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists and cardiac imaging specialists.</p><p>Developed the conference website as the assigned CRF front-end developer, building animated transitions between sliders, collapsing elements and active interface states.</p><p>The responsive site used PHP, SCSS, jQuery, Bootstrap and custom JavaScript, including an independently developed animation module using animate.css to enrich the interface and transitions.</p>"
     },
     "18": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
-      "content": "<p>SCAI 2016 website and email materials were developed through CRF’s conference production program.</p><p>Developed the responsive conference website and supporting Salesforce Pardot email communications as a CRF employee, including email development, scheduling and distribution.</p>"
+      "content": "<p>SCAI 2016 website and email materials were produced through CRF’s conference development program to support the meeting’s information and attendee communications.</p><p>Developed the responsive conference website and implemented program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
     },
     "20": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>JavaScript<br>jQuery<br>PHP<br>Bootstrap<br>Joomla<br>SCSS<br>HTML5<br>CSS<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "conf web email dig"
+      "filters": "conf web email dig",
+      "content": "<p>The Chronic Total Occlusion (CTO) Summit is CRF’s annual educational conference bringing together experienced CTO PCI operators for live cases, real-time analysis and instruction from world-renowned faculty.</p><p>Developed the 2015 conference website, responsive/mobile presentation and supporting communications as part of CRF’s front-end role. From 2013–2017, the broader role included development across numerous conference, sponsor and partner websites and high-volume CRF email production.</p><p>The CTO website was built in Joomla with Bootstrap, JavaScript, jQuery, PHP, SCSS, HTML5 and CSS, with supporting email development, scheduling and distribution through Salesforce Pardot.</p>"
     },
     "22": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "conf web email dig"
+      "filters": "conf web email dig",
+      "content": "<p>The 2015 Pulse Gala was CRF’s annual fundraiser supporting cardiovascular health and research. Each year the gala recognized prominent scholars and public figures; the 2015 event featured Dr. Henry Kissinger as an honoree.</p><p>Developed and maintained the annual Pulse Gala website from 2013–2016 as part of the CRF front-end development role, handling the site’s implementation and recurring yearly updates.</p><p>The Pulse Gala site was a small static Bootstrap website using HTML5, CSS, JavaScript and jQuery, with a slider, gallery and forms processed through Wufoo. The CRF role also included development of smaller organizational websites and supporting email communications.</p>"
     },
     "26": {
       "client": "The Cardiovascular Research Foundation (CRF)",
@@ -51,7 +54,7 @@
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution<br>Webcast Promotion",
       "filters": "conf web email dig",
-      "content": "<p>MAQUET 2014 was a sponsor microsite developed through CRF’s conference web production program.</p><p>Developed the responsive microsite and conference content as a CRF employee, along with supporting Salesforce Pardot email development, scheduling and distribution, including webcast promotion.</p>"
+      "content": "<p>MAQUET 2014 was a sponsor microsite developed through CRF’s conference web production program to support the sponsoring company’s conference presence and related educational promotion.</p><p>Developed the responsive microsite and implemented overview, faculty, agenda and call-for-cases content, along with supporting webcast promotion.</p><p>Developed, scheduled and distributed the related Salesforce Pardot email communications using HTML5, CSS, JavaScript and jQuery as part of CRF’s front-end and email development responsibilities.</p>"
     },
     "38": {
       "client": "The Cardiovascular Research Foundation (CRF)",
@@ -59,11 +62,12 @@
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
       "summary": "CRF-built satellite conference website and supporting email campaign.",
-      "content": "<p>VEINS was a satellite conference website developed through CRF’s conference web program.</p><p>Developed the responsive desktop and mobile website as a CRF employee, implemented program content, and developed, scheduled and distributed supporting Salesforce Pardot email communications.</p>"
+      "content": "<p>VEINS was a satellite conference website developed through CRF’s conference web program to present program information across desktop and mobile formats.</p><p>Developed the responsive website and implemented conference content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email campaign as part of CRF’s front-end and email development responsibilities.</p>"
     },
     "39": {
       "client": "The Cardiovascular Research Foundation (CRF)",
-      "role": "Front End Developer<br>Email Developer<br>CRF Employee"
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "content": "<p>TVT 2015 was a CRF conference microsite developed as part of the organization’s cardiovascular education programming and conference communications.</p><p>Developed the responsive website experience across desktop, tablet and mobile layouts and implemented the conference content within CRF’s established web environment.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
     },
     "40": {
       "image": "showcase/img/pcwp-inaguralBall2020rsvppdf.png",
@@ -72,13 +76,15 @@
     },
     "41": {
       "client": "The Cardiovascular Research Foundation (CRF)",
-      "role": "Front End Developer<br>Email Developer<br>CRF Employee"
+      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
+      "content": "<p>TCTMD is CRF’s comprehensive online news and education resource for interventional cardiovascular medicine, combining news, conference coverage, multimedia, interviews and educational content.</p><p>Developed and maintained front-end website content and interactive presentation within the larger Joomla platform, supporting ongoing editorial, multimedia and interview areas.</p><p>Developed, scheduled and distributed related Salesforce Pardot email communications as part of the CRF web and email development role.</p>"
     },
     "43": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Joomla<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "conf web email dig"
+      "filters": "conf web email dig",
+      "content": "<p>DAPT 2014 was a dedicated CRF conference website created to present the program’s event information and educational content within CRF’s conference ecosystem.</p><p>Developed the responsive conference website and implemented the page content using HTML5, CSS, JavaScript, jQuery, Joomla and Bootstrap.</p><p>Developed, scheduled and distributed supporting Salesforce Pardot email communications as part of CRF’s front-end and email development responsibilities.</p>"
     },
     "45": {
       "image": "showcase/img/SCAI17_combo_eblast_header.jpg",
@@ -86,7 +92,7 @@
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "content": "<p>SCAI 2017 website and responsive email materials were developed through CRF’s conference production program.</p><p>Developed the conference web content and supporting Salesforce Pardot email communications as a CRF employee, including email development, scheduling and distribution.</p>"
+      "content": "<p>SCAI 2017 website and email materials were developed through CRF’s conference production program to support the meeting’s web presence and attendee communications.</p><p>Developed the responsive conference web content and implemented the program presentation using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
     },
     "47": {
       "title": "WLNCMD WEBSITE & EMAIL",
@@ -95,7 +101,70 @@
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
       "summary": "CRF-built satellite website and supporting email communications.",
-      "content": "<p>WLNCMD was a satellite website developed through CRF’s conference web program.</p><p>Developed the responsive website and program content as a CRF employee, together with supporting Salesforce Pardot email development, scheduling and distribution.</p>"
+      "content": "<p>WLNCMD was a satellite website developed through CRF’s conference web program to present program information within a responsive front-end environment.</p><p>Developed the responsive website and implemented the program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of CRF’s web and email development responsibilities.</p>"
+    },
+    "12": {
+      "content": "<p>CRF Women’s Heart Health Initiative was a cardiovascular-health campaign created to empower women to take action against heart disease during American Heart Month and through educational programming in the spring of 2017.</p><p>Developed the recurring responsive email communications used to support the initiative, with campaign updates distributed to an audience of more than 80,000 recipients.</p><p>Built the email content in HTML and CSS and supported distribution through CRF’s Salesforce Pardot email program.</p>"
+    },
+    "13": {
+      "content": "<p>The Parents Club of West Point Inaugural Ball 2017 was a formal club event requiring coordinated guest-facing and promotional materials.</p><p>Designed the invitation, event program and supporting promotional artwork, carrying one visual identity across the printed pieces and digital materials used to announce and support the event.</p>"
+    },
+    "14": {
+      "content": "<p>CHIP at ACC 2016 was an educational meeting supported through the Cardiovascular Research Foundation and presented through one of CRF’s conference microsite environments.</p><p>Developed the responsive microsite and implemented conference content using PHP, AngularJS, Go, Bootstrap, Gulp, JavaScript, HTML5 and CSS.</p><p>Developed supporting conference emails alongside the website so the program’s information was coordinated across web and email communications.</p>"
+    },
+    "15": {
+      "content": "<p>The Chronic Total Occlusion (CTO) Summit is an annual CRF educational conference bringing together experienced CTO PCI operators for live cases, real-time analysis and instruction from internationally recognized faculty.</p><p>Developed the 2016 CTO conference website, responsive/mobile presentation and supporting communications as part of CRF’s front-end role. From 2013–2017, that role included development across numerous CRF conference, sponsor and partner sites together with high-volume conference email production.</p><p>The CTO website was built in Joomla with Bootstrap, JavaScript, jQuery, PHP, SCSS, HTML5 and CSS, with supporting email development and distribution through Salesforce Pardot.</p>"
+    },
+    "17": {
+      "content": "<p>Fellows 2016 was CRF’s annual Interventional Cardiology Fellows Course and was presented directly within the CRF web environment rather than as a sponsor or partner satellite site.</p><p>Developed the conference website, responsive page content and supporting email communications using HTML5, CSS, JavaScript and jQuery.</p><p>Implemented the program information across the site and coordinated the web and email presentation as part of CRF’s front-end and email development responsibilities.</p>"
+    },
+    "19": {
+      "content": "<p>TCT360 was a live interactive webcast hosted by CRF featuring exclusive content captured at TCT 2016 in Washington, DC.</p><p>Developed the recurring responsive promotional emails and digital campaign content used to keep the webcast audience informed, with email communications reaching an audience of more than 80,000 recipients.</p><p>Built the email materials in HTML5 and CSS and supported campaign distribution through Salesforce Pardot as part of CRF’s conference email program.</p>"
+    },
+    "21": {
+      "content": "<p>Fellows 2015 was part of CRF’s annual Interventional Cardiology Fellows Course, an educational program serving physicians training in interventional cardiology.</p><p>Developed the conference website, responsive/mobile presentation and supporting email communications, implementing the course information across a coordinated digital experience.</p><p>Built the front-end with HTML5, CSS, JavaScript and jQuery and supported the conference email work as part of CRF’s broader web and email development responsibilities.</p>"
+    },
+    "23": {
+      "content": "<p>Transcatheter Cardiovascular Therapeutics (TCT) is CRF’s annual scientific conference focused on the future of interventional cardiology. The 2015 meeting included special guest speakers Arnold Schwarzenegger and Carlo Ancelotti alongside the conference’s medical faculty and educational programming.</p><p>Developed TCT materials as part of the CRF front-end team from 2013–2017. Annual responsibilities included development across approximately 8–15 TCT-related conference, sponsor and partner websites, front-end work for TCT Industry, app features and related interfaces, and production of more than 200 emails each year through Salesforce Pardot for CRF, TCT and participating organizations.</p><p>The TCT website was built in Joomla with Bootstrap, jQuery, JavaScript, PHP, SCSS, SVG, HTML5 and CSS. Dynamic schedules and interactive interfaces used technologies including AJAX, RESTful APIs and JavaScript, with responsive email development supporting the larger conference campaign.</p>"
+    },
+    "24": {
+      "content": "<p>TCT Industry 2015 was the industry-facing companion to CRF’s annual Transcatheter Cardiovascular Therapeutics conference, providing conference information and resources for participating companies and partners.</p><p>Developed TCT Industry and related TCT materials as part of the CRF front-end team from 2013–2017. Annual responsibilities included work across approximately 8–15 TCT-related conference, sponsor and partner websites, app features and interfaces, together with production of more than 200 Salesforce Pardot emails each year for CRF, TCT and participating organizations.</p><p>The TCT Industry website was built in Joomla with Bootstrap, jQuery, JavaScript, PHP, SCSS, SVG, HTML5 and CSS, with dynamic schedules and interface features using AJAX, RESTful APIs and JavaScript.</p>"
+    },
+    "25": {
+      "content": "<p>Columbia Primary Care 2014 (CPC14) was a conference and expo produced through the Cardiovascular Research Foundation as part of CRF’s broader conference web program.</p><p>Developed the CPC14 conference website and supporting emails as part of the CRF front-end role. From 2013–2017, responsibilities included development across approximately 8–15 conference, sponsor and partner websites each year, front-end work for CRF’s internal web properties and production of more than 200 annual emails through Salesforce Pardot.</p><p>The CPC14 site was built in Joomla with Bootstrap, jQuery, JavaScript and Sass. A simple interactive agenda was developed with JavaScript, AJAX and jQuery. The original conference website is no longer available online.</p>"
+    },
+    "28": {
+      "content": "<p>Fetoscopy 2014 was a medical conference website focused on fetoscopic techniques, fetal therapy and educational information for conference participants.</p><p>Developed the site structure, responsive layouts and interactive front-end elements using HTML5, CSS, JavaScript and jQuery.</p><p>Implemented the conference information so the program could be accessed clearly across desktop and mobile layouts.</p>"
+    },
+    "34": {
+      "content": "<p>I Write NY Challenge was a writing and communication initiative created by The Knowledge Project in partnership with the Writers Guild of America and other organizations to help cultivate the next generation of writers, journalists and communicators.</p><p>Designed supporting print and digital graphics and developed a dedicated presentation for the initiative within The Know’s website. The site used WordPress with a Twenty Nineteen child theme, Bootstrap, JavaScript and jQuery, with forms handled through WordPress plugins.</p><p>Developed and maintained project materials as part of a long-term consulting relationship with The Knowledge Project that expanded into broader website redevelopment and ongoing design and development work.</p>"
+    },
+    "35": {
+      "content": "<p>The Parents Club of West Point is an official West Point parent organization that helps families connect with the academy community. Annual membership directories and club materials supported new and returning members with contact information, resources and event communications.</p><p>Designed the annual 2016–2017, 2017–2018 and 2018–2019 membership directories together with forms, business cards and supporting club materials.</p><p>Developed and maintained the organization’s website and related digital content over several years using WordPress, PHP, Bootstrap, JavaScript, jQuery, HTML5 and CSS while also producing the coordinated print work.</p>"
+    },
+    "36": {
+      "content": "<p>Margaret Beals is a dancer and choreographer whose website needed to present career history, performance work and archival material in a clear, image-led format.</p><p>Designed the custom page layouts and developed the front-end website using HTML5, CSS and JavaScript.</p><p>Created a responsive presentation that organized the portfolio and biographical material for straightforward viewing across screen sizes.</p>"
+    },
+    "37": {
+      "content": "<p>Ali is a master hairstylist whose career includes work at Astor Place Hairstylists and MOI, operation of a barbershop in Morocco, participation in major fashion and hairstyling events and a fifth-place finish in the 1982 World Hairstyling Competition.</p><p>Designed and developed Ali’s first website while completing college studies, creating the complete visual design and a custom responsive WordPress theme at a time when responsive and adaptive web techniques were still relatively new.</p><p>Built the site with WordPress, PHP, Bootstrap, SCSS, JavaScript, jQuery, HTML5 and CSS to present services, career information and portfolio content. The website has since been rebranded.</p>"
+    },
+    "44": {
+      "content": "<p>TRAC conference work included a responsive event website and supporting communications developed through CRF for the program’s attendees and faculty.</p><p>Developed conference overview, faculty, registration and related event pages across desktop and mobile layouts using HTML5, CSS, JavaScript, jQuery, Joomla and Bootstrap.</p><p>Developed and distributed the responsive supporting email campaign through Salesforce Pardot as part of the CRF conference production workflow.</p>"
+    },
+    "46": {
+      "content": "<p>Echo required a responsive website experience that translated the project’s visual design into a usable interface across desktop and mobile screen sizes.</p><p>Developed the responsive front-end layouts and interactive presentation using HTML5, CSS, JavaScript and jQuery.</p><p>Implemented the supplied design system so content, navigation and page structure adapted cleanly across devices.</p>"
+    },
+    "48": {
+      "content": "<p>Evolve II Synergy was supported through CRF with a dedicated web presence and responsive email communications used to present and promote the program.</p><p>Developed the supporting website and responsive front-end content using HTML5 and CSS within CRF’s project environment.</p><p>Developed, scheduled and distributed the related Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
+    },
+    "49": {
+      "content": "<p>Vessix was supported through CRF with a dedicated website and responsive email communications used to present program information and related outreach.</p><p>Developed the supporting website and responsive front-end content using HTML5 and CSS within CRF’s project environment.</p><p>Developed, scheduled and distributed the related Salesforce Pardot email communications as part of CRF’s front-end and email development responsibilities.</p>"
+    },
+    "50": {
+      "content": "<p>AATS project work through CRF included a supporting website presence and responsive email communications developed for the program’s digital outreach.</p><p>Developed the website content and responsive front-end presentation using HTML5 and CSS.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email campaign as part of the CRF web and email development role.</p>"
+    },
+    "51": {
+      "content": "<p>TCT 2013 was part of CRF’s annual Transcatheter Cardiovascular Therapeutics conference program and required coordinated web and email production for conference information and communications.</p><p>Developed the conference website and responsive front-end content within CRF’s Joomla environment using HTML5, CSS, JavaScript and jQuery.</p><p>Developed and distributed supporting responsive email communications through Salesforce Pardot as part of the CRF web and email development role.</p>"
     }
   },
   "posts": [
