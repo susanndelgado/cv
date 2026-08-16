@@ -55,9 +55,9 @@
     "16": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>JavaScript<br>jQuery<br>PHP<br>Bootstrap<br>SCSS<br>HTML5<br>CSS<br>Front End Animation<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "skills": "Front End Development<br>Responsive Web Development<br>JavaScript<br>jQuery<br>AngularJS<br>PHP<br>Bootstrap<br>SCSS<br>HTML5<br>CSS<br>Front End Animation<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
-      "content": "<p>Dallas Leipzig was a cardiovascular education conference designed for multidisciplinary cardiovascular teams, including cardiothoracic surgeons, cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists and cardiac imaging specialists.</p><p>Developed the conference website as the assigned CRF front-end developer, building animated transitions between sliders, collapsing elements and active interface states.</p><p>The responsive site used PHP, SCSS, jQuery, Bootstrap and custom JavaScript, including an independently developed animation module using animate.css to enrich the interface and transitions.</p>"
+      "content": "<p>Dallas Leipzig was a cardiovascular education conference designed for multidisciplinary cardiovascular teams, including cardiothoracic surgeons, cardiologists, anesthesiologists, nurses, technicians, nurse practitioners, perfusionists and cardiac imaging specialists.</p><p>Developed the conference website as the assigned CRF front-end developer, building animated transitions between sliders, collapsing elements and active interface states.</p><p>The responsive site used PHP, SCSS, jQuery, AngularJS, Bootstrap and custom JavaScript, including an independently developed animation module using animate.css to enrich the interface and transitions.</p>"
     },
     "17": {
       "content": "<p>Fellows 2016 was CRF’s annual Interventional Cardiology Fellows Course and was presented directly within the CRF web environment rather than as a sponsor or partner satellite site.</p><p>Developed the conference website, responsive page content and supporting email communications using HTML5, CSS, JavaScript and jQuery.</p><p>Implemented the program information across the site and coordinated the web and email presentation as part of CRF’s front-end and email development responsibilities.</p>"
@@ -195,11 +195,11 @@
     "47": {
       "title": "WLNCMD WEBSITE & EMAIL",
       "client": "The Cardiovascular Research Foundation (CRF)",
-      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "role": "Web Designer<br>Front End Developer<br>Email Developer<br>CRF Employee",
+      "skills": "Web Design<br>Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
-      "summary": "CRF-built satellite website and supporting email communications.",
-      "content": "<p>WLNCMD was a satellite website developed through CRF’s conference web program to present program information within a responsive front-end environment.</p><p>Developed the responsive website and implemented the program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of CRF’s web and email development responsibilities.</p>"
+      "summary": "Website design, front-end development and supporting email communications for WLNCMD.",
+      "content": "<p>WLNCMD was a satellite website produced through CRF’s conference web program.</p><p>Designed the website presentation and developed the responsive front-end experience as part of the CRF team, implementing program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF web and email production workflow.</p>"
     },
     "48": {
       "content": "<p>Evolve II Synergy was supported through CRF with a dedicated web presence and responsive email communications used to present and promote the program.</p><p>Developed the supporting website and responsive front-end content using HTML5 and CSS within CRF’s project environment.</p><p>Developed, scheduled and distributed the related Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
