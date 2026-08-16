@@ -36,9 +36,9 @@
     "11": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
-      "content": "<p>ABIOMED was a cardiovascular medical-device company focused on heart-recovery technology, including the Impella heart-pump platform. The 2017 project was a sponsor microsite developed within CRF’s conference ecosystem to provide dedicated event content for the company.</p><p>Developed the responsive sponsor microsite and implemented the website content using HTML/CSS, JavaScript, jQuery and Bootstrap.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
+      "content": "<p>ABIOMED was a cardiovascular medical-device company focused on heart-recovery technology, including the Impella heart-pump platform. The 2017 project was a sponsor microsite developed within CRF’s conference ecosystem to provide dedicated event content for the company.</p><p>Developed the AngularJS-based responsive sponsor microsite and implemented the website content using HTML/CSS, JavaScript, jQuery, AngularJS and Bootstrap.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
     },
     "12": {
       "content": "<p>CRF Women’s Heart Health Initiative was a cardiovascular-health campaign created to empower women to take action against heart disease during American Heart Month and through educational programming in the spring of 2017.</p><p>Developed the recurring responsive email communications used to support the initiative, with campaign updates distributed to an audience of more than 80,000 recipients.</p><p>Built the email content in HTML and CSS and supported distribution through CRF’s Salesforce Pardot email program.</p>"
@@ -65,9 +65,9 @@
     "18": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
-      "content": "<p>The Society for Cardiovascular Angiography &amp; Interventions (SCAI) is a nonprofit professional medical society dedicated to interventional cardiology, with work spanning education, advocacy, research and quality patient care. SCAI 2016 website and email materials were produced through CRF’s conference development program.</p><p>Developed the responsive conference website and implemented program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
+      "content": "<p>The Society for Cardiovascular Angiography &amp; Interventions (SCAI) is a nonprofit professional medical society dedicated to interventional cardiology, with work spanning education, advocacy, research and quality patient care. SCAI 2016 website and email materials were produced through CRF’s conference development program.</p><p>Developed the AngularJS-based responsive conference website and implemented program content using HTML5, CSS, JavaScript, jQuery and AngularJS.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
     },
     "19": {
       "content": "<p>TCT360 was a live interactive webcast hosted by CRF featuring exclusive content captured at TCT 2016 in Washington, DC.</p><p>Developed the recurring responsive promotional emails and digital campaign content used to keep the webcast audience informed, with email communications reaching an audience of more than 80,000 recipients.</p><p>Built the email materials in HTML5 and CSS and supported campaign distribution through Salesforce Pardot as part of CRF’s conference email program.</p>"
@@ -153,7 +153,8 @@
     "39": {
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "content": "<p>TVT 2015 was a CRF conference microsite developed as part of the organization’s cardiovascular education programming and conference communications.</p><p>Developed the responsive website experience across desktop, tablet and mobile layouts and implemented the conference content within CRF’s established web environment.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
+      "content": "<p>TVT 2015 was a CRF conference microsite developed as part of the organization’s cardiovascular education programming and conference communications.</p><p>Developed the AngularJS-based responsive website experience across desktop, tablet and mobile layouts and implemented the conference content within CRF’s established web environment.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution"
     },
     "40": {
       "image": "showcase/img/pcwp-inaguralBall2020rsvppdf.png",
@@ -177,15 +178,16 @@
       "content": "<p>DAPT 2014 was a dedicated CRF conference website created to present the program’s event information and educational content within CRF’s conference ecosystem.</p><p>Developed the responsive conference website and implemented the page content using HTML5, CSS, JavaScript, jQuery, Joomla and Bootstrap.</p><p>Developed, scheduled and distributed supporting Salesforce Pardot email communications as part of CRF’s front-end and email development responsibilities.</p>"
     },
     "44": {
-      "content": "<p>TRAC conference work included a responsive event website and supporting communications developed through CRF for the program’s attendees and faculty.</p><p>Developed conference overview, faculty, registration and related event pages across desktop and mobile layouts using HTML5, CSS, JavaScript, jQuery, Joomla and Bootstrap.</p><p>Developed and distributed the responsive supporting email campaign through Salesforce Pardot as part of the CRF conference production workflow.</p>"
+      "content": "<p>TRAC conference work included an AngularJS-based responsive event website and supporting communications developed through CRF for the program’s attendees and faculty.</p><p>Developed conference overview, faculty, registration and related event pages across desktop and mobile layouts using HTML5, CSS, JavaScript, jQuery, AngularJS, Joomla and Bootstrap.</p><p>Developed and distributed the responsive supporting email campaign through Salesforce Pardot as part of the CRF conference production workflow.</p>",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Joomla<br>Bootstrap<br>Email Development<br>Salesforce Pardot"
     },
     "45": {
       "image": "showcase/img/SCAI17_combo_eblast_header.jpg",
       "heroLayout": "normal",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "content": "<p>The Society for Cardiovascular Angiography &amp; Interventions (SCAI) is a nonprofit professional medical society dedicated to interventional cardiology, with work spanning education, advocacy, research and quality patient care. SCAI 2017 website and email materials were produced through CRF’s conference production program.</p><p>Developed the responsive conference web content and implemented the program presentation using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "content": "<p>The Society for Cardiovascular Angiography &amp; Interventions (SCAI) is a nonprofit professional medical society dedicated to interventional cardiology, with work spanning education, advocacy, research and quality patient care. SCAI 2017 website and email materials were produced through CRF’s conference production program.</p><p>Developed the AngularJS-based responsive conference web content and implemented the program presentation using HTML5, CSS, JavaScript, jQuery and AngularJS.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
     },
     "46": {
       "content": "<p>Echo required a responsive website experience that translated the project’s visual design into a usable interface across desktop and mobile screen sizes.</p><p>Developed the responsive front-end layouts and interactive presentation using HTML5, CSS, JavaScript and jQuery.</p><p>Implemented the supplied design system so content, navigation and page structure adapted cleanly across devices.</p>"
