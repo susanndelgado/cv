@@ -33,24 +33,18 @@
       "filters": "conf web email dig"
     },
     "22": {
-      "image": "showcase/img/pulse2014-header.jpg",
-      "thumb": "showcase/thumbs/pulse2014-thumb.jpg",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "web email",
-      "summary": "Annual CRF fundraising gala website and supporting email communications.",
-      "content": "<p>The Pulse Gala 2015 was CRF’s annual fundraising event supporting cardiovascular health and research. The brown gala website was developed and launched in advance of the 2015 event year, so archived website artwork may display 2014 dates.</p><p>Developed the responsive event website and supporting Salesforce Pardot email communications as a CRF employee using HTML5, CSS, JavaScript, jQuery and Bootstrap.</p>"
+      "filters": "conf web email dig"
     },
     "26": {
-      "image": "showcase/img/pulse2015-header.jpg",
-      "thumb": "showcase/thumbs/pulsegala1.jpg",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
       "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "web email",
-      "summary": "Annual CRF fundraising gala website and supporting email communications.",
-      "content": "<p>The Pulse Gala 2014 was CRF’s annual fundraising event supporting cardiovascular health and research. The 2014 event used the black website design.</p><p>Developed the responsive event website and supporting Salesforce Pardot email communications as a CRF employee using HTML5, CSS, JavaScript, jQuery and Bootstrap.</p>"
+      "filters": "conf web email dig",
+      "summary": "Annual CRF fundraising event website.",
+      "content": "<p>The 2014 Pulse Gala was CRF’s annual fundraising event supporting cardiovascular health and research.</p><p>The event website was implemented as a responsive Bootstrap-based site using HTML5, CSS, JavaScript and jQuery, with lightweight event content, forms and gallery functionality.</p>"
     },
     "29": {
       "client": "The Cardiovascular Research Foundation (CRF)",
@@ -119,6 +113,20 @@
       "role": "Graphic Designer",
       "skills": "Logo Design<br>Branding<br>Graphic Design",
       "content": "<p>A custom logo was developed for Chloe & Carl as a standalone identity design.</p><p>The project focused on creating a distinctive visual mark suitable for consistent use across branded materials.</p>"
+    },
+    {
+      "id": 53,
+      "title": "THE PULSE GALA 2013",
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "year": "2013",
+      "image": "showcase/img/pulsegala2013-header.jpg",
+      "thumb": "showcase/thumbs/pulsegala2013-thumb.jpg",
+      "link": "showcase/pulse2013.html",
+      "summary": "Annual CRF fundraising event website.",
+      "filters": "conf web",
+      "role": "Front End Developer<br>CRF Employee",
+      "skills": "JavaScript<br>jQuery<br>HTML5<br>CSS<br>Bootstrap<br>Responsive Web Development",
+      "content": "<p>The 2013 Pulse Gala was CRF’s annual fundraising event supporting cardiovascular health and research.</p><p>The event website was implemented as a responsive Bootstrap-based site using HTML5, CSS, JavaScript and jQuery, with lightweight event content, forms and gallery functionality.</p>"
     }
   ]
 }
