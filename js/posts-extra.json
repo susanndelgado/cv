@@ -59,8 +59,8 @@
       "summary": "Responsive CRF conference microsite and supporting email campaign development.",
       "filters": "conf web email dig",
       "role": "Front End Developer<br>Email Developer",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "content": "<p>TVT 2015 was a CRF conference microsite developed as part of the organization’s cardiovascular education programming.</p><p>Developed the responsive website experience across desktop, tablet and mobile layouts, implemented conference content, and developed, scheduled and distributed supporting Salesforce Pardot email communications.</p>"
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution<br>AngularJS",
+      "content": "<p>TVT 2015 was a CRF conference microsite developed as part of the organization’s cardiovascular education programming.</p><p>Developed the AngularJS-based responsive website experience across desktop, tablet and mobile layouts, implemented conference content, and developed, scheduled and distributed supporting Salesforce Pardot email communications.</p>"
     },
     {
       "id": 40,
@@ -130,8 +130,8 @@
       "summary": "Responsive TRAC conference website and supporting email development.",
       "filters": "conf web email dig",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Joomla<br>Bootstrap<br>Email Development<br>Salesforce Pardot",
-      "content": "<p>TRAC conference work included a responsive event website and supporting digital communications developed through CRF.</p><p>The website included conference overview, faculty, registration and other event content across desktop and mobile layouts. Supporting responsive emails were also developed and distributed as part of the conference communications.</p>"
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Joomla<br>Bootstrap<br>Email Development<br>Salesforce Pardot",
+      "content": "<p>TRAC conference work included an AngularJS-based responsive event website and supporting digital communications developed through CRF.</p><p>The website included conference overview, faculty, registration and other event content across desktop and mobile layouts. Supporting responsive emails were also developed and distributed as part of the conference communications.</p>"
     },
     {
       "id": 45,
@@ -145,8 +145,8 @@
       "summary": "Website and responsive email development supporting SCAI 2017.",
       "filters": "conf web email dig",
       "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Email Development<br>Salesforce Pardot",
-      "content": "<p>Website and responsive email development were completed for SCAI 2017 as part of CRF’s conference production work.</p><p>The surviving portfolio imagery currently documents the email campaign, including the primary SCAI communication and related conference email executions.</p>"
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>AngularJS<br>Email Development<br>Salesforce Pardot",
+      "content": "<p>Website and responsive email development were completed for SCAI 2017 as part of CRF’s conference production work.</p><p>The responsive conference website was implemented with AngularJS as part of the front-end stack, with supporting Salesforce Pardot email communications developed for the event.</p>"
     },
     {
       "id": 46,
