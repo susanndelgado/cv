@@ -15,10 +15,19 @@
 body.build-page{
   background:#f6f6f6;
   color:#111;
+  font-family:proxima-nova,"Open Sans",sans-serif;
+}
+body.build-page h1,
+body.build-page h2,
+body.build-page h3,
+body.build-page h4,
+body.build-page h5,
+body.build-page h6{
+  font-family:proxima-nova,"Open Sans",sans-serif;
 }
 
-/* Shared two-level navigation. The colors intentionally mirror the existing
-   Fine Arts / legacy technical navigation rather than introducing a new brand. */
+/* Shared two-level navigation. Keep the original pale tab strip, white main
+   navigation, teal links and section-specific hover color. */
 .build-site-header{
   position:relative;
   background:#fff;
@@ -57,7 +66,7 @@ body.build-page{
   background:#fff;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  border-bottom:0;
+  border-bottom:1px solid #eeeeee;
 }
 .build-main-nav-inner{
   min-height:67px;
@@ -74,7 +83,8 @@ body.build-page{
 }
 .build-site-links a{
   padding:20px 12px;
-  color:#495057;
+  color:#60adb8;
+  font-family:proxima-nova,"Open Sans",sans-serif;
   font-size:.86rem;
   font-weight:500;
   letter-spacing:.02em;
@@ -94,8 +104,34 @@ body.build-page{
   background:#f70606;
 }
 
-/* Technical hero: white and restrained, with the original red-title idea
-   retained as the small discipline label. */
+/* Fine Arts keeps the exact same navigation structure, but its interaction
+   accent belongs to the art side: teal at rest, gold on hover/active, with a
+   gold rule under the main navigation. The Fine Arts body below this header
+   remains the current live art page. */
+.art-build-preview .build-main-nav{
+  border-bottom:2px solid #d4af37;
+}
+.art-build-preview .build-site-links a{
+  color:#60adb8;
+}
+.art-build-preview .build-site-links a:hover,
+.art-build-preview .build-site-links a:focus-visible{
+  color:#d4af37;
+}
+.art-build-preview .build-site-links a:hover::after,
+.art-build-preview .build-site-links a:focus-visible::after,
+.art-build-preview .build-site-links a[aria-current=page]::after{
+  background:#d4af37;
+}
+.art-build-preview .build-tabs a:hover,
+.art-build-preview .build-tabs a:focus-visible,
+.art-build-preview .build-tabs .active a:hover,
+.art-build-preview .build-tabs .active a:focus-visible{
+  color:#d4af37;
+}
+
+/* Homepage hero: deliberately returns to the original technical portfolio
+   rhythm — red label above a large black Proxima Nova statement on white. */
 .build-hero{
   padding:66px 0 64px;
   background:#fff;
@@ -117,10 +153,11 @@ body.build-page{
   padding:4px 15px;
   background:#f70606;
   color:#fff;
-  font-size:.78rem;
-  font-weight:400;
-  letter-spacing:.07em;
-  line-height:1.5;
+  font-size:1.2rem;
+  font-weight:100;
+  letter-spacing:0;
+  line-height:1.35;
+  text-transform:uppercase;
 }
 .build-case-hero .build-kicker{
   color:#60adb8;
@@ -130,20 +167,26 @@ body.build-page{
   letter-spacing:.12em;
 }
 .build-display{
-  max-width:780px;
+  max-width:980px;
   color:#111;
   font-family:proxima-nova,"Open Sans",sans-serif;
-  font-size:clamp(2.15rem,4.2vw,3.65rem);
-  line-height:1.08;
-  letter-spacing:0;
-  font-weight:500;
+  font-size:clamp(3.5rem,7vw,6.4rem);
+  line-height:.98;
+  letter-spacing:-.025em;
+  font-weight:600;
+  text-transform:uppercase;
 }
 .build-lede{
-  max-width:780px;
-  margin-top:22px;
+  max-width:800px;
+  margin-top:28px;
   color:#3d4246;
-  font-size:clamp(.98rem,1.45vw,1.1rem);
+  font-size:clamp(1rem,1.55vw,1.18rem);
   line-height:1.78;
+}
+/* Contact uses the same component but should not compete with the homepage. */
+body.build-page .build-contact-grid ~ *{}
+body.build-page:not(.home-build) .build-case-title{
+  max-width:850px;
 }
 .build-case-title{
   max-width:850px;
@@ -166,6 +209,21 @@ body.build-page{
   line-height:1.16;
   font-weight:500;
   letter-spacing:0;
+}
+
+/* Contact page hero uses the smaller portfolio-page scale. */
+body.contact-build-page .build-display{
+  max-width:760px;
+  font-size:clamp(2.15rem,4.2vw,3.65rem);
+  line-height:1.08;
+  letter-spacing:0;
+  font-weight:500;
+  text-transform:none;
+}
+body.contact-build-page .build-hero .build-kicker{
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:.07em;
 }
 
 /* A little transparent interface depth, but kept inside a minimal gray/white
@@ -261,6 +319,15 @@ body.build-page{
 }
 .build-section.dark .build-cap-card .num{color:#f70606}
 
+/* Technical links stay teal and turn red, echoing the original portfolio. */
+body.build-page main a:not(.build-btn):not(.build-project-image){
+  color:#60adb8;
+}
+body.build-page main a:not(.build-btn):not(.build-project-image):hover,
+body.build-page main a:not(.build-btn):not(.build-project-image):focus-visible{
+  color:#f70606;
+}
+
 /* Shared footer preview: same quiet white/gray language as Fine Arts. */
 .build-footer{
   padding:34px 0 40px;
@@ -269,7 +336,7 @@ body.build-page{
   border-top:1px solid #dee2e6;
   text-align:center;
 }
-.build-footer a{color:#6c757d}
+.build-footer a{color:#60adb8}
 .build-footer a:hover,.build-footer a:focus-visible{color:#f70606}
 .build-footer-philosophy{color:#6c757d}
 
@@ -288,7 +355,8 @@ body.build-page{
 }
 
 @media(max-width:760px){
-  .build-display{font-size:clamp(2rem,9vw,2.9rem)}
+  .build-display{font-size:clamp(2.9rem,13vw,4.6rem)}
+  body.contact-build-page .build-display{font-size:clamp(2rem,9vw,2.9rem)}
   .build-case-title{font-size:clamp(1.9rem,9vw,2.8rem)}
   .build-main-nav-inner{align-items:flex-start;flex-direction:column;padding:16px 0;gap:4px}
   .build-site-links{flex-wrap:wrap}
