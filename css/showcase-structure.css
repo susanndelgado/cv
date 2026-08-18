@@ -108,7 +108,7 @@
 }
 .build-case-nav-all:hover,.build-case-nav-all:focus-visible{color:#f70606!important}
 
-/* Clickable case-study taxonomy. */
+/* Case-study skills. Skills remain informational, not clickable. */
 .build-case-taxonomy{margin-top:24px}
 .build-case-taxonomy-group+.build-case-taxonomy-group{margin-top:15px}
 .build-case-taxonomy-label{
@@ -120,18 +120,16 @@
   letter-spacing:.1em;
   text-transform:uppercase;
 }
+
+/* Category controls are intentionally disabled while their placement is reconsidered.
+   The generated category label and buttons remain available in the template for a later design pass. */
+.build-case-taxonomy-group:has(a[href*="work-build.html?type="]){display:none!important}
+
 .build-case-hero a.build-pill-link{
   display:inline-flex;
   align-items:center;
   color:#495057!important;
   text-decoration:none;
-  cursor:pointer;
-}
-.build-case-hero a.build-pill-link:hover,
-.build-case-hero a.build-pill-link:focus-visible{
-  color:#f70606!important;
-  border-color:#f70606!important;
-  background:#fff!important;
 }
 
 @media(max-width:680px){
