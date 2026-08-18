@@ -1,0 +1,60 @@
+{
+  "16": {
+    "title": "Dallas Leipzig website structure",
+    "intro": "Primary navigation and page hierarchy from the conference website.",
+    "items": [
+      {"label": "Home"},
+      {"label": "Conference", "children": ["Conference", "Faculty", "Agenda"]},
+      {"label": "Hotel & Venue"},
+      {"label": "Industry Support", "children": ["Industry Support", "Exhibitor Listing"]},
+      {"label": "Contact Us"}
+    ]
+  },
+  "22": {
+    "title": "Pulse Gala 2015 website structure",
+    "intro": "The site combined a single-page event presentation with dedicated attendance and gallery pages.",
+    "items": [
+      {"label": "Home", "children": ["The Gala", "Honoree", "About CRF"]},
+      {"label": "Attend the Gala", "children": ["Attend", "Support / Donate"]},
+      {"label": "2015 Photos"}
+    ]
+  },
+  "23": {
+    "title": "TCT 2015 primary navigation structure",
+    "intro": "Major conference destinations linked from the custom homepage navigation.",
+    "items": [
+      {"label": "Home"},
+      {"label": "Directors & Organizers"},
+      {"label": "CRF @ TCT"},
+      {"label": "Fellows"},
+      {"label": "Satellite Programs"},
+      {"label": "Exhibits"},
+      {"label": "Claim CME"},
+      {"label": "TCT Industry"},
+      {"label": "TCT 2015 Agenda"}
+    ]
+  },
+  "26": {
+    "title": "Pulse Gala 2016 website structure",
+    "intro": "The 2016 site used a one-page event flow with an archived photo-gallery destination.",
+    "items": [
+      {"label": "Home"},
+      {"label": "The Gala"},
+      {"label": "Honoree"},
+      {"label": "Attend the Gala"},
+      {"label": "About CRF"},
+      {"label": "Donate Now"},
+      {"label": "2015 Photos"}
+    ]
+  },
+  "44": {
+    "title": "TRAC website structure",
+    "intro": "Primary conference navigation from the responsive event template.",
+    "items": [
+      {"label": "Home"},
+      {"label": "Overview"},
+      {"label": "Faculty / Agenda"},
+      {"label": "Register"}
+    ]
+  }
+}
