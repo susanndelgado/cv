@@ -1,4 +1,4 @@
-/* Review-only Fine Arts landing hero. Hero treatment follows the live Fine Arts site. */
+/* Review-only Fine Arts landing hero. Hero styling follows the live Fine Arts site; copy comes directly from finearts.html. */
 .art-build-preview #fineArtsPreview .boutique-hero{
   width:100%!important;
   margin:0!important;
@@ -16,21 +16,9 @@
   text-align:center!important;
 }
 .art-build-preview #fineArtsPreview .boutique-hero .seal-contained{display:none!important}
-.art-build-preview #fineArtsPreview .boutique-hero .container::before{
-  content:"FINE ART · PORTFOLIO";
-  display:inline-block;
-  margin:0 0 18px!important;
-  padding-left:16px;
-  border-left:4px solid #d4af37;
-  color:#d4af37!important;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:.78rem!important;
-  font-weight:600!important;
-  line-height:1.4!important;
-  letter-spacing:.16em!important;
-  text-transform:uppercase!important;
-  text-align:center!important;
-}
+/* No build-only kicker or decorative copy: preserve the live hero wording. */
+.art-build-preview #fineArtsPreview .boutique-hero .container::before,
+.art-build-preview #fineArtsPreview .boutique-hero .container::after{display:none!important;content:none!important}
 .art-build-preview #fineArtsPreview .boutique-hero .master-title,
 .art-build-preview #fineArtsPreview .boutique-hero h1{
   max-width:1000px!important;
