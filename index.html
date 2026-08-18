@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Susan Delgado | Fine Artist, Designer & Developer</title>
-  <meta name="description" content="Susan Delgado is a multidisciplinary fine artist, designer, developer and educator. Explore her fine art practice or technical work.">
+  <title>Susan Delgado | Developer, Designer & Fine Artist</title>
+  <meta name="description" content="Susan Delgado is a multidisciplinary developer, designer, fine artist and educator. Explore her technical work or fine art practice.">
   <link rel="icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
       --ink: #f7f3ec;
       --muted: rgba(247, 243, 236, 0.78);
       --gold: #d4af37;
-      --glass: rgba(10, 13, 16, 0.64);
+      --glass: rgba(10, 13, 16, 0.78);
       --line: rgba(255, 255, 255, 0.22);
     }
 
@@ -50,47 +50,8 @@
       display: grid;
       place-items: center;
       overflow: hidden;
-      isolation: isolate;
       padding: 36px 20px;
       background: #000;
-    }
-
-    .splash-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: -4;
-      width: 102%;
-      height: 102%;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      transform: translate3d(-50%, -50%, 0) scale(1.015);
-      transform-origin: center center;
-      filter: saturate(0.78) contrast(1.05) brightness(0.82);
-      pointer-events: none;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .splash::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background:
-        radial-gradient(circle at 50% 34%, rgba(71, 83, 91, 0.16), rgba(8, 10, 12, 0.34) 48%, rgba(5, 7, 9, 0.74) 100%),
-        linear-gradient(115deg, rgba(13, 21, 24, 0.54), rgba(10, 10, 10, 0.18) 48%, rgba(25, 18, 13, 0.40));
-    }
-
-    .splash::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.08), transparent 26%, transparent 74%, rgba(0,0,0,0.30));
     }
 
     .splash-card {
@@ -101,8 +62,6 @@
       border: 1px solid var(--line);
       border-top: 3px solid rgba(212, 175, 55, 0.9);
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
     }
 
     .brand-mark {
@@ -175,7 +134,7 @@
       padding: 15px 28px;
       border: 1px solid rgba(255, 255, 255, 0.82);
       color: #fff;
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.03);
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.20em;
@@ -220,35 +179,26 @@
       .intro { line-height: 1.72; }
       .actions { flex-direction: column; }
       .choice { width: 100%; min-width: 0; }
-      .splash-video {
-        width: 106%;
-        height: 106%;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .splash-video { display: none; }
       .choice { transition: none; }
     }
   </style>
 </head>
 <body>
   <main class="splash" aria-labelledby="splash-title">
-    <video class="splash-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-      <source src="img/40f3475a-8b1e-4fed-a50a-87b439229e62.mp4" type="video/mp4">
-    </video>
-
     <section class="splash-card" aria-label="Susan Delgado portfolio paths">
       <div class="brand-mark">
         <img src="img/logoCircle.svg" alt="Susan Nicole Delgado Fine Artist seal">
       </div>
 
-      <p class="eyebrow">Fine Artist &bull; Designer &bull; Developer</p>
+      <p class="eyebrow">Developer &bull; Designer &bull; Fine Artist</p>
       <h1 id="splash-title">Susan Delgado</h1>
       <div class="rule" aria-hidden="true"></div>
 
       <p class="intro">
-        I am a multidisciplinary fine artist, visual storyteller, designer, developer and educator whose work moves between traditional craft and digital problem-solving. My practice brings together painting, illustration and narrative arts with professional experience in graphic design, UI/UX, front-end web development, email development and digital production. Across these disciplines, I am driven by curiosity, continual study and the belief that strong ideas become real through craft, structure and persistence.
+        I am a multidisciplinary developer, designer, fine artist and educator with professional experience rooted in front-end web development and digital production. My corporate work also includes email development, followed by graphic design and UI/UX, while my independent creative practice brings together painting, illustration and narrative arts. Across these disciplines, I am driven by curiosity, continual study and the belief that strong ideas become real through craft, structure and persistence.
       </p>
 
       <nav class="actions" aria-label="Choose a portfolio">
@@ -259,27 +209,5 @@
       <p class="philosophy">&ldquo;Dreams are the Foundation of Reality.&rdquo;</p>
     </section>
   </main>
-
-  <script>
-    (function () {
-      var video = document.querySelector(".splash-video");
-      var source = video && video.querySelector("source");
-      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      function useBlackFallback() {
-        if (video) video.style.display = "none";
-      }
-
-      if (video && (reduceMotion || (connection && connection.saveData))) {
-        video.pause();
-        video.removeAttribute("autoplay");
-        useBlackFallback();
-      }
-
-      if (video) video.addEventListener("error", useBlackFallback);
-      if (source) source.addEventListener("error", useBlackFallback);
-    })();
-  </script>
 </body>
 </html>
