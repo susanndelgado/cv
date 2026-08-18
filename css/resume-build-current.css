@@ -1,0 +1,58 @@
+/* Current resume-only refinements. Keeps resume rendering independent of shared build-motion copy transforms. */
+.resume-build-page .resume-header{
+  top:.34in!important;
+  left:.24in!important;
+  right:.64in!important;
+  width:auto!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:.22in!important;
+  text-align:left!important;
+}
+.resume-build-page .resume-name{
+  flex:0 0 auto!important;
+  margin:0!important;
+  font-size:22.5pt!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+.resume-build-page .resume-contact{
+  flex:0 0 auto!important;
+  margin:0!important;
+  text-align:right!important;
+  font-size:9.5pt!important;
+  line-height:1.22!important;
+}
+.resume-build-page .resume-grid{padding-top:1.12in!important}
+.resume-build-page .resume-sidebar .resume-heading{line-height:1.06!important}
+
+@media(max-width:760px){
+  .resume-build-page .resume-header{
+    position:static!important;
+    display:block!important;
+    width:auto!important;
+    margin-bottom:28px!important;
+    text-align:left!important;
+  }
+  .resume-build-page .resume-contact{text-align:left!important;margin-top:6px!important}
+  .resume-build-page .resume-grid{padding-top:0!important}
+}
+
+@media print{
+  .resume-build-page .resume-header{
+    top:.34in!important;
+    left:.24in!important;
+    right:.64in!important;
+    width:auto!important;
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:space-between!important;
+    gap:.22in!important;
+    text-align:left!important;
+    margin:0!important;
+  }
+  .resume-build-page .resume-name{font-size:22.5pt!important;line-height:1!important;white-space:nowrap!important}
+  .resume-build-page .resume-contact{margin:0!important;text-align:right!important;font-size:9.5pt!important;line-height:1.22!important}
+  .resume-build-page .resume-grid{padding-top:1.12in!important}
+}
