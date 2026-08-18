@@ -1,7 +1,7 @@
 {
   "14": {
     "title": "CHIP website structure",
-    "intro": "Primary navigation defined in the archived site source.",
+    "intro": "Primary conference navigation.",
     "items": [
       {"label": "Home"},
       {"label": "Overview"},
@@ -11,7 +11,7 @@
   },
   "16": {
     "title": "Dallas Leipzig website structure",
-    "intro": "Primary navigation and page hierarchy from the conference website.",
+    "intro": "Primary conference navigation and page hierarchy.",
     "items": [
       {"label": "Home"},
       {"label": "Conference", "children": ["Conference", "Faculty", "Agenda"]},
@@ -22,7 +22,7 @@
   },
   "22": {
     "title": "Pulse Gala 2015 website structure",
-    "intro": "The site combined a single-page event presentation with dedicated attendance and gallery pages.",
+    "intro": "Single-page event content with dedicated attendance and gallery pages.",
     "items": [
       {"label": "Home", "children": ["The Gala", "Honoree", "About CRF"]},
       {"label": "Attend the Gala", "children": ["Attend", "Support / Donate"]},
@@ -46,7 +46,7 @@
   },
   "24": {
     "title": "TCT Industry 2015 website structure",
-    "intro": "Key industry sections and linked resource paths visible in the archived homepage source.",
+    "intro": "Industry sections and linked conference resources.",
     "items": [
       {"label": "Exhibits", "children": ["Exhibitor Resources", "Exhibitor FAQs", "Announcements", "Important Contacts"]},
       {"label": "Satellite Symposia"},
@@ -56,7 +56,7 @@
   },
   "26": {
     "title": "Pulse Gala 2016 website structure",
-    "intro": "The 2016 site used a one-page event flow with an archived photo-gallery destination.",
+    "intro": "One-page event flow with a photo-gallery destination.",
     "items": [
       {"label": "Home"},
       {"label": "The Gala"},
@@ -69,7 +69,7 @@
   },
   "44": {
     "title": "TRAC website structure",
-    "intro": "Primary conference navigation from the responsive event template.",
+    "intro": "Primary conference navigation.",
     "items": [
       {"label": "Home"},
       {"label": "Overview"},
