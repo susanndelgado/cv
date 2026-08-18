@@ -1,0 +1,124 @@
+{
+  "27": {
+    "level": "full",
+    "note": "This project has enough surviving documentation to support a fuller case study. The sections below describe documented responsibilities, technologies and visible interface behavior; they do not claim formal UX research that is not recorded.",
+    "ux": {
+      "title": "Responsive conference information with a dynamic agenda",
+      "intro": "The strongest UX/UI evidence in the surviving TCT 2014 material is the way a large conference information set was organized across desktop, tablet and mobile, including a dynamic agenda rather than a static schedule.",
+      "panels": [
+        {
+          "title": "Information structure",
+          "copy": "Conference content, schedules and industry information had to remain understandable across multiple related web experiences. The documented work includes TCT and TCT Industry interfaces, responsive layouts and agenda views."
+        },
+        {
+          "title": "Interaction + data",
+          "copy": "The dynamic agenda used interactive transitions and asynchronously loaded content connected to the same data source used by the conference app, giving the website and app a shared information foundation."
+        }
+      ]
+    },
+    "workflow": [
+      {"label": "01 · STRUCTURE", "title": "Conference content", "copy": "Organize conference pages, schedules and related TCT Industry content into a responsive site structure."},
+      {"label": "02 · INTERFACE", "title": "Responsive agenda", "copy": "Implement agenda states and responsive layouts for desktop, tablet and mobile presentation."},
+      {"label": "03 · DATA", "title": "Dynamic content", "copy": "Connect interactive schedule behavior to the shared conference data source and load agenda content without treating each view as a separate static page."},
+      {"label": "04 · CAMPAIGN", "title": "Email support", "copy": "Develop the supporting responsive email communications distributed through Salesforce Pardot as part of the larger TCT program."}
+    ],
+    "system": {
+      "title": "Documented front-end architecture",
+      "intro": "A simplified view of the project based on the recorded stack and surviving portfolio material.",
+      "nodes": [
+        {"title": "Content / data", "copy": "Conference information and schedule data shared with the conference app."},
+        {"title": "Interface layer", "copy": "Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery, AJAX and responsive interface behavior."},
+        {"title": "Campaign layer", "copy": "TCT website, TCT Industry, dynamic agenda views and supporting Salesforce Pardot email communications."}
+      ]
+    },
+    "deliverables": [
+      {"title": "TCT conference website", "copy": "Responsive conference pages and interface work."},
+      {"title": "Dynamic agenda", "copy": "Interactive desktop/mobile schedule views connected to conference data."},
+      {"title": "TCT Industry", "copy": "Related industry-facing web experience."},
+      {"title": "Responsive email", "copy": "Supporting conference email development and distribution."}
+    ]
+  },
+  "16": {
+    "level": "full",
+    "note": "This project has enough surviving technical detail to show a focused UI/front-end case study. The presentation stays with documented implementation and interaction work rather than adding unrecorded research claims.",
+    "ux": {
+      "title": "Interaction design expressed through front-end behavior",
+      "intro": "Dallas Leipzig is useful as a UI case study because the surviving record identifies specific interface behaviors rather than only a finished website image.",
+      "panels": [
+        {"title": "Interface states", "copy": "The work included animated transitions between sliders, collapsing elements and active interface states, requiring the interaction behavior to remain clear as content changed."},
+        {"title": "Responsive implementation", "copy": "The interface was implemented across a responsive PHP/SCSS/JavaScript environment using AngularJS, jQuery and Bootstrap."}
+      ]
+    },
+    "workflow": [
+      {"label": "01 · CONTENT", "title": "Conference requirements", "copy": "Translate multidisciplinary conference content into the established CRF web environment."},
+      {"label": "02 · STATES", "title": "Interaction behavior", "copy": "Define slider, collapse and active-state behavior so changing content remained understandable."},
+      {"label": "03 · BUILD", "title": "Custom implementation", "copy": "Implement the responsive experience with PHP, SCSS, AngularJS, jQuery, Bootstrap and custom JavaScript."},
+      {"label": "04 · MOTION", "title": "Animation module", "copy": "Develop an independent front-end animation module using animate.css to support interface transitions."}
+    ],
+    "system": {
+      "title": "Interface implementation",
+      "intro": "The documented stack shows a layered production environment rather than a single static page.",
+      "nodes": [
+        {"title": "Server / templates", "copy": "PHP-based conference environment and recurring event content."},
+        {"title": "Responsive UI", "copy": "Bootstrap, SCSS, AngularJS, jQuery and custom JavaScript."},
+        {"title": "Interaction layer", "copy": "Sliders, collapsible elements, active states and animate.css-supported transitions."}
+      ]
+    },
+    "deliverables": [
+      {"title": "Responsive conference website", "copy": "Front-end implementation across screen sizes."},
+      {"title": "Interactive UI states", "copy": "Slider, collapse and active-state behavior."},
+      {"title": "Animation module", "copy": "Custom JavaScript/animate.css motion behavior."}
+    ]
+  },
+  "5": {
+    "level": "full",
+    "note": "This project supports a full design-system/campaign case study because the surviving portfolio documents the identity across print, email, web graphics, production and fulfillment.",
+    "ux": {
+      "title": "One event identity across many user touchpoints",
+      "intro": "The design problem was larger than a single invitation. Guests encountered event information through invitation components, response materials, hotel and directions information, email and supporting event pieces.",
+      "panels": [
+        {"title": "Information hierarchy", "copy": "The invitation, RSVP, dinner selection, hotel information and directions each carried different information while remaining visibly part of the same event package."},
+        {"title": "System consistency", "copy": "The Gatsby-inspired identity was extended across print, email, website graphics, sponsorship and event materials instead of redesigning every touchpoint independently."}
+      ]
+    },
+    "workflow": [
+      {"label": "01 · SYSTEM", "title": "Event identity", "copy": "Establish the Gatsby-inspired visual language, typography and recurring graphic details."},
+      {"label": "02 · EXTEND", "title": "Invitation suite", "copy": "Apply the system to the invitation, belly band and seal, RSVP, dinner selection, hotel and directions information."},
+      {"label": "03 · CAMPAIGN", "title": "Digital + event", "copy": "Extend the same identity to programmed email, website graphics, sponsorship pieces and supporting event materials."},
+      {"label": "04 · PRODUCE", "title": "Physical fulfillment", "copy": "Prepare production files, print, assemble invitations, wrap bands, prepare envelopes and mail the completed package."}
+    ],
+    "system": {
+      "title": "Campaign system",
+      "intro": "The portfolio evidence shows a master visual language adapted across distinct communication and production needs.",
+      "nodes": [
+        {"title": "Core identity", "copy": "Gatsby-inspired visual system, typography, seal and invitation styling."},
+        {"title": "Communication set", "copy": "Invitation, RSVP, dinner selection, hotel/directions, email and website graphics."},
+        {"title": "Production / event", "copy": "Sponsorship pieces, event materials, printing, assembly and mailing."}
+      ]
+    },
+    "deliverables": [
+      {"title": "Invitation suite", "copy": "Invitation, belly band/seal and response materials."},
+      {"title": "Guest information", "copy": "Dinner, hotel, directions and supporting event information."},
+      {"title": "Email + web graphics", "copy": "Coordinated digital communications."},
+      {"title": "Event / sponsorship materials", "copy": "Additional pieces carrying the same identity."},
+      {"title": "Print production", "copy": "Production-ready files, printing, assembly and mailing."}
+    ]
+  },
+  "1": {
+    "level": "focused",
+    "note": "This project supports a focused editorial/design-system case study. It has strong publication evidence but less surviving process documentation than the larger campaign and development projects.",
+    "ux": {
+      "title": "A repeatable editorial system for print and digital viewing",
+      "intro": "The useful design evidence is the recurring page structure: content needed to read coherently in print while also working as a digital flip-book publication.",
+      "panels": [
+        {"title": "Editorial hierarchy", "copy": "Feature pages and recurring layouts organized school, family and education content into a consistent reading system."},
+        {"title": "Cross-format consistency", "copy": "The same publication identity and layout logic supported both printed distribution and digital flip-book viewing."}
+      ]
+    },
+    "deliverables": [
+      {"title": "Publication design", "copy": "Visual system and editorial page layouts for the Fall 2019 issue."},
+      {"title": "Print edition", "copy": "Production for physical distribution."},
+      {"title": "Digital edition", "copy": "Layouts adapted for web flip-book viewing."}
+    ]
+  }
+}
