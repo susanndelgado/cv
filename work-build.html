@@ -160,11 +160,12 @@
   function url(p){return 'showcase-build.html?post='+encodeURIComponent(p.legacyId);}
   function img(p){return '/'+(p.thumb||p.image||'');}
   function card(p,small){var article=document.createElement('article');article.className=small?'build-archive-card':'build-project-card';article.dataset.filters=p.filters||'';var meta=[p.year,strip(p.client)].filter(Boolean).join(' · ');article.innerHTML='<a class="build-project-image" href="'+url(p)+'"><img src="'+img(p)+'" alt="'+strip(p.title)+'" loading="lazy"></a><div class="build-project-copy"><p class="build-project-meta">'+meta+'</p><h3><a href="'+url(p)+'">'+p.title+'</a></h3><p>'+(p.summary||'Professional project record and surviving portfolio assets.')+'</p><div class="build-project-role">'+strip(p.role).replace(/\s+/g,' · ')+'</div></div>';return article;}
-  function render(){featured.innerHTML='';featuredIds.forEach(function(id){var p=posts.find(function(x){return String(x.legacyId)===id;});if(p)featured.appendChild(card(p,false));});archive.innerHTML='';posts.filter(function(p){return featuredIds.indexOf(String(p.legacyId))===-1;}).forEach(function(p){archive.appendChild(card(p,true));});}
+  function render(){featured.innerHTML='';featuredIds.forEach(function(id){var p=posts.find(function(x){return String(x.legacyId)===id;});if(p)featured.appendChild(card(p,false));});archive.innerHTML='';posts.filter(function(p){return featuredIds.indexOf(String(p.legacyId))===-1;}).forEach(function(p){archive.appendChild(card(p,true));});if(window.initBuildMotion)window.initBuildMotion(document);}
   function filter(value){archive.querySelectorAll('.build-archive-card').forEach(function(card){card.hidden=!(value==='all'||(' '+card.dataset.filters+' ').indexOf(' '+value+' ')!==-1);});}
   buttons.forEach(function(btn){btn.addEventListener('click',function(){buttons.forEach(function(x){x.classList.remove('active');});btn.classList.add('active');filter(btn.dataset.filter);});});
   Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){posts=merge(data[0].posts||[],[data[1]||{},data[2]||{}]);render();}).catch(function(){featured.innerHTML='<p class="build-status">Project data could not be loaded.</p>';});
 })();
 </script>
+<script src="js/build-motion.js"></script>
 </body>
 </html>
