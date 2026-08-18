@@ -13,6 +13,21 @@ body.work-build-page .build-display {
   text-transform: uppercase;
 }
 
+body.work-build-page .build-filter-status{
+  margin:14px 0 0;
+  color:#4d5358;
+  font-size:.92rem;
+  line-height:1.5;
+}
+body.work-build-page .build-filter-status strong{color:#111;font-weight:600}
+body.work-build-page .build-filter-status a{
+  margin-left:10px;
+  color:#60adb8;
+  text-decoration:none;
+}
+body.work-build-page .build-filter-status a:hover,
+body.work-build-page .build-filter-status a:focus-visible{color:#f70606}
+
 @media (max-width: 760px) {
   body.work-build-page .build-display {
     font-size: clamp(2.15rem, 10vw, 3rem);
