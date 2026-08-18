@@ -91,6 +91,7 @@
     <div class="build-footer-links"><a href="contact-build.html">Contact</a><span>|</span><a href="/sitemap.xml" target="_blank">Sitemap</a></div>
   </div>
 </footer>
+<script src="js/build-motion.js"></script>
 <script>
 (function(){
   var hero=document.getElementById('caseHero');
@@ -176,7 +177,8 @@
       preview.querySelectorAll('script,style,link,nav,footer').forEach(function(el){el.remove();});
       preview.querySelectorAll('img').forEach(function(img){var src=img.getAttribute('src');if(src&&src.indexOf('/')!==0&&!src.startsWith('http'))img.src='/showcase/'+src.replace(/^\.\//,'');});
       visualSection.hidden=false;
-    }).catch(function(){preview.innerHTML='<p class="build-status">The original visual preview is unavailable for this project.</p>';visualSection.hidden=false;});
+      if(window.initBuildMotion)window.initBuildMotion(document);
+    }).catch(function(){preview.innerHTML='<p class="build-status">The original visual preview is unavailable for this project.</p>';visualSection.hidden=false;if(window.initBuildMotion)window.initBuildMotion(document);});
   }
 
   Promise.all([
@@ -196,6 +198,7 @@
     renderWorkflow(enhanced);
     renderSystem(enhanced);
     renderDeliverables(p,enhanced);
+    if(window.initBuildMotion)window.initBuildMotion(document);
     renderPreview(p);
   }).catch(function(){hero.className='build-status';hero.textContent='Project data could not be loaded.';});
 })();
