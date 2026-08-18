@@ -1,8 +1,8 @@
-/* Review-only serif direction: elegant editorial display type while Proxima Nova
-   remains the navigation, label, metadata and body typeface. */
+/* Review-only serif direction for Fine Arts. Proxima Nova remains the
+   navigation, label, metadata and body typeface across both portfolios. */
 :root{--build-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif}
 
-/* Fine Arts build landing content. */
+/* Fine Arts landing content. */
 .art-build-preview #fineArtsPreview h1,
 .art-build-preview #fineArtsPreview h2,
 .art-build-preview #fineArtsPreview h3{
@@ -11,7 +11,8 @@
   letter-spacing:.005em!important;
 }
 
-/* Gallery builds: editorial titles only; gallery navigation stays Proxima Nova. */
+/* Fine Arts gallery titles only. Technical build pages intentionally remain
+   Proxima Nova and are not targeted by this stylesheet. */
 .art-gallery-build .art-gallery-hero h1{
   font-family:var(--build-serif)!important;
   font-weight:500!important;
@@ -19,29 +20,6 @@
 }
 .art-gallery-build .art-gallery-caption h2,
 .art-gallery-build .art-gallery-lightbox h2{
-  font-family:var(--build-serif)!important;
-  font-weight:600!important;
-  letter-spacing:.005em!important;
-}
-
-/* Technical build comparison. Resume intentionally excluded. */
-body.build-page:not(.resume-build-page) .build-display,
-body.build-page:not(.resume-build-page) .build-case-title,
-body.build-page:not(.resume-build-page) .build-section-head h2,
-body.build-page:not(.resume-build-page) .build-case-content h2{
-  font-family:var(--build-serif)!important;
-  font-weight:500!important;
-  letter-spacing:.005em!important;
-}
-body.build-page:not(.resume-build-page) .build-brief h2,
-body.build-page:not(.resume-build-page) .build-project-copy h3,
-body.build-page:not(.resume-build-page) .build-process-step h3,
-body.build-page:not(.resume-build-page) .build-cap-card h3,
-body.build-page:not(.resume-build-page) .build-panel h3,
-body.build-page:not(.resume-build-page) .build-contact-card h2,
-body.build-page:not(.resume-build-page) .build-contact-card h3,
-body.build-page:not(.resume-build-page) .build-architecture .node h3,
-body.build-page:not(.resume-build-page) .build-deliverable strong{
   font-family:var(--build-serif)!important;
   font-weight:600!important;
   letter-spacing:.005em!important;
