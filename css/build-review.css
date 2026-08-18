@@ -26,8 +26,7 @@ body.build-page h6{
   font-family:proxima-nova,"Open Sans",sans-serif;
 }
 
-/* Shared two-level navigation. Keep the original pale tab strip, white main
-   navigation, teal links and section-specific hover color. */
+/* Shared two-level navigation. */
 .build-site-header{
   position:relative;
   background:#fff;
@@ -45,7 +44,7 @@ body.build-page h6{
 }
 .build-tabs a{
   padding:10px 16px;
-  color:#60adb8;
+  color:#6c757d;
   border:1px solid transparent;
   background:transparent;
 }
@@ -55,7 +54,7 @@ body.build-page h6{
   outline:none;
 }
 .build-tabs .active a{
-  color:#495057;
+  color:#343a40;
   background:#fff;
   border-color:#dee2e6 #dee2e6 #fff;
 }
@@ -74,7 +73,7 @@ body.build-page h6{
 .build-site-brand{
   color:#000!important;
   font-family:proxima-nova,"Open Sans",sans-serif;
-  font-size:1rem;
+  font-size:1.25rem;
   font-weight:500;
   letter-spacing:.025em;
 }
@@ -83,7 +82,7 @@ body.build-page h6{
 }
 .build-site-links a{
   padding:20px 12px;
-  color:#60adb8;
+  color:#6c757d;
   font-family:proxima-nova,"Open Sans",sans-serif;
   font-size:.86rem;
   font-weight:500;
@@ -99,33 +98,51 @@ body.build-page h6{
 .build-site-links a:hover,.build-site-links a:focus-visible{
   color:#f70606;
 }
-.build-site-links a:hover::after,.build-site-links a:focus-visible::after,
-.build-site-links a[aria-current=page]::after{
+.build-site-links a:hover::after,.build-site-links a:focus-visible::after{
   background:#f70606;
 }
+.build-site-links a[aria-current=page]{
+  color:#343a40;
+}
+.build-site-links a[aria-current=page]::after{
+  background:transparent;
+}
 
-/* Fine Arts uses the same blue at rest, but gold for interaction and the rule
-   beneath the navigation. The current Fine Arts page body remains untouched. */
-.art-build-preview .build-main-nav{
-  border-bottom:2px solid #d4af37;
+/* Fine Arts keeps the same neutral header chrome as the original site.
+   Gold appears only on the active/hovered navigation item itself. */
+.art-build-preview .build-main-nav,
+.art-gallery-build .build-main-nav{
+  border-bottom:1px solid #eeeeee;
 }
-.art-build-preview .build-site-links a{
-  color:#60adb8;
+.art-build-preview .build-tabs a,
+.art-gallery-build .build-tabs a,
+.art-build-preview .build-site-links a,
+.art-gallery-build .build-site-links a{
+  color:#6c757d;
 }
+.art-build-preview .build-tabs .active a,
+.art-gallery-build .build-tabs .active a,
+.art-build-preview .build-site-links a[aria-current=page],
+.art-gallery-build .build-site-links a[aria-current=page]{
+  color:#d4af37;
+}
+.art-build-preview .build-tabs a:hover,
+.art-build-preview .build-tabs a:focus-visible,
+.art-gallery-build .build-tabs a:hover,
+.art-gallery-build .build-tabs a:focus-visible,
 .art-build-preview .build-site-links a:hover,
-.art-build-preview .build-site-links a:focus-visible{
+.art-build-preview .build-site-links a:focus-visible,
+.art-gallery-build .build-site-links a:hover,
+.art-gallery-build .build-site-links a:focus-visible{
   color:#d4af37;
 }
 .art-build-preview .build-site-links a:hover::after,
 .art-build-preview .build-site-links a:focus-visible::after,
-.art-build-preview .build-site-links a[aria-current=page]::after{
+.art-build-preview .build-site-links a[aria-current=page]::after,
+.art-gallery-build .build-site-links a:hover::after,
+.art-gallery-build .build-site-links a:focus-visible::after,
+.art-gallery-build .build-site-links a[aria-current=page]::after{
   background:#d4af37;
-}
-.art-build-preview .build-tabs a:hover,
-.art-build-preview .build-tabs a:focus-visible,
-.art-build-preview .build-tabs .active a:hover,
-.art-build-preview .build-tabs .active a:focus-visible{
-  color:#d4af37;
 }
 
 /* Homepage hero: deliberately returns to the original technical portfolio
@@ -210,8 +227,7 @@ body.build-page h6{
   letter-spacing:0;
 }
 
-/* Contact uses the same component but keeps the more controlled interior-page
-   scale. */
+/* Contact uses the same component but keeps the more controlled interior-page scale. */
 body.build-page:has(.build-contact-grid) .build-display{
   max-width:760px;
   font-size:clamp(2.15rem,4.2vw,3.65rem);
@@ -229,8 +245,7 @@ body.build-page:has(.build-contact-grid) .build-hero .build-kicker{
   letter-spacing:.07em;
 }
 
-/* A little transparent interface depth, but kept inside a minimal gray/white
-   system rather than turning the page into an application shell. */
+/* A little transparent interface depth, kept inside a minimal gray/white system. */
 .build-brief{
   padding:26px;
   background:rgba(247,247,247,.84);
@@ -305,6 +320,19 @@ body.build-page:has(.build-contact-grid) .build-hero .build-kicker{
   border-color:#f70606;
   color:#f70606!important;
 }
+/* Hero controls use the original blue on white rather than gray/black. */
+.build-hero .build-btn,
+.build-hero .build-btn.secondary{
+  background:#fff;
+  border-color:#60adb8;
+  color:#60adb8!important;
+}
+.build-hero .build-btn:hover,.build-hero .build-btn:focus-visible,
+.build-hero .build-btn.secondary:hover,.build-hero .build-btn.secondary:focus-visible{
+  background:#fff;
+  border-color:#f70606;
+  color:#f70606!important;
+}
 .build-section{background:#f6f6f6}
 .build-section.white{background:#fff}
 .build-section.dark{
@@ -322,7 +350,7 @@ body.build-page:has(.build-contact-grid) .build-hero .build-kicker{
 }
 .build-section.dark .build-cap-card .num{color:#f70606}
 
-/* Technical links stay teal and turn red, echoing the original portfolio. */
+/* Technical body links retain the original teal-to-red behavior. */
 body.build-page main a:not(.build-btn):not(.build-project-image){
   color:#60adb8;
 }
@@ -331,7 +359,7 @@ body.build-page main a:not(.build-btn):not(.build-project-image):focus-visible{
   color:#f70606;
 }
 
-/* Shared footer preview: same quiet white/gray language as Fine Arts. */
+/* Shared footer: all chrome is neutral gray. Section identity appears on hover. */
 .build-footer{
   padding:34px 0 40px;
   background:#fff;
@@ -339,23 +367,125 @@ body.build-page main a:not(.build-btn):not(.build-project-image):focus-visible{
   border-top:1px solid #dee2e6;
   text-align:center;
 }
-.build-footer a{color:#60adb8}
+.build-footer a{color:#6c757d}
 .build-footer a:hover,.build-footer a:focus-visible{color:#f70606}
 .build-footer-philosophy{color:#6c757d}
+.art-build-preview footer,
+.art-gallery-build footer{color:#6c757d}
+.art-build-preview footer a,
+.art-gallery-build footer a{color:#6c757d!important}
+.art-build-preview footer a:hover,
+.art-build-preview footer a:focus-visible,
+.art-gallery-build footer a:hover,
+.art-gallery-build footer a:focus-visible{color:#d4af37!important}
 
-/* Scroll-interface transition prototype. JS only adds these classes when
-   IntersectionObserver is available, so content remains visible otherwise. */
-.build-reveal{
+/* Scroll-interface transition prototype for technical builds only. */
+.build-page:not(.art-build-preview):not(.art-gallery-build) .build-reveal{
   opacity:0;
   transform:translateY(22px);
   transition:opacity .6s ease,transform .6s cubic-bezier(.2,.65,.25,1);
   transition-delay:var(--reveal-delay,0ms);
   will-change:opacity,transform;
 }
-.build-reveal.is-visible{
+.build-page:not(.art-build-preview):not(.art-gallery-build) .build-reveal.is-visible{
   opacity:1;
   transform:none;
 }
+.art-build-preview .build-reveal,
+.art-gallery-build .build-reveal{
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+}
+
+/* Fine Arts gallery review grid. Artwork keeps its own aspect ratio rather
+   than being cropped into identical app-like cards. */
+.art-gallery-build{
+  background:#fff;
+  color:#222;
+  font-family:proxima-nova,"Open Sans",sans-serif;
+}
+.art-gallery-hero{
+  padding:72px 20px 54px;
+  text-align:center;
+  background:#fff;
+}
+.art-gallery-hero .seal-contained{margin-bottom:22px}
+.art-gallery-hero .seal-contained img{width:96px;max-width:24vw}
+.art-gallery-hero h1{
+  margin:0 auto 14px;
+  font-family:proxima-nova,"Open Sans",sans-serif;
+  font-size:clamp(2.2rem,5vw,4.25rem);
+  font-weight:500;
+  line-height:1.05;
+}
+.art-gallery-hero p{max-width:760px;margin:0 auto;color:#6c757d;line-height:1.7}
+.art-gallery-rule{width:70px;height:2px;background:#d4af37;margin:28px auto 0}
+.art-gallery-shell{width:min(1380px,94vw);margin:0 auto}
+.art-gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:42px 30px;
+  padding:36px 0 72px;
+  align-items:start;
+}
+.art-gallery-card{
+  margin:0;
+  background:#fff;
+}
+.art-gallery-card button{
+  width:100%;
+  display:block;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:zoom-in;
+  text-align:left;
+}
+.art-gallery-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:620px;
+  object-fit:contain;
+  background:#f5f5f5;
+  transition:opacity .2s ease;
+}
+.art-gallery-card button:hover img{opacity:.9}
+.art-gallery-caption{padding:16px 2px 0}
+.art-gallery-caption h2{margin:0 0 6px;font-size:1.12rem;font-weight:600;color:#222}
+.art-gallery-meta{margin:0 0 8px;color:#8a8a8a;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.art-gallery-description{margin:0;color:#6c757d;font-size:.9rem;line-height:1.55}
+.art-gallery-empty{padding:80px 20px;text-align:center;color:#777}
+.art-gallery-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:36px;
+  background:rgba(0,0,0,.88);
+}
+.art-gallery-lightbox.open{display:flex}
+.art-gallery-lightbox-dialog{max-width:min(1180px,94vw);max-height:92vh;text-align:center;color:#fff}
+.art-gallery-lightbox img{display:block;max-width:100%;max-height:78vh;margin:0 auto 18px;object-fit:contain}
+.art-gallery-lightbox h2{font-size:1.2rem;margin:0 0 5px;color:#fff}
+.art-gallery-lightbox p{margin:0;color:#d1d1d1;font-size:.9rem}
+.art-gallery-close{
+  position:fixed;
+  top:18px;
+  right:24px;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:2rem;
+  line-height:1;
+  cursor:pointer;
+}
+
+@media(max-width:900px){.art-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 22px}}
+@media(max-width:600px){.art-gallery-grid{grid-template-columns:1fr}.art-gallery-hero{padding-top:48px}}
 
 @media(max-width:760px){
   .build-hero{padding:72px 0 64px}
