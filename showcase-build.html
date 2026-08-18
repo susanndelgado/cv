@@ -35,7 +35,7 @@
 <main id="main">
   <section class="build-case-hero">
     <div class="build-shell">
-      <a class="build-back" href="work-build.html#case-studies">← Back to work</a>
+      <nav id="caseNavTop" class="build-case-nav" aria-label="Case study navigation"></nav>
       <div id="caseHero" class="build-status">Loading project…</div>
     </div>
   </section>
@@ -88,6 +88,12 @@
       <div id="projectPreview" class="build-preview-stack"></div>
     </div>
   </section>
+
+  <div class="build-case-nav-bottom-wrap">
+    <div class="build-shell">
+      <nav id="caseNavBottom" class="build-case-nav" aria-label="Case study navigation"></nav>
+    </div>
+  </div>
 </main>
 <footer class="build-footer">
   <div class="build-shell">
@@ -107,9 +113,34 @@
   var structureSection=document.getElementById('structureSection');
   var deliverableSection=document.getElementById('deliverableSection');
   var visualSection=document.getElementById('visualSection');
+  var typeMap=[
+    {token:'conf',label:'Campaigns'},
+    {token:'web',label:'Websites'},
+    {token:'email',label:'Emails'},
+    {token:'print',label:'Print collateral'},
+    {token:'dig',label:'Digital'},
+    {token:'brand',label:'Branding'}
+  ];
 
   function strip(v){var d=document.createElement('div');d.innerHTML=String(v||'');return (d.textContent||'').trim();}
   function lines(v){return String(v||'').split(/<br\s*\/?\s*>/i).map(strip).filter(Boolean);}
+  function yearNum(v){var m=String(v||'').match(/\d{4}/);return m?parseInt(m[0],10):0;}
+  function contains(p,token){return (' '+String(p.filters||'')+' ').indexOf(' '+token+' ')!==-1;}
+  function projectUrl(p){return 'showcase-build.html?post='+encodeURIComponent(p.legacyId);}
+  function filterUrl(kind,value){return 'work-build.html?'+kind+'='+encodeURIComponent(value)+'#archive';}
+  function isCrfRelated(p){
+    var text=[p.client,p.role,strip(p.content),p.summary].join(' ');
+    return /Cardiovascular Research Foundation|\bCRF\b/i.test(text);
+  }
+  function normalizeProject(p){
+    var next=Object.assign({},p);
+    var skills=lines(next.skills).map(function(s){return s==='AngularJS'?'Angular':s;});
+    skills=skills.filter(function(s){return !/^(Rapha[eë]l(?:\.js)?|TweenLite|Animate\.css)$/i.test(s);});
+    var emailRelated=contains(next,'email')||skills.some(function(s){return /^Email Development$/i.test(s);});
+    if(emailRelated&&isCrfRelated(next)&&!skills.some(function(s){return /^Salesforce Pardot$/i.test(s);}))skills.push('Salesforce Pardot');
+    next.skills=skills.join('<br>');
+    return next;
+  }
   function merge(base,extras){
     var result=(base||[]).map(function(p){return Object.assign({},p,{legacyId:String(p.id)});});
     (extras||[]).forEach(function(extra){
@@ -117,17 +148,35 @@
       result=result.map(function(p){var o=overrides[String(p.legacyId)]||overrides[String(p.id)]||{};return Object.assign({},p,o,{legacyId:String(p.legacyId)});});
       ((extra&&extra.posts)||[]).forEach(function(p){var id=String(p.id),idx=result.findIndex(function(x){return String(x.legacyId)===id;});var next=Object.assign({},p,{legacyId:id});if(idx>=0)result[idx]=Object.assign({},result[idx],next);else result.push(next);});
     });
-    return result.filter(function(p){return !p.hidden;});
+    return result.filter(function(p){return !p.hidden;}).map(normalizeProject).sort(function(a,b){return yearNum(b.year)-yearNum(a.year)||strip(a.title).localeCompare(strip(b.title));});
   }
-  function contains(p,token){return (' '+String(p.filters||'')+' ').indexOf(' '+token+' ')!==-1;}
   function heroImage(p){return '/'+(p.image||p.thumb||'');}
-  function skillPills(p){return lines(p.skills).slice(0,10).map(function(s){return '<span class="build-pill">'+s+'</span>';}).join('');}
+  function skillPills(p){
+    return lines(p.skills).map(function(s){return '<a class="build-pill build-pill-link" href="'+filterUrl('skill',s)+'">'+s+'</a>';}).join('');
+  }
+  function typePills(p){
+    return typeMap.filter(function(t){return contains(p,t.token);}).map(function(t){return '<a class="build-pill build-pill-link" href="'+filterUrl('type',t.token)+'">'+t.label+'</a>';}).join('');
+  }
+  function navMarkup(previous,next){
+    return '<a class="build-case-nav-link previous" href="'+projectUrl(previous)+'"><span class="direction">← Previous</span><span class="project">'+strip(previous.title)+'</span></a><a class="build-case-nav-all" href="work-build.html#archive">All work</a><a class="build-case-nav-link next" href="'+projectUrl(next)+'"><span class="direction">Next →</span><span class="project">'+strip(next.title)+'</span></a>';
+  }
+  function renderCaseNav(p,posts){
+    var index=posts.findIndex(function(x){return String(x.legacyId)===String(p.legacyId);});
+    if(index<0||!posts.length)return;
+    var previous=posts[(index-1+posts.length)%posts.length];
+    var next=posts[(index+1)%posts.length];
+    var html=navMarkup(previous,next);
+    document.getElementById('caseNavTop').innerHTML=html;
+    document.getElementById('caseNavBottom').innerHTML=html;
+  }
 
   function renderHero(p){
     var role=lines(p.role).join(' · ');
+    var types=typePills(p);
+    var skills=skillPills(p);
     document.title=strip(p.title)+' | Susan Delgado';
     hero.className='';
-    hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+(p.year||'Professional project')+' · '+strip(p.client)+'</p><h1 class="build-case-title">'+p.title+'</h1><p class="build-case-summary">'+(p.summary||'Professional project.')+'</p><div class="build-pills">'+skillPills(p)+'</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+strip(p.client)+'</dd></div><div><dt>Role</dt><dd>'+role+'</dd></div><div><dt>Year</dt><dd>'+(p.year||'Not recorded')+'</dd></div></dl></div><div class="build-case-visual"><img src="'+heroImage(p)+'" alt="'+strip(p.title)+' project preview"></div>';
+    hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+(p.year||'Professional project')+' · '+strip(p.client)+'</p><h1 class="build-case-title">'+p.title+'</h1><p class="build-case-summary">'+(p.summary||'Professional project.')+'</p><div class="build-case-taxonomy">'+(types?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Project type</span><div class="build-pills">'+types+'</div></div>':'')+(skills?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Skills</span><div class="build-pills">'+skills+'</div></div>':'')+'</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+strip(p.client)+'</dd></div><div><dt>Role</dt><dd>'+role+'</dd></div><div><dt>Year</dt><dd>'+(p.year||'Not recorded')+'</dd></div></dl></div><div class="build-case-visual"><img src="'+heroImage(p)+'" alt="'+strip(p.title)+' project preview"></div>';
   }
 
   function renderContext(p){
@@ -211,6 +260,7 @@
     var p=posts.find(function(x){return String(x.legacyId)===String(requested);})||posts[0];
     var enhanced=enhancedMap[String(p.legacyId)]||null;
     var structure=structureMap[String(p.legacyId)]||null;
+    renderCaseNav(p,posts);
     renderHero(p);
     renderContext(p);
     renderUX(enhanced);
