@@ -6,22 +6,17 @@
   <title>Fine Arts Build Preview | Susan Delgado</title>
   <meta name="description" content="Review-only preview of the proposed shared navigation above Susan Delgado's existing Fine Arts page.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2RjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
-  <link rel="stylesheet" href="css/animate.css">
-  <link rel="stylesheet" href="css/art-style.css">
   <link rel="stylesheet" href="css/build-style.css">
   <link rel="stylesheet" href="css/build-review.css">
   <link rel="stylesheet" href="css/build-navigation-unified.css">
-  <link rel="stylesheet" href="css/build-serif-test.css">
-  <link rel="stylesheet" href="css/finearts-home-build.css">
+  <style>
+    .finearts-live-frame{display:block;width:100%;min-height:100vh;border:0;background:#fff}
+  </style>
 </head>
-<body class="page-template page art-build-preview">
-<a class="build-skip" href="#fineArtsPreview">Skip to content</a>
+<body class="art-build-preview">
+<a class="build-skip" href="#fineArtsFrame">Skip to content</a>
 <header class="build-site-header">
   <div class="build-top-tabs">
     <ul class="build-tabs">
@@ -42,51 +37,118 @@
     </div>
   </div>
 </header>
-<div id="fineArtsPreview" aria-live="polite">
-  <div class="container py-5 text-center text-muted">Loading the current Fine Arts page…</div>
-</div>
+
+<iframe id="fineArtsFrame" class="finearts-live-frame" src="/finearts.html" title="Susan Delgado Fine Arts portfolio" scrolling="no"></iframe>
+
 <script>
 (function(){
-  var mount=document.getElementById('fineArtsPreview');
-  var galleryBuilds={
-    '/narrative-gallery.html':'narrative-gallery-build.html',
-    'narrative-gallery.html':'narrative-gallery-build.html',
-    '/wildlife-gallery.html':'wildlife-gallery-build.html',
-    'wildlife-gallery.html':'wildlife-gallery-build.html',
-    '/decorative-gallery.html':'decorative-gallery-build.html',
-    'decorative-gallery.html':'decorative-gallery-build.html',
-    '/studies-gallery.html':'studies-gallery-build.html',
-    'studies-gallery.html':'studies-gallery-build.html'
+  var frame=document.getElementById('fineArtsFrame');
+  if(!frame)return;
+
+  var buildLinks={
+    '/narrative-gallery.html':'/narrative-gallery-build.html',
+    'narrative-gallery.html':'/narrative-gallery-build.html',
+    '/wildlife-gallery.html':'/wildlife-gallery-build.html',
+    'wildlife-gallery.html':'/wildlife-gallery-build.html',
+    '/decorative-gallery.html':'/decorative-gallery-build.html',
+    'decorative-gallery.html':'/decorative-gallery-build.html',
+    '/studies-gallery.html':'/studies-gallery-build.html',
+    'studies-gallery.html':'/studies-gallery-build.html',
+    '/about.html':'/about-build.html',
+    'about.html':'/about-build.html',
+    '/exhibits.html':'/exhibits-build.html',
+    'exhibits.html':'/exhibits-build.html',
+    '/progress-chronicles.html':'/progress-chronicles-build.html',
+    'progress-chronicles.html':'/progress-chronicles-build.html',
+    '/contact.html':'/contact-build.html',
+    'contact.html':'/contact-build.html'
   };
 
-  fetch('/finearts.html',{cache:'no-store'})
-    .then(function(response){if(!response.ok)throw new Error('Fine Arts page unavailable');return response.text();})
-    .then(function(source){
-      var parsed=new DOMParser().parseFromString(source,'text/html');
-      var main=parsed.querySelector('main');
-      var footer=parsed.querySelector('footer');
-      if(!main)throw new Error('Fine Arts content unavailable');
+  function resize(doc){
+    if(!doc)return;
+    var height=Math.max(
+      doc.documentElement?doc.documentElement.scrollHeight:0,
+      doc.body?doc.body.scrollHeight:0,
+      900
+    );
+    frame.style.height=height+'px';
+  }
 
-      var importedMain=document.importNode(main,true);
-      importedMain.querySelectorAll('a[href]').forEach(function(link){
-        var raw=link.getAttribute('href');
-        if(galleryBuilds[raw]) link.setAttribute('href',galleryBuilds[raw]);
-      });
+  frame.addEventListener('load',function(){
+    var doc=frame.contentDocument;
+    if(!doc)return;
 
-      mount.innerHTML='';
-      mount.appendChild(importedMain);
-      if(footer && !importedMain.querySelector('footer')){
-        mount.appendChild(document.importNode(footer,true));
+    var liveHeader=doc.getElementById('top');
+    if(liveHeader)liveHeader.style.display='none';
+
+    /* Hero-only build treatment. Everything after the hero remains the live page
+       with the live page's own CSS, markup and scripts. */
+    var style=doc.createElement('style');
+    style.textContent=`
+      .boutique-hero{
+        width:100%!important;
+        margin:0!important;
+        padding:68px max(4vw,calc((100vw - 1220px)/2)) 52px!important;
+        background:#111!important;
+        color:#fff!important;
+        border:0!important;
+        text-align:center!important;
       }
+      .boutique-hero .container{
+        width:100%!important;
+        max-width:1220px!important;
+        margin:0 auto!important;
+        padding:0!important;
+        text-align:center!important;
+      }
+      .boutique-hero .seal-contained{display:none!important}
+      .boutique-hero .master-title,.boutique-hero h1{
+        max-width:1000px!important;
+        margin:0 auto 16px!important;
+        color:#fff!important;
+        font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+        font-size:3rem!important;
+        font-weight:500!important;
+        line-height:1.2!important;
+        letter-spacing:.005em!important;
+        text-align:center!important;
+        text-transform:none!important;
+      }
+      .boutique-hero .master-intro,.boutique-hero p{
+        max-width:760px!important;
+        margin:0 auto!important;
+        color:#fff!important;
+        font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+        font-size:1.02rem!important;
+        font-weight:400!important;
+        line-height:1.72!important;
+        text-align:center!important;
+      }
+      .boutique-hero .btn-boutique{
+        display:inline-block!important;
+        margin:28px auto 0!important;
+      }
+      @media(max-width:760px){
+        .boutique-hero{padding:52px 22px 42px!important}
+        .boutique-hero .master-title,.boutique-hero h1{font-size:2.2rem!important}
+      }
+    `;
+    doc.head.appendChild(style);
 
-      mount.querySelectorAll('.process-video').forEach(function(video){
-        video.muted=true;
-        video.play().catch(function(){});
-      });
-    })
-    .catch(function(){
-      mount.innerHTML='<div class="container py-5 text-center"><p>The Fine Arts preview could not be loaded. <a href="/finearts.html">Open the current Fine Arts page.</a></p></div>';
+    doc.querySelectorAll('a[href]').forEach(function(link){
+      var raw=link.getAttribute('href');
+      if(buildLinks[raw])link.setAttribute('href',buildLinks[raw]);
+      if(raw&&!raw.startsWith('#')&&!raw.startsWith('javascript:'))link.setAttribute('target','_top');
     });
+
+    resize(doc);
+    if(window.ResizeObserver&&doc.body){
+      var observer=new ResizeObserver(function(){resize(doc);});
+      observer.observe(doc.body);
+    }
+    setTimeout(function(){resize(doc);},500);
+    setTimeout(function(){resize(doc);},1800);
+  });
 })();
 </script>
 </body>
