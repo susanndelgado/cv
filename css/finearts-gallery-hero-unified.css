@@ -1,5 +1,5 @@
-/* Gallery build heroes mirror the live Fine Arts .process-hero exactly.
-   The only added element is the centered gallery navigation. */
+/* Fine Arts gallery build heroes mirror the live site's .process-hero.
+   The only build-only addition is the centered gallery navigation. */
 .art-gallery-build .art-gallery-hero{
   width:100%!important;
   margin:0!important;
@@ -13,6 +13,21 @@
   display:none!important;
   content:none!important;
 }
+
+/* Match the Bootstrap container used by the live Fine Arts hero. */
+.art-gallery-build .art-gallery-hero .container{
+  width:100%!important;
+  margin-right:auto!important;
+  margin-left:auto!important;
+  padding-right:12px!important;
+  padding-left:12px!important;
+  text-align:center!important;
+}
+@media(min-width:576px){.art-gallery-build .art-gallery-hero .container{max-width:540px!important}}
+@media(min-width:768px){.art-gallery-build .art-gallery-hero .container{max-width:720px!important}}
+@media(min-width:992px){.art-gallery-build .art-gallery-hero .container{max-width:960px!important}}
+@media(min-width:1200px){.art-gallery-build .art-gallery-hero .container{max-width:1140px!important}}
+@media(min-width:1400px){.art-gallery-build .art-gallery-hero .container{max-width:1320px!important}}
 
 /* Exact live .seal-contained treatment. */
 .art-gallery-build .art-gallery-hero .seal-contained{
@@ -34,6 +49,7 @@
 }
 
 /* Exact live .process-hero .master-title treatment. */
+.art-gallery-build .art-gallery-hero .master-title,
 .art-gallery-build .art-gallery-hero h1{
   margin-top:0!important;
   margin-bottom:20px!important;
@@ -47,7 +63,7 @@
   text-transform:uppercase!important;
 }
 
-/* Exact live Fine Arts hero subtitle typography; color changes to gold. */
+/* Exact live hero H2 typography; gold is the only color change. */
 .art-gallery-build .art-gallery-hero h2{
   color:#d4af37!important;
   font-family:"Playfair",Georgia,serif!important;
@@ -61,7 +77,8 @@
 }
 
 /* Exact live .process-hero .hero-intro treatment. */
-.art-gallery-build .art-gallery-hero > p{
+.art-gallery-build .art-gallery-hero .hero-intro,
+.art-gallery-build .art-gallery-hero .container > p{
   max-width:100%!important;
   margin:0 auto 30px!important;
   color:#999!important;
@@ -74,6 +91,7 @@
 }
 
 /* Exact live hero divider. */
+.art-gallery-build .art-gallery-hero .hero-divider,
 .art-gallery-build .art-gallery-rule{
   display:block!important;
   width:60px!important;
@@ -82,8 +100,8 @@
   background:#444!important;
 }
 
-/* Build-only gallery navigation, centered inside the hero. Gold appears only
-   on hover/focus and the active gallery. */
+/* Build-only gallery navigation, centered beneath the live-style hero content.
+   Gold appears only on hover/focus and the active gallery. */
 .art-gallery-build .art-gallery-hero .art-gallery-categories{
   width:auto!important;
   max-width:900px!important;
