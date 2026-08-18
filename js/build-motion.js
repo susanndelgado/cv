@@ -9,13 +9,39 @@
     var style=document.createElement('style');
     style.id=STYLE_ID;
     style.textContent=`
-/* Technical build corrections + restrained motion. */
+/* Technical build corrections + performance layer. */
 .build-hero .build-kicker{font-weight:400!important}
 
+/* Technical navigation: same sizing/active structure as Fine Arts, red accent. */
+body.build-page .build-site-links a{
+  padding:20px 12px!important;
+  color:#6c757d!important;
+  font-family:proxima-nova,"Open Sans",sans-serif!important;
+  font-size:1rem!important;
+  font-weight:500!important;
+  letter-spacing:.02em!important;
+}
+body.build-page .build-site-links a::after{
+  left:12px!important;
+  right:12px!important;
+  bottom:14px!important;
+  height:1px!important;
+  background:transparent!important;
+}
+body.build-page .build-site-links a[aria-current=page]{color:#111!important}
+body.build-page .build-site-links a[aria-current=page]::after{background:#f70606!important}
+body.build-page .build-site-links a:hover,
+body.build-page .build-site-links a:focus-visible{color:#f70606!important}
+body.build-page .build-site-links a:hover::after,
+body.build-page .build-site-links a:focus-visible::after{background:#f70606!important}
+
+/* Case-study metadata readability. */
 .build-case-meta{
   color:#343a40!important;
-  background:rgba(255,255,255,.94)!important;
+  background:#fff!important;
   border-color:#ddd!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
 }
 .build-case-meta dt{color:#60adb8!important}
 .build-case-meta dd{color:#343a40!important}
@@ -53,25 +79,54 @@
 .resume-build-page .resume-grid{padding-top:1.12in!important}
 .resume-build-page .resume-sidebar .resume-heading{line-height:1.06!important}
 
-/* Only major structural text reveals. Image grids, project cards, panels,
-   workflow blocks and case-study evidence remain static while scrolling. */
-@media (prefers-reduced-motion:no-preference){
-  .build-page:not(.resume-build-page) .build-reveal{
-    opacity:0;
-    transform:translate3d(0,10px,0);
-    transition:opacity .26s ease-out,transform .32s cubic-bezier(.2,.72,.24,1);
-    transition-delay:var(--reveal-delay,0ms);
-  }
-  .build-page:not(.resume-build-page) .build-reveal.is-visible{
-    opacity:1;
-    transform:none;
-  }
-  .build-project-image img,
-  .build-case-visual img{transition:opacity .16s ease}
-  .build-project-image:hover img{opacity:.96}
+/* Performance: remove expensive blur/compositing and scroll transforms from
+   image-heavy technical sections. The cursor remains as the interaction accent. */
+body.build-page:not(.resume-build-page) .build-main-nav,
+body.build-page:not(.resume-build-page) .build-brief,
+body.build-page:not(.resume-build-page) .build-project-card,
+body.build-page:not(.resume-build-page) .build-archive-card,
+body.build-page:not(.resume-build-page) .build-process-step,
+body.build-page:not(.resume-build-page) .build-cap-card,
+body.build-page:not(.resume-build-page) .build-panel,
+body.build-page:not(.resume-build-page) .build-case-meta,
+body.build-page:not(.resume-build-page) .build-case-visual,
+body.build-page:not(.resume-build-page) .build-architecture .node,
+body.build-page:not(.resume-build-page) .build-contact-card{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+body.build-page:not(.resume-build-page) .build-reveal,
+body.build-page:not(.resume-build-page) .build-reveal.is-visible{
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+body.build-page:not(.resume-build-page) .build-project-card,
+body.build-page:not(.resume-build-page) .build-archive-card,
+body.build-page:not(.resume-build-page) .build-project-image img,
+body.build-page:not(.resume-build-page) .build-case-visual img,
+body.build-page:not(.resume-build-page) .build-panel,
+body.build-page:not(.resume-build-page) .build-process-step,
+body.build-page:not(.resume-build-page) .build-cap-card{
+  transform:none!important;
+  transition:none!important;
+}
+body.build-page:not(.resume-build-page) .build-project-card:hover,
+body.build-page:not(.resume-build-page) .build-archive-card:hover,
+body.build-page:not(.resume-build-page) .build-project-card:hover .build-project-image img,
+body.build-page:not(.resume-build-page) .build-project-image:hover img{
+  transform:none!important;
+}
+body.build-page:not(.resume-build-page) .build-project-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.045)!important}
+
+/* Skip layout/paint work for offscreen archive cards until they approach view. */
+body.build-page:not(.resume-build-page) .build-archive-card{
+  content-visibility:auto;
+  contain-intrinsic-size:360px 430px;
 }
 
-/* Lightweight direct-tracking cursor: one element, no RAF loop and no lagging trail. */
+/* Lightweight cursor: one compositor-moved element, no trailing loop. */
 @media (pointer:fine) and (hover:hover){
   html.sd-cursor-enabled,
   html.sd-cursor-enabled body,
@@ -81,16 +136,17 @@
   .sd-cursor{
     position:fixed;
     z-index:2147483646;
-    left:-100px;
-    top:-100px;
-    width:26px;
-    height:26px;
-    transform:translate(-50%,-50%);
+    left:0;
+    top:0;
+    width:28px;
+    height:28px;
     border:1px solid rgba(17,17,17,.48);
     border-radius:50%;
     pointer-events:none;
     opacity:0;
-    transition:width .14s ease,height .14s ease,border-color .14s ease,background .14s ease,opacity .1s ease;
+    transform:translate3d(-100px,-100px,0) translate(-50%,-50%);
+    will-change:transform;
+    transition:border-color .12s ease,background .12s ease,opacity .08s ease;
   }
   .sd-cursor::after{
     content:"";
@@ -104,26 +160,13 @@
     background:#111;
   }
   html.sd-cursor-live .sd-cursor{opacity:1}
-  html.sd-cursor-link .sd-cursor{
-    width:34px;
-    height:34px;
-    border-color:#f70606;
-    background:rgba(247,6,6,.025);
-  }
+  html.sd-cursor-link .sd-cursor{border-color:#f70606;background:rgba(247,6,6,.025)}
   html.sd-cursor-link .sd-cursor::after{background:#f70606}
-  html.sd-cursor-image .sd-cursor{
-    width:38px;
-    height:38px;
-    border-color:#60adb8;
-    background:rgba(96,173,184,.025);
-  }
+  html.sd-cursor-image .sd-cursor{border-color:#60adb8;background:rgba(96,173,184,.025)}
   html.sd-cursor-image .sd-cursor::after{background:#60adb8}
 }
 
-@media (prefers-reduced-motion:reduce){
-  .build-page .build-reveal{opacity:1!important;transform:none!important;transition:none!important}
-  .sd-cursor{display:none!important}
-}
+@media (prefers-reduced-motion:reduce){.sd-cursor{display:none!important}}
 
 @media print{
   .resume-build-page .resume-header{
@@ -159,8 +202,6 @@
        'Corporate development work centered on front-end and email production for conference and medical-education systems, including responsive websites, dynamic agenda/interface features and high-volume campaign email. Independent design work expanded that experience into branding, publications, events and production.'],
       ['I’m refreshing the workflow around the tooling expected in current web teams while keeping the practical production experience gained from client and corporate work.',
        'Current re-entry work refreshes the workflow around tooling expected in modern web teams while retaining practical production experience from client and corporate work.'],
-      ['I bring professional front-end and email development experience together with graphic design, interface work and production experience. I’m interested in remote development and design roles where that combination is useful.',
-       'Professional front-end and email development experience is combined with graphic design, interface implementation and production work, with a focus on remote development and design roles where that range is useful.'],
       ['My strongest fit is work that benefits from both implementation awareness and visual judgment.',
        'Strongest-fit roles benefit from both implementation awareness and visual judgment.'],
       ['What I bring to a team','Professional strengths'],
@@ -197,7 +238,6 @@
     ];
     positioning.forEach(function(pair){value=value.split(pair[0]).join(pair[1]);});
 
-    /* Fallback for legacy project fragments that still contain first-person copy. */
     value=value
       .replace(/\bI’m\b|\bI'm\b/g,'Susan Delgado is')
       .replace(/\bI am\b/g,'Susan Delgado is')
@@ -248,49 +288,8 @@
   }
 
   function initBuildMotion(root){
-    root=root||document;
     installStyles();
-    normalizeCopy(root);
-
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    if(document.body.classList.contains('resume-build-page'))return;
-
-    var selectors=[
-      '.build-hero .build-kicker',
-      '.build-hero .build-display',
-      '.build-hero .build-lede',
-      '.build-hero .build-actions',
-      '.build-case-hero .build-back',
-      '.build-case-title',
-      '.build-section-head > div'
-    ];
-    var items=[];
-    selectors.forEach(function(selector){
-      root.querySelectorAll(selector).forEach(function(el){
-        if(items.indexOf(el)===-1&&!el.dataset.motionReady&&!el.hidden)items.push(el);
-      });
-    });
-
-    if(!('IntersectionObserver' in window)){
-      items.forEach(function(el){el.classList.add('is-visible');});
-      return;
-    }
-
-    var observer=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },{threshold:.04,rootMargin:'0px 0px -2% 0px'});
-
-    items.forEach(function(el,index){
-      el.dataset.motionReady='1';
-      el.classList.add('build-reveal');
-      el.style.setProperty('--reveal-delay',Math.min((index%2)*30,30)+'ms');
-      observer.observe(el);
-    });
+    normalizeCopy(root||document);
   }
 
   function initCursor(){
@@ -304,25 +303,30 @@
     document.body.appendChild(cursor);
     document.documentElement.classList.add('sd-cursor-enabled');
 
+    var lastMode='';
     function setMode(target){
       var image=target&&target.closest&&target.closest('.build-project-image,.build-case-visual,.build-preview-stack a');
       var link=target&&target.closest&&target.closest('a,button,[role="button"]');
-      document.documentElement.classList.toggle('sd-cursor-image',!!image);
-      document.documentElement.classList.toggle('sd-cursor-link',!!link&&!image);
+      var mode=image?'image':(link?'link':'');
+      if(mode===lastMode)return;
+      lastMode=mode;
+      document.documentElement.classList.toggle('sd-cursor-image',mode==='image');
+      document.documentElement.classList.toggle('sd-cursor-link',mode==='link');
     }
 
     document.addEventListener('pointermove',function(event){
-      cursor.style.left=event.clientX+'px';
-      cursor.style.top=event.clientY+'px';
+      cursor.style.transform='translate3d('+event.clientX+'px,'+event.clientY+'px,0) translate(-50%,-50%)';
       document.documentElement.classList.add('sd-cursor-live');
       setMode(event.target);
     },{passive:true});
 
     document.addEventListener('pointerleave',function(){
       document.documentElement.classList.remove('sd-cursor-live','sd-cursor-link','sd-cursor-image');
+      lastMode='';
     });
     window.addEventListener('blur',function(){
       document.documentElement.classList.remove('sd-cursor-live','sd-cursor-link','sd-cursor-image');
+      lastMode='';
     });
   }
 
@@ -332,7 +336,6 @@
   function init(){
     installStyles();
     normalizeCopy(document);
-    initBuildMotion(document);
     initCursor();
   }
 
