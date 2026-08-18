@@ -1,0 +1,291 @@
+/* Review pass: shared black/gold chrome + smaller editorial typography.
+   Loaded after build-style.css so the earlier prototype remains easy to compare/revert. */
+:root{
+  --teal:#b28b2e;
+  --teal-dark:#8f6c17;
+  --gold:#d4af37;
+  --tab:#111111;
+  --dark:#111111;
+}
+
+body.build-page{
+  background:#f6f4ef;
+}
+
+/* Shared navigation: same flat two-level language as the Fine Arts site,
+   tested here in a black/gold palette before any global adoption. */
+.build-site-header{
+  position:relative;
+  background:#fff;
+  box-shadow:none;
+  border-bottom:1px solid #e3e0d9;
+}
+.build-top-tabs{
+  background:#111;
+  border-bottom:1px solid #2d2d2d;
+}
+.build-tabs{
+  padding:0 15px;
+  font-family:Verdana,serif;
+  font-size:16px;
+}
+.build-tabs a{
+  padding:10px 16px;
+  color:#d4af37;
+  border:1px solid transparent;
+}
+.build-tabs a:hover,.build-tabs a:focus-visible{
+  color:#fff;
+  border-color:#3b3b3b #3b3b3b #2d2d2d;
+}
+.build-tabs .active a{
+  color:#111;
+  background:#fff;
+  border-color:#444 #444 #fff;
+}
+.build-tabs .active a:hover,.build-tabs .active a:focus-visible{
+  color:#8f6c17;
+}
+.build-main-nav{
+  background:#fff;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-bottom:0;
+}
+.build-main-nav-inner{
+  min-height:67px;
+}
+.build-site-brand{
+  font-family:proxima-nova,"Open Sans",sans-serif;
+  font-size:1rem;
+  font-weight:500;
+  letter-spacing:.025em;
+}
+.build-site-links a{
+  padding:20px 12px;
+  color:#495057;
+  font-size:.86rem;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.build-site-links a::after{
+  bottom:14px;
+  left:12px;
+  right:12px;
+  height:1px;
+}
+.build-site-links a:hover::after,.build-site-links a:focus-visible::after,
+.build-site-links a[aria-current=page]::after{
+  background:#d4af37;
+}
+
+/* The first version read as a landing-page generator because the type was huge.
+   Keep the message but make it behave like a portfolio heading. */
+.build-hero{
+  padding:68px 0 64px;
+  background:
+    radial-gradient(circle at 79% 30%,rgba(212,175,55,.16),transparent 24%),
+    linear-gradient(115deg,#0b0b0b 0%,#191919 52%,#0e0e0e 100%);
+}
+.build-case-hero{
+  padding:56px 0 46px;
+  background:
+    radial-gradient(circle at 76% 28%,rgba(212,175,55,.13),transparent 25%),
+    linear-gradient(115deg,#0b0b0b 0%,#181818 55%,#0d0d0d 100%);
+}
+.build-hero::before,.build-case-hero::before{
+  background:radial-gradient(circle at 72% 42%,rgba(212,175,55,.14),transparent 25%);
+}
+.build-kicker{
+  color:#8f6c17;
+  letter-spacing:.14em;
+}
+.build-hero .build-kicker,.build-case-hero .build-kicker{
+  color:#d4af37;
+}
+.build-display{
+  max-width:760px;
+  font-size:clamp(2.2rem,4.5vw,4rem);
+  line-height:1.08;
+  letter-spacing:0;
+  font-weight:400;
+}
+.build-lede{
+  max-width:760px;
+  margin-top:22px;
+  font-size:clamp(.98rem,1.5vw,1.12rem);
+  line-height:1.75;
+}
+.build-case-title{
+  max-width:820px;
+  font-size:clamp(2rem,4vw,3.65rem);
+  line-height:1.06;
+  letter-spacing:0;
+}
+.build-case-summary{
+  margin-top:18px;
+  font-size:1.02rem;
+  line-height:1.7;
+}
+.build-section-head h2,.build-case-content h2{
+  font-size:clamp(1.75rem,3vw,2.6rem);
+  line-height:1.14;
+}
+
+/* Transparency as interface layering, not floating app cards. */
+.build-brief{
+  padding:26px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.17);
+  border-top:3px solid #d4af37;
+  box-shadow:none;
+}
+.build-panel,.build-case-meta,.build-architecture .node{
+  background:rgba(255,255,255,.68);
+  border-color:#ddd8cc;
+  box-shadow:none;
+  border-radius:0;
+}
+.build-process-step{
+  background:rgba(255,255,255,.5);
+}
+.build-project-card{
+  border-radius:0;
+  background:#fff;
+  border:1px solid #ded9ce;
+  border-top:3px solid #d4af37;
+  box-shadow:0 12px 30px rgba(0,0,0,.06);
+}
+.build-archive-card{
+  border-radius:0;
+  background:#fff;
+}
+.build-project-meta,.build-process-step .step{
+  color:#8f6c17;
+}
+.build-pill{
+  border-radius:0;
+}
+.build-filter{
+  border-radius:0;
+  border-color:#cfc9bd;
+}
+.build-filter:hover,.build-filter:focus-visible,.build-filter.active{
+  background:#111;
+  border-color:#111;
+}
+.build-btn{
+  border-radius:0;
+}
+.build-btn.secondary{
+  border-color:#d4af37;
+}
+
+/* Shared footer preview. */
+.build-footer{
+  padding:36px 0 42px;
+  background:#111;
+  color:#e8e4db;
+  border-top:3px solid #d4af37;
+}
+.build-footer a{
+  color:#e8e4db;
+}
+.build-footer a:hover,.build-footer a:focus-visible{
+  color:#d4af37;
+}
+.build-footer-philosophy{
+  color:#b8b3a8;
+}
+
+/* Fine Arts build preview uses the same proposed chrome but retains
+   the current art-side content hierarchy. */
+.art-build-preview .art-preview-hero{
+  padding:72px 0;
+  background:#111;
+  color:#fff;
+  text-align:center;
+}
+.art-build-preview .art-preview-seal{
+  width:145px;
+  height:145px;
+  margin:0 auto 24px;
+  border:2px solid #d4af37;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.art-build-preview .art-preview-seal img{width:85%}
+.art-build-preview .art-preview-hero h1{
+  margin:0;
+  font-family:"Playfair",Georgia,serif;
+  font-size:clamp(2rem,4vw,3.1rem);
+  font-weight:400;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.art-build-preview .art-preview-hero p{
+  max-width:780px;
+  margin:24px auto 0;
+  color:#b9b5ad;
+  font-size:1rem;
+  line-height:1.9;
+}
+.art-preview-grid{
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto;
+  padding:78px 0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+}
+.art-preview-tile{
+  position:relative;
+  min-height:310px;
+  overflow:hidden;
+  border:1px solid #ddd8cc;
+  background:#111;
+}
+.art-preview-tile img{
+  width:100%;
+  height:100%;
+  min-height:310px;
+  object-fit:cover;
+  display:block;
+  opacity:.90;
+  transition:transform .5s ease;
+}
+.art-preview-tile:hover img{transform:scale(1.025)}
+.art-preview-caption{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  padding:18px 20px;
+  background:rgba(0,0,0,.72);
+  color:#fff;
+  border-top:1px solid rgba(212,175,55,.75);
+}
+.art-preview-caption strong{
+  display:block;
+  font-family:"Playfair",Georgia,serif;
+  font-size:1.25rem;
+  font-weight:400;
+}
+.art-preview-caption span{
+  display:block;
+  margin-top:4px;
+  color:#d1ccc1;
+  font-size:.82rem;
+}
+
+@media(max-width:760px){
+  .build-display{font-size:clamp(2rem,9vw,3rem)}
+  .build-case-title{font-size:clamp(1.9rem,9vw,2.9rem)}
+  .build-main-nav-inner{align-items:flex-start;flex-direction:column;padding:16px 0;gap:4px}
+  .build-site-links{flex-wrap:wrap}
+  .build-site-links a{padding:8px 10px}
+  .build-site-links a::after{bottom:3px;left:10px;right:10px}
+  .art-preview-grid{grid-template-columns:1fr}
+}
