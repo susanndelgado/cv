@@ -28,6 +28,21 @@ body.work-build-page .build-filter-status a{
 body.work-build-page .build-filter-status a:hover,
 body.work-build-page .build-filter-status a:focus-visible{color:#f70606}
 
+/* The existing `conf` token is retained for filtering; only the visitor-facing
+   label changes to describe the work more accurately. */
+body.work-build-page .build-filter[data-filter="conf"]{font-size:0}
+body.work-build-page .build-filter[data-filter="conf"]::after{
+  content:"Conferences & Events";
+  font-size:.73rem;
+  font-weight:700;
+  letter-spacing:.09em;
+}
+body.work-build-page:has(.build-filter[data-filter="conf"].active) #archiveFilterStatus strong{font-size:0}
+body.work-build-page:has(.build-filter[data-filter="conf"].active) #archiveFilterStatus strong::after{
+  content:"Conferences & Events";
+  font-size:.92rem;
+}
+
 @media (max-width: 760px) {
   body.work-build-page .build-display {
     font-size: clamp(2.15rem, 10vw, 3rem);
