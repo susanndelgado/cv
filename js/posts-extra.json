@@ -170,11 +170,11 @@
       "image": "showcase/img/WLNCMD-header.jpg",
       "thumb": "showcase/img/WLNCMD-thumb.jpg",
       "link": "showcase/wlncmd.html",
-      "summary": "Website design, front-end development and supporting email communications for WLNCMD.",
+      "summary": "Joomla website design, front-end development and supporting email communications for WLNCMD.",
       "filters": "web dig",
       "role": "Web Designer<br>Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Web Design<br>Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "content": "<p>WLNCMD was a satellite website produced through CRF’s conference web program.</p><p>Designed the website presentation and developed the responsive front-end experience as part of the CRF team, implementing program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF web and email production workflow.</p>"
+      "skills": "Web Design<br>Front End Development<br>Responsive Web Development<br>Joomla<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "content": "<p>WLNCMD was a Joomla satellite website produced through CRF’s conference web program.</p><p>Designed the website and handled front-end development as part of the CRF team, implementing the responsive site and program content using Joomla, HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF web and email production workflow.</p>"
     },
     {
       "id": 48,
