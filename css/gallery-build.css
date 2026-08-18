@@ -1,4 +1,4 @@
-/* Review-only gallery direction: standard site chrome + editorial artwork layout. */
+/* Review-only gallery direction: Fine Arts build chrome + editorial artwork layout. */
 .art-gallery-build{
   --gallery-gold:#d4af37;
   --gallery-black:#111111;
@@ -11,40 +11,71 @@
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
 }
 
-/* Keep the same top Fine Arts / Technical tabs used everywhere else. */
+/* Match the Fine Arts build navigation exactly. */
+.art-gallery-build .build-site-header{
+  position:relative;
+  background:#fff;
+  box-shadow:none;
+  border-bottom:1px solid #eeeeee;
+}
 .art-gallery-build .build-top-tabs{
   background:#eff8ff;
   border-bottom:1px solid #dee2e6;
 }
-.art-gallery-build .build-tabs a{color:#60adb8!important}
+.art-gallery-build .build-tabs{
+  padding:0 15px;
+  font-family:Verdana,serif;
+  font-size:16px;
+}
+.art-gallery-build .build-tabs a{
+  padding:10px 16px;
+  color:#60adb8!important;
+  border:1px solid transparent;
+  background:transparent;
+}
+.art-gallery-build .build-tabs a:hover,
+.art-gallery-build .build-tabs a:focus-visible{
+  color:#f70606!important;
+  border-color:#e9ecef #e9ecef #dee2e6;
+}
 .art-gallery-build .build-tabs .active a{
   color:#495057!important;
   background:#fff!important;
+  border-color:#dee2e6 #dee2e6 #fff;
 }
-.art-gallery-build .build-tabs a:hover,
-.art-gallery-build .build-tabs a:focus-visible,
 .art-gallery-build .build-tabs .active a:hover,
-.art-gallery-build .build-tabs .active a:focus-visible{
-  color:#f70606!important;
-}
+.art-gallery-build .build-tabs .active a:focus-visible{color:#f70606!important}
 
-/* Gallery pages use the standard second navigation row with black/gold Fine Arts treatment. */
 .art-gallery-build .build-main-nav{
-  background:#111!important;
-  border-bottom:1px solid #272727!important;
+  background:#fff!important;
+  border-bottom:1px solid #eeeeee!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
 }
 .art-gallery-build .build-main-nav-inner{min-height:67px}
 .art-gallery-build .build-site-brand{
-  color:#fff!important;
+  color:#000!important;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
   font-size:1.25rem!important;
   font-weight:500;
+  letter-spacing:.025em;
 }
 .art-gallery-build .build-site-brand:hover,
-.art-gallery-build .build-site-brand:focus-visible{color:var(--gallery-gold)!important}
+.art-gallery-build .build-site-brand:focus-visible{color:rgba(0,0,0,.65)!important}
 .art-gallery-build .build-site-links a{
-  color:#a5a5a5!important;
+  padding:20px 12px;
+  color:#6c757d!important;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+  font-size:.86rem;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.art-gallery-build .build-site-links a::after{
+  left:12px;
+  right:12px;
+  bottom:14px;
+  height:1px;
+  background:transparent;
 }
 .art-gallery-build .build-site-links a[aria-current=page],
 .art-gallery-build .build-site-links a:hover,
@@ -55,15 +86,14 @@
 
 .art-gallery-build main{background:#fff}
 
-/* Gallery hero: full-width black field similar to the Fine Arts home hero.
-   Title, description and gallery-to-gallery navigation live in one block. */
+/* Standard Fine Arts gallery hero: full-width black field with white text and gold accents. */
 .art-gallery-build .art-gallery-hero{
   width:100%;
   margin:0;
-  padding:68px max(4vw,calc((100vw - 1220px)/2)) 44px;
+  padding:68px max(4vw,calc((100vw - 1220px)/2)) 52px;
   text-align:left;
   background:#111;
-  border-bottom:0;
+  border:0;
   color:#fff;
 }
 .art-gallery-build .art-gallery-hero .seal-contained{display:none!important}
@@ -93,7 +123,7 @@
 .art-gallery-build .art-gallery-hero > p{
   max-width:760px;
   margin:0;
-  color:#c7c7c7;
+  color:#fff;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
   font-size:1.02rem;
   line-height:1.72;
@@ -105,27 +135,26 @@
   background:var(--gallery-gold);
 }
 
-/* Gallery switcher stays inside the black hero instead of becoming a separate bar. */
+/* Gallery-type navigation sits below the hero, on the same light page surface. */
 .art-gallery-build .art-gallery-categories{
-  width:auto;
-  margin:30px 0 0;
-  padding:20px 0 0;
+  width:min(1220px,92vw);
+  margin:0 auto;
+  padding:18px 0;
   display:flex;
   flex-wrap:wrap;
   gap:10px 28px;
-  border-top:1px solid #343434;
-  border-bottom:0;
+  border-bottom:1px solid var(--gallery-line);
+  background:#fff;
 }
 .art-gallery-build .art-gallery-categories a{
   position:relative;
   padding:0 0 5px;
-  color:#a8a8a8;
+  color:#6c757d;
   text-decoration:none;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
   font-size:.82rem;
   font-weight:500;
   letter-spacing:.055em;
-  text-transform:none;
 }
 .art-gallery-build .art-gallery-categories a::after{
   content:"";
@@ -143,8 +172,7 @@
 .art-gallery-build .art-gallery-categories a:focus-visible::after,
 .art-gallery-build .art-gallery-categories a.active::after{background:var(--gallery-gold)}
 
-/* Artwork presentation: clean editorial masonry rather than cards or a dark wall.
-   Natural image proportions remain intact and captions sit directly underneath. */
+/* Artwork presentation: clean editorial masonry rather than cards or a dark wall. */
 .art-gallery-build .art-gallery-shell{
   width:min(1320px,94vw);
   margin:0 auto;
@@ -264,7 +292,7 @@
 .art-gallery-build .art-gallery-close{position:fixed;top:22px;right:28px;border:0;background:none;color:#fff;font-size:2rem;line-height:1;cursor:pointer}
 .art-gallery-build .art-gallery-close:hover{color:var(--gallery-gold)}
 
-/* Return to the same quiet footer system used elsewhere. */
+/* Same quiet footer system used throughout the Fine Arts build. */
 .art-gallery-build .build-footer{
   background:#fff!important;
   color:#6c757d!important;
@@ -276,7 +304,7 @@
 .art-gallery-build .build-footer a:focus-visible{color:var(--gallery-gold)!important}
 
 @media(max-width:760px){
-  .art-gallery-build .art-gallery-hero{padding:52px 22px 38px}
+  .art-gallery-build .art-gallery-hero{padding:52px 22px 42px}
   .art-gallery-build .art-gallery-hero h1{font-size:clamp(2rem,9vw,3.1rem)}
   .art-gallery-build .art-gallery-categories{gap:12px 20px}
   .art-gallery-build .art-gallery-shell{padding-top:42px}
