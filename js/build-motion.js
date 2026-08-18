@@ -8,52 +8,43 @@
     var style=document.createElement('style');
     style.id=STYLE_ID;
     style.textContent=`
-/* Technical build interaction layer: motion and cursor only. */
+/* Technical build interaction layer: deliberately lightweight. */
 @media (prefers-reduced-motion:no-preference){
   .build-page .build-reveal{
     opacity:0;
     transition:
-      opacity .78s cubic-bezier(.2,.68,.2,1),
-      transform .92s cubic-bezier(.16,.8,.22,1);
+      opacity .38s ease-out,
+      transform .5s cubic-bezier(.2,.72,.24,1);
     transition-delay:var(--reveal-delay,0ms);
     will-change:opacity,transform;
   }
-  .build-page .build-reveal.build-motion-up{transform:translate3d(0,34px,0)}
-  .build-page .build-reveal.build-motion-left{transform:translate3d(-42px,18px,0)}
-  .build-page .build-reveal.build-motion-right{transform:translate3d(42px,18px,0)}
-  .build-page .build-reveal.build-motion-soft{transform:translate3d(0,22px,0) scale(.985)}
+  .build-page .build-reveal.build-motion-up{transform:translate3d(0,18px,0)}
+  .build-page .build-reveal.build-motion-left{transform:translate3d(-24px,8px,0)}
+  .build-page .build-reveal.build-motion-right{transform:translate3d(24px,8px,0)}
+  .build-page .build-reveal.build-motion-soft{transform:translate3d(0,12px,0) scale(.992)}
   .build-page .build-reveal.is-visible{
     opacity:1;
     transform:translate3d(0,0,0) scale(1);
   }
+  .build-display.build-reveal,
+  .build-case-title.build-reveal{transition-duration:.58s}
 
   .build-project-image img,
-  .build-case-visual img,
-  .build-preview-stack img{
-    transition:transform .85s cubic-bezier(.16,.8,.22,1),opacity .35s ease;
+  .build-case-visual img{
+    transition:transform .32s cubic-bezier(.2,.72,.24,1),opacity .22s ease;
   }
-  .build-project-image:hover img{transform:scale(1.025)}
+  .build-project-image:hover img{transform:scale(1.015)}
   .build-project-card,
   .build-archive-card,
   .build-panel,
   .build-process-step,
   .build-cap-card{
-    transition:transform .45s cubic-bezier(.16,.8,.22,1),box-shadow .45s ease,border-color .35s ease;
+    transition:transform .24s ease-out,box-shadow .24s ease,border-color .2s ease;
   }
   .build-project-card:hover,
-  .build-archive-card:hover{
-    transform:translateY(-5px);
-  }
-  .build-link-list a span:last-child{
-    transition:transform .35s cubic-bezier(.16,.8,.22,1);
-  }
-  .build-link-list a:hover span:last-child{transform:translateX(6px)}
-
-  .build-kicker.build-reveal{letter-spacing:.12em}
-  .build-display.build-reveal,
-  .build-case-title.build-reveal{
-    transition-duration:1.02s;
-  }
+  .build-archive-card:hover{transform:translateY(-3px)}
+  .build-link-list a span:last-child{transition:transform .22s ease-out}
+  .build-link-list a:hover span:last-child{transform:translateX(4px)}
 }
 
 @media (pointer:fine) and (hover:hover){
@@ -61,9 +52,8 @@
   html.sd-cursor-enabled body,
   html.sd-cursor-enabled a,
   html.sd-cursor-enabled button,
-  html.sd-cursor-enabled [role="button"]{
-    cursor:none!important;
-  }
+  html.sd-cursor-enabled [role="button"]{cursor:none!important}
+
   .sd-cursor-dot,
   .sd-cursor-ring{
     position:fixed;
@@ -80,52 +70,53 @@
     margin:-3px 0 0 -3px;
     border-radius:50%;
     background:#111;
-    transition:opacity .18s ease,background .2s ease,transform .08s linear;
+    transition:opacity .12s ease,background .16s ease;
   }
   .sd-cursor-ring{
-    width:34px;
-    height:34px;
-    margin:-17px 0 0 -17px;
-    border:1px solid rgba(17,17,17,.48);
+    width:32px;
+    height:32px;
+    margin:-16px 0 0 -16px;
+    border:1px solid rgba(17,17,17,.42);
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
     color:#111;
-    background:rgba(255,255,255,0);
+    background:transparent;
     font-family:proxima-nova,"Open Sans",sans-serif;
     font-size:8px;
     font-weight:700;
     letter-spacing:.08em;
     text-transform:uppercase;
     transition:
-      width .28s cubic-bezier(.16,.8,.22,1),
-      height .28s cubic-bezier(.16,.8,.22,1),
-      margin .28s cubic-bezier(.16,.8,.22,1),
-      border-color .25s ease,
-      background .25s ease,
-      color .25s ease,
-      opacity .18s ease;
+      transform .09s ease-out,
+      width .2s ease-out,
+      height .2s ease-out,
+      margin .2s ease-out,
+      border-color .18s ease,
+      background .18s ease,
+      color .18s ease,
+      opacity .12s ease;
   }
   html.sd-cursor-live .sd-cursor-dot,
   html.sd-cursor-live .sd-cursor-ring{opacity:1}
   html.sd-cursor-link .sd-cursor-dot{background:#f70606}
   html.sd-cursor-link .sd-cursor-ring{
-    width:48px;
-    height:48px;
-    margin:-24px 0 0 -24px;
+    width:44px;
+    height:44px;
+    margin:-22px 0 0 -22px;
     border-color:#f70606;
-    background:rgba(247,6,6,.055);
+    background:rgba(247,6,6,.04);
   }
   html.sd-cursor-view .sd-cursor-dot{opacity:0}
   html.sd-cursor-view .sd-cursor-ring{
-    width:64px;
-    height:64px;
-    margin:-32px 0 0 -32px;
+    width:58px;
+    height:58px;
+    margin:-29px 0 0 -29px;
     border-color:#60adb8;
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.94);
     color:#111;
-    box-shadow:0 6px 24px rgba(0,0,0,.08);
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
   }
 }
 
@@ -141,11 +132,62 @@
     document.head.appendChild(style);
   }
 
+  function normalizePositioning(root){
+    root=root||document;
+
+    if(document.title.indexOf('UI/UX')!==-1){
+      document.title=document.title.replace('Front-End Development, UI/UX & Design','Front-End Development, Web & Digital Design').replace(/UI\/UX/g,'Web');
+    }
+    var description=document.querySelector('meta[name="description"]');
+    if(description){
+      description.content=description.content
+        .replace(/UI\/UX/g,'interface work')
+        .replace(/UI \/ interface design/g,'web and interface design');
+    }
+
+    var replacements=[
+      ['Front-End Development · UI/UX · Digital Design','Front-End Development · Email · Digital Design'],
+      ['UX / UI lens','Interface & implementation'],
+      ['UI / interface work','Interface implementation'],
+      ['UI / interface design','Web / interface design'],
+      ['Web / UI development','Web development'],
+      ['Web / UI','Web / Interface'],
+      ['Responsive UI','Responsive interfaces'],
+      ['responsive UI','responsive interfaces'],
+      ['UI implementation','Interface implementation'],
+      ['UI / UX','Web / interface design'],
+      ['component-based UI','component-based front end'],
+      ['Interactive UI states','Interactive interface states'],
+      ['UX/UI evidence','interface evidence'],
+      ['UI case study','front-end case study'],
+      ['UX research','user research']
+    ];
+
+    var walker=document.createTreeWalker(root.body||root,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(node){
+        var parent=node.parentElement;
+        if(!parent||/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/i.test(parent.tagName))return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes=[];
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(function(node){
+      var value=node.nodeValue;
+      replacements.forEach(function(pair){value=value.split(pair[0]).join(pair[1]);});
+      if(value!==node.nodeValue)node.nodeValue=value;
+    });
+
+    document.querySelectorAll('.resume-cert-list li').forEach(function(item){
+      if(item.textContent.indexOf('Foundations of User Experience (UX) Design')!==-1)item.remove();
+    });
+  }
+
   function motionVariant(el,index){
     if(el.matches('.build-project-card,.build-archive-card,.build-case-visual')){
       return index%2===0?'build-motion-left':'build-motion-right';
     }
-    if(el.matches('.build-panel,.build-process-step,.build-cap-card,.build-architecture .node,.build-deliverable')){
+    if(el.matches('.build-panel,.build-process-step,.build-cap-card,.build-architecture .node,.build-deliverable,.build-contact-card')){
       return 'build-motion-soft';
     }
     return 'build-motion-up';
@@ -154,6 +196,7 @@
   function initBuildMotion(root){
     root=root||document;
     installStyles();
+    normalizePositioning(document);
 
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 
@@ -176,9 +219,7 @@
       '.build-architecture .node',
       '.build-deliverable',
       '.build-contact-card',
-      '.build-contact-note',
-      '.build-link-list a',
-      '.build-preview-stack > *'
+      '.build-contact-note'
     ];
 
     var items=[];
@@ -197,15 +238,16 @@
       entries.forEach(function(entry){
         if(entry.isIntersecting){
           entry.target.classList.add('is-visible');
+          window.setTimeout(function(){entry.target.style.willChange='auto';},560);
           observer.unobserve(entry.target);
         }
       });
-    },{threshold:.1,rootMargin:'0px 0px -8% 0px'});
+    },{threshold:.06,rootMargin:'0px 0px -3% 0px'});
 
     items.forEach(function(el,index){
       el.dataset.motionReady='1';
       el.classList.add('build-reveal',motionVariant(el,index));
-      el.style.setProperty('--reveal-delay',Math.min((index%5)*65,260)+'ms');
+      el.style.setProperty('--reveal-delay',Math.min((index%3)*40,80)+'ms');
       observer.observe(el);
     });
   }
@@ -225,48 +267,49 @@
     document.body.appendChild(ring);
     document.documentElement.classList.add('sd-cursor-enabled');
 
-    var mouseX=-100,mouseY=-100,ringX=-100,ringY=-100;
-    var raf=0;
+    var nextX=-100,nextY=-100,raf=0,lastMode='';
 
-    function draw(){
-      ringX+=(mouseX-ringX)*.18;
-      ringY+=(mouseY-ringY)*.18;
-      dot.style.transform='translate3d('+mouseX+'px,'+mouseY+'px,0)';
-      ring.style.transform='translate3d('+ringX+'px,'+ringY+'px,0)';
-      raf=requestAnimationFrame(draw);
+    function paint(){
+      dot.style.transform='translate3d('+nextX+'px,'+nextY+'px,0)';
+      ring.style.transform='translate3d('+nextX+'px,'+nextY+'px,0)';
+      raf=0;
     }
 
-    document.addEventListener('mousemove',function(event){
-      mouseX=event.clientX;
-      mouseY=event.clientY;
+    function setMode(target){
+      var view=target&&target.closest&&target.closest('.build-project-image,.build-case-visual,.build-preview-stack a');
+      var link=target&&target.closest&&target.closest('a,button,[role="button"]');
+      var mode=view?'view':(link?'link':'');
+      if(mode===lastMode)return;
+      lastMode=mode;
+      document.documentElement.classList.toggle('sd-cursor-view',mode==='view');
+      document.documentElement.classList.toggle('sd-cursor-link',mode==='link');
+      ring.textContent=mode==='view'?'View':'';
+    }
+
+    document.addEventListener('pointermove',function(event){
+      nextX=event.clientX;
+      nextY=event.clientY;
       document.documentElement.classList.add('sd-cursor-live');
+      setMode(event.target);
+      if(!raf)raf=requestAnimationFrame(paint);
     },{passive:true});
 
-    document.addEventListener('mouseover',function(event){
-      var target=event.target.closest('a,button,[role="button"]');
-      var view=event.target.closest('.build-project-image,.build-case-visual,.build-preview-stack a');
-      document.documentElement.classList.toggle('sd-cursor-link',!!target);
-      document.documentElement.classList.toggle('sd-cursor-view',!!view);
-      ring.textContent=view?'View':'';
+    document.addEventListener('pointerleave',function(){
+      document.documentElement.classList.remove('sd-cursor-live','sd-cursor-link','sd-cursor-view');
+      lastMode='';
+      ring.textContent='';
     });
-
-    document.addEventListener('mouseout',function(event){
-      if(!event.relatedTarget){
-        document.documentElement.classList.remove('sd-cursor-live','sd-cursor-link','sd-cursor-view');
-        ring.textContent='';
-      }
-    });
-
     window.addEventListener('blur',function(){
       document.documentElement.classList.remove('sd-cursor-live','sd-cursor-link','sd-cursor-view');
+      lastMode='';
+      ring.textContent='';
     });
-
-    if(!raf)draw();
   }
 
   window.initBuildMotion=initBuildMotion;
 
   function init(){
+    normalizePositioning(document);
     initBuildMotion(document);
     initCursor();
   }
