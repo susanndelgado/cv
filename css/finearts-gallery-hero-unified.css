@@ -17,7 +17,7 @@
   display:none!important;
 }
 
-/* Match the live process-hero title: Playfair, light weight, 2.8rem, 10px tracking. */
+/* Match the live process-hero title. */
 .art-gallery-build .art-gallery-hero h1{
   max-width:1000px!important;
   margin:0 auto 20px!important;
@@ -31,7 +31,20 @@
   text-transform:uppercase!important;
 }
 
-/* Match the live Fine Arts hero-intro treatment. */
+/* Match the live Fine Arts subtitle style; gold is the only color change. */
+.art-gallery-build .art-gallery-hero h2{
+  max-width:800px!important;
+  margin:0 auto 30px!important;
+  color:#d4af37!important;
+  font-family:"Playfair",Georgia,serif!important;
+  font-size:1.2rem!important;
+  font-weight:300!important;
+  line-height:1.5!important;
+  letter-spacing:4px!important;
+  text-align:center!important;
+}
+
+/* Match the live Fine Arts hero-intro treatment and preserve page copy. */
 .art-gallery-build .art-gallery-hero > p{
   max-width:800px!important;
   margin:0 auto!important;
@@ -106,6 +119,10 @@
   .art-gallery-build .art-gallery-hero h1{
     font-size:2.2rem!important;
     letter-spacing:6px!important;
+  }
+  .art-gallery-build .art-gallery-hero h2{
+    font-size:1.1rem!important;
+    letter-spacing:3px!important;
   }
   .art-gallery-build .art-gallery-hero > p{
     font-size:1rem!important;
