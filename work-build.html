@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/build-style.css">
   <link rel="stylesheet" href="css/build-review.css">
 </head>
-<body class="build-page">
+<body class="build-page work-build-page">
 <a class="build-skip" href="#main">Skip to content</a>
 <header class="build-site-header">
   <div class="build-top-tabs">
@@ -182,33 +182,26 @@
     Promise.all(exits).then(function(){
       if(run!==filterRun)return;
       hiding.forEach(function(card){card.hidden=true;card.style.opacity='';});
-      showing.forEach(function(card){card.hidden=false;});
+      showing.forEach(function(card){card.hidden=false;card.style.opacity='0';});
 
-      var visible=cards.filter(function(card){return !card.hidden;});
       var last=new Map();
-      visible.forEach(function(card){last.set(card,card.getBoundingClientRect());});
+      cards.filter(function(card){return !card.hidden;}).forEach(function(card){last.set(card,card.getBoundingClientRect());});
 
-      visible.forEach(function(card,index){
-        var before=first.get(card),after=last.get(card),delay=Math.min(index*18,126);
-        if(before&&after){
-          var dx=before.left-after.left,dy=before.top-after.top;
-          if(Math.abs(dx)>1||Math.abs(dy)>1){
-            card.animate([
-              {translate:dx+'px '+dy+'px',opacity:1},
-              {translate:'0 0',opacity:1}
-            ],{duration:380,delay:delay,easing:'cubic-bezier(.22,.61,.36,1)'});
-          }
-        }else if(showing.indexOf(card)!==-1){
-          card.animate([
-            {translate:'0 18px',opacity:0},
-            {translate:'0 0',opacity:1}
-          ],{duration:330,delay:delay,easing:'cubic-bezier(.22,.61,.36,1)'});
-        }
+      cards.filter(function(card){return !card.hidden&&!showing.includes(card);}).forEach(function(card){
+        var a=first.get(card),b=last.get(card);
+        if(!a||!b)return;
+        var dx=a.left-b.left,dy=a.top-b.top;
+        if(Math.abs(dx)<1&&Math.abs(dy)<1)return;
+        card.animate([{transform:'translate('+dx+'px,'+dy+'px)'},{transform:'translate(0,0)'}],{duration:380,easing:'cubic-bezier(.2,.65,.25,1)'});
+      });
+
+      showing.forEach(function(card,index){
+        card.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:330,delay:index*28,easing:'ease-out',fill:'both'}).finished.then(function(){card.style.opacity='';}).catch(function(){});
       });
     });
   }
-  buttons.forEach(function(btn){btn.addEventListener('click',function(){buttons.forEach(function(x){x.classList.remove('active');});btn.classList.add('active');filter(btn.dataset.filter);});});
-  Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){posts=merge(data[0].posts||[],[data[1]||{},data[2]||{}]);render();}).catch(function(){featured.innerHTML='<p class="build-status">Project data could not be loaded.</p>';});
+  buttons.forEach(function(b){b.addEventListener('click',function(){buttons.forEach(function(x){x.classList.remove('active');});b.classList.add('active');filter(b.dataset.filter);});});
+  Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){posts=merge(data[0].posts||[],[data[1]||{},data[2]||{}]);render();}).catch(function(){featured.innerHTML='<p>Project data is unavailable.</p>';archive.innerHTML='';});
 })();
 </script>
 <script src="js/build-motion.js"></script>
