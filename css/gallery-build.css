@@ -28,15 +28,12 @@
   color:#f70606!important;
 }
 
-/* Gallery pages may use black/gold in the standard second navigation row,
-   but the structure, spacing and sizing stay the same as the rest of the site. */
+/* Gallery pages use the standard second navigation row with black/gold Fine Arts treatment. */
 .art-gallery-build .build-main-nav{
   background:#111!important;
   border-bottom:1px solid #272727!important;
 }
-.art-gallery-build .build-main-nav-inner{
-  min-height:67px;
-}
+.art-gallery-build .build-main-nav-inner{min-height:67px}
 .art-gallery-build .build-site-brand{
   color:#fff!important;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
@@ -58,15 +55,16 @@
 
 .art-gallery-build main{background:#fff}
 
-/* Standard interior-page hero: left aligned, moderate scale, Proxima Nova.
-   Centered display heroes remain reserved for the main landing pages. */
+/* Gallery hero: full-width black field similar to the Fine Arts home hero.
+   Title, description and gallery-to-gallery navigation live in one block. */
 .art-gallery-build .art-gallery-hero{
-  width:min(1220px,92vw);
-  margin:0 auto;
-  padding:72px 0 58px;
+  width:100%;
+  margin:0;
+  padding:68px max(4vw,calc((100vw - 1220px)/2)) 44px;
   text-align:left;
-  background:#fff;
-  border-bottom:1px solid var(--gallery-line);
+  background:#111;
+  border-bottom:0;
+  color:#fff;
 }
 .art-gallery-build .art-gallery-hero .seal-contained{display:none!important}
 .art-gallery-build .art-gallery-hero::before{
@@ -75,7 +73,7 @@
   margin-bottom:18px;
   padding-left:16px;
   border-left:4px solid var(--gallery-gold);
-  color:#555;
+  color:var(--gallery-gold);
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
   font-size:.78rem;
   font-weight:600;
@@ -84,18 +82,18 @@
 }
 .art-gallery-build .art-gallery-hero h1{
   max-width:850px;
-  margin:0 0 18px;
-  color:#111;
+  margin:0 0 16px;
+  color:#fff;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:clamp(2.35rem,4.5vw,4.15rem);
+  font-size:clamp(2.2rem,4vw,3.75rem);
   font-weight:500;
-  line-height:1.03;
-  letter-spacing:-.02em;
+  line-height:1.05;
+  letter-spacing:-.015em;
 }
-.art-gallery-build .art-gallery-hero p{
-  max-width:690px;
+.art-gallery-build .art-gallery-hero > p{
+  max-width:760px;
   margin:0;
-  color:#6c757d;
+  color:#c7c7c7;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
   font-size:1.02rem;
   line-height:1.72;
@@ -103,32 +101,47 @@
 .art-gallery-build .art-gallery-rule{
   width:64px;
   height:3px;
-  margin:27px 0 0;
+  margin:25px 0 0;
   background:var(--gallery-gold);
 }
 
-/* Simple gallery-to-gallery navigation beneath the hero. */
-.art-gallery-categories{
-  width:min(1220px,92vw);
-  margin:0 auto;
-  padding:18px 0;
+/* Gallery switcher stays inside the black hero instead of becoming a separate bar. */
+.art-gallery-build .art-gallery-categories{
+  width:auto;
+  margin:30px 0 0;
+  padding:20px 0 0;
   display:flex;
   flex-wrap:wrap;
-  gap:10px 26px;
-  border-bottom:1px solid var(--gallery-line);
+  gap:10px 28px;
+  border-top:1px solid #343434;
+  border-bottom:0;
 }
-.art-gallery-categories a{
-  color:#777;
+.art-gallery-build .art-gallery-categories a{
+  position:relative;
+  padding:0 0 5px;
+  color:#a8a8a8;
   text-decoration:none;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:.78rem;
-  font-weight:600;
-  letter-spacing:.09em;
-  text-transform:uppercase;
+  font-size:.82rem;
+  font-weight:500;
+  letter-spacing:.055em;
+  text-transform:none;
 }
-.art-gallery-categories a:hover,
-.art-gallery-categories a:focus-visible,
-.art-gallery-categories a.active{color:var(--gallery-gold)}
+.art-gallery-build .art-gallery-categories a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:transparent;
+}
+.art-gallery-build .art-gallery-categories a:hover,
+.art-gallery-build .art-gallery-categories a:focus-visible,
+.art-gallery-build .art-gallery-categories a.active{color:var(--gallery-gold)}
+.art-gallery-build .art-gallery-categories a:hover::after,
+.art-gallery-build .art-gallery-categories a:focus-visible::after,
+.art-gallery-build .art-gallery-categories a.active::after{background:var(--gallery-gold)}
 
 /* Artwork presentation: clean editorial masonry rather than cards or a dark wall.
    Natural image proportions remain intact and captions sit directly underneath. */
@@ -263,8 +276,9 @@
 .art-gallery-build .build-footer a:focus-visible{color:var(--gallery-gold)!important}
 
 @media(max-width:760px){
-  .art-gallery-build .art-gallery-hero{padding:54px 0 44px}
-  .art-gallery-build .art-gallery-hero h1{font-size:clamp(2.15rem,10vw,3.35rem)}
+  .art-gallery-build .art-gallery-hero{padding:52px 22px 38px}
+  .art-gallery-build .art-gallery-hero h1{font-size:clamp(2rem,9vw,3.1rem)}
+  .art-gallery-build .art-gallery-categories{gap:12px 20px}
   .art-gallery-build .art-gallery-shell{padding-top:42px}
   .art-gallery-build .art-gallery-grid{columns:1}
   .art-gallery-build .build-main-nav-inner{align-items:flex-start;flex-direction:column;padding:15px 0}
