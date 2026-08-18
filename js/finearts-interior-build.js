@@ -22,19 +22,9 @@
       #top{display:none!important}
       footer{display:none!important}
 
-      /* Preserve each live page's hero copy and layout. Hero subtitles use the
-         live Fine Arts subtitle typography with gold as the only color change. */
-      .process-hero .seal-contained{display:none!important}
-      .process-hero h2{
-        color:#d4af37!important;
-        font-family:"Playfair",Georgia,serif!important;
-        font-size:1.2rem!important;
-        font-weight:300!important;
-        letter-spacing:4px!important;
-        line-height:1.5!important;
-        margin-bottom:30px!important;
-        text-align:center!important;
-      }
+      /* Preserve the live Fine Arts hero exactly. The only hero typography
+         color change in build previews is the subtitle (h2) to gold. */
+      .process-hero h2{color:#d4af37!important}
     `;
     doc.head.appendChild(style);
 
