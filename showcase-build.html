@@ -25,7 +25,7 @@
       <a class="build-site-brand" href="/index.html">SUSAN DELGADO</a>
       <nav class="build-site-links" aria-label="Technical portfolio navigation">
         <a href="work-build.html">TECHNICAL WORK</a>
-        <a href="showcase-build.html?post=27" aria-current="page">SHOWCASE</a>
+        <a href="showcase-build.html?post=23" aria-current="page">SHOWCASE</a>
         <a href="contact-build.html">CONTACT</a>
       </nav>
     </div>
@@ -184,12 +184,12 @@
   Promise.all([
     fetch('/js/posts.json').then(function(r){return r.json();}),
     fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
-    fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
+    fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}) ,
     fetch('/js/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(data){
     var posts=merge(data[0].posts||[],[data[1]||{},data[2]||{}]);
     var enhancedMap=data[3]||{};
-    var requested=new URLSearchParams(location.search).get('post')||'27';
+    var requested=new URLSearchParams(location.search).get('post')||'23';
     var p=posts.find(function(x){return String(x.legacyId)===String(requested);})||posts[0];
     var enhanced=enhancedMap[String(p.legacyId)]||null;
     renderHero(p,enhanced);
