@@ -61,14 +61,14 @@
 
   function insertGalleryNavigation(type){
     var hero=document.querySelector('.art-gallery-hero');
-    if(!hero||hero.querySelector('.art-gallery-categories')) return;
+    if(!hero||hero.nextElementSibling&&hero.nextElementSibling.classList.contains('art-gallery-categories')) return;
     var nav=document.createElement('nav');
     nav.className='art-gallery-categories';
     nav.setAttribute('aria-label','Fine Arts galleries');
     nav.innerHTML=GALLERIES.map(function(gallery){
       return '<a href="'+gallery.href+'"'+(gallery.type===type?' class="active" aria-current="page"':'')+'>'+gallery.label+'</a>';
     }).join('');
-    hero.appendChild(nav);
+    hero.parentNode.insertBefore(nav,hero.nextSibling);
   }
 
   function makeCard(item,index){
