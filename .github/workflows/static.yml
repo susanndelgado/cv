@@ -25,6 +25,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Add Fine Arts and Showcase to fine art navigation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('finearts.html')
+          text = path.read_text(encoding='utf-8')
+          old = '''       <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+         <li class="item"><a class="nav-link link" href="about.html" null="">ABOUT</a></li>'''
+          new = '''       <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+         <li class="active item"><a class="nav-link link active" aria-current="page" href="/finearts.html">FINE ARTS</a></li>
+         <li class="item"><a class="nav-link link" href="/showcase.html">SHOWCASE</a></li>
+         <li class="item"><a class="nav-link link" href="about.html" null="">ABOUT</a></li>'''
+          if new in text:
+              raise SystemExit(0)
+          if old not in text:
+              raise SystemExit('Expected finearts navigation fragment was not found.')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Persist fine art navigation to main
+        run: |
+          if git diff --quiet -- finearts.html; then
+            echo "Fine art navigation is already updated."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add finearts.html
+            git commit -m "Add Fine Arts and Showcase to art navigation"
+            git push origin HEAD:main
+          fi
+
       # These shared display corrections must live in the repository itself.
       # GitHub also performs a branch-based Pages build, so relying only on
       # artifact-time transformations can cause the raw source to reappear.
