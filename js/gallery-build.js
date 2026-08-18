@@ -16,26 +16,12 @@
   function ensureBuildStylesheets(){
     var head=document.head;
     if(!head)return;
-    if(!document.getElementById('sd-cormorant-font')){
-      var font=document.createElement('link');
-      font.id='sd-cormorant-font';
-      font.rel='stylesheet';
-      font.href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap';
-      head.appendChild(font);
-    }
     if(!document.getElementById('sd-unified-nav')){
       var nav=document.createElement('link');
       nav.id='sd-unified-nav';
       nav.rel='stylesheet';
       nav.href='/css/build-navigation-unified.css';
       head.appendChild(nav);
-    }
-    if(!document.getElementById('sd-serif-test')){
-      var serif=document.createElement('link');
-      serif.id='sd-serif-test';
-      serif.rel='stylesheet';
-      serif.href='/css/build-serif-test.css';
-      head.appendChild(serif);
     }
   }
 
@@ -87,14 +73,14 @@
 
   function insertGalleryNavigation(type){
     var hero=document.querySelector('.art-gallery-hero');
-    if(!hero||hero.nextElementSibling&&hero.nextElementSibling.classList.contains('art-gallery-categories')) return;
+    if(!hero||hero.querySelector('.art-gallery-categories')) return;
     var nav=document.createElement('nav');
     nav.className='art-gallery-categories';
     nav.setAttribute('aria-label','Fine Arts galleries');
     nav.innerHTML=GALLERIES.map(function(gallery){
       return '<a href="'+gallery.href+'"'+(gallery.type===type?' class="active" aria-current="page"':'')+'>'+gallery.label+'</a>';
     }).join('');
-    hero.parentNode.insertBefore(nav,hero.nextSibling);
+    hero.appendChild(nav);
   }
 
   function makeCard(item,index){
