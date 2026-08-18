@@ -2,10 +2,11 @@
    navigation, label, metadata and body typeface across both portfolios. */
 :root{--build-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif}
 
-/* Fine Arts landing content. */
-.art-build-preview #fineArtsPreview h1,
-.art-build-preview #fineArtsPreview h2,
-.art-build-preview #fineArtsPreview h3{
+/* Fine Arts landing HERO ONLY. Inner live-page content must keep its original
+   typography and styling. */
+.art-build-preview #fineArtsPreview .boutique-hero h1,
+.art-build-preview #fineArtsPreview .boutique-hero h2,
+.art-build-preview #fineArtsPreview .boutique-hero h3{
   font-family:var(--build-serif)!important;
   font-weight:600!important;
   letter-spacing:.005em!important;
