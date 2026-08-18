@@ -1,28 +1,33 @@
-/* Review pass: shared black/gold chrome + smaller editorial typography.
-   Loaded after build-style.css so the earlier prototype remains easy to compare/revert. */
+/* Review pass: retain the improved portfolio structure while returning to the
+   established Susan Delgado technical-site palette and navigation language. */
 :root{
-  --teal:#b28b2e;
-  --teal-dark:#8f6c17;
+  --teal:#60adb8;
+  --teal-dark:#3f8791;
+  --red:#f70606;
+  --tab:#eff8ff;
+  --ink:#111111;
+  --muted:#656b70;
+  --line:#dedede;
+  --paper:#f6f6f6;
   --gold:#d4af37;
-  --tab:#111111;
-  --dark:#111111;
 }
 
 body.build-page{
-  background:#f6f4ef;
+  background:#f6f6f6;
+  color:#111;
 }
 
-/* Shared navigation: same flat two-level language as the Fine Arts site,
-   tested here in a black/gold palette before any global adoption. */
+/* Shared two-level navigation. The colors intentionally mirror the existing
+   Fine Arts / legacy technical navigation rather than introducing a new brand. */
 .build-site-header{
   position:relative;
   background:#fff;
   box-shadow:none;
-  border-bottom:1px solid #e3e0d9;
+  border-bottom:1px solid #eeeeee;
 }
 .build-top-tabs{
-  background:#111;
-  border-bottom:1px solid #2d2d2d;
+  background:#eff8ff;
+  border-bottom:1px solid #dee2e6;
 }
 .build-tabs{
   padding:0 15px;
@@ -31,20 +36,22 @@ body.build-page{
 }
 .build-tabs a{
   padding:10px 16px;
-  color:#d4af37;
+  color:#60adb8;
   border:1px solid transparent;
+  background:transparent;
 }
 .build-tabs a:hover,.build-tabs a:focus-visible{
-  color:#fff;
-  border-color:#3b3b3b #3b3b3b #2d2d2d;
+  color:#f70606;
+  border-color:#e9ecef #e9ecef #dee2e6;
+  outline:none;
 }
 .build-tabs .active a{
-  color:#111;
+  color:#495057;
   background:#fff;
-  border-color:#444 #444 #fff;
+  border-color:#dee2e6 #dee2e6 #fff;
 }
 .build-tabs .active a:hover,.build-tabs .active a:focus-visible{
-  color:#8f6c17;
+  color:#f70606;
 }
 .build-main-nav{
   background:#fff;
@@ -56,10 +63,14 @@ body.build-page{
   min-height:67px;
 }
 .build-site-brand{
+  color:#000!important;
   font-family:proxima-nova,"Open Sans",sans-serif;
   font-size:1rem;
   font-weight:500;
   letter-spacing:.025em;
+}
+.build-site-brand:hover,.build-site-brand:focus-visible{
+  color:rgba(0,0,0,.65)!important;
 }
 .build-site-links a{
   padding:20px 12px;
@@ -73,219 +84,222 @@ body.build-page{
   left:12px;
   right:12px;
   height:1px;
+  background:transparent;
+}
+.build-site-links a:hover,.build-site-links a:focus-visible{
+  color:#f70606;
 }
 .build-site-links a:hover::after,.build-site-links a:focus-visible::after,
 .build-site-links a[aria-current=page]::after{
-  background:#d4af37;
+  background:#f70606;
 }
 
-/* The first version read as a landing-page generator because the type was huge.
-   Keep the message but make it behave like a portfolio heading. */
+/* Technical hero: white and restrained, with the original red-title idea
+   retained as the small discipline label. */
 .build-hero{
-  padding:68px 0 64px;
-  background:
-    radial-gradient(circle at 79% 30%,rgba(212,175,55,.16),transparent 24%),
-    linear-gradient(115deg,#0b0b0b 0%,#191919 52%,#0e0e0e 100%);
+  padding:66px 0 64px;
+  background:#fff;
+  color:#111;
+  border-bottom:1px solid #ececec;
 }
 .build-case-hero{
-  padding:56px 0 46px;
-  background:
-    radial-gradient(circle at 76% 28%,rgba(212,175,55,.13),transparent 25%),
-    linear-gradient(115deg,#0b0b0b 0%,#181818 55%,#0d0d0d 100%);
+  padding:54px 0 46px;
+  background:radial-gradient(ellipse at center,#fff 0%,#fff 55%,#ededed 100%);
+  color:#111;
+  border-bottom:1px solid #e3e3e3;
 }
-.build-hero::before,.build-case-hero::before{
-  background:radial-gradient(circle at 72% 42%,rgba(212,175,55,.14),transparent 25%);
+.build-hero::before,.build-hero::after,.build-case-hero::before,.build-case-hero::after{
+  display:none;
+}
+.build-hero .build-kicker{
+  display:inline-block;
+  margin-bottom:18px;
+  padding:4px 15px;
+  background:#f70606;
+  color:#fff;
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:.07em;
+  line-height:1.5;
+}
+.build-case-hero .build-kicker{
+  color:#60adb8;
 }
 .build-kicker{
-  color:#8f6c17;
-  letter-spacing:.14em;
-}
-.build-hero .build-kicker,.build-case-hero .build-kicker{
-  color:#d4af37;
+  color:#60adb8;
+  letter-spacing:.12em;
 }
 .build-display{
-  max-width:760px;
-  font-size:clamp(2.2rem,4.5vw,4rem);
+  max-width:780px;
+  color:#111;
+  font-family:proxima-nova,"Open Sans",sans-serif;
+  font-size:clamp(2.15rem,4.2vw,3.65rem);
   line-height:1.08;
   letter-spacing:0;
-  font-weight:400;
+  font-weight:500;
 }
 .build-lede{
-  max-width:760px;
+  max-width:780px;
   margin-top:22px;
-  font-size:clamp(.98rem,1.5vw,1.12rem);
-  line-height:1.75;
+  color:#3d4246;
+  font-size:clamp(.98rem,1.45vw,1.1rem);
+  line-height:1.78;
 }
 .build-case-title{
-  max-width:820px;
-  font-size:clamp(2rem,4vw,3.65rem);
-  line-height:1.06;
+  max-width:850px;
+  color:#111;
+  font-family:proxima-nova,"Open Sans",sans-serif;
+  font-size:clamp(2rem,3.9vw,3.45rem);
+  line-height:1.08;
   letter-spacing:0;
+  font-weight:500;
 }
 .build-case-summary{
   margin-top:18px;
+  color:#4d5358;
   font-size:1.02rem;
   line-height:1.7;
 }
 .build-section-head h2,.build-case-content h2{
-  font-size:clamp(1.75rem,3vw,2.6rem);
-  line-height:1.14;
+  font-family:proxima-nova,"Open Sans",sans-serif;
+  font-size:clamp(1.7rem,2.8vw,2.45rem);
+  line-height:1.16;
+  font-weight:500;
+  letter-spacing:0;
 }
 
-/* Transparency as interface layering, not floating app cards. */
+/* A little transparent interface depth, but kept inside a minimal gray/white
+   system rather than turning the page into an application shell. */
 .build-brief{
   padding:26px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.17);
-  border-top:3px solid #d4af37;
+  background:rgba(247,247,247,.84);
+  color:#111;
+  border:1px solid #dedede;
+  border-top:4px solid #60adb8;
   box-shadow:none;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.build-brief h2{color:#111}
+.build-brief p{color:#5d6469}
+.build-hero .build-pill,.build-case-hero .build-pill{
+  color:#495057;
+  background:rgba(255,255,255,.72);
+  border-color:#d9d9d9;
 }
 .build-panel,.build-case-meta,.build-architecture .node{
-  background:rgba(255,255,255,.68);
-  border-color:#ddd8cc;
+  background:rgba(255,255,255,.86);
+  border-color:#dddddd;
   box-shadow:none;
   border-radius:0;
 }
 .build-process-step{
-  background:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.68);
 }
 .build-project-card{
   border-radius:0;
   background:#fff;
-  border:1px solid #ded9ce;
-  border-top:3px solid #d4af37;
-  box-shadow:0 12px 30px rgba(0,0,0,.06);
+  border:1px solid #dedede;
+  box-shadow:0 10px 28px rgba(0,0,0,.045);
+}
+.build-project-card:hover{
+  box-shadow:0 20px 42px rgba(0,0,0,.075);
 }
 .build-archive-card{
   border-radius:0;
   background:#fff;
+  border-color:#dedede;
 }
 .build-project-meta,.build-process-step .step{
-  color:#8f6c17;
+  color:#60adb8;
 }
-.build-pill{
-  border-radius:0;
-}
+.build-pill{border-radius:0}
 .build-filter{
   border-radius:0;
-  border-color:#cfc9bd;
+  border-color:#cdcdcd;
 }
 .build-filter:hover,.build-filter:focus-visible,.build-filter.active{
   background:#111;
   border-color:#111;
+  color:#fff;
 }
 .build-btn{
   border-radius:0;
+  border-color:#111;
+  background:transparent;
+  color:#111!important;
+  text-shadow:none;
+}
+.build-btn:hover,.build-btn:focus-visible{
+  background:transparent;
+  color:#f70606!important;
+  border-color:#f70606;
 }
 .build-btn.secondary{
-  border-color:#d4af37;
+  border-color:#60adb8;
+  color:#60adb8!important;
 }
+.build-btn.secondary:hover,.build-btn.secondary:focus-visible{
+  background:transparent;
+  border-color:#f70606;
+  color:#f70606!important;
+}
+.build-section{background:#f6f6f6}
+.build-section.white{background:#fff}
+.build-section.dark{
+  background:#efefef;
+  color:#111;
+}
+.build-section.dark::before{display:none}
+.build-section.dark .build-section-head p,
+.build-section.dark .build-cap-card p{color:#62686d}
+.build-section.dark .build-cap-card{
+  background:#fff;
+  color:#111;
+  border-color:#dedede;
+  border-top:3px solid #60adb8;
+}
+.build-section.dark .build-cap-card .num{color:#f70606}
 
-/* Shared footer preview. */
+/* Shared footer preview: same quiet white/gray language as Fine Arts. */
 .build-footer{
-  padding:36px 0 42px;
-  background:#111;
-  color:#e8e4db;
-  border-top:3px solid #d4af37;
-}
-.build-footer a{
-  color:#e8e4db;
-}
-.build-footer a:hover,.build-footer a:focus-visible{
-  color:#d4af37;
-}
-.build-footer-philosophy{
-  color:#b8b3a8;
-}
-
-/* Fine Arts build preview uses the same proposed chrome but retains
-   the current art-side content hierarchy. */
-.art-build-preview .art-preview-hero{
-  padding:72px 0;
-  background:#111;
-  color:#fff;
+  padding:34px 0 40px;
+  background:#fff;
+  color:#6c757d;
+  border-top:1px solid #dee2e6;
   text-align:center;
 }
-.art-build-preview .art-preview-seal{
-  width:145px;
-  height:145px;
-  margin:0 auto 24px;
-  border:2px solid #d4af37;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+.build-footer a{color:#6c757d}
+.build-footer a:hover,.build-footer a:focus-visible{color:#f70606}
+.build-footer-philosophy{color:#6c757d}
+
+/* Scroll-interface transition prototype. JS only adds these classes when
+   IntersectionObserver is available, so content remains visible otherwise. */
+.build-reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.2,.65,.25,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
 }
-.art-build-preview .art-preview-seal img{width:85%}
-.art-build-preview .art-preview-hero h1{
-  margin:0;
-  font-family:"Playfair",Georgia,serif;
-  font-size:clamp(2rem,4vw,3.1rem);
-  font-weight:400;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.art-build-preview .art-preview-hero p{
-  max-width:780px;
-  margin:24px auto 0;
-  color:#b9b5ad;
-  font-size:1rem;
-  line-height:1.9;
-}
-.art-preview-grid{
-  width:min(1180px,calc(100% - 40px));
-  margin:0 auto;
-  padding:78px 0;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:24px;
-}
-.art-preview-tile{
-  position:relative;
-  min-height:310px;
-  overflow:hidden;
-  border:1px solid #ddd8cc;
-  background:#111;
-}
-.art-preview-tile img{
-  width:100%;
-  height:100%;
-  min-height:310px;
-  object-fit:cover;
-  display:block;
-  opacity:.90;
-  transition:transform .5s ease;
-}
-.art-preview-tile:hover img{transform:scale(1.025)}
-.art-preview-caption{
-  position:absolute;
-  left:0;right:0;bottom:0;
-  padding:18px 20px;
-  background:rgba(0,0,0,.72);
-  color:#fff;
-  border-top:1px solid rgba(212,175,55,.75);
-}
-.art-preview-caption strong{
-  display:block;
-  font-family:"Playfair",Georgia,serif;
-  font-size:1.25rem;
-  font-weight:400;
-}
-.art-preview-caption span{
-  display:block;
-  margin-top:4px;
-  color:#d1ccc1;
-  font-size:.82rem;
+.build-reveal.is-visible{
+  opacity:1;
+  transform:none;
 }
 
 @media(max-width:760px){
-  .build-display{font-size:clamp(2rem,9vw,3rem)}
-  .build-case-title{font-size:clamp(1.9rem,9vw,2.9rem)}
+  .build-display{font-size:clamp(2rem,9vw,2.9rem)}
+  .build-case-title{font-size:clamp(1.9rem,9vw,2.8rem)}
   .build-main-nav-inner{align-items:flex-start;flex-direction:column;padding:16px 0;gap:4px}
   .build-site-links{flex-wrap:wrap}
   .build-site-links a{padding:8px 10px}
   .build-site-links a::after{bottom:3px;left:10px;right:10px}
-  .art-preview-grid{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .build-reveal{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
 }
