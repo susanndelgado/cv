@@ -4,6 +4,32 @@
   var STYLE_ID='sd-build-interactions';
   var normalizedNodes=new WeakSet();
 
+  function ensureStylesheets(){
+    var head=document.head;
+    if(!head)return;
+    if(!document.getElementById('sd-cormorant-font')){
+      var font=document.createElement('link');
+      font.id='sd-cormorant-font';
+      font.rel='stylesheet';
+      font.href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap';
+      head.appendChild(font);
+    }
+    if(!document.getElementById('sd-unified-nav')){
+      var nav=document.createElement('link');
+      nav.id='sd-unified-nav';
+      nav.rel='stylesheet';
+      nav.href='/css/build-navigation-unified.css';
+      head.appendChild(nav);
+    }
+    if(!document.getElementById('sd-serif-test')){
+      var serif=document.createElement('link');
+      serif.id='sd-serif-test';
+      serif.rel='stylesheet';
+      serif.href='/css/build-serif-test.css';
+      head.appendChild(serif);
+    }
+  }
+
   function installStyles(){
     if(document.getElementById(STYLE_ID))return;
     var style=document.createElement('style');
@@ -11,29 +37,6 @@
     style.textContent=`
 /* Technical build corrections + performance layer. */
 .build-hero .build-kicker{font-weight:400!important}
-
-/* Technical navigation: same sizing/active structure as Fine Arts, red accent. */
-body.build-page .build-site-links a{
-  padding:20px 12px!important;
-  color:#6c757d!important;
-  font-family:proxima-nova,"Open Sans",sans-serif!important;
-  font-size:1rem!important;
-  font-weight:500!important;
-  letter-spacing:.02em!important;
-}
-body.build-page .build-site-links a::after{
-  left:12px!important;
-  right:12px!important;
-  bottom:14px!important;
-  height:1px!important;
-  background:transparent!important;
-}
-body.build-page .build-site-links a[aria-current=page]{color:#111!important}
-body.build-page .build-site-links a[aria-current=page]::after{background:#f70606!important}
-body.build-page .build-site-links a:hover,
-body.build-page .build-site-links a:focus-visible{color:#f70606!important}
-body.build-page .build-site-links a:hover::after,
-body.build-page .build-site-links a:focus-visible::after{background:#f70606!important}
 
 /* Case-study metadata readability. */
 .build-case-meta{
@@ -119,8 +122,6 @@ body.build-page:not(.resume-build-page) .build-project-image:hover img{
   transform:none!important;
 }
 body.build-page:not(.resume-build-page) .build-project-card:hover{box-shadow:0 10px 28px rgba(0,0,0,.045)!important}
-
-/* Skip layout/paint work for offscreen archive cards until they approach view. */
 body.build-page:not(.resume-build-page) .build-archive-card{
   content-visibility:auto;
   contain-intrinsic-size:360px 430px;
@@ -288,6 +289,7 @@ body.build-page:not(.resume-build-page) .build-archive-card{
   }
 
   function initBuildMotion(root){
+    ensureStylesheets();
     installStyles();
     normalizeCopy(root||document);
   }
@@ -334,6 +336,7 @@ body.build-page:not(.resume-build-page) .build-archive-card{
   window.normalizeBuildCopy=normalizeCopy;
 
   function init(){
+    ensureStylesheets();
     installStyles();
     normalizeCopy(document);
     initCursor();
