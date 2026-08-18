@@ -2,8 +2,10 @@
 .art-gallery-build .art-gallery-hero{
   text-align:center!important;
 }
+/* No build-only hero label: preserve the gallery's live title and description. */
 .art-gallery-build .art-gallery-hero::before{
-  text-align:center!important;
+  display:none!important;
+  content:none!important;
 }
 .art-gallery-build .art-gallery-hero h1{
   max-width:1000px!important;
