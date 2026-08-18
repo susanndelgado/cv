@@ -6,14 +6,8 @@
       "title": "Responsive conference information with a dynamic agenda",
       "intro": "The strongest interface evidence in the surviving TCT 2014 material is the way a large conference information set was organized across desktop, tablet and mobile, including a dynamic agenda rather than a static schedule.",
       "panels": [
-        {
-          "title": "Information structure",
-          "copy": "Conference content, schedules and industry information had to remain understandable across multiple related web experiences. The documented work includes TCT and TCT Industry interfaces, responsive layouts and agenda views."
-        },
-        {
-          "title": "Interaction + data",
-          "copy": "The dynamic agenda used interactive transitions and asynchronously loaded content connected to the same data source used by the conference app, giving the website and app a shared information foundation."
-        }
+        {"title": "Information structure", "copy": "Conference content, schedules and industry information had to remain understandable across multiple related web experiences. The documented work includes TCT and TCT Industry interfaces, responsive layouts and agenda views."},
+        {"title": "Interaction + data", "copy": "The dynamic agenda used interactive transitions and asynchronously loaded content connected to the same data source used by the conference app, giving the website and app a shared information foundation."}
       ]
     },
     "workflow": [
@@ -36,6 +30,76 @@
       {"title": "Dynamic agenda", "copy": "Interactive desktop/mobile schedule views connected to conference data."},
       {"title": "TCT Industry", "copy": "Related industry-facing web experience."},
       {"title": "Responsive email", "copy": "Supporting conference email development and distribution."}
+    ]
+  },
+  "23": {
+    "level": "full",
+    "note": "TCT 2015 used the same shared conference-site architecture as TCT 2014 and related TCT Industry properties. This presentation focuses on the stronger surviving 2015 visual evidence while retaining the documented shared system and responsibilities.",
+    "ux": {
+      "title": "Shared conference structure adapted for TCT 2015",
+      "intro": "TCT 2015 reused the conference architecture established across TCT and TCT Industry while adapting the visual presentation, content and conference-specific material for the 2015 event.",
+      "panels": [
+        {"title": "Reusable conference framework", "copy": "Recurring navigation, event information, schedules and related conference content followed structures shared across the TCT family of sites."},
+        {"title": "2015 visual adaptation", "copy": "The established framework was updated with TCT 2015 branding, content and event-specific presentation rather than rebuilding the platform from scratch."},
+        {"title": "Responsive implementation", "copy": "Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery and related front-end work supported the production site across screen sizes and browsers."}
+      ]
+    },
+    "workflow": [
+      {"label": "01 · SHARED SYSTEM", "title": "Conference structure", "copy": "Use the established TCT architecture for recurring navigation, program information, schedules and related conference content."},
+      {"label": "02 · ADAPT", "title": "2015 identity and content", "copy": "Adapt branding, content hierarchy and conference-specific material within the shared responsive framework."},
+      {"label": "03 · BUILD", "title": "Responsive front end", "copy": "Implement the 2015 presentation with Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery and related front-end technologies."},
+      {"label": "04 · CAMPAIGN", "title": "Conference communications", "copy": "Support the larger TCT program with responsive email development and related conference interfaces."}
+    ],
+    "system": {
+      "title": "Reusable TCT conference architecture",
+      "intro": "TCT 2015 was one annual implementation of the shared structures used across TCT and TCT Industry properties.",
+      "nodes": [
+        {"title": "Shared conference shell", "copy": "Recurring page structure, navigation, schedules and conference-information patterns."},
+        {"title": "2015 presentation layer", "copy": "Event-specific branding, content and visual treatment for the 2015 conference."},
+        {"title": "Responsive front end", "copy": "Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery, AJAX and responsive behavior."},
+        {"title": "Annual reuse", "copy": "The underlying approach supported related TCT and TCT Industry properties across multiple years."}
+      ]
+    },
+    "deliverables": [
+      {"title": "TCT 2015 conference website", "copy": "Responsive conference website built within the shared TCT event-site system."},
+      {"title": "Responsive interface views", "copy": "Desktop, tablet and mobile presentation documented in the surviving project assets."},
+      {"title": "TCT / TCT Industry structure", "copy": "Reusable conference patterns shared across related properties."},
+      {"title": "Responsive email", "copy": "Supporting TCT conference email development and production."}
+    ]
+  },
+  "22": {
+    "level": "focused",
+    "note": "This case study focuses on the surviving Pulse Gala 2015 visual implementation, including the purple event presentation and animated SVG homepage elements. Archived development tests are linked with the original project evidence.",
+    "ux": {
+      "title": "Animated event presentation within a responsive site",
+      "intro": "Pulse Gala 2015 combined a compact responsive event website with a more expressive homepage treatment built around animated SVG elements.",
+      "panels": [
+        {"title": "Campaign-led visual system", "copy": "The purple gala identity shaped the page treatment and presentation of event information, giving the site a distinct visual character within CRF's portfolio of event properties."},
+        {"title": "Animated SVG homepage", "copy": "Custom SVG elements on the homepage were animated to create a more polished and visually distinctive event presentation."},
+        {"title": "Responsive event structure", "copy": "HTML5, CSS, JavaScript, jQuery and Bootstrap supported the responsive site structure, navigation and event content."}
+      ]
+    },
+    "workflow": [
+      {"label": "01 · VISUAL", "title": "Event identity", "copy": "Translate the gala campaign into a distinctive purple web presentation."},
+      {"label": "02 · STRUCTURE", "title": "Responsive event pages", "copy": "Organize event content, navigation, gallery and forms within a compact responsive Bootstrap structure."},
+      {"label": "03 · MOTION", "title": "SVG animation", "copy": "Develop and test animated SVG homepage elements as part of the visual presentation."},
+      {"label": "04 · SUPPORT", "title": "Event communications", "copy": "Maintain the annual event site and support related CRF email communications."}
+    ],
+    "system": {
+      "title": "Responsive site with animated SVG presentation",
+      "intro": "The build paired a conventional event-site structure with a more expressive animated homepage.",
+      "nodes": [
+        {"title": "HTML5 / Bootstrap", "copy": "Responsive event-page structure and layout."},
+        {"title": "CSS / visual layer", "copy": "Purple campaign styling and responsive presentation."},
+        {"title": "JavaScript / jQuery", "copy": "Interactive behavior supporting the event site."},
+        {"title": "SVG animation", "copy": "Animated vector elements used as a distinctive homepage treatment."}
+      ]
+    },
+    "deliverables": [
+      {"title": "Responsive gala website", "copy": "CRF Pulse Gala 2015 event website and recurring annual site maintenance."},
+      {"title": "Animated SVG homepage", "copy": "Custom animated vector elements integrated into the homepage treatment."},
+      {"title": "Event content system", "copy": "Responsive navigation, gallery, forms and gala information."},
+      {"title": "Archived development tests", "copy": "Preserved JSFiddle tests linked from the original project evidence."}
     ]
   },
   "16": {
