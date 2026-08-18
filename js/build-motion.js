@@ -133,6 +133,7 @@
   }
 
   function normalizePositioning(root){
+    if(document.documentElement.dataset.positioningNormalized==='1')return;
     root=root||document;
 
     if(document.title.indexOf('UI/UX')!==-1){
@@ -181,6 +182,7 @@
     document.querySelectorAll('.resume-cert-list li').forEach(function(item){
       if(item.textContent.indexOf('Foundations of User Experience (UX) Design')!==-1)item.remove();
     });
+    document.documentElement.dataset.positioningNormalized='1';
   }
 
   function motionVariant(el,index){
