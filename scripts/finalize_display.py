@@ -29,6 +29,33 @@ COMMUNITY_RE = re.compile(
 WORK_FILTERS = '<div id="page-nav"><button class="btn active" data-filter="all">Show all</button><button class="btn" data-filter="brand">Branding & Logo</button><button class="btn" data-filter="conf">Conferences & Campaigns</button><button class="btn" data-filter="dig">Digital</button><button class="btn" data-filter="email">Email Development</button><button class="btn" data-filter="print">Print Collateral</button><button class="btn" data-filter="web">Websites</button></div>'
 WORK_FILTER_RE = re.compile(r'<div id="page-nav">.*?</div>', re.IGNORECASE | re.DOTALL)
 
+LIVE_NAV_PAGES = (
+    'finearts.html',
+    'about.html',
+    'exhibits.html',
+    'progress-chronicles.html',
+    'narrative-gallery.html',
+    'wildlife-gallery.html',
+    'decorative-gallery.html',
+    'studies-gallery.html',
+    'work.html',
+    'showcase.html',
+    'contact.html',
+)
+
+# Start the Google Apps Script request on the normal entry pages so the gallery
+# JSON is already stored under the same cache keys used by the gallery pages.
+GALLERY_PREFETCH_PAGES = (
+    'index.html',
+    'finearts.html',
+    'about.html',
+    'exhibits.html',
+    'progress-chronicles.html',
+)
+
+NAV_SCRIPT = '<script src="/js/site-navigation.js"></script>'
+GALLERY_PREFETCH_SCRIPT = '<script src="/js/gallery-prefetch.js"></script>'
+
 
 def sync_community(path: Path) -> int:
     text = path.read_text(encoding='utf-8')
@@ -72,6 +99,20 @@ def normalize_work_filter_bar(path: Path) -> None:
         path.write_text(updated, encoding='utf-8')
 
 
+def inject_before(path: Path, closing_tag: str, snippet: str) -> bool:
+    if not path.exists():
+        return False
+    text = path.read_text(encoding='utf-8')
+    if snippet in text:
+        return False
+    idx = text.lower().rfind(closing_tag.lower())
+    if idx == -1:
+        return False
+    text = text[:idx] + snippet + '\n' + text[idx:]
+    path.write_text(text, encoding='utf-8')
+    return True
+
+
 community_count = 0
 for page in ROOT.rglob('*.html'):
     try:
@@ -90,4 +131,21 @@ work_path = ROOT / 'work.html'
 if work_path.exists():
     normalize_work_filter_bar(work_path)
 
-print(f'Final display patches applied. Guild/community sections synchronized: {community_count}')
+nav_injected = 0
+for name in LIVE_NAV_PAGES:
+    if inject_before(ROOT / name, '</body>', NAV_SCRIPT):
+        nav_injected += 1
+
+prefetch_injected = 0
+for name in GALLERY_PREFETCH_PAGES:
+    # This script does not touch the DOM, so loading it in the head starts the
+    # asynchronous archive request while the rest of the page is still parsing.
+    if inject_before(ROOT / name, '</head>', GALLERY_PREFETCH_SCRIPT):
+        prefetch_injected += 1
+
+print(
+    'Final display patches applied. '
+    f'Guild/community sections synchronized: {community_count}; '
+    f'live navigation scripts injected: {nav_injected}; '
+    f'gallery cache warmups injected: {prefetch_injected}'
+)
