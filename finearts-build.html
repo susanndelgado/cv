@@ -41,10 +41,20 @@
 <div id="fineArtsPreview" aria-live="polite">
   <div class="container py-5 text-center text-muted">Loading the current Fine Arts page…</div>
 </div>
-<script src="js/build-motion.js"></script>
 <script>
 (function(){
   var mount=document.getElementById('fineArtsPreview');
+  var galleryBuilds={
+    '/narrative-gallery.html':'narrative-gallery-build.html',
+    'narrative-gallery.html':'narrative-gallery-build.html',
+    '/wildlife-gallery.html':'wildlife-gallery-build.html',
+    'wildlife-gallery.html':'wildlife-gallery-build.html',
+    '/decorative-gallery.html':'decorative-gallery-build.html',
+    'decorative-gallery.html':'decorative-gallery-build.html',
+    '/studies-gallery.html':'studies-gallery-build.html',
+    'studies-gallery.html':'studies-gallery-build.html'
+  };
+
   fetch('/finearts.html',{cache:'no-store'})
     .then(function(response){if(!response.ok)throw new Error('Fine Arts page unavailable');return response.text();})
     .then(function(source){
@@ -52,15 +62,23 @@
       var main=parsed.querySelector('main');
       var footer=parsed.querySelector('footer');
       if(!main)throw new Error('Fine Arts content unavailable');
+
+      var importedMain=document.importNode(main,true);
+      importedMain.querySelectorAll('a[href]').forEach(function(link){
+        var raw=link.getAttribute('href');
+        if(galleryBuilds[raw]) link.setAttribute('href',galleryBuilds[raw]);
+      });
+
       mount.innerHTML='';
-      mount.appendChild(document.importNode(main,true));
-      if(footer)mount.appendChild(document.importNode(footer,true));
+      mount.appendChild(importedMain);
+      if(footer && !importedMain.querySelector('footer')){
+        mount.appendChild(document.importNode(footer,true));
+      }
 
       mount.querySelectorAll('.process-video').forEach(function(video){
         video.muted=true;
         video.play().catch(function(){});
       });
-      if(window.initBuildMotion)window.initBuildMotion(mount);
     })
     .catch(function(){
       mount.innerHTML='<div class="container py-5 text-center"><p>The Fine Arts preview could not be loaded. <a href="/finearts.html">Open the current Fine Arts page.</a></p></div>';
