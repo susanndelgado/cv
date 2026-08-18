@@ -196,10 +196,10 @@
       "title": "WLNCMD WEBSITE & EMAIL",
       "client": "The Cardiovascular Research Foundation (CRF)",
       "role": "Web Designer<br>Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Web Design<br>Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
+      "skills": "Web Design<br>Front End Development<br>Responsive Web Development<br>Joomla<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
       "filters": "conf web email dig",
-      "summary": "Website design, front-end development and supporting email communications for WLNCMD.",
-      "content": "<p>WLNCMD was a satellite website produced through CRF’s conference web program.</p><p>Designed the website presentation and developed the responsive front-end experience as part of the CRF team, implementing program content using HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF web and email production workflow.</p>"
+      "summary": "Joomla website design, front-end development and supporting email communications for WLNCMD.",
+      "content": "<p>WLNCMD was a Joomla satellite website produced through CRF’s conference web program.</p><p>Designed the website and handled front-end development as part of the CRF team, implementing the responsive site and program content using Joomla, HTML5, CSS, JavaScript and jQuery.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF web and email production workflow.</p>"
     },
     "48": {
       "content": "<p>Evolve II Synergy was supported through CRF with a dedicated web presence and responsive email communications used to present and promote the program.</p><p>Developed the supporting website and responsive front-end content using HTML5 and CSS within CRF’s project environment.</p><p>Developed, scheduled and distributed the related Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
