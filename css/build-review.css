@@ -104,10 +104,8 @@ body.build-page h6{
   background:#f70606;
 }
 
-/* Fine Arts keeps the exact same navigation structure, but its interaction
-   accent belongs to the art side: teal at rest, gold on hover/active, with a
-   gold rule under the main navigation. The Fine Arts body below this header
-   remains the current live art page. */
+/* Fine Arts uses the same blue at rest, but gold for interaction and the rule
+   beneath the navigation. The current Fine Arts page body remains untouched. */
 .art-build-preview .build-main-nav{
   border-bottom:2px solid #d4af37;
 }
@@ -133,10 +131,16 @@ body.build-page h6{
 /* Homepage hero: deliberately returns to the original technical portfolio
    rhythm — red label above a large black Proxima Nova statement on white. */
 .build-hero{
-  padding:66px 0 64px;
+  padding:112px 0 92px;
   background:#fff;
   color:#111;
   border-bottom:1px solid #ececec;
+}
+.build-hero .build-hero-grid{
+  display:block;
+}
+.build-hero .build-brief{
+  display:none;
 }
 .build-case-hero{
   padding:54px 0 46px;
@@ -149,7 +153,7 @@ body.build-page h6{
 }
 .build-hero .build-kicker{
   display:inline-block;
-  margin-bottom:18px;
+  margin-bottom:20px;
   padding:4px 15px;
   background:#f70606;
   color:#fff;
@@ -167,7 +171,7 @@ body.build-page h6{
   letter-spacing:.12em;
 }
 .build-display{
-  max-width:980px;
+  max-width:1040px;
   color:#111;
   font-family:proxima-nova,"Open Sans",sans-serif;
   font-size:clamp(3.5rem,7vw,6.4rem);
@@ -177,16 +181,11 @@ body.build-page h6{
   text-transform:uppercase;
 }
 .build-lede{
-  max-width:800px;
-  margin-top:28px;
+  max-width:820px;
+  margin-top:30px;
   color:#3d4246;
   font-size:clamp(1rem,1.55vw,1.18rem);
   line-height:1.78;
-}
-/* Contact uses the same component but should not compete with the homepage. */
-body.build-page .build-contact-grid ~ *{}
-body.build-page:not(.home-build) .build-case-title{
-  max-width:850px;
 }
 .build-case-title{
   max-width:850px;
@@ -211,8 +210,9 @@ body.build-page:not(.home-build) .build-case-title{
   letter-spacing:0;
 }
 
-/* Contact page hero uses the smaller portfolio-page scale. */
-body.contact-build-page .build-display{
+/* Contact uses the same component but keeps the more controlled interior-page
+   scale. */
+body.build-page:has(.build-contact-grid) .build-display{
   max-width:760px;
   font-size:clamp(2.15rem,4.2vw,3.65rem);
   line-height:1.08;
@@ -220,7 +220,10 @@ body.contact-build-page .build-display{
   font-weight:500;
   text-transform:none;
 }
-body.contact-build-page .build-hero .build-kicker{
+body.build-page:has(.build-contact-grid) .build-hero{
+  padding:66px 0 64px;
+}
+body.build-page:has(.build-contact-grid) .build-hero .build-kicker{
   font-size:.78rem;
   font-weight:400;
   letter-spacing:.07em;
@@ -355,8 +358,9 @@ body.build-page main a:not(.build-btn):not(.build-project-image):focus-visible{
 }
 
 @media(max-width:760px){
+  .build-hero{padding:72px 0 64px}
   .build-display{font-size:clamp(2.9rem,13vw,4.6rem)}
-  body.contact-build-page .build-display{font-size:clamp(2rem,9vw,2.9rem)}
+  body.build-page:has(.build-contact-grid) .build-display{font-size:clamp(2rem,9vw,2.9rem)}
   .build-case-title{font-size:clamp(1.9rem,9vw,2.8rem)}
   .build-main-nav-inner{align-items:flex-start;flex-direction:column;padding:16px 0;gap:4px}
   .build-site-links{flex-wrap:wrap}
