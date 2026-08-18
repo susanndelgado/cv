@@ -25,7 +25,7 @@
       margin: 0;
       width: 100%;
       min-height: 100%;
-      background: #111;
+      background: #000;
       overflow-x: hidden;
     }
 
@@ -52,7 +52,7 @@
       overflow: hidden;
       isolation: isolate;
       padding: 36px 20px;
-      background: #17191b url("img/4c9d2ecd-bbd4-4e25-a012-135bc383c512.jpeg") center / cover no-repeat;
+      background: #000;
     }
 
     .splash-video {
@@ -234,7 +234,7 @@
 </head>
 <body>
   <main class="splash" aria-labelledby="splash-title">
-    <video class="splash-video" autoplay muted loop playsinline preload="metadata" poster="img/4c9d2ecd-bbd4-4e25-a012-135bc383c512.jpeg" aria-hidden="true">
+    <video class="splash-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
       <source src="img/40f3475a-8b1e-4fed-a50a-87b439229e62.mp4" type="video/mp4">
     </video>
 
@@ -263,13 +263,22 @@
   <script>
     (function () {
       var video = document.querySelector(".splash-video");
+      var source = video && video.querySelector("source");
       var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function useBlackFallback() {
+        if (video) video.style.display = "none";
+      }
 
       if (video && (reduceMotion || (connection && connection.saveData))) {
         video.pause();
         video.removeAttribute("autoplay");
+        useBlackFallback();
       }
+
+      if (video) video.addEventListener("error", useBlackFallback);
+      if (source) source.addEventListener("error", useBlackFallback);
     })();
   </script>
 </body>
