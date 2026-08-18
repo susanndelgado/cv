@@ -81,59 +81,24 @@
     var liveHeader=doc.getElementById('top');
     if(liveHeader)liveHeader.style.display='none';
 
-    /* Hero-only build treatment. Everything after the hero remains the live page
-       with the live page's own CSS, markup and scripts. */
+    /* Keep the live Fine Arts hero typography and layout. Build-only color
+       changes are limited to the home CTA and the seal rim. */
     var style=doc.createElement('style');
     style.textContent=`
-      .boutique-hero{
-        width:100%!important;
-        margin:0!important;
-        padding:68px max(4vw,calc((100vw - 1220px)/2)) 52px!important;
-        background:#111!important;
-        color:#fff!important;
-        border:0!important;
-        text-align:center!important;
-      }
-      .boutique-hero .container{
-        width:100%!important;
-        max-width:1220px!important;
-        margin:0 auto!important;
-        padding:0!important;
-        text-align:center!important;
-      }
-      .boutique-hero .seal-contained{display:none!important}
-      .boutique-hero .master-title,.boutique-hero h1{
-        max-width:1000px!important;
-        margin:0 auto 16px!important;
-        color:#fff!important;
-        font-family:"Playfair",Georgia,serif!important;
-        font-size:3rem!important;
-        font-weight:300!important;
-        line-height:1.2!important;
-        letter-spacing:8px!important;
-        text-align:center!important;
-        text-transform:uppercase!important;
-      }
-      .boutique-hero .master-intro,.boutique-hero p{
-        max-width:760px!important;
-        margin:0 auto!important;
-        color:#fff!important;
-        font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-        font-size:1.02rem!important;
-        font-weight:400!important;
-        line-height:1.72!important;
-        text-align:center!important;
+      .boutique-hero .seal-contained{
+        display:inline-flex!important;
+        border-color:#555!important;
       }
       .boutique-hero .btn-boutique{
-        display:inline-block!important;
-        margin:28px auto 0!important;
+        color:#d4af37!important;
+        border-color:#d4af37!important;
+        background:transparent!important;
       }
-      @media(max-width:760px){
-        .boutique-hero{padding:52px 22px 42px!important}
-        .boutique-hero .master-title,.boutique-hero h1{
-          font-size:2.2rem!important;
-          letter-spacing:5px!important;
-        }
+      .boutique-hero .btn-boutique:hover,
+      .boutique-hero .btn-boutique:focus-visible{
+        color:#d4af37!important;
+        border-color:#d4af37!important;
+        background:transparent!important;
       }
     `;
     doc.head.appendChild(style);
