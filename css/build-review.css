@@ -26,7 +26,8 @@ body.build-page h6{
   font-family:proxima-nova,"Open Sans",sans-serif;
 }
 
-/* Shared two-level navigation. */
+/* Shared two-level navigation. Top tabs mirror the live site exactly:
+   pale-blue strip, blue text, dark active state, red hover. */
 .build-site-header{
   position:relative;
   background:#fff;
@@ -44,7 +45,7 @@ body.build-page h6{
 }
 .build-tabs a{
   padding:10px 16px;
-  color:#6c757d;
+  color:#60adb8;
   border:1px solid transparent;
   background:transparent;
 }
@@ -54,12 +55,14 @@ body.build-page h6{
   outline:none;
 }
 .build-tabs .active a{
-  color:#343a40;
+  color:#495057;
   background:#fff;
   border-color:#dee2e6 #dee2e6 #fff;
 }
 .build-tabs .active a:hover,.build-tabs .active a:focus-visible{
   color:#f70606;
+  background:#fff;
+  border-color:#dee2e6 #dee2e6 #fff;
 }
 .build-main-nav{
   background:#fff;
@@ -80,6 +83,9 @@ body.build-page h6{
 .build-site-brand:hover,.build-site-brand:focus-visible{
   color:rgba(0,0,0,.65)!important;
 }
+
+/* Technical secondary navigation: original gray at rest, black when active,
+   red on hover. */
 .build-site-links a{
   padding:20px 12px;
   color:#6c757d;
@@ -102,34 +108,27 @@ body.build-page h6{
   background:#f70606;
 }
 .build-site-links a[aria-current=page]{
-  color:#343a40;
+  color:#111;
 }
 .build-site-links a[aria-current=page]::after{
-  background:transparent;
+  background:#f70606;
 }
 
-/* Fine Arts keeps the same neutral header chrome as the original site.
-   Gold appears only on the active/hovered navigation item itself. */
+/* Fine Arts secondary navigation uses the same original gray at rest.
+   Only the active and hover states switch to gold. The top tabs stay live-site
+   blue/dark/red and are intentionally not overridden here. */
 .art-build-preview .build-main-nav,
 .art-gallery-build .build-main-nav{
   border-bottom:1px solid #eeeeee;
 }
-.art-build-preview .build-tabs a,
-.art-gallery-build .build-tabs a,
 .art-build-preview .build-site-links a,
 .art-gallery-build .build-site-links a{
   color:#6c757d;
 }
-.art-build-preview .build-tabs .active a,
-.art-gallery-build .build-tabs .active a,
 .art-build-preview .build-site-links a[aria-current=page],
 .art-gallery-build .build-site-links a[aria-current=page]{
   color:#d4af37;
 }
-.art-build-preview .build-tabs a:hover,
-.art-build-preview .build-tabs a:focus-visible,
-.art-gallery-build .build-tabs a:hover,
-.art-gallery-build .build-tabs a:focus-visible,
 .art-build-preview .build-site-links a:hover,
 .art-build-preview .build-site-links a:focus-visible,
 .art-gallery-build .build-site-links a:hover,
