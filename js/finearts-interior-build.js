@@ -39,20 +39,6 @@
         text-align:center!important;
       }
       .process-hero .seal-contained{display:none!important}
-      .finearts-interior-kicker{
-        display:inline-block;
-        margin:0 0 18px!important;
-        padding-left:16px;
-        border-left:4px solid #d4af37;
-        color:#d4af37!important;
-        font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-        font-size:.78rem!important;
-        font-weight:600!important;
-        line-height:1.4!important;
-        letter-spacing:.16em!important;
-        text-transform:uppercase!important;
-        text-align:center!important;
-      }
       .process-hero .master-title,
       .process-hero h1{
         max-width:1000px!important;
@@ -103,13 +89,6 @@
     var hero=doc.querySelector('.process-hero');
     var title=hero&&hero.querySelector('.master-title,h1');
     if(title&&title.textContent.trim()==='Progress Chronicals') title.textContent='Progress Chronicles';
-    var container=hero&&hero.querySelector('.container');
-    if(container&&!container.querySelector('.finearts-interior-kicker')){
-      var kicker=doc.createElement('div');
-      kicker.className='finearts-interior-kicker';
-      kicker.textContent=frame.getAttribute('data-kicker')||'FINE ART';
-      container.insertBefore(kicker,container.firstChild);
-    }
 
     resizeFrame(doc);
     if(window.ResizeObserver&&doc.body){
