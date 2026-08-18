@@ -13,6 +13,32 @@
     {type:'gstudy',label:'Academic Studies',href:'studies-gallery-build.html'}
   ];
 
+  function ensureBuildStylesheets(){
+    var head=document.head;
+    if(!head)return;
+    if(!document.getElementById('sd-cormorant-font')){
+      var font=document.createElement('link');
+      font.id='sd-cormorant-font';
+      font.rel='stylesheet';
+      font.href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap';
+      head.appendChild(font);
+    }
+    if(!document.getElementById('sd-unified-nav')){
+      var nav=document.createElement('link');
+      nav.id='sd-unified-nav';
+      nav.rel='stylesheet';
+      nav.href='/css/build-navigation-unified.css';
+      head.appendChild(nav);
+    }
+    if(!document.getElementById('sd-serif-test')){
+      var serif=document.createElement('link');
+      serif.id='sd-serif-test';
+      serif.rel='stylesheet';
+      serif.href='/css/build-serif-test.css';
+      head.appendChild(serif);
+    }
+  }
+
   function text(value){
     if(Array.isArray(value)) return value.filter(Boolean).join(' ').trim();
     return value===null||value===undefined?'':String(value).trim();
@@ -98,6 +124,7 @@
   }
 
   function init(){
+    ensureBuildStylesheets();
     var body=document.body;
     var type=(body.getAttribute('data-gallery-type')||'').toLowerCase();
     var grid=document.getElementById('artGalleryGrid');
