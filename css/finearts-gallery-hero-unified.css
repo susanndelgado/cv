@@ -1,63 +1,79 @@
-/* Gallery heroes follow the live Fine Arts process-hero typography and rhythm. */
+/* Gallery build heroes mirror the live Fine Arts .process-hero exactly.
+   The only added element is the centered gallery navigation. */
 .art-gallery-build .art-gallery-hero{
   width:100%!important;
   margin:0!important;
-  padding:80px 20px!important;
-  background:#111111!important;
+  padding:80px 0!important;
+  background-color:#111111!important;
   color:#ffffff!important;
   text-align:center!important;
 }
 
-/* No build-only label or seal in gallery heroes. */
 .art-gallery-build .art-gallery-hero::before{
   display:none!important;
   content:none!important;
 }
+
+/* Exact live .seal-contained treatment. */
 .art-gallery-build .art-gallery-hero .seal-contained{
-  display:none!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:180px!important;
+  height:180px!important;
+  background:#ffffff!important;
+  border:2px solid #d4af37!important;
+  border-radius:50%!important;
+  margin-bottom:25px!important;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1)!important;
+  overflow:hidden!important;
+}
+.art-gallery-build .art-gallery-hero .seal-contained img{
+  width:85%!important;
+  height:auto!important;
 }
 
-/* Match the live process-hero title. */
+/* Exact live .process-hero .master-title treatment. */
 .art-gallery-build .art-gallery-hero h1{
-  max-width:1000px!important;
-  margin:0 auto 20px!important;
-  color:#fff!important;
+  margin-top:0!important;
+  margin-bottom:20px!important;
+  color:#ffffff!important;
   font-family:"Playfair",Georgia,serif!important;
   font-size:2.8rem!important;
   font-weight:300!important;
-  line-height:1.2!important;
   letter-spacing:10px!important;
+  line-height:1.2!important;
   text-align:center!important;
   text-transform:uppercase!important;
 }
 
-/* Match the live Fine Arts subtitle style; gold is the only color change. */
+/* Exact live Fine Arts hero subtitle typography; color changes to gold. */
 .art-gallery-build .art-gallery-hero h2{
-  max-width:800px!important;
-  margin:0 auto 30px!important;
   color:#d4af37!important;
   font-family:"Playfair",Georgia,serif!important;
   font-size:1.2rem!important;
   font-weight:300!important;
-  line-height:1.5!important;
   letter-spacing:4px!important;
+  line-height:normal!important;
+  margin-top:0!important;
+  margin-bottom:30px!important;
   text-align:center!important;
 }
 
-/* Match the live Fine Arts hero-intro treatment and preserve page copy. */
+/* Exact live .process-hero .hero-intro treatment. */
 .art-gallery-build .art-gallery-hero > p{
-  max-width:800px!important;
-  margin:0 auto!important;
+  max-width:100%!important;
+  margin:0 auto 30px!important;
   color:#999!important;
   font-family:"Open Sans",Arial,sans-serif!important;
   font-size:1.1rem!important;
   font-weight:300!important;
-  line-height:2!important;
   letter-spacing:2px!important;
+  line-height:2!important;
   text-align:center!important;
 }
 
-/* Use the live site's quiet gray divider rather than a gold decoration. */
+/* Exact live hero divider. */
 .art-gallery-build .art-gallery-rule{
   display:block!important;
   width:60px!important;
@@ -66,7 +82,8 @@
   background:#444!important;
 }
 
-/* Gallery navigation stays inside the hero. Gold is reserved for hover/active. */
+/* Build-only gallery navigation, centered inside the hero. Gold appears only
+   on hover/focus and the active gallery. */
 .art-gallery-build .art-gallery-hero .art-gallery-categories{
   width:auto!important;
   max-width:900px!important;
@@ -113,22 +130,8 @@
 }
 
 @media(max-width:760px){
-  .art-gallery-build .art-gallery-hero{
-    padding:60px 20px!important;
-  }
-  .art-gallery-build .art-gallery-hero h1{
-    font-size:2.2rem!important;
-    letter-spacing:6px!important;
-  }
-  .art-gallery-build .art-gallery-hero h2{
-    font-size:1.1rem!important;
-    letter-spacing:3px!important;
-  }
-  .art-gallery-build .art-gallery-hero > p{
-    font-size:1rem!important;
-    letter-spacing:1px!important;
-  }
   .art-gallery-build .art-gallery-hero .art-gallery-categories{
     gap:10px 18px!important;
+    padding:0 18px!important;
   }
 }
