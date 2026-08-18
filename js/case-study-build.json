@@ -1,10 +1,10 @@
 {
   "27": {
     "level": "full",
-    "note": "This project has enough surviving documentation to support a fuller case study. The sections below describe documented responsibilities, technologies and visible interface behavior; they do not claim formal UX research that is not recorded.",
+    "note": "This project has enough surviving documentation to support a fuller case study. The sections below describe documented responsibilities, technologies and visible interface behavior; they do not claim formal user research that is not recorded.",
     "ux": {
       "title": "Responsive conference information with a dynamic agenda",
-      "intro": "The strongest UX/UI evidence in the surviving TCT 2014 material is the way a large conference information set was organized across desktop, tablet and mobile, including a dynamic agenda rather than a static schedule.",
+      "intro": "The strongest interface evidence in the surviving TCT 2014 material is the way a large conference information set was organized across desktop, tablet and mobile, including a dynamic agenda rather than a static schedule.",
       "panels": [
         {
           "title": "Information structure",
@@ -40,10 +40,10 @@
   },
   "16": {
     "level": "full",
-    "note": "This project has enough surviving technical detail to show a focused UI/front-end case study. The presentation stays with documented implementation and interaction work rather than adding unrecorded research claims.",
+    "note": "This project has enough surviving technical detail to show a focused front-end case study. The presentation stays with documented implementation and interaction work rather than adding unrecorded research claims.",
     "ux": {
       "title": "Interaction design expressed through front-end behavior",
-      "intro": "Dallas Leipzig is useful as a UI case study because the surviving record identifies specific interface behaviors rather than only a finished website image.",
+      "intro": "Dallas Leipzig is useful as a front-end case study because the surviving record identifies specific interface behaviors rather than only a finished website image.",
       "panels": [
         {"title": "Interface states", "copy": "The work included animated transitions between sliders, collapsing elements and active interface states, requiring the interaction behavior to remain clear as content changed."},
         {"title": "Responsive implementation", "copy": "The interface was implemented across a responsive PHP/SCSS/JavaScript environment using AngularJS, jQuery and Bootstrap."}
@@ -60,13 +60,13 @@
       "intro": "The documented stack shows a layered production environment rather than a single static page.",
       "nodes": [
         {"title": "Server / templates", "copy": "PHP-based conference environment and recurring event content."},
-        {"title": "Responsive UI", "copy": "Bootstrap, SCSS, AngularJS, jQuery and custom JavaScript."},
+        {"title": "Responsive interface", "copy": "Bootstrap, SCSS, AngularJS, jQuery and custom JavaScript."},
         {"title": "Interaction layer", "copy": "Sliders, collapsible elements, active states and animate.css-supported transitions."}
       ]
     },
     "deliverables": [
       {"title": "Responsive conference website", "copy": "Front-end implementation across screen sizes."},
-      {"title": "Interactive UI states", "copy": "Slider, collapse and active-state behavior."},
+      {"title": "Interactive interface states", "copy": "Slider, collapse and active-state behavior."},
       {"title": "Animation module", "copy": "Custom JavaScript/animate.css motion behavior."}
     ]
   },
