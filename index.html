@@ -241,19 +241,6 @@
 
   <script>
     (function () {
-      /* Existing site pages currently use / for their FINE ARTS tab, while the
-         SUSAN DELGADO brand explicitly uses /index.html. This keeps both paths
-         behaving correctly while the new splash page occupies the site root. */
-      try {
-        if (window.location.pathname === "/" && document.referrer) {
-          var referrer = new URL(document.referrer);
-          if (referrer.origin === window.location.origin && referrer.pathname !== "/" && referrer.pathname !== "/index.html") {
-            window.location.replace("/finearts.html");
-            return;
-          }
-        }
-      } catch (e) {}
-
       var video = document.querySelector(".splash-video");
       var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
