@@ -1,36 +1,63 @@
-/* Review-only: gallery heroes follow the live Fine Arts heading treatment. */
+/* Gallery heroes follow the live Fine Arts process-hero typography and rhythm. */
 .art-gallery-build .art-gallery-hero{
+  width:100%!important;
+  margin:0!important;
+  padding:80px 20px!important;
+  background:#111111!important;
+  color:#ffffff!important;
   text-align:center!important;
 }
-/* No build-only hero label: preserve the gallery's live title and description. */
+
+/* No build-only label or seal in gallery heroes. */
 .art-gallery-build .art-gallery-hero::before{
   display:none!important;
   content:none!important;
 }
+.art-gallery-build .art-gallery-hero .seal-contained{
+  display:none!important;
+}
+
+/* Match the live process-hero title: Playfair, light weight, 2.8rem, 10px tracking. */
 .art-gallery-build .art-gallery-hero h1{
   max-width:1000px!important;
-  margin:0 auto 16px!important;
+  margin:0 auto 20px!important;
   color:#fff!important;
   font-family:"Playfair",Georgia,serif!important;
-  font-size:3rem!important;
+  font-size:2.8rem!important;
   font-weight:300!important;
   line-height:1.2!important;
-  letter-spacing:8px!important;
+  letter-spacing:10px!important;
   text-align:center!important;
   text-transform:uppercase!important;
 }
+
+/* Match the live Fine Arts hero-intro treatment. */
 .art-gallery-build .art-gallery-hero > p{
-  max-width:760px!important;
+  max-width:800px!important;
   margin:0 auto!important;
+  color:#999!important;
+  font-family:"Open Sans",Arial,sans-serif!important;
+  font-size:1.1rem!important;
+  font-weight:300!important;
+  line-height:2!important;
+  letter-spacing:2px!important;
   text-align:center!important;
 }
-.art-gallery-build .art-gallery-rule{display:none!important}
 
-/* Gallery navigation belongs inside the black hero, centered beneath the copy. */
+/* Use the live site's quiet gray divider rather than a gold decoration. */
+.art-gallery-build .art-gallery-rule{
+  display:block!important;
+  width:60px!important;
+  height:1px!important;
+  margin:40px auto 0!important;
+  background:#444!important;
+}
+
+/* Gallery navigation stays inside the hero. Gold is reserved for hover/active. */
 .art-gallery-build .art-gallery-hero .art-gallery-categories{
   width:auto!important;
   max-width:900px!important;
-  margin:30px auto 0!important;
+  margin:32px auto 0!important;
   padding:0!important;
   display:flex!important;
   flex-wrap:wrap!important;
@@ -42,12 +69,24 @@
   text-align:center!important;
 }
 .art-gallery-build .art-gallery-hero .art-gallery-categories a{
-  color:#d7d7d7!important;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+  position:relative!important;
+  padding:0 0 5px!important;
+  color:#999!important;
+  font-family:"Open Sans",Arial,sans-serif!important;
   font-size:.82rem!important;
-  font-weight:500!important;
-  letter-spacing:.08em!important;
+  font-weight:400!important;
+  letter-spacing:2px!important;
   text-transform:uppercase!important;
+  text-decoration:none!important;
+}
+.art-gallery-build .art-gallery-hero .art-gallery-categories a::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  height:1px!important;
+  background:transparent!important;
 }
 .art-gallery-build .art-gallery-hero .art-gallery-categories a:hover,
 .art-gallery-build .art-gallery-hero .art-gallery-categories a:focus-visible,
@@ -61,9 +100,16 @@
 }
 
 @media(max-width:760px){
+  .art-gallery-build .art-gallery-hero{
+    padding:60px 20px!important;
+  }
   .art-gallery-build .art-gallery-hero h1{
     font-size:2.2rem!important;
-    letter-spacing:5px!important;
+    letter-spacing:6px!important;
+  }
+  .art-gallery-build .art-gallery-hero > p{
+    font-size:1rem!important;
+    letter-spacing:1px!important;
   }
   .art-gallery-build .art-gallery-hero .art-gallery-categories{
     gap:10px 18px!important;
