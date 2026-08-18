@@ -39,30 +39,30 @@
       "title": "Interactive conference navigation and Week-at-a-Glance schedule",
       "intro": "TCT 2015 paired a video-led conference homepage with custom vector navigation and a responsive Week-at-a-Glance schedule.",
       "panels": [
-        {"title": "Raphael.js vector navigation", "copy": "A custom triangular navigation interface was drawn with Raphael.js and linked directly to major conference destinations including the agenda, organizers, satellite programs, exhibits and CME."},
+        {"title": "Custom vector navigation", "copy": "A custom triangular JavaScript/SVG navigation interface linked directly to major conference destinations including the agenda, organizers, satellite programs, exhibits and CME."},
         {"title": "Responsive Week-at-a-Glance", "copy": "The conference schedule used day filters, expandable session rows and separate desktop/mobile accordion behavior implemented with JavaScript/jQuery and Bootstrap collapse."},
         {"title": "Video-led homepage", "copy": "The homepage layered the vector navigation over an HTML5 video treatment and integrated conference content, carousel sections and event calls to action."}
       ]
     },
     "workflow": [
       {"label": "01 · STRUCTURE", "title": "Build the conference pages", "copy": "Implement the annual site within the CRF Joomla/PHP template and responsive Bootstrap structure."},
-      {"label": "02 · VECTOR UI", "title": "Create the homepage navigation", "copy": "Draw and configure the triangular Raphael.js navigation, linked destinations and hover-responsive visual states."},
+      {"label": "02 · VECTOR UI", "title": "Create the homepage navigation", "copy": "Build and configure the triangular JavaScript/SVG navigation, linked destinations and hover-responsive visual states."},
       {"label": "03 · SCHEDULE", "title": "Implement program interactions", "copy": "Add day filtering, expandable session details and desktop/mobile accordion behavior to the Week-at-a-Glance schedule."},
       {"label": "04 · RESPONSIVE", "title": "Refine the presentation", "copy": "Coordinate the video hero, navigation, schedule and content modules across desktop and mobile layouts."}
     ],
     "system": {
       "title": "Modular TCT 2015 front-end structure",
-      "intro": "The site combined Joomla/PHP templates, Bootstrap layout, custom JavaScript/jQuery behavior, Raphael.js vector graphics and an HTML5 video homepage.",
+      "intro": "The site combined Joomla/PHP templates, Bootstrap layout, custom JavaScript/jQuery behavior, SVG/vector graphics and an HTML5 video homepage.",
       "nodes": [
         {"title": "Joomla / PHP template", "copy": "Conference page structure and site-specific implementation within the CRF template."},
-        {"title": "Raphael.js navigation", "copy": "Custom vector paths, labels, linked destinations and hover-responsive triangular navigation."},
+        {"title": "Vector navigation", "copy": "Custom vector paths, labels, linked destinations and hover-responsive triangular navigation."},
         {"title": "Week-at-a-Glance", "copy": "Day-based filtering and expandable conference-session content for desktop and mobile."},
         {"title": "Responsive front end", "copy": "Bootstrap layout, JavaScript/jQuery interactions, HTML5 video and responsive content presentation."}
       ]
     },
     "deliverables": [
       {"title": "TCT 2015 conference website", "copy": "Responsive front-end implementation for the annual conference site."},
-      {"title": "Interactive vector navigation", "copy": "Custom Raphael.js triangular navigation for major conference destinations."},
+      {"title": "Interactive vector navigation", "copy": "Custom JavaScript/SVG triangular navigation for major conference destinations."},
       {"title": "Week-at-a-Glance schedule", "copy": "Day filtering, expandable session details and responsive accordion behavior."},
       {"title": "Video homepage", "copy": "HTML5 video presentation integrated with the custom conference navigation."},
       {"title": "Responsive email", "copy": "Supporting conference email development and production."}
@@ -125,7 +125,7 @@
       "nodes": [
         {"title": "Section navigator", "copy": "Stacked conference-information labels with a distinct active state."},
         {"title": "Content panel", "copy": "Selected disclosure content displayed beside the navigation rather than as a separate page."},
-        {"title": "Behavior layer", "copy": "JavaScript/jQuery, Bootstrap/AngularJS environment and animation behavior supporting selection and content transitions."},
+        {"title": "Behavior layer", "copy": "JavaScript/jQuery, Bootstrap/Angular environment and animation behavior supporting selection and content transitions."},
         {"title": "Responsive integration", "copy": "Component layout and behavior integrated into the responsive Dallas Leipzig website."}
       ]
     },
