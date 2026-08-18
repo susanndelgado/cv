@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
   <link rel="stylesheet" href="css/build-style.css">
   <link rel="stylesheet" href="css/build-review.css">
+  <link rel="stylesheet" href="css/showcase-structure.css">
 </head>
 <body class="build-page">
 <a class="build-skip" href="#main">Skip to content</a>
@@ -67,6 +68,13 @@
     </div>
   </section>
 
+  <section class="build-section white" id="structureSection" hidden>
+    <div class="build-shell">
+      <div class="build-section-head"><div><p class="build-kicker">Site structure</p><h2 id="structureTitle"></h2><p id="structureIntro"></p></div></div>
+      <div id="structureGrid" class="build-site-structure"></div>
+    </div>
+  </section>
+
   <section class="build-section white" id="deliverableSection" hidden>
     <div class="build-shell">
       <div class="build-section-head"><div><p class="build-kicker">Deliverables</p><h2>Project deliverables</h2></div></div>
@@ -96,6 +104,7 @@
   var uxSection=document.getElementById('uxSection');
   var workflowSection=document.getElementById('workflowSection');
   var systemSection=document.getElementById('systemSection');
+  var structureSection=document.getElementById('structureSection');
   var deliverableSection=document.getElementById('deliverableSection');
   var visualSection=document.getElementById('visualSection');
 
@@ -148,6 +157,17 @@
     systemSection.hidden=false;
   }
 
+  function renderStructure(data){
+    if(!data||!data.items||!data.items.length)return;
+    document.getElementById('structureTitle').textContent=data.title||'Website structure';
+    document.getElementById('structureIntro').textContent=data.intro||'';
+    document.getElementById('structureGrid').innerHTML=data.items.map(function(item){
+      var children=(item.children||[]).map(function(child){return '<li>'+child+'</li>';}).join('');
+      return '<article class="structure-node"><h3>'+item.label+'</h3>'+(children?'<ul>'+children+'</ul>':'')+'</article>';
+    }).join('');
+    structureSection.hidden=false;
+  }
+
   function fallbackDeliverables(p){
     var items=[];
     if(contains(p,'web'))items.push({title:'Web / interface work',copy:'Website, microsite or responsive interface implementation.'});
@@ -181,18 +201,22 @@
     fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}) ,
     fetch('/js/posts-project-copy.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
-    fetch('/js/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
+    fetch('/js/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
+    fetch('/js/site-structure-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(data){
     var posts=merge(data[0].posts||[],[data[1]||{},data[2]||{},data[3]||{}]);
     var enhancedMap=data[4]||{};
+    var structureMap=data[5]||{};
     var requested=new URLSearchParams(location.search).get('post')||'23';
     var p=posts.find(function(x){return String(x.legacyId)===String(requested);})||posts[0];
     var enhanced=enhancedMap[String(p.legacyId)]||null;
+    var structure=structureMap[String(p.legacyId)]||null;
     renderHero(p);
     renderContext(p);
     renderUX(enhanced);
     renderWorkflow(enhanced);
     renderSystem(enhanced);
+    renderStructure(structure);
     renderDeliverables(p,enhanced);
     if(window.initBuildMotion)window.initBuildMotion(document);
     renderPreview(p);
