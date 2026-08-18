@@ -1,137 +1,346 @@
 {
   "27": {
     "level": "full",
-    "note": "This project has enough surviving documentation to support a fuller case study. The sections below describe documented responsibilities, technologies and visible interface behavior; they do not claim formal user research that is not recorded.",
+    "note": "TCT 2014 is an earlier annual implementation of the same agenda system used across TCT years. The agenda logic remained stable while the surrounding conference branding and effects changed from year to year; the stronger 2015 visual record is featured in the portfolio.",
     "ux": {
-      "title": "Responsive conference information with a dynamic agenda",
-      "intro": "The strongest interface evidence in the surviving TCT 2014 material is the way a large conference information set was organized across desktop, tablet and mobile, including a dynamic agenda rather than a static schedule.",
+      "title": "A stable data-driven agenda inside an annual conference site",
+      "intro": "The TCT agenda was not rebuilt as a new interaction each year. Its data request, grouping and session-display behavior were reused while each annual TCT site received its own visual treatment.",
       "panels": [
-        {"title": "Information structure", "copy": "Conference content, schedules and industry information had to remain understandable across multiple related web experiences. The documented work includes TCT and TCT Industry interfaces, responsive layouts and agenda views."},
-        {"title": "Interaction + data", "copy": "The dynamic agenda used interactive transitions and asynchronously loaded content connected to the same data source used by the conference app, giving the website and app a shared information foundation."}
+        {
+          "title": "Agenda data flow",
+          "copy": "An AngularJS Agenda service used $http and $q to request agenda data from app/data.php. Client-side processing grouped returned sessions by session_date and exposed the grouped result to the agenda controller."
+        },
+        {
+          "title": "Session filtering + disclosure",
+          "copy": "The interface filtered the returned conference content to the correct session and presented session information through animated expandable/drop-down areas rather than separate static schedule pages."
+        },
+        {
+          "title": "Annual presentation",
+          "copy": "The functional agenda stayed consistent across TCT years while the conference branding and front-end effects around it changed for each annual site."
+        }
       ]
     },
     "workflow": [
-      {"label": "01 · STRUCTURE", "title": "Conference content", "copy": "Organize conference pages, schedules and related TCT Industry content into a responsive site structure."},
-      {"label": "02 · INTERFACE", "title": "Responsive agenda", "copy": "Implement agenda states and responsive layouts for desktop, tablet and mobile presentation."},
-      {"label": "03 · DATA", "title": "Dynamic content", "copy": "Connect interactive schedule behavior to the shared conference data source and load agenda content without treating each view as a separate static page."},
-      {"label": "04 · CAMPAIGN", "title": "Email support", "copy": "Develop the supporting responsive email communications distributed through Salesforce Pardot as part of the larger TCT program."}
+      {
+        "label": "01 · REQUEST",
+        "title": "Load agenda data",
+        "copy": "Request the current conference agenda asynchronously from the shared data endpoint."
+      },
+      {
+        "label": "02 · GROUP",
+        "title": "Organize sessions",
+        "copy": "Group returned records by session_date so the interface can present the correct day and session structure."
+      },
+      {
+        "label": "03 · FILTER",
+        "title": "Render selected content",
+        "copy": "Filter to the relevant session content and reveal it in expandable/drop-down agenda areas with animated state changes."
+      },
+      {
+        "label": "04 · ADAPT",
+        "title": "Annual visual layer",
+        "copy": "Keep the agenda behavior stable while adapting branding, layout details and effects for the current TCT year."
+      }
     ],
     "system": {
-      "title": "Documented front-end architecture",
-      "intro": "A simplified view of the project based on the recorded stack and surviving portfolio material.",
+      "title": "Reusable TCT agenda architecture",
+      "intro": "The surviving agenda code documents a small data-to-interface pipeline that could be carried from one annual TCT site to the next.",
       "nodes": [
-        {"title": "Content / data", "copy": "Conference information and schedule data shared with the conference app."},
-        {"title": "Interface layer", "copy": "Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery, AJAX and responsive interface behavior."},
-        {"title": "Campaign layer", "copy": "TCT website, TCT Industry, dynamic agenda views and supporting Salesforce Pardot email communications."}
+        {
+          "title": "Data endpoint",
+          "copy": "Agenda records requested from app/data.php."
+        },
+        {
+          "title": "AngularJS service",
+          "copy": "Agenda service using $http/$q to retrieve and resolve the conference data."
+        },
+        {
+          "title": "Client-side grouping",
+          "copy": "Sessions grouped by session_date before being assigned to the agenda controller scope."
+        },
+        {
+          "title": "Agenda interface",
+          "copy": "Responsive filtered session views with expandable/drop-down behavior and animated state changes."
+        }
       ]
     },
     "deliverables": [
-      {"title": "TCT conference website", "copy": "Responsive conference pages and interface work."},
-      {"title": "Dynamic agenda", "copy": "Interactive desktop/mobile schedule views connected to conference data."},
-      {"title": "TCT Industry", "copy": "Related industry-facing web experience."},
-      {"title": "Responsive email", "copy": "Supporting conference email development and distribution."}
+      {
+        "title": "TCT 2014 conference website",
+        "copy": "Annual responsive TCT conference implementation."
+      },
+      {
+        "title": "Reusable dynamic agenda",
+        "copy": "Data-driven agenda behavior shared across annual TCT builds."
+      },
+      {
+        "title": "TCT Industry",
+        "copy": "Related industry-facing conference experience using shared structural patterns."
+      },
+      {
+        "title": "Responsive email",
+        "copy": "Supporting conference email development and distribution."
+      }
     ]
   },
   "23": {
     "level": "full",
-    "note": "TCT 2015 used the same shared conference-site architecture as TCT 2014 and related TCT Industry properties. This presentation focuses on the stronger surviving 2015 visual evidence while retaining the documented shared system and responsibilities.",
+    "note": "TCT 2015 used the same core TCT/TCT Industry structures and the same dynamic agenda logic carried across annual conference sites. The agenda behavior remained stable; what changed each year was the visual treatment and effects. The 2015 implementation is featured because it has stronger surviving visual evidence and included the 2015 SVG-based motion treatment.",
     "ux": {
-      "title": "Shared conference structure adapted for TCT 2015",
-      "intro": "TCT 2015 reused the conference architecture established across TCT and TCT Industry while adapting the visual presentation, content and conference-specific material for the 2015 event.",
+      "title": "Stable agenda behavior with a 2015-specific visual layer",
+      "intro": "TCT 2015 is a better representation of the recurring TCT production system: shared conference structures and a reusable dynamic agenda underneath an annual visual treatment that changed from year to year.",
       "panels": [
-        {"title": "Reusable conference framework", "copy": "Recurring navigation, event information, schedules and related conference content followed structures shared across the TCT family of sites."},
-        {"title": "2015 visual adaptation", "copy": "The established framework was updated with TCT 2015 branding, content and event-specific presentation rather than rebuilding the platform from scratch."},
-        {"title": "Responsive implementation", "copy": "Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery and related front-end work supported the production site across screen sizes and browsers."}
+        {
+          "title": "Reusable agenda engine",
+          "copy": "The agenda used an AngularJS Agenda service with $http/$q to request data from app/data.php. Returned sessions were grouped by session_date and passed to the agenda controller for display."
+        },
+        {
+          "title": "Filtered session disclosure",
+          "copy": "The same agenda behavior was reused each year: the interface selected the correct session content from the returned data and displayed it through animated expandable/drop-down areas."
+        },
+        {
+          "title": "2015 visual effects",
+          "copy": "The surrounding TCT presentation changed annually. The 2015 sites used SVG-based animated effects as part of that year's visual treatment rather than making those effects a permanent part of the agenda system."
+        }
       ]
     },
     "workflow": [
-      {"label": "01 · SHARED SYSTEM", "title": "Conference structure", "copy": "Use the established TCT architecture for recurring navigation, program information, schedules and related conference content."},
-      {"label": "02 · ADAPT", "title": "2015 identity and content", "copy": "Adapt branding, content hierarchy and conference-specific material within the shared responsive framework."},
-      {"label": "03 · BUILD", "title": "Responsive front end", "copy": "Implement the 2015 presentation with Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery and related front-end technologies."},
-      {"label": "04 · CAMPAIGN", "title": "Conference communications", "copy": "Support the larger TCT program with responsive email development and related conference interfaces."}
+      {
+        "label": "01 · REQUEST",
+        "title": "Pull agenda data",
+        "copy": "Load the current conference data asynchronously through the reusable agenda service."
+      },
+      {
+        "label": "02 · ORGANIZE",
+        "title": "Group by session date",
+        "copy": "Process returned records into day/session groups using session_date so the interface can render the correct conference structure."
+      },
+      {
+        "label": "03 · FILTER + REVEAL",
+        "title": "Display the selected session",
+        "copy": "Filter to the relevant content and present it in animated expandable/drop-down agenda areas."
+      },
+      {
+        "label": "04 · YEARLY LAYER",
+        "title": "Apply the 2015 treatment",
+        "copy": "Keep the underlying agenda behavior intact while adapting TCT 2015 branding, responsive presentation and SVG-based motion effects."
+      }
     ],
     "system": {
-      "title": "Reusable TCT conference architecture",
-      "intro": "TCT 2015 was one annual implementation of the shared structures used across TCT and TCT Industry properties.",
+      "title": "Reusable TCT conference + agenda system",
+      "intro": "The 2015 site combined a recurring TCT/TCT Industry structure with a stable data-driven agenda and a year-specific presentation layer.",
       "nodes": [
-        {"title": "Shared conference shell", "copy": "Recurring page structure, navigation, schedules and conference-information patterns."},
-        {"title": "2015 presentation layer", "copy": "Event-specific branding, content and visual treatment for the 2015 conference."},
-        {"title": "Responsive front end", "copy": "Joomla, Bootstrap, HTML5, CSS/SCSS, JavaScript, jQuery, AJAX and responsive behavior."},
-        {"title": "Annual reuse", "copy": "The underlying approach supported related TCT and TCT Industry properties across multiple years."}
+        {
+          "title": "Shared conference shell",
+          "copy": "Recurring TCT/TCT Industry navigation, event information and conference-content patterns."
+        },
+        {
+          "title": "Agenda data request",
+          "copy": "AngularJS service using $http/$q to request agenda records from app/data.php."
+        },
+        {
+          "title": "Session processing",
+          "copy": "Client-side grouping by session_date followed by filtering to the relevant session content."
+        },
+        {
+          "title": "Expandable agenda UI",
+          "copy": "Responsive animated disclosure/drop-down views for session details."
+        },
+        {
+          "title": "2015 motion layer",
+          "copy": "SVG-based effects and 2015-specific visual treatment layered around the stable conference functionality."
+        }
       ]
     },
     "deliverables": [
-      {"title": "TCT 2015 conference website", "copy": "Responsive conference website built within the shared TCT event-site system."},
-      {"title": "Responsive interface views", "copy": "Desktop, tablet and mobile presentation documented in the surviving project assets."},
-      {"title": "TCT / TCT Industry structure", "copy": "Reusable conference patterns shared across related properties."},
-      {"title": "Responsive email", "copy": "Supporting TCT conference email development and production."}
+      {
+        "title": "TCT 2015 conference website",
+        "copy": "Responsive annual TCT conference implementation using the shared site structure."
+      },
+      {
+        "title": "Reusable dynamic agenda",
+        "copy": "Asynchronous agenda request, grouping, filtering and animated expandable session views."
+      },
+      {
+        "title": "TCT / TCT Industry structure",
+        "copy": "Shared recurring conference patterns across related properties."
+      },
+      {
+        "title": "2015 SVG effects",
+        "copy": "Year-specific animated vector treatment used in the 2015 presentation."
+      },
+      {
+        "title": "Responsive email",
+        "copy": "Supporting TCT conference email development and production."
+      }
     ]
   },
   "22": {
     "level": "focused",
-    "note": "This case study focuses on the surviving Pulse Gala 2015 visual implementation, including the purple event presentation and animated SVG homepage elements. Archived development tests are linked with the original project evidence.",
+    "note": "This case study focuses on the surviving Pulse Gala 2015 visual implementation. Its animated SVG homepage treatment belongs specifically to the 2015 generation of sites rather than being a recurring effect used in later annual builds. Archived development tests are linked with the original project evidence.",
     "ux": {
-      "title": "Animated event presentation within a responsive site",
-      "intro": "Pulse Gala 2015 combined a compact responsive event website with a more expressive homepage treatment built around animated SVG elements.",
+      "title": "Animated 2015 event presentation within a responsive site",
+      "intro": "Pulse Gala 2015 combined a compact responsive event website with a more expressive 2015 homepage treatment built around animated SVG elements.",
       "panels": [
-        {"title": "Campaign-led visual system", "copy": "The purple gala identity shaped the page treatment and presentation of event information, giving the site a distinct visual character within CRF's portfolio of event properties."},
-        {"title": "Animated SVG homepage", "copy": "Custom SVG elements on the homepage were animated to create a more polished and visually distinctive event presentation."},
-        {"title": "Responsive event structure", "copy": "HTML5, CSS, JavaScript, jQuery and Bootstrap supported the responsive site structure, navigation and event content."}
+        {
+          "title": "Campaign-led visual system",
+          "copy": "The purple gala identity shaped the page treatment and presentation of event information, giving the site a distinct visual character within CRF's portfolio of event properties."
+        },
+        {
+          "title": "2015 animated SVG treatment",
+          "copy": "Custom SVG elements on the homepage were animated as part of the 2015 visual approach; this was not a permanent annual Pulse effect."
+        },
+        {
+          "title": "Responsive event structure",
+          "copy": "HTML5, CSS, JavaScript, jQuery and Bootstrap supported the responsive site structure, navigation and event content."
+        }
       ]
     },
     "workflow": [
-      {"label": "01 · VISUAL", "title": "Event identity", "copy": "Translate the gala campaign into a distinctive purple web presentation."},
-      {"label": "02 · STRUCTURE", "title": "Responsive event pages", "copy": "Organize event content, navigation, gallery and forms within a compact responsive Bootstrap structure."},
-      {"label": "03 · MOTION", "title": "SVG animation", "copy": "Develop and test animated SVG homepage elements as part of the visual presentation."},
-      {"label": "04 · SUPPORT", "title": "Event communications", "copy": "Maintain the annual event site and support related CRF email communications."}
+      {
+        "label": "01 · VISUAL",
+        "title": "Event identity",
+        "copy": "Translate the gala campaign into a distinctive purple web presentation."
+      },
+      {
+        "label": "02 · STRUCTURE",
+        "title": "Responsive event pages",
+        "copy": "Organize event content, navigation, gallery and forms within a compact responsive Bootstrap structure."
+      },
+      {
+        "label": "03 · MOTION",
+        "title": "2015 SVG animation",
+        "copy": "Develop and test the animated SVG homepage elements used for the 2015 presentation."
+      },
+      {
+        "label": "04 · SUPPORT",
+        "title": "Event communications",
+        "copy": "Maintain the event site and support related CRF email communications."
+      }
     ],
     "system": {
-      "title": "Responsive site with animated SVG presentation",
-      "intro": "The build paired a conventional event-site structure with a more expressive animated homepage.",
+      "title": "Responsive site with a 2015 SVG motion layer",
+      "intro": "The build paired a conventional event-site structure with a more expressive 2015 animated homepage treatment.",
       "nodes": [
-        {"title": "HTML5 / Bootstrap", "copy": "Responsive event-page structure and layout."},
-        {"title": "CSS / visual layer", "copy": "Purple campaign styling and responsive presentation."},
-        {"title": "JavaScript / jQuery", "copy": "Interactive behavior supporting the event site."},
-        {"title": "SVG animation", "copy": "Animated vector elements used as a distinctive homepage treatment."}
+        {
+          "title": "HTML5 / Bootstrap",
+          "copy": "Responsive event-page structure and layout."
+        },
+        {
+          "title": "CSS / visual layer",
+          "copy": "Purple campaign styling and responsive presentation."
+        },
+        {
+          "title": "JavaScript / jQuery",
+          "copy": "Interactive behavior supporting the event site."
+        },
+        {
+          "title": "SVG animation",
+          "copy": "Animated vector elements used as a distinctive 2015 homepage treatment."
+        }
       ]
     },
     "deliverables": [
-      {"title": "Responsive gala website", "copy": "CRF Pulse Gala 2015 event website and recurring annual site maintenance."},
-      {"title": "Animated SVG homepage", "copy": "Custom animated vector elements integrated into the homepage treatment."},
-      {"title": "Event content system", "copy": "Responsive navigation, gallery, forms and gala information."},
-      {"title": "Archived development tests", "copy": "Preserved JSFiddle tests linked from the original project evidence."}
+      {
+        "title": "Responsive gala website",
+        "copy": "CRF Pulse Gala 2015 event website and annual site maintenance."
+      },
+      {
+        "title": "Animated SVG homepage",
+        "copy": "Custom 2015 vector animation treatment integrated into the homepage."
+      },
+      {
+        "title": "Event content system",
+        "copy": "Responsive navigation, gallery, forms and gala information."
+      },
+      {
+        "title": "Archived development tests",
+        "copy": "Preserved JSFiddle tests linked from the original project evidence."
+      }
     ]
   },
   "16": {
     "level": "full",
-    "note": "This project has enough surviving technical detail to show a focused front-end case study. The presentation stays with documented implementation and interaction work rather than adding unrecorded research claims.",
+    "note": "Dallas Leipzig documents a reusable conference-interface component, not a one-off effect. The disclosure/navigation element shown in the surviving Dallas screen was also used on Fellows and other conference websites, demonstrating how front-end components were carried across CRF event builds.",
     "ux": {
-      "title": "Interaction design expressed through front-end behavior",
-      "intro": "Dallas Leipzig is useful as a front-end case study because the surviving record identifies specific interface behaviors rather than only a finished website image.",
+      "title": "A reusable disclosure navigator for conference information",
+      "intro": "The Dallas Leipzig screen shows a stacked section navigator with a selected state and adjacent content panel. The same component pattern was reused on Fellows and other conference sites rather than being rebuilt independently for each event.",
       "panels": [
-        {"title": "Interface states", "copy": "The work included animated transitions between sliders, collapsing elements and active interface states, requiring the interaction behavior to remain clear as content changed."},
-        {"title": "Responsive implementation", "copy": "The interface was implemented across a responsive PHP/SCSS/JavaScript environment using AngularJS, jQuery and Bootstrap."}
+        {
+          "title": "Active section state",
+          "copy": "A vertical stack of section labels provided a clear current selection. The active row changed treatment and used a directional arrow to connect the selected label to the content panel."
+        },
+        {
+          "title": "Expandable / changing content",
+          "copy": "The component supported changing or expanded conference content without sending the user to a separate page for every disclosure section."
+        },
+        {
+          "title": "Reusable conference component",
+          "copy": "The same disclosure/navigation component was carried into Fellows and other CRF conference websites, allowing event-specific content and branding to sit on top of shared interaction behavior."
+        }
       ]
     },
     "workflow": [
-      {"label": "01 · CONTENT", "title": "Conference requirements", "copy": "Translate multidisciplinary conference content into the established CRF web environment."},
-      {"label": "02 · STATES", "title": "Interaction behavior", "copy": "Define slider, collapse and active-state behavior so changing content remained understandable."},
-      {"label": "03 · BUILD", "title": "Custom implementation", "copy": "Implement the responsive experience with PHP, SCSS, AngularJS, jQuery, Bootstrap and custom JavaScript."},
-      {"label": "04 · MOTION", "title": "Animation module", "copy": "Develop an independent front-end animation module using animate.css to support interface transitions."}
+      {
+        "label": "01 · COMPONENT",
+        "title": "Build the disclosure structure",
+        "copy": "Create a repeatable section-navigation and content-panel pattern that could accept different conference content."
+      },
+      {
+        "label": "02 · STATES",
+        "title": "Handle selection states",
+        "copy": "Manage active, collapsed and expanded states so the selected section remained visually connected to its content."
+      },
+      {
+        "label": "03 · MOTION",
+        "title": "Animate state changes",
+        "copy": "Use front-end animation and JavaScript behavior to make content changes and disclosure transitions feel deliberate rather than abrupt."
+      },
+      {
+        "label": "04 · REUSE",
+        "title": "Carry it across conferences",
+        "copy": "Reuse the same component behavior on Dallas Leipzig, Fellows and other CRF conference sites while adapting each site's content and visual treatment."
+      }
     ],
     "system": {
-      "title": "Interface implementation",
-      "intro": "The documented stack shows a layered production environment rather than a single static page.",
+      "title": "Reusable conference disclosure component",
+      "intro": "The Dallas implementation is useful evidence of component reuse inside the broader CRF conference-production environment.",
       "nodes": [
-        {"title": "Server / templates", "copy": "PHP-based conference environment and recurring event content."},
-        {"title": "Responsive interface", "copy": "Bootstrap, SCSS, AngularJS, jQuery and custom JavaScript."},
-        {"title": "Interaction layer", "copy": "Sliders, collapsible elements, active states and animate.css-supported transitions."}
+        {
+          "title": "Section navigator",
+          "copy": "Stacked conference-information labels with a distinct active state."
+        },
+        {
+          "title": "Content panel",
+          "copy": "Selected disclosure content displayed beside the navigation rather than as a separate page."
+        },
+        {
+          "title": "Behavior layer",
+          "copy": "JavaScript/jQuery, Bootstrap/AngularJS environment and animation behavior supporting selection and content transitions."
+        },
+        {
+          "title": "Conference reuse",
+          "copy": "The same interaction pattern reused on Fellows and additional conference websites with event-specific content and styling."
+        }
       ]
     },
     "deliverables": [
-      {"title": "Responsive conference website", "copy": "Front-end implementation across screen sizes."},
-      {"title": "Interactive interface states", "copy": "Slider, collapse and active-state behavior."},
-      {"title": "Animation module", "copy": "Custom JavaScript/animate.css motion behavior."}
+      {
+        "title": "Responsive conference website",
+        "copy": "Dallas Leipzig front-end implementation across screen sizes."
+      },
+      {
+        "title": "Reusable disclosure navigator",
+        "copy": "Section navigation, active state and expandable/changing content behavior."
+      },
+      {
+        "title": "Animated interface states",
+        "copy": "Front-end transitions supporting disclosure and other conference interactions."
+      },
+      {
+        "title": "Shared component pattern",
+        "copy": "Interface behavior reused on Fellows and other CRF event properties."
+      }
     ]
   },
   "5": {
@@ -141,31 +350,77 @@
       "title": "One event identity across many user touchpoints",
       "intro": "The design problem was larger than a single invitation. Guests encountered event information through invitation components, response materials, hotel and directions information, email and supporting event pieces.",
       "panels": [
-        {"title": "Information hierarchy", "copy": "The invitation, RSVP, dinner selection, hotel information and directions each carried different information while remaining visibly part of the same event package."},
-        {"title": "System consistency", "copy": "The Gatsby-inspired identity was extended across print, email, website graphics, sponsorship and event materials instead of redesigning every touchpoint independently."}
+        {
+          "title": "Information hierarchy",
+          "copy": "The invitation, RSVP, dinner selection, hotel information and directions each carried different information while remaining visibly part of the same event package."
+        },
+        {
+          "title": "System consistency",
+          "copy": "The Gatsby-inspired identity was extended across print, email, website graphics, sponsorship and event materials instead of redesigning every touchpoint independently."
+        }
       ]
     },
     "workflow": [
-      {"label": "01 · SYSTEM", "title": "Event identity", "copy": "Establish the Gatsby-inspired visual language, typography and recurring graphic details."},
-      {"label": "02 · EXTEND", "title": "Invitation suite", "copy": "Apply the system to the invitation, belly band and seal, RSVP, dinner selection, hotel and directions information."},
-      {"label": "03 · CAMPAIGN", "title": "Digital + event", "copy": "Extend the same identity to programmed email, website graphics, sponsorship pieces and supporting event materials."},
-      {"label": "04 · PRODUCE", "title": "Physical fulfillment", "copy": "Prepare production files, print, assemble invitations, wrap bands, prepare envelopes and mail the completed package."}
+      {
+        "label": "01 · SYSTEM",
+        "title": "Event identity",
+        "copy": "Establish the Gatsby-inspired visual language, typography and recurring graphic details."
+      },
+      {
+        "label": "02 · EXTEND",
+        "title": "Invitation suite",
+        "copy": "Apply the system to the invitation, belly band and seal, RSVP, dinner selection, hotel and directions information."
+      },
+      {
+        "label": "03 · CAMPAIGN",
+        "title": "Digital + event",
+        "copy": "Extend the same identity to programmed email, website graphics, sponsorship pieces and supporting event materials."
+      },
+      {
+        "label": "04 · PRODUCE",
+        "title": "Physical fulfillment",
+        "copy": "Prepare production files, print, assemble invitations, wrap bands, prepare envelopes and mail the completed package."
+      }
     ],
     "system": {
       "title": "Campaign system",
       "intro": "The portfolio evidence shows a master visual language adapted across distinct communication and production needs.",
       "nodes": [
-        {"title": "Core identity", "copy": "Gatsby-inspired visual system, typography, seal and invitation styling."},
-        {"title": "Communication set", "copy": "Invitation, RSVP, dinner selection, hotel/directions, email and website graphics."},
-        {"title": "Production / event", "copy": "Sponsorship pieces, event materials, printing, assembly and mailing."}
+        {
+          "title": "Core identity",
+          "copy": "Gatsby-inspired visual system, typography, seal and invitation styling."
+        },
+        {
+          "title": "Communication set",
+          "copy": "Invitation, RSVP, dinner selection, hotel/directions, email and website graphics."
+        },
+        {
+          "title": "Production / event",
+          "copy": "Sponsorship pieces, event materials, printing, assembly and mailing."
+        }
       ]
     },
     "deliverables": [
-      {"title": "Invitation suite", "copy": "Invitation, belly band/seal and response materials."},
-      {"title": "Guest information", "copy": "Dinner, hotel, directions and supporting event information."},
-      {"title": "Email + web graphics", "copy": "Coordinated digital communications."},
-      {"title": "Event / sponsorship materials", "copy": "Additional pieces carrying the same identity."},
-      {"title": "Print production", "copy": "Production-ready files, printing, assembly and mailing."}
+      {
+        "title": "Invitation suite",
+        "copy": "Invitation, belly band/seal and response materials."
+      },
+      {
+        "title": "Guest information",
+        "copy": "Dinner, hotel, directions and supporting event information."
+      },
+      {
+        "title": "Email + web graphics",
+        "copy": "Coordinated digital communications."
+      },
+      {
+        "title": "Event / sponsorship materials",
+        "copy": "Additional pieces carrying the same identity."
+      },
+      {
+        "title": "Print production",
+        "copy": "Production-ready files, printing, assembly and mailing."
+      }
     ]
   },
   "1": {
@@ -175,14 +430,29 @@
       "title": "A repeatable editorial system for print and digital viewing",
       "intro": "The useful design evidence is the recurring page structure: content needed to read coherently in print while also working as a digital flip-book publication.",
       "panels": [
-        {"title": "Editorial hierarchy", "copy": "Feature pages and recurring layouts organized school, family and education content into a consistent reading system."},
-        {"title": "Cross-format consistency", "copy": "The same publication identity and layout logic supported both printed distribution and digital flip-book viewing."}
+        {
+          "title": "Editorial hierarchy",
+          "copy": "Feature pages and recurring layouts organized school, family and education content into a consistent reading system."
+        },
+        {
+          "title": "Cross-format consistency",
+          "copy": "The same publication identity and layout logic supported both printed distribution and digital flip-book viewing."
+        }
       ]
     },
     "deliverables": [
-      {"title": "Publication design", "copy": "Visual system and editorial page layouts for the Fall 2019 issue."},
-      {"title": "Print edition", "copy": "Production for physical distribution."},
-      {"title": "Digital edition", "copy": "Layouts adapted for web flip-book viewing."}
+      {
+        "title": "Publication design",
+        "copy": "Visual system and editorial page layouts for the Fall 2019 issue."
+      },
+      {
+        "title": "Print edition",
+        "copy": "Production for physical distribution."
+      },
+      {
+        "title": "Digital edition",
+        "copy": "Layouts adapted for web flip-book viewing."
+      }
     ]
   }
 }
