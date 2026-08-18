@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Study | Susan Delgado</title>
+  <meta name="description" content="A structured development and design case study from Susan Delgado's professional portfolio.">
+  <link rel="icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
+  <link rel="stylesheet" href="css/build-style.css">
+</head>
+<body class="build-page">
+<a class="build-skip" href="#main">Skip to content</a>
+<header class="build-header">
+  <div class="build-shell build-nav">
+    <a class="build-brand" href="work-build.html">Susan Delgado</a>
+    <nav class="build-nav-links" aria-label="Build portfolio navigation">
+      <a href="work-build.html">Work</a>
+      <a href="work-build.html#case-studies" aria-current="page">Case Studies</a>
+      <a href="work-build.html#approach">Approach</a>
+      <a href="contact-build.html">Contact / Resume</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="build-case-hero">
+    <div class="build-shell">
+      <a class="build-back" href="work-build.html#case-studies">← Back to selected work</a>
+      <div id="caseHero" class="build-status">Loading project case study…</div>
+    </div>
+  </section>
+
+  <section class="build-section white" id="caseContext" hidden>
+    <div class="build-shell build-case-content">
+      <div><p class="build-kicker">01 · Context</p><h2>Project context & contribution</h2></div>
+      <div id="caseNarrative" class="build-rich-copy"></div>
+    </div>
+  </section>
+
+  <section class="build-section" id="uxSection" hidden>
+    <div class="build-shell">
+      <div class="build-section-head"><div><p class="build-kicker">02 · UX / UI lens</p><h2 id="uxTitle">Structure before decoration.</h2><p id="uxIntro"></p></div></div>
+      <div id="uxPanels" class="build-split"></div>
+    </div>
+  </section>
+
+  <section class="build-section white" id="workflowSection" hidden>
+    <div class="build-shell">
+      <div class="build-section-head"><div><p class="build-kicker">03 · Workflow</p><h2 id="workflowTitle">From requirements to release.</h2><p id="workflowIntro"></p></div></div>
+      <div id="workflowGrid" class="build-process-grid"></div>
+    </div>
+  </section>
+
+  <section class="build-section" id="architectureSection" hidden>
+    <div class="build-shell">
+      <div class="build-section-head"><div><p class="build-kicker">04 · System breakdown</p><h2 id="architectureTitle">How the work is organized.</h2><p id="architectureIntro"></p></div></div>
+      <div id="architectureGrid" class="build-architecture"></div>
+    </div>
+  </section>
+
+  <section class="build-section white" id="deliverableSection" hidden>
+    <div class="build-shell">
+      <div class="build-section-head"><div><p class="build-kicker">05 · Deliverables</p><h2>What shipped</h2><p>Only deliverables supported by the existing portfolio record are shown here; no performance metrics or research findings are invented.</p></div></div>
+      <div id="deliverableGrid" class="build-deliverables"></div>
+    </div>
+  </section>
+
+  <section class="build-section" id="visualSection" hidden>
+    <div class="build-shell">
+      <div class="build-section-head"><div><p class="build-kicker">06 · Visual evidence</p><h2>Project screens & production work</h2><p>The original portfolio assets are shown below so the case study remains grounded in the actual work.</p></div></div>
+      <div id="projectPreview" class="build-preview-stack"></div>
+    </div>
+  </section>
+</main>
+<footer class="build-footer"><div class="build-shell build-footer-inner"><span>© 2026 Susan Delgado</span><span><a href="work-build.html">Work</a> · <a href="contact-build.html">Contact / Resume</a> · <a href="/index.html">Main site</a></span></div></footer>
+<script>
+(function(){
+  var hero=document.getElementById('caseHero'),context=document.getElementById('caseContext'),uxSection=document.getElementById('uxSection'),workflowSection=document.getElementById('workflowSection'),architectureSection=document.getElementById('architectureSection'),deliverableSection=document.getElementById('deliverableSection'),visualSection=document.getElementById('visualSection');
+  function strip(v){var d=document.createElement('div');d.innerHTML=String(v||'');return (d.textContent||'').trim();}
+  function lines(v){return String(v||'').split(/<br\s*\/?\s*>/i).map(strip).filter(Boolean);}
+  function merge(base,extras){var result=(base||[]).map(function(p){return Object.assign({},p,{legacyId:String(p.id)});});(extras||[]).forEach(function(extra){var overrides=(extra&&extra.overrides)||{};result=result.map(function(p){var o=overrides[String(p.legacyId)]||overrides[String(p.id)]||{};return Object.assign({},p,o,{legacyId:String(p.legacyId)});});((extra&&extra.posts)||[]).forEach(function(p){var id=String(p.id),idx=result.findIndex(function(x){return String(x.legacyId)===id;});var next=Object.assign({},p,{legacyId:id});if(idx>=0)result[idx]=Object.assign({},result[idx],next);else result.push(next);});});return result.filter(function(p){return !p.hidden;});}
+  function contains(p,token){return (' '+String(p.filters||'')+' ').indexOf(' '+token+' ')!==-1;}
+  function hasSkill(p,token){return strip(p.skills).toLowerCase().indexOf(token.toLowerCase())!==-1;}
+  function typeFor(p){if(contains(p,'web'))return 'development';if(contains(p,'email')&&!contains(p,'print')&&!contains(p,'brand'))return 'email';return 'design';}
+  function heroImage(p){return '/'+(p.image||p.thumb||'');}
+  function skillPills(p){return lines(p.skills).slice(0,12).map(function(s){return '<span class="build-pill">'+s+'</span>';}).join('');}
+  function renderHero(p){var role=lines(p.role).join(' · ');document.title=strip(p.title)+' | Case Study | Susan Delgado';hero.className='';hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+(p.year||'Professional project')+' · '+strip(p.client)+'</p><h1 class="build-case-title">'+p.title+'</h1><p class="build-case-summary">'+(p.summary||'A professional development and design case study.')+'</p><div class="build-pills">'+skillPills(p)+'</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+strip(p.client)+'</dd></div><div><dt>Role</dt><dd>'+role+'</dd></div><div><dt>Year</dt><dd>'+(p.year||'Not recorded')+'</dd></div><div><dt>Case-study focus</dt><dd>'+labelFor(typeFor(p))+'</dd></div></dl></div><div class="build-case-visual"><img src="'+heroImage(p)+'" alt="'+strip(p.title)+' project preview"></div>';}
+  function labelFor(type){return type==='development'?'Front-end architecture + UI implementation':type==='email'?'Responsive email + campaign communication':'Visual system + cross-channel design';}
+  function renderNarrative(p){document.getElementById('caseNarrative').innerHTML=p.content||'<p>'+p.summary+'</p>';context.hidden=false;}
+  function panel(title,copy){return '<article class="build-panel"><h3>'+title+'</h3><p>'+copy+'</p></article>';}
+  function renderUX(p,type){var left,right,title,intro;if(type==='development'){title='Interface decisions connected to implementation.';intro='The original record documents front-end production rather than formal UX research, so this breakdown focuses on the UX/UI decisions visible in the work: hierarchy, responsive behavior, interaction structure and repeatable interface patterns.';left=panel('Information & interaction structure','Conference and program content had to remain understandable across changing pages, responsive layouts and recurring event information. The UI therefore depends on clear hierarchy, predictable navigation and reusable patterns rather than one-off screens.');right=panel('Implementation-aware UI','The interface was shaped by the documented stack and production environment. Responsive behavior, component states and dynamic features had to work inside the CMS/framework constraints while remaining maintainable for recurring updates.');}else if(type==='email'){title='Communication hierarchy that survives the inbox.';intro='Email UX is constrained by client support, narrow viewports and scanning behavior. The documented work is framed here as an interaction and content-design problem as well as front-end production.';left=panel('Message hierarchy','Campaign emails need immediate recognition, clear reading order and a primary action that remains understandable when users scan quickly or view on mobile.');right=panel('Responsive production constraints','Visual choices must survive table-based email structure, inconsistent client support and image loading while keeping the message readable and aligned with the larger campaign.');}else{title='A visual system that works across real formats.';intro='The design work is presented as a system: establish the core hierarchy and identity, then adapt it across the sizes, channels and production requirements documented in the project.';left=panel('Hierarchy & consistency','The central UX/design problem is preserving recognition and reading order as content moves between print, web, social, email or environmental formats.');right=panel('Production-aware design','Layouts need enough flexibility to absorb different dimensions, content densities, sponsor or event information and print requirements without losing the core visual language.');}document.getElementById('uxTitle').textContent=title;document.getElementById('uxIntro').textContent=intro;document.getElementById('uxPanels').innerHTML=left+right;uxSection.hidden=false;}
+  function step(n,title,copy){return '<article class="build-process-step"><span class="step">'+n+'</span><h3>'+title+'</h3><p>'+copy+'</p></article>';}
+  function renderWorkflow(type){var html='';if(type==='development'){document.getElementById('workflowTitle').textContent='From content model to responsive release.';document.getElementById('workflowIntro').textContent='A development case study is strongest when it shows the decisions between requirements and code, not just the final screenshot.';html+=step('01 · REQUIREMENTS','Content + constraints','Map the event, program or campaign content, recurring templates, required interactions, platform limits and responsive needs.');html+=step('02 · STRUCTURE','IA + UI patterns','Organize page hierarchy, navigation, modules, content states and breakpoint behavior before implementation.');html+=step('03 · BUILD','Front-end implementation','Translate the structure into responsive HTML/CSS/JavaScript and the documented CMS or framework environment, reusing patterns where possible.');html+=step('04 · QA','Review + release','Check responsive states, content integrity, interactions and campaign dependencies before release and recurring updates.');}else if(type==='email'){document.getElementById('workflowTitle').textContent='From campaign message to tested email.';document.getElementById('workflowIntro').textContent='The workflow connects content hierarchy, visual design and the technical constraints of production email.';html+=step('01 · CONTENT','Message hierarchy','Clarify the campaign message, reading order, required links and relationship to the larger event or program.');html+=step('02 · SYSTEM','Responsive layout','Translate the campaign identity into a compact layout that remains legible across desktop and mobile inboxes.');html+=step('03 · BUILD','Email development','Implement the responsive email in HTML/CSS within the documented sending platform and campaign workflow.');html+=step('04 · DELIVERY','QA + distribution','Review the rendered content, links and campaign setup, then schedule and distribute through the documented platform.');}else{document.getElementById('workflowTitle').textContent='From campaign brief to coordinated production.';document.getElementById('workflowIntro').textContent='The goal is not to design each item independently; it is to establish rules that make the entire campaign feel intentional.';html+=step('01 · AUDIT','Content + formats','Identify required messages, dimensions, production needs, existing brand cues and the full set of deliverables.');html+=step('02 · SYSTEM','Visual hierarchy','Establish typography, imagery, color, recurring layout logic and a core composition that can survive adaptation.');html+=step('03 · ADAPT','Channel variants','Extend the system across print, web, social, email, packaging or event formats without rebuilding the visual language each time.');html+=step('04 · PRODUCE','Handoff + fulfillment','Prepare production-ready files and, where documented, support printing, assembly, distribution or campaign deployment.');}document.getElementById('workflowGrid').innerHTML=html;workflowSection.hidden=false;}
+  function node(title,copy){return '<article class="node"><h3>'+title+'</h3><p>'+copy+'</p></article>';}
+  function renderArchitecture(p,type){var html='';if(type==='development'){document.getElementById('architectureTitle').textContent='Front-end architecture';document.getElementById('architectureIntro').textContent='A simplified architecture reconstructed from the technologies and responsibilities documented in the portfolio record.';var source=hasSkill(p,'Joomla')?'Joomla / structured CMS content':hasSkill(p,'WordPress')?'WordPress / CMS content':(hasSkill(p,'REST')||hasSkill(p,'AJAX'))?'Event data / API-fed content':'Program content / campaign requirements';var layer=hasSkill(p,'Angular')?'AngularJS + JavaScript interface layer':hasSkill(p,'Bootstrap')?'Bootstrap + JavaScript responsive UI':'HTML/CSS/JavaScript responsive UI';var delivery=contains(p,'email')?'Website + supporting email communications':'Responsive website / microsite';html=node('Content / data layer',source)+node('Interface layer',layer)+node('Delivery layer',delivery);}else if(type==='email'){document.getElementById('architectureTitle').textContent='Campaign communication system';document.getElementById('architectureIntro').textContent='Email work is shown as part of a larger content and distribution system rather than as a standalone graphic.';html=node('Campaign source','Event or program message, brand assets and required calls to action.')+node('Responsive email layer','HTML/CSS implementation designed around inbox constraints, reading order and mobile viewing.')+node('Distribution layer',hasSkill(p,'Pardot')?'Salesforce Pardot scheduling and distribution':'Documented email campaign platform and delivery workflow.');}else{document.getElementById('architectureTitle').textContent='Campaign / design system';document.getElementById('architectureIntro').textContent='A design case study becomes more useful when the relationship between master visual language and production variants is explicit.';html=node('Core visual language','Typography, color, imagery, hierarchy and recurring brand/event motifs establish recognition.')+node('Channel adaptations',channelsFor(p).join(', ')+' variants extend the same system across the documented campaign.')+node('Production layer','Final artwork is prepared for the documented print, digital, event or fulfillment requirements.');}document.getElementById('architectureGrid').innerHTML=html;architectureSection.hidden=false;}
+  function channelsFor(p){var out=[];if(contains(p,'web'))out.push('web');if(contains(p,'email'))out.push('email');if(contains(p,'dig'))out.push('digital/social');if(contains(p,'print'))out.push('print');if(contains(p,'brand'))out.push('branding');if(contains(p,'conf'))out.push('event');return out.length?out:['project'];}
+  function deliver(title,copy){return '<div class="build-deliverable"><strong>'+title+'</strong><span>'+copy+'</span></div>';}
+  function renderDeliverables(p,type){var items=[];if(contains(p,'web'))items.push(['Responsive web experience','Website, microsite or interface work documented in the project.']);if(contains(p,'email'))items.push(['Email communications','Responsive campaign email development and/or supporting email assets.']);if(contains(p,'dig'))items.push(['Digital campaign assets','Web, social or other digital materials documented in the project.']);if(contains(p,'print'))items.push(['Print production','Printed campaign, publication, event or packaging materials.']);if(contains(p,'brand'))items.push(['Identity system','Branding, logo or packaging identity work.']);if(contains(p,'conf'))items.push(['Event / conference system','Coordinated materials supporting an event or conference experience.']);if(hasSkill(p,'AJAX')||hasSkill(p,'REST'))items.push(['Dynamic interface behavior','Data-connected or asynchronously loaded interface features documented in the stack.']);if(!items.length)items.push(['Project delivery',p.summary||'Documented professional project work.']);document.getElementById('deliverableGrid').innerHTML=items.map(function(x){return deliver(x[0],x[1]);}).join('');deliverableSection.hidden=false;}
+  function renderPreview(p){var preview=document.getElementById('projectPreview');fetch('/'+p.link).then(function(r){if(!r.ok)throw new Error();return r.text();}).then(function(html){preview.innerHTML=html;preview.querySelectorAll('script,style,link,nav,footer').forEach(function(el){el.remove();});preview.querySelectorAll('img').forEach(function(img){if(img.getAttribute('src')&&img.getAttribute('src').indexOf('/')!==0&&!img.getAttribute('src').startsWith('http'))img.src='/showcase/'+img.getAttribute('src').replace(/^\.\//,'');});visualSection.hidden=false;}).catch(function(){preview.innerHTML='<p class="build-status">The original project preview is unavailable, but the case-study data above remains available.</p>';visualSection.hidden=false;});}
+  Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){var posts=merge(data[0].posts||[],[data[1]||{},data[2]||{}]);var requested=new URLSearchParams(location.search).get('post')||'27';var p=posts.find(function(x){return String(x.legacyId)===String(requested);})||posts[0];var type=typeFor(p);renderHero(p);renderNarrative(p);renderUX(p,type);renderWorkflow(type);renderArchitecture(p,type);renderDeliverables(p,type);renderPreview(p);}).catch(function(){hero.className='build-status';hero.textContent='Project data could not be loaded.';});
+})();
+</script>
+</body>
+</html>
