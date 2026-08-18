@@ -1,11 +1,17 @@
 /* Review-only Fine Arts gallery renderer.
- * Uses the same archive JSON as the live site but presents works in a more
- * controlled, consistent grid without changing the live gallery system.
+ * Uses the same archive JSON as the live site but presents works as an
+ * editorial exhibition rather than a card grid.
  */
 (function(){
   'use strict';
 
   var ENDPOINT='https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec';
+  var GALLERIES=[
+    {type:'gstory',label:'Narrative',href:'narrative-gallery-build.html'},
+    {type:'gnature',label:'Wildlife',href:'wildlife-gallery-build.html'},
+    {type:'gdecor',label:'Decorative',href:'decorative-gallery-build.html'},
+    {type:'gstudy',label:'Academic Studies',href:'studies-gallery-build.html'}
+  ];
 
   function text(value){
     if(Array.isArray(value)) return value.filter(Boolean).join(' ').trim();
@@ -53,6 +59,18 @@
     return fetch(ENDPOINT).then(function(r){if(!r.ok)throw new Error('Archive unavailable');return r.json();});
   }
 
+  function insertGalleryNavigation(type){
+    var hero=document.querySelector('.art-gallery-hero');
+    if(!hero||hero.nextElementSibling&&hero.nextElementSibling.classList.contains('art-gallery-categories')) return;
+    var nav=document.createElement('nav');
+    nav.className='art-gallery-categories';
+    nav.setAttribute('aria-label','Fine Arts galleries');
+    nav.innerHTML=GALLERIES.map(function(gallery){
+      return '<a href="'+gallery.href+'"'+(gallery.type===type?' class="active" aria-current="page"':'')+'>'+gallery.label+'</a>';
+    }).join('');
+    hero.parentNode.insertBefore(nav,hero.nextSibling);
+  }
+
   function makeCard(item,index){
     var src=imageURL(item);
     var title=field(item,'title')||'Untitled';
@@ -92,6 +110,8 @@
     var close=document.getElementById('artGalleryClose');
     var records=[];
 
+    insertGalleryNavigation(type);
+
     function closeLightbox(){
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden','true');
@@ -103,7 +123,7 @@
       var items=data.filter(function(item){return String(item.type||'').trim().toLowerCase()===type;})
         .sort(function(a,b){return Number(a.id||0)-Number(b.id||0);});
 
-      status.remove();
+      if(status) status.remove();
       if(!items.length){
         grid.innerHTML='<p class="art-gallery-empty">No works are currently assigned to this gallery.</p>';
         return;
@@ -130,7 +150,7 @@
         close.focus();
       });
     }).catch(function(){
-      status.textContent='The gallery archive could not be loaded.';
+      if(status) status.textContent='The gallery archive could not be loaded.';
     });
 
     close.addEventListener('click',closeLightbox);
