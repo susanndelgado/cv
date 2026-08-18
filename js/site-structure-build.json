@@ -1,4 +1,14 @@
 {
+  "14": {
+    "title": "CHIP website structure",
+    "intro": "Primary navigation defined in the archived site source.",
+    "items": [
+      {"label": "Home"},
+      {"label": "Overview"},
+      {"label": "Faculty / Agenda"},
+      {"label": "Apply"}
+    ]
+  },
   "16": {
     "title": "Dallas Leipzig website structure",
     "intro": "Primary navigation and page hierarchy from the conference website.",
@@ -32,6 +42,16 @@
       {"label": "Claim CME"},
       {"label": "TCT Industry"},
       {"label": "TCT 2015 Agenda"}
+    ]
+  },
+  "24": {
+    "title": "TCT Industry 2015 website structure",
+    "intro": "Key industry sections and linked resource paths visible in the archived homepage source.",
+    "items": [
+      {"label": "Exhibits", "children": ["Exhibitor Resources", "Exhibitor FAQs", "Announcements", "Important Contacts"]},
+      {"label": "Satellite Symposia"},
+      {"label": "Product Factoids"},
+      {"label": "Meeting Space", "children": ["Social Activities Policy"]}
     ]
   },
   "26": {
