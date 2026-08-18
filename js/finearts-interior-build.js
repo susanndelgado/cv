@@ -16,6 +16,7 @@
   frame.addEventListener('load',function(){
     var doc=frame.contentDocument;
     if(!doc)return;
+    var centered=frame.getAttribute('data-align')==='center';
 
     var font=doc.createElement('link');
     font.rel='stylesheet';
@@ -43,6 +44,8 @@
         padding:0!important;
         text-align:left!important;
       }
+      body.finearts-hero-centered .process-hero,
+      body.finearts-hero-centered .process-hero .container{text-align:center!important}
       .process-hero .seal-contained{display:none!important}
       .finearts-interior-kicker{
         display:inline-block;
@@ -70,6 +73,12 @@
         text-align:left!important;
         text-transform:none!important;
       }
+      body.finearts-hero-centered .process-hero .master-title,
+      body.finearts-hero-centered .process-hero h1{
+        margin-left:auto!important;
+        margin-right:auto!important;
+        text-align:center!important;
+      }
       .process-hero h2{
         max-width:760px!important;
         margin:0 0 14px!important;
@@ -82,6 +91,11 @@
         text-transform:uppercase!important;
         text-align:left!important;
       }
+      body.finearts-hero-centered .process-hero h2{
+        margin-left:auto!important;
+        margin-right:auto!important;
+        text-align:center!important;
+      }
       .process-hero .hero-intro,
       .process-hero p{
         max-width:760px!important;
@@ -93,6 +107,12 @@
         line-height:1.72!important;
         text-align:left!important;
       }
+      body.finearts-hero-centered .process-hero .hero-intro,
+      body.finearts-hero-centered .process-hero p{
+        margin-left:auto!important;
+        margin-right:auto!important;
+        text-align:center!important;
+      }
       .process-hero .hero-divider{
         width:64px!important;
         height:3px!important;
@@ -100,11 +120,15 @@
         background:#d4af37!important;
         border:0!important;
       }
+      body.finearts-hero-centered .process-hero .hero-divider{margin:25px auto 0!important}
       @media(max-width:760px){
-        .process-hero{padding:54px 24px 42px!important}
+        .process-hero{padding:52px 22px 42px!important}
+        .process-hero .master-title,.process-hero h1{font-size:clamp(2rem,9vw,3.1rem)!important}
       }
     `;
     doc.head.appendChild(style);
+
+    if(centered&&doc.body)doc.body.classList.add('finearts-hero-centered');
 
     var hero=doc.querySelector('.process-hero');
     var title=hero&&hero.querySelector('.master-title,h1');
