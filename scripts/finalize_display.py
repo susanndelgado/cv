@@ -43,18 +43,8 @@ LIVE_NAV_PAGES = (
     'contact.html',
 )
 
-# Start the Google Apps Script request on the normal entry pages so the gallery
-# JSON is already stored under the same cache keys used by the gallery pages.
-GALLERY_PREFETCH_PAGES = (
-    'index.html',
-    'finearts.html',
-    'about.html',
-    'exhibits.html',
-    'progress-chronicles.html',
-)
-
 NAV_SCRIPT = '<script src="/js/site-navigation.js"></script>'
-GALLERY_PREFETCH_SCRIPT = '<script src="/js/gallery-prefetch.js"></script>'
+SITE_DATA_SCRIPT = '<script src="/js/site-data-cache.js"></script>'
 
 
 def sync_community(path: Path) -> int:
@@ -114,12 +104,14 @@ def inject_before(path: Path, closing_tag: str, snippet: str) -> bool:
 
 
 community_count = 0
+html_pages = []
 for page in ROOT.rglob('*.html'):
     try:
         text = page.read_text(encoding='utf-8')
     except UnicodeDecodeError:
         continue
     if '<html' in text.lower():
+        html_pages.append(page)
         community_count += sync_community(page)
 
 for name in ('work.html', 'showcase.html'):
@@ -136,16 +128,19 @@ for name in LIVE_NAV_PAGES:
     if inject_before(ROOT / name, '</body>', NAV_SCRIPT):
         nav_injected += 1
 
-prefetch_injected = 0
-for name in GALLERY_PREFETCH_PAGES:
-    # This script does not touch the DOM, so loading it in the head starts the
-    # asynchronous archive request while the rest of the page is still parsing.
-    if inject_before(ROOT / name, '</head>', GALLERY_PREFETCH_SCRIPT):
-        prefetch_injected += 1
+# Load the archive cache module in the <head> of every real site page so it can
+# start the JSON request immediately and intercept later archive fetches before
+# page-specific scripts run. Review-only *-build.html pages remain isolated.
+site_data_injected = 0
+for page in html_pages:
+    if page.name.endswith('-build.html'):
+        continue
+    if inject_before(page, '</head>', SITE_DATA_SCRIPT):
+        site_data_injected += 1
 
 print(
     'Final display patches applied. '
     f'Guild/community sections synchronized: {community_count}; '
     f'live navigation scripts injected: {nav_injected}; '
-    f'gallery cache warmups injected: {prefetch_injected}'
+    f'shared archive cache injected: {site_data_injected}'
 )
