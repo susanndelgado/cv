@@ -107,6 +107,8 @@
     doc.head.appendChild(style);
 
     var hero=doc.querySelector('.process-hero');
+    var title=hero&&hero.querySelector('.master-title,h1');
+    if(title&&title.textContent.trim()==='Progress Chronicals') title.textContent='Progress Chronicles';
     var container=hero&&hero.querySelector('.container');
     if(container&&!container.querySelector('.finearts-interior-kicker')){
       var kicker=doc.createElement('div');
