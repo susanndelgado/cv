@@ -1,0 +1,20 @@
+/* Review-only frame for Fine Arts interior-page builds. The live page remains
+   untouched inside a same-origin iframe while the build header/footer provide
+   the shared portfolio chrome. */
+.finearts-page-build{
+  margin:0;
+  background:#fff;
+  color:#222;
+  font-family:proxima-nova,"Open Sans",Arial,sans-serif;
+}
+.finearts-page-build .finearts-preview-frame{
+  display:block;
+  width:100%;
+  min-height:900px;
+  border:0;
+  background:#fff;
+}
+.finearts-page-build .build-footer{margin-top:0}
+@media(max-width:760px){
+  .finearts-page-build .finearts-preview-frame{min-height:760px}
+}
