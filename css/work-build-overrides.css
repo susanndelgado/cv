@@ -1,0 +1,21 @@
+/* Review-only correction: keep the redesigned Technical Work page while matching the live site's hero scale and typographic rhythm. */
+body.work-build-page .build-hero {
+  padding-top: 120px;
+}
+
+body.work-build-page .build-display {
+  max-width: 1040px;
+  font-family: proxima-nova, "Open Sans", sans-serif;
+  font-size: clamp(2.75rem, 4.6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  body.work-build-page .build-display {
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    letter-spacing: 4px;
+  }
+}
