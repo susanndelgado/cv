@@ -8,8 +8,8 @@
       "content": "<p>CRF Women’s Heart Health Initiative was a cardiovascular-health campaign focused on education and outreach for women.</p><p>Developed the responsive email communications used to support the initiative and prepared campaign content for distribution through Salesforce Pardot.</p>"
     },
     "14": {
-      "skills": "Front End Development<br>Responsive Web Development<br>PHP<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Angular<br>Bootstrap<br>Gulp<br>Email Development",
-      "content": "<p>CHIP at ACC 2016 was an educational meeting presented through a dedicated CRF conference microsite.</p><p>Developed the responsive site and implemented the meeting content and front-end interactions.</p><p>Developed supporting conference email communications alongside the website.</p>"
+      "skills": "Front End Development<br>Responsive Web Development<br>PHP<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Email Development",
+      "content": "<p>CHIP at ACC 2016 was an educational meeting presented through a dedicated CRF conference microsite.</p><p>Developed the responsive site and implemented the meeting content and front-end interactions with PHP, HTML5, CSS, JavaScript, jQuery and Bootstrap.</p><p>The interface included section-based navigation, active-state updates, collapsible content and supporting conference email communications.</p>"
     },
     "15": {
       "content": "<p>The Chronic Total Occlusion (CTO) Summit is a CRF educational conference bringing together experienced CTO PCI operators for live cases, real-time analysis and instruction from internationally recognized faculty.</p><p>Developed the 2016 CTO conference website and responsive/mobile presentation using Joomla, Bootstrap, JavaScript, jQuery, PHP, SCSS, HTML5 and CSS.</p><p>Developed the supporting responsive email communications and prepared them for distribution through Salesforce Pardot.</p>"
@@ -49,6 +49,10 @@
     },
     "26": {
       "content": "<p>The 2016 Pulse Gala was CRF’s signature fundraising event supporting cardiovascular research and education. The event honored Dr. Allan Schwartz for his contributions to cardiovascular patient care, research and education.</p><p>Developed the responsive event site using Bootstrap, HTML5, CSS, JavaScript and jQuery, including the hero carousel, one-page navigation, video presentation and collapsible event-information sections.</p><p>Integrated responsive Formsite attendance and donation forms and developed supporting email communications for the event.</p>"
+    },
+    "27": {
+      "skills": "Front End Development<br>Responsive Web Development<br>Joomla<br>PHP<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Conference Schedule UI<br>Email Development<br>Salesforce Pardot",
+      "content": "<p>TCT 2014 was CRF’s annual Transcatheter Cardiovascular Therapeutics scientific symposium.</p><p>Developed the responsive conference front end within CRF’s Joomla/PHP environment. The Week-at-a-Glance presentation organized conference events by day with desktop filtering, expandable session details and a separate mobile disclosure treatment using JavaScript/jQuery and Bootstrap.</p><p>Developed supporting responsive conference email communications through Salesforce Pardot.</p>"
     },
     "29": {
       "content": "<p>MAQUET 2014 was a sponsor microsite developed through CRF to support conference information and related educational promotion.</p><p>Developed the responsive site and implemented overview, faculty, agenda and call-for-cases content together with webcast promotion.</p><p>Developed and distributed the supporting Salesforce Pardot email communications.</p>"
