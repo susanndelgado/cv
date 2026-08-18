@@ -62,6 +62,9 @@ jobs:
       - name: Finalize shared display sections
         run: python3 scripts/finalize_display.py
 
+      - name: Finalize shared navigation
+        run: python3 scripts/finalize_navigation.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
