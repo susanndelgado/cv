@@ -1,10 +1,8 @@
 name: Update fine art navigation
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/update-finearts-nav.yml"
+  issues:
+    types: [opened]
   workflow_dispatch:
 
 permissions:
@@ -12,6 +10,7 @@ permissions:
 
 jobs:
   update-nav:
+    if: github.event_name == 'workflow_dispatch' || github.event.issue.title == 'Run fine arts nav update'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
