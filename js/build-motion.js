@@ -3,6 +3,7 @@
 
   var STYLE_ID='sd-build-interactions';
   var normalizedNodes=new WeakSet();
+  var portfolioObserverInstalled=false;
 
   function ensureStylesheets(){
     var head=document.head;
@@ -37,6 +38,7 @@
     style.textContent=`
 /* Technical build corrections + performance layer. */
 .build-hero .build-kicker{font-weight:400!important}
+#additional-professional-work{scroll-margin-top:96px}
 
 /* Case-study metadata readability. */
 .build-case-meta{
@@ -52,6 +54,7 @@
 .build-case-hero .build-back{color:#6c757d!important}
 .build-case-hero .build-back:hover,
 .build-case-hero .build-back:focus-visible{color:#f70606!important}
+.build-case-taxonomy-group .build-pill:not(a){cursor:default}
 
 /* Resume header matches the original horizontal composition. */
 .resume-build-page .resume-header{
@@ -288,10 +291,105 @@ body.build-page:not(.resume-build-page) .build-archive-card{
     });
   }
 
+  function normalizePortfolioNavigation(root){
+    root=root||document;
+    var archiveHeading=document.querySelector('#archive .build-section-head h2');
+    if(archiveHeading&&archiveHeading.textContent.trim()==='Additional professional work'){
+      archiveHeading.id='additional-professional-work';
+    }
+
+    root.querySelectorAll('.build-case-taxonomy-group').forEach(function(group){
+      var label=group.querySelector('.build-case-taxonomy-label');
+      if(!label)return;
+      var labelText=label.textContent.trim();
+      if(labelText==='Project type'||labelText==='Category'){
+        label.textContent='Category';
+        var pills=group.querySelector('.build-pills');
+        if(pills){
+          var categoryOrder=['conf','web','email','dig','print','brand'];
+          var categoryLinks=Array.prototype.slice.call(pills.querySelectorAll('a.build-pill'));
+          categoryLinks.forEach(function(link){
+            var href=link.getAttribute('href')||'';
+            link.setAttribute('href',href.replace('#archive','#additional-professional-work'));
+          });
+          categoryLinks.sort(function(a,b){
+            function token(link){
+              try{return new URL(link.getAttribute('href'),location.href).searchParams.get('type')||'';}catch(e){return '';}
+            }
+            var ai=categoryOrder.indexOf(token(a));
+            var bi=categoryOrder.indexOf(token(b));
+            return (ai<0?999:ai)-(bi<0?999:bi);
+          }).forEach(function(link){pills.appendChild(link);});
+        }
+      }else if(labelText==='Skills'){
+        group.querySelectorAll('a.build-pill').forEach(function(link){
+          var span=document.createElement('span');
+          span.className='build-pill';
+          span.textContent=link.textContent;
+          link.replaceWith(span);
+        });
+      }
+    });
+
+    root.querySelectorAll('a.build-case-nav-all').forEach(function(link){
+      link.setAttribute('href','work-build.html#additional-professional-work');
+    });
+    root.querySelectorAll('a[href*="work-build.html?type="]').forEach(function(link){
+      var href=link.getAttribute('href')||'';
+      if(href.indexOf('#archive')!==-1)link.setAttribute('href',href.replace('#archive','#additional-professional-work'));
+    });
+    root.querySelectorAll('a[href="work-build.html#archive"]').forEach(function(link){
+      link.setAttribute('href','work-build.html#additional-professional-work');
+    });
+
+    var filterStatus=document.getElementById('archiveFilterStatus');
+    if(filterStatus){
+      Array.prototype.slice.call(filterStatus.childNodes).forEach(function(node){
+        if(node.nodeType===Node.TEXT_NODE&&node.nodeValue.indexOf('Project type:')!==-1){
+          node.nodeValue=node.nodeValue.replace('Project type:','Category:');
+        }
+      });
+      filterStatus.querySelectorAll('a[href="work-build.html#archive"]').forEach(function(link){
+        link.setAttribute('href','work-build.html#additional-professional-work');
+      });
+    }
+
+    if(/\/work-build\.html$/.test(location.pathname)&&location.hash==='#archive'){
+      history.replaceState(null,'',location.pathname+location.search+'#additional-professional-work');
+    }
+    if(/\/work-build\.html$/.test(location.pathname)&&location.hash==='#additional-professional-work'&&archiveHeading){
+      requestAnimationFrame(function(){archiveHeading.scrollIntoView({block:'start'});});
+    }
+  }
+
+  function installPortfolioObserver(){
+    if(portfolioObserverInstalled||!window.MutationObserver)return;
+    var targets=[
+      document.getElementById('caseHero'),
+      document.getElementById('caseNavTop'),
+      document.getElementById('caseNavBottom'),
+      document.getElementById('archiveFilterStatus')
+    ].filter(Boolean);
+    if(!targets.length)return;
+    portfolioObserverInstalled=true;
+    var queued=false;
+    var observer=new MutationObserver(function(){
+      if(queued)return;
+      queued=true;
+      requestAnimationFrame(function(){
+        queued=false;
+        normalizePortfolioNavigation(document);
+      });
+    });
+    targets.forEach(function(target){observer.observe(target,{childList:true,subtree:true});});
+  }
+
   function initBuildMotion(root){
     ensureStylesheets();
     installStyles();
     normalizeCopy(root||document);
+    normalizePortfolioNavigation(root||document);
+    installPortfolioObserver();
   }
 
   function initCursor(){
@@ -339,6 +437,8 @@ body.build-page:not(.resume-build-page) .build-archive-card{
     ensureStylesheets();
     installStyles();
     normalizeCopy(document);
+    normalizePortfolioNavigation(document);
+    installPortfolioObserver();
     initCursor();
   }
 
