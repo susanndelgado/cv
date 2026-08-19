@@ -1,5 +1,0 @@
-/* Compatibility entry for Technical build pages that have not yet had their
-   link tags migrated. Canonical styling lives in build-global.css and
-   work-build.css. */
-@import url("build-global.css");
-@import url("work-build.css");
