@@ -48,11 +48,17 @@
   height:auto!important;
 }
 
-/* Exact live .process-hero .master-title treatment. */
+/* Exact live .process-hero .master-title treatment.
+   Reset the gallery-build max-width/margins so the title is centered on the page,
+   not centered inside the old left-aligned 850px gallery title box. */
 .art-gallery-build .art-gallery-hero .master-title,
 .art-gallery-build .art-gallery-hero h1{
+  width:100%!important;
+  max-width:100%!important;
   margin-top:0!important;
+  margin-right:auto!important;
   margin-bottom:20px!important;
+  margin-left:auto!important;
   color:#ffffff!important;
   font-family:"Playfair",Georgia,serif!important;
   font-size:2.8rem!important;
@@ -103,7 +109,7 @@
 /* Build-only gallery navigation, centered beneath the live-style hero content.
    Gold appears only on hover/focus and the active gallery. */
 .art-gallery-build .art-gallery-hero .art-gallery-categories{
-  width:auto!important;
+  width:100%!important;
   max-width:900px!important;
   margin:32px auto 0!important;
   padding:0!important;
