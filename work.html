@@ -22,6 +22,7 @@
     .tech-footer{background:#000;color:#fff}.tech-footer a,.tech-footer .text-muted,.tech-footer p,.tech-footer em{color:#fff!important}
     @media(max-width:991px){#workGrid .work-card{width:50%}.showcase-thumbs .featured-image img{height:300px}}@media(max-width:575px){#workGrid .work-card{width:100%}#workGrid .work-card-image img{height:auto}.showcase-thumbs .featured-image img{height:auto}}
   </style>
+<script src="/js/site-data-cache.js"></script>
 </head>
 <body class="page-template page">
 <header id="top" class="top">
@@ -65,5 +66,6 @@
   Promise.all([fetch('/js/posts.json').then(function(r){return r.json();}),fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),fetch('/js/work-filters.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})]).then(function(data){taxonomy=data[3]||{};posts=merge(data[0].posts||[],[data[1]||{},data[2]||{}]);renderGrid();}).catch(function(){grid.innerHTML='<p>Project list could not be loaded.</p>';});
 })();
 </script>
+<script src="/js/site-navigation.js"></script>
 </body>
 </html>
