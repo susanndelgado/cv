@@ -9,7 +9,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
   <link rel="stylesheet" href="css/build-style.css">
-  <link rel="stylesheet" href="css/build-review.css">
+  <link rel="stylesheet" href="css/build-global.css">
+  <link rel="stylesheet" href="css/work-build.css">
   <link rel="stylesheet" href="css/showcase-structure.css">
 </head>
 <body class="build-page">
@@ -42,7 +43,7 @@
 
   <section class="build-section white" id="caseContext" hidden>
     <div class="build-shell build-case-content">
-      <div><p class="build-kicker">Project overview</p><h2>Context & contribution</h2></div>
+      <div><p class="build-kicker">Project overview</p><h2>Context</h2></div>
       <div id="caseNarrative" class="build-rich-copy"></div>
     </div>
   </section>
@@ -248,7 +249,7 @@
   Promise.all([
     fetch('/js/posts.json').then(function(r){return r.json();}),
     fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
-    fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}) ,
+    fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-project-copy.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/site-structure-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
