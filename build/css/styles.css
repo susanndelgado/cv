@@ -70,52 +70,14 @@ h6 {
 /******************************************************************
  * BUTTONS, LINKS, & INPUTS
  ******************************************************************/
-.btn {
-  border-radius: 0;
-}
-.btn-blk {
-  background-color: #000;
-  color: #fff;
-}
-
-/* Gold outline button */
-
-.btn-gold {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 2px solid #d4af37;
-  color: #d4af37;
-}
-
-.btn-gold:hover,
-.btn-gold:focus {
-  background-color: #d4af37;
-  border-color: #d4af37;
-  color: #111;
-}
-
-/* Blue outline button */
-
-.btn-blue {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 2px solid #60adb8;
-  color: #60adb8;
-}
-
-.btn-blue:hover,
-.btn-blue:focus {
-  background-color: #60adb8;
-  border-color: #60adb8;
-  color: #fff;
-}
 
 a {
-  color: #000;
   background-color: transparent;
 }
 
 a:hover,
 a:focus {
-  color: #f70606;
+  color: #d4af37;
   background-color: transparent;
   outline: none !important;
   box-shadow: none !important;
@@ -131,6 +93,53 @@ a:visited,
 .btn:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+.btn {
+  border-radius: 0;
+}
+.btn-blk {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Gold outline button */
+
+.btn-gold,
+.btn-gold:visited,
+a.btn-gold,
+a.btn-gold:visited {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #d4af37;
+  color: #fff;
+}
+
+.btn-gold:hover,
+.btn-gold:focus,
+a.btn-gold:hover,
+a.btn-gold:focus {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #111;
+}
+
+/* Blue outline button */
+
+.btn-blue,
+.btn-blue:visited,
+a.btn-blue,
+a.btn-blue:visited {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #60adb8;
+  color: #fff;
+}
+
+.btn-blue:hover,
+.btn-blue:focus,
+a.btn-blue:hover,
+a.btn-blue:focus {
+  background-color: #60adb8;
+  border-color: #60adb8;
+  color: #fff;
 }
 
 /******************************************************************
