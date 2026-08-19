@@ -53,22 +53,22 @@
   if(!frame)return;
 
   var buildLinks={
-    '/narrative-gallery.html':'/narrative-gallery-build.html',
-    'narrative-gallery.html':'/narrative-gallery-build.html',
-    '/wildlife-gallery.html':'/wildlife-gallery-build.html',
-    'wildlife-gallery.html':'/wildlife-gallery-build.html',
-    '/decorative-gallery.html':'/decorative-gallery-build.html',
-    'decorative-gallery.html':'/decorative-gallery-build.html',
-    '/studies-gallery.html':'/studies-gallery-build.html',
-    'studies-gallery.html':'/studies-gallery-build.html',
-    '/about.html':'/about-build.html',
-    'about.html':'/about-build.html',
-    '/exhibits.html':'/exhibits-build.html',
-    'exhibits.html':'/exhibits-build.html',
-    '/progress-chronicles.html':'/progress-chronicles-build.html',
-    'progress-chronicles.html':'/progress-chronicles-build.html',
-    '/contact.html':'/contact-build.html',
-    'contact.html':'/contact-build.html'
+    '/narrative-gallery.html':'/build/narrative-gallery-build.html',
+    'narrative-gallery.html':'/build/narrative-gallery-build.html',
+    '/wildlife-gallery.html':'/build/wildlife-gallery-build.html',
+    'wildlife-gallery.html':'/build/wildlife-gallery-build.html',
+    '/decorative-gallery.html':'/build/decorative-gallery-build.html',
+    'decorative-gallery.html':'/build/decorative-gallery-build.html',
+    '/studies-gallery.html':'/build/studies-gallery-build.html',
+    'studies-gallery.html':'/build/studies-gallery-build.html',
+    '/about.html':'/build/about-build.html',
+    'about.html':'/build/about-build.html',
+    '/exhibits.html':'/build/exhibits-build.html',
+    'exhibits.html':'/build/exhibits-build.html',
+    '/progress-chronicles.html':'/build/progress-chronicles-build.html',
+    'progress-chronicles.html':'/build/progress-chronicles-build.html',
+    '/contact.html':'/build/contact-build.html',
+    'contact.html':'/build/contact-build.html'
   };
 
   function resize(doc){
@@ -88,7 +88,7 @@
 
     var theme=doc.createElement('link');
     theme.rel='stylesheet';
-    theme.href='/css/finearts-build.css';
+    theme.href='/build/css/finearts-build.css';
     doc.head.appendChild(theme);
 
     var hero=doc.querySelector('.boutique-hero,.process-hero');
