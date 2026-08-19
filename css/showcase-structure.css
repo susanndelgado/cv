@@ -108,6 +108,10 @@
 }
 .build-case-nav-all:hover,.build-case-nav-all:focus-visible{color:#f70606!important}
 
+/* Keep one-line project summaries for archive/card data, but do not display
+   them in case-study headers where they make the hero feel unbalanced. */
+.build-case-hero .build-case-summary{display:none!important}
+
 /* Case-study skills. Skills remain informational, not clickable. */
 .build-case-taxonomy{margin-top:24px}
 .build-case-taxonomy-group+.build-case-taxonomy-group{margin-top:15px}
