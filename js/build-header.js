@@ -17,10 +17,9 @@
   }
 
   function createWorkMainNav(header){
-    var nav=document.createElement('nav');
+    var nav=document.createElement('div');
     nav.className='build-main-nav';
-    nav.setAttribute('aria-label','Technical portfolio navigation');
-    nav.innerHTML='<div class="build-main-nav-inner"><a class="build-site-brand" href="/index.html">SUSAN DELGADO</a><div class="build-site-links"><a href="work-build.html">TECHNICAL WORK</a><a href="showcase-build.html?post=23">SHOWCASE</a><a href="contact-build.html" aria-current="page">CONTACT</a></div></div>';
+    nav.innerHTML='<div class="build-main-nav-inner"><a class="build-site-brand" href="/index.html">SUSAN DELGADO</a><nav class="build-site-links" aria-label="Technical portfolio navigation"><a href="work-build.html">TECHNICAL WORK</a><a href="showcase-build.html?post=23">SHOWCASE</a><a href="contact-build.html" aria-current="page">CONTACT</a></nav></div>';
     header.appendChild(nav);
     return nav;
   }
