@@ -1,6 +1,7 @@
 /* Shared build chrome.
    Loaded by both Fine Arts and Technical review builds.
-   Section identity is supplied through --build-accent. */
+   Fine Arts is the global/default header treatment; Technical Work changes
+   only the primary-nav interaction accent through .build-nav-work. */
 :root{
   --build-teal:#60adb8;
   --build-red:#f70606;
@@ -8,27 +9,24 @@
   --build-tab:#eff8ff;
   --build-nav-text:#6c757d;
   --build-border:#dee2e6;
-  --build-accent:var(--build-red);
-}
-
-.art-build-preview,
-.art-gallery-build,
-.finearts-page-build{
   --build-accent:var(--build-gold);
 }
 
 .build-site-header{
   position:relative!important;
   z-index:1000;
+  width:100%;
   background:#fff!important;
   box-shadow:none!important;
   border-bottom:1px solid #eee!important;
 }
 .build-top-tabs{
+  width:100%;
   background:var(--build-tab)!important;
   border-bottom:1px solid var(--build-border)!important;
 }
-.build-tabs{
+.build-tabs,
+.build-tabs.nav{
   display:flex;
   list-style:none;
   margin:0;
@@ -36,62 +34,86 @@
   font-family:Verdana,serif!important;
   font-size:16px!important;
 }
-.build-tabs li{margin:0 2px -1px 0}
-.build-tabs a{
+.build-tabs.nav-tabs{border-bottom:0!important}
+.build-tabs li,
+.build-tabs .nav-item{margin:0 2px -1px 0}
+.build-tabs a,
+.build-tabs .nav-link{
   display:block;
   padding:10px 16px!important;
   border:1px solid transparent!important;
+  border-radius:0!important;
   background:transparent!important;
   color:var(--build-teal)!important;
   text-decoration:none;
 }
 .build-tabs a:hover,
-.build-tabs a:focus-visible{
+.build-tabs a:focus-visible,
+.build-tabs .nav-link:hover,
+.build-tabs .nav-link:focus-visible{
   color:var(--build-red)!important;
   border-color:#e9ecef #e9ecef var(--build-border)!important;
   outline:none;
 }
-.build-tabs .active a{
+.build-tabs .active a,
+.build-tabs a.active,
+.build-tabs .nav-link.active{
   color:#495057!important;
   background:#fff!important;
   border-color:var(--build-border) var(--build-border) #fff!important;
 }
 .build-tabs .active a:hover,
-.build-tabs .active a:focus-visible{color:var(--build-red)!important}
+.build-tabs .active a:focus-visible,
+.build-tabs a.active:hover,
+.build-tabs a.active:focus-visible{color:var(--build-red)!important}
 
-.build-main-nav{
+.build-main-nav,
+.build-main-nav.navbar{
+  --build-nav-accent:var(--build-gold);
+  padding:0!important;
   background:#fff!important;
   border-bottom:1px solid #eee!important;
   backdrop-filter:none!important;
   -webkit-backdrop-filter:none!important;
 }
-.build-main-nav-inner{
+.build-main-nav.build-nav-work{--build-nav-accent:var(--build-red)}
+.build-main-nav-inner,
+.build-main-nav-inner.container-fluid{
   width:calc(100% - 30px);
   margin:0 auto;
   min-height:67px!important;
+  padding-right:0!important;
+  padding-left:0!important;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:28px;
 }
-.build-site-brand{
+.build-site-brand,
+.build-site-brand.navbar-brand{
+  margin:0!important;
+  padding:0!important;
   color:#000!important;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
   font-size:1.25rem!important;
   font-weight:500!important;
   letter-spacing:.025em!important;
+  line-height:1.2!important;
   text-transform:uppercase;
   text-decoration:none;
 }
 .build-site-brand:hover,
 .build-site-brand:focus-visible{color:rgba(0,0,0,.65)!important;outline:none}
 
-.build-site-links{
+.build-site-links,
+.build-site-links.navbar-nav{
   display:flex;
+  flex-direction:row;
   align-items:center;
   gap:4px;
 }
-.build-site-links a{
+.build-site-links a,
+.build-site-links .nav-link{
   position:relative!important;
   padding:20px 12px!important;
   color:var(--build-nav-text)!important;
@@ -99,10 +121,12 @@
   font-size:1rem!important;
   font-weight:500!important;
   letter-spacing:.02em!important;
+  line-height:1.5!important;
   text-transform:uppercase;
   text-decoration:none!important;
 }
-.build-site-links a::after{
+.build-site-links a::after,
+.build-site-links .nav-link::after{
   content:""!important;
   position:absolute!important;
   left:12px!important;
@@ -110,13 +134,14 @@
   bottom:14px!important;
   height:1px!important;
   background:transparent!important;
+  transition:background .2s ease!important;
 }
 .build-site-links a[aria-current=page]{color:#111!important}
-.build-site-links a[aria-current=page]::after{background:var(--build-accent)!important}
+.build-site-links a[aria-current=page]::after{background:var(--build-nav-accent)!important}
 .build-site-links a:hover,
-.build-site-links a:focus-visible{color:var(--build-accent)!important;outline:none}
+.build-site-links a:focus-visible{color:var(--build-nav-accent)!important;outline:none}
 .build-site-links a:hover::after,
-.build-site-links a:focus-visible::after{background:var(--build-accent)!important}
+.build-site-links a:focus-visible::after{background:var(--build-nav-accent)!important}
 
 .build-footer{
   padding:34px 0 40px!important;
@@ -131,18 +156,25 @@
 .build-footer-links{display:flex;justify-content:center;gap:10px;align-items:center;font-size:.78rem}
 .build-footer a{color:#6c757d!important;text-decoration:none!important}
 .build-footer a:hover,
-.build-footer a:focus-visible{color:var(--build-accent)!important;outline:none}
+.build-footer a:focus-visible{color:var(--build-gold)!important;outline:none}
 
 @media(max-width:760px){
-  .build-main-nav-inner{
+  .build-main-nav-inner,
+  .build-main-nav-inner.container-fluid{
     align-items:flex-start;
     flex-direction:column;
     gap:4px;
-    padding:15px 0;
+    padding-top:15px!important;
+    padding-bottom:15px!important;
   }
-  .build-site-links{width:100%;flex-wrap:wrap}
-  .build-site-links a{font-size:.92rem!important;padding:8px 10px!important}
-  .build-site-links a::after{left:10px!important;right:10px!important;bottom:3px!important}
-  .build-tabs{padding-left:8px!important;font-size:14px!important}
-  .build-tabs a{padding:9px 11px!important}
+  .build-site-links,
+  .build-site-links.navbar-nav{width:100%;flex-wrap:wrap}
+  .build-site-links a,
+  .build-site-links .nav-link{font-size:.92rem!important;padding:8px 10px!important}
+  .build-site-links a::after,
+  .build-site-links .nav-link::after{left:10px!important;right:10px!important;bottom:3px!important}
+  .build-tabs,
+  .build-tabs.nav{padding-left:8px!important;font-size:14px!important}
+  .build-tabs a,
+  .build-tabs .nav-link{padding:9px 11px!important}
 }
