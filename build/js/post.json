@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "_guide": {
+    "purpose": "Add or override build Technical Work / Showcase projects here. This file is loaded last, so it preserves the established portfolio data and lets one post record hold its metadata, richer description, case study, structure and preview.",
+    "addProject": "Add one object to posts. For a new project, put the project gallery in preview.sections; no separate showcase HTML fragment is required.",
+    "previewExample": {
+      "sections": [
+        {
+          "title": "WEBSITE",
+          "columns": 2,
+          "images": [
+            {
+              "src": "/showcase/img/example-1.jpg",
+              "alt": "Project home page",
+              "size": "standard"
+            },
+            {
+              "src": "/showcase/img/example-2.jpg",
+              "alt": "Project inner page",
+              "size": "standard"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "posts": [
+    {
+      "id": "60",
+      "title": "CRF CALENDAR APPLICATION",
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "year": "",
+      "image": "showcase/img/CRFCalendarApp.png",
+      "thumb": "showcase/img/CRFCalendarApp.png",
+      "heroLayout": "compact",
+      "summary": "Interactive CRF event calendar connected to remote event data through a PHP/JSON integration.",
+      "filters": "web dig",
+      "role": "Front End Developer<br>CRF Employee",
+      "skills": "Front End Development<br>JavaScript<br>jQuery<br>PHP<br>JSON / API Integration<br>Bootstrap<br>Responsive Web Development<br>Calendar UI",
+      "content": "<p>CRF Calendar was an interactive event-calendar application developed for the Cardiovascular Research Foundation.</p><p>The front end requested calendar data by date range, transformed the returned JSON into calendar entries, supported month and year navigation, and assembled event-detail modal content dynamically with JavaScript and jQuery.</p><p>A PHP endpoint used cURL to request public calendar-event data from CRF/TCTMD and returned that response to the browser, separating the remote service request from the client-side calendar interface.</p>",
+      "preview": {
+        "sections": [
+          {
+            "title": "APPLICATION INTERFACE",
+            "columns": 1,
+            "images": [
+              {
+                "src": "/showcase/img/CRFCalendarApp.png",
+                "alt": "CRF Calendar application interface",
+                "size": "standard"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
