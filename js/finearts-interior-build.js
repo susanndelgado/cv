@@ -5,11 +5,7 @@
 
   function resizeFrame(doc){
     if(!doc||!doc.documentElement)return;
-    var height=Math.max(
-      doc.documentElement.scrollHeight||0,
-      doc.body?doc.body.scrollHeight:0,
-      900
-    );
+    var height=Math.max(doc.documentElement.scrollHeight||0,doc.body?doc.body.scrollHeight:0,900);
     frame.style.height=height+'px';
   }
 
@@ -17,16 +13,18 @@
     var doc=frame.contentDocument;
     if(!doc)return;
 
-    var style=doc.createElement('style');
-    style.textContent=`
-      #top{display:none!important}
-      footer{display:none!important}
+    var hideChrome=doc.createElement('style');
+    hideChrome.textContent='#top{display:none!important} footer{display:none!important}';
+    doc.head.appendChild(hideChrome);
 
-      /* Preserve the live Fine Arts hero exactly. The only hero typography
-         color change in build previews is the subtitle (h2) to gold. */
-      .process-hero h2{color:#d4af37!important}
-    `;
-    doc.head.appendChild(style);
+    var theme=doc.createElement('link');
+    theme.rel='stylesheet';
+    theme.href='/css/finearts-build.css';
+    doc.head.appendChild(theme);
+
+    doc.querySelectorAll('.process-hero,.boutique-hero').forEach(function(hero){
+      hero.classList.add('finearts-hero');
+    });
 
     resizeFrame(doc);
     if(window.ResizeObserver&&doc.body){
