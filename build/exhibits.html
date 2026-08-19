@@ -1,0 +1,905 @@
+<!doctype html>
+<html class="no-js" lang="en">
+   <head>
+       <meta charset="utf-8">
+       <meta http-equiv="x-ua-compatible" content="ie=edge">
+       <title>Susan Delgado</title>
+       <meta name="description" content="">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<!-- STYLESHEETS LINKS FROM SDELGADO -->
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/art-style.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+     
+ 
+   </head>
+   <body class="page-template page">
+<header id="top">    
+  <!--[if lt IE 8]>
+           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+       <![endif]-->
+   <div class="">
+      <ul class="nav nav-tabs">
+      
+          <li class="nav-item active">
+            <a class="nav-link active" aria-current="page" href="/finearts.html">FINE ARTS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/work.html">TECHNICAL WORK</a>
+          </li>
+     
+      </ul> 
+   </div> 
+   <div class="container-fluid">
+   <nav class="navbar navbar-expand-lg navbar-light page-nav">
+       <a class="navbar-brand" href="/index.html">SUSAN DELGADO </a>
+       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+     
+         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+       <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+         <li class="active item"><a class="nav-link link" href="about.html" null="">ABOUT</a></li>
+         <li class="active item"><a class="nav-link link" href="exhibits.html" null="">EXHIBITIONS</a></li>
+<li class="item"><a class="nav-link link" href="progress-chronicles.html" null="">PROGRESS CHRONICLES</a></li>
+      <li class="item"><a class="nav-link link" href="/contact.html" null="">CONTACT</a></li>
+      </ul>
+      </div>
+   </nav>
+   </div>
+</header>
+
+<main id="exhibitions-page">
+  <section class="process-hero">
+    <div class="container text-center">
+      <div class="seal-contained">
+        <img src="img/logoCircle.svg" alt="Susan Nicole Delgado Fine Artist Seal">
+      </div>
+      <h1 class="master-title">Exhibitions</h1>
+      <p class="hero-intro" style="max-width: 800px; margin: 0 auto 30px;">
+        Current and selected exhibitions featuring the paintings and narrative work of Susan Nicole Delgado.
+      </p>
+      <div class="hero-divider"></div>
+    </div>
+  </section>
+
+  <section class="exhibitions-section">
+    <div class="container">
+      <div id="exhibition-list" class="exhibition-list" aria-live="polite">
+        <div class="exhibition-loading">The archive is gathering the exhibition records...</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+</script>
+<footer class="container py-4 border-top mt-5 text-center text-muted">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <p class="small text-uppercase mb-2">&copy; 2026 Susan Nicole Arts | Susan Nicole Delgado</p>
+            <p class="small mb-2">Grounded in the philosophy that <em>"Dreams are the Foundation of Reality."</em></p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="contact.html" class="text-muted small">Contact</a> |
+                <a href="sitemap.xml" target="_blank" class="text-muted small">Sitemap</a>
+            </div>
+        </div>
+         <pre id="raw-data-log" style="opacity:0; background: #fdf6e3; padding: 20px; border: 1px dashed #b58900; color: #586e75; font-size: 13px; display: none; max-height: 400px; overflow-y: auto; margin-bottom: 40px; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word;display:none;">
+    Waiting for the Librarian to open the ledger...
+</pre>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+// ==========================================================
+// === EXHIBITION CURATOR v2.1 ===============================
+// One Google Doc record = one exhibition container.
+// Newest/highest ID first.
+// Displays 5 exhibitions, then loads 5 more.
+// Hides the website button when [Link] is blank or invalid.
+// ==========================================================
+
+let allExhibitions = [];
+let currentExhibitionIndex = 0;
+
+const EXHIBITIONS_PER_PAGE = 5;
+
+const EXHIBITION_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+
+const EXHIBITION_CACHE_KEY = "exhibitions_cache_v2";
+const EXHIBITION_CACHE_TIME_KEY = "exhibitions_cache_time_v2";
+const EXHIBITION_CACHE_DURATION = 1000 * 60 * 10;
+
+
+// ==========================================================
+// TEXT HELPERS
+// ==========================================================
+
+function normalizeText(value) {
+  if (Array.isArray(value)) {
+    return value
+      .filter(value => value !== null && value !== undefined)
+      .join(" ")
+      .trim();
+  }
+
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  return String(value).trim();
+}
+
+
+function normalizeKey(value) {
+  return String(value || "")
+    .replace(/[\s_-]/g, "")
+    .toLowerCase();
+}
+
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+// ==========================================================
+// WEBSITE URL VALIDATION
+// Blank, missing, or invalid links display nothing.
+// ==========================================================
+
+function isValidWebsiteURL(value) {
+  if (!value) return false;
+
+  try {
+    const url = new URL(String(value).trim());
+
+    return (
+      url.protocol === "http:" ||
+      url.protocol === "https:"
+    );
+  } catch {
+    return false;
+  }
+}
+
+
+// ==========================================================
+// FIELD READER
+// Checks the main item and item.misc.
+// Matching is case-insensitive.
+// ==========================================================
+
+function getField(item, ...possibleNames) {
+  const sources = [
+    item || {},
+    item?.misc || {}
+  ];
+
+  const wantedKeys =
+    possibleNames.map(normalizeKey);
+
+  for (const source of sources) {
+    if (!source || typeof source !== "object") {
+      continue;
+    }
+
+    for (const [key, value] of Object.entries(source)) {
+      const normalizedValue = normalizeText(value);
+
+      if (
+        wantedKeys.includes(normalizeKey(key)) &&
+        normalizedValue
+      ) {
+        return normalizedValue;
+      }
+    }
+  }
+
+  return "";
+}
+
+
+// ==========================================================
+// IMAGE READER
+// Reads every URL in the single [Files] field.
+// Each URL line becomes one carousel image.
+// ==========================================================
+
+function extractImages(item) {
+  const files = Array.isArray(item?.files)
+    ? item.files
+    : item?.files
+      ? [item.files]
+      : [];
+
+  const urls = [];
+
+  files.forEach(fileEntry => {
+    if (!fileEntry) return;
+
+    const text =
+      typeof fileEntry === "string"
+        ? fileEntry
+        : JSON.stringify(fileEntry);
+
+    text
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(line =>
+        line.startsWith("http://") ||
+        line.startsWith("https://")
+      )
+      .forEach(url => urls.push(url));
+  });
+
+  return [...new Set(urls)];
+}
+
+
+// ==========================================================
+// IMAGE CAPTIONS
+// Expected format:
+// Caption One | Caption Two | Caption Three
+// ==========================================================
+
+function extractImageCaptions(item) {
+  const captions = getField(
+    item,
+    "imagecaptions",
+    "image captions",
+    "captions"
+  );
+
+  if (!captions) return [];
+
+  return captions
+    .split("|")
+    .map(caption => caption.trim())
+    .filter(Boolean);
+}
+
+
+// ==========================================================
+// DISPLAY HELPERS
+// ==========================================================
+
+function formatPipeSeparatedValue(value) {
+  if (!value) return "";
+
+  return value
+    .split("|")
+    .map(part => part.trim())
+    .filter(Boolean)
+    .map(part => `
+      <span class="exhibition-work-item">
+        ${escapeHTML(part)}
+      </span>
+    `)
+    .join("");
+}
+
+
+function createDetailRow(
+  label,
+  value,
+  options = {}
+) {
+  if (!value) return "";
+
+  let displayedValue = "";
+
+  if (options.pipeSeparated) {
+    displayedValue = `
+      <div class="exhibition-work-list">
+        ${formatPipeSeparatedValue(value)}
+      </div>
+    `;
+  } else {
+    displayedValue = `
+      <span>${escapeHTML(value)}</span>
+    `;
+  }
+
+  return `
+    <li>
+      <strong>${escapeHTML(label)}</strong>
+      ${displayedValue}
+    </li>
+  `;
+}
+
+
+function makeDetailRows(item) {
+  const venue = getField(
+    item,
+    "venue",
+    "gallery",
+    "institution"
+  );
+
+  const location = getField(
+    item,
+    "location",
+    "city",
+    "address"
+  );
+
+  const dates = getField(
+  item,
+  "dates",
+  "exhibitiondates"
+);
+
+  const reception = getField(
+    item,
+    "reception",
+    "receptiondate",
+    "opening",
+    "openingreception"
+  );
+
+  const organizer = getField(
+    item,
+    "organizer",
+    "organization",
+    "presentedby"
+  );
+
+  const works = getField(
+    item,
+    "works",
+    "artworks",
+    "pieces",
+    "worksshown"
+  );
+
+  const award = getField(
+    item,
+    "award",
+    "recognition"
+  );
+
+  const rows = [
+    createDetailRow("Venue", venue),
+    createDetailRow("Location", location),
+    createDetailRow("Dates", dates),
+    createDetailRow("Reception", reception),
+    createDetailRow("Organizer", organizer),
+    createDetailRow(
+      "Works",
+      works,
+      { pipeSeparated: true }
+    ),
+    createDetailRow("Award", award)
+  ].filter(Boolean);
+
+  if (!rows.length) return "";
+
+  return `
+    <ul class="exhibition-details">
+      ${rows.join("")}
+    </ul>
+  `;
+}
+
+
+// ==========================================================
+// BOOTSTRAP CAROUSEL
+// One carousel for all images from one exhibit document.
+// ==========================================================
+
+function makeCarousel(item, exhibitIndex) {
+  const images = extractImages(item);
+  const captions = extractImageCaptions(item);
+
+  const title =
+    getField(item, "title") ||
+    "Exhibition";
+
+  const carouselId =
+    `exhibition-carousel-${exhibitIndex}`;
+
+  if (!images.length) {
+    return `
+      <div class="exhibition-placeholder">
+        Images forthcoming
+      </div>
+    `;
+  }
+
+  const indicators =
+    images.length > 1
+      ? `
+        <div class="carousel-indicators">
+          ${images.map((image, index) => `
+            <button
+              type="button"
+              data-bs-target="#${carouselId}"
+              data-bs-slide-to="${index}"
+              class="${index === 0 ? "active" : ""}"
+              aria-current="${index === 0 ? "true" : "false"}"
+              aria-label="Image ${index + 1}">
+            </button>
+          `).join("")}
+        </div>
+      `
+      : "";
+
+  const slides = images
+    .map((src, index) => {
+      const caption =
+        captions[index] || "";
+
+      return `
+        <div class="carousel-item ${index === 0 ? "active" : ""}">
+          <img
+            src="${escapeHTML(src)}"
+            class="d-block w-100"
+            loading="lazy"
+            alt="${escapeHTML(title)} image ${index + 1}"
+            onerror="handleExhibitionImageError(this)"
+          >
+
+          ${caption ? `
+            <div class="carousel-caption d-none d-md-block">
+              <p>${escapeHTML(caption)}</p>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    })
+    .join("");
+
+  const controls =
+    images.length > 1
+      ? `
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#${carouselId}"
+          data-bs-slide="prev">
+
+          <span
+            class="carousel-control-prev-icon"
+            aria-hidden="true">
+          </span>
+
+          <span class="visually-hidden">
+            Previous
+          </span>
+        </button>
+
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#${carouselId}"
+          data-bs-slide="next">
+
+          <span
+            class="carousel-control-next-icon"
+            aria-hidden="true">
+          </span>
+
+          <span class="visually-hidden">
+            Next
+          </span>
+        </button>
+      `
+      : "";
+
+  return `
+    <div
+      id="${carouselId}"
+      class="carousel slide exhibition-carousel"
+      data-bs-ride="false">
+
+      ${indicators}
+
+      <div class="carousel-inner">
+        ${slides}
+      </div>
+
+      ${controls}
+    </div>
+  `;
+}
+
+
+// ==========================================================
+// BROKEN IMAGE HANDLING
+// ==========================================================
+
+function handleExhibitionImageError(
+  imageElement
+) {
+  const slide =
+    imageElement.closest(".carousel-item");
+
+  if (!slide) {
+    imageElement.style.display = "none";
+    return;
+  }
+
+  slide.innerHTML = `
+    <div class="exhibition-placeholder">
+      Image unavailable
+    </div>
+  `;
+}
+
+
+// ==========================================================
+// ONE EXHIBITION CONTAINER
+// One returned Google Doc item becomes one article.
+// ==========================================================
+
+function renderExhibition(
+  item,
+  globalIndex
+) {
+  const title =
+    getField(item, "title") ||
+    "Untitled Exhibition";
+
+  const description = getField(
+    item,
+    "description",
+    "exhibitdescription",
+    "summary"
+  );
+
+  const media = getField(
+    item,
+    "media",
+    "medium",
+    "category"
+  );
+
+  const status =
+    getField(
+      item,
+      "status",
+      "exhibitstatus"
+    ) || "Exhibition";
+
+  const officialLink = getField(
+    item,
+    "link",
+    "url",
+    "website",
+    "officiallink"
+  );
+
+  const reverseLayout =
+    globalIndex % 2 === 1;
+
+  const imageColumn = `
+    <div class="col-lg-6 p-0">
+      ${makeCarousel(item, globalIndex)}
+    </div>
+  `;
+
+  const copyColumn = `
+    <div class="col-lg-6 d-flex align-items-center">
+      <div class="exhibition-copy">
+
+        <span class="exhibition-status">
+          ${escapeHTML(status)}
+        </span>
+
+        <h2 class="exhibition-title">
+          ${escapeHTML(title)}
+        </h2>
+
+        ${media ? `
+          <div class="exhibition-media">
+            ${escapeHTML(media)}
+          </div>
+        ` : ""}
+
+        ${description ? `
+          <div class="exhibition-description">
+            ${escapeHTML(description)}
+          </div>
+        ` : ""}
+
+        ${makeDetailRows(item)}
+
+        ${isValidWebsiteURL(officialLink) ? `
+           <a
+             class="exhibition-link"
+             href="${escapeHTML(officialLink)}"
+             target="_blank"
+             rel="noopener noreferrer">
+             Exhibition Details
+           </a>
+        ` : ""}
+
+      </div>
+    </div>
+  `;
+
+  return `
+    <article
+      class="exhibition-card"
+      data-exhibition-id="${escapeHTML(item?.id || "")}">
+
+      <div class="row g-0">
+        ${
+          reverseLayout
+            ? copyColumn + imageColumn
+            : imageColumn + copyColumn
+        }
+      </div>
+
+    </article>
+  `;
+}
+
+
+// ==========================================================
+// FETCH ARCHIVE
+// Uses the same basic method as the Narrative Gallery.
+// ==========================================================
+
+async function getExhibitionArchive() {
+  const now = Date.now();
+
+  const cached =
+    localStorage.getItem(
+      EXHIBITION_CACHE_KEY
+    );
+
+  const cachedTime =
+    Number(
+      localStorage.getItem(
+        EXHIBITION_CACHE_TIME_KEY
+      )
+    );
+
+  if (
+    cached &&
+    cachedTime &&
+    now - cachedTime <
+      EXHIBITION_CACHE_DURATION
+  ) {
+    try {
+      return JSON.parse(cached);
+    } catch (error) {
+      localStorage.removeItem(
+        EXHIBITION_CACHE_KEY
+      );
+
+      localStorage.removeItem(
+        EXHIBITION_CACHE_TIME_KEY
+      );
+    }
+  }
+
+  const response = await fetch(
+    `${EXHIBITION_SCRIPT_URL}?t=${now}`
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Archive request failed with status ${response.status}.`
+    );
+  }
+
+  const archive =
+    await response.json();
+
+  if (!Array.isArray(archive)) {
+    throw new Error(
+      "The exhibition archive returned an invalid format."
+    );
+  }
+
+  localStorage.setItem(
+    EXHIBITION_CACHE_KEY,
+    JSON.stringify(archive)
+  );
+
+  localStorage.setItem(
+    EXHIBITION_CACHE_TIME_KEY,
+    String(now)
+  );
+
+  return archive;
+}
+
+
+// ==========================================================
+// INITIALIZE EXHIBITIONS
+// Filters type=exhibit and sorts highest ID first.
+// ==========================================================
+
+async function initiateExhibitions() {
+  const exhibitionList =
+    document.getElementById(
+      "exhibition-list"
+    );
+
+  const loadMoreButton =
+    document.getElementById(
+      "loadMoreExhibitions"
+    );
+
+  if (!exhibitionList) {
+    console.error(
+      "Missing #exhibition-list container."
+    );
+
+    return;
+  }
+
+  try {
+    const archive =
+      await getExhibitionArchive();
+
+    allExhibitions = archive
+      .filter(item => {
+        return (
+          normalizeText(item?.type)
+            .toLowerCase() === "exhibit"
+        );
+      })
+      .sort((a, b) => {
+        const idA =
+          Number(a?.id || 0);
+
+        const idB =
+          Number(b?.id || 0);
+
+        return idB - idA;
+      });
+
+    exhibitionList.innerHTML = "";
+    currentExhibitionIndex = 0;
+
+    if (!allExhibitions.length) {
+      exhibitionList.innerHTML = `
+        <div class="exhibition-empty">
+          No exhibition records are published yet.
+        </div>
+      `;
+
+      if (loadMoreButton) {
+        loadMoreButton.style.display =
+          "none";
+      }
+
+      return;
+    }
+
+    renderMoreExhibitions();
+
+  } catch (error) {
+    console.error(
+      "Exhibition load error:",
+      error
+    );
+
+    exhibitionList.innerHTML = `
+      <div class="exhibition-error">
+        The exhibition archive could not be loaded.
+        Please return shortly.
+      </div>
+    `;
+
+    if (loadMoreButton) {
+      loadMoreButton.style.display =
+        "none";
+    }
+  }
+}
+
+
+// ==========================================================
+// LOAD FIVE MORE
+// Appends exhibits without removing earlier ones.
+// ==========================================================
+
+function renderMoreExhibitions() {
+  const exhibitionList =
+    document.getElementById(
+      "exhibition-list"
+    );
+
+  const loadMoreButton =
+    document.getElementById(
+      "loadMoreExhibitions"
+    );
+
+  if (!exhibitionList) return;
+
+  const nextExhibitions =
+    allExhibitions.slice(
+      currentExhibitionIndex,
+      currentExhibitionIndex +
+        EXHIBITIONS_PER_PAGE
+    );
+
+  if (!nextExhibitions.length) {
+    if (loadMoreButton) {
+      loadMoreButton.style.display =
+        "none";
+    }
+
+    return;
+  }
+
+  const html = nextExhibitions
+    .map((item, localIndex) => {
+      const globalIndex =
+        currentExhibitionIndex +
+        localIndex;
+
+      return renderExhibition(
+        item,
+        globalIndex
+      );
+    })
+    .join("");
+
+  exhibitionList.insertAdjacentHTML(
+    "beforeend",
+    html
+  );
+
+  currentExhibitionIndex +=
+    nextExhibitions.length;
+
+  if (loadMoreButton) {
+    loadMoreButton.style.display =
+      currentExhibitionIndex <
+      allExhibitions.length
+        ? "inline-block"
+        : "none";
+  }
+}
+
+
+// ==========================================================
+// START PAGE
+// ==========================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    const loadMoreButton =
+      document.getElementById(
+        "loadMoreExhibitions"
+      );
+
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener(
+        "click",
+        renderMoreExhibitions
+      );
+    }
+
+    initiateExhibitions();
+  }
+);
+
+
+</script>
+</body>
+</html>
