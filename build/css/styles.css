@@ -192,6 +192,15 @@ a.btn-blue:focus {
   color: #fff;
 }
 
+.community a,
+.community a:visited {
+  color: var(--art-gold);
+}
+
+.community a:hover,
+.community a:focus {
+  color: #fff;
+}
 /******************************************************************
  * NAVIGATION & MENUS
  ******************************************************************/
@@ -1090,16 +1099,6 @@ header .nav-tabs .nav-link.active:hover {
   font-size: 0.8rem;
 
   letter-spacing: 0.125rem;
-}
-
-#arts .community a,
-#arts .community a:visited {
-  color: var(--art-gold);
-}
-
-#arts .community a:hover,
-#arts .community a:focus {
-  color: #fff;
 }
 
 /* Community SVG */
