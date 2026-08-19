@@ -4,9 +4,9 @@
 
 html,
 body {
-  max-width: 100%;
+  /* max-width: 100%; */
   min-height: 100%;
-  font-size: 16px;
+  font-size: 100%;
 }
 
 body {
@@ -19,10 +19,6 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.8;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 /******************************************************************
@@ -36,17 +32,16 @@ h4,
 h5,
 h6 {
   margin-top: 0;
-  margin-bottom: 20px;
-
+  margin-bottom: 1.25rem;
   font-family: "Playfair Display", Georgia, serif;
-  font-weight: 300;
-
-  color: inherit;
+  font-weight: 400;
 }
 
 h1 {
   font-size: clamp(2.5rem, 4.6vw, 3.5rem);
   line-height: 1.1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -464,7 +459,7 @@ header .nav-tabs .nav-link.active:hover {
 
 /* Introduction */
 
-.intro {
+#index .intro {
   max-width: 740px;
 
   margin: 0 auto;
@@ -539,7 +534,7 @@ header .nav-tabs .nav-link.active:hover {
  * HOME PHILOSOPHY
  * --------------------------------------------------------- */
 
-.philosophy {
+#index .philosophy {
   margin: 28px 0 0;
 
   color: rgba(247, 243, 236, 0.62);
