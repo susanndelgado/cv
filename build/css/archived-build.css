@@ -872,3 +872,112 @@ html.sd-lightbox-open{overflow:hidden}
    work-build-overrides.css
      - comment-only placeholder; rules are included in the Technical section.
    ======================================================================== */
+
+/* ========================================================================
+   EMBEDDED CSS FROM HTML UNDER /build
+   These rules preserve CSS that currently lives in <style>, style="" and SVG
+   style blocks. HTML remains untouched. Page-specific rules are scoped by the
+   existing body id/class or page-unique structure so this archive can be
+   linked globally later without cross-page style leakage.
+   ======================================================================== */
+
+/* Legacy Fine Arts interior pages use body ids such as "arts about",
+   "arts exhibit" and "arts chronicals". */
+body[id^="arts "]{max-width:100%;min-height:100%;font-size:16px;background:#fff;font-family:proxima-nova,"Open Sans",sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#111;font-weight:400;line-height:1.8;margin:0;text-rendering:optimizeLegibility}
+body[id^="arts "] h1,body[id^="arts "] h2,body[id^="arts "] h3,body[id^="arts "] h4,body[id^="arts "] h5,body[id^="arts "] h6{font-family:"Playfair",Georgia,serif;margin-bottom:20px}
+body[id^="arts "] a,body[id^="arts "] a:visited,body[id^="arts "] .dropdown-item{color:#60adb8}
+body[id^="arts "] a:hover,body[id^="arts "] a:focus{color:#f70606;background:transparent;outline:none!important;box-shadow:none!important}
+body[id^="arts "] header a,body[id^="arts "] header a:visited{color:#495057}
+body[id^="arts "] header a:hover,body[id^="arts "] header a:focus{color:rgba(0,0,0,.65)}
+body[id^="arts "] header .nav-tabs{font-family:Verdana,serif;font-size:16px;background:#eff8ff}
+body[id^="arts "] header .nav-tabs .nav-link{color:#60adb8}
+body[id^="arts "] header .nav-tabs .nav-link.active{color:#495057;background:#fff;border-color:#dee2e6 #dee2e6 #fff}
+body[id^="arts "] header .nav-tabs .nav-link:hover{color:#f70606;background:transparent;border-color:#e9ecef #e9ecef #dee2e6}
+@media(max-width:768px){body[id^="arts "]{width:100%;height:auto}body[id^="arts "] *{max-width:100%}body[id^="arts "] h1,body[id^="arts "] h2,body[id^="arts "] h3,body[id^="arts "] h4{font-size:1.5rem}}
+
+/* build/index.html inline <style> */
+body#index{--ink:#f7f3ec;--muted:rgba(247,243,236,.84);--gold:#d4af37;--glass:rgba(8,10,12,.58);--line:rgba(255,255,255,.22);--display-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;margin:0;width:100%;min-height:100vh;background:#000;overflow-x:hidden;font-family:proxima-nova,"Open Sans",sans-serif;color:var(--ink);font-weight:400;font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body#index *{box-sizing:border-box}
+body#index .splash{position:relative;width:100%;min-height:100vh;min-height:100svh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;padding:36px 20px;background:#000}
+body#index .splash-video{position:absolute;top:50%;left:50%;z-index:-4;width:102%;height:102%;min-width:100%;min-height:100%;object-fit:cover;object-position:center;transform:translate3d(-50%,-50%,0) scale(1.01);pointer-events:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+body#index .splash::before{content:"";position:absolute;inset:0;z-index:-3;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.18),rgba(0,0,0,.05) 35%,rgba(0,0,0,.08) 65%,rgba(0,0,0,.24))}
+body#index .splash-card{width:min(890px,94vw);padding:clamp(34px,6vw,68px) clamp(24px,7vw,78px);text-align:center;background:var(--glass);border:1px solid var(--line);border-top:3px solid rgba(212,175,55,.9);box-shadow:0 30px 90px rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+body#index .brand-mark{display:inline-grid;place-items:center;width:clamp(106px,14vw,142px);aspect-ratio:1;margin-bottom:25px;padding:7px;overflow:hidden;border:1px solid rgba(212,175,55,.9);border-radius:50%;background:rgba(255,255,255,.96);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+body#index .brand-mark img{width:100%;height:100%;object-fit:contain;display:block}
+body#index .eyebrow{margin:0 0 12px;color:rgba(247,243,236,.78);font-size:.75rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
+body#index h1{margin:0;font-family:"Playfair",Georgia,serif;font-size:clamp(3rem,8vw,5.75rem);font-weight:300;line-height:1.2;letter-spacing:10px}
+body#index .rule{width:68px;height:1px;margin:27px auto 25px;background:var(--gold);box-shadow:0 0 18px rgba(212,175,55,.45)}
+body#index .intro{max-width:740px;margin:0 auto;color:var(--muted);font-size:clamp(.98rem,2vw,1.12rem);font-weight:300;line-height:1.9}
+body#index .actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:34px}
+body#index .choice{min-width:210px;padding:15px 28px;border:1px solid rgba(255,255,255,.82);color:#fff;background:rgba(0,0,0,.7);text-decoration:none;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:600;transition:transform 180ms ease,background 180ms ease,color 180ms ease,border-color 180ms ease}
+body#index .choice:first-child{border-color:var(--gold)}
+body#index .choice:hover,body#index .choice:focus-visible{transform:translateY(-2px);color:#111;background:#fff;border-color:#fff;outline:none}
+body#index .choice:first-child:hover,body#index .choice:first-child:focus-visible{background:var(--gold);border-color:var(--gold);color:#111}
+body#index .philosophy{margin:28px 0 0;color:rgba(247,243,236,.62);font-family:var(--display-serif);font-size:.96rem;font-weight:500;font-style:italic;letter-spacing:.04em}
+@media(max-width:760px){body#index .splash{padding:18px}body#index .splash-card{width:min(94vw,620px);padding:30px 22px 34px}body#index .eyebrow{letter-spacing:.18em;line-height:1.7}body#index .intro{line-height:1.72}body#index .actions{flex-direction:column}body#index .choice{width:100%;min-width:0}body#index .splash-video{width:106%;height:106%}}
+@media(prefers-reduced-motion:reduce){body#index .splash-video{display:none}body#index .choice{transition:none}}
+
+/* build/finearts.html inline element and SVG styles */
+body#arts #vaulte .art-matte img{border-radius:5px}
+body#arts #vaulte + .process-hero-reveal{background-image:url('/img/4c9d2ecd-bbd4-4e25-a012-135bc383c512.jpeg')}
+body#arts #vaulte + .process-hero-reveal>div:first-child{position:absolute;inset:0;background:rgba(255,255,255,.1);z-index:1}
+body#arts #vaulte + .process-hero-reveal>.container,body#arts .statement-area + .process-hero-reveal>.container{position:relative;z-index:2}
+body#arts #vaulte + .process-hero-reveal .info-floating-box h2{font-family:'Playfair Display',serif;color:#1a1a1a}
+body#arts #vaulte + .process-hero-reveal .info-floating-box p{color:#333}
+body#arts #vaulte + .process-hero-reveal .info-floating-box .btn-boutique{color:#1a1a1a}
+body#arts .statement-area{padding:100px 0;background:#fff;text-align:center}
+body#arts .statement-area h2{font-family:'Playfair Display',serif;letter-spacing:3px;text-transform:uppercase}
+body#arts .statement-area p{color:#333;max-width:800px;margin:20px auto;line-height:1.8}
+body#arts .statement-area + .process-hero-reveal{background-image:url('/img/462558539_900031218775586_409832144205821387_n.jpg');background-position:center}
+body#arts .statement-area + .process-hero-reveal>div:first-child{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:1}
+body#arts .info-floating-box-dark{background:rgba(26,26,26,.95);padding:50px;border-top:4px solid #d4af37;box-shadow:0 15px 35px rgba(0,0,0,.5);color:#f4f1ea;border-radius:4px}
+body#arts .info-floating-box-dark h2{font-family:'Playfair Display',serif;color:#fff;text-transform:uppercase;letter-spacing:2px;font-size:1.8rem;margin-bottom:20px}
+body#arts .info-floating-box-dark p{line-height:1.8;font-size:1rem;margin-bottom:25px;color:#d1d1d1}
+body#arts .info-floating-box-dark .btn-boutique{border:1px solid #f4f1ea;color:#f4f1ea;padding:12px 25px;text-decoration:none;display:inline-block;transition:.3s;letter-spacing:1px}
+body#arts .scriptorium-lore-bridge{background:#111;padding:80px 0;border-top:1px solid #333;color:#fff}
+body#arts .scriptorium-lore-bridge svg{width:100%;max-width:250px;height:auto;opacity:.9}
+body#arts .cre-cel-spark{fill:none;stroke:#d4af37;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(212,175,55,.4))}
+body#arts .cre-cel-line{fill:none;stroke:#fff;stroke-width:1;opacity:.5}
+body#arts .cre-cel-dot{fill:#fff;opacity:.8}
+body#arts .scriptorium-lore-bridge text.cre-cel-line{font-size:10px;text-transform:uppercase;letter-spacing:5px}
+body#arts .scriptorium-lore-bridge .cre-cel-spark circle[cy="-40"]{fill:#fff;filter:drop-shadow(0 0 10px rgba(212,175,55,1))}
+body#arts #edu.tutoring-hero{min-height:400px;padding:180px 0;background:#3d4246}
+body#arts #edu .info-floating-box{padding:35px;border-radius:4px;border-top-width:5px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+body#arts #edu .info-floating-box h2{font-family:'Playfair Display',serif;margin-bottom:15px}
+body#arts #edu .info-floating-box p:first-of-type{font-size:.95rem;line-height:1.5;color:#333}
+body#arts #edu .info-floating-box p:nth-of-type(2){font-size:.9rem;font-style:italic;color:#666;margin-bottom:20px}
+body#arts #edu .info-floating-box .btn-boutique{background:#d4af37;color:#fff;padding:12px 25px;font-weight:bold;border-radius:2px}
+
+/* build/about.html inline element and SVG styles */
+body[id="arts about"] .process-hero .container>h2{color:#fff;font-weight:300;letter-spacing:4px;font-size:1.2rem;margin-bottom:30px}
+body[id="arts about"] .process-tree-section>.container>h2{letter-spacing:5px;text-transform:uppercase;font-weight:300}
+body[id="arts about"] .node-image-frame img{width:100%;border-radius:5px}
+body[id="arts about"] .mastery-parallax-window{background-image:url('/img/Weanfae471459723_1265816627808422_3679522577518502338_n.jpg');margin-top:80px}
+body[id="arts about"] .mastery-content-box .node-step{color:#d4af37}
+body[id="arts about"] .scriptorium-lore-bridge{background:#111;padding:80px 0;border-top:1px solid #333}
+body[id="arts about"] .scriptorium-lore-bridge svg{width:100%;max-width:250px;height:auto;opacity:.9}
+body[id="arts about"] .cre-cel-spark{fill:none;stroke:#d4af37;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(212,175,55,.4))}
+body[id="arts about"] .cre-cel-line{fill:none;stroke:#fff;stroke-width:1;opacity:.5}
+body[id="arts about"] .cre-cel-dot{fill:#fff;opacity:.8}
+body[id="arts about"] .scriptorium-lore-bridge text.cre-cel-line{font-size:10px;text-transform:uppercase;letter-spacing:5px}
+body[id="arts about"] .scriptorium-lore-bridge .cre-cel-spark circle[cy="-40"]{fill:#fff;filter:drop-shadow(0 0 10px rgba(212,175,55,1))}
+body[id="arts about"] .scriptorium-lore-bridge .col-md-7>h3{color:#fff;letter-spacing:5px;text-transform:uppercase;font-size:1rem;margin-bottom:15px}
+body[id="arts about"] .scriptorium-lore-bridge .col-md-7>p{color:#999;font-family:'Open Sans',sans-serif;font-weight:300;line-height:2;font-style:italic}
+body[id="arts about"] .scriptorium-lore-bridge .col-md-7>span{color:#555;font-size:.8rem;letter-spacing:2px}
+
+/* build/exhibits.html and build/progress-chronicles.html inline styles */
+body[id="arts exhibit"] .process-hero .hero-intro{max-width:800px;margin:0 auto 30px}
+body[id="arts exhibit"] #raw-data-log,body[id="arts chronicals"] #raw-data-log{opacity:0;background:#fdf6e3;padding:20px;border:1px dashed #b58900;color:#586e75;font-size:13px;display:none;max-height:400px;overflow-y:auto;margin-bottom:40px;border-radius:8px;white-space:pre-wrap;word-wrap:break-word}
+body[id="arts chronicals"] .process-hero .hero-intro{margin:0 auto 30px}
+
+/* build/contact.html inline spacing */
+body#contact .build-split{margin-top:24px}
+body#contact .build-contact-note{margin-top:28px}
+body#contact .build-contact-note h3{margin-top:0}
+body#contact .build-contact-note p{margin-bottom:0}
+
+/* build/showcase/*.html inline image sizing and border declarations */
+body[id="work showcase"] #projectPreview img[src$="WHHI17_eblast_preview.jpg"],body[id="work showcase"] #projectPreview img[src$="TCT360_eblast_preview.jpg"],body[id="work showcase"] #projectPreview img[src$="tct2015-email.jpg"],body[id="work showcase"] #projectPreview img[src$="cto-2016-email.jpg"],body[id="work showcase"] #projectPreview img[src$="SCAI2016-eblast-03.jpg"],body[id="work showcase"] #projectPreview img[src$="Fellows-2015_eblast_template_P03.jpg"],body[id="work showcase"] #projectPreview img[src$="web-fellows2016-1.jpg"],body[id="work showcase"] #projectPreview img[src$="web-Fetoscopy2014-1.jpg"],body[id="work showcase"] #projectPreview img[src$="chipatACC-email.jpg"]{max-width:800px}
+body[id="work showcase"] #projectPreview img[src$="cto-2015-mobiles.jpg"],body[id="work showcase"] #projectPreview img[src$="cto-2016-Mobile.jpg"],body[id="work showcase"] #projectPreview img[src$="dfw-jobfair-2019-Flyer-v3-lightgreen.png"]{max-width:850px}
+body[id="work showcase"] #projectPreview img[src$="cto-lm-2015-website-desktop-home-P05.jpg"],body[id="work showcase"] #projectPreview img[src$="tct2015-preview7.jpg"],body[id="work showcase"] #projectPreview img[src$="SCAI2016-Main-Website-Desktop_06-3.jpg"],body[id="work showcase"] #projectPreview img[src$="Pulse2014-website-mock-up-P06.jpg"],body[id="work showcase"] #projectPreview img[src$="itct2015-previev.jpg"],body[id="work showcase"] #projectPreview img[src$="itct2015-preview7.jpg"],body[id="work showcase"] #projectPreview img[src$="CHIPatACC-desktop-home-02.jpg"],body[id="work showcase"] #projectPreview img[src$="sugarhillbranding-preview.jpg"]{max-width:900px}
+body[id="work showcase"] #projectPreview img[src$="iwriteny-preview.jpg"],body[id="work showcase"] #projectPreview img[src$="colorstreets-preview1.jpg"],body[id="work showcase"] #projectPreview img[src$="colorstreets-preview2.jpg"],body[id="work showcase"] #projectPreview img[src$="colorstreets-preview3.jpg"],body[id="work showcase"] #projectPreview img[src$="colorstreets-preview4.jpg"],body[id="work showcase"] #projectPreview img[src$="tkp-wfe-preview1.jpg"],body[id="work showcase"] #projectPreview img[src$="tkp-wfe-preview3.jpg"]{border:1px solid #eee}
