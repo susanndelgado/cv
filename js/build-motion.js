@@ -11,6 +11,15 @@
   var confirmedAngularPosts=new Set(['14','18','44','45']);
   var unverifiedAngularPosts=new Set(['16','39']);
 
+  function ensureBuildHeader(){
+    if(window.initBuildHeader){window.initBuildHeader(document);return;}
+    if(document.getElementById('sd-build-header-js'))return;
+    var script=document.createElement('script');
+    script.id='sd-build-header-js';
+    script.src='/js/build-header.js';
+    document.head.appendChild(script);
+  }
+
   function ensureInteractionStylesheet(){
     if(document.getElementById('sd-build-interactions-css'))return;
     var link=document.createElement('link');
@@ -292,6 +301,7 @@
   }
 
   function initBuildMotion(root){
+    ensureBuildHeader();
     ensureInteractionStylesheet();
     runPortfolioFixes(root||document);
     installPortfolioObserver();
@@ -300,6 +310,7 @@
   window.initBuildMotion=initBuildMotion;
 
   function init(){
+    ensureBuildHeader();
     ensureInteractionStylesheet();
     runPortfolioFixes(document);
     installPortfolioObserver();
