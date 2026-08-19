@@ -4,7 +4,7 @@
 
 html,
 body {
-  /* max-width: 100%; */
+  max-width: 100%;
   min-height: 100%;
   font-size: 100%;
 }
@@ -40,6 +40,7 @@ h1 {
   line-height: 1.1;
   letter-spacing: 0.1875rem;
   text-transform: uppercase;
+  color: #fff;
 }
 
 h2 {
@@ -66,7 +67,9 @@ h6 {
   font-size: 1rem;
   line-height: 1.35;
 }
-
+.italic {
+  font-style: italic;
+}
 /******************************************************************
  * BUTTONS, LINKS, & INPUTS
  ******************************************************************/
@@ -94,14 +97,61 @@ a:visited,
   outline: none !important;
   box-shadow: none !important;
 }
+
 .btn {
   border-radius: 0;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
+
 .btn-blk {
   background-color: #000;
   color: #fff;
 }
+.btn-light-txt,
+.btn-light-txt:visited {
+  display: inline-block;
 
+  padding: 0.75rem 1.875rem;
+
+  background: transparent;
+
+  border: 1px solid #111;
+
+  color: #111;
+
+  font-size: 0.6875rem;
+  letter-spacing: 0.1875rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.btn-light-txt:hover,
+.btn-light-txt:focus {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+.btn-gold-solid,
+.btn-gold-solid:visited,
+a.btn-gold-solid,
+a.btn-gold-solid:visited {
+  background-color: #d4af37;
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.btn-gold-solid:hover,
+.btn-gold-solid:focus,
+a.btn-gold-solid:hover,
+a.btn-gold-solid:focus {
+  background-color: #111;
+  border-color: #fff;
+  color: #fff;
+}
 /* Gold outline button */
 
 .btn-gold,
@@ -207,6 +257,40 @@ header .nav-tabs .nav-link.active:hover {
  ******************************************************************/
 
 /* ---------------------------------------------------------
+ * HERO
+ * Reusable hero structure
+ * --------------------------------------------------------- */
+
+.hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.hero > .container,
+.hero > .container-fluid {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
  * SEAL CONTAINER
  * Reusable circular logo / seal treatment
  * --------------------------------------------------------- */
@@ -236,20 +320,25 @@ header .nav-tabs .nav-link.active:hover {
   display: block;
   object-fit: contain;
 }
-
 /* ---------------------------------------------------------
  * CONTENT BOX
  * Reusable elevated content panel
  * --------------------------------------------------------- */
 
 .content-box {
-  background: rgba(255, 255, 255, 0.96);
-
-  border: 1px solid rgba(0, 0, 0, 0.1);
-
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
 
   padding: clamp(2rem, 4vw, 3.125rem);
+
+  background: #fff;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 0.25rem solid #d4af37;
+
+  color: #111;
+
+  box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.15);
 }
 
 /******************************************************************
@@ -358,7 +447,6 @@ header .nav-tabs .nav-link.active:hover {
  * Uses global:
  * .content-box
  * --------------------------------------------------------- */
-
 #index .content-box {
   width: min(55.625rem, 94vw);
 
@@ -475,6 +563,7 @@ header .nav-tabs .nav-link.active:hover {
 #index .actions .btn:focus-visible {
   transform: translateY(-2px);
 }
+
 /* ---------------------------------------------------------
  * HOME PHILOSOPHY
  * --------------------------------------------------------- */
@@ -487,9 +576,566 @@ header .nav-tabs .nav-link.active:hover {
 
 /******************************************************************
  * STYLE CHANGES FOR ART
+ * build/finearts.html
  ******************************************************************/
 
-/* Art default styles will go here */
+#arts {
+  --art-gold: #d4af37;
+  --art-black: #111;
+  --art-muted: #999;
+
+  background: #fff;
+  color: #111;
+}
+
+/* ---------------------------------------------------------
+ * FINE ARTS BUTTON TREATMENT
+ *
+ * Color/background/border comes from global button classes.
+ * --------------------------------------------------------- */
+
+#arts main .btn {
+  padding: 0.75rem 1.5625rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}
+
+#arts .btn-blk,
+#arts .btn-blk:visited {
+  color: #fff;
+}
+
+/* ---------------------------------------------------------
+ * FINE ARTS INTRO HERO
+ *
+ * Uses global:
+ * .hero
+ * .seal-container
+ * .btn
+ * .btn-gold
+ * --------------------------------------------------------- */
+
+.finearts-intro {
+  justify-content: center;
+
+  padding: 5rem 0;
+
+  background: var(--art-black);
+  color: #fff;
+
+  text-align: center;
+}
+
+.finearts-intro .seal-container {
+  margin-bottom: 1.5625rem;
+}
+
+.finearts-intro h1 {
+  margin-bottom: 1.25rem;
+
+  color: #fff;
+
+  letter-spacing: 0.5rem;
+}
+
+.finearts-intro p {
+  max-width: 50rem;
+
+  margin: 0 auto 2rem;
+
+  color: var(--art-muted);
+
+  line-height: 2;
+}
+
+/* ---------------------------------------------------------
+ * PORTFOLIO
+ * --------------------------------------------------------- */
+
+.portfolio {
+  padding: 6.25rem 0;
+
+  background: #fff;
+}
+
+/* Art card */
+.art-card,
+.art-card:visited {
+  position: relative;
+
+  display: block;
+
+  overflow: hidden;
+
+  background: #f8f8f8;
+
+  border: 1px solid #ddd;
+
+  color: inherit;
+  text-decoration: none;
+
+  transition:
+    transform 0.7s cubic-bezier(0.15, 0, 0.15, 1),
+    box-shadow 0.7s cubic-bezier(0.15, 0, 0.15, 1);
+}
+
+.art-card:hover,
+.art-card:focus-visible {
+  transform: translateY(-0.75rem);
+
+  box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.08);
+}
+
+/* Art card media */
+
+.art-card img {
+  display: block;
+
+  width: 100%;
+  height: 17.5rem;
+
+  object-fit: cover;
+
+  transition: transform 1.5s ease;
+}
+
+.art-card video {
+  display: block;
+
+  width: 100%;
+  height: 20rem;
+
+  object-fit: cover;
+
+  transition: transform 1.5s ease;
+}
+
+.art-card:hover img,
+.art-card:hover video,
+.art-card:focus-visible img,
+.art-card:focus-visible video {
+  transform: scale(1.04);
+}
+
+/* Art card overlay */
+
+.art-card-overlay {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: 1.125rem;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  color: #fff;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.art-card:hover .art-card-overlay,
+.art-card:focus-visible .art-card-overlay {
+  opacity: 1;
+}
+
+.art-card-overlay h2 {
+  margin-bottom: 0.5rem;
+
+  color: #fff;
+
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  letter-spacing: 0.125rem;
+}
+
+.art-card-overlay p {
+  margin: 0;
+
+  color: #fff;
+}
+
+/* Art card caption */
+
+.art-card-caption {
+  position: absolute;
+
+  top: 0.625rem;
+  left: 0.625rem;
+
+  padding: 0.25rem 0.625rem;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  color: #fff;
+
+  font-size: 0.8125rem;
+
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+/******************************************************************
+ * MEDIA SECTIONS
+ * Shared by Creative Process, Living Archive, and Tutoring
+ ******************************************************************/
+
+.media-section {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.media-section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------
+ * MEDIA SECTION — VIDEO
+ * --------------------------------------------------------- */
+
+.media-section-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+ * PARALLAX MEDIA SECTIONS
+ * Creative Process + Living Archive
+ * --------------------------------------------------------- */
+
+.parallax-section {
+  min-height: 37.5rem;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/******************************************************************
+ * CREATIVE PROCESS
+ ******************************************************************/
+
+.creative-process {
+  background-image: url("/img/4c9d2ecd-bbd4-4e25-a012-135bc383c512.jpeg");
+
+  background-position: center right;
+}
+
+.creative-process::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+ * ARCHIVE STATEMENT
+ * --------------------------------------------------------- */
+
+.archive-statement {
+  padding: 6.25rem 0;
+
+  background: #fff;
+
+  text-align: center;
+}
+
+.archive-statement h2 {
+  letter-spacing: 0.1875rem;
+  text-transform: uppercase;
+}
+
+.archive-statement p {
+  max-width: 50rem;
+
+  margin: 1.25rem auto 0;
+
+  color: #333;
+
+  line-height: 1.8;
+}
+
+/******************************************************************
+ * LIVING ARCHIVE
+ ******************************************************************/
+
+.living-archive {
+  background-image: url("/img/462558539_900031218775586_409832144205821387_n.jpg");
+
+  background-position: center;
+}
+
+.living-archive::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  pointer-events: none;
+}
+
+/* Dark variation of the shared content box */
+
+.living-archive .content-box {
+  background: rgba(26, 26, 26, 0.95);
+
+  border-color: rgba(255, 255, 255, 0.15);
+  border-top-color: var(--art-gold);
+
+  color: #f4f1ea;
+
+  box-shadow: 0 0.9375rem 2.1875rem rgba(0, 0, 0, 0.5);
+}
+
+.living-archive .content-box h2 {
+  color: #fff;
+}
+
+.living-archive .content-box p {
+  color: #d1d1d1;
+}
+
+/******************************************************************
+ * TUTORING
+ * Video background with greater vertical breathing room
+ ******************************************************************/
+
+.tutoring {
+  min-height: 25rem;
+
+  padding: 11.25rem 0;
+
+  background: #3d4246;
+}
+
+/* ---------------------------------------------------------
+ * SUPPORT STATEMENT
+ * --------------------------------------------------------- */
+
+.support-statement {
+  padding: 5rem 0;
+
+  background: #111;
+
+  border-top: 1px solid #333;
+
+  color: #fff;
+
+  text-align: center;
+}
+
+.support-statement h3 {
+  color: #fff;
+
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.support-statement p {
+  max-width: 50rem;
+
+  margin: 0 auto;
+
+  color: #999;
+
+  line-height: 2;
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+ * ARTISAN SHOP
+ * --------------------------------------------------------- */
+
+.artisan-shop {
+  padding: 6.25rem 0;
+
+  background: #fff;
+}
+
+.artisan-shop .container-fluid {
+  max-width: 100rem;
+
+  margin: 0 auto;
+
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.artisan-shop h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.1875rem;
+}
+
+.artisan-shop .text-center > p {
+  max-width: 50rem;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  color: #666;
+}
+
+.artisan-shop .art-card video {
+  height: 20rem;
+}
+
+/* ---------------------------------------------------------
+ * RESOURCES
+ *
+ * Uses global:
+ * .content-box
+ * .btn
+ * .btn-blk
+ * --------------------------------------------------------- */
+
+.resources {
+  padding: 5rem 0;
+
+  background: #f2f2f2;
+
+  border-top: 1px solid #e0e0e0;
+}
+
+.resources .content-box {
+  height: 100%;
+
+  text-align: center;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.resources .content-box:hover {
+  transform: translateY(-0.3125rem);
+
+  box-shadow: 0 0.9375rem 2.5rem rgba(0, 0, 0, 0.08);
+}
+
+.resources h4 {
+  letter-spacing: 0.25rem;
+  text-transform: uppercase;
+}
+
+.resources p {
+  margin-bottom: 2.1875rem;
+
+  color: #666;
+}
+
+/* ---------------------------------------------------------
+ * COMMUNITY
+ * --------------------------------------------------------- */
+
+.community {
+  padding: 5rem 0;
+
+  background: #111;
+
+  border-top: 1px solid #333;
+
+  color: #fff;
+}
+
+.community svg {
+  width: 100%;
+  max-width: 15.625rem;
+  height: auto;
+
+  opacity: 0.9;
+}
+
+.community h3 {
+  color: #fff;
+
+  font-size: 1rem;
+
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.community p {
+  color: #999;
+
+  line-height: 2;
+  font-style: italic;
+}
+
+.community span {
+  color: #777;
+
+  font-size: 0.8rem;
+
+  letter-spacing: 0.125rem;
+}
+
+#arts .community a,
+#arts .community a:visited {
+  color: var(--art-gold);
+}
+
+#arts .community a:hover,
+#arts .community a:focus {
+  color: #fff;
+}
+
+/* Community SVG */
+
+.cre-cel-spark {
+  fill: none;
+
+  stroke: var(--art-gold);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter: drop-shadow(0 0 0.3125rem rgba(212, 175, 55, 0.4));
+}
+
+.cre-cel-line {
+  fill: none;
+
+  stroke: #fff;
+  stroke-width: 1;
+
+  opacity: 0.5;
+}
+
+.community text.cre-cel-line {
+  font-size: 0.625rem;
+
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.community .cre-cel-spark circle[cy="-40"] {
+  fill: #fff;
+
+  filter: drop-shadow(0 0 0.625rem rgba(212, 175, 55, 1));
+}
 
 /******************************************************************
  * STYLE CHANGES FOR WORK
@@ -500,6 +1146,16 @@ header .nav-tabs .nav-link.active:hover {
 /******************************************************************
  * RESPONSIVE STYLES
  ******************************************************************/
+
+@media (max-width: 62rem) {
+  /******************************************************************
+   * STYLE CHANGES FOR ART
+   ******************************************************************/
+
+  .parallax-section {
+    background-attachment: scroll;
+  }
+}
 
 @media (max-width: 47.5rem) {
   /******************************************************************
@@ -534,7 +1190,54 @@ header .nav-tabs .nav-link.active:hover {
    * STYLE CHANGES FOR ART — MOBILE
    ******************************************************************/
 
-  /* Art mobile styles will go here */
+  .finearts-intro {
+    padding: 3.5rem 1rem;
+  }
+
+  .finearts-intro h1 {
+    letter-spacing: 0.25rem;
+  }
+
+  .finearts-intro .seal-container {
+    width: 8.75rem;
+    height: 8.75rem;
+  }
+
+  .portfolio,
+  .artisan-shop,
+  .resources {
+    padding: 4rem 0;
+  }
+
+  .art-card img,
+  .art-card video,
+  .artisan-shop .art-card video {
+    height: 16rem;
+  }
+
+  .parallax-section {
+    min-height: auto;
+
+    padding: 3.75rem 0;
+
+    background-attachment: scroll;
+  }
+
+  .tutoring {
+    min-height: auto;
+
+    padding: 4rem 0;
+  }
+
+  .media-section .content-box {
+    padding: 1.5625rem;
+  }
+
+  .archive-statement,
+  .support-statement,
+  .community {
+    padding: 4rem 0;
+  }
 
   /******************************************************************
    * STYLE CHANGES FOR WORK — MOBILE
@@ -564,7 +1267,15 @@ header .nav-tabs .nav-link.active:hover {
    * STYLE CHANGES FOR ART — REDUCED MOTION
    ******************************************************************/
 
-  /* Art reduced-motion styles will go here */
+  #arts .art-card,
+  #arts .art-card img,
+  #arts .art-card video {
+    transition: none;
+  }
+
+  #arts .parallax-section {
+    background-attachment: scroll;
+  }
 
   /******************************************************************
    * STYLE CHANGES FOR WORK — REDUCED MOTION
