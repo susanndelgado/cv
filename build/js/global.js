@@ -15,14 +15,14 @@
 
   function isWorkSide(header){
     if(document.body.classList.contains('work-build-page'))return true;
-    if(/\/(?:work|showcase|contact|resume)-build\.html$/.test(location.pathname))return true;
-    return !!header.querySelector('.build-tabs .active a[href*="work-build.html"],.build-tabs a[aria-current="page"][href*="work-build.html"]');
+    if(/\/(?:work|project|contact|resume(?:-build)?)\.html$/.test(location.pathname))return true;
+    return !!header.querySelector('.build-tabs .active a[href*="work.html"],.build-tabs a[aria-current="page"][href*="work.html"]');
   }
 
   function createWorkMainNav(header){
     var nav=document.createElement('div');
     nav.className='build-main-nav';
-    nav.innerHTML='<div class="build-main-nav-inner"><a class="build-site-brand" href="/index.html">SUSAN DELGADO</a><nav class="build-site-links" aria-label="Technical portfolio navigation"><a href="work-build.html">TECHNICAL WORK</a><a href="showcase-build.html?post=23">SHOWCASE</a><a href="contact-build.html" aria-current="page">CONTACT</a></nav></div>';
+    nav.innerHTML='<div class="build-main-nav-inner"><a class="build-site-brand" href="/index.html">SUSAN DELGADO</a><nav class="build-site-links" aria-label="Technical portfolio navigation"><a href="work.html">TECHNICAL WORK</a><a href="project.html?post=23">PROJECTS</a><a href="contact.html" aria-current="page">CONTACT</a></nav></div>';
     header.appendChild(nav);
     return nav;
   }
@@ -91,6 +91,18 @@
   var confirmedAngularPosts=new Set(['14','18','44','45']);
   var unverifiedAngularPosts=new Set(['16','39']);
 
+  function currentFile(){
+    return location.pathname.split('/').pop()||'';
+  }
+
+  function isWorkPage(){
+    return currentFile()==='work.html';
+  }
+
+  function isProjectPage(){
+    return currentFile()==='project.html';
+  }
+
   function ensureBuildHeader(){
     if(window.initBuildHeader){window.initBuildHeader(document);return;}
     if(document.getElementById('sd-build-header-js'))return;
@@ -110,7 +122,7 @@
   }
 
   function getPostId(){
-    if(!/\/showcase-build\.html$/.test(location.pathname))return '';
+    if(!isProjectPage())return '';
     return new URLSearchParams(location.search).get('post')||'23';
   }
 
@@ -118,7 +130,7 @@
     if(!link)return '';
     try{
       var url=new URL(link.getAttribute('href')||'',location.href);
-      return url.pathname.endsWith('/showcase-build.html')?(url.searchParams.get('post')||''):'';
+      return url.pathname.endsWith('/project.html')?(url.searchParams.get('post')||''):'';
     }catch(e){return '';}
   }
 
@@ -150,14 +162,14 @@
     });
 
     root.querySelectorAll('a.build-case-nav-all').forEach(function(link){
-      link.setAttribute('href','work-build.html#additional-professional-work');
+      link.setAttribute('href','work.html#additional-professional-work');
     });
-    root.querySelectorAll('a[href*="work-build.html?type="]').forEach(function(link){
+    root.querySelectorAll('a[href*="work.html?type="]').forEach(function(link){
       var href=link.getAttribute('href')||'';
       if(href.indexOf('#archive')!==-1)link.setAttribute('href',href.replace('#archive','#additional-professional-work'));
     });
-    root.querySelectorAll('a[href="work-build.html#archive"]').forEach(function(link){
-      link.setAttribute('href','work-build.html#additional-professional-work');
+    root.querySelectorAll('a[href="work.html#archive"]').forEach(function(link){
+      link.setAttribute('href','work.html#additional-professional-work');
     });
 
     var filterStatus=document.getElementById('archiveFilterStatus');
@@ -167,12 +179,12 @@
           node.nodeValue=node.nodeValue.replace('Project type:','Category:');
         }
       });
-      filterStatus.querySelectorAll('a[href="work-build.html#archive"]').forEach(function(link){
-        link.setAttribute('href','work-build.html#additional-professional-work');
+      filterStatus.querySelectorAll('a[href="work.html#archive"]').forEach(function(link){
+        link.setAttribute('href','work.html#additional-professional-work');
       });
     }
 
-    if(/\/work-build\.html$/.test(location.pathname)&&location.hash==='#archive'){
+    if(isWorkPage()&&location.hash==='#archive'){
       history.replaceState(null,'',location.pathname+location.search+'#additional-professional-work');
     }
   }
@@ -184,9 +196,9 @@
   function applyVerifiedTechnologyEvidence(root){
     root=root||document;
 
-    if(/\/work-build\.html$/.test(location.pathname)){
+    if(isWorkPage()){
       root.querySelectorAll('.build-project-card,.build-archive-card').forEach(function(card){
-        var id=postIdFromLink(card.querySelector('a[href*="showcase-build.html?post="]'));
+        var id=postIdFromLink(card.querySelector('a[href*="project.html?post="]'));
         if(!id)return;
         var skills=String(card.dataset.skills||'').split('||').map(normalizeAngularLabel).filter(Boolean);
         skills=skills.filter(function(skill){return skill.toLowerCase()!=='angularjs';});
@@ -197,7 +209,7 @@
       });
     }
 
-    if(/\/showcase-build\.html$/.test(location.pathname)){
+    if(isProjectPage()){
       var id=getPostId();
       root.querySelectorAll('.build-case-taxonomy-group').forEach(function(group){
         var label=group.querySelector('.build-case-taxonomy-label');
@@ -225,12 +237,12 @@
   }
 
   function removePostEleven(){
-    if(/\/showcase-build\.html$/.test(location.pathname)&&getPostId()==='11'){
-      location.replace('work-build.html#additional-professional-work');
+    if(isProjectPage()&&getPostId()==='11'){
+      location.replace('work.html#additional-professional-work');
       return true;
     }
-    if(/\/work-build\.html$/.test(location.pathname)){
-      document.querySelectorAll('a[href*="showcase-build.html?post=11"]').forEach(function(link){
+    if(isWorkPage()){
+      document.querySelectorAll('a[href*="project.html?post=11"]').forEach(function(link){
         var card=link.closest('.build-project-card,.build-archive-card');
         if(card)card.remove();
       });
@@ -312,7 +324,7 @@
   }
 
   function bindLightboxImages(root){
-    if(!/\/showcase-build\.html$/.test(location.pathname))return;
+    if(!isProjectPage())return;
     root=root||document;
     root.querySelectorAll('.build-case-visual img,#projectPreview img').forEach(function(img){
       if(img.dataset.sdLightbox==='1')return;
@@ -663,6 +675,18 @@
     else fn();
   }
 
+  function loadTemplate(target){
+    var url=target&&target.getAttribute('data-template');
+    if(!target||!url)return Promise.reject(new Error('Project template target unavailable'));
+    return fetch(url).then(function(response){
+      if(!response.ok)throw new Error('Project template unavailable');
+      return response.text();
+    }).then(function(html){
+      target.innerHTML=html;
+      return target;
+    });
+  }
+
   function initProcessVideos(){
     var connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
     document.querySelectorAll('.process-video').forEach(function(video){
@@ -703,8 +727,8 @@
     if(button)button.addEventListener('click',function(){window.print();});
   };
 
-  /* ---------------------------------------------------------
-     Shared project-data helpers used by Work and Showcase.
+  /* ------------------------------------------------
+     Shared project-data helpers used by Work and Project.
      --------------------------------------------------------- */
   function projectHelpers(){
     function strip(value){
@@ -749,13 +773,19 @@
     }
     function loadProjects(){
       return Promise.all([
-        fetch('/js/posts.json').then(function(response){return response.json();}),
+        fetch('/js/posts.json').then(function(response){if(!response.ok)throw new Error('Project baseline unavailable');return response.json();}),
         optionalJson('/js/posts-extra.json'),
         optionalJson('/js/posts-corrections.json'),
         optionalJson('/js/posts-project-copy.json'),
-        optionalJson('/js/posts-new.json')
+        optionalJson('/js/posts-new.json'),
+        optionalJson('/build/js/casestudies.json')
       ]).then(function(data){
-        return {posts:merge((data[0]&&data[0].posts)||[],[data[1]||{},data[2]||{},data[3]||{},data[4]||{}]),raw:data};
+        var buildData=data[5]||{};
+        return {
+          posts:merge((data[0]&&data[0].posts)||[],[data[1]||{},data[2]||{},data[3]||{},data[4]||{},buildData]),
+          build:buildData,
+          raw:data
+        };
       });
     }
     return {strip:strip,lines:lines,key:key,yearNum:yearNum,contains:contains,normalizeProject:normalizeProject,merge:merge,optionalJson:optionalJson,loadProjects:loadProjects};
@@ -774,7 +804,7 @@
     var typeLabels={conf:'Campaigns',web:'Websites',email:'Emails',dig:'Digital',print:'Print Collateral',brand:'Branding'};
     if(!featured||!archive||!filterStatus)return;
 
-    function url(item){return 'showcase-build.html?post='+encodeURIComponent(item.legacyId);}
+    function url(item){return 'project.html?post='+encodeURIComponent(item.legacyId);}
     function image(item){return '/'+(item.thumb||item.image||'');}
     function card(item,small){
       var article=document.createElement('article');
@@ -807,7 +837,7 @@
     function setStatus(type,skill){
       if(!type&&!skill){filterStatus.hidden=true;filterStatus.innerHTML='';return;}
       var label=skill?'Skill: <strong>'+project.strip(skill)+'</strong>':'Project type: <strong>'+(typeLabels[type]||project.strip(type))+'</strong>';
-      filterStatus.innerHTML='Showing '+label+' <a href="work-build.html#archive">Clear filter</a>';
+      filterStatus.innerHTML='Showing '+label+' <a href="work.html#archive">Clear filter</a>';
       filterStatus.hidden=false;
     }
     function filter(type,skill,instant){
@@ -842,9 +872,9 @@
       button.addEventListener('click',function(){
         var value=button.dataset.filter;
         if(value==='all'){
-          renderArchive(defaultArchivePosts());setStatus(null,null);setButtonState(null);history.replaceState(null,'','work-build.html#archive');return;
+          renderArchive(defaultArchivePosts());setStatus(null,null);setButtonState(null);history.replaceState(null,'','work.html#archive');return;
         }
-        renderArchive(posts);filter(value,null,false);history.replaceState(null,'','work-build.html?type='+encodeURIComponent(value)+'#archive');
+        renderArchive(posts);filter(value,null,false);history.replaceState(null,'','work.html?type='+encodeURIComponent(value)+'#archive');
       });
     });
 
@@ -858,85 +888,170 @@
     }).catch(function(){featured.innerHTML='<p>Project data is unavailable.</p>';archive.innerHTML='';});
   };
 
-  pages.showcase=function(){
-    var hero=document.getElementById('caseHero');
-    var context=document.getElementById('caseContext');
-    var uxSection=document.getElementById('uxSection');
-    var workflowSection=document.getElementById('workflowSection');
-    var systemSection=document.getElementById('systemSection');
-    var structureSection=document.getElementById('structureSection');
-    var deliverableSection=document.getElementById('deliverableSection');
-    var visualSection=document.getElementById('visualSection');
-    var typeMap=[{token:'conf',label:'Campaigns'},{token:'web',label:'Websites'},{token:'email',label:'Emails'},{token:'print',label:'Print collateral'},{token:'dig',label:'Digital'},{token:'brand',label:'Branding'}];
-    if(!hero||!context)return;
+  pages.project=function(){
+    var target=document.getElementById('projectContent');
+    if(!target)return;
 
-    function projectUrl(item){return 'showcase-build.html?post='+encodeURIComponent(item.legacyId);}
-    function filterUrl(kind,value){return 'work-build.html?'+kind+'='+encodeURIComponent(value)+'#archive';}
-    function heroImage(item){return '/'+(item.image||item.thumb||'');}
-    function skillPills(item){return project.lines(item.skills).map(function(skill){return '<a class="build-pill build-pill-link" href="'+filterUrl('skill',skill)+'">'+skill+'</a>';}).join('');}
-    function typePills(item){return typeMap.filter(function(type){return project.contains(item,type.token);}).map(function(type){return '<a class="build-pill build-pill-link" href="'+filterUrl('type',type.token)+'">'+type.label+'</a>';}).join('');}
-    function navMarkup(previous,next){return '<a class="build-case-nav-link previous" href="'+projectUrl(previous)+'"><span class="direction">← Previous</span><span class="project">'+project.strip(previous.title)+'</span></a><a class="build-case-nav-all" href="work-build.html#archive">All work</a><a class="build-case-nav-link next" href="'+projectUrl(next)+'"><span class="direction">Next →</span><span class="project">'+project.strip(next.title)+'</span></a>';}
-    function renderCaseNav(item,posts){
-      var index=posts.findIndex(function(candidate){return String(candidate.legacyId)===String(item.legacyId);});
-      if(index<0||!posts.length)return;
-      var html=navMarkup(posts[(index-1+posts.length)%posts.length],posts[(index+1)%posts.length]);
-      document.getElementById('caseNavTop').innerHTML=html;
-      document.getElementById('caseNavBottom').innerHTML=html;
-    }
-    function renderHero(item){
-      var role=project.lines(item.role).join(' · '),types=typePills(item),skills=skillPills(item);
-      document.title=project.strip(item.title)+' | Susan Delgado';
-      hero.className='';
-      hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+(item.year||'Professional project')+' · '+project.strip(item.client)+'</p><h1 class="build-case-title">'+item.title+'</h1><p class="build-case-summary">'+(item.summary||'Professional project.')+'</p><div class="build-case-taxonomy">'+(types?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Project type</span><div class="build-pills">'+types+'</div></div>':'')+(skills?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Skills</span><div class="build-pills">'+skills+'</div></div>':'')+'</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+project.strip(item.client)+'</dd></div><div><dt>Role</dt><dd>'+role+'</dd></div><div><dt>Year</dt><dd>'+(item.year||'Not recorded')+'</dd></div></dl></div><div class="build-case-visual"><img src="'+heroImage(item)+'" alt="'+project.strip(item.title)+' project preview"></div>';
-    }
-    function renderContext(item){document.getElementById('caseNarrative').innerHTML=item.content||'<p>'+(item.summary||'Professional project.')+'</p>';context.hidden=false;}
-    function renderUX(data){if(!data||!data.ux||!uxSection)return;document.getElementById('uxTitle').textContent=data.ux.title||'';document.getElementById('uxIntro').textContent=data.ux.intro||'';document.getElementById('uxPanels').innerHTML=(data.ux.panels||[]).map(function(panel){return '<article class="build-panel"><h3>'+panel.title+'</h3><p>'+panel.copy+'</p></article>';}).join('');uxSection.hidden=false;}
-    function renderWorkflow(data){if(!data||!data.workflow||!data.workflow.length||!workflowSection)return;document.getElementById('workflowGrid').innerHTML=data.workflow.map(function(step){return '<article class="build-process-step"><span class="step">'+step.label+'</span><h3>'+step.title+'</h3><p>'+step.copy+'</p></article>';}).join('');workflowSection.hidden=false;}
-    function renderSystem(data){if(!data||!data.system||!systemSection)return;document.getElementById('systemTitle').textContent=data.system.title||'Technical structure';document.getElementById('systemIntro').textContent=data.system.intro||'';document.getElementById('systemGrid').innerHTML=(data.system.nodes||[]).map(function(node){return '<article class="node"><h3>'+node.title+'</h3><p>'+node.copy+'</p></article>';}).join('');systemSection.hidden=false;}
-    function renderStructure(data){if(!data||!data.items||!data.items.length||!structureSection)return;document.getElementById('structureTitle').textContent=data.title||'Website structure';document.getElementById('structureIntro').textContent=data.intro||'';document.getElementById('structureGrid').innerHTML=data.items.map(function(item){var children=(item.children||[]).map(function(child){return '<li>'+child+'</li>';}).join('');return '<article class="structure-node"><h3>'+item.label+'</h3>'+(children?'<ul>'+children+'</ul>':'')+'</article>';}).join('');structureSection.hidden=false;}
-    function fallbackDeliverables(item){
-      var items=[];
-      if(project.contains(item,'web'))items.push({title:'Web / interface work',copy:'Website, microsite or responsive interface implementation.'});
-      if(project.contains(item,'email'))items.push({title:'Email',copy:'Email development and campaign communication.'});
-      if(project.contains(item,'dig'))items.push({title:'Digital assets',copy:'Digital and web campaign materials.'});
-      if(project.contains(item,'print'))items.push({title:'Print',copy:'Printed production and collateral.'});
-      if(project.contains(item,'brand'))items.push({title:'Branding',copy:'Identity and branding work.'});
-      return items;
-    }
-    function renderDeliverables(item,data){
-      if(!deliverableSection)return;
-      var items=data&&data.deliverables&&data.deliverables.length?data.deliverables:fallbackDeliverables(item);
-      if(!items.length)return;
-      document.getElementById('deliverableGrid').innerHTML=items.map(function(deliverable){return '<div class="build-deliverable"><strong>'+deliverable.title+'</strong><span>'+deliverable.copy+'</span></div>';}).join('');
-      deliverableSection.hidden=false;
-    }
-    function renderPreview(item){
-      if(!visualSection)return;
-      var preview=document.getElementById('projectPreview');
-      fetch('/'+item.link).then(function(response){if(!response.ok)throw new Error();return response.text();}).then(function(html){
-        preview.innerHTML=html;
+    var typeMap=[
+      {token:'conf',label:'Campaigns'},
+      {token:'web',label:'Websites'},
+      {token:'email',label:'Emails'},
+      {token:'print',label:'Print collateral'},
+      {token:'dig',label:'Digital'},
+      {token:'brand',label:'Branding'}
+    ];
+
+    function renderProject(){
+      var hero=document.getElementById('caseHero');
+      var context=document.getElementById('caseContext');
+      var uxSection=document.getElementById('uxSection');
+      var workflowSection=document.getElementById('workflowSection');
+      var systemSection=document.getElementById('systemSection');
+      var structureSection=document.getElementById('structureSection');
+      var deliverableSection=document.getElementById('deliverableSection');
+      var visualSection=document.getElementById('visualSection');
+      if(!hero||!context)throw new Error('Project template is incomplete');
+
+      function projectUrl(item){return 'project.html?post='+encodeURIComponent(item.legacyId);}
+      function filterUrl(kind,value){return 'work.html?'+kind+'='+encodeURIComponent(value)+'#archive';}
+      function heroImage(item){return '/'+(item.image||item.thumb||'');}
+      function skillPills(item){return project.lines(item.skills).map(function(skill){return '<a class="build-pill build-pill-link" href="'+filterUrl('skill',skill)+'">'+skill+'</a>';}).join('');}
+      function typePills(item){return typeMap.filter(function(type){return project.contains(item,type.token);}).map(function(type){return '<a class="build-pill build-pill-link" href="'+filterUrl('type',type.token)+'">'+type.label+'</a>';}).join('');}
+      function navMarkup(previous,next){return '<a class="build-case-nav-link previous" href="'+projectUrl(previous)+'"><span class="direction">← Previous</span><span class="project">'+project.strip(previous.title)+'</span></a><a class="build-case-nav-all" href="work.html#archive">All work</a><a class="build-case-nav-link next" href="'+projectUrl(next)+'"><span class="direction">Next →</span><span class="project">'+project.strip(next.title)+'</span></a>';}
+
+      function renderProjectNav(item,posts){
+        var index=posts.findIndex(function(candidate){return String(candidate.legacyId)===String(item.legacyId);});
+        if(index<0||!posts.length)return;
+        var html=navMarkup(posts[(index-1+posts.length)%posts.length],posts[(index+1)%posts.length]);
+        var top=document.getElementById('caseNavTop');
+        var bottom=document.getElementById('caseNavBottom');
+        if(top)top.innerHTML=html;
+        if(bottom)bottom.innerHTML=html;
+      }
+
+      function renderHero(item){
+        var role=project.lines(item.role).join(' · '),types=typePills(item),skills=skillPills(item);
+        document.title=project.strip(item.title)+' | Susan Delgado';
+        hero.className='';
+        hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+(item.year||'Professional project')+' · '+project.strip(item.client)+'</p><h1 class="build-case-title">'+item.title+'</h1><p class="build-case-summary">'+(item.summary||'Professional project.')+'</p><div class="build-case-taxonomy">'+(types?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Project type</span><div class="build-pills">'+types+'</div></div>':'')+(skills?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Skills</span><div class="build-pills">'+skills+'</div></div>':'')+'</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+project.strip(item.client)+'</dd></div><div><dt>Role</dt><dd>'+role+'</dd></div><div><dt>Year</dt><dd>'+(item.year||'Not recorded')+'</dd></div></dl></div><div class="build-case-visual"><img src="'+heroImage(item)+'" alt="'+project.strip(item.title)+' project preview"></div>';
+      }
+
+      function renderContext(item){
+        document.getElementById('caseNarrative').innerHTML=item.content||'<p>'+(item.summary||'Professional project.')+'</p>';
+        context.hidden=false;
+      }
+
+      function renderUX(data){
+        if(!data||!data.ux||!uxSection)return;
+        document.getElementById('uxTitle').textContent=data.ux.title||'';
+        document.getElementById('uxIntro').textContent=data.ux.intro||'';
+        document.getElementById('uxPanels').innerHTML=(data.ux.panels||[]).map(function(panel){return '<article class="build-panel"><h3>'+panel.title+'</h3><p>'+panel.copy+'</p></article>';}).join('');
+        uxSection.hidden=false;
+      }
+
+      function renderWorkflow(data){
+        if(!data||!data.workflow||!data.workflow.length||!workflowSection)return;
+        document.getElementById('workflowGrid').innerHTML=data.workflow.map(function(step){return '<article class="build-process-step"><span class="step">'+step.label+'</span><h3>'+step.title+'</h3><p>'+step.copy+'</p></article>';}).join('');
+        workflowSection.hidden=false;
+      }
+
+      function renderSystem(data){
+        if(!data||!data.system||!systemSection)return;
+        document.getElementById('systemTitle').textContent=data.system.title||'Technical structure';
+        document.getElementById('systemIntro').textContent=data.system.intro||'';
+        document.getElementById('systemGrid').innerHTML=(data.system.nodes||[]).map(function(node){return '<article class="node"><h3>'+node.title+'</h3><p>'+node.copy+'</p></article>';}).join('');
+        systemSection.hidden=false;
+      }
+
+      function renderStructure(data){
+        if(!data||!data.items||!data.items.length||!structureSection)return;
+        document.getElementById('structureTitle').textContent=data.title||'Website structure';
+        document.getElementById('structureIntro').textContent=data.intro||'';
+        document.getElementById('structureGrid').innerHTML=data.items.map(function(item){var children=(item.children||[]).map(function(child){return '<li>'+child+'</li>';}).join('');return '<article class="structure-node"><h3>'+item.label+'</h3>'+(children?'<ul>'+children+'</ul>':'')+'</article>';}).join('');
+        structureSection.hidden=false;
+      }
+
+      function fallbackDeliverables(item){
+        var items=[];
+        if(project.contains(item,'web'))items.push({title:'Web / interface work',copy:'Website, microsite or responsive interface implementation.'});
+        if(project.contains(item,'email'))items.push({title:'Email',copy:'Email development and campaign communication.'});
+        if(project.contains(item,'dig'))items.push({title:'Digital assets',copy:'Digital and web campaign materials.'});
+        if(project.contains(item,'print'))items.push({title:'Print',copy:'Printed production and collateral.'});
+        if(project.contains(item,'brand'))items.push({title:'Branding',copy:'Identity and branding work.'});
+        return items;
+      }
+
+      function renderDeliverables(item,data){
+        if(!deliverableSection)return;
+        var items=data&&data.deliverables&&data.deliverables.length?data.deliverables:fallbackDeliverables(item);
+        if(!items.length)return;
+        document.getElementById('deliverableGrid').innerHTML=items.map(function(deliverable){return '<div class="build-deliverable"><strong>'+deliverable.title+'</strong><span>'+deliverable.copy+'</span></div>';}).join('');
+        deliverableSection.hidden=false;
+      }
+
+      function previewColumnClass(columns){
+        var count=Number(columns)||1;
+        if(count>=4)return 'col-lg-3 col-md-6 col-sm-12';
+        if(count===3)return 'col-lg-4 col-md-4 col-sm-12';
+        if(count===2)return 'col-lg-6 col-md-6 col-sm-12';
+        return 'col-lg-12 col-md-12 col-sm-12';
+      }
+
+      function renderPreview(item){
+        if(!visualSection)return;
+        var preview=document.getElementById('projectPreview');
+        var data=item&&item.preview;
+        if(!preview||!data)return;
+
+        if(data.html){
+          preview.innerHTML=String(data.html);
+        }else{
+          var sections=Array.isArray(data.sections)?data.sections:[];
+          if(!sections.length)return;
+          preview.innerHTML=sections.map(function(section){
+            var columnClass=previewColumnClass(section.columns);
+            var images=Array.isArray(section.images)?section.images:[];
+            var imageMarkup=images.map(function(image){
+              var size=image.size?' data-preview-size="'+project.strip(image.size)+'"':'';
+              return '<div class="'+columnClass+'"><img class="responsive"'+size+' src="'+(image.src||'')+'" alt="'+project.strip(image.alt||'')+'"></div>';
+            }).join('');
+            return '<div class="container">'+(section.title?'<h2>'+section.title+'</h2>':'')+'<div class="row">'+imageMarkup+'</div></div>';
+          }).join('');
+        }
+
         preview.querySelectorAll('script,style,link,nav,footer').forEach(function(element){element.remove();});
-        preview.querySelectorAll('img').forEach(function(image){var src=image.getAttribute('src');if(src&&src.indexOf('/')!==0&&!src.startsWith('http'))image.src='/showcase/'+src.replace(/^\.\//,'');});
         visualSection.hidden=false;
+      }
+
+      return project.loadProjects().then(function(result){
+        var posts=result.posts;
+        var buildData=result.build||{};
+        var requested=new URLSearchParams(location.search).get('post')||'23';
+        var item=posts.find(function(candidate){return String(candidate.legacyId)===String(requested);})||posts[0];
+        if(!item)throw new Error('No project data');
+        var id=String(item.legacyId);
+        var enhanced=item.caseStudy||(buildData.caseStudies&&buildData.caseStudies[id])||null;
+        var structure=item.structure||(buildData.structures&&buildData.structures[id])||null;
+
+        renderProjectNav(item,posts);
+        renderHero(item);
+        renderContext(item);
+        renderUX(enhanced);
+        renderWorkflow(enhanced);
+        renderSystem(enhanced);
+        renderStructure(structure);
+        renderDeliverables(item,enhanced);
+        renderPreview(item);
+
         if(window.initBuildMotion)window.initBuildMotion(document);
-      }).catch(function(){preview.innerHTML='<p class="build-status">Project preview unavailable.</p>';visualSection.hidden=false;if(window.initBuildMotion)window.initBuildMotion(document);});
+      });
     }
 
-    Promise.all([
-      project.loadProjects(),
-      project.optionalJson('/build/case-study-build.json'),
-      project.optionalJson('/build/site-structure-build.json')
-    ]).then(function(data){
-      var posts=data[0].posts,enhancedMap=data[1]||{},structureMap=data[2]||{};
-      var requested=new URLSearchParams(location.search).get('post')||'23';
-      var item=posts.find(function(candidate){return String(candidate.legacyId)===String(requested);})||posts[0];
-      if(!item)throw new Error('No project data');
-      var enhanced=enhancedMap[String(item.legacyId)]||null;
-      var structure=structureMap[String(item.legacyId)]||null;
-      renderCaseNav(item,posts);renderHero(item);renderContext(item);renderUX(enhanced);renderWorkflow(enhanced);renderSystem(enhanced);renderStructure(structure);renderDeliverables(item,enhanced);
-      if(window.initBuildMotion)window.initBuildMotion(document);
-      renderPreview(item);
-    }).catch(function(){hero.className='build-status';hero.textContent='Project data could not be loaded.';});
+    loadTemplate(target)
+      .then(renderProject)
+      .catch(function(){
+        target.innerHTML='<p class="status">Project data could not be loaded.</p>';
+      });
   };
 
   pages.exhibits=function(){
@@ -1073,7 +1188,7 @@
     {name:'progress',marker:'CHRONICLE SCRIBE v7.1',test:function(){return document.body&&document.body.id==='arts chronicals';}},
     {name:'resume',marker:'saveResumePdf',test:function(){return document.body&&document.body.id==='work resume';}},
     {name:'work',marker:'featuredIds',test:function(){return document.body&&document.body.id==='work'&&document.getElementById('featuredProjects');}},
-    {name:'showcase',marker:'case-study-build.json',test:function(){return document.body&&document.body.id==='work showcase';}}
+    {name:'project',marker:null,test:function(){return document.body&&document.body.id==='work'&&document.getElementById('projectContent');}}
   ];
 
   function currentDefinition(){return definitions.find(function(definition){return definition.test();})||null;}
