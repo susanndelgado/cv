@@ -1,27 +1,2 @@
-/* Review-only serif direction for Fine Arts. Proxima Nova remains the
-   navigation, label, metadata and body typeface across both portfolios. */
-:root{--build-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif}
-
-/* Fine Arts landing HERO ONLY. Inner live-page content must keep its original
-   typography and styling. */
-.art-build-preview #fineArtsPreview .boutique-hero h1,
-.art-build-preview #fineArtsPreview .boutique-hero h2,
-.art-build-preview #fineArtsPreview .boutique-hero h3{
-  font-family:var(--build-serif)!important;
-  font-weight:600!important;
-  letter-spacing:.005em!important;
-}
-
-/* Fine Arts gallery titles only. Technical build pages intentionally remain
-   Proxima Nova and are not targeted by this stylesheet. */
-.art-gallery-build .art-gallery-hero h1{
-  font-family:var(--build-serif)!important;
-  font-weight:500!important;
-  letter-spacing:.005em!important;
-}
-.art-gallery-build .art-gallery-caption h2,
-.art-gallery-build .art-gallery-lightbox h2{
-  font-family:var(--build-serif)!important;
-  font-weight:600!important;
-  letter-spacing:.005em!important;
-}
+/* Compatibility placeholder retained for build-motion.js.
+   Fine Arts hero typography now lives in css/finearts-build.css. */
