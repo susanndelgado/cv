@@ -16,7 +16,7 @@
     if(document.getElementById('sd-build-header-js'))return;
     var script=document.createElement('script');
     script.id='sd-build-header-js';
-    script.src='/build/js/build-header.js';
+    script.src='/js/build-header.js';
     document.head.appendChild(script);
   }
 
@@ -25,7 +25,7 @@
     var link=document.createElement('link');
     link.id='sd-build-interactions-css';
     link.rel='stylesheet';
-    link.href='/build/css/build-interactions.css';
+    link.href='/css/build-interactions.css';
     document.head.appendChild(link);
   }
 

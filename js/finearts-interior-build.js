@@ -6,7 +6,7 @@
     if(document.getElementById('sd-build-header-js'))return;
     var script=document.createElement('script');
     script.id='sd-build-header-js';
-    script.src='/build/js/build-header.js';
+    script.src='/js/build-header.js';
     document.head.appendChild(script);
   }
 
@@ -31,7 +31,7 @@
 
     var theme=doc.createElement('link');
     theme.rel='stylesheet';
-    theme.href='/build/css/finearts-build.css';
+    theme.href='/css/finearts-build.css';
     doc.head.appendChild(theme);
 
     doc.querySelectorAll('.process-hero,.boutique-hero').forEach(function(hero){
