@@ -1,12 +1,14 @@
 /******************************************************************
- * GLOBAL FOUNDATIONS & TYPOGRAPHY    
+ * GLOBAL FOUNDATIONS & TYPOGRAPHY
  ******************************************************************/
+
 html,
 body {
   max-width: 100%;
   min-height: 100%;
   font-size: 16px;
 }
+
 body {
   background-color: white;
   font-family: proxima-nova, "Open Sans", sans-serif;
@@ -19,6 +21,7 @@ body {
   margin: 0;
   text-rendering: optimizeLegibility;
 }
+
 h1,
 h2,
 h3,
@@ -26,12 +29,14 @@ h4,
 h5,
 h6 {
   font-family: "Playfair", Georgia, serif;
-  font-weight: 600px;
+  font-weight: 600;
   margin-bottom: 20px;
 }
+
 /******************************************************************
  * BUTTONS, LINKS, & INPUTS
  ******************************************************************/
+
 .button:focus,
 button:focus,
 input[type="button"]:focus,
@@ -75,6 +80,7 @@ input[type="submit"]:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+
 .btn.collab-btn,
 .button.collab-btn,
 button.collab-btn,
@@ -89,18 +95,22 @@ input[type="submit"].collab-btn {
   text-transform: uppercase;
   margin: 10px;
 }
+
 .btn.btn-blk {
   background-color: #000 !important;
   color: #fff !important;
 }
+
 .btn-blk {
   background-color: #000;
   color: #fff;
 }
+
 a {
   color: #000;
   background-color: transparent;
 }
+
 a:hover,
 a:focus {
   color: #f70606;
@@ -108,11 +118,13 @@ a:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+
 a,
 a:visited,
 .dropdown-item {
   color: #60adb8;
 }
+
 .btn.focus,
 .btn:focus {
   outline: none !important;
@@ -122,6 +134,7 @@ a:visited,
 /******************************************************************
  * NAVIGATION & MENUS
  ******************************************************************/
+
 header a,
 header a:visited {
   color: #495057;
@@ -179,9 +192,402 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /******************************************************************
- * STYLE CHANGES FOR ART *
+ * GLOBAL / REUSABLE COMPONENTS
  ******************************************************************/
 
+/* ---------------------------------------------------------
+ * SEAL CONTAINER
+ * Reusable circular logo / seal treatment
+ * --------------------------------------------------------- */
+
+.seal-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 180px;
+  height: 180px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.seal-container img {
+  width: 85%;
+  height: auto;
+
+  display: block;
+  object-fit: contain;
+}
+
+/* ---------------------------------------------------------
+ * CONTENT BOX
+ * Reusable elevated content panel
+ * --------------------------------------------------------- */
+
+.content-box {
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+  padding: 50px;
+}
+
 /******************************************************************
- * STYLE CHANGES FOR WORK *
+ * HOME PAGE
+ * build/index.html
  ******************************************************************/
+
+#index {
+  --ink: #f7f3ec;
+  --muted: rgba(247, 243, 236, 0.84);
+  --gold: #d4af37;
+  --glass: rgba(8, 10, 12, 0.58);
+  --line: rgba(255, 255, 255, 0.22);
+
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+
+  background: #000;
+  color: var(--ink);
+
+  overflow-x: hidden;
+}
+
+#index * {
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------
+ * HOME SPLASH
+ * --------------------------------------------------------- */
+
+.splash {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  padding: 36px 20px;
+
+  background: #000;
+}
+
+/* Background video */
+
+.splash-video {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  z-index: -4;
+
+  width: 102%;
+  height: 102%;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: translate3d(-50%, -50%, 0) scale(1.01);
+
+  pointer-events: none;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Video overlay */
+
+.splash::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18),
+    rgba(0, 0, 0, 0.05) 35%,
+    rgba(0, 0, 0, 0.08) 65%,
+    rgba(0, 0, 0, 0.24)
+  );
+}
+
+/* ---------------------------------------------------------
+ * HOME CONTENT BOX
+ *
+ * Uses global:
+ * .content-box
+ * --------------------------------------------------------- */
+
+#index .content-box {
+  width: min(890px, 94vw);
+
+  padding: clamp(34px, 6vw, 68px) clamp(24px, 7vw, 78px);
+
+  text-align: center;
+
+  background: var(--glass);
+
+  border: 1px solid var(--line);
+  border-top: 3px solid rgba(212, 175, 55, 0.9);
+
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ---------------------------------------------------------
+ * HOME SEAL
+ *
+ * Uses global:
+ * .seal-container
+ * --------------------------------------------------------- */
+
+#index .seal-container {
+  width: clamp(106px, 14vw, 142px);
+  height: auto;
+  aspect-ratio: 1;
+
+  margin-bottom: 25px;
+
+  padding: 7px;
+
+  border-width: 1px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+#index .seal-container img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------------------------------------------------------
+ * HOME CONTENT
+ * --------------------------------------------------------- */
+
+.eyebrow {
+  margin: 0 0 12px;
+
+  color: rgba(247, 243, 236, 0.78);
+}
+
+#splash-title {
+  margin: 0;
+}
+
+/* Gold divider */
+
+.rule {
+  width: 68px;
+  height: 1px;
+
+  margin: 27px auto 25px;
+
+  background: var(--gold);
+
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+}
+
+/* Introduction */
+
+.intro {
+  max-width: 740px;
+
+  margin: 0 auto;
+
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------
+ * HOME BUTTON GROUP
+ *
+ * Uses existing global Bootstrap .btn overrides.
+ * --------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-top: 34px;
+}
+
+#index .actions .btn {
+  min-width: 210px;
+
+  padding: 15px 28px;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  border-color: rgba(255, 255, 255, 0.82);
+
+  color: #fff;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+/* Fine Artist button */
+
+#index .actions .btn-outline-warning {
+  border-color: var(--gold);
+  color: #fff;
+}
+
+/* Home button hover */
+
+#index .actions .btn:hover,
+#index .actions .btn:focus-visible {
+  transform: translateY(-2px);
+
+  color: #111;
+
+  background: #fff;
+  border-color: #fff;
+}
+
+/* Fine Artist button hover */
+
+#index .actions .btn-outline-warning:hover,
+#index .actions .btn-outline-warning:focus-visible {
+  color: #111;
+
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ---------------------------------------------------------
+ * HOME PHILOSOPHY
+ * --------------------------------------------------------- */
+
+.philosophy {
+  margin: 28px 0 0;
+
+  color: rgba(247, 243, 236, 0.62);
+}
+
+/******************************************************************
+ * STYLE CHANGES FOR ART
+ ******************************************************************/
+
+/* Art default styles will go here */
+
+/******************************************************************
+ * STYLE CHANGES FOR WORK
+ ******************************************************************/
+
+/* Work default styles will go here */
+
+/******************************************************************
+ * RESPONSIVE STYLES
+ ******************************************************************/
+
+@media (max-width: 760px) {
+  /******************************************************************
+   * HOME PAGE — MOBILE
+   ******************************************************************/
+
+  .splash {
+    padding: 18px;
+  }
+
+  #index .content-box {
+    width: min(94vw, 620px);
+
+    padding: 30px 22px 34px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  #index .actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .splash-video {
+    width: 106%;
+    height: 106%;
+  }
+
+  /******************************************************************
+   * STYLE CHANGES FOR ART — MOBILE
+   ******************************************************************/
+
+  /* Art mobile styles will go here */
+
+  /******************************************************************
+   * STYLE CHANGES FOR WORK — MOBILE
+   ******************************************************************/
+
+  /* Work mobile styles will go here */
+}
+
+/******************************************************************
+ * REDUCED MOTION
+ ******************************************************************/
+
+@media (prefers-reduced-motion: reduce) {
+  /******************************************************************
+   * HOME PAGE — REDUCED MOTION
+   ******************************************************************/
+
+  .splash-video {
+    display: none;
+  }
+
+  #index .actions .btn {
+    transition: none;
+  }
+
+  /******************************************************************
+   * STYLE CHANGES FOR ART — REDUCED MOTION
+   ******************************************************************/
+
+  /* Art reduced-motion styles will go here */
+
+  /******************************************************************
+   * STYLE CHANGES FOR WORK — REDUCED MOTION
+   ******************************************************************/
+
+  /* Work reduced-motion styles will go here */
+}
