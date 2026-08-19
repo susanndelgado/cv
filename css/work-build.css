@@ -1,0 +1,223 @@
+/* Technical Work build theme.
+   Shared navigation/footer live in build-global.css; this file owns the
+   Technical portfolio's typography, hero, sections and reusable components. */
+:root{
+  --teal:#60adb8;
+  --teal-dark:#3f8791;
+  --red:#f70606;
+  --ink:#111111;
+  --muted:#656b70;
+  --line:#dedede;
+  --paper:#f6f6f6;
+  --gold:#d4af37;
+}
+
+body.build-page{
+  --build-accent:var(--red);
+  background:#f6f6f6;
+  color:#111;
+  font-family:proxima-nova,"Open Sans",Arial,sans-serif;
+}
+body.build-page h1,
+body.build-page h2,
+body.build-page h3,
+body.build-page h4,
+body.build-page h5,
+body.build-page h6{font-family:proxima-nova,"Open Sans",Arial,sans-serif}
+
+/* Technical homepage and case-study heroes. */
+.build-hero{
+  padding:112px 0 92px;
+  background:#fff;
+  color:#111;
+  border-bottom:1px solid #ececec;
+}
+.build-hero .build-hero-grid{display:block}
+.build-hero .build-brief{display:none}
+.build-case-hero{
+  padding:54px 0 46px;
+  background:radial-gradient(ellipse at center,#fff 0%,#fff 55%,#ededed 100%);
+  color:#111;
+  border-bottom:1px solid #e3e3e3;
+}
+.build-hero::before,
+.build-hero::after,
+.build-case-hero::before,
+.build-case-hero::after{display:none}
+.build-hero .build-kicker{
+  display:inline-block;
+  margin-bottom:20px;
+  padding:4px 15px;
+  background:var(--red);
+  color:#fff;
+  font-size:1.2rem;
+  font-weight:100;
+  letter-spacing:0;
+  line-height:1.35;
+  text-transform:uppercase;
+}
+.build-case-hero .build-kicker{color:var(--teal)}
+.build-kicker{color:var(--teal);letter-spacing:.12em}
+
+/* Match the established live Technical hero scale. */
+.build-display{
+  max-width:1040px;
+  color:#111;
+  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+  font-size:clamp(2.6rem,4.8vw,3.5rem);
+  line-height:1.08;
+  letter-spacing:.12em;
+  font-weight:600;
+  text-transform:uppercase;
+}
+.build-lede{
+  max-width:820px;
+  margin-top:30px;
+  color:#3d4246;
+  font-size:clamp(1rem,1.55vw,1.18rem);
+  line-height:1.78;
+}
+.build-case-title{
+  max-width:850px;
+  color:#111;
+  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+  font-size:clamp(2rem,3.9vw,3.45rem);
+  line-height:1.08;
+  letter-spacing:0;
+  font-weight:500;
+}
+.build-case-summary{margin-top:18px;color:#4d5358;font-size:1.02rem;line-height:1.7}
+.build-section-head h2,
+.build-case-content h2{
+  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+  font-size:clamp(1.7rem,2.8vw,2.45rem);
+  line-height:1.16;
+  font-weight:500;
+  letter-spacing:0;
+}
+
+/* Contact keeps the controlled interior-page scale while reusing the hero. */
+body.build-page:has(.build-contact-grid) .build-display{
+  max-width:760px;
+  font-size:clamp(2.15rem,4.2vw,3.65rem);
+  line-height:1.08;
+  letter-spacing:0;
+  font-weight:500;
+  text-transform:none;
+}
+body.build-page:has(.build-contact-grid) .build-hero{padding:66px 0 64px}
+body.build-page:has(.build-contact-grid) .build-hero .build-kicker{
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:.07em;
+}
+
+/* Reusable Technical planes and cards. */
+.build-brief{
+  padding:26px;
+  background:rgba(247,247,247,.84);
+  color:#111;
+  border:1px solid #dedede;
+  border-top:4px solid var(--teal);
+  box-shadow:none;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.build-brief h2{color:#111}
+.build-brief p{color:#5d6469}
+.build-hero .build-pill,
+.build-case-hero .build-pill{
+  color:#495057;
+  background:rgba(255,255,255,.72);
+  border-color:#d9d9d9;
+}
+.build-panel,
+.build-case-meta,
+.build-architecture .node{
+  background:rgba(255,255,255,.86);
+  border-color:#ddd;
+  border-radius:0;
+  box-shadow:none;
+}
+.build-case-meta{color:#343a40;background:#fff;border-color:#ddd}
+.build-case-meta dt{color:var(--teal)}
+.build-case-meta dd{color:#343a40}
+.build-case-meta div+div{border-top-color:#e2e2e2}
+.build-case-hero .build-back{color:#6c757d!important}
+.build-case-hero .build-back:hover,
+.build-case-hero .build-back:focus-visible{color:var(--red)!important}
+.build-process-step{background:rgba(255,255,255,.68)}
+.build-project-card{
+  border-radius:0;
+  background:#fff;
+  border:1px solid #dedede;
+  box-shadow:0 10px 28px rgba(0,0,0,.045);
+}
+.build-project-card:hover{box-shadow:0 20px 42px rgba(0,0,0,.075)}
+.build-archive-card{border-radius:0;background:#fff;border-color:#dedede}
+.build-project-meta,
+.build-process-step .step{color:var(--teal)}
+.build-pill{border-radius:0}
+.build-filter{border-radius:0;border-color:#cdcdcd}
+.build-filter:hover,
+.build-filter:focus-visible,
+.build-filter.active{background:#111;border-color:#111;color:#fff}
+
+/* Shared Technical action style. */
+.build-btn{
+  border-radius:0;
+  border-color:#111;
+  background:transparent;
+  color:#111!important;
+  text-shadow:none;
+}
+.build-btn:hover,
+.build-btn:focus-visible{background:transparent;color:var(--red)!important;border-color:var(--red)}
+.build-btn.secondary{border-color:var(--teal);color:var(--teal)!important}
+.build-btn.secondary:hover,
+.build-btn.secondary:focus-visible{background:transparent;border-color:var(--red);color:var(--red)!important}
+.build-hero .build-btn,
+.build-hero .build-btn.secondary{background:#fff;border-color:var(--teal);color:var(--teal)!important}
+.build-hero .build-btn:hover,
+.build-hero .build-btn:focus-visible,
+.build-hero .build-btn.secondary:hover,
+.build-hero .build-btn.secondary:focus-visible{background:#fff;border-color:var(--red);color:var(--red)!important}
+
+/* Sections use one neutral white/gray system. */
+.build-section{background:#f6f6f6}
+.build-section.white{background:#fff}
+.build-section.dark{background:#efefef;color:#111}
+.build-section.dark::before{display:none}
+.build-section.dark .build-section-head p,
+.build-section.dark .build-cap-card p{color:#62686d}
+.build-section.dark .build-cap-card{
+  background:#fff;
+  color:#111;
+  border-color:#dedede;
+  border-top:3px solid var(--teal);
+}
+.build-section.dark .build-cap-card .num{color:var(--red)}
+
+body.build-page main a:not(.build-btn):not(.build-project-image){color:var(--teal)}
+body.build-page main a:not(.build-btn):not(.build-project-image):hover,
+body.build-page main a:not(.build-btn):not(.build-project-image):focus-visible{color:var(--red)}
+
+/* Technical-only reveal behavior. */
+.build-page:not(.art-build-preview):not(.art-gallery-build) .build-reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.2,.65,.25,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+.build-page:not(.art-build-preview):not(.art-gallery-build) .build-reveal.is-visible{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .build-hero{padding:72px 0 64px}
+  .build-display{font-size:clamp(2.15rem,10vw,2.85rem);letter-spacing:.06em}
+  body.build-page:has(.build-contact-grid) .build-display{font-size:clamp(2rem,9vw,2.9rem)}
+  .build-case-title{font-size:clamp(1.9rem,9vw,2.8rem)}
+}
+@media(prefers-reduced-motion:reduce){
+  .build-reveal{opacity:1!important;transform:none!important;transition:none!important}
+}
