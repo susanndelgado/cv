@@ -1,5 +1,17 @@
 (function(){
   'use strict';
+
+  function ensureBuildHeader(){
+    if(window.initBuildHeader){window.initBuildHeader(document);return;}
+    if(document.getElementById('sd-build-header-js'))return;
+    var script=document.createElement('script');
+    script.id='sd-build-header-js';
+    script.src='/js/build-header.js';
+    document.head.appendChild(script);
+  }
+
+  ensureBuildHeader();
+
   var frame=document.querySelector('.finearts-preview-frame');
   if(!frame)return;
 
