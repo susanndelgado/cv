@@ -1,178 +1,16 @@
-/* Review-only gallery direction: Fine Arts build chrome + editorial artwork layout. */
+/* Fine Arts gallery layout only.
+   Shared chrome lives in build-global.css; hero/theme lives in finearts-build.css. */
 .art-gallery-build{
   --gallery-gold:#d4af37;
-  --gallery-black:#111111;
-  --gallery-gray:#6c757d;
-  --gallery-light:#f6f6f6;
   --gallery-line:#e3e3e3;
   margin:0;
   background:#fff;
   color:#222;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
 }
-
-/* Match the Fine Arts build navigation exactly. */
-.art-gallery-build .build-site-header{
-  position:relative;
-  background:#fff;
-  box-shadow:none;
-  border-bottom:1px solid #eeeeee;
-}
-.art-gallery-build .build-top-tabs{
-  background:#eff8ff;
-  border-bottom:1px solid #dee2e6;
-}
-.art-gallery-build .build-tabs{
-  padding:0 15px;
-  font-family:Verdana,serif;
-  font-size:16px;
-}
-.art-gallery-build .build-tabs a{
-  padding:10px 16px;
-  color:#60adb8!important;
-  border:1px solid transparent;
-  background:transparent;
-}
-.art-gallery-build .build-tabs a:hover,
-.art-gallery-build .build-tabs a:focus-visible{
-  color:#f70606!important;
-  border-color:#e9ecef #e9ecef #dee2e6;
-}
-.art-gallery-build .build-tabs .active a{
-  color:#495057!important;
-  background:#fff!important;
-  border-color:#dee2e6 #dee2e6 #fff;
-}
-.art-gallery-build .build-tabs .active a:hover,
-.art-gallery-build .build-tabs .active a:focus-visible{color:#f70606!important}
-
-.art-gallery-build .build-main-nav{
-  background:#fff!important;
-  border-bottom:1px solid #eeeeee!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
-}
-.art-gallery-build .build-main-nav-inner{min-height:67px}
-.art-gallery-build .build-site-brand{
-  color:#000!important;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:1.25rem!important;
-  font-weight:500;
-  letter-spacing:.025em;
-}
-.art-gallery-build .build-site-brand:hover,
-.art-gallery-build .build-site-brand:focus-visible{color:rgba(0,0,0,.65)!important}
-.art-gallery-build .build-site-links a{
-  padding:20px 12px;
-  color:#6c757d!important;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:.86rem;
-  font-weight:500;
-  letter-spacing:.02em;
-}
-.art-gallery-build .build-site-links a::after{
-  left:12px;
-  right:12px;
-  bottom:14px;
-  height:1px;
-  background:transparent;
-}
-.art-gallery-build .build-site-links a[aria-current=page],
-.art-gallery-build .build-site-links a:hover,
-.art-gallery-build .build-site-links a:focus-visible{color:var(--gallery-gold)!important}
-.art-gallery-build .build-site-links a[aria-current=page]::after,
-.art-gallery-build .build-site-links a:hover::after,
-.art-gallery-build .build-site-links a:focus-visible::after{background:var(--gallery-gold)!important}
-
 .art-gallery-build main{background:#fff}
 
-/* Standard Fine Arts gallery hero: full-width black field with white text and gold accents. */
-.art-gallery-build .art-gallery-hero{
-  width:100%;
-  margin:0;
-  padding:68px max(4vw,calc((100vw - 1220px)/2)) 52px;
-  text-align:left;
-  background:#111;
-  border:0;
-  color:#fff;
-}
-.art-gallery-build .art-gallery-hero .seal-contained{display:none!important}
-.art-gallery-build .art-gallery-hero::before{
-  content:"FINE ART · SELECTED WORK";
-  display:inline-block;
-  margin-bottom:18px;
-  padding-left:16px;
-  border-left:4px solid var(--gallery-gold);
-  color:var(--gallery-gold);
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:.78rem;
-  font-weight:600;
-  line-height:1.4;
-  letter-spacing:.16em;
-}
-.art-gallery-build .art-gallery-hero h1{
-  max-width:850px;
-  margin:0 0 16px;
-  color:#fff;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:clamp(2.2rem,4vw,3.75rem);
-  font-weight:500;
-  line-height:1.05;
-  letter-spacing:-.015em;
-}
-.art-gallery-build .art-gallery-hero > p{
-  max-width:760px;
-  margin:0;
-  color:#fff;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:1.02rem;
-  line-height:1.72;
-}
-.art-gallery-build .art-gallery-rule{
-  width:64px;
-  height:3px;
-  margin:25px 0 0;
-  background:var(--gallery-gold);
-}
-
-/* Gallery-type navigation sits below the hero, on the same light page surface. */
-.art-gallery-build .art-gallery-categories{
-  width:min(1220px,92vw);
-  margin:0 auto;
-  padding:18px 0;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px 28px;
-  border-bottom:1px solid var(--gallery-line);
-  background:#fff;
-}
-.art-gallery-build .art-gallery-categories a{
-  position:relative;
-  padding:0 0 5px;
-  color:#6c757d;
-  text-decoration:none;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:.82rem;
-  font-weight:500;
-  letter-spacing:.055em;
-}
-.art-gallery-build .art-gallery-categories a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:1px;
-  background:transparent;
-}
-.art-gallery-build .art-gallery-categories a:hover,
-.art-gallery-build .art-gallery-categories a:focus-visible,
-.art-gallery-build .art-gallery-categories a.active{color:var(--gallery-gold)}
-.art-gallery-build .art-gallery-categories a:hover::after,
-.art-gallery-build .art-gallery-categories a:focus-visible::after,
-.art-gallery-build .art-gallery-categories a.active::after{background:var(--gallery-gold)}
-
-/* Artwork presentation: clean editorial masonry rather than cards or a dark wall. */
+/* Artwork presentation: clean editorial masonry rather than cards. */
 .art-gallery-build .art-gallery-shell{
   width:min(1320px,94vw);
   margin:0 auto;
@@ -187,12 +25,12 @@
 .art-gallery-build .art-gallery-card,
 .art-gallery-build .art-gallery-card:nth-child(n){
   width:100%;
+  height:auto!important;
   margin:0 0 54px!important;
   display:inline-block!important;
   break-inside:avoid;
   background:transparent!important;
   color:#222;
-  height:auto!important;
   vertical-align:top;
 }
 .art-gallery-build .art-gallery-card button{
@@ -261,7 +99,7 @@
 }
 .art-gallery-build .art-gallery-empty{padding:70px 0;color:#888;text-align:left}
 
-/* Lightbox stays simple and consistent with the black/gold Fine Arts accents. */
+/* Lightbox layout; accent color is inherited from the Fine Arts theme. */
 .art-gallery-build .art-gallery-lightbox{
   position:fixed;
   inset:0;
@@ -287,31 +125,36 @@
   margin:0 0 18px;
   object-fit:contain;
 }
-.art-gallery-build .art-gallery-lightbox h2{margin:0 0 5px;color:#fff;font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;font-size:1.05rem}
-.art-gallery-build .art-gallery-lightbox p{max-width:760px;margin:0;color:#c5c5c5;font-size:.86rem;line-height:1.6}
-.art-gallery-build .art-gallery-close{position:fixed;top:22px;right:28px;border:0;background:none;color:#fff;font-size:2rem;line-height:1;cursor:pointer}
+.art-gallery-build .art-gallery-lightbox h2{
+  margin:0 0 5px;
+  color:#fff;
+  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
+  font-size:1.05rem;
+}
+.art-gallery-build .art-gallery-lightbox p{
+  max-width:760px;
+  margin:0;
+  color:#c5c5c5;
+  font-size:.86rem;
+  line-height:1.6;
+}
+.art-gallery-build .art-gallery-close{
+  position:fixed;
+  top:22px;
+  right:28px;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:2rem;
+  line-height:1;
+  cursor:pointer;
+}
 .art-gallery-build .art-gallery-close:hover{color:var(--gallery-gold)}
 
-/* Same quiet footer system used throughout the Fine Arts build. */
-.art-gallery-build .build-footer{
-  background:#fff!important;
-  color:#6c757d!important;
-  border-top:1px solid #dee2e6!important;
-  font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-}
-.art-gallery-build .build-footer a{color:#6c757d!important}
-.art-gallery-build .build-footer a:hover,
-.art-gallery-build .build-footer a:focus-visible{color:var(--gallery-gold)!important}
-
 @media(max-width:760px){
-  .art-gallery-build .art-gallery-hero{padding:52px 22px 42px}
-  .art-gallery-build .art-gallery-hero h1{font-size:clamp(2rem,9vw,3.1rem)}
-  .art-gallery-build .art-gallery-categories{gap:12px 20px}
   .art-gallery-build .art-gallery-shell{padding-top:42px}
   .art-gallery-build .art-gallery-grid{columns:1}
-  .art-gallery-build .build-main-nav-inner{align-items:flex-start;flex-direction:column;padding:15px 0}
 }
-
 @media(prefers-reduced-motion:reduce){
   .art-gallery-build .art-gallery-media-stage img{transition:none!important}
 }
