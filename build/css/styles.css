@@ -1138,6 +1138,569 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /******************************************************************
+ * FINE ARTS INTERIOR PAGES
+ * Shared by About, Exhibitions, and Progress Chronicles
+ ******************************************************************/
+
+body[id^="arts "] {
+  background: #fff;
+  color: #111;
+}
+
+/* ---------------------------------------------------------
+ * INTERIOR HERO
+ * Shared by About, Exhibitions, and Progress Chronicles
+ * --------------------------------------------------------- */
+
+.process-hero {
+  margin-top: 0;
+
+  padding: 5rem 0;
+
+  background: #111;
+  color: #fff;
+}
+
+.process-hero .master-title {
+  margin-bottom: 1.25rem;
+
+  color: #fff;
+
+  font-size: 2.8rem;
+  font-weight: 300;
+
+  letter-spacing: 0.625rem;
+  text-transform: uppercase;
+}
+
+.process-hero .hero-intro {
+  max-width: 100%;
+
+  margin: 0 auto;
+
+  color: #999;
+
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 2;
+
+  letter-spacing: 0.125rem;
+}
+
+.process-hero .hero-divider {
+  width: 3.75rem;
+  height: 1px;
+
+  margin: 2.5rem auto 0;
+
+  background: #444;
+}
+
+/* About hero subtitle */
+
+body[id="arts about"] .process-hero h2 {
+  margin-bottom: 1.875rem;
+
+  color: #fff;
+
+  font-size: 1.2rem;
+  font-weight: 300;
+
+  letter-spacing: 0.25rem;
+}
+
+/* Exhibit / Chronicles intro spacing */
+
+body[id="arts exhibit"] .process-hero .hero-intro {
+  max-width: 50rem;
+  margin-bottom: 1.875rem;
+}
+
+body[id="arts chronicals"] .process-hero .hero-intro {
+  margin-bottom: 1.875rem;
+}
+
+/******************************************************************
+ * ABOUT — PROCESS TREE
+ ******************************************************************/
+
+.process-tree-section {
+  padding: 5rem 0;
+
+  background: transparent;
+}
+
+.process-tree-section > .container > h2 {
+  font-weight: 300;
+
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.process-wrap {
+  position: relative;
+
+  padding: 2.5rem 0;
+}
+
+.tree-trunk {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  z-index: 1;
+
+  width: 2px;
+  height: 100%;
+
+  background: #d4af37;
+
+  transform: translateX(-50%);
+}
+
+.process-node {
+  position: relative;
+  z-index: 5;
+
+  margin-bottom: 7.5rem;
+
+  opacity: 0;
+
+  transform: translateY(1.875rem);
+
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.process-node.active,
+.process-node.active-node,
+.active-node {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.node-image-frame {
+  position: relative;
+
+  width: 100%;
+  max-width: 28.125rem;
+  min-height: 20.3125rem;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  background: #000;
+
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 0.3125rem;
+}
+
+.node-image-frame img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+.process-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.node-step {
+  display: block;
+
+  margin-bottom: 0.3125rem;
+
+  color: #d4af37;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.node-title {
+  margin-bottom: 0.9375rem;
+
+  color: #333;
+
+  font-size: 2rem;
+  font-weight: 300;
+
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.node-text {
+  max-width: 31.25rem;
+
+  margin: 0 auto;
+
+  color: #666;
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+ * ABOUT — FINAL PARALLAX PHASE
+ * --------------------------------------------------------- */
+
+.mastery-parallax-window {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 37.5rem;
+
+  margin-top: 5rem;
+
+  background-image: url("/img/Weanfae471459723_1265816627808422_3679522577518502338_n.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.mastery-parallax-window::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mastery-content-box {
+  position: relative;
+  z-index: 2;
+
+  max-width: 50rem;
+
+  padding: 3.75rem;
+
+  background: #fff;
+
+  border-top: 3px solid #d4af37;
+
+  text-align: center;
+
+  box-shadow: 0 1.875rem 4.375rem rgba(0, 0, 0, 0.2);
+
+  opacity: 0;
+
+  transform: translateY(1.875rem);
+
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.mastery-content-box.active,
+.mastery-content-box.active-node {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.mastery-content-box .node-step {
+  color: #d4af37;
+}
+
+.mastery-content-box .node-title {
+  color: #111;
+}
+
+.mastery-content-box .node-text {
+  color: #333;
+
+  font-weight: 600;
+}
+
+/******************************************************************
+ * EXHIBITIONS
+ ******************************************************************/
+
+.exhibitions-section {
+  padding: 5rem 0;
+
+  background: #f7f5f0;
+}
+
+.exhibition-list {
+  display: grid;
+
+  gap: 3.4375rem;
+}
+
+.exhibition-card {
+  overflow: hidden;
+
+  background: #fff;
+
+  border-top: 0.25rem solid #d4af37;
+
+  box-shadow: 0 1.125rem 2.8125rem rgba(0, 0, 0, 0.1);
+}
+
+.exhibition-copy {
+  padding: 2.625rem;
+}
+
+.exhibition-status {
+  display: inline-block;
+
+  margin-bottom: 0.75rem;
+
+  color: #8a6a13;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.exhibition-title {
+  margin-bottom: 1rem;
+
+  color: #1a1a1a;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.exhibition-media {
+  color: #777;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.09375rem;
+  text-transform: uppercase;
+}
+
+.exhibition-description {
+  margin: 1.375rem 0;
+
+  color: #333;
+
+  line-height: 1.85;
+}
+
+.exhibition-details {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.exhibition-details li {
+  display: grid;
+
+  grid-template-columns: minmax(5.9375rem, 8.4375rem) 1fr;
+
+  gap: 0.875rem;
+
+  padding: 0.625rem 0;
+
+  border-bottom: 1px solid #ece8df;
+
+  color: #444;
+}
+
+.exhibition-details strong {
+  color: #111;
+
+  font-size: 0.78rem;
+
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+}
+
+.exhibition-link {
+  display: inline-block;
+
+  margin-top: 1.625rem;
+
+  padding: 0.6875rem 1.375rem;
+
+  border: 1px solid #1a1a1a;
+
+  color: #1a1a1a;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  letter-spacing: 0.0875rem;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.exhibition-link:hover,
+.exhibition-link:focus {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.exhibition-carousel,
+.exhibition-carousel .carousel-inner,
+.exhibition-carousel .carousel-item {
+  height: 100%;
+  min-height: 28.75rem;
+}
+
+.exhibition-carousel img {
+  width: 100%;
+  height: 100%;
+  min-height: 28.75rem;
+
+  object-fit: cover;
+
+  background: #181818;
+}
+
+.exhibition-carousel .carousel-caption {
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: 1.75rem 4.0625rem 1.375rem;
+
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.82));
+
+  text-align: left;
+}
+
+.exhibition-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 28.75rem;
+
+  background: #1a1a1a;
+  color: #aaa;
+
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.exhibition-loading,
+.exhibition-empty,
+.exhibition-error {
+  padding: 4.375rem 1.25rem;
+
+  text-align: center;
+}
+
+.exhibition-error {
+  color: #8b1d1d;
+}
+
+/******************************************************************
+ * PROGRESS CHRONICLES
+ ******************************************************************/
+
+#chronicles-wing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  color: #111;
+}
+
+#chronicles-wing .chronicle-timeline {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6.25rem;
+}
+
+#chronicles-wing .node-step {
+  margin-bottom: 0.625rem;
+
+  color: #000;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+#chronicles-wing .chronicle-title {
+  margin-bottom: 0.9375rem;
+
+  color: #111;
+
+  font-family: "Cinzel Decorative", "Playfair Display", Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+
+  letter-spacing: 0.09375rem;
+  text-transform: uppercase;
+}
+
+#chronicles-wing .chronicle-desc {
+  color: #444;
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+#chronicles-wing .chronicle-meta {
+  margin-top: 0.9375rem;
+
+  color: #777;
+
+  font-size: 0.85rem;
+}
+
+body[id="arts chronicals"] #raw-data-log {
+  display: none;
+
+  max-height: 25rem;
+
+  margin-bottom: 2.5rem;
+  padding: 1.25rem;
+
+  overflow-y: auto;
+
+  background: #fdf6e3;
+  color: #586e75;
+
+  border: 1px dashed #b58900;
+  border-radius: 0.5rem;
+
+  font-size: 0.8125rem;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+
+  opacity: 0;
+}
+
+/******************************************************************
  * STYLE CHANGES FOR WORK
  ******************************************************************/
 
@@ -1239,6 +1802,47 @@ header .nav-tabs .nav-link.active:hover {
     padding: 4rem 0;
   }
 
+  /* Fine Arts interior pages */
+
+  .process-node {
+    margin-bottom: 3.125rem;
+  }
+
+  .tree-trunk {
+    display: none;
+  }
+
+  .process-node .col-md-6 {
+    margin-bottom: 1.25rem;
+
+    padding-left: 3.125rem !important;
+
+    text-align: left !important;
+  }
+
+  .mastery-content-box {
+    margin: 1.25rem;
+    padding: 1.875rem;
+  }
+
+  .exhibition-copy {
+    padding: 1.875rem 1.5rem;
+  }
+
+  .exhibition-details li {
+    grid-template-columns: 1fr;
+
+    gap: 0.25rem;
+  }
+
+  .exhibition-carousel,
+  .exhibition-carousel .carousel-inner,
+  .exhibition-carousel .carousel-item,
+  .exhibition-carousel img,
+  .exhibition-placeholder {
+    min-height: 20rem;
+  }
+
   /******************************************************************
    * STYLE CHANGES FOR WORK — MOBILE
    ******************************************************************/
@@ -1274,6 +1878,15 @@ header .nav-tabs .nav-link.active:hover {
   }
 
   #arts .parallax-section {
+    background-attachment: scroll;
+  }
+
+  .process-node,
+  .mastery-content-box {
+    transition: none;
+  }
+
+  .mastery-parallax-window {
     background-attachment: scroll;
   }
 
