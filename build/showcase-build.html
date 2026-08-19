@@ -252,8 +252,8 @@
     fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-project-copy.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-new.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
-    fetch('/js/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
-    fetch('/js/site-structure-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
+    fetch('/build/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
+    fetch('/build/site-structure-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(data){
     var posts=merge(data[0].posts||[],[data[1]||{},data[2]||{},data[3]||{},data[4]||{}]);
     var enhancedMap=data[5]||{};
