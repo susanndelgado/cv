@@ -1,281 +1,338 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Susan Delgado | Developer, Designer & Fine Artist</title>
-  <meta name="description" content="Susan Delgado is a multidisciplinary developer, designer, fine artist and educator. Explore her technical work or fine art practice.">
-  <link rel="icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
-  <style>
-    :root {
-      --ink: #f7f3ec;
-      --muted: rgba(247, 243, 236, 0.84);
-      --gold: #d4af37;
-      --glass: rgba(8, 10, 12, 0.58);
-      --line: rgba(255, 255, 255, 0.22);
-      --display-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Susan Delgado | Developer, Designer & Fine Artist</title>
+    <meta
+      name="description"
+      content="Susan Delgado is a multidisciplinary developer, designer, fine artist and educator. Explore her technical work or fine art practice."
+    />
+    <link rel="icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css" />
+    <style>
+      :root {
+        --ink: #f7f3ec;
+        --muted: rgba(247, 243, 236, 0.84);
+        --gold: #d4af37;
+        --glass: rgba(8, 10, 12, 0.58);
+        --line: rgba(255, 255, 255, 0.22);
+        --display-serif:
+          "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      }
 
-    * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
-    html, body {
-      margin: 0;
-      width: 100%;
-      min-height: 100%;
-      background: #000;
-      overflow-x: hidden;
-    }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        background: #000;
+        overflow-x: hidden;
+      }
 
-    body {
-      min-height: 100vh;
-      font-family: proxima-nova, "Open Sans", sans-serif;
-      color: var(--ink);
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
+      body {
+        min-height: 100vh;
+        font-family: proxima-nova, "Open Sans", sans-serif;
+        color: var(--ink);
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
 
-    .splash {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      min-height: 100svh;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      isolation: isolate;
-      padding: 36px 20px;
-      background: #000;
-    }
-
-    .splash-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: -4;
-      width: 102%;
-      height: 102%;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      transform: translate3d(-50%, -50%, 0) scale(1.01);
-      pointer-events: none;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .splash::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.18),
-        rgba(0, 0, 0, 0.05) 35%,
-        rgba(0, 0, 0, 0.08) 65%,
-        rgba(0, 0, 0, 0.24)
-      );
-    }
-
-    .splash-card {
-      width: min(890px, 94vw);
-      padding: clamp(34px, 6vw, 68px) clamp(24px, 7vw, 78px);
-      text-align: center;
-      background: var(--glass);
-      border: 1px solid var(--line);
-      border-top: 3px solid rgba(212, 175, 55, 0.9);
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .brand-mark {
-      display: inline-grid;
-      place-items: center;
-      width: clamp(106px, 14vw, 142px);
-      aspect-ratio: 1;
-      margin-bottom: 25px;
-      padding: 7px;
-      overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.9);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .eyebrow {
-      margin: 0 0 12px;
-      color: rgba(247, 243, 236, 0.78);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-family: "Playfair", Georgia, serif;
-      font-size: clamp(3rem, 8vw, 5.75rem);
-      font-weight: 300;
-      line-height: 1.2;
-      letter-spacing: 10px;
-    }
-
-    .rule {
-      width: 68px;
-      height: 1px;
-      margin: 27px auto 25px;
-      background: var(--gold);
-      box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
-    }
-
-    .intro {
-      max-width: 740px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: clamp(0.98rem, 2vw, 1.12rem);
-      font-weight: 300;
-      line-height: 1.9;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-    }
-
-    .choice {
-      min-width: 210px;
-      padding: 15px 28px;
-      border: 1px solid rgba(255, 255, 255, 0.82);
-      color: #fff;
-      background: rgba(0, 0, 0, 0.70);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.20em;
-      font-size: 0.72rem;
-      font-weight: 600;
-      transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
-    }
-
-    .choice:first-child {
-      border-color: var(--gold);
-    }
-
-    .choice:hover,
-    .choice:focus-visible {
-      transform: translateY(-2px);
-      color: #111;
-      background: #fff;
-      border-color: #fff;
-      outline: none;
-    }
-
-    .choice:first-child:hover,
-    .choice:first-child:focus-visible {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #111;
-    }
-
-    .philosophy {
-      margin: 28px 0 0;
-      color: rgba(247, 243, 236, 0.62);
-      font-family: var(--display-serif);
-      font-size: 0.96rem;
-      font-weight: 500;
-      font-style: italic;
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 760px) {
       .splash {
-        padding: 18px;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100svh;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 36px 20px;
+        background: #000;
+      }
+
+      .splash-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -4;
+        width: 102%;
+        height: 102%;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transform: translate3d(-50%, -50%, 0) scale(1.01);
+        pointer-events: none;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .splash::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.18),
+          rgba(0, 0, 0, 0.05) 35%,
+          rgba(0, 0, 0, 0.08) 65%,
+          rgba(0, 0, 0, 0.24)
+        );
       }
 
       .splash-card {
-        width: min(94vw, 620px);
-        padding: 30px 22px 34px;
+        width: min(890px, 94vw);
+        padding: clamp(34px, 6vw, 68px) clamp(24px, 7vw, 78px);
+        text-align: center;
+        background: var(--glass);
+        border: 1px solid var(--line);
+        border-top: 3px solid rgba(212, 175, 55, 0.9);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
 
-      .eyebrow { letter-spacing: 0.18em; line-height: 1.7; }
-      .intro { line-height: 1.72; }
-      .actions { flex-direction: column; }
-      .choice { width: 100%; min-width: 0; }
-      .splash-video {
-        width: 106%;
-        height: 106%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .splash-video { display: none; }
-      .choice { transition: none; }
-    }
-  </style>
-</head>
-<body>
-  <main class="splash" aria-labelledby="splash-title">
-    <video class="splash-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-      <source src="img/11d1c921-e778-4edd-a6ff-f7c7304257d9.mp4" type="video/mp4">
-    </video>
-
-    <section class="splash-card" aria-label="Susan Delgado portfolio paths">
-      <div class="brand-mark">
-        <img src="img/logoCircle.svg" alt="Susan Nicole Delgado Fine Artist seal">
-      </div>
-
-      <p class="eyebrow">Developer &bull; Designer &bull; Fine Artist</p>
-      <h1 id="splash-title">Susan Delgado</h1>
-      <div class="rule" aria-hidden="true"></div>
-
-      <p class="intro">
-        I am a multidisciplinary developer, designer, fine artist and educator with professional experience rooted in front-end web development and digital production. My corporate work also includes email development, followed by graphic design and UI/UX, while my independent creative practice brings together painting, illustration and narrative arts. Across these disciplines, I am driven by curiosity, continual study and the belief that strong ideas become real through craft, structure and persistence.
-      </p>
-
-      <nav class="actions" aria-label="Choose a portfolio">
-        <a class="choice" href="finearts.html">Fine Artist</a>
-        <a class="choice" href="work.html">Technical Work</a>
-      </nav>
-
-      <p class="philosophy">&ldquo;Dreams are the Foundation of Reality.&rdquo;</p>
-    </section>
-  </main>
-
-  <script>
-    (function () {
-      var video = document.querySelector(".splash-video");
-      var source = video && video.querySelector("source");
-
-      function useBlackFallback() {
-        if (video) video.style.display = "none";
+      .brand-mark {
+        display: inline-grid;
+        place-items: center;
+        width: clamp(106px, 14vw, 142px);
+        aspect-ratio: 1;
+        margin-bottom: 25px;
+        padding: 7px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.9);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
       }
 
-      if (video) video.addEventListener("error", useBlackFallback);
-      if (source) source.addEventListener("error", useBlackFallback);
-    })();
-  </script>
-</body>
+      .brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: rgba(247, 243, 236, 0.78);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Playfair", Georgia, serif;
+        font-size: clamp(3rem, 8vw, 5.75rem);
+        font-weight: 300;
+        line-height: 1.2;
+        letter-spacing: 10px;
+      }
+
+      .rule {
+        width: 68px;
+        height: 1px;
+        margin: 27px auto 25px;
+        background: var(--gold);
+        box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+      }
+
+      .intro {
+        max-width: 740px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-size: clamp(0.98rem, 2vw, 1.12rem);
+        font-weight: 300;
+        line-height: 1.9;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 34px;
+      }
+
+      .choice {
+        min-width: 210px;
+        padding: 15px 28px;
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .choice:first-child {
+        border-color: var(--gold);
+      }
+
+      .choice:hover,
+      .choice:focus-visible {
+        transform: translateY(-2px);
+        color: #111;
+        background: #fff;
+        border-color: #fff;
+        outline: none;
+      }
+
+      .choice:first-child:hover,
+      .choice:first-child:focus-visible {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #111;
+      }
+
+      .philosophy {
+        margin: 28px 0 0;
+        color: rgba(247, 243, 236, 0.62);
+        font-family: var(--display-serif);
+        font-size: 0.96rem;
+        font-weight: 500;
+        font-style: italic;
+        letter-spacing: 0.04em;
+      }
+
+      @media (max-width: 760px) {
+        .splash {
+          padding: 18px;
+        }
+
+        .splash-card {
+          width: min(94vw, 620px);
+          padding: 30px 22px 34px;
+        }
+
+        .eyebrow {
+          letter-spacing: 0.18em;
+          line-height: 1.7;
+        }
+        .intro {
+          line-height: 1.72;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .choice {
+          width: 100%;
+          min-width: 0;
+        }
+        .splash-video {
+          width: 106%;
+          height: 106%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .splash-video {
+          display: none;
+        }
+        .choice {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body id="index">
+    <main class="splash" aria-labelledby="splash-title">
+      <video
+        class="splash-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source
+          src="img/11d1c921-e778-4edd-a6ff-f7c7304257d9.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <section class="splash-card" aria-label="Susan Delgado portfolio paths">
+        <div class="brand-mark">
+          <img
+            src="img/logoCircle.svg"
+            alt="Susan Nicole Delgado Fine Artist seal"
+          />
+        </div>
+
+        <p class="eyebrow">Developer &bull; Designer &bull; Fine Artist</p>
+        <h1 id="splash-title">Susan Delgado</h1>
+        <div class="rule" aria-hidden="true"></div>
+
+        <p class="intro">
+          I am a multidisciplinary developer, designer, fine artist and educator
+          with professional experience rooted in front-end web development and
+          digital production. My corporate work also includes email development,
+          followed by graphic design and UI/UX, while my independent creative
+          practice brings together painting, illustration and narrative arts.
+          Across these disciplines, I am driven by curiosity, continual study
+          and the belief that strong ideas become real through craft, structure
+          and persistence.
+        </p>
+
+        <nav class="actions" aria-label="Choose a portfolio">
+          <a class="choice" href="finearts.html">Fine Artist</a>
+          <a class="choice" href="work.html">Technical Work</a>
+        </nav>
+
+        <p class="philosophy">
+          &ldquo;Dreams are the Foundation of Reality.&rdquo;
+        </p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var video = document.querySelector(".splash-video");
+        var source = video && video.querySelector("source");
+
+        function useBlackFallback() {
+          if (video) video.style.display = "none";
+        }
+
+        if (video) video.addEventListener("error", useBlackFallback);
+        if (source) source.addEventListener("error", useBlackFallback);
+      })();
+    </script>
+  </body>
 </html>

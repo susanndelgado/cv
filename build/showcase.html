@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Case Study | Susan Delgado</title>
+    <meta
+      name="description"
+      content="Development and design projects from Susan Delgado's professional portfolio."
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css" />
+    <link rel="stylesheet" href="css/build-style.css" />
+    <link rel="stylesheet" href="css/build-global.css" />
+    <link rel="stylesheet" href="css/work-build.css" />
+    <link rel="stylesheet" href="css/showcase-structure.css" />
+  </head>
+  <body id="work showcase" class="build-page">
+    <a class="build-skip" href="#main">Skip to content</a>
+    <header class="build-site-header">
+      <div class="build-top-tabs">
+        <ul class="build-tabs">
+          <li><a href="finearts-build.html">FINE ARTS</a></li>
+          <li class="active"><a href="work-build.html">TECHNICAL WORK</a></li>
+        </ul>
+      </div>
+      <div class="build-main-nav">
+        <div class="build-main-nav-inner">
+          <a class="build-site-brand" href="/index.html">SUSAN DELGADO</a>
+          <nav
+            class="build-site-links"
+            aria-label="Technical portfolio navigation"
+          >
+            <a href="work-build.html">TECHNICAL WORK</a>
+            <a href="showcase-build.html?post=23" aria-current="page"
+              >SHOWCASE</a
+            >
+            <a href="contact-build.html">CONTACT</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="build-case-hero">
+        <div class="build-shell">
+          <nav
+            id="caseNavTop"
+            class="build-case-nav"
+            aria-label="Case study navigation"
+          ></nav>
+          <div id="caseHero" class="build-status">Loading project…</div>
+        </div>
+      </section>
+
+      <section class="build-section white" id="caseContext" hidden>
+        <div class="build-shell build-case-content">
+          <div>
+            <p class="build-kicker">Project overview</p>
+            <h2>Context</h2>
+          </div>
+          <div id="caseNarrative" class="build-rich-copy"></div>
+        </div>
+      </section>
+
+      <section class="build-section" id="uxSection" hidden>
+        <div class="build-shell">
+          <div class="build-section-head">
+            <div>
+              <p class="build-kicker">Interface & implementation</p>
+              <h2 id="uxTitle"></h2>
+              <p id="uxIntro"></p>
+            </div>
+          </div>
+          <div id="uxPanels" class="build-split"></div>
+        </div>
+      </section>
+
+      <section class="build-section white" id="workflowSection" hidden>
+        <div class="build-shell">
+          <div class="build-section-head">
+            <div>
+              <p class="build-kicker">Development approach</p>
+              <h2>How the work moved through production</h2>
+            </div>
+          </div>
+          <div id="workflowGrid" class="build-process-grid"></div>
+        </div>
+      </section>
+
+      <section class="build-section" id="systemSection" hidden>
+        <div class="build-shell">
+          <div class="build-section-head">
+            <div>
+              <p class="build-kicker">Technical structure</p>
+              <h2 id="systemTitle"></h2>
+              <p id="systemIntro"></p>
+            </div>
+          </div>
+          <div id="systemGrid" class="build-architecture"></div>
+        </div>
+      </section>
+
+      <section class="build-section white" id="structureSection" hidden>
+        <div class="build-shell">
+          <div class="build-section-head">
+            <div>
+              <p class="build-kicker">Site structure</p>
+              <h2 id="structureTitle"></h2>
+              <p id="structureIntro"></p>
+            </div>
+          </div>
+          <div id="structureGrid" class="build-site-structure"></div>
+        </div>
+      </section>
+
+      <section class="build-section white" id="deliverableSection" hidden>
+        <div class="build-shell">
+          <div class="build-section-head">
+            <div>
+              <p class="build-kicker">Deliverables</p>
+              <h2>Project deliverables</h2>
+            </div>
+          </div>
+          <div id="deliverableGrid" class="build-deliverables"></div>
+        </div>
+      </section>
+
+      <section class="build-section" id="visualSection" hidden>
+        <div class="build-shell">
+          <div class="build-section-head">
+            <div>
+              <p class="build-kicker">Project gallery</p>
+              <h2>Screens & production work</h2>
+            </div>
+          </div>
+          <div id="projectPreview" class="build-preview-stack"></div>
+        </div>
+      </section>
+
+      <div class="build-case-nav-bottom-wrap">
+        <div class="build-shell">
+          <nav
+            id="caseNavBottom"
+            class="build-case-nav"
+            aria-label="Case study navigation"
+          ></nav>
+        </div>
+      </div>
+    </main>
+    <footer class="build-footer">
+      <div class="build-shell">
+        <p class="build-footer-title">
+          &copy; 2026 Susan Nicole Arts | Susan Nicole Delgado
+        </p>
+        <p class="build-footer-philosophy">
+          Grounded in the philosophy that
+          <em>“Dreams are the Foundation of Reality.”</em>
+        </p>
+        <div class="build-footer-links">
+          <a href="contact-build.html">Contact</a><span>|</span
+          ><a href="/sitemap.xml" target="_blank">Sitemap</a>
+        </div>
+      </div>
+    </footer>
+    <script src="js/build-motion.js"></script>
+    <script>
+      (function () {
+        var hero = document.getElementById("caseHero");
+        var context = document.getElementById("caseContext");
+        var uxSection = document.getElementById("uxSection");
+        var workflowSection = document.getElementById("workflowSection");
+        var systemSection = document.getElementById("systemSection");
+        var structureSection = document.getElementById("structureSection");
+        var deliverableSection = document.getElementById("deliverableSection");
+        var visualSection = document.getElementById("visualSection");
+        var typeMap = [
+          { token: "conf", label: "Campaigns" },
+          { token: "web", label: "Websites" },
+          { token: "email", label: "Emails" },
+          { token: "print", label: "Print collateral" },
+          { token: "dig", label: "Digital" },
+          { token: "brand", label: "Branding" },
+        ];
+
+        function strip(v) {
+          var d = document.createElement("div");
+          d.innerHTML = String(v || "");
+          return (d.textContent || "").trim();
+        }
+        function lines(v) {
+          return String(v || "")
+            .split(/<br\s*\/?\s*>/i)
+            .map(strip)
+            .filter(Boolean);
+        }
+        function yearNum(v) {
+          var m = String(v || "").match(/\d{4}/);
+          return m ? parseInt(m[0], 10) : 0;
+        }
+        function contains(p, token) {
+          return (
+            (" " + String(p.filters || "") + " ").indexOf(" " + token + " ") !==
+            -1
+          );
+        }
+        function projectUrl(p) {
+          return "showcase-build.html?post=" + encodeURIComponent(p.legacyId);
+        }
+        function filterUrl(kind, value) {
+          return (
+            "work-build.html?" +
+            kind +
+            "=" +
+            encodeURIComponent(value) +
+            "#archive"
+          );
+        }
+        function isCrfRelated(p) {
+          var text = [p.client, p.role, strip(p.content), p.summary].join(" ");
+          return /Cardiovascular Research Foundation|\bCRF\b/i.test(text);
+        }
+        function normalizeProject(p) {
+          var next = Object.assign({}, p);
+          var skills = lines(next.skills).map(function (s) {
+            return s === "AngularJS" ? "Angular" : s;
+          });
+          skills = skills.filter(function (s) {
+            return !/^(Rapha[eë]l(?:\.js)?|TweenLite|Animate\.css)$/i.test(s);
+          });
+          var emailRelated =
+            contains(next, "email") ||
+            skills.some(function (s) {
+              return /^Email Development$/i.test(s);
+            });
+          if (
+            emailRelated &&
+            isCrfRelated(next) &&
+            !skills.some(function (s) {
+              return /^Salesforce Pardot$/i.test(s);
+            })
+          )
+            skills.push("Salesforce Pardot");
+          next.skills = skills.join("<br>");
+          return next;
+        }
+        function merge(base, extras) {
+          var result = (base || []).map(function (p) {
+            return Object.assign({}, p, { legacyId: String(p.id) });
+          });
+          (extras || []).forEach(function (extra) {
+            var overrides = (extra && extra.overrides) || {};
+            result = result.map(function (p) {
+              var o =
+                overrides[String(p.legacyId)] || overrides[String(p.id)] || {};
+              return Object.assign({}, p, o, { legacyId: String(p.legacyId) });
+            });
+            ((extra && extra.posts) || []).forEach(function (p) {
+              var id = String(p.id),
+                idx = result.findIndex(function (x) {
+                  return String(x.legacyId) === id;
+                });
+              var next = Object.assign({}, p, { legacyId: id });
+              if (idx >= 0) result[idx] = Object.assign({}, result[idx], next);
+              else result.push(next);
+            });
+          });
+          return result
+            .filter(function (p) {
+              return !p.hidden;
+            })
+            .map(normalizeProject)
+            .sort(function (a, b) {
+              return (
+                yearNum(b.year) - yearNum(a.year) ||
+                strip(a.title).localeCompare(strip(b.title))
+              );
+            });
+        }
+        function heroImage(p) {
+          return "/" + (p.image || p.thumb || "");
+        }
+        function skillPills(p) {
+          return lines(p.skills)
+            .map(function (s) {
+              return (
+                '<a class="build-pill build-pill-link" href="' +
+                filterUrl("skill", s) +
+                '">' +
+                s +
+                "</a>"
+              );
+            })
+            .join("");
+        }
+        function typePills(p) {
+          return typeMap
+            .filter(function (t) {
+              return contains(p, t.token);
+            })
+            .map(function (t) {
+              return (
+                '<a class="build-pill build-pill-link" href="' +
+                filterUrl("type", t.token) +
+                '">' +
+                t.label +
+                "</a>"
+              );
+            })
+            .join("");
+        }
+        function navMarkup(previous, next) {
+          return (
+            '<a class="build-case-nav-link previous" href="' +
+            projectUrl(previous) +
+            '"><span class="direction">← Previous</span><span class="project">' +
+            strip(previous.title) +
+            '</span></a><a class="build-case-nav-all" href="work-build.html#archive">All work</a><a class="build-case-nav-link next" href="' +
+            projectUrl(next) +
+            '"><span class="direction">Next →</span><span class="project">' +
+            strip(next.title) +
+            "</span></a>"
+          );
+        }
+        function renderCaseNav(p, posts) {
+          var index = posts.findIndex(function (x) {
+            return String(x.legacyId) === String(p.legacyId);
+          });
+          if (index < 0 || !posts.length) return;
+          var previous = posts[(index - 1 + posts.length) % posts.length];
+          var next = posts[(index + 1) % posts.length];
+          var html = navMarkup(previous, next);
+          document.getElementById("caseNavTop").innerHTML = html;
+          document.getElementById("caseNavBottom").innerHTML = html;
+        }
+
+        function renderHero(p) {
+          var role = lines(p.role).join(" · ");
+          var types = typePills(p);
+          var skills = skillPills(p);
+          document.title = strip(p.title) + " | Susan Delgado";
+          hero.className = "";
+          hero.innerHTML =
+            '<div class="build-case-grid"><div><p class="build-kicker">' +
+            (p.year || "Professional project") +
+            " · " +
+            strip(p.client) +
+            '</p><h1 class="build-case-title">' +
+            p.title +
+            '</h1><p class="build-case-summary">' +
+            (p.summary || "Professional project.") +
+            '</p><div class="build-case-taxonomy">' +
+            (types
+              ? '<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Project type</span><div class="build-pills">' +
+                types +
+                "</div></div>"
+              : "") +
+            (skills
+              ? '<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Skills</span><div class="build-pills">' +
+                skills +
+                "</div></div>"
+              : "") +
+            '</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>' +
+            strip(p.client) +
+            "</dd></div><div><dt>Role</dt><dd>" +
+            role +
+            "</dd></div><div><dt>Year</dt><dd>" +
+            (p.year || "Not recorded") +
+            '</dd></div></dl></div><div class="build-case-visual"><img src="' +
+            heroImage(p) +
+            '" alt="' +
+            strip(p.title) +
+            ' project preview"></div>';
+        }
+
+        function renderContext(p) {
+          document.getElementById("caseNarrative").innerHTML =
+            p.content ||
+            "<p>" + (p.summary || "Professional project.") + "</p>";
+          context.hidden = false;
+        }
+
+        function renderUX(data) {
+          if (!data || !data.ux) return;
+          document.getElementById("uxTitle").textContent = data.ux.title || "";
+          document.getElementById("uxIntro").textContent = data.ux.intro || "";
+          document.getElementById("uxPanels").innerHTML = (data.ux.panels || [])
+            .map(function (p) {
+              return (
+                '<article class="build-panel"><h3>' +
+                p.title +
+                "</h3><p>" +
+                p.copy +
+                "</p></article>"
+              );
+            })
+            .join("");
+          uxSection.hidden = false;
+        }
+
+        function renderWorkflow(data) {
+          if (!data || !data.workflow || !data.workflow.length) return;
+          document.getElementById("workflowGrid").innerHTML = data.workflow
+            .map(function (s) {
+              return (
+                '<article class="build-process-step"><span class="step">' +
+                s.label +
+                "</span><h3>" +
+                s.title +
+                "</h3><p>" +
+                s.copy +
+                "</p></article>"
+              );
+            })
+            .join("");
+          workflowSection.hidden = false;
+        }
+
+        function renderSystem(data) {
+          if (!data || !data.system) return;
+          document.getElementById("systemTitle").textContent =
+            data.system.title || "Technical structure";
+          document.getElementById("systemIntro").textContent =
+            data.system.intro || "";
+          document.getElementById("systemGrid").innerHTML = (
+            data.system.nodes || []
+          )
+            .map(function (n) {
+              return (
+                '<article class="node"><h3>' +
+                n.title +
+                "</h3><p>" +
+                n.copy +
+                "</p></article>"
+              );
+            })
+            .join("");
+          systemSection.hidden = false;
+        }
+
+        function renderStructure(data) {
+          if (!data || !data.items || !data.items.length) return;
+          document.getElementById("structureTitle").textContent =
+            data.title || "Website structure";
+          document.getElementById("structureIntro").textContent =
+            data.intro || "";
+          document.getElementById("structureGrid").innerHTML = data.items
+            .map(function (item) {
+              var children = (item.children || [])
+                .map(function (child) {
+                  return "<li>" + child + "</li>";
+                })
+                .join("");
+              return (
+                '<article class="structure-node"><h3>' +
+                item.label +
+                "</h3>" +
+                (children ? "<ul>" + children + "</ul>" : "") +
+                "</article>"
+              );
+            })
+            .join("");
+          structureSection.hidden = false;
+        }
+
+        function fallbackDeliverables(p) {
+          var items = [];
+          if (contains(p, "web"))
+            items.push({
+              title: "Web / interface work",
+              copy: "Website, microsite or responsive interface implementation.",
+            });
+          if (contains(p, "email"))
+            items.push({
+              title: "Email",
+              copy: "Email development and campaign communication.",
+            });
+          if (contains(p, "dig"))
+            items.push({
+              title: "Digital assets",
+              copy: "Digital and web campaign materials.",
+            });
+          if (contains(p, "print"))
+            items.push({
+              title: "Print",
+              copy: "Printed production and collateral.",
+            });
+          if (contains(p, "brand"))
+            items.push({
+              title: "Branding",
+              copy: "Identity and branding work.",
+            });
+          return items;
+        }
+
+        function renderDeliverables(p, data) {
+          var items =
+            data && data.deliverables && data.deliverables.length
+              ? data.deliverables
+              : fallbackDeliverables(p);
+          if (!items.length) return;
+          document.getElementById("deliverableGrid").innerHTML = items
+            .map(function (x) {
+              return (
+                '<div class="build-deliverable"><strong>' +
+                x.title +
+                "</strong><span>" +
+                x.copy +
+                "</span></div>"
+              );
+            })
+            .join("");
+          deliverableSection.hidden = false;
+        }
+
+        function renderPreview(p) {
+          var preview = document.getElementById("projectPreview");
+          fetch("/" + p.link)
+            .then(function (r) {
+              if (!r.ok) throw new Error();
+              return r.text();
+            })
+            .then(function (html) {
+              preview.innerHTML = html;
+              preview
+                .querySelectorAll("script,style,link,nav,footer")
+                .forEach(function (el) {
+                  el.remove();
+                });
+              preview.querySelectorAll("img").forEach(function (img) {
+                var src = img.getAttribute("src");
+                if (src && src.indexOf("/") !== 0 && !src.startsWith("http"))
+                  img.src = "/showcase/" + src.replace(/^\.\//, "");
+              });
+              visualSection.hidden = false;
+              if (window.initBuildMotion) window.initBuildMotion(document);
+            })
+            .catch(function () {
+              preview.innerHTML =
+                '<p class="build-status">Project preview unavailable.</p>';
+              visualSection.hidden = false;
+              if (window.initBuildMotion) window.initBuildMotion(document);
+            });
+        }
+
+        Promise.all([
+          fetch("/js/posts.json").then(function (r) {
+            return r.json();
+          }),
+          fetch("/js/posts-extra.json")
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            }),
+          fetch("/js/posts-corrections.json")
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            }),
+          fetch("/js/posts-project-copy.json")
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            }),
+          fetch("/js/posts-new.json")
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            }),
+          fetch("/build/case-study-build.json")
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            }),
+          fetch("/build/site-structure-build.json")
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            }),
+        ])
+          .then(function (data) {
+            var posts = merge(data[0].posts || [], [
+              data[1] || {},
+              data[2] || {},
+              data[3] || {},
+              data[4] || {},
+            ]);
+            var enhancedMap = data[5] || {};
+            var structureMap = data[6] || {};
+            var requested =
+              new URLSearchParams(location.search).get("post") || "23";
+            var p =
+              posts.find(function (x) {
+                return String(x.legacyId) === String(requested);
+              }) || posts[0];
+            var enhanced = enhancedMap[String(p.legacyId)] || null;
+            var structure = structureMap[String(p.legacyId)] || null;
+            renderCaseNav(p, posts);
+            renderHero(p);
+            renderContext(p);
+            renderUX(enhanced);
+            renderWorkflow(enhanced);
+            renderSystem(enhanced);
+            renderStructure(structure);
+            renderDeliverables(p, enhanced);
+            if (window.initBuildMotion) window.initBuildMotion(document);
+            renderPreview(p);
+          })
+          .catch(function () {
+            hero.className = "build-status";
+            hero.textContent = "Project data could not be loaded.";
+          });
+      })();
+    </script>
+  </body>
+</html>
