@@ -32,6 +32,7 @@ body.build-page h6{font-family:proxima-nova,"Open Sans",Arial,sans-serif}
   color:#111;
   border-bottom:1px solid #ececec;
 }
+body.work-build-page .build-hero{padding-top:120px}
 .build-hero .build-hero-grid{display:block}
 .build-hero .build-brief{display:none}
 .build-case-hero{
@@ -64,9 +65,9 @@ body.build-page h6{font-family:proxima-nova,"Open Sans",Arial,sans-serif}
   max-width:1040px;
   color:#111;
   font-family:proxima-nova,"Open Sans",Arial,sans-serif!important;
-  font-size:clamp(2.6rem,4.8vw,3.5rem);
+  font-size:clamp(2.75rem,4.6vw,3.5rem);
   line-height:1.08;
-  letter-spacing:.12em;
+  letter-spacing:8px;
   font-weight:600;
   text-transform:uppercase;
 }
@@ -163,6 +164,30 @@ body.build-page:has(.build-contact-grid) .build-hero .build-kicker{
 .build-filter:focus-visible,
 .build-filter.active{background:#111;border-color:#111;color:#fff}
 
+/* Work archive status and conference/event label. */
+body.work-build-page .build-filter-status{
+  margin:14px 0 0;
+  color:#4d5358;
+  font-size:.92rem;
+  line-height:1.5;
+}
+body.work-build-page .build-filter-status strong{color:#111;font-weight:600}
+body.work-build-page .build-filter-status a{margin-left:10px;color:var(--teal);text-decoration:none}
+body.work-build-page .build-filter-status a:hover,
+body.work-build-page .build-filter-status a:focus-visible{color:var(--red)}
+body.work-build-page .build-filter[data-filter="conf"]{font-size:0}
+body.work-build-page .build-filter[data-filter="conf"]::after{
+  content:"Conferences & Events";
+  font-size:.73rem;
+  font-weight:700;
+  letter-spacing:.09em;
+}
+body.work-build-page:has(.build-filter[data-filter="conf"].active) #archiveFilterStatus strong{font-size:0}
+body.work-build-page:has(.build-filter[data-filter="conf"].active) #archiveFilterStatus strong::after{
+  content:"Conferences & Events";
+  font-size:.92rem;
+}
+
 /* Shared Technical action style. */
 .build-btn{
   border-radius:0;
@@ -214,7 +239,7 @@ body.build-page main a:not(.build-btn):not(.build-project-image):focus-visible{c
 
 @media(max-width:760px){
   .build-hero{padding:72px 0 64px}
-  .build-display{font-size:clamp(2.15rem,10vw,2.85rem);letter-spacing:.06em}
+  .build-display{font-size:clamp(2.15rem,10vw,3rem);letter-spacing:4px}
   body.build-page:has(.build-contact-grid) .build-display{font-size:clamp(2rem,9vw,2.9rem)}
   .build-case-title{font-size:clamp(1.9rem,9vw,2.8rem)}
 }
