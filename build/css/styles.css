@@ -430,15 +430,11 @@ header .work-nav .nav-link.active::after {
 .hero > .container > p,
 .hero > .container-fluid > p {
   max-width: 50rem;
-
-  margin: 0 auto;
-
+  margin: 0 auto 20px;
   color: #999;
-
   font-size: 1rem;
   font-weight: 300;
-  line-height: 2;
-
+  line-height: 1.5;
   letter-spacing: 0.125rem;
 }
 
