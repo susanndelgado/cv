@@ -9,13 +9,11 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i" rel="stylesheet">
   <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
   <link rel="stylesheet" href="css/build-style.css">
-  <link rel="stylesheet" href="css/build-review.css">
-  <link rel="stylesheet" href="css/build-navigation-unified.css">
-  <style>
-    .finearts-live-frame{display:block;width:100%;min-height:100vh;border:0;background:#fff}
-  </style>
+  <link rel="stylesheet" href="css/build-global.css">
+  <link rel="stylesheet" href="css/finearts-build.css">
+  <style>.finearts-live-frame{display:block;width:100%;min-height:100vh;border:0;background:#fff}</style>
 </head>
-<body class="art-build-preview">
+<body class="art-build-preview finearts-page-build">
 <a class="build-skip" href="#fineArtsFrame">Skip to content</a>
 <header class="build-site-header">
   <div class="build-top-tabs">
@@ -39,6 +37,14 @@
 </header>
 
 <iframe id="fineArtsFrame" class="finearts-live-frame" src="/finearts.html" title="Susan Delgado Fine Arts portfolio" scrolling="no"></iframe>
+
+<footer class="build-footer">
+  <div class="build-shell">
+    <p class="build-footer-title">&copy; 2026 Susan Nicole Arts | Susan Nicole Delgado</p>
+    <p class="build-footer-philosophy">Grounded in the philosophy that <em>“Dreams are the Foundation of Reality.”</em></p>
+    <div class="build-footer-links"><a href="contact-build.html">Contact</a><span>|</span><a href="/sitemap.xml" target="_blank">Sitemap</a></div>
+  </div>
+</footer>
 
 <script>
 (function(){
@@ -66,11 +72,7 @@
 
   function resize(doc){
     if(!doc)return;
-    var height=Math.max(
-      doc.documentElement?doc.documentElement.scrollHeight:0,
-      doc.body?doc.body.scrollHeight:0,
-      900
-    );
+    var height=Math.max(doc.documentElement?doc.documentElement.scrollHeight:0,doc.body?doc.body.scrollHeight:0,900);
     frame.style.height=height+'px';
   }
 
@@ -80,25 +82,16 @@
 
     var liveHeader=doc.getElementById('top');
     if(liveHeader)liveHeader.style.display='none';
+    var liveFooter=doc.querySelector('footer');
+    if(liveFooter)liveFooter.style.display='none';
 
-    /* Keep all live hero sizing, typography, logo treatment and copy. Only
-       approved Fine Arts build accent colors change. */
-    var style=doc.createElement('style');
-    style.textContent=`
-      .boutique-hero h2{color:#d4af37!important}
-      .boutique-hero .btn-boutique{
-        color:#d4af37!important;
-        border-color:#d4af37!important;
-        background:transparent!important;
-      }
-      .boutique-hero .btn-boutique:hover,
-      .boutique-hero .btn-boutique:focus-visible{
-        color:#d4af37!important;
-        border-color:#d4af37!important;
-        background:transparent!important;
-      }
-    `;
-    doc.head.appendChild(style);
+    var theme=doc.createElement('link');
+    theme.rel='stylesheet';
+    theme.href='/css/finearts-build.css';
+    doc.head.appendChild(theme);
+
+    var hero=doc.querySelector('.boutique-hero,.process-hero');
+    if(hero)hero.classList.add('finearts-hero');
 
     doc.querySelectorAll('a[href]').forEach(function(link){
       var raw=link.getAttribute('href');
