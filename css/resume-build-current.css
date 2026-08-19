@@ -27,6 +27,16 @@
 .resume-build-page .resume-grid{padding-top:1.12in!important}
 .resume-build-page .resume-sidebar .resume-heading{line-height:1.06!important}
 
+/* Keep the complete certification block on page one. The streamlined,
+   timeless skill list above it gives the certifications priority rather
+   than allowing them to fall below the fixed Letter-page crop. */
+.resume-build-page .resume-sidebar .resume-section{margin-bottom:13px!important}
+.resume-build-page .resume-sidebar .resume-skill-list li{margin-bottom:1px!important;line-height:1.22!important}
+.resume-build-page .resume-sidebar .resume-cert-list{margin-top:2px!important;margin-bottom:0!important}
+.resume-build-page .resume-sidebar .resume-cert-list li{margin-bottom:4px!important}
+.resume-build-page .resume-sidebar .resume-cert-list strong{font-size:8.8pt!important;line-height:1.16!important}
+.resume-build-page .resume-sidebar .resume-cert-list span{font-size:8.2pt!important;line-height:1.15!important}
+
 @media(max-width:760px){
   .resume-build-page .resume-header{
     position:static!important;
