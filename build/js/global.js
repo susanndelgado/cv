@@ -901,147 +901,176 @@
       {token:'brand',label:'Branding'}
     ];
 
-    function renderProject(){
-      var hero=document.getElementById('caseHero');
-      var context=document.getElementById('caseContext');
-      var uxSection=document.getElementById('uxSection');
-      var workflowSection=document.getElementById('workflowSection');
-      var systemSection=document.getElementById('systemSection');
-      var structureSection=document.getElementById('structureSection');
-      var deliverableSection=document.getElementById('deliverableSection');
-      var visualSection=document.getElementById('visualSection');
-      if(!hero||!context)throw new Error('Project template is incomplete');
+    function projectUrl(item){return 'project.html?post='+encodeURIComponent(item.legacyId);}
+    function filterUrl(kind,value){return 'work.html?'+kind+'='+encodeURIComponent(value)+'#additional-professional-work';}
+    function assetPath(value){
+      var path=String(value||'').trim();
+      if(!path)return '';
+      if(/^(?:https?:)?\/\//i.test(path)||path.charAt(0)==='/')return path;
+      return '/'+path;
+    }
+    function skillPills(item){
+      return project.lines(item.skills).map(function(skill){return '<span class="build-pill">'+skill+'</span>';}).join('');
+    }
+    function typePills(item){
+      return typeMap.filter(function(type){return project.contains(item,type.token);}).map(function(type){return '<a class="build-pill build-pill-link" href="'+filterUrl('type',type.token)+'">'+type.label+'</a>';}).join('');
+    }
+    function navMarkup(previous,next){
+      return '<a class="build-case-nav-link previous" href="'+projectUrl(previous)+'"><span class="direction">← Previous</span><span class="project">'+project.strip(previous.title)+'</span></a><a class="build-case-nav-all" href="work.html#additional-professional-work">All work</a><a class="build-case-nav-link next" href="'+projectUrl(next)+'"><span class="direction">Next →</span><span class="project">'+project.strip(next.title)+'</span></a>';
+    }
+    function getProjectElements(){
+      return {
+        hero:document.getElementById('caseHero'),
+        navTop:document.getElementById('caseNavTop'),
+        navBottom:document.getElementById('caseNavBottom'),
+        context:document.getElementById('caseContext'),
+        narrative:document.getElementById('caseNarrative'),
+        uxSection:document.getElementById('uxSection'),
+        uxTitle:document.getElementById('uxTitle'),
+        uxIntro:document.getElementById('uxIntro'),
+        uxPanels:document.getElementById('uxPanels'),
+        workflowSection:document.getElementById('workflowSection'),
+        workflowGrid:document.getElementById('workflowGrid'),
+        systemSection:document.getElementById('systemSection'),
+        systemTitle:document.getElementById('systemTitle'),
+        systemIntro:document.getElementById('systemIntro'),
+        systemGrid:document.getElementById('systemGrid'),
+        structureSection:document.getElementById('structureSection'),
+        structureTitle:document.getElementById('structureTitle'),
+        structureIntro:document.getElementById('structureIntro'),
+        structureGrid:document.getElementById('structureGrid'),
+        deliverableSection:document.getElementById('deliverableSection'),
+        deliverableGrid:document.getElementById('deliverableGrid'),
+        visualSection:document.getElementById('visualSection'),
+        preview:document.getElementById('projectPreview')
+      };
+    }
+    function renderProjectNav(item,posts,elements){
+      var index=posts.findIndex(function(candidate){return String(candidate.legacyId)===String(item.legacyId);});
+      if(index<0||!posts.length)return;
+      var html=navMarkup(posts[(index-1+posts.length)%posts.length],posts[(index+1)%posts.length]);
+      if(elements.navTop)elements.navTop.innerHTML=html;
+      if(elements.navBottom)elements.navBottom.innerHTML=html;
+    }
+    function renderHero(item,elements){
+      var role=project.lines(item.role).join(' · ');
+      var types=typePills(item);
+      var skills=skillPills(item);
+      var title=project.strip(item.title)||'Project';
+      var summary=project.strip(item.summary||'');
+      var kicker=[item.year,project.strip(item.client)].filter(Boolean).join(' · ')||'Professional project';
+      var image=assetPath(item.image||item.thumb||'');
+      var taxonomy=(types?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Category</span><div class="build-pills">'+types+'</div></div>':'')+(skills?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Skills</span><div class="build-pills">'+skills+'</div></div>':'');
+      var visual=image?'<div class="build-case-visual"><img src="'+image+'" alt="'+title+' project preview"></div>':'';
 
-      function projectUrl(item){return 'project.html?post='+encodeURIComponent(item.legacyId);}
-      function filterUrl(kind,value){return 'work.html?'+kind+'='+encodeURIComponent(value)+'#archive';}
-      function heroImage(item){return '/'+(item.image||item.thumb||'');}
-      function skillPills(item){return project.lines(item.skills).map(function(skill){return '<a class="build-pill build-pill-link" href="'+filterUrl('skill',skill)+'">'+skill+'</a>';}).join('');}
-      function typePills(item){return typeMap.filter(function(type){return project.contains(item,type.token);}).map(function(type){return '<a class="build-pill build-pill-link" href="'+filterUrl('type',type.token)+'">'+type.label+'</a>';}).join('');}
-      function navMarkup(previous,next){return '<a class="build-case-nav-link previous" href="'+projectUrl(previous)+'"><span class="direction">← Previous</span><span class="project">'+project.strip(previous.title)+'</span></a><a class="build-case-nav-all" href="work.html#archive">All work</a><a class="build-case-nav-link next" href="'+projectUrl(next)+'"><span class="direction">Next →</span><span class="project">'+project.strip(next.title)+'</span></a>';}
+      document.title=title+' | Susan Delgado';
+      elements.hero.classList.remove('status');
+      elements.hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+kicker+'</p><h1 class="build-case-title">'+title+'</h1>'+(summary?'<p class="build-case-summary">'+summary+'</p>':'')+(taxonomy?'<div class="build-case-taxonomy">'+taxonomy+'</div>':'')+'</div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+(project.strip(item.client)||'Not recorded')+'</dd></div><div><dt>Role</dt><dd>'+(role||'Not recorded')+'</dd></div><div><dt>Year</dt><dd>'+(item.year||'Not recorded')+'</dd></div></dl></div>'+visual;
+    }
+    function renderContext(item,elements){
+      var content=item.content||(item.summary?'<p>'+item.summary+'</p>':'');
+      if(!content||!elements.context||!elements.narrative)return;
+      elements.narrative.innerHTML=content;
+      elements.context.hidden=false;
+    }
+    function renderUX(caseStudy,elements){
+      var ux=caseStudy&&caseStudy.ux;
+      var panels=ux&&Array.isArray(ux.panels)?ux.panels:[];
+      if(!ux||(!ux.title&&!ux.intro&&!panels.length)||!elements.uxSection)return;
+      if(elements.uxTitle)elements.uxTitle.textContent=ux.title||'';
+      if(elements.uxIntro)elements.uxIntro.textContent=ux.intro||'';
+      if(elements.uxPanels)elements.uxPanels.innerHTML=panels.map(function(panel){return '<article class="build-panel"><h3>'+panel.title+'</h3><p>'+panel.copy+'</p></article>';}).join('');
+      elements.uxSection.hidden=false;
+    }
+    function renderWorkflow(caseStudy,elements){
+      var workflow=caseStudy&&Array.isArray(caseStudy.workflow)?caseStudy.workflow:[];
+      if(!workflow.length||!elements.workflowSection||!elements.workflowGrid)return;
+      elements.workflowGrid.innerHTML=workflow.map(function(step){return '<article class="build-process-step"><span class="step">'+step.label+'</span><h3>'+step.title+'</h3><p>'+step.copy+'</p></article>';}).join('');
+      elements.workflowSection.hidden=false;
+    }
+    function renderSystem(caseStudy,elements){
+      var system=caseStudy&&caseStudy.system;
+      var nodes=system&&Array.isArray(system.nodes)?system.nodes:[];
+      if(!system||(!system.title&&!system.intro&&!nodes.length)||!elements.systemSection)return;
+      if(elements.systemTitle)elements.systemTitle.textContent=system.title||'Technical structure';
+      if(elements.systemIntro)elements.systemIntro.textContent=system.intro||'';
+      if(elements.systemGrid)elements.systemGrid.innerHTML=nodes.map(function(node){return '<article class="node"><h3>'+node.title+'</h3><p>'+node.copy+'</p></article>';}).join('');
+      elements.systemSection.hidden=false;
+    }
+    function renderStructure(structure,elements){
+      var items=structure&&Array.isArray(structure.items)?structure.items:[];
+      if(!items.length||!elements.structureSection||!elements.structureGrid)return;
+      if(elements.structureTitle)elements.structureTitle.textContent=structure.title||'Website structure';
+      if(elements.structureIntro)elements.structureIntro.textContent=structure.intro||'';
+      elements.structureGrid.innerHTML=items.map(function(item){
+        var children=(item.children||[]).map(function(child){return '<li>'+child+'</li>';}).join('');
+        return '<article class="structure-node"><h3>'+item.label+'</h3>'+(children?'<ul>'+children+'</ul>':'')+'</article>';
+      }).join('');
+      elements.structureSection.hidden=false;
+    }
+    function renderDeliverables(caseStudy,elements){
+      var items=caseStudy&&Array.isArray(caseStudy.deliverables)?caseStudy.deliverables:[];
+      if(!items.length||!elements.deliverableSection||!elements.deliverableGrid)return;
+      elements.deliverableGrid.innerHTML=items.map(function(deliverable){return '<div class="build-deliverable"><strong>'+deliverable.title+'</strong><span>'+deliverable.copy+'</span></div>';}).join('');
+      elements.deliverableSection.hidden=false;
+    }
+    function previewColumnClass(columns){
+      var count=Number(columns)||1;
+      if(count>=4)return 'col-lg-3 col-md-6 col-sm-12';
+      if(count===3)return 'col-lg-4 col-md-4 col-sm-12';
+      if(count===2)return 'col-lg-6 col-md-6 col-sm-12';
+      return 'col-lg-12 col-md-12 col-sm-12';
+    }
+    function renderPreview(data,elements){
+      if(!data||!elements.visualSection||!elements.preview)return;
 
-      function renderProjectNav(item,posts){
-        var index=posts.findIndex(function(candidate){return String(candidate.legacyId)===String(item.legacyId);});
-        if(index<0||!posts.length)return;
-        var html=navMarkup(posts[(index-1+posts.length)%posts.length],posts[(index+1)%posts.length]);
-        var top=document.getElementById('caseNavTop');
-        var bottom=document.getElementById('caseNavBottom');
-        if(top)top.innerHTML=html;
-        if(bottom)bottom.innerHTML=html;
-      }
-
-      function renderHero(item){
-        var role=project.lines(item.role).join(' · '),types=typePills(item),skills=skillPills(item);
-        document.title=project.strip(item.title)+' | Susan Delgado';
-        hero.className='';
-        hero.innerHTML='<div class="build-case-grid"><div><p class="build-kicker">'+(item.year||'Professional project')+' · '+project.strip(item.client)+'</p><h1 class="build-case-title">'+item.title+'</h1><p class="build-case-summary">'+(item.summary||'Professional project.')+'</p><div class="build-case-taxonomy">'+(types?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Project type</span><div class="build-pills">'+types+'</div></div>':'')+(skills?'<div class="build-case-taxonomy-group"><span class="build-case-taxonomy-label">Skills</span><div class="build-pills">'+skills+'</div></div>':'')+'</div></div><dl class="build-case-meta"><div><dt>Client / company</dt><dd>'+project.strip(item.client)+'</dd></div><div><dt>Role</dt><dd>'+role+'</dd></div><div><dt>Year</dt><dd>'+(item.year||'Not recorded')+'</dd></div></dl></div><div class="build-case-visual"><img src="'+heroImage(item)+'" alt="'+project.strip(item.title)+' project preview"></div>';
-      }
-
-      function renderContext(item){
-        document.getElementById('caseNarrative').innerHTML=item.content||'<p>'+(item.summary||'Professional project.')+'</p>';
-        context.hidden=false;
-      }
-
-      function renderUX(data){
-        if(!data||!data.ux||!uxSection)return;
-        document.getElementById('uxTitle').textContent=data.ux.title||'';
-        document.getElementById('uxIntro').textContent=data.ux.intro||'';
-        document.getElementById('uxPanels').innerHTML=(data.ux.panels||[]).map(function(panel){return '<article class="build-panel"><h3>'+panel.title+'</h3><p>'+panel.copy+'</p></article>';}).join('');
-        uxSection.hidden=false;
-      }
-
-      function renderWorkflow(data){
-        if(!data||!data.workflow||!data.workflow.length||!workflowSection)return;
-        document.getElementById('workflowGrid').innerHTML=data.workflow.map(function(step){return '<article class="build-process-step"><span class="step">'+step.label+'</span><h3>'+step.title+'</h3><p>'+step.copy+'</p></article>';}).join('');
-        workflowSection.hidden=false;
-      }
-
-      function renderSystem(data){
-        if(!data||!data.system||!systemSection)return;
-        document.getElementById('systemTitle').textContent=data.system.title||'Technical structure';
-        document.getElementById('systemIntro').textContent=data.system.intro||'';
-        document.getElementById('systemGrid').innerHTML=(data.system.nodes||[]).map(function(node){return '<article class="node"><h3>'+node.title+'</h3><p>'+node.copy+'</p></article>';}).join('');
-        systemSection.hidden=false;
-      }
-
-      function renderStructure(data){
-        if(!data||!data.items||!data.items.length||!structureSection)return;
-        document.getElementById('structureTitle').textContent=data.title||'Website structure';
-        document.getElementById('structureIntro').textContent=data.intro||'';
-        document.getElementById('structureGrid').innerHTML=data.items.map(function(item){var children=(item.children||[]).map(function(child){return '<li>'+child+'</li>';}).join('');return '<article class="structure-node"><h3>'+item.label+'</h3>'+(children?'<ul>'+children+'</ul>':'')+'</article>';}).join('');
-        structureSection.hidden=false;
-      }
-
-      function fallbackDeliverables(item){
-        var items=[];
-        if(project.contains(item,'web'))items.push({title:'Web / interface work',copy:'Website, microsite or responsive interface implementation.'});
-        if(project.contains(item,'email'))items.push({title:'Email',copy:'Email development and campaign communication.'});
-        if(project.contains(item,'dig'))items.push({title:'Digital assets',copy:'Digital and web campaign materials.'});
-        if(project.contains(item,'print'))items.push({title:'Print',copy:'Printed production and collateral.'});
-        if(project.contains(item,'brand'))items.push({title:'Branding',copy:'Identity and branding work.'});
-        return items;
-      }
-
-      function renderDeliverables(item,data){
-        if(!deliverableSection)return;
-        var items=data&&data.deliverables&&data.deliverables.length?data.deliverables:fallbackDeliverables(item);
-        if(!items.length)return;
-        document.getElementById('deliverableGrid').innerHTML=items.map(function(deliverable){return '<div class="build-deliverable"><strong>'+deliverable.title+'</strong><span>'+deliverable.copy+'</span></div>';}).join('');
-        deliverableSection.hidden=false;
-      }
-
-      function previewColumnClass(columns){
-        var count=Number(columns)||1;
-        if(count>=4)return 'col-lg-3 col-md-6 col-sm-12';
-        if(count===3)return 'col-lg-4 col-md-4 col-sm-12';
-        if(count===2)return 'col-lg-6 col-md-6 col-sm-12';
-        return 'col-lg-12 col-md-12 col-sm-12';
-      }
-
-      function renderPreview(item){
-        if(!visualSection)return;
-        var preview=document.getElementById('projectPreview');
-        var data=item&&item.preview;
-        if(!preview||!data)return;
-
-        if(data.html){
-          preview.innerHTML=String(data.html);
-        }else{
-          var sections=Array.isArray(data.sections)?data.sections:[];
-          if(!sections.length)return;
-          preview.innerHTML=sections.map(function(section){
-            var columnClass=previewColumnClass(section.columns);
-            var images=Array.isArray(section.images)?section.images:[];
-            var imageMarkup=images.map(function(image){
-              var size=image.size?' data-preview-size="'+project.strip(image.size)+'"':'';
-              return '<div class="'+columnClass+'"><img class="responsive"'+size+' src="'+(image.src||'')+'" alt="'+project.strip(image.alt||'')+'"></div>';
-            }).join('');
-            return '<div class="container">'+(section.title?'<h2>'+section.title+'</h2>':'')+'<div class="row">'+imageMarkup+'</div></div>';
+      if(data.html){
+        elements.preview.innerHTML=String(data.html);
+      }else{
+        var sections=Array.isArray(data.sections)?data.sections.filter(function(section){return section&&(section.title||(Array.isArray(section.images)&&section.images.length));}):[];
+        if(!sections.length)return;
+        elements.preview.innerHTML=sections.map(function(section){
+          var columnClass=previewColumnClass(section.columns);
+          var images=Array.isArray(section.images)?section.images:[];
+          var imageMarkup=images.map(function(image){
+            var size=image.size?' data-preview-size="'+project.strip(image.size)+'"':'';
+            var src=assetPath(image.src||'');
+            return src?'<div class="'+columnClass+'"><img class="responsive"'+size+' src="'+src+'" alt="'+project.strip(image.alt||'')+'"></div>':'';
           }).join('');
-        }
-
-        preview.querySelectorAll('script,style,link,nav,footer').forEach(function(element){element.remove();});
-        visualSection.hidden=false;
+          return '<div class="container">'+(section.title?'<h2>'+section.title+'</h2>':'')+(imageMarkup?'<div class="row">'+imageMarkup+'</div>':'')+'</div>';
+        }).join('');
       }
+
+      elements.preview.querySelectorAll('script,style,link,header,nav,footer').forEach(function(element){element.remove();});
+      if(!elements.preview.textContent.trim()&&!elements.preview.querySelector('img'))return;
+      elements.visualSection.hidden=false;
+    }
+    function renderProject(){
+      var elements=getProjectElements();
+      if(!elements.hero||!elements.context)throw new Error('Project template is incomplete');
 
       return project.loadProjects().then(function(result){
-        var posts=result.posts;
+        var posts=result.posts||[];
         var buildData=result.build||{};
         var requested=new URLSearchParams(location.search).get('post')||'23';
-        var item=posts.find(function(candidate){return String(candidate.legacyId)===String(requested);})||posts[0];
-        if(!item)throw new Error('No project data');
-        var id=String(item.legacyId);
-        var enhanced=item.caseStudy||(buildData.caseStudies&&buildData.caseStudies[id])||null;
-        var structure=item.structure||(buildData.structures&&buildData.structures[id])||null;
+        var item=posts.find(function(candidate){return String(candidate.legacyId)===String(requested);});
+        if(!item)throw new Error('Requested project is unavailable');
 
-        renderProjectNav(item,posts);
-        renderHero(item);
-        renderContext(item);
-        renderUX(enhanced);
-        renderWorkflow(enhanced);
-        renderSystem(enhanced);
-        renderStructure(structure);
-        renderDeliverables(item,enhanced);
-        renderPreview(item);
+        var id=String(item.legacyId);
+        var caseStudy=item.caseStudy||(buildData.caseStudies&&buildData.caseStudies[id])||null;
+        var structure=item.structure||(buildData.structures&&buildData.structures[id])||null;
+        var preview=item.preview||(buildData.previews&&buildData.previews[id])||null;
+
+        target.dataset.projectId=id;
+        renderProjectNav(item,posts,elements);
+        renderHero(item,elements);
+        renderContext(item,elements);
+        renderUX(caseStudy,elements);
+        renderWorkflow(caseStudy,elements);
+        renderSystem(caseStudy,elements);
+        renderStructure(structure,elements);
+        renderDeliverables(caseStudy,elements);
+        renderPreview(preview,elements);
 
         if(window.initBuildMotion)window.initBuildMotion(document);
       });
@@ -1049,7 +1078,8 @@
 
     loadTemplate(target)
       .then(renderProject)
-      .catch(function(){
+      .catch(function(error){
+        console.error('Project render error:',error);
         target.innerHTML='<p class="status">Project data could not be loaded.</p>';
       });
   };
