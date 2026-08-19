@@ -1,3 +1,5 @@
+@import url("build-global.css");
+
 :root{
   --ink:#111111;
   --muted:#667078;
@@ -36,25 +38,7 @@ body.build-page a{color:inherit}
 .build-skip{position:fixed;left:14px;top:-80px;z-index:9999;padding:10px 14px;background:#000;color:#fff;text-decoration:none}
 .build-skip:focus{top:14px}
 
-/* Shared site chrome — intentionally mirrors the Fine Arts language */
-.build-site-header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.045)}
-.build-top-tabs{background:var(--tab);border-bottom:1px solid #dee2e6}
-.build-tabs{display:flex;list-style:none;margin:0;padding:0 15px;font-family:Verdana,serif;font-size:16px}
-.build-tabs li{margin:0 2px -1px 0}
-.build-tabs a{display:block;padding:10px 16px;border:1px solid transparent;color:var(--teal);text-decoration:none;background:transparent}
-.build-tabs a:hover,.build-tabs a:focus-visible{color:var(--red);border-color:#e9ecef #e9ecef #dee2e6;outline:none}
-.build-tabs .active a{color:#495057;background:#fff;border-color:#dee2e6 #dee2e6 #fff}
-.build-tabs .active a:hover,.build-tabs .active a:focus-visible{color:var(--red)}
-.build-main-nav{background:rgba(255,255,255,.84);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(73,80,87,.11)}
-.build-main-nav-inner{width:calc(100% - 30px);margin:0 auto;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-.build-site-brand{color:#000!important;text-decoration:none;font-size:1rem;font-weight:500;letter-spacing:.035em;text-transform:uppercase}
-.build-site-brand:hover,.build-site-brand:focus-visible{color:rgba(0,0,0,.65)!important;outline:none}
-.build-site-links{display:flex;align-items:center;gap:4px}
-.build-site-links a{position:relative;padding:20px 13px;color:#495057;text-decoration:none;font-size:.86rem;font-weight:500;letter-spacing:.055em;text-transform:uppercase}
-.build-site-links a::after{content:"";position:absolute;left:13px;right:13px;bottom:13px;height:1px;background:transparent;transition:background .2s ease}
-.build-site-links a:hover,.build-site-links a:focus-visible{color:rgba(0,0,0,.65);outline:none}
-.build-site-links a:hover::after,.build-site-links a:focus-visible::after{background:var(--teal)}
-.build-site-links a[aria-current=page]::after{background:var(--gold)}
+/* Shared build header/navigation live in build-global.css. */
 
 /* Editorial hero with transparent depth rather than app-like cards */
 .build-hero,.build-case-hero{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(115deg,#101718 0%,#17282c 47%,#101719 100%);color:#fff}
@@ -207,12 +191,6 @@ body.build-page a{color:inherit}
   .build-architecture .node{border-bottom:1px solid rgba(73,80,87,.15)}
 }
 @media(max-width:700px){
-  .build-main-nav-inner{align-items:flex-start;flex-direction:column;gap:0;padding:14px 0 8px}
-  .build-site-links{width:100%;overflow-x:auto}
-  .build-site-links a{padding:14px 14px 16px 0;margin-right:20px;white-space:nowrap}
-  .build-site-links a::after{left:0;right:20px;bottom:8px}
-  .build-tabs{padding-left:8px;font-size:14px}
-  .build-tabs a{padding:9px 11px}
   .build-shell{width:min(100% - 28px,1180px)}
   .build-hero{padding-top:68px}
   .build-feature-grid,.build-cap-grid,.build-split,.build-architecture,.build-deliverables,.build-process-grid,.build-archive{grid-template-columns:1fr}
