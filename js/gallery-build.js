@@ -13,16 +13,13 @@
     {type:'gstudy',label:'Academic Studies',href:'studies-gallery-build.html'}
   ];
 
-  function ensureBuildStylesheets(){
-    var head=document.head;
-    if(!head)return;
-    if(!document.getElementById('sd-unified-nav')){
-      var nav=document.createElement('link');
-      nav.id='sd-unified-nav';
-      nav.rel='stylesheet';
-      nav.href='/css/build-navigation-unified.css';
-      head.appendChild(nav);
-    }
+  function ensureBuildHeader(){
+    if(window.initBuildHeader){window.initBuildHeader(document);return;}
+    if(document.getElementById('sd-build-header-js'))return;
+    var script=document.createElement('script');
+    script.id='sd-build-header-js';
+    script.src='/js/build-header.js';
+    document.head.appendChild(script);
   }
 
   function text(value){
@@ -111,7 +108,7 @@
   }
 
   function init(){
-    ensureBuildStylesheets();
+    ensureBuildHeader();
     var body=document.body;
     var type=(body.getAttribute('data-gallery-type')||'').toLowerCase();
     var grid=document.getElementById('artGalleryGrid');
