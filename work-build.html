@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css">
   <link rel="stylesheet" href="css/build-style.css">
-  <link rel="stylesheet" href="css/build-review.css">
-  <link rel="stylesheet" href="css/work-build-overrides.css">
+  <link rel="stylesheet" href="css/build-global.css">
+  <link rel="stylesheet" href="css/work-build.css">
 </head>
 <body class="build-page work-build-page">
 <a class="build-skip" href="#main">Skip to content</a>
@@ -270,9 +270,10 @@
     fetch('/js/posts.json').then(function(r){return r.json();}),
     fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
-    fetch('/js/posts-project-copy.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
+    fetch('/js/posts-project-copy.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
+    fetch('/js/posts-new.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(data){
-    posts=merge(data[0].posts||[],[data[1]||{},data[2]||{},data[3]||{}]);
+    posts=merge(data[0].posts||[],[data[1]||{},data[2]||{},data[3]||{},data[4]||{}]);
     renderFeatured();
     var params=new URLSearchParams(location.search);
     var type=params.get('type');
