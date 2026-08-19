@@ -251,12 +251,13 @@
     fetch('/js/posts-extra.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-corrections.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/posts-project-copy.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
+    fetch('/js/posts-new.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/case-study-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
     fetch('/js/site-structure-build.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(data){
-    var posts=merge(data[0].posts||[],[data[1]||{},data[2]||{},data[3]||{}]);
-    var enhancedMap=data[4]||{};
-    var structureMap=data[5]||{};
+    var posts=merge(data[0].posts||[],[data[1]||{},data[2]||{},data[3]||{},data[4]||{}]);
+    var enhancedMap=data[5]||{};
+    var structureMap=data[6]||{};
     var requested=new URLSearchParams(location.search).get('post')||'23';
     var p=posts.find(function(x){return String(x.legacyId)===String(requested);})||posts[0];
     var enhanced=enhancedMap[String(p.legacyId)]||null;
