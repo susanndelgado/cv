@@ -1,5 +1,17 @@
+/* ==========================================================================
+   STYLESHEET MAP
+
+   GLOBAL
+   INDEX
+   FINE ARTS: Landing / About / Exhibitions / Chronicles / Galleries
+   TECHNICAL WORK: Work / Project Detail / Contact / Resume
+   RESPONSIVE / ACCESSIBILITY / PRINT
+
+   Color values are written directly in each rule; no color custom properties.
+   ========================================================================== */
+
 /* ========================================================================
-   GLOBAL FOUNDATIONS
+   GLOBAL / FOUNDATIONS
    ======================================================================== */
 
 html,
@@ -87,11 +99,18 @@ a:focus {
 }
 
 .btn {
+  display: inline-block;
+  padding: 0.75rem 1.875rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1875rem;
+  text-decoration: none;
+  text-transform: uppercase;
   border-radius: 0;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
 }
 
 .btn.focus,
@@ -107,15 +126,8 @@ a:focus {
 
 .btn-light-txt,
 .btn-light-txt:visited {
-  display: inline-block;
-  padding: 0.75rem 1.875rem;
-  background: transparent;
   border: 1px solid #111;
   color: #111;
-  font-size: 0.6875rem;
-  letter-spacing: 0.1875rem;
-  text-decoration: none;
-  text-transform: uppercase;
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid #fff;
   color: #fff;
@@ -203,8 +215,36 @@ a.btn-blue:focus {
   color: #fff;
 }
 
+#work .btn,
+#work .btn:visited,
+#work .btn,
+#work .btn:visited {
+  display: inline-block;
+  padding: 0.75rem 1.875rem;
+  background: transparent;
+  border: 1px solid #111;
+  border-radius: 0;
+  color: #111;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1875rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#work .hero .btn,
+#wore .hero .btn.secondary {
+  background: #fff;
+  border-color: #60adb8;
+  color: #60adb8;
+}
+
+#work .hero .btn:hover,
+#work .hero .btn:focus-visible {
+  border-color: #f70606;
+  color: #f70606;
+}
 /* ========================================================================
-   GLOBAL NAVIGATION
+   GLOBAL / NAVIGATION
    ======================================================================== */
 
 header a,
@@ -260,7 +300,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /* ========================================================================
-   SHARED HERO / MEDIA COMPONENTS
+   GLOBAL / SHARED HERO & MEDIA
    ======================================================================== */
 
 .hero {
@@ -340,22 +380,16 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /* ========================================================================
-   INDEX / PORTFOLIO SPLASH
+   PAGE / INDEX — PORTFOLIO SPLASH
    ======================================================================== */
 
 #index {
-  --ink: #f7f3ec;
-  --muted: rgba(247, 243, 236, 0.84);
-  --gold: #d4af37;
-  --glass: rgba(8, 10, 12, 0.58);
-  --line: rgba(255, 255, 255, 0.22);
-
   width: 100%;
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
   background: #000;
-  color: var(--ink);
+  color: #f7f3ec;
 }
 
 #index * {
@@ -412,8 +446,8 @@ header .nav-tabs .nav-link.active:hover {
 #index .content-box {
   width: min(55.625rem, 94vw);
   padding: clamp(2.125rem, 6vw, 4.25rem) clamp(1.5rem, 7vw, 4.875rem);
-  background: var(--glass);
-  border: 1px solid var(--line);
+  background: rgba(8, 10, 12, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-top: 3px solid rgba(212, 175, 55, 0.9);
   text-align: center;
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
@@ -451,17 +485,17 @@ header .nav-tabs .nav-link.active:hover {
   width: 4.25rem;
   height: 1px;
   margin: 1.6875rem auto 1.5625rem;
-  background: var(--gold);
+  background: #d4af37;
   box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
 }
 
 #index .intro {
   max-width: 46.25rem;
   margin: 0 auto;
-  color: var(--muted);
+  color: rgba(247, 243, 236, 0.84);
 }
 
-.actions {
+#index .actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -472,11 +506,6 @@ header .nav-tabs .nav-link.active:hover {
 #index .actions .btn {
   min-width: 13.125rem;
   padding: 0.9375rem 1.75rem;
-  transition:
-    transform 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease;
 }
 
 #index .actions .btn:hover,
@@ -490,35 +519,17 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /* ========================================================================
-   FINE ARTS — SHARED THEME
+   PAGE GROUP / FINE ARTS — SHARED
    ======================================================================== */
 
 #arts,
-body[id^="arts "] {
-  --art-gold: #d4af37;
-  --art-black: #111;
-  --art-muted: #999;
+[id^="arts "] {
   background: #fff;
   color: #111;
 }
-
-#arts main .btn,
-body[id^="arts "] main .btn {
-  padding: 0.75rem 1.5625rem;
-  letter-spacing: 0.0625rem;
-  text-transform: uppercase;
-}
-
-#arts .btn-blk,
-#arts .btn-blk:visited,
-body[id^="arts "] .btn-blk,
-body[id^="arts "] .btn-blk:visited {
-  color: #fff;
-}
-
 /* Interior Fine Arts heroes: About, Exhibitions, Chronicles, Galleries */
 #arts .process-hero,
-body[id^="arts "] .process-hero,
+[id^="arts "] .process-hero,
 .art-gallery-build .process-hero {
   justify-content: center;
   padding: 5rem 0;
@@ -529,7 +540,7 @@ body[id^="arts "] .process-hero,
 }
 
 #arts .process-hero .master-title,
-body[id^="arts "] .process-hero .master-title,
+[id^="arts "] .process-hero .master-title,
 .art-gallery-build .process-hero .master-title {
   margin-bottom: 1.25rem;
   color: #fff;
@@ -577,7 +588,7 @@ body[id^="arts "] .process-hero .master-title,
 }
 
 /* ========================================================================
-   FINE ARTS — LANDING CONTENT
+   PAGE / FINE ARTS — LANDING
    ======================================================================== */
 
 .portfolio {
@@ -870,15 +881,14 @@ body[id^="arts "] .process-hero .master-title,
 
 #arts .community a,
 #arts .community a:visited,
-body[id^="arts "] .community a,
-body[id^="arts "] .community a:visited {
+[id^="arts "] .community a,
+[id^="arts "] .community a:visited {
   color: #d4af37;
 }
-
-#arts .community a:hover,
+b #arts .community a:hover,
 #arts .community a:focus,
-body[id^="arts "] .community a:hover,
-body[id^="arts "] .community a:focus {
+[id^="arts "] .community a:hover,
+[id^="arts "] .community a:focus {
   color: #fff;
 }
 
@@ -905,7 +915,7 @@ body[id^="arts "] .community a:focus {
 }
 
 /* ========================================================================
-   FINE ARTS — ABOUT / PROCESS
+   PAGE / FINE ARTS — ABOUT & PROCESS
    ======================================================================== */
 
 .process-tree-section {
@@ -1061,7 +1071,7 @@ body[id^="arts "] .community a:focus {
 }
 
 /* ========================================================================
-   FINE ARTS — EXHIBITIONS
+   PAGE / FINE ARTS — EXHIBITIONS
    ======================================================================== */
 
 .exhibitions-section {
@@ -1196,7 +1206,7 @@ body[id^="arts "] .community a:focus {
 }
 
 /* ========================================================================
-   FINE ARTS — PROGRESS CHRONICLES
+   PAGE / FINE ARTS — PROGRESS CHRONICLES
    ======================================================================== */
 
 #chronicles-wing {
@@ -1242,17 +1252,15 @@ body[id^="arts "] .community a:focus {
   font-size: 0.85rem;
 }
 
-body[id="arts chronicals"] #raw-data-log {
+#arts\ chronicals #raw-data-log {
   display: none;
 }
 
 /* ========================================================================
-   FINE ARTS — GALLERY
+   PAGE / FINE ARTS — GALLERIES
    ======================================================================== */
 
 .art-gallery-build {
-  --gallery-gold: #d4af37;
-  --gallery-line: #e3e3e3;
   margin: 0;
   background: #fff;
   color: #222;
@@ -1301,13 +1309,13 @@ body[id="arts chronicals"] #raw-data-log {
 .art-gallery-categories a:hover,
 .art-gallery-categories a:focus-visible,
 .art-gallery-categories a.active {
-  color: var(--gallery-gold);
+  color: #d4af37;
 }
 
 .art-gallery-categories a:hover::after,
 .art-gallery-categories a:focus-visible::after,
 .art-gallery-categories a.active::after {
-  background: var(--gallery-gold);
+  background: #d4af37;
 }
 
 .art-gallery-shell {
@@ -1459,25 +1467,16 @@ body[id="arts chronicals"] #raw-data-log {
 .art-gallery-close:hover,
 .art-gallery-close:focus {
   background: transparent;
-  color: var(--gallery-gold);
+  color: #d4af37;
 }
 
 /* ========================================================================
-   TECHNICAL WORK — SHARED THEME
+   PAGE GROUP / TECHNICAL WORK — SHARED
    ======================================================================== */
 
 #work {
-  --teal: #60adb8;
-  --teal-dark: #3f8791;
-  --red: #f70606;
-  --ink: #111;
-  --muted: #656b70;
-  --line: #dedede;
-  --paper: #f6f6f6;
-  --gold: #d4af37;
-
-  background: var(--paper);
-  color: var(--ink);
+  background: #f6f6f6;
+  color: #111;
   font-family: proxima-nova, "Open Sans", Arial, sans-serif;
 }
 
@@ -1503,7 +1502,7 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .section {
   padding: 5.75rem 0;
-  background: var(--paper);
+  background: #f6f6f6;
 }
 
 #work .section.white {
@@ -1512,7 +1511,7 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .section.dark {
   background: #efefef;
-  color: var(--ink);
+  color: #111;
 }
 
 #work .section.dark::before {
@@ -1534,7 +1533,7 @@ body[id="arts chronicals"] #raw-data-log {
 #work .section-head h2,
 #work .case-content h2 {
   margin: 0;
-  color: var(--ink);
+  color: #111;
   font-size: clamp(1.7rem, 2.8vw, 2.45rem);
   font-weight: 500;
   line-height: 1.16;
@@ -1542,81 +1541,51 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .section-head p {
   margin: 0.875rem 0 0;
-  color: var(--muted);
+  color: #656b70;
 }
 
 #work .section .kicker,
 #work .case-content .kicker,
 #work .kicker {
   margin: 0 0 0.75rem;
-  color: var(--teal);
+  color: #60adb8;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-#work main .btn,
-#work main .btn:visited,
-#work main .build-btn,
-#work main .build-btn:visited {
-  display: inline-block;
-  padding: 0.75rem 1.875rem;
-  background: transparent;
-  border: 1px solid var(--ink);
-  border-radius: 0;
-  color: var(--ink);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1875rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-#work main .btn:hover,
-#work main .btn:focus-visible,
-#work main .build-btn:hover,
-#work main .build-btn:focus-visible {
-  border-color: var(--red);
-  color: var(--red);
-}
-
-#work main .btn.secondary,
-#work main .build-btn.secondary {
-  border-color: var(--teal);
-  color: var(--teal);
-}
-
 /* ========================================================================
-   TECHNICAL WORK — LANDING PAGE
+   PAGE / TECHNICAL WORK — WORK
    ======================================================================== */
 
-#work.work-page .hero {
+#work .hero {
   display: block;
   padding: 7.5rem 0 5.75rem;
   background: #fff;
   border-bottom: 1px solid #ececec;
-  color: var(--ink);
+  color: #111;
   text-align: left;
 }
 
-#work.work-page .hero::before,
-#work.work-page .hero::after {
+#work .hero::before,
+#work .hero::after {
   display: none;
 }
 
-#work.work-page .hero-grid {
+#work .hero-grid {
   display: block;
 }
 
-#work.work-page .brief {
+#work .brief {
   display: none;
 }
 
-#work.work-page .hero .kicker {
+#work .hero .kicker {
   display: inline-block;
   margin: 0 0 1.25rem;
   padding: 0.25rem 0.9375rem;
-  background: var(--red);
+  background: #f70606;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 100;
@@ -1624,10 +1593,10 @@ body[id="arts chronicals"] #raw-data-log {
   letter-spacing: 0;
 }
 
-#work.work-page .display {
+#work .display {
   max-width: 65rem;
   margin: 0;
-  color: var(--ink);
+  color: #111;
   font-size: clamp(2.75rem, 4.6vw, 3.5rem);
   font-weight: 600;
   line-height: 1.08;
@@ -1635,7 +1604,7 @@ body[id="arts chronicals"] #raw-data-log {
   text-transform: uppercase;
 }
 
-#work.work-page .lede {
+#work .lede {
   max-width: 51.25rem;
   margin: 1.875rem 0 0;
   color: #3d4246;
@@ -1643,22 +1612,9 @@ body[id="arts chronicals"] #raw-data-log {
   line-height: 1.78;
 }
 
-#work.work-page .actions {
+#work .actions {
   justify-content: flex-start;
   margin-top: 2.25rem;
-}
-
-#work.work-page .hero .btn,
-#work.work-page .hero .btn.secondary {
-  background: #fff;
-  border-color: var(--teal);
-  color: var(--teal);
-}
-
-#work.work-page .hero .btn:hover,
-#work.work-page .hero .btn:focus-visible {
-  border-color: var(--red);
-  color: var(--red);
 }
 
 #work .feature-grid {
@@ -1672,7 +1628,7 @@ body[id="arts chronicals"] #raw-data-log {
   min-width: 0;
   overflow: hidden;
   background: #fff;
-  border: 1px solid var(--line);
+  border: 1px solid #dedede;
   box-shadow: 0 0.625rem 1.75rem rgba(0, 0, 0, 0.045);
   transition:
     transform 0.28s ease,
@@ -1717,7 +1673,7 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .project-meta {
   margin: 0 0 0.625rem;
-  color: var(--teal);
+  color: #60adb8;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -1727,7 +1683,7 @@ body[id="arts chronicals"] #raw-data-log {
 #work .project-card h3,
 #work .archive-card h3 {
   margin: 0;
-  color: var(--ink);
+  color: #111;
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.35rem, 2.3vw, 2rem);
   font-weight: 500;
@@ -1740,18 +1696,18 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .project-card h3 a,
 #work .archive-card h3 a {
-  color: var(--ink);
+  color: #111;
   text-decoration: none;
 }
 
 #work .project-card h3 a:hover,
 #work .archive-card h3 a:hover {
-  color: var(--red);
+  color: #f70606;
 }
 
 #work .project-copy h3 + p {
   margin: 0.8125rem 0 0;
-  color: var(--muted);
+  color: #656b70;
 }
 
 #work .project-role {
@@ -1781,7 +1737,7 @@ body[id="arts chronicals"] #raw-data-log {
 }
 
 #work .process-step .step {
-  color: var(--teal);
+  color: #60adb8;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -1796,7 +1752,7 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .process-step p {
   margin: 0;
-  color: var(--muted);
+  color: #656b70;
   font-size: 0.91rem;
 }
 
@@ -1809,13 +1765,13 @@ body[id="arts chronicals"] #raw-data-log {
 #work .cap-card {
   padding: 1.875rem;
   background: #fff;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--teal);
-  color: var(--ink);
+  border: 1px solid #dedede;
+  border-top: 3px solid #60adb8;
+  color: #111;
 }
 
 #work .cap-card .num {
-  color: var(--red);
+  color: #f70606;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -1842,8 +1798,8 @@ body[id="arts chronicals"] #raw-data-log {
 #work .panel {
   padding: 1.9375rem;
   background: #fff;
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--gold);
+  border: 1px solid #dedede;
+  border-top: 4px solid #d4af37;
 }
 
 #work .panel h3 {
@@ -1855,7 +1811,7 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .panel p,
 #work .panel ul {
-  color: var(--muted);
+  color: #656b70;
 }
 
 #work .panel ul {
@@ -1926,7 +1882,7 @@ body[id="arts chronicals"] #raw-data-log {
 }
 
 /* ========================================================================
-   TECHNICAL WORK — PROJECT DETAIL
+   PAGE / TECHNICAL WORK — PROJECT DETAIL
    ======================================================================== */
 
 #work .project-content > .container {
@@ -1952,7 +1908,7 @@ body[id="arts chronicals"] #raw-data-log {
     #ededed 100%
   );
   border-bottom: 1px solid #e3e3e3;
-  color: var(--ink);
+  color: #111;
 }
 
 #work .case-nav {
@@ -1962,7 +1918,7 @@ body[id="arts chronicals"] #raw-data-log {
   gap: 1.125rem;
   margin: 0 0 1.875rem;
   padding: 0 0 1.125rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #dedede;
 }
 
 #work .case-nav-link {
@@ -1970,7 +1926,7 @@ body[id="arts chronicals"] #raw-data-log {
   flex-direction: column;
   gap: 0.1875rem;
   min-width: 0;
-  color: var(--ink);
+  color: #111;
   text-decoration: none;
 }
 
@@ -1990,14 +1946,14 @@ body[id="arts chronicals"] #raw-data-log {
 #work .case-nav .project {
   max-width: 22.5rem;
   overflow: hidden;
-  color: var(--ink);
+  color: #111;
   font-size: 0.92rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 #work .case-nav-all {
-  color: var(--teal);
+  color: #60adb8;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -2008,7 +1964,7 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .case-nav a:hover,
 #work .case-nav a:focus-visible {
-  color: var(--red);
+  color: #f70606;
 }
 
 #work .case-grid {
@@ -2021,7 +1977,7 @@ body[id="arts chronicals"] #raw-data-log {
 #work .case-title {
   max-width: 53.125rem;
   margin: 0;
-  color: var(--ink);
+  color: #111;
   font-size: clamp(2rem, 3.9vw, 3.45rem);
   font-weight: 500;
   line-height: 1.08;
@@ -2078,7 +2034,7 @@ body[id="arts chronicals"] #raw-data-log {
   padding: 1.75rem;
   background: #fff;
   border: 1px solid #ddd;
-  border-top: 4px solid var(--teal);
+  border-top: 4px solid #60adb8;
   color: #343a40;
 }
 
@@ -2089,7 +2045,7 @@ body[id="arts chronicals"] #raw-data-log {
 }
 
 #work .case-meta dt {
-  color: var(--teal);
+  color: #60adb8;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -2168,7 +2124,7 @@ body[id="arts chronicals"] #raw-data-log {
   left: 0;
   width: 2.625rem;
   height: 3px;
-  background: var(--teal);
+  background: #60adb8;
 }
 
 #work .structure-node h3 {
@@ -2195,7 +2151,7 @@ body[id="arts chronicals"] #raw-data-log {
 #work .deliverable {
   padding: 1.1875rem 1.25rem;
   background: #fff;
-  border-left: 3px solid var(--gold);
+  border-left: 3px solid #d4af37;
 }
 
 #work .deliverable strong {
@@ -2208,7 +2164,7 @@ body[id="arts chronicals"] #raw-data-log {
 #work .deliverable span {
   display: block;
   margin-top: 0.3125rem;
-  color: var(--muted);
+  color: #656b70;
   font-size: 0.87rem;
 }
 
@@ -2279,174 +2235,163 @@ body[id="arts chronicals"] #raw-data-log {
 #work .status {
   padding: 1rem 1.125rem;
   background: #fff;
-  border-top: 3px solid var(--teal);
-  color: var(--muted);
+  border-top: 3px solid #60adb8;
+  color: #656b70;
 }
 
 /* ========================================================================
-   CONTACT
-   Current HTML still carries build- class names, so clean aliases are paired
-   with them until the HTML is renamed in its own one-file pass.
+   PAGE / TECHNICAL WORK — CONTACT
    ======================================================================== */
 
-#work.contact-page .build-section,
-#work.contact-page .section {
+#work .build-section,
+#work .section {
   padding: 5.75rem 0;
-  background: var(--paper);
+  background: #f6f6f6;
 }
 
-#work.contact-page .build-section.white,
-#work.contact-page .section.white {
+#work .build-section.white,
+#work .section.white {
   background: #fff;
 }
 
-#work.contact-page .build-shell,
-#work.contact-page .shell {
+#work .build-shell,
+#work .shell {
   width: min(73.75rem, calc(100% - 2.5rem));
   margin: 0 auto;
 }
 
-#work.contact-page .build-contact-grid,
-#work.contact-page .contact-grid {
+#work .build-contact-grid,
+#work .contact-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17.5rem, 0.9fr);
   gap: 1.75rem;
 }
 
-#work.contact-page .build-contact-card,
-#work.contact-page .contact-card {
+#work .build-contact-card,
+#work .contact-card {
   padding: 2.125rem;
   background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(73, 80, 87, 0.16);
-  border-top: 4px solid var(--gold);
+  border-top: 4px solid #d4af37;
   box-shadow: 0 1.125rem 3.125rem rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(0.75rem);
   -webkit-backdrop-filter: blur(0.75rem);
 }
 
-#work.contact-page .build-kicker,
-#work.contact-page .kicker {
+#work .build-kicker,
+#work .kicker {
   margin: 0 0 0.75rem;
-  color: var(--teal);
+  color: #60adb8;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-#work.contact-page .build-split,
-#work.contact-page .split {
+#work .build-split,
+#work .split {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.75rem;
   margin-top: 1.5rem;
 }
 
-#work.contact-page .build-panel,
-#work.contact-page .panel {
+#work .build-panel,
+#work .panel {
   padding: 1.9375rem;
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(73, 80, 87, 0.16);
-  border-top: 4px solid var(--gold);
+  border-top: 4px solid #d4af37;
   box-shadow: 0 1rem 2.8125rem rgba(0, 0, 0, 0.055);
   backdrop-filter: blur(0.75rem);
   -webkit-backdrop-filter: blur(0.75rem);
 }
 
-#work.contact-page .build-link-list,
-#work.contact-page .link-list {
+#work .build-link-list,
+#work .link-list {
   display: grid;
 }
 
-#work.contact-page .build-link-list a,
-#work.contact-page .link-list a {
+#work .build-link-list a,
+#work .link-list a {
   display: flex;
   justify-content: space-between;
   gap: 1.125rem;
   padding: 0.9375rem 0;
   border-bottom: 1px solid rgba(73, 80, 87, 0.17);
-  color: var(--teal);
+  color: #60adb8;
   font-weight: 600;
   text-decoration: none;
 }
 
-#work.contact-page .build-link-list a:hover,
-#work.contact-page .link-list a:hover {
-  color: var(--red);
+#work .build-link-list a:hover,
+#work .link-list a:hover {
+  color: #f70606;
 }
 
-#work.contact-page .build-cap-grid,
-#work.contact-page .cap-grid {
+#work .build-cap-grid,
+#work .cap-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
-#work.contact-page .build-cap-card,
-#work.contact-page .cap-card {
+#work .build-cap-card,
+#work .cap-card {
   padding: 1.875rem;
   background: rgba(255, 255, 255, 0.46);
   border: 1px solid rgba(73, 80, 87, 0.15);
-  border-top: 3px solid var(--gold);
+  border-top: 3px solid #d4af37;
   backdrop-filter: blur(0.875rem);
   -webkit-backdrop-filter: blur(0.875rem);
 }
 
-#work.contact-page .build-cap-card .num,
-#work.contact-page .cap-card .num {
-  color: var(--gold);
+#work .build-cap-card .num,
+#work .cap-card .num {
+  color: #d4af37;
 }
 
-#work.contact-page .build-contact-note,
-#work.contact-page .contact-note {
+#work .build-contact-note,
+#work .contact-note {
   margin-top: 1.75rem;
   padding: 1.5rem;
   background: rgba(17, 23, 25, 0.92);
-  border-top: 4px solid var(--gold);
+  border-top: 4px solid #d4af37;
   color: #fff;
 }
 
-#work.contact-page .build-contact-note h3,
-#work.contact-page .contact-note h3 {
+#work .build-contact-note h3,
+#work .contact-note h3 {
   color: #fff;
 }
 
-#work.contact-page .build-contact-note p,
-#work.contact-page .contact-note p {
+#work .build-contact-note p,
+#work .contact-note p {
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.7);
 }
 
 /* ========================================================================
-   RESUME
+   PAGE / TECHNICAL WORK — RESUME
    ======================================================================== */
 
-#work.resume-view {
-  --resume-ink: #174b63;
-  --resume-blue: #137a98;
-  --resume-copy: #8ba3b2;
-  --resume-copy-dark: #617d8d;
-  --resume-rule: #6f98aa;
-  --resume-strip: #174b5f;
-  --resume-paper: #fff;
-  --resume-screen: #edf1f3;
-
-  background: var(--resume-screen);
-  color: var(--resume-copy-dark);
+#resume {
+  background: #edf1f3;
+  color: #617d8d;
 }
 
-#work.resume-view #resume {
+#resume {
   padding: 2.625rem 1.125rem 4.375rem;
 }
 
-#work.resume-view .resume-tools,
-#work.resume-view .resume-document {
+#resume .resume-tools,
+#resume .resume-document {
   width: min(8.5in, 96vw);
   margin-right: auto;
   margin-left: auto;
 }
 
-#work.resume-view .resume-tools {
+#resume .resume-tools {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -2455,39 +2400,39 @@ body[id="arts chronicals"] #raw-data-log {
   margin-bottom: 1.125rem;
 }
 
-#work.resume-view .resume-tools p {
+#resume .resume-tools p {
   margin: 0;
   color: #697b85;
   font-size: 0.86rem;
 }
 
-#work.resume-view .resume-tools-actions {
+#resume .resume-tools-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5625rem;
 }
 
-#work.resume-view .resume-tools .build-btn,
-#work.resume-view .resume-tools .btn {
+#resume .resume-tools .build-btn,
+#resume .resume-tools .btn {
   padding: 0.625rem 0.9375rem;
   background: #fff;
-  border: 1px solid var(--resume-blue);
-  color: var(--resume-blue);
+  border: 1px solid #137a98;
+  color: #137a98;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-#work.resume-view .resume-tools .build-btn:hover,
-#work.resume-view .resume-tools .build-btn:focus-visible,
-#work.resume-view .resume-tools .btn:hover,
-#work.resume-view .resume-tools .btn:focus-visible {
-  background: var(--resume-blue);
+#resume .resume-tools .build-btn:hover,
+#resume .resume-tools .build-btn:focus-visible,
+#resume .resume-tools .btn:hover,
+#resume .resume-tools .btn:focus-visible {
+  background: #137a98;
   color: #fff;
 }
 
-#work.resume-view .resume-page {
+#resume .resume-page {
   position: relative;
   width: 8.5in;
   min-height: 11in;
@@ -2495,18 +2440,18 @@ body[id="arts chronicals"] #raw-data-log {
   margin: 0 auto 1.75rem;
   padding: 0.43in 0.62in 0.42in 0.24in;
   overflow: hidden;
-  background: var(--resume-paper);
+  background: #fff;
   box-sizing: border-box;
   box-shadow: 0 1.125rem 3rem rgba(18, 38, 48, 0.13);
   font-size: 10.6pt;
   line-height: 1.33;
 }
 
-#work.resume-view .resume-page * {
+#resume .resume-page * {
   box-sizing: border-box;
 }
 
-#work.resume-view .resume-side-strip {
+#resume .resume-side-strip {
   position: absolute;
   top: 0;
   right: 0;
@@ -2517,11 +2462,11 @@ body[id="arts chronicals"] #raw-data-log {
   justify-content: center;
   width: 0.43in;
   padding-top: 0.55in;
-  background: var(--resume-strip);
+  background: #174b5f;
   color: #fff;
 }
 
-#work.resume-view .resume-side-strip a {
+#resume .resume-side-strip a {
   color: #fff;
   font-size: 13pt;
   font-weight: 300;
@@ -2531,7 +2476,7 @@ body[id="arts chronicals"] #raw-data-log {
   text-orientation: mixed;
 }
 
-#work.resume-view .resume-header {
+#resume .resume-header {
   position: absolute;
   top: 0.34in;
   right: 0.64in;
@@ -2542,10 +2487,10 @@ body[id="arts chronicals"] #raw-data-log {
   gap: 0.22in;
 }
 
-#work.resume-view .resume-name {
+#resume .resume-name {
   flex: 0 0 auto;
   margin: 0;
-  color: var(--resume-ink);
+  color: #174b63;
   font-size: 22.5pt;
   font-weight: 300;
   line-height: 1;
@@ -2553,88 +2498,88 @@ body[id="arts chronicals"] #raw-data-log {
   white-space: nowrap;
 }
 
-#work.resume-view .resume-contact {
+#resume .resume-contact {
   flex: 0 0 auto;
   margin: 0;
-  color: var(--resume-copy);
+  color: #8ba3b2;
   font-size: 9.5pt;
   font-weight: 300;
   line-height: 1.22;
   text-align: right;
 }
 
-#work.resume-view .resume-contact a {
-  color: var(--resume-copy);
+#resume .resume-contact a {
+  color: #8ba3b2;
   text-decoration: none;
 }
 
-#work.resume-view .resume-grid {
+#resume .resume-grid {
   display: grid;
   grid-template-columns: 2.5in minmax(0, 1fr);
   column-gap: 0.18in;
   padding-top: 1.12in;
 }
 
-#work.resume-view .resume-sidebar {
+#resume .resume-sidebar {
   padding-right: 0.12in;
   text-align: right;
 }
 
-#work.resume-view .resume-main {
+#resume .resume-main {
   min-width: 0;
   padding-left: 0.18in;
-  border-left: 2px dotted var(--resume-rule);
+  border-left: 2px dotted #6f98aa;
 }
 
-#work.resume-view .resume-section {
+#resume .resume-section {
   margin: 0 0 1.125rem;
 }
 
-#work.resume-view .resume-sidebar .resume-section {
+#resume .resume-sidebar .resume-section {
   margin-bottom: 0.8125rem;
 }
 
-#work.resume-view .resume-heading {
+#resume .resume-heading {
   margin: 0 0 0.3125rem;
-  color: var(--resume-blue);
+  color: #137a98;
   font-size: 13.8pt;
   font-weight: 400;
   line-height: 1.1;
 }
 
-#work.resume-view .resume-subheading {
+#resume .resume-subheading {
   margin: 0 0 0.25rem;
-  color: var(--resume-ink);
+  color: #174b63;
   font-size: 10.5pt;
   font-weight: 500;
 }
 
-#work.resume-view .resume-skill-list,
-#work.resume-view .resume-compact-list {
+#resume .resume-skill-list,
+#resume .resume-compact-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-#work.resume-view .resume-skill-list li {
+#resume .resume-skill-list li {
   margin: 0 0 0.0625rem;
-  color: var(--resume-copy);
+  color: #8ba3b2;
   font-size: 9.5pt;
   font-weight: 300;
   line-height: 1.22;
 }
 
-#work.resume-view .resume-skill-list li::after {
+#resume .resume-skill-list li::after {
   content: " ·";
   margin-left: 0.3125rem;
-  color: var(--resume-rule);
+  color: #6f98aa;
 }
 
-#work.resume-view .resume-entry {
+#resume .resume-entry {
   margin: 0 0 0.875rem;
 }
 
-#work.resume-view .resume-entry-head {
+#resume .resume-entry-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
@@ -2642,93 +2587,93 @@ body[id="arts chronicals"] #raw-data-log {
   margin-bottom: 0.125rem;
 }
 
-#work.resume-view .resume-entry-title {
+#resume .resume-entry-title {
   margin: 0;
-  color: var(--resume-copy-dark);
+  color: #617d8d;
   font-size: 10.2pt;
   font-weight: 500;
 }
 
-#work.resume-view .resume-entry-date,
-#work.resume-view .resume-entry-location,
-#work.resume-view .resume-entry li,
-#work.resume-view .resume-profile,
-#work.resume-view .resume-note {
-  color: var(--resume-copy);
+#resume .resume-entry-date,
+#resume .resume-entry-location,
+#resume .resume-entry li,
+#resume .resume-profile,
+#resume .resume-note {
+  color: #8ba3b2;
   font-weight: 300;
 }
 
-#work.resume-view .resume-entry-date {
+#resume .resume-entry-date {
   font-size: 9.5pt;
   white-space: nowrap;
 }
 
-#work.resume-view .resume-entry-location {
+#resume .resume-entry-location {
   margin: 0 0 0.25rem;
   font-size: 9.6pt;
 }
 
-#work.resume-view .resume-entry ul {
+#resume .resume-entry ul {
   margin: 0.1875rem 0 0;
   padding: 0 0 0 0.9375rem;
 }
 
-#work.resume-view .resume-entry li {
+#resume .resume-entry li {
   margin-bottom: 0.125rem;
 }
 
-#work.resume-view .resume-entry li::marker {
-  color: var(--resume-rule);
+#resume .resume-entry li::marker {
+  color: #6f98aa;
 }
 
-#work.resume-view .resume-profile {
+#resume .resume-profile {
   margin: 0;
   font-size: 10.2pt;
 }
 
-#work.resume-view .resume-cert-list strong {
+#resume .resume-cert-list strong {
   display: block;
-  color: var(--resume-copy-dark);
+  color: #617d8d;
   font-size: 8.8pt;
   font-weight: 500;
   line-height: 1.16;
 }
 
-#work.resume-view .resume-cert-list span {
+#resume .resume-cert-list span {
   display: block;
-  color: var(--resume-copy);
+  color: #8ba3b2;
   font-size: 8.2pt;
   line-height: 1.15;
 }
 
-#work.resume-view .resume-projects {
+#resume .resume-projects {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem 1rem;
   margin-top: 0.4375rem;
 }
 
-#work.resume-view .resume-project {
+#resume .resume-project {
   padding-top: 0.375rem;
   border-top: 1px solid #dfe7eb;
 }
 
-#work.resume-view .resume-project strong {
+#resume .resume-project strong {
   display: block;
-  color: var(--resume-copy-dark);
+  color: #617d8d;
   font-size: 9.4pt;
   font-weight: 500;
 }
 
-#work.resume-view .resume-project span {
+#resume .resume-project span {
   display: block;
-  color: var(--resume-copy);
+  color: #8ba3b2;
   font-size: 8.7pt;
   line-height: 1.28;
 }
 
 /* ========================================================================
-   RESPONSIVE
+   RESPONSIVE / ALL PAGES
    ======================================================================== */
 
 @media (max-width: 62rem) {
@@ -2754,8 +2699,8 @@ body[id="arts chronicals"] #raw-data-log {
     grid-template-columns: 1fr;
   }
 
-  #work.contact-page .build-contact-grid,
-  #work.contact-page .contact-grid {
+  #work .build-contact-grid,
+  #work .contact-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -2828,22 +2773,22 @@ body[id="arts chronicals"] #raw-data-log {
   }
 
   #work .shell,
-  #work.contact-page .build-shell,
-  #work.contact-page .shell {
+  #work .build-shell,
+  #work .shell {
     width: min(100% - 1.75rem, 73.75rem);
   }
 
-  #work.work-page .hero {
+  #work .hero {
     padding: 4.5rem 0 4rem;
   }
 
-  #work.work-page .display {
+  #work .display {
     font-size: clamp(2.15rem, 10vw, 3rem);
     letter-spacing: 0.25rem;
   }
 
   #work .section,
-  #work.contact-page .build-section {
+  #work .build-section {
     padding: 4.25rem 0;
   }
 
@@ -2859,8 +2804,8 @@ body[id="arts chronicals"] #raw-data-log {
   #work .architecture,
   #work .deliverables,
   #work .site-structure,
-  #work.contact-page .build-split,
-  #work.contact-page .build-cap-grid {
+  #work .build-split,
+  #work .build-cap-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2873,19 +2818,19 @@ body[id="arts chronicals"] #raw-data-log {
     grid-row: 2;
   }
 
-  #work.resume-view #resume {
+  #resume {
     padding-right: 0.625rem;
     padding-left: 0.625rem;
   }
 
-  #work.resume-view .resume-page {
+  #resume .resume-page {
     width: 100%;
     min-height: 0;
     padding: 1.75rem 1.375rem 2.375rem;
     overflow: visible;
   }
 
-  #work.resume-view .resume-side-strip {
+  #resume .resume-side-strip {
     position: relative;
     align-items: center;
     justify-content: flex-start;
@@ -2894,49 +2839,49 @@ body[id="arts chronicals"] #raw-data-log {
     padding: 0.5625rem 1.125rem;
   }
 
-  #work.resume-view .resume-side-strip a {
+  #resume .resume-side-strip a {
     font-size: 10pt;
     writing-mode: horizontal-tb;
   }
 
-  #work.resume-view .resume-header {
+  #resume .resume-header {
     position: static;
     display: block;
     margin-bottom: 1.75rem;
   }
 
-  #work.resume-view .resume-name {
+  #resume .resume-name {
     white-space: normal;
   }
 
-  #work.resume-view .resume-contact {
+  #resume .resume-contact {
     margin-top: 0.375rem;
     text-align: left;
   }
 
-  #work.resume-view .resume-grid {
+  #resume .resume-grid {
     display: block;
     padding-top: 0;
   }
 
-  #work.resume-view .resume-sidebar {
+  #resume .resume-sidebar {
     margin-bottom: 1.75rem;
     padding: 0;
     text-align: left;
   }
 
-  #work.resume-view .resume-main {
+  #resume .resume-main {
     padding: 0;
     border-left: 0;
   }
 
-  #work.resume-view .resume-projects {
+  #resume .resume-projects {
     grid-template-columns: 1fr;
   }
 }
 
 /* ========================================================================
-   REDUCED MOTION
+   ACCESSIBILITY / REDUCED MOTION
    ======================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -2957,7 +2902,7 @@ body[id="arts chronicals"] #raw-data-log {
 }
 
 /* ========================================================================
-   RESUME PRINT
+   PRINT / RESUME
    ======================================================================== */
 
 @media print {
@@ -2966,28 +2911,28 @@ body[id="arts chronicals"] #raw-data-log {
     margin: 0;
   }
 
-  #work.resume-view > header,
-  #work.resume-view > footer,
-  #work.resume-view .resume-tools,
+  #work:has(#resume) > header,
+  #work:has(#resume) > footer,
+  #resume .resume-tools,
   .sd-cursor,
   .sd-cursor-dot,
   .sd-cursor-ring {
     display: none !important;
   }
 
-  #work.resume-view,
-  #work.resume-view #resume {
+  #work:has(#resume),
+  #resume {
     margin: 0 !important;
     padding: 0 !important;
     background: #fff !important;
   }
 
-  #work.resume-view .resume-document {
+  #resume .resume-document {
     width: auto !important;
     margin: 0 !important;
   }
 
-  #work.resume-view .resume-page {
+  #resume .resume-page {
     width: 8.5in !important;
     height: 11in !important;
     min-height: 11in !important;
@@ -3002,12 +2947,12 @@ body[id="arts chronicals"] #raw-data-log {
     print-color-adjust: exact !important;
   }
 
-  #work.resume-view .resume-page:last-child {
+  #resume .resume-page:last-child {
     break-after: auto;
     page-break-after: auto;
   }
 
-  #work.resume-view .resume-header {
+  #resume .resume-header {
     position: absolute !important;
     top: 0.34in !important;
     right: 0.64in !important;
@@ -3015,7 +2960,7 @@ body[id="arts chronicals"] #raw-data-log {
     display: flex !important;
   }
 
-  #work.resume-view .resume-grid {
+  #resume .resume-grid {
     display: grid !important;
     grid-template-columns: 2.5in minmax(0, 1fr) !important;
     column-gap: 0.18in !important;
