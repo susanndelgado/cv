@@ -1,9 +1,9 @@
-/* =========================================================
-   FUNCTION GUIDE
+/* ========================================================= 
+    SUSAN DELGADO SUMMER 2026
+    FUNCTION GUIDE
    =========================================================
    This file is shared by several pages. The notes below describe what each
-   named function is responsible for. They are documentation only; the code
-   beneath this guide is unchanged.
+   named function is responsible for. They are documentation only;.
 
    BUILD HEADER
    - addClasses(element, names): Adds one or more CSS class names safely.
