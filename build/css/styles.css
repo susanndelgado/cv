@@ -54,6 +54,8 @@ h1 {
 h2 {
   font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
   line-height: 1.15;
+  letter-spacing: 0.1875rem;
+  font-weight: 400;
 }
 
 h3 {
@@ -330,6 +332,9 @@ header .nav-tabs .nav-link.active:hover {
   margin-bottom: 1.25rem;
   color: #fff;
   letter-spacing: 0.5rem;
+}
+.hero h2 {
+  font-size: 1.4rem;
 }
 .hero p {
   max-width: 50rem;
@@ -1376,9 +1381,7 @@ b #arts .community a:hover,
 .art-gallery-caption h2 {
   margin: 0 0 0.3125rem;
   color: #222;
-  font-family: "Open Sans", sans-serif;
   font-size: 1.04rem;
-  font-weight: 600;
 }
 
 .art-gallery-meta {
@@ -1678,7 +1681,6 @@ b #arts .community a:hover,
 #work .archive-card h3 {
   margin: 0;
   color: #111;
-  font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.35rem, 2.3vw, 2rem);
   font-weight: 500;
   line-height: 1.2;
@@ -1739,7 +1741,6 @@ b #arts .community a:hover,
 
 #work .process-step h3 {
   margin: 0.75rem 0 0.5625rem;
-  font-family: "Playfair Display", Georgia, serif;
   font-size: 1.16rem;
   font-weight: 500;
 }
@@ -1773,7 +1774,7 @@ b #arts .community a:hover,
 
 #work .cap-card h3 {
   margin: 0.9375rem 0 0.625rem;
-  font-family: "Playfair Display", Georgia, serif;
+
   font-size: 1.35rem;
   font-weight: 400;
 }
@@ -1798,7 +1799,7 @@ b #arts .community a:hover,
 
 #work .panel h3 {
   margin: 0 0 0.875rem;
-  font-family: "Playfair Display", Georgia, serif;
+
   font-size: 1.32rem;
   font-weight: 500;
 }
@@ -2150,7 +2151,7 @@ b #arts .community a:hover,
 
 #work .deliverable strong {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
+
   font-size: 1.04rem;
   font-weight: 500;
 }
