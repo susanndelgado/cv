@@ -3642,52 +3642,46 @@ body#contact #work .contact-note p {
 }
 
 /* build/showcase/*.html inline image sizing and border declarations */
-body[id="work showcase"] #projectPreview img[src$="WHHI17_eblast_preview.jpg"],
-body[id="work showcase"] #projectPreview img[src$="TCT360_eblast_preview.jpg"],
-body[id="work showcase"] #projectPreview img[src$="tct2015-email.jpg"],
-body[id="work showcase"] #projectPreview img[src$="cto-2016-email.jpg"],
-body[id="work showcase"] #projectPreview img[src$="SCAI2016-eblast-03.jpg"],
-body[id="work showcase"]
+body[id="work"] #projectPreview img[src$="WHHI17_eblast_preview.jpg"],
+body[id="work"] #projectPreview img[src$="TCT360_eblast_preview.jpg"],
+body[id="work"] #projectPreview img[src$="tct2015-email.jpg"],
+body[id="work"] #projectPreview img[src$="cto-2016-email.jpg"],
+body[id="work"] #projectPreview img[src$="SCAI2016-eblast-03.jpg"],
+body[id="work"]
   #projectPreview
   img[src$="Fellows-2015_eblast_template_P03.jpg"],
-body[id="work showcase"] #projectPreview img[src$="web-fellows2016-1.jpg"],
-body[id="work showcase"] #projectPreview img[src$="web-Fetoscopy2014-1.jpg"],
-body[id="work showcase"] #projectPreview img[src$="chipatACC-email.jpg"] {
+body[id="work"] #projectPreview img[src$="web-fellows2016-1.jpg"],
+body[id="work"] #projectPreview img[src$="web-Fetoscopy2014-1.jpg"],
+body[id="work"] #projectPreview img[src$="chipatACC-email.jpg"] {
   max-width: 800px;
 }
-body[id="work showcase"] #projectPreview img[src$="cto-2015-mobiles.jpg"],
-body[id="work showcase"] #projectPreview img[src$="cto-2016-Mobile.jpg"],
-body[id="work showcase"]
+body[id="work"] #projectPreview img[src$="cto-2015-mobiles.jpg"],
+body[id="work"] #projectPreview img[src$="cto-2016-Mobile.jpg"],
+body[id="work"]
   #projectPreview
   img[src$="dfw-jobfair-2019-Flyer-v3-lightgreen.png"] {
   max-width: 850px;
 }
-body[id="work showcase"]
+body[id="work"]
   #projectPreview
   img[src$="cto-lm-2015-website-desktop-home-P05.jpg"],
-body[id="work showcase"] #projectPreview img[src$="tct2015-preview7.jpg"],
-body[id="work showcase"]
+body[id="work"] #projectPreview img[src$="tct2015-preview7.jpg"],
+body[id="work"]
   #projectPreview
   img[src$="SCAI2016-Main-Website-Desktop_06-3.jpg"],
-body[id="work showcase"]
-  #projectPreview
-  img[src$="Pulse2014-website-mock-up-P06.jpg"],
-body[id="work showcase"] #projectPreview img[src$="itct2015-previev.jpg"],
-body[id="work showcase"] #projectPreview img[src$="itct2015-preview7.jpg"],
-body[id="work showcase"]
-  #projectPreview
-  img[src$="CHIPatACC-desktop-home-02.jpg"],
-body[id="work showcase"]
-  #projectPreview
-  img[src$="sugarhillbranding-preview.jpg"] {
+body[id="work"] #projectPreview img[src$="Pulse2014-website-mock-up-P06.jpg"],
+body[id="work"] #projectPreview img[src$="itct2015-previev.jpg"],
+body[id="work"] #projectPreview img[src$="itct2015-preview7.jpg"],
+body[id="work"] #projectPreview img[src$="CHIPatACC-desktop-home-02.jpg"],
+body[id="work"] #projectPreview img[src$="sugarhillbranding-preview.jpg"] {
   max-width: 900px;
 }
-body[id="work showcase"] #projectPreview img[src$="iwriteny-preview.jpg"],
-body[id="work showcase"] #projectPreview img[src$="colorstreets-preview1.jpg"],
-body[id="work showcase"] #projectPreview img[src$="colorstreets-preview2.jpg"],
-body[id="work showcase"] #projectPreview img[src$="colorstreets-preview3.jpg"],
-body[id="work showcase"] #projectPreview img[src$="colorstreets-preview4.jpg"],
-body[id="work showcase"] #projectPreview img[src$="tkp-wfe-preview1.jpg"],
-body[id="work showcase"] #projectPreview img[src$="tkp-wfe-preview3.jpg"] {
+body[id="work"] #projectPreview img[src$="iwriteny-preview.jpg"],
+body[id="work"] #projectPreview img[src$="colorstreets-preview1.jpg"],
+body[id="work"] #projectPreview img[src$="colorstreets-preview2.jpg"],
+body[id="work"] #projectPreview img[src$="colorstreets-preview3.jpg"],
+body[id="work"] #projectPreview img[src$="colorstreets-preview4.jpg"],
+body[id="work"] #projectPreview img[src$="tkp-wfe-preview1.jpg"],
+body[id="work"] #projectPreview img[src$="tkp-wfe-preview3.jpg"] {
   border: 1px solid #eee;
 }
