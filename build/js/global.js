@@ -62,7 +62,6 @@
               files data.
             - getArchive(): Retrieves the raw shared Google archive dataset from
               SiteArchiveData or directly from the Apps Script endpoint as a fallback.
-            - insertGalleryNavigation(type): Adds the Fine Arts gallery-category navigation.
             - makeCard(item, index): Reads an archive record's title, media, dimensions,
               status and description and creates the visible gallery figure/caption.
             - init(): Selects archive records matching the current gallery type, sorts
@@ -985,7 +984,7 @@
   function makeCard(item, index) {
     var src = imageURL(item);
     var title = field(item, "title") || "Untitled";
-    var media = field(item, "media", "medium") || "Masterwork";
+    var media = field(item, "media", "medium") || "Artwork";
     var dimensions = field(item, "dimensions", "size");
     var year = field(item, "year", "date");
     var status = field(item, "status", "availability");
