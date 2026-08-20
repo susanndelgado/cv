@@ -1,4 +1,164 @@
 /* =========================================================
+   FUNCTION GUIDE
+   =========================================================
+   This file is shared by several pages. The notes below describe what each
+   named function is responsible for. They are documentation only; the code
+   beneath this guide is unchanged.
+
+   BUILD HEADER
+   - addClasses(element, names): Adds one or more CSS class names safely.
+   - isWorkSide(header): Detects whether the current page belongs to the
+     Technical Work side of the site.
+   - createWorkMainNav(header): Builds the Technical Work navigation when the
+     page does not already contain it.
+   - normalizeHeader(root): Applies the shared Bootstrap-compatible classes and
+     active-state structure to the site header.
+
+   BUILD MOTION / TECHNICAL PORTFOLIO
+   - currentFile(): Returns the current HTML filename from the URL.
+   - isWorkPage(): Checks whether the visitor is on work.html.
+   - isProjectPage(): Checks whether the visitor is on project.html.
+   - ensureBuildHeader(): Makes sure the shared header initializer is available.
+   - ensureInteractionStylesheet(): Loads the Technical interaction/cursor CSS.
+   - getPostId(): Reads the project post ID from the project-page query string.
+   - postIdFromLink(link): Extracts a project post ID from a project link.
+   - normalizePortfolioNavigation(root): Normalizes project/archive navigation,
+     category links, skills pills and legacy archive anchors.
+   - normalizeAngularLabel(text): Renames AngularJS display text to Angular.
+   - applyVerifiedTechnologyEvidence(root): Corrects Angular skill labels based
+     on the verified source archive for specific projects.
+   - removePostEleven(): Removes/redirects the retired project with ID 11.
+   - addFellowsInteraction(): Adds the Fellows-specific UX explanation panels.
+   - cleanWinterBallPreview(): Removes one unwanted Winter Ball preview image and
+     repairs the remaining preview column layout.
+   - ensureLightbox(): Creates the reusable project-image lightbox and its close
+     behavior. Its nested close() function closes and resets the lightbox.
+   - openLightbox(trigger): Opens the lightbox with the selected project image.
+   - bindLightboxImages(root): Makes project images keyboard/click accessible as
+     lightbox triggers.
+   - runPortfolioFixes(root): Runs all Technical Work/project compatibility fixes.
+   - installPortfolioObserver(): Watches dynamically rendered project content and
+     reruns the fixes when that content changes.
+   - initCursor(): Creates and manages the custom Technical Work cursor. Its
+     nested setMode(target) function switches cursor state for links and images.
+   - initBuildMotion(root): Public initializer for Technical Work interactions.
+   - init(): Starts the Technical Work interaction layer on page load.
+
+   FINE ARTS INTERIOR
+   - ensureBuildHeader(): Makes sure the shared header initializer is available
+     on Fine Arts interior pages.
+   - resizeFrame(doc): Resizes an embedded Fine Arts preview iframe to its
+     document height.
+
+   FINE ARTS GALLERY
+   - ensureBuildHeader(): Makes sure the shared header initializer is available.
+   - text(value): Converts archive values to clean display text.
+   - normalizeKey(value): Normalizes field names for flexible archive lookup.
+   - field(item, ...names): Finds the first matching field in an archive record.
+   - escapeHTML(value): Escapes text before inserting it into generated markup.
+   - imageURL(item): Extracts an image URL from an archive record's files field.
+   - getArchive(): Gets Fine Arts archive data from the shared cache/API.
+   - insertGalleryNavigation(type): Adds gallery-category navigation to the hero.
+   - makeCard(item, index): Builds one Fine Arts gallery card and its metadata.
+   - init(): Loads and renders the Fine Arts gallery and wires its lightbox.
+     Its nested closeLightbox() function closes that gallery lightbox.
+
+   EMBEDDED BUILD PAGE SCRIPTS / SHARED HELPERS
+   - inlineContains(marker): Checks whether a legacy inline script is still on
+     the page so the same initializer is not run twice.
+   - runWhenReady(fn): Runs a function immediately or after DOMContentLoaded.
+   - loadTemplate(target): Fetches and inserts the reusable project template.
+   - initProcessVideos(): Starts/stops process videos based on connection/data
+     saving conditions.
+   - pages.index(): Handles the home splash-video fallback.
+     Nested useBlackFallback() hides a failed splash video.
+   - pages.finearts(): Initializes Fine Arts process videos.
+   - pages.about(): Initializes About-page reveal effects and process videos.
+   - pages.resume(): Connects the resume PDF button to browser printing.
+
+   PROJECT DATA HELPERS
+   - projectHelpers(): Creates shared helpers used by Work and Project pages.
+     - strip(value): Removes HTML and returns plain text.
+     - lines(value): Splits <br>-separated values into clean text items.
+     - key(value): Creates normalized lowercase comparison text.
+     - yearNum(value): Extracts a sortable four-digit year.
+     - contains(project, token): Checks a project's filter-token list.
+     - isCrfRelated(project): Detects CRF-related project records.
+     - normalizeProject(project): Normalizes project skills/metadata.
+     - merge(base, extras): Merges baseline posts with correction/addition data.
+     - optionalJson(url): Loads optional JSON without breaking the page if absent.
+     - loadProjects(): Loads posts.json plus all supplemental project JSON,
+       including /build/js/casestudies.json, and merges them into one project set.
+
+   WORK PAGE
+   - pages.work(): Controls the Technical Work project listing and filters.
+     - url(item): Builds the reusable project.html URL for a project.
+     - image(item): Chooses the project thumbnail/hero path.
+     - card(item, small): Builds a featured or archive project card.
+     - renderFeatured(): Renders the selected featured project IDs.
+     - defaultArchivePosts(): Returns archive projects excluding featured items.
+     - renderArchive(source): Renders a supplied set of archive project cards.
+     - cardMatches(node, type, skill): Tests whether a card matches filters.
+     - setButtonState(type): Updates active filter-button styling.
+     - setStatus(type, skill): Updates the visible filter-status message.
+     - filter(type, skill, instant): Filters cards and animates layout changes.
+
+   PROJECT POST PAGE
+   - pages.project(): Loads and renders one reusable project/case-study page.
+     - projectUrl(item): Builds another project's detail-page URL.
+     - filterUrl(kind, value): Builds a Work-page filtered archive URL.
+     - assetPath(value): Converts relative asset paths to root-relative paths.
+     - skillPills(item): Builds the Skills pills markup.
+     - typePills(item): Builds project-type/category filter pills.
+     - navMarkup(previous, next): Builds Previous / All Work / Next navigation.
+     - getProjectElements(): Collects reusable template DOM targets.
+     - renderProjectNav(item, posts, elements): Renders project navigation.
+     - renderHero(item, elements): Renders project title, metadata and hero image.
+     - renderContext(item, elements): Renders the main project narrative.
+     - renderUX(caseStudy, elements): Renders UX panels from case-study data.
+     - renderWorkflow(caseStudy, elements): Renders project workflow steps.
+     - renderSystem(caseStudy, elements): Renders technical/system information.
+     - renderStructure(structure, elements): Renders site/content structure.
+     - renderDeliverables(caseStudy, elements): Renders deliverable summaries.
+     - previewColumnClass(columns): Chooses Bootstrap preview-column widths.
+     - renderPreview(data, elements): Renders JSON preview sections/HTML safely.
+     - renderProject(): Loads merged project data, selects the requested project
+       and calls all project-section renderers.
+
+   EXHIBITIONS PAGE
+   - pages.exhibits(): Loads, caches and renders exhibition records.
+     - normalizeText(value): Converts exhibition values to display text.
+     - normalizeKey(value): Normalizes field names for flexible lookup.
+     - escapeHTML(value): Escapes exhibition text before HTML insertion.
+     - isValidWebsiteURL(value): Allows only valid http/https exhibition links.
+     - getField(item, ...names): Reads alternate exhibition field names.
+     - extractImages(item): Extracts unique image URLs from record files.
+     - extractImageCaptions(item): Splits stored image captions.
+     - formatPipeSeparatedValue(value): Converts pipe-separated values to spans.
+     - createDetailRow(label, value, options): Builds one exhibition detail row.
+     - makeDetailRows(item): Builds all available exhibition metadata rows.
+     - makeCarousel(item, index): Builds an exhibition image carousel.
+     - handleExhibitionImageError(imageElement): Replaces broken images with a
+       placeholder.
+     - renderExhibition(item, index): Builds one complete exhibition card.
+     - getArchive(): Loads exhibition data from cache or the remote endpoint.
+     - renderMore(): Appends the next page of exhibition records.
+     - initiate(): Starts exhibition loading and the Load More control.
+
+   PROGRESS CHRONICLES PAGE
+   - pages.progress(): Loads and renders Progress Chronicle entries.
+     - extractFileUrl(fileEntry): Finds a usable image URL in a file record.
+     - renderImage(file): Builds Chronicle image markup.
+     - renderChronicles(): Appends the next batch of Chronicle entries.
+     - initiate(): Loads Chronicle data and connects the Load More button.
+
+   PAGE DISPATCHER
+   - currentDefinition(): Finds which page initializer matches the current DOM.
+   - initCurrent(options): Runs the matching page initializer once unless a
+     legacy inline version is intentionally handling that page.
+   ========================================================= */
+
+/* =========================================================
    BUILD HEADER
    ========================================================= */
 /* Shared only header normalizer.
