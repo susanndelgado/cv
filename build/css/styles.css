@@ -13,8 +13,8 @@
 /* ========================================================================
    GLOBAL / FOUNDATIONS
    ======================================================================== */
-.raw-data-log {
-  display: none;
+pre.raw-data-log {
+  display: none !important;
 }
 html,
 body {
