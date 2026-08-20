@@ -281,8 +281,23 @@ header .nav-tabs .nav-link.active:hover {
   border-color: #dee2e6 #dee2e6 #fff;
   color: #f70606;
 }
+/* 
+.sub-menu.dropdown-menu {
+  min-width: 13.75rem;
+  padding: 0.625rem;
+}
+
+.dropdown .menu-item {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+} */
+
 /* =========================================================
-   NAVBAR
+   GLOBAL NAVBAR
+   Gold hover + active state + underline
    ========================================================= */
 
 .navbar .navbar-nav .nav-link {
@@ -299,11 +314,11 @@ header .nav-tabs .nav-link.active:hover {
   right: 0.75rem;
   bottom: 0.75rem;
   height: 1px;
-  background: transparent;
+  background-color: transparent;
   transition: background-color 0.2s ease;
 }
 
-/* Hover */
+/* Hover / keyboard focus */
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link:focus-visible {
   color: #d4af37;
@@ -314,46 +329,35 @@ header .nav-tabs .nav-link.active:hover {
   background-color: #d4af37;
 }
 
-/* Active page */
+/* Active/current page */
 .navbar .navbar-nav .nav-link.active,
-.navbar .navbar-nav .nav-link[aria-current="page"] {
-  color: #111;
+.navbar .navbar-nav .nav-item.active > .nav-link {
+  color: #d4af37;
 }
 
 .navbar .navbar-nav .nav-link.active::after,
-.navbar .navbar-nav .nav-link[aria-current="page"]::after {
+.navbar .navbar-nav .nav-item.active > .nav-link::after {
   background-color: #d4af37;
 }
 
 /* =========================================================
    TECHNICAL NAVBAR
-   Red instead of gold
+   Red hover + active state + underline
    ========================================================= */
 
 #work .navbar .navbar-nav .nav-link:hover,
-#work .navbar .navbar-nav .nav-link:focus-visible {
+#work .navbar .navbar-nav .nav-link:focus-visible,
+#work .navbar .navbar-nav .nav-link.active,
+#work .navbar .navbar-nav .nav-item.active > .nav-link {
   color: #f70606;
 }
 
 #work .navbar .navbar-nav .nav-link:hover::after,
 #work .navbar .navbar-nav .nav-link:focus-visible::after,
 #work .navbar .navbar-nav .nav-link.active::after,
-#work .navbar .navbar-nav .nav-link[aria-current="page"]::after {
+#work .navbar .navbar-nav .nav-item.active > .nav-link::after {
   background-color: #f70606;
 }
-.sub-menu.dropdown-menu {
-  min-width: 13.75rem;
-  padding: 0.625rem;
-}
-
-.dropdown .menu-item {
-  padding: 0.25rem 0;
-  border-bottom: 1px solid #eee;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  text-transform: uppercase;
-}
-
 /* ========================================================================
    GLOBAL / SHARED HERO & MEDIA
    ======================================================================== */
