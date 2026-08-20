@@ -182,10 +182,13 @@
         group.querySelectorAll("a.pill").forEach(function (link) {
           var href = link.getAttribute("href") || "";
           if (href.indexOf("#archive") !== -1)
-            link.setAttribute(
-              "href",
-              href.replace("#archive", "#additional-professional-work"),
+            href = href.replace("#archive", "#projectArchive");
+          if (href.indexOf("#additional-professional-work") !== -1)
+            href = href.replace(
+              "#additional-professional-work",
+              "#projectArchive",
             );
+          link.setAttribute("href", href);
         });
       } else if (labelText === "Skills") {
         group.querySelectorAll("a.pill").forEach(function (link) {
@@ -198,22 +201,27 @@
     });
 
     root.querySelectorAll("a.case-nav-all").forEach(function (link) {
-      link.setAttribute("href", "work.html#additional-professional-work");
+      link.setAttribute("href", "work.html#projectArchive");
     });
     root
       .querySelectorAll('a[href*="work.html?type="]')
       .forEach(function (link) {
         var href = link.getAttribute("href") || "";
         if (href.indexOf("#archive") !== -1)
-          link.setAttribute(
-            "href",
-            href.replace("#archive", "#additional-professional-work"),
+          href = href.replace("#archive", "#projectArchive");
+        if (href.indexOf("#additional-professional-work") !== -1)
+          href = href.replace(
+            "#additional-professional-work",
+            "#projectArchive",
           );
+        link.setAttribute("href", href);
       });
     root
-      .querySelectorAll('a[href="work.html#archive"]')
+      .querySelectorAll(
+        'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
+      )
       .forEach(function (link) {
-        link.setAttribute("href", "work.html#additional-professional-work");
+        link.setAttribute("href", "work.html#projectArchive");
       });
 
     var filterStatus = document.getElementById("archiveFilterStatus");
@@ -232,17 +240,23 @@
           }
         });
       filterStatus
-        .querySelectorAll('a[href="work.html#archive"]')
+        .querySelectorAll(
+          'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
+        )
         .forEach(function (link) {
-          link.setAttribute("href", "work.html#additional-professional-work");
+          link.setAttribute("href", "work.html#projectArchive");
         });
     }
 
-    if (isWorkPage() && location.hash === "#archive") {
+    if (
+      isWorkPage() &&
+      (location.hash === "#archive" ||
+        location.hash === "#additional-professional-work")
+    ) {
       history.replaceState(
         null,
         "",
-        location.pathname + location.search + "#additional-professional-work",
+        location.pathname + location.search + "#projectArchive",
       );
     }
   }
@@ -1321,7 +1335,9 @@
           (typeLabels[type] || project.strip(type)) +
           "</strong>";
       filterStatus.innerHTML =
-        "Showing " + label + ' <a href="work.html#archive">Clear filter</a>';
+        "Showing " +
+        label +
+        ' <a href="work.html#projectArchive" data-clear-filter>Clear filter</a>';
       filterStatus.hidden = false;
     }
     function filter(type, skill, instant) {
@@ -1429,6 +1445,20 @@
       });
     }
 
+    filterStatus.addEventListener("click", function (event) {
+      var clear = event.target.closest("[data-clear-filter]");
+      if (!clear) return;
+      event.preventDefault();
+      var scrollTop = window.scrollY;
+      renderArchive(defaultArchivePosts());
+      setStatus(null, null);
+      setButtonState(null);
+      history.replaceState(null, "", "work.html#projectArchive");
+      requestAnimationFrame(function () {
+        window.scrollTo({ top: scrollTop, left: 0, behavior: "auto" });
+      });
+    });
+
     buttons.forEach(function (button) {
       button.addEventListener("click", function () {
         var value = button.dataset.filter;
@@ -1436,7 +1466,7 @@
           renderArchive(defaultArchivePosts());
           setStatus(null, null);
           setButtonState(null);
-          history.replaceState(null, "", "work.html#archive");
+          history.replaceState(null, "", "work.html#projectArchive");
           return;
         }
         renderArchive(posts);
@@ -1444,7 +1474,7 @@
         history.replaceState(
           null,
           "",
-          "work.html?type=" + encodeURIComponent(value) + "#archive",
+          "work.html?type=" + encodeURIComponent(value) + "#projectArchive",
         );
       });
     });
@@ -1493,7 +1523,7 @@
         kind +
         "=" +
         encodeURIComponent(value) +
-        "#additional-professional-work"
+        "#projectArchive"
       );
     }
     function assetPath(value) {
@@ -1533,7 +1563,7 @@
         projectUrl(previous) +
         '"><span class="direction">← Previous</span><span class="project">' +
         project.strip(previous.title) +
-        '</span></a><a class="case-nav-all" href="work.html#additional-professional-work">All work</a><a class="case-nav-link next" href="' +
+        '</span></a><a class="case-nav-all" href="work.html#projectArchive">All work</a><a class="case-nav-link next" href="' +
         projectUrl(next) +
         '"><span class="direction">Next →</span><span class="project">' +
         project.strip(next.title) +
@@ -2216,27 +2246,18 @@
         button = document.getElementById("loadMoreExhibitions");
       if (!list) return;
       var next = allExhibitions.slice(
-        currentExhibitionIndex,
-        currentExhibitionIndex + perPage,
-      );
-      if (!next.length) {
-        if (button) button.style.display = "none";
-        return;
-      }
-      list.insertAdjacentHTML(
-        "beforeend",
-        next
-          .map(function (item, localIndex) {
-            return renderExhibition(item, currentExhibitionIndex + localIndex);
-          })
-          .join(""),
-      );
+          currentExhibitionIndex,
+          currentExhibitionIndex + perPage,
+        ),
+        html = "";
+      next.forEach(function (item, localIndex) {
+        html += renderExhibition(item, currentExhibitionIndex + localIndex);
+      });
+      list.insertAdjacentHTML("beforeend", html);
       currentExhibitionIndex += next.length;
       if (button)
         button.style.display =
-          currentExhibitionIndex < allExhibitions.length
-            ? "inline-block"
-            : "none";
+          currentExhibitionIndex < allExhibitions.length ? "inline-block" : "none";
     }
     function initiate() {
       var list = document.getElementById("exhibition-list"),
@@ -2246,9 +2267,7 @@
         .then(function (archive) {
           allExhibitions = archive
             .filter(function (item) {
-              return (
-                normalizeText(item && item.type).toLowerCase() === "exhibit"
-              );
+              return normalizeText(item && item.type).toLowerCase() === "exhibit";
             })
             .sort(function (a, b) {
               return Number((b && b.id) || 0) - Number((a && a.id) || 0);
