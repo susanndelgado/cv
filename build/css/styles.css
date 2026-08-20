@@ -130,15 +130,13 @@ a:focus {
 .btn-light-txt:visited {
   border: 1px solid #111;
   color: #111;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #fff;
-  color: #fff;
+  background: transparent;
 }
 
 .btn-light-txt:hover,
 .btn-light-txt:focus {
-  background: #111;
-  border-color: #111;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #fff;
   color: #fff;
 }
 
@@ -941,14 +939,14 @@ header .nav-tabs .nav-link.active:hover {
   letter-spacing: 0.125rem;
 }
 
-#arts .community a,
-#arts .community a:visited,
+.community a,
+.community a:visited,
 .community a,
 .community a:visited {
   color: #d4af37;
 }
-b #arts .community a:hover,
-#arts .community a:focus,
+.community a:hover,
+.community a:focus,
 .community a:hover,
 .community a:focus {
   color: #fff;
