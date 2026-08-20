@@ -2099,26 +2099,40 @@
   pages.exhibits = function () {
     var allExhibitions = [];
     var currentExhibitionIndex = 0;
-    var perPage = 5;
-    var cacheKey = "exhibitions_cache_v2";
-    var cacheTimeKey = "exhibitions_cache_time_v2";
-    var cacheDuration = 1000 * 60 * 10;
+
+    var exhibitionsPerPage = 5;
+
+    var exhibitionCacheKey = "exhibitions_cache_v2";
+    var exhibitionCacheTimeKey = "exhibitions_cache_time_v2";
+    var exhibitionCacheDuration = 1000 * 60 * 10;
+
+    /* =========================================================
+     TEXT HELPERS
+     ========================================================= */
 
     function normalizeText(value) {
-      if (Array.isArray(value))
+      if (Array.isArray(value)) {
         return value
           .filter(function (item) {
             return item !== null && item !== undefined;
           })
           .join(" ")
           .trim();
-      return value === null || value === undefined ? "" : String(value).trim();
+      }
+
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      return String(value).trim();
     }
+
     function normalizeKey(value) {
       return String(value || "")
         .replace(/[\s_-]/g, "")
         .toLowerCase();
     }
+
     function escapeHTML(value) {
       return String(value === null || value === undefined ? "" : value)
         .replace(/&/g, "&amp;")
@@ -2127,37 +2141,77 @@
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
+
+    /* =========================================================
+     WEBSITE URL VALIDATION
+     ========================================================= */
+
     function isValidWebsiteURL(value) {
       if (!value) return false;
+
       try {
         var url = new URL(String(value).trim());
+
         return url.protocol === "http:" || url.protocol === "https:";
       } catch (error) {
         return false;
       }
     }
+
+    /* =========================================================
+     FIELD READER
+     Checks both the main item and item.misc.
+     ========================================================= */
+
     function getField(item) {
-      var wanted = Array.prototype.slice.call(arguments, 1).map(normalizeKey);
+      var possibleNames = Array.prototype.slice.call(arguments, 1);
+
+      var wantedKeys = possibleNames.map(normalizeKey);
+
       var sources = [item || {}, (item && item.misc) || {}];
-      for (var s = 0; s < sources.length; s++)
-        for (var key in sources[s])
-          if (Object.prototype.hasOwnProperty.call(sources[s], key)) {
-            var value = normalizeText(sources[s][key]);
-            if (wanted.indexOf(normalizeKey(key)) !== -1 && value) return value;
+
+      for (var sourceIndex = 0; sourceIndex < sources.length; sourceIndex++) {
+        var source = sources[sourceIndex];
+
+        if (!source || typeof source !== "object") {
+          continue;
+        }
+
+        for (var key in source) {
+          if (!Object.prototype.hasOwnProperty.call(source, key)) {
+            continue;
           }
+
+          var normalizedValue = normalizeText(source[key]);
+
+          if (wantedKeys.indexOf(normalizeKey(key)) !== -1 && normalizedValue) {
+            return normalizedValue;
+          }
+        }
+      }
+
       return "";
     }
+
+    /* =========================================================
+     IMAGE READER
+     ========================================================= */
+
     function extractImages(item) {
       var files = Array.isArray(item && item.files)
-          ? item.files
-          : item && item.files
-            ? [item.files]
-            : [],
-        urls = [];
+        ? item.files
+        : item && item.files
+          ? [item.files]
+          : [];
+
+      var urls = [];
+
       files.forEach(function (fileEntry) {
         if (!fileEntry) return;
+
         var text =
           typeof fileEntry === "string" ? fileEntry : JSON.stringify(fileEntry);
+
         text
           .split(/\r?\n/)
           .map(function (line) {
@@ -2170,8 +2224,15 @@
             urls.push(url);
           });
       });
+
       return Array.from(new Set(urls));
     }
+
+    /* =========================================================
+     IMAGE CAPTIONS
+     Caption One | Caption Two | Caption Three
+     ========================================================= */
+
     function extractImageCaptions(item) {
       var captions = getField(
         item,
@@ -2179,144 +2240,236 @@
         "image captions",
         "captions",
       );
+
+      if (!captions) {
+        return [];
+      }
+
       return captions
-        ? captions
-            .split("|")
-            .map(function (caption) {
-              return caption.trim();
-            })
-            .filter(Boolean)
-        : [];
+        .split("|")
+        .map(function (caption) {
+          return caption.trim();
+        })
+        .filter(Boolean);
     }
+
+    /* =========================================================
+     DISPLAY HELPERS
+     ========================================================= */
+
     function formatPipeSeparatedValue(value) {
+      if (!value) {
+        return "";
+      }
+
       return value
-        ? value
-            .split("|")
-            .map(function (part) {
-              return part.trim();
-            })
-            .filter(Boolean)
-            .map(function (part) {
-              return (
-                '<span class="exhibition-work-item">' +
-                escapeHTML(part) +
-                "</span>"
-              );
-            })
-            .join("")
-        : "";
+        .split("|")
+        .map(function (part) {
+          return part.trim();
+        })
+        .filter(Boolean)
+        .map(function (part) {
+          return (
+            '<span class="exhibition-work-item">' + escapeHTML(part) + "</span>"
+          );
+        })
+        .join("");
     }
+
     function createDetailRow(label, value, options) {
-      if (!value) return "";
-      var displayed =
-        options && options.pipeSeparated
-          ? '<div class="exhibition-work-list">' +
-            formatPipeSeparatedValue(value) +
-            "</div>"
-          : "<span>" + escapeHTML(value) + "</span>";
+      if (!value) {
+        return "";
+      }
+
+      var displayedValue = "";
+
+      if (options && options.pipeSeparated) {
+        displayedValue =
+          '<div class="exhibition-work-list">' +
+          formatPipeSeparatedValue(value) +
+          "</div>";
+      } else {
+        displayedValue = "<span>" + escapeHTML(value) + "</span>";
+      }
+
       return (
-        "<li><strong>" + escapeHTML(label) + "</strong>" + displayed + "</li>"
+        "<li>" +
+        "<strong>" +
+        escapeHTML(label) +
+        "</strong>" +
+        displayedValue +
+        "</li>"
       );
     }
+
     function makeDetailRows(item) {
+      var venue = getField(item, "venue", "gallery", "institution");
+
+      var location = getField(item, "location", "city", "address");
+
+      var dates = getField(item, "dates", "exhibitiondates");
+
+      var reception = getField(
+        item,
+        "reception",
+        "receptiondate",
+        "opening",
+        "openingreception",
+      );
+
+      var organizer = getField(
+        item,
+        "organizer",
+        "organization",
+        "presentedby",
+      );
+
+      var works = getField(item, "works", "artworks", "pieces", "worksshown");
+
+      var award = getField(item, "award", "recognition");
+
       var rows = [
-        createDetailRow(
-          "Venue",
-          getField(item, "venue", "gallery", "institution"),
-        ),
-        createDetailRow(
-          "Location",
-          getField(item, "location", "city", "address"),
-        ),
-        createDetailRow("Dates", getField(item, "dates", "exhibitiondates")),
-        createDetailRow(
-          "Reception",
-          getField(
-            item,
-            "reception",
-            "receptiondate",
-            "opening",
-            "openingreception",
-          ),
-        ),
-        createDetailRow(
-          "Organizer",
-          getField(item, "organizer", "organization", "presentedby"),
-        ),
-        createDetailRow(
-          "Works",
-          getField(item, "works", "artworks", "pieces", "worksshown"),
-          { pipeSeparated: true },
-        ),
-        createDetailRow("Award", getField(item, "award", "recognition")),
+        createDetailRow("Venue", venue),
+
+        createDetailRow("Location", location),
+
+        createDetailRow("Dates", dates),
+
+        createDetailRow("Reception", reception),
+
+        createDetailRow("Organizer", organizer),
+
+        createDetailRow("Works", works, {
+          pipeSeparated: true,
+        }),
+
+        createDetailRow("Award", award),
       ].filter(Boolean);
-      return rows.length
-        ? '<ul class="exhibition-details">' + rows.join("") + "</ul>"
-        : "";
+
+      if (!rows.length) {
+        return "";
+      }
+
+      return '<ul class="exhibition-details">' + rows.join("") + "</ul>";
     }
-    function makeCarousel(item, index) {
-      var images = extractImages(item),
-        captions = extractImageCaptions(item),
-        title = getField(item, "title") || "Exhibition",
-        carouselId = "exhibition-carousel-" + index;
-      if (!images.length)
-        return '<div class="exhibition-placeholder">Images forthcoming</div>';
-      var indicators =
-        images.length > 1
-          ? '<div class="carousel-indicators">' +
-            images
-              .map(function (image, i) {
-                return (
-                  '<button type="button" data-bs-target="#' +
-                  carouselId +
-                  '" data-bs-slide-to="' +
-                  i +
-                  '" class="' +
-                  (i === 0 ? "active" : "") +
-                  '" aria-current="' +
-                  (i === 0 ? "true" : "false") +
-                  '" aria-label="Image ' +
-                  (i + 1) +
-                  '"></button>'
-                );
-              })
-              .join("") +
-            "</div>"
-          : "";
+
+    /* =========================================================
+     BOOTSTRAP CAROUSEL
+     ========================================================= */
+
+    function makeCarousel(item, exhibitionIndex) {
+      var images = extractImages(item);
+
+      var captions = extractImageCaptions(item);
+
+      var title = getField(item, "title") || "Exhibition";
+
+      var carouselId = "exhibition-carousel-" + exhibitionIndex;
+
+      if (!images.length) {
+        return (
+          '<div class="exhibition-placeholder">' +
+          "Images forthcoming" +
+          "</div>"
+        );
+      }
+
+      var indicators = "";
+
+      if (images.length > 1) {
+        indicators =
+          '<div class="carousel-indicators">' +
+          images
+            .map(function (image, index) {
+              return (
+                "<button " +
+                'type="button" ' +
+                'data-bs-target="#' +
+                carouselId +
+                '" ' +
+                'data-bs-slide-to="' +
+                index +
+                '" ' +
+                'class="' +
+                (index === 0 ? "active" : "") +
+                '" ' +
+                'aria-current="' +
+                (index === 0 ? "true" : "false") +
+                '" ' +
+                'aria-label="Image ' +
+                (index + 1) +
+                '">' +
+                "</button>"
+              );
+            })
+            .join("") +
+          "</div>";
+      }
+
       var slides = images
-        .map(function (src, i) {
-          var caption = captions[i] || "";
+        .map(function (src, index) {
+          var caption = captions[index] || "";
+
           return (
             '<div class="carousel-item ' +
-            (i === 0 ? "active" : "") +
-            '"><img src="' +
+            (index === 0 ? "active" : "") +
+            '">' +
+            "<img " +
+            'src="' +
             escapeHTML(src) +
-            '" class="d-block w-100" loading="lazy" alt="' +
+            '" ' +
+            'class="d-block w-100 exhibition-image" ' +
+            'loading="lazy" ' +
+            'alt="' +
             escapeHTML(title) +
             " image " +
-            (i + 1) +
-            '" onerror="handleExhibitionImageError(this)">' +
+            (index + 1) +
+            '">' +
             (caption
-              ? '<div class="carousel-caption d-none d-md-block"><p>' +
+              ? '<div class="carousel-caption d-none d-md-block">' +
+                "<p>" +
                 escapeHTML(caption) +
-                "</p></div>"
+                "</p>" +
+                "</div>"
               : "") +
             "</div>"
           );
         })
         .join("");
-      var controls =
-        images.length > 1
-          ? '<button class="carousel-control-prev" type="button" data-bs-target="#' +
-            carouselId +
-            '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#' +
-            carouselId +
-            '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>'
-          : "";
+
+      var controls = "";
+
+      if (images.length > 1) {
+        controls =
+          "<button " +
+          'class="carousel-control-prev" ' +
+          'type="button" ' +
+          'data-bs-target="#' +
+          carouselId +
+          '" ' +
+          'data-bs-slide="prev">' +
+          '<span class="carousel-control-prev-icon" aria-hidden="true"></span>' +
+          '<span class="visually-hidden">Previous</span>' +
+          "</button>" +
+          "<button " +
+          'class="carousel-control-next" ' +
+          'type="button" ' +
+          'data-bs-target="#' +
+          carouselId +
+          '" ' +
+          'data-bs-slide="next">' +
+          '<span class="carousel-control-next-icon" aria-hidden="true"></span>' +
+          '<span class="visually-hidden">Next</span>' +
+          "</button>";
+      }
+
       return (
-        '<div id="' +
+        "<div " +
+        'id="' +
         carouselId +
-        '" class="carousel slide exhibition-carousel" data-bs-ride="false">' +
+        '" ' +
+        'class="carousel slide exhibition-carousel" ' +
+        'data-bs-ride="false">' +
         indicators +
         '<div class="carousel-inner">' +
         slides +
@@ -2325,26 +2478,59 @@
         "</div>"
       );
     }
+
+    /* =========================================================
+     BROKEN IMAGE HANDLING
+     No inline onerror attribute.
+     ========================================================= */
+
     function handleExhibitionImageError(imageElement) {
       var slide = imageElement.closest(".carousel-item");
+
       if (!slide) {
         imageElement.style.display = "none";
+
         return;
       }
+
       slide.innerHTML =
-        '<div class="exhibition-placeholder">Image unavailable</div>';
+        '<div class="exhibition-placeholder">' + "Image unavailable" + "</div>";
     }
-    window.handleExhibitionImageError = handleExhibitionImageError;
+
+    function bindExhibitionImageErrors(root) {
+      if (!root) return;
+
+      root.querySelectorAll(".exhibition-image").forEach(function (image) {
+        if (image.dataset.exhibitionErrorBound === "1") {
+          return;
+        }
+
+        image.dataset.exhibitionErrorBound = "1";
+
+        image.addEventListener("error", function () {
+          handleExhibitionImageError(image);
+        });
+      });
+    }
+
+    /* =========================================================
+     ONE EXHIBITION
+     ========================================================= */
+
     function renderExhibition(item, index) {
       var title = getField(item, "title") || "Untitled Exhibition";
+
       var description = getField(
         item,
         "description",
         "exhibitdescription",
         "summary",
       );
+
       var media = getField(item, "media", "medium", "category");
+
       var status = getField(item, "status", "exhibitstatus") || "Exhibition";
+
       var officialLink = getField(
         item,
         "link",
@@ -2352,12 +2538,17 @@
         "website",
         "officiallink",
       );
+
       var imageColumn =
         '<div class="col-lg-6 p-0">' + makeCarousel(item, index) + "</div>";
+
       var copyColumn =
-        '<div class="col-lg-6 d-flex align-items-center"><div class="exhibition-copy"><span class="exhibition-status">' +
+        '<div class="col-lg-6 d-flex align-items-center">' +
+        '<div class="exhibition-copy">' +
+        '<span class="exhibition-status">' +
         escapeHTML(status) +
-        '</span><h2 class="exhibition-title">' +
+        "</span>" +
+        '<h2 class="exhibition-title">' +
         escapeHTML(title) +
         "</h2>" +
         (media
@@ -2370,93 +2561,149 @@
           : "") +
         makeDetailRows(item) +
         (isValidWebsiteURL(officialLink)
-          ? '<a class="exhibition-link" href="' +
+          ? '<a class="exhibition-link" ' +
+            'href="' +
             escapeHTML(officialLink) +
-            '" target="_blank" rel="noopener noreferrer">Exhibition Details</a>'
+            '" ' +
+            'target="_blank" ' +
+            'rel="noopener noreferrer">' +
+            "Exhibition Details" +
+            "</a>"
           : "") +
-        "</div></div>";
+        "</div>" +
+        "</div>";
+
       return (
-        '<article class="exhibition-card" data-exhibition-id="' +
+        "<article " +
+        'class="exhibition-card" ' +
+        'data-exhibition-id="' +
         escapeHTML((item && item.id) || "") +
-        '"><div class="row g-0">' +
+        '">' +
+        '<div class="row g-0">' +
         (index % 2 === 1
           ? copyColumn + imageColumn
           : imageColumn + copyColumn) +
-        "</div></article>"
+        "</div>" +
+        "</article>"
       );
     }
-    function getArchive() {
-      var request;
 
-      if (
-        window.SiteArchiveData &&
-        typeof window.SiteArchiveData.get === "function"
-      ) {
-        request = window.SiteArchiveData.get();
-      } else {
-        request = fetch(ENDPOINT).then(function (response) {
+    /* =========================================================
+     EXHIBITION ARCHIVE
+     Preserves original inline caching behavior.
+     ========================================================= */
+
+    function getExhibitionArchive() {
+      var now = Date.now();
+
+      var cached = localStorage.getItem(exhibitionCacheKey);
+
+      var cachedTime = Number(localStorage.getItem(exhibitionCacheTimeKey));
+
+      if (cached && cachedTime && now - cachedTime < exhibitionCacheDuration) {
+        try {
+          return Promise.resolve(JSON.parse(cached));
+        } catch (error) {
+          localStorage.removeItem(exhibitionCacheKey);
+
+          localStorage.removeItem(exhibitionCacheTimeKey);
+        }
+      }
+
+      return fetch(SCRIPT_URL + "?t=" + now)
+        .then(function (response) {
           if (!response.ok) {
-            throw new Error("Archive unavailable");
+            throw new Error(
+              "Archive request failed with status " + response.status + ".",
+            );
           }
 
           return response.json();
+        })
+        .then(function (archive) {
+          if (!Array.isArray(archive)) {
+            throw new Error(
+              "The exhibition archive returned an invalid format.",
+            );
+          }
+
+          localStorage.setItem(exhibitionCacheKey, JSON.stringify(archive));
+
+          localStorage.setItem(exhibitionCacheTimeKey, String(now));
+
+          /*
+           * IMPORTANT:
+           * Return the complete archive record.
+           * Do not rebuild/map the objects here.
+           */
+          return archive;
         });
+    }
+
+    /* =========================================================
+     LOAD FIVE MORE
+     ========================================================= */
+
+    function renderMoreExhibitions() {
+      var exhibitionList = document.getElementById("exhibition-list");
+
+      var loadMoreButton = document.getElementById("loadMoreExhibitions");
+
+      if (!exhibitionList) {
+        return;
       }
 
-      return request.then(function (data) {
-        if (!Array.isArray(data)) {
-          throw new Error("Invalid archive data");
+      var nextExhibitions = allExhibitions.slice(
+        currentExhibitionIndex,
+        currentExhibitionIndex + exhibitionsPerPage,
+      );
+
+      if (!nextExhibitions.length) {
+        if (loadMoreButton) {
+          loadMoreButton.style.display = "none";
         }
 
-        return data.map(function (item) {
-          return {
-            id: item.id,
-            type: String(item.type || "")
-              .trim()
-              .toLowerCase(),
+        return;
+      }
 
-            title: String(item.title || "").trim(),
+      var html = nextExhibitions
+        .map(function (item, localIndex) {
+          var globalIndex = currentExhibitionIndex + localIndex;
 
-            media: String(item.media || item.medium || "").trim(),
+          return renderExhibition(item, globalIndex);
+        })
+        .join("");
 
-            dimensions: String(item.dimensions || item.size || "").trim(),
+      exhibitionList.insertAdjacentHTML("beforeend", html);
 
-            // year: String(item.year || item.date || "").trim(),
+      bindExhibitionImageErrors(exhibitionList);
 
-            status: String(item.status || item.availability || "").trim(),
+      currentExhibitionIndex += nextExhibitions.length;
 
-            description: String(item.description || "").trim(),
-
-            files: item.files || [],
-          };
-        });
-      });
-    }
-    function renderMore() {
-      var list = document.getElementById("exhibition-list"),
-        button = document.getElementById("loadMoreExhibitions");
-      if (!list) return;
-      var next = allExhibitions.slice(
-          currentExhibitionIndex,
-          currentExhibitionIndex + perPage,
-        ),
-        html = "";
-      next.forEach(function (item, localIndex) {
-        html += renderExhibition(item, currentExhibitionIndex + localIndex);
-      });
-      list.insertAdjacentHTML("beforeend", html);
-      currentExhibitionIndex += next.length;
-      if (button)
-        button.style.display =
+      if (loadMoreButton) {
+        loadMoreButton.style.display =
           currentExhibitionIndex < allExhibitions.length
             ? "inline-block"
             : "none";
+      }
     }
-    function initiate() {
-      var list = document.getElementById("exhibition-list"),
-        button = document.getElementById("loadMoreExhibitions");
-      if (!list) return;
-      getArchive()
+
+    /* =========================================================
+     INITIALIZE EXHIBITIONS
+     ========================================================= */
+
+    function initiateExhibitions() {
+      var exhibitionList = document.getElementById("exhibition-list");
+
+      var loadMoreButton = document.getElementById("loadMoreExhibitions");
+
+      if (!exhibitionList) {
+        console.error("Missing #exhibition-list container.");
+
+        return;
+      }
+
+      getExhibitionArchive()
         .then(function (archive) {
           allExhibitions = archive
             .filter(function (item) {
@@ -2465,27 +2712,52 @@
               );
             })
             .sort(function (a, b) {
-              return Number((b && b.id) || 0) - Number((a && a.id) || 0);
+              var idA = Number((a && a.id) || 0);
+
+              var idB = Number((b && b.id) || 0);
+
+              return idB - idA;
             });
-          list.innerHTML = "";
+
+          exhibitionList.innerHTML = "";
+
           currentExhibitionIndex = 0;
+
           if (!allExhibitions.length) {
-            list.innerHTML =
-              '<div class="exhibition-empty">No exhibition records are published yet.</div>';
-            if (button) button.style.display = "none";
+            exhibitionList.innerHTML =
+              '<div class="exhibition-empty">' +
+              "No exhibition records are published yet." +
+              "</div>";
+
+            if (loadMoreButton) {
+              loadMoreButton.style.display = "none";
+            }
+
             return;
           }
-          renderMore();
+
+          renderMoreExhibitions();
         })
         .catch(function (error) {
           console.error("Exhibition load error:", error);
-          list.innerHTML =
-            '<div class="exhibition-error">The exhibition archive could not be loaded. Please return shortly.</div>';
-          if (button) button.style.display = "none";
+
+          exhibitionList.innerHTML =
+            '<div class="exhibition-error">' +
+            "The exhibition archive could not be loaded. " +
+            "Please return shortly." +
+            "</div>";
+
+          if (loadMoreButton) {
+            loadMoreButton.style.display = "none";
+          }
         });
-      if (button) button.addEventListener("click", renderMore);
+
+      if (loadMoreButton) {
+        loadMoreButton.addEventListener("click", renderMoreExhibitions);
+      }
     }
-    initiate();
+
+    initiateExhibitions();
   };
 
   pages.progress = function () {
