@@ -90,7 +90,7 @@
               </li>
 
               <li class="item active">
-                <a class="nav-link link active" href="project.html">PROJECT</a>
+                <a class="nav-link link active" href="#work-filters">WORK</a>
               </li>
               <li class="item">
                 <a class="nav-link link" href="contact.html" null="">CONTACT</a>
@@ -156,15 +156,18 @@
         }
 
         function removeHeroExtras() {
-          root.querySelectorAll("#caseHero .case-summary").forEach(function (summary) {
-            summary.remove();
-          });
+          root
+            .querySelectorAll("#caseHero .case-summary")
+            .forEach(function (summary) {
+              summary.remove();
+            });
 
           root
             .querySelectorAll("#caseHero .case-taxonomy-group")
             .forEach(function (group) {
               var label = group.querySelector(".case-taxonomy-label");
-              if (label && label.textContent.trim() === "Category") group.remove();
+              if (label && label.textContent.trim() === "Category")
+                group.remove();
             });
 
           var taxonomy = root.querySelector("#caseHero .case-taxonomy");
