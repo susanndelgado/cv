@@ -989,7 +989,7 @@
     var dimensions = field(item, "dimensions", "size");
     var year = field(item, "year", "date");
     var status = field(item, "status", "availability");
-    var description = text(item.description);
+    var description = field(item, "description") || "";
     var meta = [media, dimensions, status].filter(Boolean).join(" · ");
 
     var figure = document.createElement("figure");
