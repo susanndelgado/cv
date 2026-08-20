@@ -1,20 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Case Study | Susan Delgado</title>
-    <meta
-      name="description"
-      content="Development and design projects from Susan Delgado's professional portfolio."
-    />
+    <title>Susan Delgado | Developer, Designer & Fine Artist</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
     <!-- STYLESHEETS LINKS FROM SDELGADO -->
@@ -26,16 +22,9 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css" />
-    <link rel="stylesheet" href="/build/css/archived-build.css" />
-    <link rel="stylesheet" href="/build/css/styles.css" />
-
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="/js/vendor/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
   </head>
   <body id="work" class="page work-page">
     <header id="top">
@@ -105,7 +94,7 @@
       <section
         id="projectContent"
         class="project-content"
-        data-template="/build/tpl/project-content.html"
+        data-template="/tpl/project-content.html"
         aria-live="polite"
       >
         <p class="status">Loading project…</p>
@@ -135,7 +124,7 @@
 </pre
       >
     </footer>
-    <script src="/build/js/global.js"></script>
+    <script src="/js/global.js"></script>
     <script>
       (function () {
         var root = document.getElementById("projectContent");
@@ -299,7 +288,7 @@
           previewSourceState.status = "loading";
           previewSourceState.html = "";
 
-          fetch("/build/js/casestudies.json")
+          fetch("/js/casestudies.json")
             .then(function (response) {
               if (!response.ok)
                 throw new Error("Preview source map unavailable");
