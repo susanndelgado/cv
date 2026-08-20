@@ -866,17 +866,17 @@
     },
   ];
 
-  function ensureBuildHeader() {
-    // if (window.initBuildHeader) {
-    //   window.initBuildHeader(document);
-    //   return;
-    // }
-    // if (document.getElementById("sd-header-js")) return;
-    // var script = document.createElement("script");
-    // script.id = "sd-header-js";
-    // script.src = "/js/header.js";
-    // document.head.appendChild(script);
-  }
+  // function ensureBuildHeader() {
+  //   // if (window.initBuildHeader) {
+  //   //   window.initBuildHeader(document);
+  //   //   return;
+  //   // }
+  //   // if (document.getElementById("sd-header-js")) return;
+  //   // var script = document.createElement("script");
+  //   // script.id = "sd-header-js";
+  //   // script.src = "/js/header.js";
+  //   // document.head.appendChild(script);
+  // }
 
   function text(value) {
     if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
