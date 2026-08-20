@@ -866,24 +866,24 @@
 
   var ENDPOINT =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-  var GALLERIES = [
-    {
-      type: "gstory",
-      label: "Narrative",
-      href: "narrative-gallery-build.html",
-    },
-    { type: "gnature", label: "Wildlife", href: "wildlife-gallery-build.html" },
-    {
-      type: "gdecor",
-      label: "Decorative",
-      href: "decorative-gallery-build.html",
-    },
-    {
-      type: "gstudy",
-      label: "Academic Studies",
-      href: "studies-gallery-build.html",
-    },
-  ];
+  // var GALLERIES = [
+  //   {
+  //     type: "gstory",
+  //     label: "Narrative",
+  //     href: "narrative-gallery-build.html",
+  //   },
+  //   { type: "gnature", label: "Wildlife", href: "wildlife-gallery-build.html" },
+  //   {
+  //     type: "gdecor",
+  //     label: "Decorative",
+  //     href: "decorative-gallery-build.html",
+  //   },
+  //   {
+  //     type: "gstudy",
+  //     label: "Academic Studies",
+  //     href: "studies-gallery-build.html",
+  //   },
+  // ];
 
   // function ensureBuildHeader() {
   //   // if (window.initBuildHeader) {
@@ -961,26 +961,26 @@
     });
   }
 
-  function insertGalleryNavigation(type) {
-    var hero = document.querySelector(".art-gallery-hero");
-    if (!hero || hero.querySelector(".art-gallery-categories")) return;
-    var target = hero.querySelector(".container") || hero;
-    var nav = document.createElement("nav");
-    nav.className = "art-gallery-categories";
-    nav.setAttribute("aria-label", "Fine Arts galleries");
-    nav.innerHTML = GALLERIES.map(function (gallery) {
-      return (
-        '<a href="' +
-        gallery.href +
-        '"' +
-        (gallery.type === type ? ' class="active" aria-current="page"' : "") +
-        ">" +
-        gallery.label +
-        "</a>"
-      );
-    }).join("");
-    target.appendChild(nav);
-  }
+  // function insertGalleryNavigation(type) {
+  //   var hero = document.querySelector(".art-gallery-hero");
+  //   if (!hero || hero.querySelector(".art-gallery-categories")) return;
+  //   var target = hero.querySelector(".container") || hero;
+  //   var nav = document.createElement("nav");
+  //   nav.className = "art-gallery-categories";
+  //   nav.setAttribute("aria-label", "Fine Arts galleries");
+  //   nav.innerHTML = GALLERIES.map(function (gallery) {
+  //     return (
+  //       '<a href="' +
+  //       gallery.href +
+  //       '"' +
+  //       (gallery.type === type ? ' class="active" aria-current="page"' : "") +
+  //       ">" +
+  //       gallery.label +
+  //       "</a>"
+  //     );
+  //   }).join("");
+  //   target.appendChild(nav);
+  // }
 
   function makeCard(item, index) {
     var src = imageURL(item);
@@ -1058,7 +1058,7 @@
     )
       return;
 
-    insertGalleryNavigation(type);
+    // insertGalleryNavigation(type);
 
     function closeLightbox() {
       lightbox.classList.remove("open");
