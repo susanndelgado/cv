@@ -875,14 +875,14 @@ header .nav-tabs .nav-link.active:hover {
 
 #arts .community a,
 #arts .community a:visited,
-[id^="arts "] .community a,
-[id^="arts "] .community a:visited {
+.community a,
+.community a:visited {
   color: #d4af37;
 }
 b #arts .community a:hover,
 #arts .community a:focus,
-[id^="arts "] .community a:hover,
-[id^="arts "] .community a:focus {
+.community a:hover,
+.community a:focus {
   color: #fff;
 }
 
@@ -2179,7 +2179,6 @@ b #arts .community a:hover,
   margin: 3.25rem 0 1.125rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(73, 80, 87, 0.18);
-  font-family: "Playfair Display", Georgia, serif;
   font-size: 1.5rem;
   font-weight: 500;
 }
