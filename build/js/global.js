@@ -5,50 +5,50 @@
    This file is shared by several pages. The notes below describe what each
    named function is responsible for. They are documentation only;.
 
-   BUILD HEADER
-   - addClasses(element, names): Adds one or more CSS class names safely.
-   - isWorkSide(header): Detects whether the current page belongs to the
-     Technical Work side of the site.
-   - createWorkMainNav(header): Builds the Technical Work navigation when the
-     page does not already contain it.
-   - normalizeHeader(root): Applies the shared Bootstrap-compatible classes and
-     active-state structure to the site header.
+            BUILD HEADER
+            - addClasses(element, names): Adds one or more CSS class names safely.
+            - isWorkSide(header): Detects whether the current page belongs to the
+              Technical Work side of the site.
+            - createWorkMainNav(header): Builds the Technical Work navigation when the
+              page does not already contain it.
+            - normalizeHeader(root): Applies the shared Bootstrap-compatible classes and
+              active-state structure to the site header.
 
-   BUILD MOTION / TECHNICAL PORTFOLIO
-   - currentFile(): Returns the current HTML filename from the URL.
-   - isWorkPage(): Checks whether the visitor is on work.html.
-   - isProjectPage(): Checks whether the visitor is on project.html.
-   - ensureBuildHeader(): Makes sure the shared header initializer is available.
-   - ensureInteractionStylesheet(): Loads the Technical interaction/cursor CSS.
-   - getPostId(): Reads the project post ID from the project-page query string.
-   - postIdFromLink(link): Extracts a project post ID from a project link.
-   - normalizePortfolioNavigation(root): Normalizes project/archive navigation,
-     category links, skills pills and legacy archive anchors.
-   - normalizeAngularLabel(text): Renames AngularJS display text to Angular.
-   - applyVerifiedTechnologyEvidence(root): Corrects Angular skill labels based
-     on the verified source archive for specific projects.
-   - removePostEleven(): Removes/redirects the retired project with ID 11.
-   - addFellowsInteraction(): Adds the Fellows-specific UX explanation panels.
-   - cleanWinterBallPreview(): Removes one unwanted Winter Ball preview image and
-     repairs the remaining preview column layout.
-   - ensureLightbox(): Creates the reusable project-image lightbox and its close
-     behavior. Its nested close() function closes and resets the lightbox.
-   - openLightbox(trigger): Opens the lightbox with the selected project image.
-   - bindLightboxImages(root): Makes project images keyboard/click accessible as
-     lightbox triggers.
-   - runPortfolioFixes(root): Runs all Technical Work/project compatibility fixes.
-   - installPortfolioObserver(): Watches dynamically rendered project content and
-     reruns the fixes when that content changes.
-   - initCursor(): Creates and manages the custom Technical Work cursor. Its
-     nested setMode(target) function switches cursor state for links and images.
-   - initBuildMotion(root): Public initializer for Technical Work interactions.
-   - init(): Starts the Technical Work interaction layer on page load.
+            BUILD MOTION / TECHNICAL PORTFOLIO
+            - currentFile(): Returns the current HTML filename from the URL.
+            - isWorkPage(): Checks whether the visitor is on work.html.
+            - isProjectPage(): Checks whether the visitor is on project.html.
+            - ensureBuildHeader(): Makes sure the shared header initializer is available.
+            - ensureInteractionStylesheet(): Loads the Technical interaction/cursor CSS.
+            - getPostId(): Reads the project post ID from the project-page query string.
+            - postIdFromLink(link): Extracts a project post ID from a project link.
+            - normalizePortfolioNavigation(root): Normalizes project/archive navigation,
+              category links, skills pills and legacy archive anchors.
+            - normalizeAngularLabel(text): Renames AngularJS display text to Angular.
+            - applyVerifiedTechnologyEvidence(root): Corrects Angular skill labels based
+              on the verified source archive for specific projects.
+            - removePostEleven(): Removes/redirects the retired project with ID 11.
+            - addFellowsInteraction(): Adds the Fellows-specific UX explanation panels.
+            - cleanWinterBallPreview(): Removes one unwanted Winter Ball preview image and
+              repairs the remaining preview column layout.
+            - ensureLightbox(): Creates the reusable project-image lightbox and its close
+              behavior. Its nested close() function closes and resets the lightbox.
+            - openLightbox(trigger): Opens the lightbox with the selected project image.
+            - bindLightboxImages(root): Makes project images keyboard/click accessible as
+              lightbox triggers.
+            - runPortfolioFixes(root): Runs all Technical Work/project compatibility fixes.
+            - installPortfolioObserver(): Watches dynamically rendered project content and
+              reruns the fixes when that content changes.
+            - initCursor(): Creates and manages the custom Technical Work cursor. Its
+              nested setMode(target) function switches cursor state for links and images.
+            - initBuildMotion(root): Public initializer for Technical Work interactions.
+            - init(): Starts the Technical Work interaction layer on page load.
 
-   FINE ARTS INTERIOR
-   - ensureBuildHeader(): Makes sure the shared header initializer is available
-     on Fine Arts interior pages.
-   - resizeFrame(doc): Resizes an embedded Fine Arts preview iframe to its
-     document height.
+            FINE ARTS INTERIOR
+            - ensureBuildHeader(): Makes sure the shared header initializer is available
+              on Fine Arts interior pages.
+            - resizeFrame(doc): Resizes an embedded Fine Arts preview iframe to its
+              document height.
 
    FINE ARTS GALLERY
    - ensureBuildHeader(): Makes sure the shared header initializer is available.
@@ -165,675 +165,675 @@
  * Keeps Fine Arts as the global header treatment and adds Bootstrap-compatible
  * structural classes without loading Bootstrap's global stylesheet.
  */
-(function () {
-  "use strict";
+// (function () {
+//   "use strict";
 
-  function addClasses(element, names) {
-    if (!element) return;
-    names
-      .split(/\s+/)
-      .filter(Boolean)
-      .forEach(function (name) {
-        element.classList.add(name);
-      });
-  }
+//   function addClasses(element, names) {
+//     if (!element) return;
+//     names
+//       .split(/\s+/)
+//       .filter(Boolean)
+//       .forEach(function (name) {
+//         element.classList.add(name);
+//       });
+//   }
 
-  function isWorkSide(header) {
-    if (document.body.classList.contains("work-page")) return true;
-    if (
-      /\/(?:work|project|contact|resume(?:-build)?)\.html$/.test(
-        location.pathname,
-      )
-    )
-      return true;
-    return !!header.querySelector(
-      '.tabs .active a[href*="work.html"],.tabs a[aria-current="page"][href*="work.html"]',
-    );
-  }
+//   function isWorkSide(header) {
+//     if (document.body.classList.contains("work-page")) return true;
+//     if (
+//       /\/(?:work|project|contact|resume(?:-build)?)\.html$/.test(
+//         location.pathname,
+//       )
+//     )
+//       return true;
+//     return !!header.querySelector(
+//       '.tabs .active a[href*="work.html"],.tabs a[aria-current="page"][href*="work.html"]',
+//     );
+//   }
 
-  function createWorkMainNav(header) {
-    var nav = document.createElement("div");
-    nav.className = "main-nav";
-    nav.innerHTML =
-      '<div class="main-nav-inner"><a class="site-brand" href="/index.html">SUSAN DELGADO</a><nav class="site-links" aria-label="Technical portfolio navigation"><a href="work.html">TECHNICAL WORK</a><a href="project.html?post=23">PROJECTS</a><a href="contact.html" aria-current="page">CONTACT</a></nav></div>';
-    header.appendChild(nav);
-    return nav;
-  }
+//   function createWorkMainNav(header) {
+//     var nav = document.createElement("div");
+//     nav.className = "main-nav";
+//     nav.innerHTML =
+//       '<div class="main-nav-inner"><a class="site-brand" href="/index.html">SUSAN DELGADO</a><nav class="site-links" aria-label="Technical portfolio navigation"><a href="work.html">TECHNICAL WORK</a><a href="project.html?post=23">PROJECTS</a><a href="contact.html" aria-current="page">CONTACT</a></nav></div>';
+//     header.appendChild(nav);
+//     return nav;
+//   }
 
-  function normalizeHeader(root) {
-    root = root || document;
-    var header = root.querySelector(".site-header");
-    if (!header) return;
+//   function normalizeHeader(root) {
+//     root = root || document;
+//     var header = root.querySelector(".site-header");
+//     if (!header) return;
 
-    var workSide = isWorkSide(header);
-    addClasses(header, "site-header w-100");
+//     var workSide = isWorkSide(header);
+//     addClasses(header, "site-header w-100");
 
-    var topTabs = header.querySelector(".top-tabs");
-    addClasses(topTabs, "w-100");
+//     var topTabs = header.querySelector(".top-tabs");
+//     addClasses(topTabs, "w-100");
 
-    var tabs = header.querySelector(".tabs");
-    if (tabs) {
-      addClasses(tabs, "nav nav-tabs");
-      tabs.querySelectorAll(":scope > li").forEach(function (item) {
-        addClasses(item, "nav-item");
-        var link = item.querySelector(":scope > a");
-        addClasses(link, "nav-link");
-        if (
-          item.classList.contains("active") ||
-          (link && link.getAttribute("aria-current") === "page")
-        )
-          link.classList.add("active");
-      });
-    }
+//     var tabs = header.querySelector(".tabs");
+//     if (tabs) {
+//       addClasses(tabs, "nav nav-tabs");
+//       tabs.querySelectorAll(":scope > li").forEach(function (item) {
+//         addClasses(item, "nav-item");
+//         var link = item.querySelector(":scope > a");
+//         addClasses(link, "nav-link");
+//         if (
+//           item.classList.contains("active") ||
+//           (link && link.getAttribute("aria-current") === "page")
+//         )
+//           link.classList.add("active");
+//       });
+//     }
 
-    var mainNav = header.querySelector(".main-nav");
-    if (!mainNav && workSide) mainNav = createWorkMainNav(header);
-    if (!mainNav) return;
+//     var mainNav = header.querySelector(".main-nav");
+//     if (!mainNav && workSide) mainNav = createWorkMainNav(header);
+//     if (!mainNav) return;
 
-    addClasses(mainNav, "navbar navbar-expand-lg");
-    mainNav.classList.toggle("nav-work", workSide);
+//     addClasses(mainNav, "navbar navbar-expand-lg");
+//     mainNav.classList.toggle("nav-work", workSide);
 
-    var inner = mainNav.querySelector(".main-nav-inner");
-    addClasses(inner, "container-fluid");
+//     var inner = mainNav.querySelector(".main-nav-inner");
+//     addClasses(inner, "container-fluid");
 
-    var brand = mainNav.querySelector(".site-brand");
-    addClasses(brand, "navbar-brand");
+//     var brand = mainNav.querySelector(".site-brand");
+//     addClasses(brand, "navbar-brand");
 
-    var links = mainNav.querySelector(".site-links");
-    addClasses(links, "navbar-nav ms-auto");
-    if (links) {
-      links.querySelectorAll(":scope > a").forEach(function (link) {
-        addClasses(link, "nav-link");
-      });
-    }
-  }
+//     var links = mainNav.querySelector(".site-links");
+//     addClasses(links, "navbar-nav ms-auto");
+//     if (links) {
+//       links.querySelectorAll(":scope > a").forEach(function (link) {
+//         addClasses(link, "nav-link");
+//       });
+//     }
+//   }
 
-  window.initBuildHeader = normalizeHeader;
+//   window.initBuildHeader = normalizeHeader;
 
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", function () {
-      normalizeHeader(document);
-    });
-  else normalizeHeader(document);
-})();
+//   if (document.readyState === "loading")
+//     document.addEventListener("DOMContentLoaded", function () {
+//       normalizeHeader(document);
+//     });
+//   else normalizeHeader(document);
+// })();
 
 /* =========================================================
    BUILD MOTION / TECHNICAL PORTFOLIO
    ========================================================= */
-(function () {
-  "use strict";
+// (function () {
+//   "use strict";
 
-  var portfolioObserverInstalled = false;
-  var currentLightboxTrigger = null;
+//   var portfolioObserverInstalled = false;
+//   var currentLightboxTrigger = null;
 
-  /* Evidence status from the surviving source archive.
-     CHIP, SCAI and TRAC have inspectable Angular application source.
-     Dallas Leipzig has inspectable surviving source without Angular.
-     TVT remains unverified in the current archive. */
-  var confirmedAngularPosts = new Set(["14", "18", "44", "45"]);
-  var unverifiedAngularPosts = new Set(["16", "39"]);
+//   /* Evidence status from the surviving source archive.
+//      CHIP, SCAI and TRAC have inspectable Angular application source.
+//      Dallas Leipzig has inspectable surviving source without Angular.
+//      TVT remains unverified in the current archive. */
+//   var confirmedAngularPosts = new Set(["14", "18", "44", "45"]);
+//   var unverifiedAngularPosts = new Set(["16", "39"]);
 
-  function currentFile() {
-    return location.pathname.split("/").pop() || "";
-  }
+//   function currentFile() {
+//     return location.pathname.split("/").pop() || "";
+//   }
 
-  function isWorkPage() {
-    return currentFile() === "work.html";
-  }
+//   function isWorkPage() {
+//     return currentFile() === "work.html";
+//   }
 
-  function isProjectPage() {
-    return currentFile() === "project.html";
-  }
+//   function isProjectPage() {
+//     return currentFile() === "project.html";
+//   }
 
-  function ensureBuildHeader() {
-    if (window.initBuildHeader) {
-      window.initBuildHeader(document);
-      return;
-    }
-    if (document.getElementById("sd-header-js")) return;
-    var script = document.createElement("script");
-    script.id = "sd-header-js";
-    script.src = "/js/header.js";
-    document.head.appendChild(script);
-  }
+//   function ensureBuildHeader() {
+//     if (window.initBuildHeader) {
+//       window.initBuildHeader(document);
+//       return;
+//     }
+//     if (document.getElementById("sd-header-js")) return;
+//     var script = document.createElement("script");
+//     script.id = "sd-header-js";
+//     script.src = "/js/header.js";
+//     document.head.appendChild(script);
+//   }
 
-  function ensureInteractionStylesheet() {
-    if (document.getElementById("sd-interactions-css")) return;
-    var link = document.createElement("link");
-    link.id = "sd-interactions-css";
-    link.rel = "stylesheet";
-    link.href = "/css/interactions.css";
-    document.head.appendChild(link);
-  }
+//   function ensureInteractionStylesheet() {
+//     if (document.getElementById("sd-interactions-css")) return;
+//     var link = document.createElement("link");
+//     link.id = "sd-interactions-css";
+//     link.rel = "stylesheet";
+//     link.href = "/css/interactions.css";
+//     document.head.appendChild(link);
+//   }
 
-  function getPostId() {
-    if (!isProjectPage()) return "";
-    return new URLSearchParams(location.search).get("post") || "23";
-  }
+//   function getPostId() {
+//     if (!isProjectPage()) return "";
+//     return new URLSearchParams(location.search).get("post") || "23";
+//   }
 
-  function postIdFromLink(link) {
-    if (!link) return "";
-    try {
-      var url = new URL(link.getAttribute("href") || "", location.href);
-      return url.pathname.endsWith("/project.html")
-        ? url.searchParams.get("post") || ""
-        : "";
-    } catch (e) {
-      return "";
-    }
-  }
+//   function postIdFromLink(link) {
+//     if (!link) return "";
+//     try {
+//       var url = new URL(link.getAttribute("href") || "", location.href);
+//       return url.pathname.endsWith("/project.html")
+//         ? url.searchParams.get("post") || ""
+//         : "";
+//     } catch (e) {
+//       return "";
+//     }
+//   }
 
-  function normalizePortfolioNavigation(root) {
-    root = root || document;
-    var archiveHeading = document.querySelector("#archive .section-head h2");
-    if (
-      archiveHeading &&
-      archiveHeading.textContent.trim() === "Additional professional work"
-    ) {
-      archiveHeading.id = "additional-professional-work";
-    }
+//   function normalizePortfolioNavigation(root) {
+//     root = root || document;
+//     var archiveHeading = document.querySelector("#archive .section-head h2");
+//     if (
+//       archiveHeading &&
+//       archiveHeading.textContent.trim() === "Additional professional work"
+//     ) {
+//       archiveHeading.id = "additional-professional-work";
+//     }
 
-    root.querySelectorAll(".case-taxonomy-group").forEach(function (group) {
-      var label = group.querySelector(".case-taxonomy-label");
-      if (!label) return;
-      var labelText = label.textContent.trim();
-      if (labelText === "Project type" || labelText === "Category") {
-        label.textContent = "Category";
-        group.querySelectorAll("a.pill").forEach(function (link) {
-          var href = link.getAttribute("href") || "";
-          if (href.indexOf("#archive") !== -1)
-            href = href.replace("#archive", "#projectArchive");
-          if (href.indexOf("#additional-professional-work") !== -1)
-            href = href.replace(
-              "#additional-professional-work",
-              "#projectArchive",
-            );
-          link.setAttribute("href", href);
-        });
-      } else if (labelText === "Skills") {
-        group.querySelectorAll("a.pill").forEach(function (link) {
-          var span = document.createElement("span");
-          span.className = "pill";
-          span.textContent = link.textContent;
-          link.replaceWith(span);
-        });
-      }
-    });
+//     root.querySelectorAll(".case-taxonomy-group").forEach(function (group) {
+//       var label = group.querySelector(".case-taxonomy-label");
+//       if (!label) return;
+//       var labelText = label.textContent.trim();
+//       if (labelText === "Project type" || labelText === "Category") {
+//         label.textContent = "Category";
+//         group.querySelectorAll("a.pill").forEach(function (link) {
+//           var href = link.getAttribute("href") || "";
+//           if (href.indexOf("#archive") !== -1)
+//             href = href.replace("#archive", "#projectArchive");
+//           if (href.indexOf("#additional-professional-work") !== -1)
+//             href = href.replace(
+//               "#additional-professional-work",
+//               "#projectArchive",
+//             );
+//           link.setAttribute("href", href);
+//         });
+//       } else if (labelText === "Skills") {
+//         group.querySelectorAll("a.pill").forEach(function (link) {
+//           var span = document.createElement("span");
+//           span.className = "pill";
+//           span.textContent = link.textContent;
+//           link.replaceWith(span);
+//         });
+//       }
+//     });
 
-    root.querySelectorAll("a.case-nav-all").forEach(function (link) {
-      link.setAttribute("href", "work.html#projectArchive");
-    });
-    root
-      .querySelectorAll('a[href*="work.html?type="]')
-      .forEach(function (link) {
-        var href = link.getAttribute("href") || "";
-        if (href.indexOf("#archive") !== -1)
-          href = href.replace("#archive", "#projectArchive");
-        if (href.indexOf("#additional-professional-work") !== -1)
-          href = href.replace(
-            "#additional-professional-work",
-            "#projectArchive",
-          );
-        link.setAttribute("href", href);
-      });
-    root
-      .querySelectorAll(
-        'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
-      )
-      .forEach(function (link) {
-        link.setAttribute("href", "work.html#projectArchive");
-      });
+//     root.querySelectorAll("a.case-nav-all").forEach(function (link) {
+//       link.setAttribute("href", "work.html#projectArchive");
+//     });
+//     root
+//       .querySelectorAll('a[href*="work.html?type="]')
+//       .forEach(function (link) {
+//         var href = link.getAttribute("href") || "";
+//         if (href.indexOf("#archive") !== -1)
+//           href = href.replace("#archive", "#projectArchive");
+//         if (href.indexOf("#additional-professional-work") !== -1)
+//           href = href.replace(
+//             "#additional-professional-work",
+//             "#projectArchive",
+//           );
+//         link.setAttribute("href", href);
+//       });
+//     root
+//       .querySelectorAll(
+//         'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
+//       )
+//       .forEach(function (link) {
+//         link.setAttribute("href", "work.html#projectArchive");
+//       });
 
-    var filterStatus = document.getElementById("archiveFilterStatus");
-    if (filterStatus) {
-      Array.prototype.slice
-        .call(filterStatus.childNodes)
-        .forEach(function (node) {
-          if (
-            node.nodeType === Node.TEXT_NODE &&
-            node.nodeValue.indexOf("Project type:") !== -1
-          ) {
-            node.nodeValue = node.nodeValue.replace(
-              "Project type:",
-              "Category:",
-            );
-          }
-        });
-      filterStatus
-        .querySelectorAll(
-          'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
-        )
-        .forEach(function (link) {
-          link.setAttribute("href", "work.html#projectArchive");
-        });
-    }
+//     var filterStatus = document.getElementById("archiveFilterStatus");
+//     if (filterStatus) {
+//       Array.prototype.slice
+//         .call(filterStatus.childNodes)
+//         .forEach(function (node) {
+//           if (
+//             node.nodeType === Node.TEXT_NODE &&
+//             node.nodeValue.indexOf("Project type:") !== -1
+//           ) {
+//             node.nodeValue = node.nodeValue.replace(
+//               "Project type:",
+//               "Category:",
+//             );
+//           }
+//         });
+//       filterStatus
+//         .querySelectorAll(
+//           'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
+//         )
+//         .forEach(function (link) {
+//           link.setAttribute("href", "work.html#projectArchive");
+//         });
+//     }
 
-    if (
-      isWorkPage() &&
-      (location.hash === "#archive" ||
-        location.hash === "#additional-professional-work")
-    ) {
-      history.replaceState(
-        null,
-        "",
-        location.pathname + location.search + "#projectArchive",
-      );
-    }
-  }
+//     if (
+//       isWorkPage() &&
+//       (location.hash === "#archive" ||
+//         location.hash === "#additional-professional-work")
+//     ) {
+//       history.replaceState(
+//         null,
+//         "",
+//         location.pathname + location.search + "#projectArchive",
+//       );
+//     }
+//   }
 
-  function normalizeAngularLabel(text) {
-    return /^AngularJS$/i.test(String(text || "").trim())
-      ? "Angular"
-      : String(text || "").trim();
-  }
+//   function normalizeAngularLabel(text) {
+//     return /^AngularJS$/i.test(String(text || "").trim())
+//       ? "Angular"
+//       : String(text || "").trim();
+//   }
 
-  function applyVerifiedTechnologyEvidence(root) {
-    root = root || document;
+//   function applyVerifiedTechnologyEvidence(root) {
+//     root = root || document;
 
-    if (isWorkPage()) {
-      root
-        .querySelectorAll(".project-card,.archive-card")
-        .forEach(function (card) {
-          var id = postIdFromLink(
-            card.querySelector('a[href*="project.html?post="]'),
-          );
-          if (!id) return;
-          var skills = String(card.dataset.skills || "")
-            .split("||")
-            .map(normalizeAngularLabel)
-            .filter(Boolean);
-          skills = skills.filter(function (skill) {
-            return skill.toLowerCase() !== "angularjs";
-          });
-          var hasAngular = skills.some(function (skill) {
-            return skill.toLowerCase() === "angular";
-          });
-          if (confirmedAngularPosts.has(id) && !hasAngular)
-            skills.push("angular");
-          if (unverifiedAngularPosts.has(id))
-            skills = skills.filter(function (skill) {
-              return skill.toLowerCase() !== "angular";
-            });
-          card.dataset.skills = Array.from(new Set(skills)).join("||");
-        });
-    }
+//     if (isWorkPage()) {
+//       root
+//         .querySelectorAll(".project-card,.archive-card")
+//         .forEach(function (card) {
+//           var id = postIdFromLink(
+//             card.querySelector('a[href*="project.html?post="]'),
+//           );
+//           if (!id) return;
+//           var skills = String(card.dataset.skills || "")
+//             .split("||")
+//             .map(normalizeAngularLabel)
+//             .filter(Boolean);
+//           skills = skills.filter(function (skill) {
+//             return skill.toLowerCase() !== "angularjs";
+//           });
+//           var hasAngular = skills.some(function (skill) {
+//             return skill.toLowerCase() === "angular";
+//           });
+//           if (confirmedAngularPosts.has(id) && !hasAngular)
+//             skills.push("angular");
+//           if (unverifiedAngularPosts.has(id))
+//             skills = skills.filter(function (skill) {
+//               return skill.toLowerCase() !== "angular";
+//             });
+//           card.dataset.skills = Array.from(new Set(skills)).join("||");
+//         });
+//     }
 
-    if (isProjectPage()) {
-      var id = getPostId();
-      root.querySelectorAll(".case-taxonomy-group").forEach(function (group) {
-        var label = group.querySelector(".case-taxonomy-label");
-        if (!label || label.textContent.trim() !== "Skills") return;
-        var pills = Array.prototype.slice.call(group.querySelectorAll(".pill"));
-        pills.forEach(function (pill) {
-          if (/^AngularJS$/i.test(pill.textContent.trim()))
-            pill.textContent = "Angular";
-        });
-        pills = Array.prototype.slice.call(group.querySelectorAll(".pill"));
-        var angularPill = pills.find(function (pill) {
-          return /^Angular$/i.test(pill.textContent.trim());
-        });
-        var holder = group.querySelector(".pills");
-        if (confirmedAngularPosts.has(id) && holder && !angularPill) {
-          var span = document.createElement("span");
-          span.className = "pill";
-          span.textContent = "Angular";
-          holder.appendChild(span);
-        }
-        if (unverifiedAngularPosts.has(id)) {
-          group.querySelectorAll(".pill").forEach(function (pill) {
-            if (/^Angular(?:JS)?$/i.test(pill.textContent.trim()))
-              pill.remove();
-          });
-        }
-      });
-    }
-  }
+//     if (isProjectPage()) {
+//       var id = getPostId();
+//       root.querySelectorAll(".case-taxonomy-group").forEach(function (group) {
+//         var label = group.querySelector(".case-taxonomy-label");
+//         if (!label || label.textContent.trim() !== "Skills") return;
+//         var pills = Array.prototype.slice.call(group.querySelectorAll(".pill"));
+//         pills.forEach(function (pill) {
+//           if (/^AngularJS$/i.test(pill.textContent.trim()))
+//             pill.textContent = "Angular";
+//         });
+//         pills = Array.prototype.slice.call(group.querySelectorAll(".pill"));
+//         var angularPill = pills.find(function (pill) {
+//           return /^Angular$/i.test(pill.textContent.trim());
+//         });
+//         var holder = group.querySelector(".pills");
+//         if (confirmedAngularPosts.has(id) && holder && !angularPill) {
+//           var span = document.createElement("span");
+//           span.className = "pill";
+//           span.textContent = "Angular";
+//           holder.appendChild(span);
+//         }
+//         if (unverifiedAngularPosts.has(id)) {
+//           group.querySelectorAll(".pill").forEach(function (pill) {
+//             if (/^Angular(?:JS)?$/i.test(pill.textContent.trim()))
+//               pill.remove();
+//           });
+//         }
+//       });
+//     }
+//   }
 
-  function removePostEleven() {
-    if (isProjectPage() && getPostId() === "11") {
-      location.replace("work.html#additional-professional-work");
-      return true;
-    }
-    if (isWorkPage()) {
-      document
-        .querySelectorAll('a[href*="project.html?post=11"]')
-        .forEach(function (link) {
-          var card = link.closest(".project-card,.archive-card");
-          if (card) card.remove();
-        });
-    }
-    return false;
-  }
+//   function removePostEleven() {
+//     if (isProjectPage() && getPostId() === "11") {
+//       location.replace("work.html#additional-professional-work");
+//       return true;
+//     }
+//     if (isWorkPage()) {
+//       document
+//         .querySelectorAll('a[href*="project.html?post=11"]')
+//         .forEach(function (link) {
+//           var card = link.closest(".project-card,.archive-card");
+//           if (card) card.remove();
+//         });
+//     }
+//     return false;
+//   }
 
-  function addFellowsInteraction() {
-    var id = getPostId();
-    if (id !== "17" && id !== "21") return;
-    var section = document.getElementById("uxSection");
-    var title = document.getElementById("uxTitle");
-    var intro = document.getElementById("uxIntro");
-    var panels = document.getElementById("uxPanels");
-    if (
-      !section ||
-      !title ||
-      !intro ||
-      !panels ||
-      section.dataset.sdFellows === "1"
-    )
-      return;
-    title.textContent = "Selectable conference content component";
-    intro.textContent =
-      "The Fellows interface let visitors move between conference topics without leaving the page.";
-    panels.innerHTML =
-      '<article class="panel"><h3>Coordinated content switching</h3><p>Selecting an item updated both the featured image and the corresponding explanatory text in place.</p></article><article class="panel"><h3>In-page topic navigation</h3><p>The interaction kept the visual reference and related information paired while visitors moved between topics.</p></article>';
-    section.hidden = false;
-    section.dataset.sdFellows = "1";
-  }
+//   function addFellowsInteraction() {
+//     var id = getPostId();
+//     if (id !== "17" && id !== "21") return;
+//     var section = document.getElementById("uxSection");
+//     var title = document.getElementById("uxTitle");
+//     var intro = document.getElementById("uxIntro");
+//     var panels = document.getElementById("uxPanels");
+//     if (
+//       !section ||
+//       !title ||
+//       !intro ||
+//       !panels ||
+//       section.dataset.sdFellows === "1"
+//     )
+//       return;
+//     title.textContent = "Selectable conference content component";
+//     intro.textContent =
+//       "The Fellows interface let visitors move between conference topics without leaving the page.";
+//     panels.innerHTML =
+//       '<article class="panel"><h3>Coordinated content switching</h3><p>Selecting an item updated both the featured image and the corresponding explanatory text in place.</p></article><article class="panel"><h3>In-page topic navigation</h3><p>The interaction kept the visual reference and related information paired while visitors moved between topics.</p></article>';
+//     section.hidden = false;
+//     section.dataset.sdFellows = "1";
+//   }
 
-  function cleanWinterBallPreview() {
-    if (getPostId() !== "10") return;
-    var preview = document.getElementById("projectPreview");
-    if (!preview) return;
-    var image = Array.prototype.find.call(
-      preview.querySelectorAll("img"),
-      function (img) {
-        return (
-          (img.getAttribute("src") || "").indexOf(
-            "pcwp-winterball-photo-2018.jpg",
-          ) !== -1
-        );
-      },
-    );
-    if (!image) return;
-    var row = image.closest(".row");
-    var column = image.closest('[class*="col-"]');
-    if (column) column.remove();
-    else image.remove();
-    if (row) {
-      var remaining = Array.prototype.slice
-        .call(row.children)
-        .filter(function (child) {
-          return child.querySelector && child.querySelector("img");
-        });
-      if (remaining.length === 2)
-        remaining.forEach(function (child) {
-          child.className = "col-lg-6 col-md-6 col-sm-12";
-        });
-    }
-  }
+//   function cleanWinterBallPreview() {
+//     if (getPostId() !== "10") return;
+//     var preview = document.getElementById("projectPreview");
+//     if (!preview) return;
+//     var image = Array.prototype.find.call(
+//       preview.querySelectorAll("img"),
+//       function (img) {
+//         return (
+//           (img.getAttribute("src") || "").indexOf(
+//             "pcwp-winterball-photo-2018.jpg",
+//           ) !== -1
+//         );
+//       },
+//     );
+//     if (!image) return;
+//     var row = image.closest(".row");
+//     var column = image.closest('[class*="col-"]');
+//     if (column) column.remove();
+//     else image.remove();
+//     if (row) {
+//       var remaining = Array.prototype.slice
+//         .call(row.children)
+//         .filter(function (child) {
+//           return child.querySelector && child.querySelector("img");
+//         });
+//       if (remaining.length === 2)
+//         remaining.forEach(function (child) {
+//           child.className = "col-lg-6 col-md-6 col-sm-12";
+//         });
+//     }
+//   }
 
-  function ensureLightbox() {
-    var box = document.querySelector(".sd-lightbox");
-    if (box) return box;
-    box = document.createElement("div");
-    box.className = "sd-lightbox";
-    box.hidden = true;
-    box.setAttribute("role", "dialog");
-    box.setAttribute("aria-modal", "true");
-    box.setAttribute("aria-label", "Expanded project image");
-    box.innerHTML =
-      '<div class="sd-lightbox-inner"><button class="sd-lightbox-close" type="button" aria-label="Close expanded image">×</button><img alt=""><p class="sd-lightbox-caption"></p></div>';
-    document.body.appendChild(box);
+//   function ensureLightbox() {
+//     var box = document.querySelector(".sd-lightbox");
+//     if (box) return box;
+//     box = document.createElement("div");
+//     box.className = "sd-lightbox";
+//     box.hidden = true;
+//     box.setAttribute("role", "dialog");
+//     box.setAttribute("aria-modal", "true");
+//     box.setAttribute("aria-label", "Expanded project image");
+//     box.innerHTML =
+//       '<div class="sd-lightbox-inner"><button class="sd-lightbox-close" type="button" aria-label="Close expanded image">×</button><img alt=""><p class="sd-lightbox-caption"></p></div>';
+//     document.body.appendChild(box);
 
-    function close() {
-      if (box.hidden) return;
-      box.hidden = true;
-      document.documentElement.classList.remove("sd-lightbox-open");
-      box.querySelector("img").removeAttribute("src");
-      if (currentLightboxTrigger && document.contains(currentLightboxTrigger))
-        currentLightboxTrigger.focus({ preventScroll: true });
-      currentLightboxTrigger = null;
-    }
+//     function close() {
+//       if (box.hidden) return;
+//       box.hidden = true;
+//       document.documentElement.classList.remove("sd-lightbox-open");
+//       box.querySelector("img").removeAttribute("src");
+//       if (currentLightboxTrigger && document.contains(currentLightboxTrigger))
+//         currentLightboxTrigger.focus({ preventScroll: true });
+//       currentLightboxTrigger = null;
+//     }
 
-    box.addEventListener("click", function (event) {
-      if (event.target === box || event.target.closest(".sd-lightbox-close"))
-        close();
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !box.hidden) close();
-    });
-    return box;
-  }
+//     box.addEventListener("click", function (event) {
+//       if (event.target === box || event.target.closest(".sd-lightbox-close"))
+//         close();
+//     });
+//     document.addEventListener("keydown", function (event) {
+//       if (event.key === "Escape" && !box.hidden) close();
+//     });
+//     return box;
+//   }
 
-  function openLightbox(trigger) {
-    var box = ensureLightbox();
-    var image = box.querySelector("img");
-    var caption = box.querySelector(".sd-lightbox-caption");
-    currentLightboxTrigger = trigger;
-    image.src = trigger.currentSrc || trigger.src;
-    image.alt = trigger.alt || "Expanded project image";
-    caption.textContent = trigger.alt || "";
-    caption.hidden = !caption.textContent;
-    box.hidden = false;
-    document.documentElement.classList.add("sd-lightbox-open");
-    box.querySelector(".sd-lightbox-close").focus({ preventScroll: true });
-  }
+//   function openLightbox(trigger) {
+//     var box = ensureLightbox();
+//     var image = box.querySelector("img");
+//     var caption = box.querySelector(".sd-lightbox-caption");
+//     currentLightboxTrigger = trigger;
+//     image.src = trigger.currentSrc || trigger.src;
+//     image.alt = trigger.alt || "Expanded project image";
+//     caption.textContent = trigger.alt || "";
+//     caption.hidden = !caption.textContent;
+//     box.hidden = false;
+//     document.documentElement.classList.add("sd-lightbox-open");
+//     box.querySelector(".sd-lightbox-close").focus({ preventScroll: true });
+//   }
 
-  function bindLightboxImages(root) {
-    if (!isProjectPage()) return;
-    root = root || document;
-    root
-      .querySelectorAll(".case-visual img,#projectPreview img")
-      .forEach(function (img) {
-        if (img.dataset.sdLightbox === "1") return;
-        img.dataset.sdLightbox = "1";
-        img.setAttribute("role", "button");
-        img.setAttribute("tabindex", "0");
-        img.setAttribute(
-          "aria-label",
-          (img.alt || "Project image") + " — open larger",
-        );
-        img.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          openLightbox(img);
-        });
-        img.addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openLightbox(img);
-          }
-        });
-      });
-  }
+//   function bindLightboxImages(root) {
+//     if (!isProjectPage()) return;
+//     root = root || document;
+//     root
+//       .querySelectorAll(".case-visual img,#projectPreview img")
+//       .forEach(function (img) {
+//         if (img.dataset.sdLightbox === "1") return;
+//         img.dataset.sdLightbox = "1";
+//         img.setAttribute("role", "button");
+//         img.setAttribute("tabindex", "0");
+//         img.setAttribute(
+//           "aria-label",
+//           (img.alt || "Project image") + " — open larger",
+//         );
+//         img.addEventListener("click", function (event) {
+//           event.preventDefault();
+//           event.stopPropagation();
+//           openLightbox(img);
+//         });
+//         img.addEventListener("keydown", function (event) {
+//           if (event.key === "Enter" || event.key === " ") {
+//             event.preventDefault();
+//             openLightbox(img);
+//           }
+//         });
+//       });
+//   }
 
-  function runPortfolioFixes(root) {
-    if (removePostEleven()) return;
-    normalizePortfolioNavigation(root || document);
-    applyVerifiedTechnologyEvidence(root || document);
-    cleanWinterBallPreview();
-    addFellowsInteraction();
-    bindLightboxImages(root || document);
-  }
+//   function runPortfolioFixes(root) {
+//     if (removePostEleven()) return;
+//     normalizePortfolioNavigation(root || document);
+//     applyVerifiedTechnologyEvidence(root || document);
+//     cleanWinterBallPreview();
+//     addFellowsInteraction();
+//     bindLightboxImages(root || document);
+//   }
 
-  function installPortfolioObserver() {
-    if (portfolioObserverInstalled || !window.MutationObserver) return;
-    var targets = [
-      document.getElementById("caseHero"),
-      document.getElementById("caseNavTop"),
-      document.getElementById("caseNavBottom"),
-      document.getElementById("caseNarrative"),
-      document.getElementById("uxSection"),
-      document.getElementById("projectPreview"),
-      document.getElementById("projectArchive"),
-      document.getElementById("archiveFilterStatus"),
-    ].filter(Boolean);
-    if (!targets.length) return;
-    portfolioObserverInstalled = true;
-    var queued = false;
-    var observer = new MutationObserver(function () {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(function () {
-        queued = false;
-        runPortfolioFixes(document);
-      });
-    });
-    targets.forEach(function (target) {
-      observer.observe(target, { childList: true, subtree: true });
-    });
-  }
+//   function installPortfolioObserver() {
+//     if (portfolioObserverInstalled || !window.MutationObserver) return;
+//     var targets = [
+//       document.getElementById("caseHero"),
+//       document.getElementById("caseNavTop"),
+//       document.getElementById("caseNavBottom"),
+//       document.getElementById("caseNarrative"),
+//       document.getElementById("uxSection"),
+//       document.getElementById("projectPreview"),
+//       document.getElementById("projectArchive"),
+//       document.getElementById("archiveFilterStatus"),
+//     ].filter(Boolean);
+//     if (!targets.length) return;
+//     portfolioObserverInstalled = true;
+//     var queued = false;
+//     var observer = new MutationObserver(function () {
+//       if (queued) return;
+//       queued = true;
+//       requestAnimationFrame(function () {
+//         queued = false;
+//         runPortfolioFixes(document);
+//       });
+//     });
+//     targets.forEach(function (target) {
+//       observer.observe(target, { childList: true, subtree: true });
+//     });
+//   }
 
-  function initCursor() {
-    if (
-      !window.matchMedia ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
-    if (
-      !window.matchMedia("(pointer:fine) and (hover:hover)").matches ||
-      document.querySelector(".sd-cursor")
-    )
-      return;
-    var cursor = document.createElement("div");
-    cursor.className = "sd-cursor";
-    document.body.appendChild(cursor);
-    document.documentElement.classList.add("sd-cursor-enabled");
-    var lastMode = "";
+//   function initCursor() {
+//     if (
+//       !window.matchMedia ||
+//       window.matchMedia("(prefers-reduced-motion: reduce)").matches
+//     )
+//       return;
+//     if (
+//       !window.matchMedia("(pointer:fine) and (hover:hover)").matches ||
+//       document.querySelector(".sd-cursor")
+//     )
+//       return;
+//     var cursor = document.createElement("div");
+//     cursor.className = "sd-cursor";
+//     document.body.appendChild(cursor);
+//     document.documentElement.classList.add("sd-cursor-enabled");
+//     var lastMode = "";
 
-    function setMode(target) {
-      var image =
-        target &&
-        target.closest &&
-        target.closest(
-          "[data-sd-lightbox],.project-image,.case-visual,.preview-stack a",
-        );
-      var link =
-        target && target.closest && target.closest('a,button,[role="button"]');
-      var mode = image ? "image" : link ? "link" : "";
-      if (mode === lastMode) return;
-      lastMode = mode;
-      document.documentElement.classList.toggle(
-        "sd-cursor-image",
-        mode === "image",
-      );
-      document.documentElement.classList.toggle(
-        "sd-cursor-link",
-        mode === "link",
-      );
-    }
+//     function setMode(target) {
+//       var image =
+//         target &&
+//         target.closest &&
+//         target.closest(
+//           "[data-sd-lightbox],.project-image,.case-visual,.preview-stack a",
+//         );
+//       var link =
+//         target && target.closest && target.closest('a,button,[role="button"]');
+//       var mode = image ? "image" : link ? "link" : "";
+//       if (mode === lastMode) return;
+//       lastMode = mode;
+//       document.documentElement.classList.toggle(
+//         "sd-cursor-image",
+//         mode === "image",
+//       );
+//       document.documentElement.classList.toggle(
+//         "sd-cursor-link",
+//         mode === "link",
+//       );
+//     }
 
-    document.addEventListener(
-      "pointermove",
-      function (event) {
-        cursor.style.transform =
-          "translate3d(" +
-          event.clientX +
-          "px," +
-          event.clientY +
-          "px,0) translate(-50%,-50%)";
-        document.documentElement.classList.add("sd-cursor-live");
-        setMode(event.target);
-      },
-      { passive: true },
-    );
-    document.addEventListener("pointerleave", function () {
-      document.documentElement.classList.remove(
-        "sd-cursor-live",
-        "sd-cursor-link",
-        "sd-cursor-image",
-      );
-      lastMode = "";
-    });
-    window.addEventListener("blur", function () {
-      document.documentElement.classList.remove(
-        "sd-cursor-live",
-        "sd-cursor-link",
-        "sd-cursor-image",
-      );
-      lastMode = "";
-    });
-  }
+//     document.addEventListener(
+//       "pointermove",
+//       function (event) {
+//         cursor.style.transform =
+//           "translate3d(" +
+//           event.clientX +
+//           "px," +
+//           event.clientY +
+//           "px,0) translate(-50%,-50%)";
+//         document.documentElement.classList.add("sd-cursor-live");
+//         setMode(event.target);
+//       },
+//       { passive: true },
+//     );
+//     document.addEventListener("pointerleave", function () {
+//       document.documentElement.classList.remove(
+//         "sd-cursor-live",
+//         "sd-cursor-link",
+//         "sd-cursor-image",
+//       );
+//       lastMode = "";
+//     });
+//     window.addEventListener("blur", function () {
+//       document.documentElement.classList.remove(
+//         "sd-cursor-live",
+//         "sd-cursor-link",
+//         "sd-cursor-image",
+//       );
+//       lastMode = "";
+//     });
+//   }
 
-  function initBuildMotion(root) {
-    ensureBuildHeader();
-    ensureInteractionStylesheet();
-    runPortfolioFixes(root || document);
-    installPortfolioObserver();
-  }
+//   function initBuildMotion(root) {
+//     ensureBuildHeader();
+//     ensureInteractionStylesheet();
+//     runPortfolioFixes(root || document);
+//     installPortfolioObserver();
+//   }
 
-  window.initBuildMotion = initBuildMotion;
+//   window.initBuildMotion = initBuildMotion;
 
-  function init() {
-    ensureBuildHeader();
-    ensureInteractionStylesheet();
-    runPortfolioFixes(document);
-    installPortfolioObserver();
-    initCursor();
-  }
+//   function init() {
+//     ensureBuildHeader();
+//     ensureInteractionStylesheet();
+//     runPortfolioFixes(document);
+//     installPortfolioObserver();
+//     initCursor();
+//   }
 
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init);
-  else init();
-})();
+//   if (document.readyState === "loading")
+//     document.addEventListener("DOMContentLoaded", init);
+//   else init();
+// })();
 
 /* =========================================================
    FINE ARTS INTERIOR
    ========================================================= */
-(function () {
-  "use strict";
+// (function () {
+//   "use strict";
 
-  function ensureBuildHeader() {
-    if (window.initBuildHeader) {
-      window.initBuildHeader(document);
-      return;
-    }
-    if (document.getElementById("sd-header-js")) return;
-    var script = document.createElement("script");
-    script.id = "sd-header-js";
-    script.src = "/js/header.js";
-    document.head.appendChild(script);
-  }
+//   function ensureBuildHeader() {
+//     if (window.initBuildHeader) {
+//       window.initBuildHeader(document);
+//       return;
+//     }
+//     if (document.getElementById("sd-header-js")) return;
+//     var script = document.createElement("script");
+//     script.id = "sd-header-js";
+//     script.src = "/js/header.js";
+//     document.head.appendChild(script);
+//   }
 
-  ensureBuildHeader();
+//   ensureBuildHeader();
 
-  var frame = document.querySelector(".finearts-preview-frame");
-  if (!frame) return;
+//   var frame = document.querySelector(".finearts-preview-frame");
+//   if (!frame) return;
 
-  function resizeFrame(doc) {
-    if (!doc || !doc.documentElement) return;
-    var height = Math.max(
-      doc.documentElement.scrollHeight || 0,
-      doc.body ? doc.body.scrollHeight : 0,
-      900,
-    );
-    frame.style.height = height + "px";
-  }
+//   function resizeFrame(doc) {
+//     if (!doc || !doc.documentElement) return;
+//     var height = Math.max(
+//       doc.documentElement.scrollHeight || 0,
+//       doc.body ? doc.body.scrollHeight : 0,
+//       900,
+//     );
+//     frame.style.height = height + "px";
+//   }
 
-  frame.addEventListener("load", function () {
-    var doc = frame.contentDocument;
-    if (!doc) return;
+//   frame.addEventListener("load", function () {
+//     var doc = frame.contentDocument;
+//     if (!doc) return;
 
-    var hideChrome = doc.createElement("style");
-    hideChrome.textContent =
-      "#top{display:none!important} footer{display:none!important}";
-    doc.head.appendChild(hideChrome);
+//     var hideChrome = doc.createElement("style");
+//     hideChrome.textContent =
+//       "#top{display:none!important} footer{display:none!important}";
+//     doc.head.appendChild(hideChrome);
 
-    var theme = doc.createElement("link");
-    theme.rel = "stylesheet";
-    theme.href = "/css/finearts-build.css";
-    doc.head.appendChild(theme);
+//     var theme = doc.createElement("link");
+//     theme.rel = "stylesheet";
+//     theme.href = "/css/finearts-build.css";
+//     doc.head.appendChild(theme);
 
-    doc
-      .querySelectorAll(".process-hero,.boutique-hero")
-      .forEach(function (hero) {
-        hero.classList.add("finearts-hero");
-      });
+//     doc
+//       .querySelectorAll(".process-hero,.boutique-hero")
+//       .forEach(function (hero) {
+//         hero.classList.add("finearts-hero");
+//       });
 
-    resizeFrame(doc);
-    if (window.ResizeObserver && doc.body) {
-      var observer = new ResizeObserver(function () {
-        resizeFrame(doc);
-      });
-      observer.observe(doc.body);
-    }
-    setTimeout(function () {
-      resizeFrame(doc);
-    }, 500);
-    setTimeout(function () {
-      resizeFrame(doc);
-    }, 1800);
-  });
-})();
+//     resizeFrame(doc);
+//     if (window.ResizeObserver && doc.body) {
+//       var observer = new ResizeObserver(function () {
+//         resizeFrame(doc);
+//       });
+//       observer.observe(doc.body);
+//     }
+//     setTimeout(function () {
+//       resizeFrame(doc);
+//     }, 500);
+//     setTimeout(function () {
+//       resizeFrame(doc);
+//     }, 1800);
+//   });
+// })();
 
 /* =========================================================
    FINE ARTS GALLERY
