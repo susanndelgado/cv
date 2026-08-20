@@ -155,6 +155,22 @@
           );
         }
 
+        function removeHeroExtras() {
+          root.querySelectorAll("#caseHero .case-summary").forEach(function (summary) {
+            summary.remove();
+          });
+
+          root
+            .querySelectorAll("#caseHero .case-taxonomy-group")
+            .forEach(function (group) {
+              var label = group.querySelector(".case-taxonomy-label");
+              if (label && label.textContent.trim() === "Category") group.remove();
+            });
+
+          var taxonomy = root.querySelector("#caseHero .case-taxonomy");
+          if (taxonomy && !taxonomy.children.length) taxonomy.remove();
+        }
+
         function normalizePreviewImages() {
           root.querySelectorAll("#projectPreview img").forEach(function (img) {
             var src = (img.getAttribute("src") || "").trim();
@@ -317,6 +333,7 @@
         }
 
         function refreshProjectPreviews() {
+          removeHeroExtras();
           normalizePreviewImages();
           applyMappedPreview();
           loadMappedPreview();
