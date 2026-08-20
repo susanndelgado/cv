@@ -2257,7 +2257,9 @@
       currentExhibitionIndex += next.length;
       if (button)
         button.style.display =
-          currentExhibitionIndex < allExhibitions.length ? "inline-block" : "none";
+          currentExhibitionIndex < allExhibitions.length
+            ? "inline-block"
+            : "none";
     }
     function initiate() {
       var list = document.getElementById("exhibition-list"),
@@ -2267,7 +2269,9 @@
         .then(function (archive) {
           allExhibitions = archive
             .filter(function (item) {
-              return normalizeText(item && item.type).toLowerCase() === "exhibit";
+              return (
+                normalizeText(item && item.type).toLowerCase() === "exhibit"
+              );
             })
             .sort(function (a, b) {
               return Number((b && b.id) || 0) - Number((a && a.id) || 0);
