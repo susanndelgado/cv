@@ -2070,9 +2070,495 @@ body[id="arts chronicals"] #raw-data-log {
 
 /******************************************************************
  * STYLE CHANGES FOR WORK
+ * Restores the pre-project Technical Work presentation using the
+ * current class names (no build- prefixed selectors).
  ******************************************************************/
 
-/* Work default styles will go here */
+body#work.work-page {
+  --teal: #60adb8;
+  --teal-dark: #3f8791;
+  --red: #f70606;
+  --ink: #111;
+  --muted: #656b70;
+  --line: #dedede;
+  --paper: #f6f6f6;
+  --gold: #d4af37;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+}
+
+body#work.work-page h1,
+body#work.work-page h2,
+body#work.work-page h3,
+body#work.work-page h4,
+body#work.work-page h5,
+body#work.work-page h6 {
+  font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+}
+
+body#work.work-page header,
+body#work.work-page header .container-fluid,
+body#work.work-page header .navbar {
+  background: #fff;
+}
+
+body#work.work-page .shell {
+  width: min(73.75rem, calc(100% - 2.5rem));
+  margin: 0 auto;
+}
+
+/* Work hero: white field, red label bar, left-aligned copy. */
+
+body#work.work-page .hero {
+  display: block;
+  padding: 7rem 0 5.75rem;
+  background: #fff;
+  color: #111;
+  border-bottom: 1px solid #ececec;
+  text-align: left;
+}
+
+body#work.work-page .hero::before,
+body#work.work-page .hero::after {
+  display: none;
+}
+
+body#work.work-page .hero-grid {
+  display: block;
+}
+
+body#work.work-page .brief {
+  display: none;
+}
+
+body#work.work-page .hero .kicker {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding: 0.25rem 0.9375rem;
+  background: var(--red);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 100;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+body#work.work-page .display {
+  max-width: 65rem;
+  margin: 0;
+  color: #111;
+  font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+  font-size: clamp(2.75rem, 4.6vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+}
+
+body#work.work-page .lede {
+  max-width: 51.25rem;
+  margin: 1.875rem 0 0;
+  color: #3d4246;
+  font-size: clamp(1rem, 1.55vw, 1.18rem);
+  line-height: 1.78;
+}
+
+body#work.work-page .actions {
+  justify-content: flex-start;
+  margin-top: 2.25rem;
+}
+
+body#work.work-page .hero .btn,
+body#work.work-page .hero .btn.secondary {
+  background: #fff;
+  border: 1px solid var(--teal);
+  color: var(--teal);
+}
+
+body#work.work-page .hero .btn:hover,
+body#work.work-page .hero .btn:focus-visible,
+body#work.work-page .hero .btn.secondary:hover,
+body#work.work-page .hero .btn.secondary:focus-visible {
+  background: #fff;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* Shared Work sections below the hero. */
+
+body#work.work-page .section {
+  padding: 5.75rem 0;
+  background: #f6f6f6;
+}
+
+body#work.work-page .section.white {
+  background: #fff;
+}
+
+body#work.work-page .section.dark {
+  background: #efefef;
+  color: #111;
+}
+
+body#work.work-page .section.dark::before {
+  display: none;
+}
+
+body#work.work-page .section-head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+body#work.work-page .section-head > div {
+  max-width: 50rem;
+}
+
+body#work.work-page .section-head h2 {
+  margin: 0;
+  color: #111;
+  font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.45rem);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+body#work.work-page .section-head p {
+  margin: 0.875rem 0 0;
+  color: var(--muted);
+}
+
+body#work.work-page .section.dark .section-head p {
+  color: #62686d;
+}
+
+body#work.work-page .section .kicker {
+  margin: 0 0 0.75rem;
+  color: var(--teal);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Selected project cards. Dynamic cards are scoped through their containers so
+ * they retain this appearance while their renderer classes are cleaned up. */
+
+body#work.work-page .feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.875rem;
+}
+
+body#work.work-page #featuredProjects > article,
+body#work.work-page #projectArchive > article {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-radius: 0;
+  box-shadow: 0 0.625rem 1.75rem rgba(0, 0, 0, 0.045);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+body#work.work-page #featuredProjects > article:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 1.25rem 2.625rem rgba(0, 0, 0, 0.075);
+}
+
+body#work.work-page #featuredProjects > article > a:first-child,
+body#work.work-page #projectArchive > article > a:first-child {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #e5e8e7;
+}
+
+body#work.work-page #projectArchive > article > a:first-child {
+  aspect-ratio: 4 / 3;
+}
+
+body#work.work-page #featuredProjects > article > a:first-child img,
+body#work.work-page #projectArchive > article > a:first-child img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s ease;
+}
+
+body#work.work-page #featuredProjects > article:hover > a:first-child img {
+  transform: scale(1.035);
+}
+
+body#work.work-page #featuredProjects > article > div,
+body#work.work-page #projectArchive > article > div {
+  padding: 1.6875rem 1.75rem 1.875rem;
+}
+
+body#work.work-page #projectArchive > article > div {
+  padding: 1.25rem;
+}
+
+body#work.work-page #featuredProjects > article > div > p:first-child,
+body#work.work-page #projectArchive > article > div > p:first-child {
+  margin: 0 0 0.625rem;
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+body#work.work-page #featuredProjects h3,
+body#work.work-page #projectArchive h3 {
+  margin: 0;
+  color: #111;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+body#work.work-page #projectArchive h3 {
+  font-size: 1.18rem;
+}
+
+body#work.work-page #featuredProjects h3 a,
+body#work.work-page #projectArchive h3 a {
+  color: #111;
+  text-decoration: none;
+}
+
+body#work.work-page #featuredProjects h3 a:hover,
+body#work.work-page #featuredProjects h3 a:focus-visible,
+body#work.work-page #projectArchive h3 a:hover,
+body#work.work-page #projectArchive h3 a:focus-visible {
+  color: var(--red);
+}
+
+body#work.work-page #featuredProjects h3 + p,
+body#work.work-page #projectArchive h3 + p {
+  margin: 0.8125rem 0 0;
+  color: var(--muted);
+}
+
+body#work.work-page #projectArchive h3 + p {
+  font-size: 0.88rem;
+}
+
+body#work.work-page #featuredProjects > article > div > div:last-child,
+body#work.work-page #projectArchive > article > div > div:last-child {
+  margin-top: 1.1875rem;
+  padding-top: 0.8125rem;
+  border-top: 1px solid rgba(73, 80, 87, 0.13);
+  color: #4b5358;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Working method. */
+
+body#work.work-page .process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(96, 173, 184, 0.5);
+  border-bottom: 1px solid rgba(73, 80, 87, 0.14);
+}
+
+body#work.work-page .process-step {
+  padding: 1.6875rem 1.5625rem 1.875rem;
+  background: rgba(255, 255, 255, 0.68);
+  border-right: 1px solid rgba(73, 80, 87, 0.14);
+}
+
+body#work.work-page .process-step:last-child {
+  border-right: 0;
+}
+
+body#work.work-page .process-step .step {
+  color: var(--teal);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+body#work.work-page .process-step h3 {
+  margin: 0.75rem 0 0.5625rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.16rem;
+  font-weight: 500;
+}
+
+body#work.work-page .process-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.91rem;
+}
+
+/* Professional range. */
+
+body#work.work-page .cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+body#work.work-page .cap-card {
+  padding: 1.875rem;
+  background: #fff;
+  color: #111;
+  border: 1px solid #dedede;
+  border-top: 3px solid var(--teal);
+}
+
+body#work.work-page .cap-card .num {
+  color: var(--red);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+body#work.work-page .cap-card h3 {
+  margin: 0.9375rem 0 0.625rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+body#work.work-page .cap-card p {
+  margin: 0;
+  color: #62686d;
+}
+
+/* Experience / current practice. */
+
+body#work.work-page .split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+body#work.work-page .panel {
+  padding: 1.9375rem;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-top: 4px solid var(--gold);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body#work.work-page .panel h3 {
+  margin: 0 0 0.875rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.32rem;
+  font-weight: 500;
+}
+
+body#work.work-page .panel p,
+body#work.work-page .panel ul {
+  color: var(--muted);
+}
+
+body#work.work-page .panel ul {
+  margin: 0;
+  padding-left: 1.1875rem;
+}
+
+body#work.work-page .panel li + li {
+  margin-top: 0.4375rem;
+}
+
+/* Archive filters and cards. */
+
+body#work.work-page .filter-status {
+  margin: 0.875rem 0 0;
+  color: #4d5358;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+body#work.work-page .filter-status strong {
+  color: #111;
+  font-weight: 600;
+}
+
+body#work.work-page .filter-status a {
+  margin-left: 0.625rem;
+  color: var(--teal);
+  text-decoration: none;
+}
+
+body#work.work-page .filter-status a:hover,
+body#work.work-page .filter-status a:focus-visible {
+  color: var(--red);
+}
+
+body#work.work-page .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0 0 1.875rem;
+  border-bottom: 1px solid rgba(73, 80, 87, 0.2);
+}
+
+body#work.work-page .filter {
+  padding: 0.6875rem 1rem;
+  border: 0;
+  border-top: 1px solid #cdcdcd;
+  border-right: 1px solid #cdcdcd;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.45);
+  color: #596168;
+  font: inherit;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+body#work.work-page .filter:first-child {
+  border-left: 1px solid #cdcdcd;
+}
+
+body#work.work-page .filter:hover,
+body#work.work-page .filter:focus-visible,
+body#work.work-page .filter.active {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+body#work.work-page .archive {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.375rem;
+}
+
+body#work.work-page #projectArchive > article[hidden] {
+  display: none;
+}
+
+body#work.work-page main a:not(.btn) {
+  color: var(--teal);
+}
+
+body#work.work-page main a:not(.btn):hover,
+body#work.work-page main a:not(.btn):focus-visible {
+  color: var(--red);
+}
 
 /******************************************************************
  * RESPONSIVE STYLES
@@ -2085,6 +2571,28 @@ body[id="arts chronicals"] #raw-data-log {
 
   .parallax-section {
     background-attachment: scroll;
+  }
+
+  /******************************************************************
+   * STYLE CHANGES FOR WORK
+   ******************************************************************/
+
+  body#work.work-page .feature-grid,
+  body#work.work-page .cap-grid,
+  body#work.work-page .archive {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body#work.work-page .process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body#work.work-page .process-step:nth-child(2) {
+    border-right: 0;
+  }
+
+  body#work.work-page .process-step:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(73, 80, 87, 0.14);
   }
 }
 
@@ -2234,7 +2742,47 @@ body[id="arts chronicals"] #raw-data-log {
    * STYLE CHANGES FOR WORK — MOBILE
    ******************************************************************/
 
-  /* Work mobile styles will go here */
+  body#work.work-page .shell {
+    width: min(100% - 1.75rem, 73.75rem);
+  }
+
+  body#work.work-page .hero {
+    padding: 4.5rem 0 4rem;
+  }
+
+  body#work.work-page .display {
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    letter-spacing: 0.25rem;
+  }
+
+  body#work.work-page .actions {
+    align-items: flex-start;
+  }
+
+  body#work.work-page .section {
+    padding: 4.25rem 0;
+  }
+
+  body#work.work-page .section-head {
+    display: block;
+  }
+
+  body#work.work-page .feature-grid,
+  body#work.work-page .cap-grid,
+  body#work.work-page .split,
+  body#work.work-page .process-grid,
+  body#work.work-page .archive {
+    grid-template-columns: 1fr;
+  }
+
+  body#work.work-page .process-step {
+    border-right: 0;
+    border-bottom: 1px solid rgba(73, 80, 87, 0.14);
+  }
+
+  body#work.work-page .process-step:last-child {
+    border-bottom: 0;
+  }
 }
 
 /******************************************************************
@@ -2285,5 +2833,8 @@ body[id="arts chronicals"] #raw-data-log {
    * STYLE CHANGES FOR WORK — REDUCED MOTION
    ******************************************************************/
 
-  /* Work reduced-motion styles will go here */
+  body#work.work-page #featuredProjects > article,
+  body#work.work-page #featuredProjects > article img {
+    transition: none;
+  }
 }
