@@ -432,30 +432,18 @@
         });
     }
     function loadProjects() {
-      return Promise.all([
-        fetch("/js/posts.json").then(function (response) {
-          if (!response.ok) throw new Error("Project baseline unavailable");
+      return fetch("/build/js/casestudies.json")
+        .then(function (response) {
+          if (!response.ok) throw new Error("Project data unavailable");
           return response.json();
-        }),
-        optionalJson("/js/posts-extra.json"),
-        optionalJson("/js/posts-corrections.json"),
-        optionalJson("/js/posts-project-copy.json"),
-        optionalJson("/js/posts-new.json"),
-        optionalJson("/build/js/casestudies.json"),
-      ]).then(function (data) {
-        var buildData = data[5] || {};
-        return {
-          posts: merge((data[0] && data[0].posts) || [], [
-            data[1] || {},
-            data[2] || {},
-            data[3] || {},
-            data[4] || {},
-            buildData,
-          ]),
-          build: buildData,
-          raw: data,
-        };
-      });
+        })
+        .then(function (data) {
+          return {
+            posts: merge((data && data.posts) || [], []),
+            build: data || {},
+            raw: [data || {}],
+          };
+        });
     }
     return {
       strip: strip,
