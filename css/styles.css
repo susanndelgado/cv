@@ -220,7 +220,11 @@ a.btn-blue:focus {
 #work .btn,
 #work .btn:visited,
 #work .btn,
-#work .btn:visited {
+#work .btn:visited,
+#resume .btn,
+#resume .btn:visited,
+#resume .btn,
+#resume .btn:visited {
   padding: 0.625rem 0.9375rem;
   background: #fff;
   border: 1px solid #137a98;
@@ -234,7 +238,11 @@ a.btn-blue:focus {
 #work .btn:hover,
 #work .btn:focus-visible,
 #work .btn:hover,
-#work .btn:focus-visible {
+#work .btn:focus-visible,
+#resume .btn:hover,
+#resume .btn:focus-visible,
+#resume .btn:hover,
+#resume .btn:focus-visible {
   background: #137a98;
   color: #fff;
 }
@@ -2413,7 +2421,14 @@ header .nav-tabs .nav-link.active:hover {
   background: #edf1f3;
   color: #617d8d;
 }
-
+#resume h1,
+#resume h2,
+#resume h3,
+#resume h4,
+#resume h5,
+#resume h6 {
+  font-family: proxima-nova, "Open Sans", Arial, sans-serif;
+}
 #resume {
   padding: 2.625rem 1.125rem 4.375rem;
 }
@@ -2979,5 +2994,143 @@ header .nav-tabs .nav-link.active:hover {
     grid-template-columns: 2.5in minmax(0, 1fr) !important;
     column-gap: 0.18in !important;
     padding-top: 1.12in !important;
+  }
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 8.5in !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  #work:has(#resume) > header,
+  #work:has(#resume) > footer,
+  #resume .resume-tools,
+  .sd-cursor,
+  .sd-cursor-dot,
+  .sd-cursor-ring {
+    display: none !important;
+  }
+
+  #work:has(#resume),
+  #resume {
+    width: 8.5in !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  #resume .resume-document {
+    width: 8.5in !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #resume .resume-page {
+    position: relative !important;
+    width: 8.5in !important;
+    height: 11in !important;
+    min-height: 11in !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0.43in 0.62in 0.42in 0.24in !important;
+
+    overflow: hidden !important;
+    background: #fff !important;
+    box-shadow: none !important;
+
+    font-size: 10.6pt !important;
+    line-height: 1.33 !important;
+
+    box-sizing: border-box !important;
+
+    break-after: page;
+    page-break-after: always;
+
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #resume .resume-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  #resume .resume-side-strip {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+
+    width: 0.43in !important;
+    margin: 0 !important;
+    padding: 0.55in 0 0 !important;
+
+    background: #174b5f !important;
+    color: #fff !important;
+  }
+
+  #resume .resume-side-strip a {
+    color: #fff !important;
+    font-size: 13pt !important;
+
+    writing-mode: vertical-rl !important;
+    text-orientation: mixed !important;
+  }
+
+  #resume .resume-header {
+    position: absolute !important;
+    top: 0.34in !important;
+    right: 0.64in !important;
+    left: 0.24in !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+
+    margin: 0 !important;
+  }
+
+  #resume .resume-name {
+    white-space: nowrap !important;
+  }
+
+  #resume .resume-contact {
+    margin: 0 !important;
+    text-align: right !important;
+  }
+
+  #resume .resume-grid {
+    display: grid !important;
+    grid-template-columns: 2.5in minmax(0, 1fr) !important;
+    column-gap: 0.18in !important;
+
+    padding-top: 1.12in !important;
+  }
+
+  #resume .resume-sidebar {
+    margin: 0 !important;
+    padding-right: 0.12in !important;
+    text-align: right !important;
+  }
+
+  #resume .resume-main {
+    min-width: 0 !important;
+    padding-left: 0.18in !important;
+    border-left: 2px dotted #6f98aa !important;
+  }
+
+  #resume .resume-projects {
+    grid-template-columns: 1fr 1fr !important;
   }
 }

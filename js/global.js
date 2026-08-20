@@ -1986,6 +1986,7 @@
         return document.body && document.body.classList.contains("resume-view");
       },
     },
+
     {
       name: "work",
       marker: "featuredIds",
