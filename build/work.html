@@ -370,5 +370,34 @@
       >
     </footer>
     <script src="/build/js/global.js"></script>
+    <script>
+      (function () {
+        if (location.hash !== "#projectArchive") return;
+
+        var archive = document.getElementById("projectArchive");
+        var filters = document.querySelector("#archive .filter-bar");
+        if (!archive || !filters) return;
+
+        function scrollToFilters() {
+          requestAnimationFrame(function () {
+            filters.scrollIntoView({ block: "start", behavior: "auto" });
+          });
+        }
+
+        if (archive.children.length) {
+          scrollToFilters();
+          return;
+        }
+
+        var observer = new MutationObserver(function () {
+          if (!archive.children.length) return;
+          observer.disconnect();
+          scrollToFilters();
+          setTimeout(scrollToFilters, 150);
+        });
+
+        observer.observe(archive, { childList: true });
+      })();
+    </script>
   </body>
 </html>
