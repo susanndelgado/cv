@@ -8,36 +8,6 @@
 
   var ENDPOINT =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-  // var GALLERIES = [
-  //   {
-  //     type: "gstory",
-  //     label: "Narrative",
-  //     href: "narrative-gallery-build.html",
-  //   },
-  //   { type: "gnature", label: "Wildlife", href: "wildlife-gallery-build.html" },
-  //   {
-  //     type: "gdecor",
-  //     label: "Decorative",
-  //     href: "decorative-gallery-build.html",
-  //   },
-  //   {
-  //     type: "gstudy",
-  //     label: "Academic Studies",
-  //     href: "studies-gallery-build.html",
-  //   },
-  // ];
-
-  // function ensureBuildHeader() {
-  //   // if (window.initBuildHeader) {
-  //   //   window.initBuildHeader(document);
-  //   //   return;
-  //   // }
-  //   // if (document.getElementById("sd-header-js")) return;
-  //   // var script = document.createElement("script");
-  //   // script.id = "sd-header-js";
-  //   // script.src = "/js/header.js";
-  //   // document.head.appendChild(script);
-  // }
 
   function text(value) {
     if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
@@ -102,28 +72,6 @@
       return r.json();
     });
   }
-
-  // function insertGalleryNavigation(type) {
-  //   var hero = document.querySelector(".art-gallery-hero");
-  //   if (!hero || hero.querySelector(".art-gallery-categories")) return;
-  //   var target = hero.querySelector(".container") || hero;
-  //   var nav = document.createElement("nav");
-  //   nav.className = "art-gallery-categories";
-  //   nav.setAttribute("aria-label", "Fine Arts galleries");
-  //   nav.innerHTML = GALLERIES.map(function (gallery) {
-  //     return (
-  //       '<a href="' +
-  //       gallery.href +
-  //       '"' +
-  //       (gallery.type === type ? ' class="active" aria-current="page"' : "") +
-  //       ">" +
-  //       gallery.label +
-  //       "</a>"
-  //     );
-  //   }).join("");
-  //   target.appendChild(nav);
-  // }
-
   function makeCard(item, index) {
     var src = imageURL(item);
     var title = field(item, "title") || "Untitled";
@@ -173,7 +121,6 @@
   }
 
   function init() {
-    // ensureBuildHeader();
     var body = document.body;
     var type = (body.getAttribute("data-gallery-type") || "").toLowerCase();
     var grid = document.getElementById("artGalleryGrid");
@@ -199,8 +146,6 @@
       !close
     )
       return;
-
-    // insertGalleryNavigation(type);
 
     function closeLightbox() {
       lightbox.classList.remove("open");
@@ -288,13 +233,6 @@
   var pages = (window.BuildInlinePages = window.BuildInlinePages || {});
   var SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-
-  function inlineContains(marker) {
-    if (!marker) return false;
-    return Array.prototype.some.call(document.scripts, function (script) {
-      return !script.src && (script.textContent || "").indexOf(marker) !== -1;
-    });
-  }
 
   function runWhenReady(fn) {
     if (document.readyState === "loading")
@@ -2100,7 +2038,7 @@
     var definition = currentDefinition();
     if (!definition || typeof pages[definition.name] !== "function") return;
     var force = !!(options && options.force);
-    if (!force && inlineContains(definition.marker)) return;
+
     var key = "sdInlinePage" + definition.name;
     if (!force && document.documentElement.dataset[key] === "1") return;
     document.documentElement.dataset[key] = "1";
