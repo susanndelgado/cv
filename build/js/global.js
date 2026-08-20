@@ -50,18 +50,24 @@
             - resizeFrame(doc): Resizes an embedded Fine Arts preview iframe to its
               document height.
 
-   FINE ARTS GALLERY
-   - ensureBuildHeader(): Makes sure the shared header initializer is available.
-   - text(value): Converts archive values to clean display text.
-   - normalizeKey(value): Normalizes field names for flexible archive lookup.
-   - field(item, ...names): Finds the first matching field in an archive record.
-   - escapeHTML(value): Escapes text before inserting it into generated markup.
-   - imageURL(item): Extracts an image URL from an archive record's files field.
-   - getArchive(): Gets Fine Arts archive data from the shared cache/API.
-   - insertGalleryNavigation(type): Adds gallery-category navigation to the hero.
-   - makeCard(item, index): Builds one Fine Arts gallery card and its metadata.
-   - init(): Loads and renders the Fine Arts gallery and wires its lightbox.
-     Its nested closeLightbox() function closes that gallery lightbox.
+            FINE ARTS GALLERY
+            - text(value): Converts values returned by the Google archive into clean
+              display strings, including array values.
+            - normalizeKey(value): Normalizes Google archive field names so equivalent
+              names with different case, spaces, underscores, or hyphens can be matched.
+            - field(item, ...names): Reads a requested value from a Google archive record
+              or its misc data, supporting alternate field names such as media/medium.
+            - escapeHTML(value): Escapes archive text before inserting it into generated HTML.
+            - imageURL(item): Extracts the first usable image URL from an archive record's
+              files data.
+            - getArchive(): Retrieves the raw shared Google archive dataset from
+              SiteArchiveData or directly from the Apps Script endpoint as a fallback.
+            - insertGalleryNavigation(type): Adds the Fine Arts gallery-category navigation.
+            - makeCard(item, index): Reads an archive record's title, media, dimensions,
+              status and description and creates the visible gallery figure/caption.
+            - init(): Selects archive records matching the current gallery type, sorts
+              them, renders their cards, and connects the gallery lightbox.
+              
 
    EMBEDDED BUILD PAGE SCRIPTS / SHARED HELPERS
    - inlineContains(marker): Checks whether a legacy inline script is still on
@@ -838,10 +844,23 @@
 /* =========================================================
    FINE ARTS GALLERY
    ========================================================= */
-/* Review-only Fine Arts gallery renderer.
- * Uses the same archive JSON as the live site but presents works as an
- * editorial exhibition rather than a card grid.
- */
+/* 
+   - text(value): Converts values returned by the Google archive into clean
+     display strings, including array values.
+   - normalizeKey(value): Normalizes Google archive field names so equivalent
+     names with different case, spaces, underscores, or hyphens can be matched.
+   - field(item, ...names): Reads a requested value from a Google archive record
+     or its misc data, supporting alternate field names such as media/medium.
+   - escapeHTML(value): Escapes archive text before inserting it into generated HTML.
+   - imageURL(item): Extracts the first usable image URL from an archive record's
+     files data.
+   - getArchive(): Retrieves the raw shared Google archive dataset from
+     SiteArchiveData or directly from the Apps Script endpoint as a fallback.
+   - insertGalleryNavigation(type): Adds the Fine Arts gallery-category navigation.
+   - makeCard(item, index): Reads an archive record's title, media, dimensions,
+     status and description and creates the visible gallery figure/caption.
+   - init(): Selects archive records matching the current gallery type, sorts
+     them, renders their cards, and connects the gallery lightbox. */
 (function () {
   "use strict";
 
@@ -882,13 +901,11 @@
     if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
     return value === null || value === undefined ? "" : String(value).trim();
   }
-
   function normalizeKey(value) {
     return String(value || "")
       .replace(/[\s_-]/g, "")
       .toLowerCase();
   }
-
   function field(item) {
     var names = [].slice.call(arguments, 1).map(normalizeKey);
     var sources = [item || {}, (item && item.misc) || {}];
@@ -913,7 +930,6 @@
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
-
   function imageURL(item) {
     var files = Array.isArray(item && item.files)
       ? item.files
@@ -933,7 +949,6 @@
     }
     return "";
   }
-
   function getArchive() {
     if (
       window.SiteArchiveData &&
