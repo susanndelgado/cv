@@ -219,30 +219,24 @@ a.btn-blue:focus {
 #work .btn:visited,
 #work .btn,
 #work .btn:visited {
-  display: inline-block;
-  padding: 0.75rem 1.875rem;
-  background: transparent;
-  border: 1px solid #111;
-  border-radius: 0;
-  color: #111;
-  font-size: 0.6875rem;
-  letter-spacing: 0.1875rem;
+  padding: 0.625rem 0.9375rem;
+  background: #fff;
+  border: 1px solid #137a98;
+  color: #137a98;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-#work .hero .btn,
-#wore .hero .btn.secondary {
-  background: #fff;
-  border-color: #60adb8;
-  color: #60adb8;
+#work .btn:hover,
+#work .btn:focus-visible,
+#work .btn:hover,
+#work .btn:focus-visible {
+  background: #137a98;
+  color: #fff;
 }
 
-#work .hero .btn:hover,
-#work .hero .btn:focus-visible {
-  border-color: #f70606;
-  color: #f70606;
-}
 /* ========================================================================
    GLOBAL / NAVIGATION
    ======================================================================== */
@@ -2393,26 +2387,6 @@ b #arts .community a:hover,
   display: flex;
   flex-wrap: wrap;
   gap: 0.5625rem;
-}
-
-#resume .resume-tools .build-btn,
-#resume .resume-tools .btn {
-  padding: 0.625rem 0.9375rem;
-  background: #fff;
-  border: 1px solid #137a98;
-  color: #137a98;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-#resume .resume-tools .build-btn:hover,
-#resume .resume-tools .build-btn:focus-visible,
-#resume .resume-tools .btn:hover,
-#resume .resume-tools .btn:focus-visible {
-  background: #137a98;
-  color: #fff;
 }
 
 #resume .resume-page {
