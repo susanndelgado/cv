@@ -175,10 +175,44 @@
           });
         }
 
-        normalizePreviewImages();
+        function ensurePreviewFallback() {
+          var preview = root.querySelector("#projectPreview");
+          var visualSection = root.querySelector("#visualSection");
+          if (!preview || preview.querySelector("img")) return;
+
+          var heroImage = root.querySelector("#caseHero .case-visual img");
+          if (!heroImage || !heroImage.getAttribute("src")) return;
+
+          var container = document.createElement("div");
+          var row = document.createElement("div");
+          var column = document.createElement("div");
+          var image = heroImage.cloneNode(false);
+
+          container.className = "container";
+          row.className = "row";
+          column.className = "col-lg-12 col-md-12 col-sm-12";
+          image.className = "responsive";
+          image.loading = "lazy";
+          image.setAttribute("data-preview-size", "standard");
+          image.alt = heroImage.alt || "Project preview";
+
+          column.appendChild(image);
+          row.appendChild(column);
+          container.appendChild(row);
+          preview.appendChild(container);
+
+          if (visualSection) visualSection.hidden = false;
+        }
+
+        function refreshProjectPreviews() {
+          normalizePreviewImages();
+          ensurePreviewFallback();
+        }
+
+        refreshProjectPreviews();
 
         var observer = new MutationObserver(function () {
-          normalizePreviewImages();
+          refreshProjectPreviews();
         });
 
         observer.observe(root, { childList: true, subtree: true });
