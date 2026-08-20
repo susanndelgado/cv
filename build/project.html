@@ -136,5 +136,53 @@
       >
     </footer>
     <script src="/build/js/global.js"></script>
+    <script>
+      (function () {
+        var root = document.getElementById("projectContent");
+        if (!root) return;
+
+        function normalizePreviewImages() {
+          root.querySelectorAll("#projectPreview img").forEach(function (img) {
+            var src = (img.getAttribute("src") || "").trim();
+
+            if (
+              !src ||
+              /^(?:https?:)?\/\//i.test(src) ||
+              /^(?:data|blob):/i.test(src) ||
+              src.charAt(0) === "/"
+            ) {
+              return;
+            }
+
+            src = src.replace(/^\.\//, "");
+
+            if (src.indexOf("../showcase/") === 0) {
+              src = src.replace(/^\.\.\//, "");
+            }
+
+            if (src.indexOf("showcase/") === 0) {
+              src = "/" + src;
+            } else if (
+              src.indexOf("img/") === 0 ||
+              src.indexOf("thumbs/") === 0
+            ) {
+              src = "/showcase/" + src;
+            } else {
+              src = "/" + src;
+            }
+
+            img.setAttribute("src", src);
+          });
+        }
+
+        normalizePreviewImages();
+
+        var observer = new MutationObserver(function () {
+          normalizePreviewImages();
+        });
+
+        observer.observe(root, { childList: true, subtree: true });
+      })();
+    </script>
   </body>
 </html>
