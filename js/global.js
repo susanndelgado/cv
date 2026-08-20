@@ -1983,7 +1983,7 @@
       name: "resume",
       marker: "saveResumePdf",
       test: function () {
-        return document.body && document.body.id === "work resume";
+        return document.body && document.body.classList.contains("resume-view");
       },
     },
     {
