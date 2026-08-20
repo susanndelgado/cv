@@ -2,7 +2,42 @@
     SUSAN DELGADO SUMMER 2026
     FUNCTION GUIDE
    =========================================================
-*/
+ */
+(function () {
+  "use strict";
+
+  var ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
+  // var GALLERIES = [
+  //   {
+  //     type: "gstory",
+  //     label: "Narrative",
+  //     href: "narrative-gallery-build.html",
+  //   },
+  //   { type: "gnature", label: "Wildlife", href: "wildlife-gallery-build.html" },
+  //   {
+  //     type: "gdecor",
+  //     label: "Decorative",
+  //     href: "decorative-gallery-build.html",
+  //   },
+  //   {
+  //     type: "gstudy",
+  //     label: "Academic Studies",
+  //     href: "studies-gallery-build.html",
+  //   },
+  // ];
+
+  // function ensureBuildHeader() {
+  //   // if (window.initBuildHeader) {
+  //   //   window.initBuildHeader(document);
+  //   //   return;
+  //   // }
+  //   // if (document.getElementById("sd-header-js")) return;
+  //   // var script = document.createElement("script");
+  //   // script.id = "sd-header-js";
+  //   // script.src = "/js/header.js";
+  //   // document.head.appendChild(script);
+  // }
 
   function text(value) {
     if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
