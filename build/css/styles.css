@@ -2243,31 +2243,26 @@ b #arts .community a:hover,
    PAGE / TECHNICAL WORK — CONTACT
    ======================================================================== */
 
-#work .build-section,
 #work .section {
   padding: 5.75rem 0;
   background: #f6f6f6;
 }
 
-#work .build-section.white,
 #work .section.white {
   background: #fff;
 }
 
-#work .build-shell,
 #work .shell {
   width: min(73.75rem, calc(100% - 2.5rem));
   margin: 0 auto;
 }
 
-#work .build-contact-grid,
 #work .contact-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17.5rem, 0.9fr);
   gap: 1.75rem;
 }
 
-#work .build-contact-card,
 #work .contact-card {
   padding: 2.125rem;
   background: rgba(255, 255, 255, 0.62);
@@ -2278,7 +2273,6 @@ b #arts .community a:hover,
   -webkit-backdrop-filter: blur(0.75rem);
 }
 
-#work .build-kicker,
 #work .kicker {
   margin: 0 0 0.75rem;
   color: #60adb8;
@@ -2288,7 +2282,6 @@ b #arts .community a:hover,
   text-transform: uppercase;
 }
 
-#work .build-split,
 #work .split {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2296,7 +2289,6 @@ b #arts .community a:hover,
   margin-top: 1.5rem;
 }
 
-#work .build-panel,
 #work .panel {
   padding: 1.9375rem;
   background: rgba(255, 255, 255, 0.6);
@@ -2307,12 +2299,10 @@ b #arts .community a:hover,
   -webkit-backdrop-filter: blur(0.75rem);
 }
 
-#work .build-link-list,
 #work .link-list {
   display: grid;
 }
 
-#work .build-link-list a,
 #work .link-list a {
   display: flex;
   justify-content: space-between;
@@ -2324,19 +2314,16 @@ b #arts .community a:hover,
   text-decoration: none;
 }
 
-#work .build-link-list a:hover,
 #work .link-list a:hover {
   color: #f70606;
 }
 
-#work .build-cap-grid,
 #work .cap-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
-#work .build-cap-card,
 #work .cap-card {
   padding: 1.875rem;
   background: rgba(255, 255, 255, 0.46);
@@ -2346,12 +2333,10 @@ b #arts .community a:hover,
   -webkit-backdrop-filter: blur(0.875rem);
 }
 
-#work .build-cap-card .num,
 #work .cap-card .num {
   color: #d4af37;
 }
 
-#work .build-contact-note,
 #work .contact-note {
   margin-top: 1.75rem;
   padding: 1.5rem;
@@ -2360,12 +2345,10 @@ b #arts .community a:hover,
   color: #fff;
 }
 
-#work .build-contact-note h3,
 #work .contact-note h3 {
   color: #fff;
 }
 
-#work .build-contact-note p,
 #work .contact-note p {
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.7);
