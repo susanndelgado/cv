@@ -3,7 +3,7 @@
   "_guide": {
     "purpose": "Single build-side JSON for project additions, case-study detail, site structure and JSON-native previews.",
     "addProject": "Add the project record to posts. Put detailed case-study content in caseStudy, site hierarchy in structure, and gallery content in preview.sections when needed.",
-    "note": "Legacy project records outside /build remain separate until the build pages are rewired; this file replaces the JSON files that previously lived in /build/js."
+    "note": "New project records are consolidated here first; legacy project records remain separate until each source is migrated and verified."
   },
   "posts": [
     {
@@ -34,6 +34,34 @@
           }
         ]
       }
+    },
+    {
+      "id": "61",
+      "title": "ADVANCES IN HEMODYNAMIC SUPPORT 2015",
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "year": "2015",
+      "image": "showcase/img/hemodynamics-header.png",
+      "thumb": "showcase/img/hemodynamics-header.png",
+      "heroLayout": "compact",
+      "summary": "Responsive medical-education event website for the 2015 Advances in Hemodynamic Support program.",
+      "filters": "conf web dig",
+      "role": "Front End Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>HTML5<br>CSS<br>JavaScript<br>jQuery<br>Foundation",
+      "content": "<p>Advances in Hemodynamic Support was a CRF medical-education program held January 29–30, 2015 and supported through an educational grant from ABIOMED.</p><p>Developed the responsive event website as a single-page conference experience using HTML5, CSS, JavaScript, jQuery and the Foundation responsive framework.</p><p>The surviving source and screenshots document the program information, responsive navigation and event-focused presentation across the site.</p>"
+    },
+    {
+      "id": "62",
+      "title": "NEW FRONTIERS IN CARDIOVASCULAR MEDICINE 2016",
+      "client": "The Cardiovascular Research Foundation (CRF)",
+      "year": "2016",
+      "image": "showcase/img/newFrontiers-header.png",
+      "thumb": "showcase/img/newFrontiers-header.png",
+      "heroLayout": "compact",
+      "summary": "Responsive SCAI 2016 satellite-program website with PHP templates and custom animated front-end presentation.",
+      "filters": "conf web dig",
+      "role": "Front End Developer<br>CRF Employee",
+      "skills": "Front End Development<br>Responsive Web Development<br>PHP<br>HTML5<br>CSS<br>Sass / SCSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Flexslider<br>Front End Animation",
+      "content": "<p>New Frontiers in Cardiovascular Medicine: The Next Decade was a CRF educational satellite program connected with SCAI 2016.</p><p>Developed the responsive site in a PHP include/template structure with Bootstrap, JavaScript, jQuery and Sass/SCSS source styles.</p><p>The front end used Flexslider and custom slider-animation JavaScript for the event presentation, with responsive program, registration and supporting content assembled through reusable PHP includes.</p>"
     }
   ],
   "caseStudies": {
@@ -110,7 +138,7 @@
       "level": "focused",
       "ux": {
         "title": "Responsive fundraising event microsite",
-        "intro": "Pulse Gala 2015 combined gala information, attendance, fundraising and photography in a standalone responsive microsite.",
+        "intro": "Pulse Gala 2015 combined gala information with attendance, fundraising and photography in a standalone responsive microsite.",
         "panels": [
           {"title": "Event identity", "copy": "The purple gala identity carried through the responsive layout, image-based navigation and event content."},
           {"title": "Smooth-scroll navigation", "copy": "jQuery smooth scrolling connected sections of the site and provided direct access to event information."},
