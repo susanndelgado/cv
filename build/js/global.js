@@ -879,8 +879,8 @@
   }
 
   function text(value) {
-    // if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
-    // return value === null || value === undefined ? "" : String(value).trim();
+    if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
+    return value === null || value === undefined ? "" : String(value).trim();
   }
 
   function normalizeKey(value) {
@@ -975,7 +975,7 @@
     var year = field(item, "year", "date");
     var status = field(item, "status", "availability");
     var description = text(item.description);
-    var meta = [media, dimensions, year, status].filter(Boolean).join(" · ");
+    var meta = [media, dimensions, status].filter(Boolean).join(" · ");
 
     var figure = document.createElement("figure");
     figure.className = "art-gallery-card";
@@ -1016,7 +1016,7 @@
   }
 
   function init() {
-    ensureBuildHeader();
+    // ensureBuildHeader();
     var body = document.body;
     var type = (body.getAttribute("data-gallery-type") || "").toLowerCase();
     var grid = document.getElementById("artGalleryGrid");
@@ -2372,34 +2372,51 @@
       );
     }
     function getArchive() {
-      var now = Date.now(),
-        cached = localStorage.getItem(cacheKey),
-        cachedTime = Number(localStorage.getItem(cacheTimeKey));
-      if (cached && cachedTime && now - cachedTime < cacheDuration) {
-        try {
-          return Promise.resolve(JSON.parse(cached));
-        } catch (error) {
-          localStorage.removeItem(cacheKey);
-          localStorage.removeItem(cacheTimeKey);
-        }
-      }
-      return fetch(SCRIPT_URL + "?t=" + now)
-        .then(function (response) {
-          if (!response.ok)
-            throw new Error(
-              "Archive request failed with status " + response.status + ".",
-            );
+      var request;
+
+      if (
+        window.SiteArchiveData &&
+        typeof window.SiteArchiveData.get === "function"
+      ) {
+        request = window.SiteArchiveData.get();
+      } else {
+        request = fetch(ENDPOINT).then(function (response) {
+          if (!response.ok) {
+            throw new Error("Archive unavailable");
+          }
+
           return response.json();
-        })
-        .then(function (archive) {
-          if (!Array.isArray(archive))
-            throw new Error(
-              "The exhibition archive returned an invalid format.",
-            );
-          localStorage.setItem(cacheKey, JSON.stringify(archive));
-          localStorage.setItem(cacheTimeKey, String(now));
-          return archive;
         });
+      }
+
+      return request.then(function (data) {
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid archive data");
+        }
+
+        return data.map(function (item) {
+          return {
+            id: item.id,
+            type: String(item.type || "")
+              .trim()
+              .toLowerCase(),
+
+            title: String(item.title || "").trim(),
+
+            media: String(item.media || item.medium || "").trim(),
+
+            dimensions: String(item.dimensions || item.size || "").trim(),
+
+            // year: String(item.year || item.date || "").trim(),
+
+            status: String(item.status || item.availability || "").trim(),
+
+            description: String(item.description || "").trim(),
+
+            files: item.files || [],
+          };
+        });
+      });
     }
     function renderMore() {
       var list = document.getElementById("exhibition-list"),
