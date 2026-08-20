@@ -1,141 +1,127 @@
-/* =========================================================
-   BUILD HEADER
-   ========================================================= */
-/* Shared only header normalizer.
- * Keeps Fine Arts as the global header treatment and adds Bootstrap-compatible
- * structural classes without loading Bootstrap's global stylesheet.
- */
+/* ========================================================================
+   BUILD SITE JAVASCRIPT
+
+   MAP
+   1. Shared helpers
+   2. Technical Work interactions: cursor + project lightbox
+   3. Fine Arts gallery renderer
+   4. Fine Arts About page motion
+   5. Shared Technical project data
+   6. Technical Work archive
+   7. Project detail pages
+   8. Exhibitions archive
+   9. Progress Chronicles archive
+   10. Resume print action
+   11. Page initialization
+
+   This file intentionally contains only behavior used by the current /build
+   pages. Legacy header normalization, iframe preview code, index-page code and
+   old inline-script compatibility code were removed because the current build
+   does not use them.
+   ======================================================================== */
 (function () {
   "use strict";
 
-  function addClasses(element, names) {
-    if (!element) return;
-    names
-      .split(/\s+/)
-      .filter(Boolean)
-      .forEach(function (name) {
-        element.classList.add(name);
-      });
-  }
+  var SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
 
-  function isWorkSide(header) {
-    if (document.body.classList.contains("work-page")) return true;
-    if (
-      /\/(?:work|project|contact|resume(?:-build)?)\.html$/.test(
-        location.pathname,
-      )
-    )
-      return true;
-    return !!header.querySelector(
-      '.tabs .active a[href*="work.html"],.tabs a[aria-current="page"][href*="work.html"]',
-    );
-  }
+  /* ======================================================================
+     1. SHARED HELPERS
+     ====================================================================== */
 
-  function createWorkMainNav(header) {
-    var nav = document.createElement("div");
-    nav.className = "main-nav";
-    nav.innerHTML =
-      '<div class="main-nav-inner"><a class="site-brand" href="/index.html">SUSAN DELGADO</a><nav class="site-links" aria-label="Technical portfolio navigation"><a href="work.html">TECHNICAL WORK</a><a href="project.html?post=23">PROJECTS</a><a href="contact.html" aria-current="page">CONTACT</a></nav></div>';
-    header.appendChild(nav);
-    return nav;
-  }
-
-  function normalizeHeader(root) {
-    root = root || document;
-    var header = root.querySelector(".site-header");
-    if (!header) return;
-
-    var workSide = isWorkSide(header);
-    addClasses(header, "site-header w-100");
-
-    var topTabs = header.querySelector(".top-tabs");
-    addClasses(topTabs, "w-100");
-
-    var tabs = header.querySelector(".tabs");
-    if (tabs) {
-      addClasses(tabs, "nav nav-tabs");
-      tabs.querySelectorAll(":scope > li").forEach(function (item) {
-        addClasses(item, "nav-item");
-        var link = item.querySelector(":scope > a");
-        addClasses(link, "nav-link");
-        if (
-          item.classList.contains("active") ||
-          (link && link.getAttribute("aria-current") === "page")
-        )
-          link.classList.add("active");
-      });
-    }
-
-    var mainNav = header.querySelector(".main-nav");
-    if (!mainNav && workSide) mainNav = createWorkMainNav(header);
-    if (!mainNav) return;
-
-    addClasses(mainNav, "navbar navbar-expand-lg");
-    mainNav.classList.toggle("nav-work", workSide);
-
-    var inner = mainNav.querySelector(".main-nav-inner");
-    addClasses(inner, "container-fluid");
-
-    var brand = mainNav.querySelector(".site-brand");
-    addClasses(brand, "navbar-brand");
-
-    var links = mainNav.querySelector(".site-links");
-    addClasses(links, "navbar-nav ms-auto");
-    if (links) {
-      links.querySelectorAll(":scope > a").forEach(function (link) {
-        addClasses(link, "nav-link");
-      });
+  function runWhenReady(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn, { once: true });
+    } else {
+      fn();
     }
   }
 
-  window.initBuildHeader = normalizeHeader;
+  function escapeHTML(value) {
+    return String(value === null || value === undefined ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", function () {
-      normalizeHeader(document);
+  function textValue(value) {
+    if (Array.isArray(value)) {
+      return value
+        .filter(function (item) {
+          return item !== null && item !== undefined;
+        })
+        .join(" ")
+        .trim();
+    }
+    return value === null || value === undefined ? "" : String(value).trim();
+  }
+
+  function normalizeKey(value) {
+    return String(value || "")
+      .replace(/[\s_-]/g, "")
+      .toLowerCase();
+  }
+
+  /* Reads a field even when archive data stores it in misc or uses a
+     slightly different spelling/casing. */
+  function getField(item) {
+    var wanted = Array.prototype.slice.call(arguments, 1).map(normalizeKey);
+    var sources = [item || {}, (item && item.misc) || {}];
+
+    for (var s = 0; s < sources.length; s++) {
+      var source = sources[s];
+      for (var key in source) {
+        if (!Object.prototype.hasOwnProperty.call(source, key)) continue;
+        if (wanted.indexOf(normalizeKey(key)) === -1) continue;
+        var value = textValue(source[key]);
+        if (value) return value;
+      }
+    }
+    return "";
+  }
+
+  /* Google Apps Script file fields can contain metadata on multiple lines.
+     This returns every actual http/https URL found in those entries. */
+  function extractFileUrls(filesValue) {
+    var files = Array.isArray(filesValue)
+      ? filesValue
+      : filesValue
+        ? [filesValue]
+        : [];
+    var urls = [];
+
+    files.forEach(function (entry) {
+      if (!entry) return;
+      var raw = typeof entry === "string" ? entry : JSON.stringify(entry);
+      raw
+        .split(/\r?\n/)
+        .map(function (line) {
+          return line.trim();
+        })
+        .filter(function (line) {
+          return /^https?:\/\//i.test(line);
+        })
+        .forEach(function (url) {
+          urls.push(url);
+        });
     });
-  else normalizeHeader(document);
-})();
 
-/* =========================================================
-   BUILD MOTION / TECHNICAL PORTFOLIO
-   ========================================================= */
-(function () {
-  "use strict";
-
-  var portfolioObserverInstalled = false;
-  var currentLightboxTrigger = null;
-
-  /* Evidence status from the surviving source archive.
-     CHIP, SCAI and TRAC have inspectable Angular application source.
-     Dallas Leipzig has inspectable surviving source without Angular.
-     TVT remains unverified in the current archive. */
-  var confirmedAngularPosts = new Set(["14", "18", "44", "45"]);
-  var unverifiedAngularPosts = new Set(["16", "39"]);
-
-  function currentFile() {
-    return location.pathname.split("/").pop() || "";
+    return Array.from(new Set(urls));
   }
 
-  function isWorkPage() {
-    return currentFile() === "work.html";
+  function assetPath(value) {
+    var path = String(value || "").trim();
+    if (!path) return "";
+    if (/^(?:https?:)?\/\//i.test(path) || path.charAt(0) === "/") return path;
+    return "/" + path;
   }
 
-  function isProjectPage() {
-    return currentFile() === "project.html";
-  }
-
-  function ensureBuildHeader() {
-    if (window.initBuildHeader) {
-      window.initBuildHeader(document);
-      return;
-    }
-    if (document.getElementById("sd-header-js")) return;
-    var script = document.createElement("script");
-    script.id = "sd-header-js";
-    script.src = "/js/header.js";
-    document.head.appendChild(script);
-  }
+  /* ======================================================================
+     2. TECHNICAL WORK INTERACTIONS
+     Custom cursor and project-image lightbox. These run only on body#work.
+     ====================================================================== */
 
   function ensureInteractionStylesheet() {
     if (document.getElementById("sd-interactions-css")) return;
@@ -146,400 +132,31 @@
     document.head.appendChild(link);
   }
 
-  function getPostId() {
-    if (!isProjectPage()) return "";
-    return new URLSearchParams(location.search).get("post") || "23";
-  }
+  function initTechnicalCursor() {
+    if (!document.body || document.body.id !== "work") return;
+    if (!window.matchMedia) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(pointer:fine) and (hover:hover)").matches) return;
+    if (document.querySelector(".sd-cursor")) return;
 
-  function postIdFromLink(link) {
-    if (!link) return "";
-    try {
-      var url = new URL(link.getAttribute("href") || "", location.href);
-      return url.pathname.endsWith("/project.html")
-        ? url.searchParams.get("post") || ""
-        : "";
-    } catch (e) {
-      return "";
-    }
-  }
-
-  function normalizePortfolioNavigation(root) {
-    root = root || document;
-    var archiveHeading = document.querySelector("#archive .section-head h2");
-    if (
-      archiveHeading &&
-      archiveHeading.textContent.trim() === "Additional professional work"
-    ) {
-      archiveHeading.id = "additional-professional-work";
-    }
-
-    root.querySelectorAll(".case-taxonomy-group").forEach(function (group) {
-      var label = group.querySelector(".case-taxonomy-label");
-      if (!label) return;
-      var labelText = label.textContent.trim();
-      if (labelText === "Project type" || labelText === "Category") {
-        label.textContent = "Category";
-        group.querySelectorAll("a.pill").forEach(function (link) {
-          var href = link.getAttribute("href") || "";
-          if (href.indexOf("#archive") !== -1)
-            href = href.replace("#archive", "#projectArchive");
-          if (href.indexOf("#additional-professional-work") !== -1)
-            href = href.replace(
-              "#additional-professional-work",
-              "#projectArchive",
-            );
-          link.setAttribute("href", href);
-        });
-      } else if (labelText === "Skills") {
-        group.querySelectorAll("a.pill").forEach(function (link) {
-          var span = document.createElement("span");
-          span.className = "pill";
-          span.textContent = link.textContent;
-          link.replaceWith(span);
-        });
-      }
-    });
-
-    root.querySelectorAll("a.case-nav-all").forEach(function (link) {
-      link.setAttribute("href", "work.html#projectArchive");
-    });
-    root
-      .querySelectorAll('a[href*="work.html?type="]')
-      .forEach(function (link) {
-        var href = link.getAttribute("href") || "";
-        if (href.indexOf("#archive") !== -1)
-          href = href.replace("#archive", "#projectArchive");
-        if (href.indexOf("#additional-professional-work") !== -1)
-          href = href.replace(
-            "#additional-professional-work",
-            "#projectArchive",
-          );
-        link.setAttribute("href", href);
-      });
-    root
-      .querySelectorAll(
-        'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
-      )
-      .forEach(function (link) {
-        link.setAttribute("href", "work.html#projectArchive");
-      });
-
-    var filterStatus = document.getElementById("archiveFilterStatus");
-    if (filterStatus) {
-      Array.prototype.slice
-        .call(filterStatus.childNodes)
-        .forEach(function (node) {
-          if (
-            node.nodeType === Node.TEXT_NODE &&
-            node.nodeValue.indexOf("Project type:") !== -1
-          ) {
-            node.nodeValue = node.nodeValue.replace(
-              "Project type:",
-              "Category:",
-            );
-          }
-        });
-      filterStatus
-        .querySelectorAll(
-          'a[href="work.html#archive"],a[href="work.html#additional-professional-work"]',
-        )
-        .forEach(function (link) {
-          link.setAttribute("href", "work.html#projectArchive");
-        });
-    }
-
-    if (
-      isWorkPage() &&
-      (location.hash === "#archive" ||
-        location.hash === "#additional-professional-work")
-    ) {
-      history.replaceState(
-        null,
-        "",
-        location.pathname + location.search + "#projectArchive",
-      );
-    }
-  }
-
-  function normalizeAngularLabel(text) {
-    return /^AngularJS$/i.test(String(text || "").trim())
-      ? "Angular"
-      : String(text || "").trim();
-  }
-
-  function applyVerifiedTechnologyEvidence(root) {
-    root = root || document;
-
-    if (isWorkPage()) {
-      root
-        .querySelectorAll(".project-card,.archive-card")
-        .forEach(function (card) {
-          var id = postIdFromLink(
-            card.querySelector('a[href*="project.html?post="]'),
-          );
-          if (!id) return;
-          var skills = String(card.dataset.skills || "")
-            .split("||")
-            .map(normalizeAngularLabel)
-            .filter(Boolean);
-          skills = skills.filter(function (skill) {
-            return skill.toLowerCase() !== "angularjs";
-          });
-          var hasAngular = skills.some(function (skill) {
-            return skill.toLowerCase() === "angular";
-          });
-          if (confirmedAngularPosts.has(id) && !hasAngular)
-            skills.push("angular");
-          if (unverifiedAngularPosts.has(id))
-            skills = skills.filter(function (skill) {
-              return skill.toLowerCase() !== "angular";
-            });
-          card.dataset.skills = Array.from(new Set(skills)).join("||");
-        });
-    }
-
-    if (isProjectPage()) {
-      var id = getPostId();
-      root.querySelectorAll(".case-taxonomy-group").forEach(function (group) {
-        var label = group.querySelector(".case-taxonomy-label");
-        if (!label || label.textContent.trim() !== "Skills") return;
-        var pills = Array.prototype.slice.call(group.querySelectorAll(".pill"));
-        pills.forEach(function (pill) {
-          if (/^AngularJS$/i.test(pill.textContent.trim()))
-            pill.textContent = "Angular";
-        });
-        pills = Array.prototype.slice.call(group.querySelectorAll(".pill"));
-        var angularPill = pills.find(function (pill) {
-          return /^Angular$/i.test(pill.textContent.trim());
-        });
-        var holder = group.querySelector(".pills");
-        if (confirmedAngularPosts.has(id) && holder && !angularPill) {
-          var span = document.createElement("span");
-          span.className = "pill";
-          span.textContent = "Angular";
-          holder.appendChild(span);
-        }
-        if (unverifiedAngularPosts.has(id)) {
-          group.querySelectorAll(".pill").forEach(function (pill) {
-            if (/^Angular(?:JS)?$/i.test(pill.textContent.trim()))
-              pill.remove();
-          });
-        }
-      });
-    }
-  }
-
-  function removePostEleven() {
-    if (isProjectPage() && getPostId() === "11") {
-      location.replace("work.html#additional-professional-work");
-      return true;
-    }
-    if (isWorkPage()) {
-      document
-        .querySelectorAll('a[href*="project.html?post=11"]')
-        .forEach(function (link) {
-          var card = link.closest(".project-card,.archive-card");
-          if (card) card.remove();
-        });
-    }
-    return false;
-  }
-
-  function addFellowsInteraction() {
-    var id = getPostId();
-    if (id !== "17" && id !== "21") return;
-    var section = document.getElementById("uxSection");
-    var title = document.getElementById("uxTitle");
-    var intro = document.getElementById("uxIntro");
-    var panels = document.getElementById("uxPanels");
-    if (
-      !section ||
-      !title ||
-      !intro ||
-      !panels ||
-      section.dataset.sdFellows === "1"
-    )
-      return;
-    title.textContent = "Selectable conference content component";
-    intro.textContent =
-      "The Fellows interface let visitors move between conference topics without leaving the page.";
-    panels.innerHTML =
-      '<article class="panel"><h3>Coordinated content switching</h3><p>Selecting an item updated both the featured image and the corresponding explanatory text in place.</p></article><article class="panel"><h3>In-page topic navigation</h3><p>The interaction kept the visual reference and related information paired while visitors moved between topics.</p></article>';
-    section.hidden = false;
-    section.dataset.sdFellows = "1";
-  }
-
-  function cleanWinterBallPreview() {
-    if (getPostId() !== "10") return;
-    var preview = document.getElementById("projectPreview");
-    if (!preview) return;
-    var image = Array.prototype.find.call(
-      preview.querySelectorAll("img"),
-      function (img) {
-        return (
-          (img.getAttribute("src") || "").indexOf(
-            "pcwp-winterball-photo-2018.jpg",
-          ) !== -1
-        );
-      },
-    );
-    if (!image) return;
-    var row = image.closest(".row");
-    var column = image.closest('[class*="col-"]');
-    if (column) column.remove();
-    else image.remove();
-    if (row) {
-      var remaining = Array.prototype.slice
-        .call(row.children)
-        .filter(function (child) {
-          return child.querySelector && child.querySelector("img");
-        });
-      if (remaining.length === 2)
-        remaining.forEach(function (child) {
-          child.className = "col-lg-6 col-md-6 col-sm-12";
-        });
-    }
-  }
-
-  function ensureLightbox() {
-    var box = document.querySelector(".sd-lightbox");
-    if (box) return box;
-    box = document.createElement("div");
-    box.className = "sd-lightbox";
-    box.hidden = true;
-    box.setAttribute("role", "dialog");
-    box.setAttribute("aria-modal", "true");
-    box.setAttribute("aria-label", "Expanded project image");
-    box.innerHTML =
-      '<div class="sd-lightbox-inner"><button class="sd-lightbox-close" type="button" aria-label="Close expanded image">×</button><img alt=""><p class="sd-lightbox-caption"></p></div>';
-    document.body.appendChild(box);
-
-    function close() {
-      if (box.hidden) return;
-      box.hidden = true;
-      document.documentElement.classList.remove("sd-lightbox-open");
-      box.querySelector("img").removeAttribute("src");
-      if (currentLightboxTrigger && document.contains(currentLightboxTrigger))
-        currentLightboxTrigger.focus({ preventScroll: true });
-      currentLightboxTrigger = null;
-    }
-
-    box.addEventListener("click", function (event) {
-      if (event.target === box || event.target.closest(".sd-lightbox-close"))
-        close();
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !box.hidden) close();
-    });
-    return box;
-  }
-
-  function openLightbox(trigger) {
-    var box = ensureLightbox();
-    var image = box.querySelector("img");
-    var caption = box.querySelector(".sd-lightbox-caption");
-    currentLightboxTrigger = trigger;
-    image.src = trigger.currentSrc || trigger.src;
-    image.alt = trigger.alt || "Expanded project image";
-    caption.textContent = trigger.alt || "";
-    caption.hidden = !caption.textContent;
-    box.hidden = false;
-    document.documentElement.classList.add("sd-lightbox-open");
-    box.querySelector(".sd-lightbox-close").focus({ preventScroll: true });
-  }
-
-  function bindLightboxImages(root) {
-    if (!isProjectPage()) return;
-    root = root || document;
-    root
-      .querySelectorAll(".case-visual img,#projectPreview img")
-      .forEach(function (img) {
-        if (img.dataset.sdLightbox === "1") return;
-        img.dataset.sdLightbox = "1";
-        img.setAttribute("role", "button");
-        img.setAttribute("tabindex", "0");
-        img.setAttribute(
-          "aria-label",
-          (img.alt || "Project image") + " — open larger",
-        );
-        img.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          openLightbox(img);
-        });
-        img.addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openLightbox(img);
-          }
-        });
-      });
-  }
-
-  function runPortfolioFixes(root) {
-    if (removePostEleven()) return;
-    normalizePortfolioNavigation(root || document);
-    applyVerifiedTechnologyEvidence(root || document);
-    cleanWinterBallPreview();
-    addFellowsInteraction();
-    bindLightboxImages(root || document);
-  }
-
-  function installPortfolioObserver() {
-    if (portfolioObserverInstalled || !window.MutationObserver) return;
-    var targets = [
-      document.getElementById("caseHero"),
-      document.getElementById("caseNavTop"),
-      document.getElementById("caseNavBottom"),
-      document.getElementById("caseNarrative"),
-      document.getElementById("uxSection"),
-      document.getElementById("projectPreview"),
-      document.getElementById("projectArchive"),
-      document.getElementById("archiveFilterStatus"),
-    ].filter(Boolean);
-    if (!targets.length) return;
-    portfolioObserverInstalled = true;
-    var queued = false;
-    var observer = new MutationObserver(function () {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(function () {
-        queued = false;
-        runPortfolioFixes(document);
-      });
-    });
-    targets.forEach(function (target) {
-      observer.observe(target, { childList: true, subtree: true });
-    });
-  }
-
-  function initCursor() {
-    if (
-      !window.matchMedia ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
-    if (
-      !window.matchMedia("(pointer:fine) and (hover:hover)").matches ||
-      document.querySelector(".sd-cursor")
-    )
-      return;
     var cursor = document.createElement("div");
     cursor.className = "sd-cursor";
     document.body.appendChild(cursor);
     document.documentElement.classList.add("sd-cursor-enabled");
+
     var lastMode = "";
 
     function setMode(target) {
-      var image =
+      var imageTarget =
         target &&
         target.closest &&
         target.closest(
-          "[data-sd-lightbox],.project-image,.case-visual,.preview-stack a",
+          ".project-image,.case-visual img,#projectPreview img,.preview-stack a",
         );
-      var link =
+      var linkTarget =
         target && target.closest && target.closest('a,button,[role="button"]');
-      var mode = image ? "image" : link ? "link" : "";
+      var mode = imageTarget ? "image" : linkTarget ? "link" : "";
+
       if (mode === lastMode) return;
       lastMode = mode;
       document.documentElement.classList.toggle(
@@ -566,300 +183,139 @@
       },
       { passive: true },
     );
-    document.addEventListener("pointerleave", function () {
+
+    function hideCursor() {
       document.documentElement.classList.remove(
         "sd-cursor-live",
         "sd-cursor-link",
         "sd-cursor-image",
       );
       lastMode = "";
-    });
-    window.addEventListener("blur", function () {
-      document.documentElement.classList.remove(
-        "sd-cursor-live",
-        "sd-cursor-link",
-        "sd-cursor-image",
-      );
-      lastMode = "";
-    });
-  }
-
-  function initBuildMotion(root) {
-    ensureBuildHeader();
-    ensureInteractionStylesheet();
-    runPortfolioFixes(root || document);
-    installPortfolioObserver();
-  }
-
-  window.initBuildMotion = initBuildMotion;
-
-  function init() {
-    ensureBuildHeader();
-    ensureInteractionStylesheet();
-    runPortfolioFixes(document);
-    installPortfolioObserver();
-    initCursor();
-  }
-
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init);
-  else init();
-})();
-
-/* =========================================================
-   FINE ARTS INTERIOR
-   ========================================================= */
-(function () {
-  "use strict";
-
-  function ensureBuildHeader() {
-    if (window.initBuildHeader) {
-      window.initBuildHeader(document);
-      return;
     }
-    if (document.getElementById("sd-header-js")) return;
-    var script = document.createElement("script");
-    script.id = "sd-header-js";
-    script.src = "/js/header.js";
-    document.head.appendChild(script);
+
+    document.addEventListener("pointerleave", hideCursor);
+    window.addEventListener("blur", hideCursor);
   }
 
-  ensureBuildHeader();
+  function initProjectLightbox() {
+    if (!document.body || document.body.id !== "work") return;
+    if (!document.getElementById("projectContent")) return;
 
-  var frame = document.querySelector(".finearts-preview-frame");
-  if (!frame) return;
+    var currentTrigger = null;
 
-  function resizeFrame(doc) {
-    if (!doc || !doc.documentElement) return;
-    var height = Math.max(
-      doc.documentElement.scrollHeight || 0,
-      doc.body ? doc.body.scrollHeight : 0,
-      900,
-    );
-    frame.style.height = height + "px";
-  }
+    function ensureLightbox() {
+      var box = document.querySelector(".sd-lightbox");
+      if (box) return box;
 
-  frame.addEventListener("load", function () {
-    var doc = frame.contentDocument;
-    if (!doc) return;
-
-    var hideChrome = doc.createElement("style");
-    hideChrome.textContent =
-      "#top{display:none!important} footer{display:none!important}";
-    doc.head.appendChild(hideChrome);
-
-    var theme = doc.createElement("link");
-    theme.rel = "stylesheet";
-    theme.href = "/css/finearts-build.css";
-    doc.head.appendChild(theme);
-
-    doc
-      .querySelectorAll(".process-hero,.boutique-hero")
-      .forEach(function (hero) {
-        hero.classList.add("finearts-hero");
-      });
-
-    resizeFrame(doc);
-    if (window.ResizeObserver && doc.body) {
-      var observer = new ResizeObserver(function () {
-        resizeFrame(doc);
-      });
-      observer.observe(doc.body);
+      box = document.createElement("div");
+      box.className = "sd-lightbox";
+      box.hidden = true;
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true");
+      box.setAttribute("aria-label", "Expanded project image");
+      box.innerHTML =
+        '<div class="sd-lightbox-inner"><button class="sd-lightbox-close" type="button" aria-label="Close expanded image">×</button><img alt=""><p class="sd-lightbox-caption"></p></div>';
+      document.body.appendChild(box);
+      return box;
     }
-    setTimeout(function () {
-      resizeFrame(doc);
-    }, 500);
-    setTimeout(function () {
-      resizeFrame(doc);
-    }, 1800);
-  });
-})();
 
-/* =========================================================
-   FINE ARTS GALLERY
-   ========================================================= */
-/* Review-only Fine Arts gallery renderer.
- * Uses the same archive JSON as the live site but presents works as an
- * editorial exhibition rather than a card grid.
- */
-(function () {
-  "use strict";
-
-  var ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-  var GALLERIES = [
-    {
-      type: "gstory",
-      label: "Narrative",
-      href: "narrative-gallery-build.html",
-    },
-    { type: "gnature", label: "Wildlife", href: "wildlife-gallery-build.html" },
-    {
-      type: "gdecor",
-      label: "Decorative",
-      href: "decorative-gallery-build.html",
-    },
-    {
-      type: "gstudy",
-      label: "Academic Studies",
-      href: "studies-gallery-build.html",
-    },
-  ];
-
-  function ensureBuildHeader() {
-    if (window.initBuildHeader) {
-      window.initBuildHeader(document);
-      return;
-    }
-    if (document.getElementById("sd-header-js")) return;
-    var script = document.createElement("script");
-    script.id = "sd-header-js";
-    script.src = "/js/header.js";
-    document.head.appendChild(script);
-  }
-
-  function text(value) {
-    if (Array.isArray(value)) return value.filter(Boolean).join(" ").trim();
-    return value === null || value === undefined ? "" : String(value).trim();
-  }
-
-  function normalizeKey(value) {
-    return String(value || "")
-      .replace(/[\s_-]/g, "")
-      .toLowerCase();
-  }
-
-  function field(item) {
-    var names = [].slice.call(arguments, 1).map(normalizeKey);
-    var sources = [item || {}, (item && item.misc) || {}];
-    for (var s = 0; s < sources.length; s++) {
-      var source = sources[s];
-      for (var key in source) {
-        if (!Object.prototype.hasOwnProperty.call(source, key)) continue;
-        if (names.indexOf(normalizeKey(key)) !== -1) {
-          var value = text(source[key]);
-          if (value) return value;
-        }
+    function closeLightbox() {
+      var box = document.querySelector(".sd-lightbox");
+      if (!box || box.hidden) return;
+      box.hidden = true;
+      document.documentElement.classList.remove("sd-lightbox-open");
+      box.querySelector("img").removeAttribute("src");
+      if (currentTrigger && document.contains(currentTrigger)) {
+        currentTrigger.focus({ preventScroll: true });
       }
+      currentTrigger = null;
     }
-    return "";
-  }
 
-  function escapeHTML(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+    function openLightbox(image) {
+      var box = ensureLightbox();
+      var expanded = box.querySelector("img");
+      var caption = box.querySelector(".sd-lightbox-caption");
 
-  function imageURL(item) {
-    var files = Array.isArray(item && item.files)
-      ? item.files
-      : item && item.files
-        ? [item.files]
-        : [];
-    for (var f = 0; f < files.length; f++) {
-      var entry = files[f];
-      if (typeof entry !== "string") continue;
-      var parts = entry.split(/\r?\n/).map(function (x) {
-        return x.trim();
-      });
-      if (parts.length >= 3 && /^https?:\/\//i.test(parts[2])) return parts[2];
-      for (var i = parts.length - 1; i >= 0; i--) {
-        if (/^https?:\/\//i.test(parts[i])) return parts[i];
+      currentTrigger = image;
+      expanded.src = image.currentSrc || image.src;
+      expanded.alt = image.alt || "Expanded project image";
+      caption.textContent = image.alt || "";
+      caption.hidden = !caption.textContent;
+      box.hidden = false;
+      document.documentElement.classList.add("sd-lightbox-open");
+      box.querySelector(".sd-lightbox-close").focus({ preventScroll: true });
+    }
+
+    /* Called after project content changes so images are keyboard accessible.
+       Click/keydown handling is delegated below, so no per-image listeners are
+       required. */
+    function prepareProjectImages(root) {
+      (root || document)
+        .querySelectorAll(".case-visual img,#projectPreview img")
+        .forEach(function (image) {
+          image.setAttribute("role", "button");
+          image.setAttribute("tabindex", "0");
+          image.setAttribute(
+            "aria-label",
+            (image.alt || "Project image") + " — open larger",
+          );
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+      var close = event.target.closest(".sd-lightbox-close");
+      var box = event.target.closest(".sd-lightbox");
+      if (close || (box && event.target === box)) {
+        closeLightbox();
+        return;
       }
-    }
-    return "";
-  }
 
-  function getArchive() {
-    if (
-      window.SiteArchiveData &&
-      typeof window.SiteArchiveData.get === "function"
-    )
-      return window.SiteArchiveData.get();
-    return fetch(ENDPOINT).then(function (r) {
-      if (!r.ok) throw new Error("Archive unavailable");
-      return r.json();
-    });
-  }
-
-  function insertGalleryNavigation(type) {
-    var hero = document.querySelector(".art-gallery-hero");
-    if (!hero || hero.querySelector(".art-gallery-categories")) return;
-    var target = hero.querySelector(".container") || hero;
-    var nav = document.createElement("nav");
-    nav.className = "art-gallery-categories";
-    nav.setAttribute("aria-label", "Fine Arts galleries");
-    nav.innerHTML = GALLERIES.map(function (gallery) {
-      return (
-        '<a href="' +
-        gallery.href +
-        '"' +
-        (gallery.type === type ? ' class="active" aria-current="page"' : "") +
-        ">" +
-        gallery.label +
-        "</a>"
+      var image = event.target.closest(
+        "#projectContent .case-visual img,#projectContent #projectPreview img",
       );
-    }).join("");
-    target.appendChild(nav);
-  }
+      if (!image) return;
+      event.preventDefault();
+      openLightbox(image);
+    });
 
-  function makeCard(item, index) {
-    var src = imageURL(item);
-    var title = field(item, "title") || "Untitled";
-    var media = field(item, "media", "medium") || "Masterwork";
-    var dimensions = field(item, "dimensions", "size");
-    var year = field(item, "year", "date");
-    var status = field(item, "status", "availability");
-    var description = text(item.description);
-    var meta = [media, dimensions, year, status].filter(Boolean).join(" · ");
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+        return;
+      }
+      if (event.key !== "Enter" && event.key !== " ") return;
+      var image = event.target.closest(
+        "#projectContent .case-visual img,#projectContent #projectPreview img",
+      );
+      if (!image) return;
+      event.preventDefault();
+      openLightbox(image);
+    });
 
-    var figure = document.createElement("figure");
-    figure.className = "art-gallery-card";
-    figure.innerHTML =
-      '<button type="button" class="art-gallery-open" data-index="' +
-      index +
-      '" aria-label="View ' +
-      escapeHTML(title) +
-      ' larger">' +
-      '<span class="art-gallery-media-stage">' +
-      (src
-        ? '<img src="' +
-          escapeHTML(src) +
-          '" alt="' +
-          escapeHTML(title) +
-          '" loading="lazy">'
-        : '<span class="art-gallery-image-missing">Image forthcoming</span>') +
-      "</span>" +
-      "</button>" +
-      '<figcaption class="art-gallery-caption">' +
-      "<h2>" +
-      escapeHTML(title) +
-      "</h2>" +
-      (meta ? '<p class="art-gallery-meta">' + escapeHTML(meta) + "</p>" : "") +
-      (description
-        ? '<p class="art-gallery-description">' +
-          escapeHTML(description) +
-          "</p>"
-        : "") +
-      "</figcaption>";
-    return {
-      node: figure,
-      src: src,
-      title: title,
-      meta: meta,
-      description: description,
+    window.ProjectImageUI = {
+      prepare: prepareProjectImages,
     };
   }
 
-  function init() {
-    ensureBuildHeader();
+  function initTechnicalInteractions() {
+    if (!document.body || document.body.id !== "work") return;
+    ensureInteractionStylesheet();
+    initTechnicalCursor();
+    initProjectLightbox();
+  }
+
+  /* ======================================================================
+     3. FINE ARTS GALLERY RENDERER
+     Loads gallery records from the shared archive and opens works in the
+     gallery lightbox already present in the gallery HTML.
+     ====================================================================== */
+
+  function initFineArtsGallery() {
+    var grid = document.getElementById("artGalleryGrid");
+    if (!grid) return;
+
     var body = document.body;
     var type = (body.getAttribute("data-gallery-type") || "").toLowerCase();
-    var grid = document.getElementById("artGalleryGrid");
     var status = document.getElementById("artGalleryStatus");
     var lightbox = document.getElementById("artGalleryLightbox");
     var lightboxImage = document.getElementById("artGalleryLightboxImage");
@@ -873,17 +329,77 @@
 
     if (
       !type ||
-      !grid ||
       !lightbox ||
       !lightboxImage ||
       !lightboxTitle ||
       !lightboxMeta ||
       !lightboxDescription ||
       !close
-    )
+    ) {
       return;
+    }
 
-    insertGalleryNavigation(type);
+    function getArchive() {
+      if (
+        window.SiteArchiveData &&
+        typeof window.SiteArchiveData.get === "function"
+      ) {
+        return window.SiteArchiveData.get();
+      }
+      return fetch(SCRIPT_URL).then(function (response) {
+        if (!response.ok) throw new Error("Archive unavailable");
+        return response.json();
+      });
+    }
+
+    function makeCard(item, index) {
+      var urls = extractFileUrls(item && item.files);
+      var src = urls[0] || "";
+      var title = getField(item, "title") || "Untitled";
+      var media = getField(item, "media", "medium") || "Masterwork";
+      var dimensions = getField(item, "dimensions", "size");
+      var year = getField(item, "year", "date");
+      var availability = getField(item, "status", "availability");
+      var description = textValue(item && item.description);
+      var meta = [media, dimensions, year, availability]
+        .filter(Boolean)
+        .join(" · ");
+
+      var figure = document.createElement("figure");
+      figure.className = "art-gallery-card";
+      figure.innerHTML =
+        '<button type="button" class="art-gallery-open" data-index="' +
+        index +
+        '" aria-label="View ' +
+        escapeHTML(title) +
+        ' larger"><span class="art-gallery-media-stage">' +
+        (src
+          ? '<img src="' +
+            escapeHTML(src) +
+            '" alt="' +
+            escapeHTML(title) +
+            '" loading="lazy">'
+          : '<span class="art-gallery-image-missing">Image forthcoming</span>') +
+        "</span></button>" +
+        '<figcaption class="art-gallery-caption"><h2>' +
+        escapeHTML(title) +
+        "</h2>" +
+        (meta ? '<p class="art-gallery-meta">' + escapeHTML(meta) + "</p>" : "") +
+        (description
+          ? '<p class="art-gallery-description">' +
+            escapeHTML(description) +
+            "</p>"
+          : "") +
+        "</figcaption>";
+
+      return {
+        node: figure,
+        src: src,
+        title: title,
+        meta: meta,
+        description: description,
+      };
+    }
 
     function closeLightbox() {
       lightbox.classList.remove("open");
@@ -894,16 +410,15 @@
     getArchive()
       .then(function (data) {
         if (!Array.isArray(data)) throw new Error("Invalid archive data");
+
         var items = data
           .filter(function (item) {
-            return (
-              String(item.type || "")
-                .trim()
-                .toLowerCase() === type
-            );
+            return String((item && item.type) || "")
+              .trim()
+              .toLowerCase() === type;
           })
           .sort(function (a, b) {
-            return Number(a.id || 0) - Number(b.id || 0);
+            return Number((a && a.id) || 0) - Number((b && b.id) || 0);
           });
 
         if (status) status.remove();
@@ -918,126 +433,49 @@
           records.push(record);
           grid.appendChild(record.node);
         });
-
-        grid.addEventListener("click", function (event) {
-          var button = event.target.closest(".art-gallery-open");
-          if (!button) return;
-          var record = records[Number(button.getAttribute("data-index"))];
-          if (!record || !record.src) return;
-          lightboxImage.src = record.src;
-          lightboxImage.alt = record.title;
-          lightboxTitle.textContent = record.title;
-          lightboxMeta.textContent = record.meta;
-          lightboxDescription.textContent = record.description;
-          lightbox.classList.add("open");
-          lightbox.setAttribute("aria-hidden", "false");
-          close.focus();
-        });
       })
       .catch(function () {
-        if (status)
+        if (status) {
           status.textContent = "The gallery archive could not be loaded.";
+        }
       });
+
+    grid.addEventListener("click", function (event) {
+      var button = event.target.closest(".art-gallery-open");
+      if (!button) return;
+      var record = records[Number(button.getAttribute("data-index"))];
+      if (!record || !record.src) return;
+
+      lightboxImage.src = record.src;
+      lightboxImage.alt = record.title;
+      lightboxTitle.textContent = record.title;
+      lightboxMeta.textContent = record.meta;
+      lightboxDescription.textContent = record.description;
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      close.focus();
+    });
 
     close.addEventListener("click", closeLightbox);
     lightbox.addEventListener("click", function (event) {
       if (event.target === lightbox) closeLightbox();
     });
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && lightbox.classList.contains("open"))
+      if (event.key === "Escape" && lightbox.classList.contains("open")) {
         closeLightbox();
-    });
-  }
-
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init);
-  else init();
-})();
-
-/* =========================================================
-   EMBEDDED BUILD PAGE SCRIPTS
-   =========================================================
-   These functions archive JavaScript that currently lives inline in HTML
-   files under /build. They are page-gated by the existing body id and DOM.
-
-   While an HTML page still contains its legacy inline script, the dispatcher
-   detects a marker in that inline block and does NOT run the archived copy.
-   Once that inline script is removed later, the same global file will run the
-   correct initializer automatically. No HTML is changed here.
-   ========================================================= */
-(function () {
-  "use strict";
-
-  var pages = (window.BuildInlinePages = window.BuildInlinePages || {});
-  var SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzrX85zJViyZP6gIiB0NUvXbaq-t6cR3Xa_7ckub9Jgqv_gnivZjHTWpASywZMN_l0U/exec";
-
-  function inlineContains(marker) {
-    if (!marker) return false;
-    return Array.prototype.some.call(document.scripts, function (script) {
-      return !script.src && (script.textContent || "").indexOf(marker) !== -1;
-    });
-  }
-
-  function runWhenReady(fn) {
-    if (document.readyState === "loading")
-      document.addEventListener("DOMContentLoaded", fn, { once: true });
-    else fn();
-  }
-
-  function loadTemplate(target) {
-    var url = target && target.getAttribute("data-template");
-    if (!target || !url)
-      return Promise.reject(new Error("Project template target unavailable"));
-    return fetch(url)
-      .then(function (response) {
-        if (!response.ok) throw new Error("Project template unavailable");
-        return response.text();
-      })
-      .then(function (html) {
-        target.innerHTML = html;
-        return target;
-      });
-  }
-
-  function initProcessVideos() {
-    var connection =
-      navigator.connection ||
-      navigator.mozConnection ||
-      navigator.webkitConnection;
-    document.querySelectorAll(".process-video").forEach(function (video) {
-      video.muted = true;
-      if (!connection) return;
-      if (
-        connection.saveData ||
-        ["slow-2g", "2g", "3g"].includes(connection.effectiveType)
-      ) {
-        console.log("The winds are weak. Staying the process-video motion.");
-        video.pause();
-        video.autoplay = false;
-      } else {
-        video.play().catch(function () {
-          console.log("Motion paused by browser policy.");
-        });
       }
     });
   }
 
-  pages.index = function () {
-    var video = document.querySelector(".splash-video");
-    var source = video && video.querySelector("source");
-    function useBlackFallback() {
-      if (video) video.style.display = "none";
-    }
-    if (video) video.addEventListener("error", useBlackFallback);
-    if (source) source.addEventListener("error", useBlackFallback);
-  };
+  /* ======================================================================
+     4. FINE ARTS ABOUT PAGE MOTION
+     Adds reveal classes when process sections enter the viewport and avoids
+     autoplaying process videos on slow/save-data connections.
+     ====================================================================== */
 
-  pages.finearts = function () {
-    initProcessVideos();
-  };
+  function initAboutPage() {
+    if (!document.body || document.body.id !== "arts about") return;
 
-  pages.about = function () {
     if (window.IntersectionObserver) {
       var observer = new IntersectionObserver(
         function (entries) {
@@ -1047,6 +485,7 @@
         },
         { threshold: 0.15 },
       );
+
       document
         .querySelectorAll(
           ".process-node,.mastery-parallax-window,.mastery-content-box",
@@ -1055,118 +494,167 @@
           observer.observe(node);
         });
     }
-    initProcessVideos();
-  };
 
-  pages.resume = function () {
-    var button = document.getElementById("saveResumePdf");
-    if (button)
-      button.addEventListener("click", function () {
-        window.print();
-      });
-  };
+    var connection =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
 
-  /* ------------------------------------------------
-     Shared project-data helpers used by Work and Project.
-     --------------------------------------------------------- */
+    document.querySelectorAll(".process-video").forEach(function (video) {
+      video.muted = true;
+      if (!connection) return;
+      if (
+        connection.saveData ||
+        ["slow-2g", "2g", "3g"].indexOf(connection.effectiveType) !== -1
+      ) {
+        video.pause();
+        video.autoplay = false;
+      } else {
+        video.play().catch(function () {});
+      }
+    });
+  }
+
+  /* ======================================================================
+     5. SHARED TECHNICAL PROJECT DATA
+     Merges the legacy project JSON files with build/js/casestudies.json.
+     ====================================================================== */
+
+  var confirmedAngularPosts = new Set(["14", "18", "44", "45"]);
+  var unverifiedAngularPosts = new Set(["16", "39"]);
+
   function projectHelpers() {
     function strip(value) {
       var div = document.createElement("div");
       div.innerHTML = String(value || "");
       return (div.textContent || "").trim();
     }
+
     function lines(value) {
       return String(value || "")
         .split(/<br\s*\/?\s*>/i)
         .map(strip)
         .filter(Boolean);
     }
+
     function key(value) {
       return strip(value).toLowerCase().replace(/\s+/g, " ").trim();
     }
-    function yearNum(value) {
+
+    function yearNumber(value) {
       var match = String(value || "").match(/\d{4}/);
       return match ? parseInt(match[0], 10) : 0;
     }
-    function contains(project, token) {
+
+    function contains(item, token) {
       return (
-        (" " + String(project.filters || "") + " ").indexOf(
+        (" " + String(item.filters || "") + " ").indexOf(
           " " + token + " ",
         ) !== -1
       );
     }
-    function isCrfRelated(project) {
+
+    function isCrfRelated(item) {
       return /Cardiovascular Research Foundation|\bCRF\b/i.test(
-        [
-          project.client,
-          project.role,
-          strip(project.content),
-          project.summary,
-        ].join(" "),
+        [item.client, item.role, strip(item.content), item.summary].join(" "),
       );
     }
-    function normalizeProject(project) {
-      var next = Object.assign({}, project);
+
+    /* Normalizes skill labels once while loading data instead of repeatedly
+       patching cards after they have rendered. */
+    function normalizeProject(item) {
+      var next = Object.assign({}, item);
+      var id = String(next.legacyId || next.id || "");
       var skills = lines(next.skills).map(function (skill) {
-        return skill === "AngularJS" ? "Angular" : skill;
+        return /^AngularJS$/i.test(skill) ? "Angular" : skill;
       });
+
       skills = skills.filter(function (skill) {
         return !/^(Rapha[eë]l(?:\.js)?|TweenLite|Animate\.css)$/i.test(skill);
       });
+
+      if (confirmedAngularPosts.has(id)) {
+        if (
+          !skills.some(function (skill) {
+            return /^Angular$/i.test(skill);
+          })
+        ) {
+          skills.push("Angular");
+        }
+      }
+
+      if (unverifiedAngularPosts.has(id)) {
+        skills = skills.filter(function (skill) {
+          return !/^Angular(?:JS)?$/i.test(skill);
+        });
+      }
+
       var emailRelated =
         contains(next, "email") ||
         skills.some(function (skill) {
           return /^Email Development$/i.test(skill);
         });
+
       if (
         emailRelated &&
         isCrfRelated(next) &&
         !skills.some(function (skill) {
           return /^Salesforce Pardot$/i.test(skill);
         })
-      )
+      ) {
         skills.push("Salesforce Pardot");
-      next.skills = skills.join("<br>");
+      }
+
+      next.skills = Array.from(new Set(skills)).join("<br>");
       return next;
     }
+
     function merge(base, extras) {
-      var result = (base || []).map(function (project) {
-        return Object.assign({}, project, { legacyId: String(project.id) });
+      var result = (base || []).map(function (item) {
+        return Object.assign({}, item, { legacyId: String(item.id) });
       });
+
       (extras || []).forEach(function (extra) {
         var overrides = (extra && extra.overrides) || {};
-        result = result.map(function (project) {
+
+        result = result.map(function (item) {
           var override =
-            overrides[String(project.legacyId)] ||
-            overrides[String(project.id)] ||
+            overrides[String(item.legacyId)] ||
+            overrides[String(item.id)] ||
             {};
-          return Object.assign({}, project, override, {
-            legacyId: String(project.legacyId),
+          return Object.assign({}, item, override, {
+            legacyId: String(item.legacyId),
           });
         });
-        ((extra && extra.posts) || []).forEach(function (project) {
-          var id = String(project.id);
-          var index = result.findIndex(function (item) {
-            return String(item.legacyId) === id;
+
+        ((extra && extra.posts) || []).forEach(function (item) {
+          var id = String(item.id);
+          var index = result.findIndex(function (candidate) {
+            return String(candidate.legacyId) === id;
           });
-          var next = Object.assign({}, project, { legacyId: id });
-          if (index >= 0)
+          var next = Object.assign({}, item, { legacyId: id });
+
+          if (index >= 0) {
             result[index] = Object.assign({}, result[index], next);
-          else result.push(next);
+          } else {
+            result.push(next);
+          }
         });
       });
+
       return result
-        .filter(function (project) {
-          return !project.hidden;
+        .filter(function (item) {
+          return !item.hidden && String(item.legacyId) !== "11";
         })
         .map(normalizeProject)
         .sort(function (a, b) {
           return (
-            yearNum(b.year) - yearNum(a.year) ||
+            yearNumber(b.year) - yearNumber(a.year) ||
             strip(a.title).localeCompare(strip(b.title))
           );
         });
     }
+
     function optionalJson(url) {
       return fetch(url)
         .then(function (response) {
@@ -1176,6 +664,7 @@
           return {};
         });
     }
+
     function loadProjects() {
       return Promise.all([
         fetch("/js/posts.json").then(function (response) {
@@ -1198,31 +687,33 @@
             buildData,
           ]),
           build: buildData,
-          raw: data,
         };
       });
     }
+
     return {
       strip: strip,
       lines: lines,
       key: key,
-      yearNum: yearNum,
-      contains: contains,
-      normalizeProject: normalizeProject,
-      merge: merge,
-      optionalJson: optionalJson,
       loadProjects: loadProjects,
     };
   }
 
   var project = projectHelpers();
 
-  pages.work = function () {
-    var featuredIds = ["23", "22", "16", "1"];
+  /* ======================================================================
+     6. TECHNICAL WORK ARCHIVE
+     Builds featured/archive cards and applies category/skill filters.
+     ====================================================================== */
+
+  function initWorkPage() {
     var featured = document.getElementById("featuredProjects");
     var archive = document.getElementById("projectArchive");
     var filterStatus = document.getElementById("archiveFilterStatus");
     var buttons = document.querySelectorAll(".filter");
+    if (!featured || !archive || !filterStatus) return;
+
+    var featuredIds = ["23", "22", "16", "1"];
     var posts = [];
     var filterRun = 0;
     var typeLabels = {
@@ -1233,14 +724,15 @@
       print: "Print Collateral",
       brand: "Branding",
     };
-    if (!featured || !archive || !filterStatus) return;
 
-    function url(item) {
+    function projectUrl(item) {
       return "project.html?post=" + encodeURIComponent(item.legacyId);
     }
-    function image(item) {
-      return "/" + (item.thumb || item.image || "");
+
+    function imagePath(item) {
+      return assetPath(item.thumb || item.image || "");
     }
+
     function card(item, small) {
       var article = document.createElement("article");
       article.className = small ? "archive-card" : "project-card";
@@ -1249,29 +741,33 @@
         .lines(item.skills)
         .map(project.key)
         .join("||");
+
       var meta = [item.year, project.strip(item.client)]
         .filter(Boolean)
         .join(" · ");
+
       article.innerHTML =
         '<a class="project-image" href="' +
-        url(item) +
+        projectUrl(item) +
         '"><img src="' +
-        image(item) +
+        imagePath(item) +
         '" alt="' +
-        project.strip(item.title) +
+        escapeHTML(project.strip(item.title)) +
         '" loading="lazy"></a><div class="project-copy"><p class="project-meta">' +
-        meta +
+        escapeHTML(meta) +
         '</p><h3><a href="' +
-        url(item) +
+        projectUrl(item) +
         '">' +
-        item.title +
+        escapeHTML(project.strip(item.title)) +
         "</a></h3><p>" +
-        (item.summary || "Professional project.") +
+        escapeHTML(project.strip(item.summary || "Professional project.")) +
         '</p><div class="project-role">' +
-        project.strip(item.role).replace(/\s+/g, " · ") +
+        escapeHTML(project.strip(item.role).replace(/\s+/g, " · ")) +
         "</div></div>";
+
       return article;
     }
+
     function renderFeatured() {
       featured.innerHTML = "";
       featuredIds.forEach(function (id) {
@@ -1281,34 +777,41 @@
         if (item) featured.appendChild(card(item, false));
       });
     }
+
     function defaultArchivePosts() {
       return posts.filter(function (item) {
         return featuredIds.indexOf(String(item.legacyId)) === -1;
       });
     }
+
     function renderArchive(source) {
       archive.innerHTML = "";
       (source || []).forEach(function (item) {
         archive.appendChild(card(item, true));
       });
-      if (window.initBuildMotion) window.initBuildMotion(document);
     }
+
     function cardMatches(node, type, skill) {
       if (
         type &&
         type !== "all" &&
         (" " + node.dataset.filters + " ").indexOf(" " + type + " ") === -1
-      )
+      ) {
         return false;
+      }
+
       if (
         skill &&
         String(node.dataset.skills || "")
           .split("||")
           .indexOf(project.key(skill)) === -1
-      )
+      ) {
         return false;
+      }
+
       return true;
     }
+
     function setButtonState(type) {
       buttons.forEach(function (button) {
         button.classList.toggle(
@@ -1318,28 +821,31 @@
             : button.dataset.filter === "all",
         );
       });
-      if (!type)
-        buttons.forEach(function (button) {
-          button.classList.toggle("active", button.dataset.filter === "all");
-        });
     }
+
     function setStatus(type, skill) {
       if (!type && !skill) {
         filterStatus.hidden = true;
         filterStatus.innerHTML = "";
         return;
       }
+
       var label = skill
-        ? "Skill: <strong>" + project.strip(skill) + "</strong>"
-        : "Project type: <strong>" +
-          (typeLabels[type] || project.strip(type)) +
+        ? "Skill: <strong>" + escapeHTML(project.strip(skill)) + "</strong>"
+        : "Category: <strong>" +
+          escapeHTML(typeLabels[type] || project.strip(type)) +
           "</strong>";
+
       filterStatus.innerHTML =
         "Showing " +
         label +
         ' <a href="work.html#projectArchive" data-clear-filter>Clear filter</a>';
       filterStatus.hidden = false;
     }
+
+    /* The animation is visual polish only. It is kept because it is currently
+       working, but filtering still falls back to an instant state when motion
+       is reduced or the Web Animations API is unavailable. */
     function filter(type, skill, instant) {
       var run = ++filterRun;
       var cards = Array.prototype.slice.call(
@@ -1350,19 +856,23 @@
         (window.matchMedia &&
           window.matchMedia("(prefers-reduced-motion: reduce)").matches) ||
         !Element.prototype.animate;
+
       setStatus(type, skill);
       setButtonState(skill ? null : type || null);
+
       if (reduce) {
         cards.forEach(function (node) {
           node.hidden = !cardMatches(node, type, skill);
         });
         return;
       }
+
       cards.forEach(function (node) {
         node.getAnimations().forEach(function (animation) {
           animation.cancel();
         });
       });
+
       var first = new Map();
       cards
         .filter(function (node) {
@@ -1371,12 +881,14 @@
         .forEach(function (node) {
           first.set(node, node.getBoundingClientRect());
         });
+
       var hiding = cards.filter(function (node) {
         return !node.hidden && !cardMatches(node, type, skill);
       });
       var showing = cards.filter(function (node) {
         return node.hidden && cardMatches(node, type, skill);
       });
+
       var exits = hiding.map(function (node) {
         return node
           .animate([{ opacity: 1 }, { opacity: 0 }], {
@@ -1386,8 +898,10 @@
           })
           .finished.catch(function () {});
       });
+
       Promise.all(exits).then(function () {
         if (run !== filterRun) return;
+
         hiding.forEach(function (node) {
           node.hidden = true;
           node.style.opacity = "";
@@ -1396,6 +910,7 @@
           node.hidden = false;
           node.style.opacity = "0";
         });
+
         var last = new Map();
         cards
           .filter(function (node) {
@@ -1404,17 +919,20 @@
           .forEach(function (node) {
             last.set(node, node.getBoundingClientRect());
           });
+
         cards
           .filter(function (node) {
-            return !node.hidden && !showing.includes(node);
+            return !node.hidden && showing.indexOf(node) === -1;
           })
           .forEach(function (node) {
-            var a = first.get(node),
-              b = last.get(node);
-            if (!a || !b) return;
-            var dx = a.left - b.left,
-              dy = a.top - b.top;
+            var before = first.get(node);
+            var after = last.get(node);
+            if (!before || !after) return;
+
+            var dx = before.left - after.left;
+            var dy = before.top - after.top;
             if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+
             node.animate(
               [
                 { transform: "translate(" + dx + "px," + dy + "px)" },
@@ -1423,6 +941,7 @@
               { duration: 380, easing: "cubic-bezier(.2,.65,.25,1)" },
             );
           });
+
         showing.forEach(function (node, index) {
           node
             .animate(
@@ -1449,11 +968,13 @@
       var clear = event.target.closest("[data-clear-filter]");
       if (!clear) return;
       event.preventDefault();
+
       var scrollTop = window.scrollY;
       renderArchive(defaultArchivePosts());
       setStatus(null, null);
       setButtonState(null);
       history.replaceState(null, "", "work.html#projectArchive");
+
       requestAnimationFrame(function () {
         window.scrollTo({ top: scrollTop, left: 0, behavior: "auto" });
       });
@@ -1462,6 +983,7 @@
     buttons.forEach(function (button) {
       button.addEventListener("click", function () {
         var value = button.dataset.filter;
+
         if (value === "all") {
           renderArchive(defaultArchivePosts());
           setStatus(null, null);
@@ -1469,6 +991,7 @@
           history.replaceState(null, "", "work.html#projectArchive");
           return;
         }
+
         renderArchive(posts);
         filter(value, null, false);
         history.replaceState(
@@ -1484,9 +1007,11 @@
       .then(function (result) {
         posts = result.posts;
         renderFeatured();
+
         var params = new URLSearchParams(location.search);
-        var type = params.get("type"),
-          skill = params.get("skill");
+        var type = params.get("type");
+        var skill = params.get("skill");
+
         if (type || skill) {
           renderArchive(posts);
           filter(type, skill, true);
@@ -1499,80 +1024,54 @@
         featured.innerHTML = "<p>Project data is unavailable.</p>";
         archive.innerHTML = "";
       });
-  };
+  }
 
-  pages.project = function () {
+  /* ======================================================================
+     7. PROJECT DETAIL PAGES
+     Loads the shared template, project data, case-study sections and preview.
+     The old renderHero function is intentionally gone; renderProjectHeader
+     creates only the title/meta/skills/image that are actually wanted.
+     ====================================================================== */
+
+  function initProjectPage() {
     var target = document.getElementById("projectContent");
     if (!target) return;
 
-    var typeMap = [
-      { token: "conf", label: "Campaigns" },
-      { token: "web", label: "Websites" },
-      { token: "email", label: "Emails" },
-      { token: "print", label: "Print collateral" },
-      { token: "dig", label: "Digital" },
-      { token: "brand", label: "Branding" },
-    ];
+    function loadTemplate() {
+      var url = target.getAttribute("data-template");
+      if (!url) return Promise.reject(new Error("Project template unavailable"));
+
+      return fetch(url)
+        .then(function (response) {
+          if (!response.ok) throw new Error("Project template unavailable");
+          return response.text();
+        })
+        .then(function (html) {
+          target.innerHTML = html;
+        });
+    }
 
     function projectUrl(item) {
       return "project.html?post=" + encodeURIComponent(item.legacyId);
     }
-    function filterUrl(kind, value) {
-      return (
-        "work.html?" +
-        kind +
-        "=" +
-        encodeURIComponent(value) +
-        "#projectArchive"
-      );
-    }
-    function assetPath(value) {
-      var path = String(value || "").trim();
-      if (!path) return "";
-      if (/^(?:https?:)?\/\//i.test(path) || path.charAt(0) === "/")
-        return path;
-      return "/" + path;
-    }
-    function skillPills(item) {
-      return project
-        .lines(item.skills)
-        .map(function (skill) {
-          return '<span class="pill">' + skill + "</span>";
-        })
-        .join("");
-    }
-    function typePills(item) {
-      return typeMap
-        .filter(function (type) {
-          return project.contains(item, type.token);
-        })
-        .map(function (type) {
-          return (
-            '<a class="pill pill-link" href="' +
-            filterUrl("type", type.token) +
-            '">' +
-            type.label +
-            "</a>"
-          );
-        })
-        .join("");
-    }
+
     function navMarkup(previous, next) {
       return (
         '<a class="case-nav-link previous" href="' +
         projectUrl(previous) +
         '"><span class="direction">← Previous</span><span class="project">' +
-        project.strip(previous.title) +
+        escapeHTML(project.strip(previous.title)) +
         '</span></a><a class="case-nav-all" href="work.html#projectArchive">All work</a><a class="case-nav-link next" href="' +
         projectUrl(next) +
         '"><span class="direction">Next →</span><span class="project">' +
-        project.strip(next.title) +
+        escapeHTML(project.strip(next.title)) +
         "</span></a>"
       );
     }
+
     function getProjectElements() {
       return {
-        hero: document.getElementById("caseHero"),
+        header: document.getElementById("caseHero"),
         navTop: document.getElementById("caseNavTop"),
         navBottom: document.getElementById("caseNavBottom"),
         context: document.getElementById("caseContext"),
@@ -1597,66 +1096,73 @@
         preview: document.getElementById("projectPreview"),
       };
     }
+
+    /* Previous / All Work / Next navigation. */
     function renderProjectNav(item, posts, elements) {
       var index = posts.findIndex(function (candidate) {
         return String(candidate.legacyId) === String(item.legacyId);
       });
       if (index < 0 || !posts.length) return;
+
       var html = navMarkup(
         posts[(index - 1 + posts.length) % posts.length],
         posts[(index + 1) % posts.length],
       );
+
       if (elements.navTop) elements.navTop.innerHTML = html;
       if (elements.navBottom) elements.navBottom.innerHTML = html;
     }
-    function renderHero(item, elements) {
-      var role = project.lines(item.role).join(" · ");
-      var types = typePills(item);
-      var skills = skillPills(item);
+
+    /* Project title area. No summary and no Category pills are generated here. */
+    function renderProjectHeader(item, elements) {
       var title = project.strip(item.title) || "Project";
-      var summary = project.strip(item.summary || "");
+      var role = project.lines(item.role).join(" · ");
       var kicker =
         [item.year, project.strip(item.client)].filter(Boolean).join(" · ") ||
         "Professional project";
       var image = assetPath(item.image || item.thumb || "");
-      var taxonomy =
-        (types
-          ? '<div class="case-taxonomy-group"><span class="case-taxonomy-label">Category</span><div class="pills">' +
-            types +
-            "</div></div>"
-          : "") +
-        (skills
-          ? '<div class="case-taxonomy-group"><span class="case-taxonomy-label">Skills</span><div class="pills">' +
-            skills +
-            "</div></div>"
-          : "");
+      var skills = project.lines(item.skills);
+
+      var skillsMarkup = skills.length
+        ? '<div class="case-taxonomy"><div class="case-taxonomy-group"><span class="case-taxonomy-label">Skills</span><div class="pills">' +
+          skills
+            .map(function (skill) {
+              return '<span class="pill">' + escapeHTML(skill) + "</span>";
+            })
+            .join("") +
+          "</div></div></div>"
+        : "";
+
       var visual = image
         ? '<div class="case-visual"><img src="' +
           image +
           '" alt="' +
-          title +
+          escapeHTML(title) +
           ' project preview"></div>'
         : "";
 
       document.title = title + " | Susan Delgado";
-      elements.hero.classList.remove("status");
-      elements.hero.innerHTML =
+      elements.header.classList.remove("status");
+      elements.header.innerHTML =
         '<div class="case-grid"><div><p class="kicker">' +
-        kicker +
+        escapeHTML(kicker) +
         '</p><h1 class="case-title">' +
-        title +
+        escapeHTML(title) +
         "</h1>" +
-        (summary ? '<p class="case-summary">' + summary + "</p>" : "") +
-        (taxonomy ? '<div class="case-taxonomy">' + taxonomy + "</div>" : "") +
+        skillsMarkup +
         '</div><dl class="case-meta"><div><dt>Client / company</dt><dd>' +
-        (project.strip(item.client) || "Not recorded") +
+        escapeHTML(project.strip(item.client) || "Not recorded") +
         "</dd></div><div><dt>Role</dt><dd>" +
-        (role || "Not recorded") +
+        escapeHTML(role || "Not recorded") +
         "</dd></div><div><dt>Year</dt><dd>" +
-        (item.year || "Not recorded") +
+        escapeHTML(item.year || "Not recorded") +
         "</dd></div></dl></div>" +
         visual;
+
+      if (window.ProjectImageUI) window.ProjectImageUI.prepare(elements.header);
     }
+
+    /* Main written project context below the header. */
     function renderContext(item, elements) {
       var content =
         item.content || (item.summary ? "<p>" + item.summary + "</p>" : "");
@@ -1664,6 +1170,7 @@
       elements.narrative.innerHTML = content;
       elements.context.hidden = false;
     }
+
     function renderUX(caseStudy, elements) {
       var ux = caseStudy && caseStudy.ux;
       var panels = ux && Array.isArray(ux.panels) ? ux.panels : [];
@@ -1671,24 +1178,28 @@
         !ux ||
         (!ux.title && !ux.intro && !panels.length) ||
         !elements.uxSection
-      )
+      ) {
         return;
+      }
+
       if (elements.uxTitle) elements.uxTitle.textContent = ux.title || "";
       if (elements.uxIntro) elements.uxIntro.textContent = ux.intro || "";
-      if (elements.uxPanels)
+      if (elements.uxPanels) {
         elements.uxPanels.innerHTML = panels
           .map(function (panel) {
             return (
               '<article class="panel"><h3>' +
-              panel.title +
+              escapeHTML(panel.title) +
               "</h3><p>" +
-              panel.copy +
+              escapeHTML(panel.copy) +
               "</p></article>"
             );
           })
           .join("");
+      }
       elements.uxSection.hidden = false;
     }
+
     function renderWorkflow(caseStudy, elements) {
       var workflow =
         caseStudy && Array.isArray(caseStudy.workflow)
@@ -1698,23 +1209,26 @@
         !workflow.length ||
         !elements.workflowSection ||
         !elements.workflowGrid
-      )
+      ) {
         return;
+      }
+
       elements.workflowGrid.innerHTML = workflow
         .map(function (step) {
           return (
             '<article class="process-step"><span class="step">' +
-            step.label +
+            escapeHTML(step.label) +
             "</span><h3>" +
-            step.title +
+            escapeHTML(step.title) +
             "</h3><p>" +
-            step.copy +
+            escapeHTML(step.copy) +
             "</p></article>"
           );
         })
         .join("");
       elements.workflowSection.hidden = false;
     }
+
     function renderSystem(caseStudy, elements) {
       var system = caseStudy && caseStudy.system;
       var nodes = system && Array.isArray(system.nodes) ? system.nodes : [];
@@ -1722,27 +1236,30 @@
         !system ||
         (!system.title && !system.intro && !nodes.length) ||
         !elements.systemSection
-      )
+      ) {
         return;
-      if (elements.systemTitle)
-        elements.systemTitle.textContent =
-          system.title || "Technical structure";
-      if (elements.systemIntro)
-        elements.systemIntro.textContent = system.intro || "";
-      if (elements.systemGrid)
+      }
+
+      if (elements.systemTitle) {
+        elements.systemTitle.textContent = system.title || "Technical structure";
+      }
+      if (elements.systemIntro) elements.systemIntro.textContent = system.intro || "";
+      if (elements.systemGrid) {
         elements.systemGrid.innerHTML = nodes
           .map(function (node) {
             return (
               '<article class="node"><h3>' +
-              node.title +
+              escapeHTML(node.title) +
               "</h3><p>" +
-              node.copy +
+              escapeHTML(node.copy) +
               "</p></article>"
             );
           })
           .join("");
+      }
       elements.systemSection.hidden = false;
     }
+
     function renderStructure(structure, elements) {
       var items =
         structure && Array.isArray(structure.items) ? structure.items : [];
@@ -1750,23 +1267,27 @@
         !items.length ||
         !elements.structureSection ||
         !elements.structureGrid
-      )
+      ) {
         return;
-      if (elements.structureTitle)
-        elements.structureTitle.textContent =
-          structure.title || "Website structure";
-      if (elements.structureIntro)
+      }
+
+      if (elements.structureTitle) {
+        elements.structureTitle.textContent = structure.title || "Website structure";
+      }
+      if (elements.structureIntro) {
         elements.structureIntro.textContent = structure.intro || "";
+      }
+
       elements.structureGrid.innerHTML = items
         .map(function (item) {
           var children = (item.children || [])
             .map(function (child) {
-              return "<li>" + child + "</li>";
+              return "<li>" + escapeHTML(child) + "</li>";
             })
             .join("");
           return (
             '<article class="structure-node"><h3>' +
-            item.label +
+            escapeHTML(item.label) +
             "</h3>" +
             (children ? "<ul>" + children + "</ul>" : "") +
             "</article>"
@@ -1775,6 +1296,7 @@
         .join("");
       elements.structureSection.hidden = false;
     }
+
     function renderDeliverables(caseStudy, elements) {
       var items =
         caseStudy && Array.isArray(caseStudy.deliverables)
@@ -1784,21 +1306,24 @@
         !items.length ||
         !elements.deliverableSection ||
         !elements.deliverableGrid
-      )
+      ) {
         return;
+      }
+
       elements.deliverableGrid.innerHTML = items
         .map(function (deliverable) {
           return (
             '<div class="deliverable"><strong>' +
-            deliverable.title +
+            escapeHTML(deliverable.title) +
             "</strong><span>" +
-            deliverable.copy +
+            escapeHTML(deliverable.copy) +
             "</span></div>"
           );
         })
         .join("");
       elements.deliverableSection.hidden = false;
     }
+
     function previewColumnClass(columns) {
       var count = Number(columns) || 1;
       if (count >= 4) return "col-lg-3 col-md-6 col-sm-12";
@@ -1806,8 +1331,76 @@
       if (count === 2) return "col-lg-6 col-md-6 col-sm-12";
       return "col-lg-12 col-md-12 col-sm-12";
     }
-    function renderPreview(data, elements) {
-      if (!data || !elements.visualSection || !elements.preview) return;
+
+    /* Old showcase fragments use paths such as img/example.jpg. Once inserted
+       into project.html those must be normalized back to /showcase/img/.... */
+    function normalizePreviewImagePaths(preview) {
+      preview.querySelectorAll("img").forEach(function (image) {
+        var src = (image.getAttribute("src") || "").trim();
+        if (
+          !src ||
+          /^(?:https?:)?\/\//i.test(src) ||
+          /^(?:data|blob):/i.test(src) ||
+          src.charAt(0) === "/"
+        ) {
+          return;
+        }
+
+        src = src.replace(/^\.\//, "");
+        if (src.indexOf("../showcase/") === 0) {
+          src = src.replace(/^\.\.\//, "");
+        }
+
+        if (src.indexOf("showcase/") === 0) {
+          src = "/" + src;
+        } else if (src.indexOf("img/") === 0 || src.indexOf("thumbs/") === 0) {
+          src = "/showcase/" + src;
+        } else {
+          src = "/" + src;
+        }
+
+        image.setAttribute("src", src);
+      });
+    }
+
+    /* This is a legacy content correction that is still active: project 10's
+       old preview fragment contains one unwanted photograph. It should
+       eventually be removed from the source fragment instead of handled here. */
+    function cleanWinterBallPreview(projectId, preview) {
+      if (String(projectId) !== "10") return;
+
+      var image = Array.prototype.find.call(
+        preview.querySelectorAll("img"),
+        function (candidate) {
+          return (
+            (candidate.getAttribute("src") || "").indexOf(
+              "pcwp-winterball-photo-2018.jpg",
+            ) !== -1
+          );
+        },
+      );
+      if (!image) return;
+
+      var row = image.closest(".row");
+      var column = image.closest('[class*="col-"]');
+      if (column) column.remove();
+      else image.remove();
+
+      if (!row) return;
+      var remaining = Array.prototype.slice
+        .call(row.children)
+        .filter(function (child) {
+          return child.querySelector && child.querySelector("img");
+        });
+      if (remaining.length === 2) {
+        remaining.forEach(function (child) {
+          child.className = "col-lg-6 col-md-6 col-sm-12";
+        });
+      }
+    }
+
+    function renderPreview(data, projectId, elements) {
+      if (!data || !elements.visualSection || !elements.preview) return false;
 
       if (data.html) {
         elements.preview.innerHTML = String(data.html);
@@ -1821,33 +1414,41 @@
               );
             })
           : [];
-        if (!sections.length) return;
+
+        if (!sections.length) return false;
+
         elements.preview.innerHTML = sections
           .map(function (section) {
             var columnClass = previewColumnClass(section.columns);
             var images = Array.isArray(section.images) ? section.images : [];
             var imageMarkup = images
               .map(function (image) {
-                var size = image.size
-                  ? ' data-preview-size="' + project.strip(image.size) + '"'
-                  : "";
                 var src = assetPath(image.src || "");
-                return src
-                  ? '<div class="' +
-                      columnClass +
-                      '"><img class="responsive"' +
-                      size +
-                      ' src="' +
-                      src +
-                      '" alt="' +
-                      project.strip(image.alt || "") +
-                      '"></div>'
+                if (!src) return "";
+                var size = image.size
+                  ? ' data-preview-size="' +
+                    escapeHTML(project.strip(image.size)) +
+                    '"'
                   : "";
+                return (
+                  '<div class="' +
+                  columnClass +
+                  '"><img class="responsive"' +
+                  size +
+                  ' src="' +
+                  src +
+                  '" alt="' +
+                  escapeHTML(project.strip(image.alt || "")) +
+                  '"></div>'
+                );
               })
               .join("");
+
             return (
               '<div class="container">' +
-              (section.title ? "<h2>" + section.title + "</h2>" : "") +
+              (section.title
+                ? "<h2>" + escapeHTML(section.title) + "</h2>"
+                : "") +
               (imageMarkup
                 ? '<div class="row">' + imageMarkup + "</div>"
                 : "") +
@@ -1862,23 +1463,88 @@
         .forEach(function (element) {
           element.remove();
         });
+
+      normalizePreviewImagePaths(elements.preview);
+      cleanWinterBallPreview(projectId, elements.preview);
+
       if (
         !elements.preview.textContent.trim() &&
         !elements.preview.querySelector("img")
-      )
-        return;
+      ) {
+        return false;
+      }
+
       elements.visualSection.hidden = false;
+      if (window.ProjectImageUI) window.ProjectImageUI.prepare(elements.preview);
+      return true;
     }
+
+    /* JSON-native previews take priority. Older projects fall back to the
+       previewSources map in casestudies.json and load their preserved showcase
+       fragment. There is deliberately no duplicated-hero fallback anymore. */
+    function renderProjectPreview(preview, previewSource, projectId, elements) {
+      if (preview && renderPreview(preview, projectId, elements)) {
+        return Promise.resolve();
+      }
+      if (!previewSource) return Promise.resolve();
+
+      return fetch(assetPath(previewSource))
+        .then(function (response) {
+          if (!response.ok) throw new Error("Project preview source unavailable");
+          return response.text();
+        })
+        .then(function (html) {
+          renderPreview({ html: html }, projectId, elements);
+        })
+        .catch(function (error) {
+          console.error("Project preview load error:", error);
+        });
+    }
+
+    /* Legacy project-specific UX copy. This is still used, but the content
+       belongs in casestudies.json long-term rather than in JavaScript. */
+    function applyFellowsUxFallback(projectId, caseStudy) {
+      if (projectId !== "17" && projectId !== "21") return caseStudy;
+
+      var next = Object.assign({}, caseStudy || {});
+      next.ux = {
+        title: "Selectable conference content component",
+        intro:
+          "The Fellows interface let visitors move between conference topics without leaving the page.",
+        panels: [
+          {
+            title: "Coordinated content switching",
+            copy:
+              "Selecting an item updated both the featured image and the corresponding explanatory text in place.",
+          },
+          {
+            title: "In-page topic navigation",
+            copy:
+              "The interaction kept the visual reference and related information paired while visitors moved between topics.",
+          },
+        ],
+      };
+      return next;
+    }
+
     function renderProject() {
       var elements = getProjectElements();
-      if (!elements.hero || !elements.context)
+      if (!elements.header || !elements.context) {
         throw new Error("Project template is incomplete");
+      }
 
       return project.loadProjects().then(function (result) {
         var posts = result.posts || [];
         var buildData = result.build || {};
         var requested =
           new URLSearchParams(location.search).get("post") || "23";
+
+        /* Project 11 is intentionally excluded from the current portfolio. */
+        if (requested === "11") {
+          location.replace("work.html#projectArchive");
+          return;
+        }
+
         var item = posts.find(function (candidate) {
           return String(candidate.legacyId) === String(requested);
         });
@@ -1897,62 +1563,53 @@
           item.preview ||
           (buildData.previews && buildData.previews[id]) ||
           null;
+        var previewSource =
+          buildData.previewSources && buildData.previewSources[id]
+            ? buildData.previewSources[id]
+            : "";
 
+        caseStudy = applyFellowsUxFallback(id, caseStudy);
         target.dataset.projectId = id;
+
         renderProjectNav(item, posts, elements);
-        renderHero(item, elements);
+        renderProjectHeader(item, elements);
         renderContext(item, elements);
         renderUX(caseStudy, elements);
         renderWorkflow(caseStudy, elements);
         renderSystem(caseStudy, elements);
         renderStructure(structure, elements);
         renderDeliverables(caseStudy, elements);
-        renderPreview(preview, elements);
 
-        if (window.initBuildMotion) window.initBuildMotion(document);
+        return renderProjectPreview(preview, previewSource, id, elements);
       });
     }
 
-    loadTemplate(target)
+    loadTemplate()
       .then(renderProject)
       .catch(function (error) {
         console.error("Project render error:", error);
         target.innerHTML =
           '<p class="status">Project data could not be loaded.</p>';
       });
-  };
+  }
 
-  pages.exhibits = function () {
+  /* ======================================================================
+     8. EXHIBITIONS ARCHIVE
+     Builds exhibition cards and Bootstrap carousels from the archive data.
+     ====================================================================== */
+
+  function initExhibitionsPage() {
+    var list = document.getElementById("exhibition-list");
+    if (!list) return;
+
     var allExhibitions = [];
-    var currentExhibitionIndex = 0;
+    var currentIndex = 0;
     var perPage = 5;
+    var button = document.getElementById("loadMoreExhibitions");
     var cacheKey = "exhibitions_cache_v2";
     var cacheTimeKey = "exhibitions_cache_time_v2";
     var cacheDuration = 1000 * 60 * 10;
 
-    function normalizeText(value) {
-      if (Array.isArray(value))
-        return value
-          .filter(function (item) {
-            return item !== null && item !== undefined;
-          })
-          .join(" ")
-          .trim();
-      return value === null || value === undefined ? "" : String(value).trim();
-    }
-    function normalizeKey(value) {
-      return String(value || "")
-        .replace(/[\s_-]/g, "")
-        .toLowerCase();
-    }
-    function escapeHTML(value) {
-      return String(value === null || value === undefined ? "" : value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
     function isValidWebsiteURL(value) {
       if (!value) return false;
       try {
@@ -1962,43 +1619,8 @@
         return false;
       }
     }
-    function getField(item) {
-      var wanted = Array.prototype.slice.call(arguments, 1).map(normalizeKey);
-      var sources = [item || {}, (item && item.misc) || {}];
-      for (var s = 0; s < sources.length; s++)
-        for (var key in sources[s])
-          if (Object.prototype.hasOwnProperty.call(sources[s], key)) {
-            var value = normalizeText(sources[s][key]);
-            if (wanted.indexOf(normalizeKey(key)) !== -1 && value) return value;
-          }
-      return "";
-    }
-    function extractImages(item) {
-      var files = Array.isArray(item && item.files)
-          ? item.files
-          : item && item.files
-            ? [item.files]
-            : [],
-        urls = [];
-      files.forEach(function (fileEntry) {
-        if (!fileEntry) return;
-        var text =
-          typeof fileEntry === "string" ? fileEntry : JSON.stringify(fileEntry);
-        text
-          .split(/\r?\n/)
-          .map(function (line) {
-            return line.trim();
-          })
-          .filter(function (line) {
-            return line.startsWith("http://") || line.startsWith("https://");
-          })
-          .forEach(function (url) {
-            urls.push(url);
-          });
-      });
-      return Array.from(new Set(urls));
-    }
-    function extractImageCaptions(item) {
+
+    function imageCaptions(item) {
       var captions = getField(
         item,
         "imagecaptions",
@@ -2014,6 +1636,7 @@
             .filter(Boolean)
         : [];
     }
+
     function formatPipeSeparatedValue(value) {
       return value
         ? value
@@ -2032,7 +1655,8 @@
             .join("")
         : "";
     }
-    function createDetailRow(label, value, options) {
+
+    function detailRow(label, value, options) {
       if (!value) return "";
       var displayed =
         options && options.pipeSeparated
@@ -2044,18 +1668,13 @@
         "<li><strong>" + escapeHTML(label) + "</strong>" + displayed + "</li>"
       );
     }
-    function makeDetailRows(item) {
+
+    function detailRows(item) {
       var rows = [
-        createDetailRow(
-          "Venue",
-          getField(item, "venue", "gallery", "institution"),
-        ),
-        createDetailRow(
-          "Location",
-          getField(item, "location", "city", "address"),
-        ),
-        createDetailRow("Dates", getField(item, "dates", "exhibitiondates")),
-        createDetailRow(
+        detailRow("Venue", getField(item, "venue", "gallery", "institution")),
+        detailRow("Location", getField(item, "location", "city", "address")),
+        detailRow("Dates", getField(item, "dates", "exhibitiondates")),
+        detailRow(
           "Reception",
           getField(
             item,
@@ -2065,28 +1684,33 @@
             "openingreception",
           ),
         ),
-        createDetailRow(
+        detailRow(
           "Organizer",
           getField(item, "organizer", "organization", "presentedby"),
         ),
-        createDetailRow(
+        detailRow(
           "Works",
           getField(item, "works", "artworks", "pieces", "worksshown"),
           { pipeSeparated: true },
         ),
-        createDetailRow("Award", getField(item, "award", "recognition")),
+        detailRow("Award", getField(item, "award", "recognition")),
       ].filter(Boolean);
+
       return rows.length
         ? '<ul class="exhibition-details">' + rows.join("") + "</ul>"
         : "";
     }
+
     function makeCarousel(item, index) {
-      var images = extractImages(item),
-        captions = extractImageCaptions(item),
-        title = getField(item, "title") || "Exhibition",
-        carouselId = "exhibition-carousel-" + index;
-      if (!images.length)
+      var images = extractFileUrls(item && item.files);
+      var captions = imageCaptions(item);
+      var title = getField(item, "title") || "Exhibition";
+      var carouselId = "exhibition-carousel-" + index;
+
+      if (!images.length) {
         return '<div class="exhibition-placeholder">Images forthcoming</div>';
+      }
+
       var indicators =
         images.length > 1
           ? '<div class="carousel-indicators">' +
@@ -2109,6 +1733,7 @@
               .join("") +
             "</div>"
           : "";
+
       var slides = images
         .map(function (src, i) {
           var caption = captions[i] || "";
@@ -2121,7 +1746,7 @@
             escapeHTML(title) +
             " image " +
             (i + 1) +
-            '" onerror="handleExhibitionImageError(this)">' +
+            '">' +
             (caption
               ? '<div class="carousel-caption d-none d-md-block"><p>' +
                 escapeHTML(caption) +
@@ -2131,6 +1756,7 @@
           );
         })
         .join("");
+
       var controls =
         images.length > 1
           ? '<button class="carousel-control-prev" type="button" data-bs-target="#' +
@@ -2139,6 +1765,7 @@
             carouselId +
             '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>'
           : "";
+
       return (
         '<div id="' +
         carouselId +
@@ -2151,16 +1778,7 @@
         "</div>"
       );
     }
-    function handleExhibitionImageError(imageElement) {
-      var slide = imageElement.closest(".carousel-item");
-      if (!slide) {
-        imageElement.style.display = "none";
-        return;
-      }
-      slide.innerHTML =
-        '<div class="exhibition-placeholder">Image unavailable</div>';
-    }
-    window.handleExhibitionImageError = handleExhibitionImageError;
+
     function renderExhibition(item, index) {
       var title = getField(item, "title") || "Untitled Exhibition";
       var description = getField(
@@ -2178,6 +1796,7 @@
         "website",
         "officiallink",
       );
+
       var imageColumn =
         '<div class="col-lg-6 p-0">' + makeCarousel(item, index) + "</div>";
       var copyColumn =
@@ -2194,13 +1813,14 @@
             escapeHTML(description) +
             "</div>"
           : "") +
-        makeDetailRows(item) +
+        detailRows(item) +
         (isValidWebsiteURL(officialLink)
           ? '<a class="exhibition-link" href="' +
             escapeHTML(officialLink) +
             '" target="_blank" rel="noopener noreferrer">Exhibition Details</a>'
           : "") +
         "</div></div>";
+
       return (
         '<article class="exhibition-card" data-exhibition-id="' +
         escapeHTML((item && item.id) || "") +
@@ -2211,10 +1831,12 @@
         "</div></article>"
       );
     }
+
     function getArchive() {
-      var now = Date.now(),
-        cached = localStorage.getItem(cacheKey),
-        cachedTime = Number(localStorage.getItem(cacheTimeKey));
+      var now = Date.now();
+      var cached = localStorage.getItem(cacheKey);
+      var cachedTime = Number(localStorage.getItem(cacheTimeKey));
+
       if (cached && cachedTime && now - cachedTime < cacheDuration) {
         try {
           return Promise.resolve(JSON.parse(cached));
@@ -2223,112 +1845,126 @@
           localStorage.removeItem(cacheTimeKey);
         }
       }
+
       return fetch(SCRIPT_URL + "?t=" + now)
         .then(function (response) {
-          if (!response.ok)
+          if (!response.ok) {
             throw new Error(
               "Archive request failed with status " + response.status + ".",
             );
+          }
           return response.json();
         })
         .then(function (archive) {
-          if (!Array.isArray(archive))
-            throw new Error(
-              "The exhibition archive returned an invalid format.",
-            );
+          if (!Array.isArray(archive)) {
+            throw new Error("The exhibition archive returned an invalid format.");
+          }
           localStorage.setItem(cacheKey, JSON.stringify(archive));
           localStorage.setItem(cacheTimeKey, String(now));
           return archive;
         });
     }
-    function renderMore() {
-      var list = document.getElementById("exhibition-list"),
-        button = document.getElementById("loadMoreExhibitions");
-      if (!list) return;
-      var next = allExhibitions.slice(
-          currentExhibitionIndex,
-          currentExhibitionIndex + perPage,
-        ),
-        html = "";
-      next.forEach(function (item, localIndex) {
-        html += renderExhibition(item, currentExhibitionIndex + localIndex);
-      });
-      list.insertAdjacentHTML("beforeend", html);
-      currentExhibitionIndex += next.length;
-      if (button)
-        button.style.display =
-          currentExhibitionIndex < allExhibitions.length
-            ? "inline-block"
-            : "none";
-    }
-    function initiate() {
-      var list = document.getElementById("exhibition-list"),
-        button = document.getElementById("loadMoreExhibitions");
-      if (!list) return;
-      getArchive()
-        .then(function (archive) {
-          allExhibitions = archive
-            .filter(function (item) {
-              return (
-                normalizeText(item && item.type).toLowerCase() === "exhibit"
-              );
-            })
-            .sort(function (a, b) {
-              return Number((b && b.id) || 0) - Number((a && a.id) || 0);
-            });
-          list.innerHTML = "";
-          currentExhibitionIndex = 0;
-          if (!allExhibitions.length) {
-            list.innerHTML =
-              '<div class="exhibition-empty">No exhibition records are published yet.</div>';
-            if (button) button.style.display = "none";
-            return;
-          }
-          renderMore();
-        })
-        .catch(function (error) {
-          console.error("Exhibition load error:", error);
-          list.innerHTML =
-            '<div class="exhibition-error">The exhibition archive could not be loaded. Please return shortly.</div>';
-          if (button) button.style.display = "none";
-        });
-      if (button) button.addEventListener("click", renderMore);
-    }
-    initiate();
-  };
 
-  pages.progress = function () {
+    function renderMore() {
+      var next = allExhibitions.slice(currentIndex, currentIndex + perPage);
+      var html = "";
+
+      next.forEach(function (item, localIndex) {
+        html += renderExhibition(item, currentIndex + localIndex);
+      });
+
+      list.insertAdjacentHTML("beforeend", html);
+      currentIndex += next.length;
+
+      if (button) {
+        button.style.display =
+          currentIndex < allExhibitions.length ? "inline-block" : "none";
+      }
+    }
+
+    /* The build page currently has no Load More button, so all exhibitions are
+       rendered instead of silently stopping after the first five. */
+    getArchive()
+      .then(function (archive) {
+        allExhibitions = archive
+          .filter(function (item) {
+            return textValue(item && item.type).toLowerCase() === "exhibit";
+          })
+          .sort(function (a, b) {
+            return Number((b && b.id) || 0) - Number((a && a.id) || 0);
+          });
+
+        list.innerHTML = "";
+        currentIndex = 0;
+
+        if (!allExhibitions.length) {
+          list.innerHTML =
+            '<div class="exhibition-empty">No exhibition records are published yet.</div>';
+          if (button) button.style.display = "none";
+          return;
+        }
+
+        if (!button) perPage = allExhibitions.length;
+        renderMore();
+      })
+      .catch(function (error) {
+        console.error("Exhibition load error:", error);
+        list.innerHTML =
+          '<div class="exhibition-error">The exhibition archive could not be loaded. Please return shortly.</div>';
+        if (button) button.style.display = "none";
+      });
+
+    if (button) button.addEventListener("click", renderMore);
+
+    /* Replace broken carousel images without exporting a global error handler. */
+    list.addEventListener(
+      "error",
+      function (event) {
+        if (!event.target || event.target.tagName !== "IMG") return;
+        var slide = event.target.closest(".carousel-item");
+        if (slide) {
+          slide.innerHTML =
+            '<div class="exhibition-placeholder">Image unavailable</div>';
+        } else {
+          event.target.style.display = "none";
+        }
+      },
+      true,
+    );
+  }
+
+  /* ======================================================================
+     9. PROGRESS CHRONICLES ARCHIVE
+     Renders progress records in alternating image/text rows.
+     ====================================================================== */
+
+  function initProgressPage() {
+    var container = document.getElementById("chronicle-container");
+    if (!container) return;
+
     var allChronicles = [];
     var currentIndex = 0;
     var pageSize = 4;
-    function extractFileUrl(fileEntry) {
-      if (!fileEntry || typeof fileEntry !== "string") return null;
-      var parts = fileEntry.split("\n");
-      if (parts.length >= 3 && parts[2] && parts[2].startsWith("http"))
-        return parts[2].trim();
-      for (var i = parts.length - 1; i >= 0; i--)
-        if (parts[i].startsWith("http")) return parts[i].trim();
-      return null;
-    }
-    function renderImage(file) {
-      var url = extractFileUrl(file) || "https://via.placeholder.com/600";
+    var button = document.getElementById("loadMoreBtn");
+    var loading = document.getElementById("loadingMessage");
+
+    function renderImage(fileEntry) {
+      var urls = extractFileUrls(fileEntry);
+      var url = urls[0] || "https://via.placeholder.com/600";
       return (
         '<img src="' +
-        url +
-        '" style="width:100%; height:100%; object-fit:cover;" loading="lazy">'
+        escapeHTML(url) +
+        '" style="width:100%; height:100%; object-fit:cover;" loading="lazy" alt="">'
       );
     }
+
     function renderChronicles() {
-      var container = document.getElementById("chronicle-container");
-      if (!container) return;
-      var nextItems = allChronicles.slice(
-          currentIndex,
-          currentIndex + pageSize,
-        ),
-        html = "";
-      nextItems.forEach(function (item, i) {
-        var globalIndex = currentIndex + i,
-          isEven = globalIndex % 2 === 0;
+      var nextItems = allChronicles.slice(currentIndex, currentIndex + pageSize);
+      var html = "";
+
+      nextItems.forEach(function (item, localIndex) {
+        var globalIndex = currentIndex + localIndex;
+        var isEven = globalIndex % 2 === 0;
         var description =
           (item.misc && item.misc.Description) ||
           (Array.isArray(item.description)
@@ -2339,26 +1975,29 @@
           ? categories.join(" ")
           : categories || "";
         var mediaHTML = renderImage(item.files && item.files[0]);
+
         var text =
           '<div class="col-md-6 ' +
           (isEven ? "pr-md-5" : "pl-md-5") +
           '"><span class="node-step">' +
-          (categoryDisplay || "Study") +
+          escapeHTML(categoryDisplay || "Study") +
           '</span><h3 class="node-title chronicle-title">' +
-          (item.title || "") +
+          escapeHTML(item.title || "") +
           '</h3><div class="node-text chronicle-desc">' +
           description +
           '</div><div class="chronicle-meta mt-3"><span>' +
-          (item.author || "") +
+          escapeHTML(item.author || "") +
           "</span><span>" +
-          ((item.misc && item.misc.postdate) || item.date || "") +
+          escapeHTML((item.misc && item.misc.postdate) || item.date || "") +
           "</span></div></div>";
+
         var media =
           '<div class="col-md-6 ' +
           (isEven ? "pl-md-5" : "pr-md-5") +
           '"><div class="node-image-frame">' +
           mediaHTML +
           "</div></div>";
+
         html +=
           '<div class="process-chronicals-node chronicle-node" data-index="' +
           globalIndex +
@@ -2366,143 +2005,81 @@
           (isEven ? text + media : media + text) +
           "</div></div>";
       });
+
       container.insertAdjacentHTML("beforeend", html);
-      currentIndex += pageSize;
-      var button = document.getElementById("loadMoreBtn");
-      if (button && currentIndex >= allChronicles.length)
+      currentIndex += nextItems.length;
+
+      if (button && currentIndex >= allChronicles.length) {
         button.style.display = "none";
+      }
     }
-    function initiate() {
-      var container = document.getElementById("chronicle-container"),
-        dump = document.getElementById("raw-data-log"),
-        loading = document.getElementById("loadingMessage");
-      fetch(SCRIPT_URL + "?t=" + Date.now())
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (satchel) {
-          if (!Array.isArray(satchel))
-            throw new Error("Invalid response format");
-          if (dump) {
-            dump.style.display = "block";
-            dump.textContent = JSON.stringify(satchel, null, 2);
-          }
-          console.log(satchel);
-          allChronicles = satchel
-            .filter(function (item) {
-              return String(item.type).trim().toLowerCase() === "progress";
-            })
-            .sort(function (a, b) {
-              return Number(a.id) - Number(b.id);
-            });
-          container.innerHTML = "";
-          currentIndex = 0;
-          renderChronicles();
-          if (loading) loading.style.display = "none";
-        })
-        .catch(function (error) {
-          console.error("Chronicle load error:", error);
-          if (container)
-            container.innerHTML =
-              '<p style="color:red;">' + error.message + "</p>";
-          if (loading) {
-            loading.innerText = "Archive failed to load.";
-            loading.style.color = "red";
-          }
-        });
-      var button = document.getElementById("loadMoreBtn");
-      if (button) button.addEventListener("click", renderChronicles);
-    }
-    initiate();
-  };
 
-  var definitions = [
-    {
-      name: "index",
-      marker: "useBlackFallback",
-      test: function () {
-        return document.body && document.body.id === "index";
-      },
-    },
-    {
-      name: "finearts",
-      marker: "The winds are weak. Staying the process-video motion.",
-      test: function () {
-        return document.body && document.body.id === "arts";
-      },
-    },
-    {
-      name: "about",
-      marker: "active-node",
-      test: function () {
-        return document.body && document.body.id === "arts about";
-      },
-    },
-    {
-      name: "exhibits",
-      marker: "EXHIBITION_SCRIPT_URL",
-      test: function () {
-        return document.body && document.body.id === "arts exhibit";
-      },
-    },
-    {
-      name: "progress",
-      marker: "CHRONICLE SCRIBE v7.1",
-      test: function () {
-        return document.body && document.body.id === "arts chronicals";
-      },
-    },
-    {
-      name: "resume",
-      marker: "saveResumePdf",
-      test: function () {
-        return document.body && document.body.id === "work resume";
-      },
-    },
-    {
-      name: "work",
-      marker: "featuredIds",
-      test: function () {
-        return (
-          document.body &&
-          document.body.id === "work" &&
-          document.getElementById("featuredProjects")
-        );
-      },
-    },
-    {
-      name: "project",
-      marker: null,
-      test: function () {
-        return (
-          document.body &&
-          document.body.id === "work" &&
-          document.getElementById("projectContent")
-        );
-      },
-    },
-  ];
+    fetch(SCRIPT_URL + "?t=" + Date.now())
+      .then(function (response) {
+        if (!response.ok) throw new Error("Archive request failed");
+        return response.json();
+      })
+      .then(function (archive) {
+        if (!Array.isArray(archive)) throw new Error("Invalid response format");
 
-  function currentDefinition() {
-    return (
-      definitions.find(function (definition) {
-        return definition.test();
-      }) || null
-    );
-  }
-  function initCurrent(options) {
-    var definition = currentDefinition();
-    if (!definition || typeof pages[definition.name] !== "function") return;
-    var force = !!(options && options.force);
-    if (!force && inlineContains(definition.marker)) return;
-    var key = "sdInlinePage" + definition.name;
-    if (!force && document.documentElement.dataset[key] === "1") return;
-    document.documentElement.dataset[key] = "1";
-    pages[definition.name]();
+        /* The old raw-data JSON dump and console.log were debugging output and
+           are intentionally not produced anymore. */
+        allChronicles = archive
+          .filter(function (item) {
+            return String((item && item.type) || "")
+              .trim()
+              .toLowerCase() === "progress";
+          })
+          .sort(function (a, b) {
+            return Number((a && a.id) || 0) - Number((b && b.id) || 0);
+          });
+
+        container.innerHTML = "";
+        currentIndex = 0;
+        renderChronicles();
+        if (loading) loading.style.display = "none";
+      })
+      .catch(function (error) {
+        console.error("Chronicle load error:", error);
+        container.innerHTML =
+          '<p style="color:red;">The progress archive could not be loaded.</p>';
+        if (loading) {
+          loading.textContent = "Archive failed to load.";
+          loading.style.color = "red";
+        }
+      });
+
+    if (button) button.addEventListener("click", renderChronicles);
   }
 
-  window.initBuildInlinePage = initCurrent;
+  /* ======================================================================
+     10. RESUME PRINT ACTION
+     The button opens the browser print dialog so the resume can be saved PDF.
+     ====================================================================== */
+
+  function initResumePage() {
+    if (!document.getElementById("resume")) return;
+    var button = document.getElementById("saveResumePdf");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      window.print();
+    });
+  }
+
+  /* ======================================================================
+     11. PAGE INITIALIZATION
+     Every initializer checks for its own page DOM, so there is no legacy
+     marker/force dispatcher and no duplicate inline-script compatibility layer.
+     ====================================================================== */
+
   runWhenReady(function () {
-    initCurrent();
+    initTechnicalInteractions();
+    initFineArtsGallery();
+    initAboutPage();
+    initWorkPage();
+    initProjectPage();
+    initExhibitionsPage();
+    initProgressPage();
+    initResumePage();
   });
 })();
