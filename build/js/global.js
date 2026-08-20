@@ -2544,7 +2544,7 @@
           if (!Array.isArray(satchel))
             throw new Error("Invalid response format");
           if (dump) {
-            dump.style.display = "block";
+            dump.style.display = "none";
             dump.textContent = JSON.stringify(satchel, null, 2);
           }
           console.log(satchel);
