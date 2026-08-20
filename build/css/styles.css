@@ -13,7 +13,7 @@ body {
   margin: 0;
   background-color: #f6f6f6;
   color: #111;
-  font-family: "Open Sans", sans-serif;
+  font-family: proxima-nova, "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.8;
@@ -116,12 +116,36 @@ a:focus {
   letter-spacing: 0.1875rem;
   text-decoration: none;
   text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #fff;
+  color: #fff;
 }
 
 .btn-light-txt:hover,
 .btn-light-txt:focus {
   background: #111;
   border-color: #111;
+  color: #fff;
+}
+
+.btn-dark-txt,
+.btn-dark-txt:visited {
+  display: inline-block;
+  padding: 0.75rem 1.875rem;
+  background: transparent;
+  border: 1px solid #fff;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1875rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.btn-dark-txt:hover,
+.btn-dark-txt:focus-visible {
+  background: transparent;
+  border-color: #fff;
   color: #fff;
 }
 
@@ -244,6 +268,11 @@ header .nav-tabs .nav-link.active:hover {
   display: flex;
   align-items: center;
   overflow: hidden;
+  justify-content: center;
+  padding: 5rem 0;
+  background: #111;
+  color: #fff;
+  text-align: center;
 }
 
 .hero > .container,
@@ -261,6 +290,22 @@ header .nav-tabs .nav-link.active:hover {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+}
+
+.hero h1 {
+  margin-bottom: 1.25rem;
+  color: #fff;
+  letter-spacing: 0.5rem;
+}
+.hero p {
+  max-width: 50rem;
+  margin: 0 auto 2rem;
+  color: #999;
+  line-height: 2;
+}
+
+.hero .seal-container {
+  margin-bottom: 1.5625rem;
 }
 
 .seal-container {
@@ -439,34 +484,6 @@ header .nav-tabs .nav-link.active:hover {
   transform: translateY(-2px);
 }
 
-#index .btn-dark-txt,
-#index .btn-dark-txt:visited {
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid #fff;
-  color: #111;
-}
-
-#index .btn-dark-txt:hover,
-#index .btn-dark-txt:focus-visible {
-  background: transparent;
-  border-color: #fff;
-  color: #fff;
-}
-
-#index .btn-dark-txt.btn-gold,
-#index .btn-dark-txt.btn-gold:visited {
-  background: rgba(0, 0, 0, 0.3);
-  border-color: var(--gold);
-  color: #fff;
-}
-
-#index .btn-dark-txt.btn-gold:hover,
-#index .btn-dark-txt.btn-gold:focus-visible {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #111;
-}
-
 #index .philosophy {
   margin: 1.75rem 0 0;
   color: rgba(247, 243, 236, 0.62);
@@ -499,32 +516,6 @@ body[id^="arts "] .btn-blk:visited {
   color: #fff;
 }
 
-/* Fine Arts landing hero */
-.finearts-intro {
-  justify-content: center;
-  padding: 5rem 0;
-  background: #111;
-  color: #fff;
-  text-align: center;
-}
-
-.finearts-intro .seal-container {
-  margin-bottom: 1.5625rem;
-}
-
-.finearts-intro h1 {
-  margin-bottom: 1.25rem;
-  color: #fff;
-  letter-spacing: 0.5rem;
-}
-
-.finearts-intro p {
-  max-width: 50rem;
-  margin: 0 auto 2rem;
-  color: #999;
-  line-height: 2;
-}
-
 /* Interior Fine Arts heroes: About, Exhibitions, Chronicles, Galleries */
 #arts .process-hero,
 body[id^="arts "] .process-hero,
@@ -549,9 +540,7 @@ body[id^="arts "] .process-hero .master-title,
   text-transform: uppercase;
 }
 
-#arts .process-hero .hero-intro,
-body[id^="arts "] .process-hero .hero-intro,
-.art-gallery-build .process-hero .hero-intro {
+#arts .media-section .hero-intro {
   max-width: 50rem;
   margin: 0 auto;
   color: #999;
@@ -562,14 +551,22 @@ body[id^="arts "] .process-hero .hero-intro,
   letter-spacing: 0.125rem;
 }
 
-#arts .process-hero h2,
-body[id^="arts "] .process-hero h2,
-.art-gallery-build .process-hero h2 {
+#arts .media-section h2 {
   color: #d4af37;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.16rem;
   text-transform: uppercase;
+}
+.media-section .finearts-intro,
+.media-section,
+.media-section .process-hero {
+  padding: 3.5rem 1rem;
+}
+
+.media-section .process-hero .master-title {
+  font-size: 2.2rem;
+  letter-spacing: 0.3125rem;
 }
 
 .hero-divider {
@@ -1948,7 +1945,12 @@ body[id="arts chronicals"] #raw-data-log {
 
 #work .case-hero {
   padding: 3.375rem 0 2.875rem;
-  background: radial-gradient(ellipse at center, #fff 0%, #fff 55%, #ededed 100%);
+  background: radial-gradient(
+    ellipse at center,
+    #fff 0%,
+    #fff 55%,
+    #ededed 100%
+  );
   border-bottom: 1px solid #e3e3e3;
   color: var(--ink);
 }
@@ -2775,20 +2777,6 @@ body[id="arts chronicals"] #raw-data-log {
   #index .actions .btn {
     width: 100%;
     min-width: 0;
-  }
-
-  .finearts-intro,
-  #arts .process-hero,
-  body[id^="arts "] .process-hero,
-  .art-gallery-build .process-hero {
-    padding: 3.5rem 1rem;
-  }
-
-  #arts .process-hero .master-title,
-  body[id^="arts "] .process-hero .master-title,
-  .art-gallery-build .process-hero .master-title {
-    font-size: 2.2rem;
-    letter-spacing: 0.3125rem;
   }
 
   .portfolio,
