@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Case Study | Susan Delgado</title>
+    <meta
+      name="description"
+      content="Development and design projects from Susan Delgado's professional portfolio."
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- STYLESHEETS LINKS FROM SDELGADO -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/xwc7tgb.css" />
+    <link rel="stylesheet" href="/build/css/archived-build.css" />
+    <link rel="stylesheet" href="/build/css/styles.css" />
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="/js/vendor/bootstrap.min.js"></script>
+  </head>
+  <body id="work" class="page work-page">
+    <header id="top">
+      <!--[if lt IE 8]>
+        <p class="browserupgrade">
+          You are using an <strong>outdated</strong> browser. Please
+          <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+          your experience.
+        </p>
+      <![endif]-->
+      <div class="">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="finearts.html"
+              >FINE ARTS</a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" aria-current="page" href="work.html"
+              >TECHNICAL WORK</a
+            >
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/edu.html">EDUCATION</a>
+          </li> -->
+        </ul>
+      </div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light work-nav">
+          <a class="navbar-brand" href="index.html">SUSAN DELGADO </a>
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarSupportedContent"
+          >
+            <ul id="menu-main top-nav" class="navbar-nav ml-auto">
+              <li class="item">
+                <a class="nav-link link" aria-current="page" href="work.html"
+                  >TECHNICAL WORK</a
+                >
+              </li>
+
+              <li class="item active">
+                <a class="nav-link link active" href="#work-filters">WORK</a>
+              </li>
+              <li class="item">
+                <a class="nav-link link" href="contact.html" null="">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section
+        id="projectContent"
+        class="project-content"
+        data-template="/build/tpl/project-content.html"
+        aria-live="polite"
+      >
+        <p class="status">Loading project…</p>
+      </section>
+    </main>
+
+    <footer class="container py-4 border-top mt-5 text-center text-muted">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <p class="small text-uppercase mb-2">
+            &copy; 2026 Susan Nicole Arts | Susan Nicole Delgado
+          </p>
+          <p class="small mb-2">
+            Grounded in the philosophy that
+            <em>"Dreams are the Foundation of Reality."</em>
+          </p>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="contact.html" class="text-muted small">Contact</a> |
+            <a href="sitemap.xml" target="_blank" class="text-muted small"
+              >Sitemap</a
+            >
+          </div>
+        </div>
+      </div>
+      <pre id="raw-data-log">
+    Waiting for the Librarian to open the ledger...
+</pre
+      >
+    </footer>
+    <script src="/build/js/global.js"></script>
+    <script>
+      (function () {
+        var root = document.getElementById("projectContent");
+        if (!root) return;
+
+        var previewSourceState = {
+          id: "",
+          status: "idle",
+          html: "",
+        };
+
+        function currentProjectId() {
+          return (
+            root.dataset.projectId ||
+            new URLSearchParams(window.location.search).get("post") ||
+            "23"
+          );
+        }
+
+        function removeHeroExtras() {
+          root
+            .querySelectorAll("#caseHero .case-summary")
+            .forEach(function (summary) {
+              summary.remove();
+            });
+
+          root
+            .querySelectorAll("#caseHero .case-taxonomy-group")
+            .forEach(function (group) {
+              var label = group.querySelector(".case-taxonomy-label");
+              if (label && label.textContent.trim() === "Category")
+                group.remove();
+            });
+
+          var taxonomy = root.querySelector("#caseHero .case-taxonomy");
+          if (taxonomy && !taxonomy.children.length) taxonomy.remove();
+        }
+
+        function normalizePreviewImages() {
+          root.querySelectorAll("#projectPreview img").forEach(function (img) {
+            var src = (img.getAttribute("src") || "").trim();
+
+            if (
+              !src ||
+              /^(?:https?:)?\/\//i.test(src) ||
+              /^(?:data|blob):/i.test(src) ||
+              src.charAt(0) === "/"
+            ) {
+              return;
+            }
+
+            src = src.replace(/^\.\//, "");
+
+            if (src.indexOf("../showcase/") === 0) {
+              src = src.replace(/^\.\.\//, "");
+            }
+
+            if (src.indexOf("showcase/") === 0) {
+              src = "/" + src;
+            } else if (
+              src.indexOf("img/") === 0 ||
+              src.indexOf("thumbs/") === 0
+            ) {
+              src = "/showcase/" + src;
+            } else {
+              src = "/" + src;
+            }
+
+            img.setAttribute("src", src);
+          });
+        }
+
+        function sanitizePreview(preview) {
+          preview
+            .querySelectorAll("script,style,link,header,nav,footer")
+            .forEach(function (element) {
+              element.remove();
+            });
+        }
+
+        function applyMappedPreview() {
+          var id = currentProjectId();
+          if (
+            previewSourceState.status !== "loaded" ||
+            previewSourceState.id !== id ||
+            !previewSourceState.html
+          ) {
+            return false;
+          }
+
+          var preview = root.querySelector("#projectPreview");
+          if (!preview) return false;
+          if (preview.dataset.previewSourceLoaded === id) return true;
+
+          preview.innerHTML = previewSourceState.html;
+          preview.dataset.previewSourceLoaded = id;
+          sanitizePreview(preview);
+          normalizePreviewImages();
+
+          var visualSection = root.querySelector("#visualSection");
+          if (
+            visualSection &&
+            (preview.querySelector("img") || preview.textContent.trim())
+          ) {
+            visualSection.hidden = false;
+          }
+
+          return true;
+        }
+
+        function ensurePreviewFallback() {
+          if (
+            previewSourceState.status !== "none" &&
+            previewSourceState.status !== "failed"
+          ) {
+            return;
+          }
+
+          var preview = root.querySelector("#projectPreview");
+          var visualSection = root.querySelector("#visualSection");
+          if (!preview || preview.querySelector("img")) return;
+
+          var heroImage = root.querySelector("#caseHero .case-visual img");
+          if (!heroImage || !heroImage.getAttribute("src")) return;
+
+          var container = document.createElement("div");
+          var row = document.createElement("div");
+          var column = document.createElement("div");
+          var image = heroImage.cloneNode(false);
+
+          container.className = "container";
+          row.className = "row";
+          column.className = "col-lg-12 col-md-12 col-sm-12";
+          image.className = "responsive";
+          image.loading = "lazy";
+          image.setAttribute("data-preview-size", "standard");
+          image.alt = heroImage.alt || "Project preview";
+
+          column.appendChild(image);
+          row.appendChild(column);
+          container.appendChild(row);
+          preview.appendChild(container);
+
+          if (visualSection) visualSection.hidden = false;
+        }
+
+        function loadMappedPreview() {
+          var id = currentProjectId();
+          if (!id) return;
+
+          if (
+            previewSourceState.id === id &&
+            (previewSourceState.status === "loading" ||
+              previewSourceState.status === "loaded" ||
+              previewSourceState.status === "none")
+          ) {
+            return;
+          }
+
+          previewSourceState.id = id;
+          previewSourceState.status = "loading";
+          previewSourceState.html = "";
+
+          fetch("/build/js/casestudies.json")
+            .then(function (response) {
+              if (!response.ok)
+                throw new Error("Preview source map unavailable");
+              return response.json();
+            })
+            .then(function (data) {
+              var source = data.previewSources && data.previewSources[id];
+              if (!source) {
+                previewSourceState.status = "none";
+                ensurePreviewFallback();
+                return null;
+              }
+
+              if (source.charAt(0) !== "/") source = "/" + source;
+              return fetch(source).then(function (response) {
+                if (!response.ok)
+                  throw new Error("Project preview source unavailable");
+                return response.text();
+              });
+            })
+            .then(function (html) {
+              if (html === null || html === undefined) return;
+              if (previewSourceState.id !== id) return;
+              previewSourceState.html = html;
+              previewSourceState.status = "loaded";
+              applyMappedPreview();
+            })
+            .catch(function (error) {
+              console.error("Project preview load error:", error);
+              if (previewSourceState.id !== id) return;
+              previewSourceState.status = "failed";
+              ensurePreviewFallback();
+            });
+        }
+
+        function refreshProjectPreviews() {
+          removeHeroExtras();
+          normalizePreviewImages();
+          applyMappedPreview();
+          loadMappedPreview();
+          ensurePreviewFallback();
+        }
+
+        refreshProjectPreviews();
+
+        var observer = new MutationObserver(function () {
+          refreshProjectPreviews();
+        });
+
+        observer.observe(root, { childList: true, subtree: true });
+      })();
+    </script>
+  </body>
+</html>
