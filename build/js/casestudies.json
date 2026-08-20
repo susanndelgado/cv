@@ -138,7 +138,7 @@
       "level": "focused",
       "ux": {
         "title": "Responsive fundraising event microsite",
-        "intro": "Pulse Gala 2015 combined gala information with attendance, fundraising and photography in a standalone responsive microsite.",
+        "intro": "Pulse Gala 2015 combined gala information, attendance, fundraising and photography in a standalone responsive microsite.",
         "panels": [
           {"title": "Event identity", "copy": "The purple gala identity carried through the responsive layout, image-based navigation and event content."},
           {"title": "Smooth-scroll navigation", "copy": "jQuery smooth scrolling connected sections of the site and provided direct access to event information."},
