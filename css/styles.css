@@ -2546,7 +2546,7 @@ header .nav-tabs .nav-link.active:hover {
   display: grid;
   grid-template-columns: 2.5in minmax(0, 1fr);
   column-gap: 0.18in;
-  padding-top: 1.12in;
+  padding-top: 0.82in;
 }
 
 #resume .resume-sidebar {
@@ -2569,6 +2569,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 #resume .resume-heading {
+  text-transform: uppercase;
   margin: 0 0 0.3125rem;
   color: #137a98;
   font-size: 13.8pt;
@@ -2993,7 +2994,7 @@ header .nav-tabs .nav-link.active:hover {
     display: grid !important;
     grid-template-columns: 2.5in minmax(0, 1fr) !important;
     column-gap: 0.18in !important;
-    padding-top: 1.12in !important;
+    padding-top: 0.82in !important;
   }
   @page {
     size: Letter;
@@ -3115,7 +3116,7 @@ header .nav-tabs .nav-link.active:hover {
     grid-template-columns: 2.5in minmax(0, 1fr) !important;
     column-gap: 0.18in !important;
 
-    padding-top: 1.12in !important;
+    padding-top: 0.82in !important;
   }
 
   #resume .resume-sidebar {
