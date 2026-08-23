@@ -2546,7 +2546,7 @@ header .nav-tabs .nav-link.active:hover {
   display: grid;
   grid-template-columns: 2.5in minmax(0, 1fr);
   column-gap: 0.18in;
-  padding-top: 0.82in;
+  padding-top: 0.65in;
 }
 
 #resume .resume-sidebar {
@@ -2994,7 +2994,7 @@ header .nav-tabs .nav-link.active:hover {
     display: grid !important;
     grid-template-columns: 2.5in minmax(0, 1fr) !important;
     column-gap: 0.18in !important;
-    padding-top: 0.82in !important;
+    padding-top: 0.65in !important;
   }
   @page {
     size: Letter;
@@ -3116,7 +3116,7 @@ header .nav-tabs .nav-link.active:hover {
     grid-template-columns: 2.5in minmax(0, 1fr) !important;
     column-gap: 0.18in !important;
 
-    padding-top: 0.82in !important;
+    padding-top: 0.65in !important;
   }
 
   #resume .resume-sidebar {
