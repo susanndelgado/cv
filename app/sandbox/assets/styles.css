@@ -1,7 +1,86 @@
 /* ==================================================
    1. STRUCTURE / GLOBALS
    ================================================== */
+/* ==================================================
+   SANDBOX IN-PROGRESS NOTICE
+   ================================================== */
 
+.sandbox-notice {
+  position: fixed;
+
+  top: 82px;
+  left: 50%;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: max-content;
+  max-width: calc(100% - 30px);
+
+  padding: 10px 16px;
+
+  border: 1px solid rgba(255, 196, 97, 0.75);
+  border-radius: 8px;
+
+  background: rgba(54, 39, 8, 0.96);
+
+  color: #ffd36f;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 196, 97, 0.15);
+
+  transform: translateX(-50%);
+
+  backdrop-filter: blur(10px);
+}
+
+.sandbox-notice > span {
+  color: #ffc461;
+
+  font-size: 18px;
+}
+
+.sandbox-notice > div {
+  display: grid;
+  gap: 2px;
+}
+
+.sandbox-notice strong {
+  color: #ffe0a0;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.sandbox-notice small {
+  color: #d8bd80;
+
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+  .sandbox-notice {
+    top: 62px;
+
+    width: calc(100% - 24px);
+
+    padding: 9px 12px;
+  }
+
+  .sandbox-notice small {
+    font-size: 8px;
+  }
+}
 :root {
   --blue: #5fc8ff;
   --blue-dark: #2f8dff;
