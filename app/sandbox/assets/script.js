@@ -58,38 +58,273 @@ document.addEventListener("keydown", (event) => {
   }
 });
 /* ======================
+   SANDBOX VOICE
+   Shared by Easter eggs
+   ====================== */
+
+const preferredSandboxVoices = [
+  "Victoria",
+  "Samantha",
+  "Karen",
+  "Ava",
+  "Zira",
+  "Moira",
+  "Tessa",
+  "Fiona",
+];
+
+function getSandboxVoice() {
+  const voices = window.speechSynthesis.getVoices();
+
+  for (const name of preferredSandboxVoices) {
+    const voice = voices.find(
+      (voice) => voice.name.includes(name) && voice.lang.startsWith("en"),
+    );
+
+    if (voice) {
+      return voice;
+    }
+  }
+
+  return (
+    voices.find((voice) => voice.lang === "en-US") ||
+    voices.find((voice) => voice.lang.startsWith("en")) ||
+    null
+  );
+}
+
+function createSandboxMessage(text, rate = 0.9, pitch = 0.85, volume = 0.7) {
+  const message = new SpeechSynthesisUtterance(text);
+
+  const voice = getSandboxVoice();
+
+  if (voice) {
+    message.voice = voice;
+  }
+
+  message.rate = rate;
+  message.pitch = pitch;
+  message.volume = volume;
+
+  return message;
+}
+
+function speakSandbox(text) {
+  const message = createSandboxMessage(text);
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(message);
+
+  return message;
+}
+
+/*
+  Prompt the browser to load its
+  available speech voices.
+*/
+
+window.speechSynthesis.getVoices();
+
+/* ======================
+   SANDBOX RETURN VISITOR
+   Homepage only
+   ====================== */
+
+const sandboxPath = window.location.pathname
+  .replace(/\/index\.html$/, "/")
+  .replace(/\/+$/, "/");
+
+const isSandboxHome = sandboxPath === "/app/sandbox/";
+
+if (isSandboxHome) {
+  const storageKey = "sandbox-home-visits";
+
+  const MEMORY_DAYS = 7;
+
+  const MEMORY_TIME = MEMORY_DAYS * 24 * 60 * 60 * 1000;
+
+  const now = Date.now();
+
+  let data = {
+    count: 0,
+    expires: now + MEMORY_TIME,
+  };
+
+  /* ---------- READ SAVED VISITS ---------- */
+
+  try {
+    const saved = localStorage.getItem(storageKey);
+
+    if (saved) {
+      const parsed = JSON.parse(saved);
+
+      if (parsed.expires > now) {
+        data = parsed;
+      }
+    }
+  } catch (error) {
+    data = {
+      count: 0,
+      expires: now + MEMORY_TIME,
+    };
+  }
+
+  /* ---------- COUNT HOMEPAGE VISIT ---------- */
+
+  data.count++;
+
+  /*
+    After seven visits,
+    begin the cycle again.
+
+    Visit 8 becomes visit 1.
+  */
+
+  if (data.count > 10) {
+    data.count = 1;
+  }
+
+  data.expires = now + MEMORY_TIME;
+
+  localStorage.setItem(storageKey, JSON.stringify(data));
+
+  /* ---------- CHOOSE MESSAGE ---------- */
+
+  let returnMessage = "";
+
+  if (data.count === 3) {
+    returnMessage = "Back again? I'm starting to think you like me.";
+  }
+
+  if (data.count === 4) {
+    returnMessage = "Welcome back again.";
+  }
+
+  if (data.count === 5) {
+    returnMessage = "So, should I expect a call soon?";
+  }
+  if (data.count === 7) {
+    returnMessage = "At this point we already know each other.";
+  }
+  if (data.count === 9) {
+    returnMessage = "Might as well Skip the interview.";
+  }
+
+  /* ---------- QUEUE MESSAGE ---------- */
+
+  if (returnMessage) {
+    let messagePlayed = false;
+
+    function handleReturnVisitor(event) {
+      /*
+        Ignore the brand so this does
+        not interfere with the separate
+        five-click Easter egg.
+      */
+
+      if (event.target.closest(".brand")) {
+        return;
+      }
+
+      if (messagePlayed) {
+        return;
+      }
+
+      messagePlayed = true;
+
+      const control = event.target.closest("a, button");
+
+      /*
+        Temporarily stop navigation
+        while the message speaks.
+      */
+
+      if (control) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+
+      const message = createSandboxMessage(returnMessage);
+
+      let continued = false;
+
+      function continueAction() {
+        if (continued) {
+          return;
+        }
+
+        continued = true;
+
+        document.removeEventListener("click", handleReturnVisitor, true);
+
+        if (control) {
+          control.click();
+        }
+      }
+
+      message.onend = continueAction;
+
+      message.onerror = continueAction;
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(message);
+
+      /*
+        Fallback in case the browser
+        does not fire the end event.
+      */
+
+      setTimeout(continueAction, 4000);
+    }
+
+    document.addEventListener("click", handleReturnVisitor, true);
+  }
+}
+
+/* ======================
    SANDBOX LOGO EASTER EGG
+   Five brand clicks
    ====================== */
 
 const sandboxLogo = document.querySelector(".brand");
 
-let logoClicks = 0;
-let logoTimer;
+if (sandboxLogo) {
+  let logoClicks = 0;
+  let logoTimer;
 
-sandboxLogo.addEventListener("click", () => {
-  logoClicks++;
+  sandboxLogo.addEventListener("click", (event) => {
+    /*
+        Prevent # links from jumping
+        or reloading while counting.
+      */
 
-  clearTimeout(logoTimer);
+    const href = sandboxLogo.getAttribute("href");
 
-  logoTimer = setTimeout(() => {
-    logoClicks = 0;
-  }, 3000);
+    if (!href || href === "#") {
+      event.preventDefault();
+    }
 
-  if (logoClicks === 5) {
-    logoClicks = 0;
+    logoClicks++;
 
-    const message = new SpeechSynthesisUtterance(
-      "Hello. Welcome to Susan's Developer Sandbox. Curiosity detected.",
-    );
+    clearTimeout(logoTimer);
 
-    message.rate = 0.9;
-    message.pitch = 0.85;
-    message.volume = 0.65;
+    logoTimer = setTimeout(() => {
+      logoClicks = 0;
+    }, 3000);
 
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(message);
-  }
-});
+    /* ---------- FIVE CLICKS ---------- */
+
+    if (logoClicks === 5) {
+      logoClicks = 0;
+
+      clearTimeout(logoTimer);
+
+      speakSandbox(
+        "Hello. Welcome to Susan's Developer Sandbox. Curiosity detected.",
+      );
+    }
+  });
+}
 /* ======================
    SANDBOX UI SOUND
    ====================== */
