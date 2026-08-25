@@ -1,0 +1,631 @@
+/* ==================================================
+   11. RESPONSIVE
+   ================================================== */
+
+/* ==================================================
+   SMALLER DESKTOP
+   ================================================== */
+
+@media (max-width: 1350px) {
+  /* ---------- HEADER ---------- */
+
+  body > header .brand {
+    left: 18px;
+  }
+
+  body > header .brand strong {
+    font-size: 14px;
+  }
+
+  body > header .brand small {
+    font-size: 10px;
+  }
+
+  body > header nav button {
+    padding: 0 13px;
+    font-size: 12px;
+  }
+
+  body > header .top-tools {
+    right: 18px;
+  }
+
+  body > header .top-tools > a {
+    font-size: 11px;
+  }
+}
+
+/* ==================================================
+   TABLET / COLLAPSED NAVIGATION
+   ================================================== */
+
+@media (max-width: 1100px) {
+  /* ==================================================
+     HEADER
+     ================================================== */
+
+  body > header {
+    top: 16px;
+  }
+
+  /* ---------- BRAND ---------- */
+
+  body > header .brand {
+    left: 16px;
+    top: 0;
+  }
+
+  /* ---------- RIGHT CONTROLS ---------- */
+
+  body > header .top-tools {
+    top: 0;
+    right: 16px;
+
+    align-items: center;
+  }
+
+  /* ---------- MENU BUTTON ---------- */
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* ---------- NAV DROPDOWN ---------- */
+
+  body > header nav {
+    position: absolute;
+
+    top: 58px;
+    right: 16px;
+
+    width: 230px;
+
+    display: grid;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(117, 188, 255, 0.35);
+    border-radius: 9px;
+
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 30%),
+      rgba(5, 18, 43, 0.94);
+
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px rgba(255, 255, 255, 0.08),
+      0 0 20px rgba(64, 158, 255, 0.12);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-8px);
+
+    pointer-events: none;
+
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 180ms ease;
+  }
+
+  /* navigation opened by JavaScript */
+
+  body > header nav.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+  }
+
+  /* vertical buttons */
+
+  body > header nav button {
+    width: 100%;
+    min-height: 48px;
+
+    justify-content: flex-start;
+
+    padding: 0 16px;
+
+    border-radius: 0;
+
+    font-size: 12px;
+  }
+
+  /* remove desktop separators */
+
+  body > header nav button + button {
+    border-left: 0;
+
+    border-top: 1px solid rgba(117, 188, 255, 0.1);
+  }
+
+  body > header nav button[aria-current="page"] {
+    box-shadow: inset 2px 0 var(--blue);
+  }
+
+  /* ---------- MENU X STATE ---------- */
+
+  .menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ---------- HELP TOOLTIP ---------- */
+
+  body > header .help > div {
+    display: none;
+  }
+
+  /* ==================================================
+     HOME PAGE
+     ================================================== */
+
+  main {
+    min-height: 100svh;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-areas:
+      "logo logo"
+      "featured featured"
+      "library library"
+      "rosetta guides"
+      "data data";
+
+    gap: 18px;
+
+    padding: 100px 18px 90px;
+
+    overflow: visible;
+
+    background:
+      linear-gradient(rgba(2, 7, 18, 0.16), rgba(2, 7, 18, 0.42)),
+      url("assets/sandbox-background.png") center top / cover fixed no-repeat;
+  }
+
+  /* ==================================================
+     PANELS
+     ================================================== */
+
+  .glass-panel {
+    position: relative;
+
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+
+    width: 100%;
+    min-width: 0;
+  }
+
+  .featured {
+    grid-area: featured;
+
+    max-width: 760px;
+
+    margin-inline: auto;
+  }
+
+  .library {
+    grid-area: library;
+  }
+
+  .rosetta {
+    grid-area: rosetta;
+  }
+
+  .guides {
+    grid-area: guides;
+  }
+
+  .data {
+    grid-area: data;
+  }
+
+  /* ==================================================
+     CENTER HOLOGRAM
+     ================================================== */
+
+  .logo-stage {
+    grid-area: logo;
+
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    width: 250px;
+
+    margin: 20px auto 30px;
+
+    transform: none;
+  }
+
+  .logo-stage::after {
+    bottom: -15%;
+  }
+
+  /* ==================================================
+     PROJECT LIBRARY
+     ================================================== */
+
+  .projects {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* ==================================================
+     RIGHT SIDE PANELS
+     ================================================== */
+
+  .stones,
+  .guide-list,
+  .data-list {
+    width: 100%;
+  }
+
+  /* ==================================================
+     BOTTOM TOOLS
+     ================================================== */
+
+  body > footer {
+    position: relative;
+
+    bottom: auto;
+    left: auto;
+
+    width: 100%;
+
+    padding: 0 18px 20px;
+
+    transform: none;
+
+    background: var(--background);
+  }
+
+  body > footer nav {
+    width: min(680px, 100%);
+
+    margin-inline: auto;
+
+    justify-content: center;
+  }
+}
+
+/* ==================================================
+   PHONE
+   ================================================== */
+
+@media (max-width: 700px) {
+  /* ==================================================
+     HEADER
+     ================================================== */
+
+  body > header {
+    top: 12px;
+  }
+
+  /* ---------- BRAND ---------- */
+
+  body > header .brand {
+    left: 12px;
+
+    gap: 7px;
+  }
+
+  body > header .brand img {
+    width: 32px;
+    height: 32px;
+  }
+
+  body > header .brand strong {
+    font-size: 11px;
+  }
+
+  body > header .brand small {
+    font-size: 9px;
+  }
+
+  /* ---------- TOOLS ---------- */
+
+  body > header .top-tools {
+    right: 12px;
+
+    gap: 7px;
+  }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+
+    padding: 7px;
+  }
+
+  body > header .help > button {
+    width: 36px;
+    height: 36px;
+  }
+
+  body > header .close {
+    width: 36px;
+    height: 36px;
+
+    font-size: 21px;
+  }
+
+  body > header .top-tools > a {
+    display: none;
+  }
+
+  /* ---------- NAV ---------- */
+
+  body > header nav {
+    top: 48px;
+
+    right: 12px;
+    left: 12px;
+
+    width: auto;
+  }
+
+  body > header nav button {
+    min-height: 46px;
+
+    font-size: 11px;
+  }
+
+  /* ==================================================
+     HOME PAGE
+     ================================================== */
+
+  main {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "logo"
+      "featured"
+      "library"
+      "rosetta"
+      "guides"
+      "data";
+
+    gap: 14px;
+
+    padding: 82px 12px 30px;
+
+    background:
+      linear-gradient(rgba(2, 7, 18, 0.22), rgba(2, 7, 18, 0.55)),
+      url("assets/sandbox-background.png") center top / cover fixed no-repeat;
+  }
+
+  /* ==================================================
+     PANELS
+     ================================================== */
+
+  .glass-panel {
+    width: 100%;
+
+    padding: 14px;
+  }
+
+  .glass-panel h2 {
+    margin-bottom: 12px;
+
+    font-size: 13px;
+  }
+
+  /* ==================================================
+     HOLOGRAM
+     ================================================== */
+
+  .logo-stage {
+    width: 205px;
+
+    margin: 20px auto 28px;
+  }
+
+  .logo-stage::after {
+    bottom: -12%;
+
+    opacity: 0.15;
+  }
+
+  /* ==================================================
+     FEATURED PROJECT
+     ================================================== */
+
+  .featured-content {
+    grid-template-columns:
+      24px
+      minmax(0, 1fr)
+      24px;
+
+    gap: 5px;
+  }
+
+  .featured .arrow {
+    width: 24px;
+    height: 24px;
+
+    font-size: 18px;
+  }
+
+  .card-stack {
+    min-height: 355px;
+  }
+
+  .card-stack > span {
+    display: none;
+  }
+
+  .card-stack article {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    padding: 10px;
+  }
+
+  .project-image {
+    min-height: 160px;
+  }
+
+  .project-info h3 {
+    font-size: 18px;
+  }
+
+  .project-info p {
+    font-size: 11px;
+  }
+
+  .project-info a {
+    margin-top: 8px;
+  }
+
+  /* ==================================================
+     PROJECT LIBRARY
+     ================================================== */
+
+  .projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 7px;
+  }
+
+  .projects > a {
+    padding: 9px 5px;
+  }
+
+  .project-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  /* ==================================================
+     ROSETTA STONES
+     ================================================== */
+
+  .stones {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    overflow: visible;
+  }
+
+  .stones button {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      64px
+      minmax(0, 1fr);
+
+    align-items: center;
+    justify-items: start;
+
+    text-align: left;
+  }
+
+  .stones small {
+    width: auto;
+
+    text-align: left;
+  }
+
+  /* ==================================================
+     REFERENCE GUIDES
+     ================================================== */
+
+  .guide-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    overflow: visible;
+  }
+
+  .guide-list > a {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    text-align: left;
+  }
+
+  /* ==================================================
+     DATA VISUALIZATION
+     ================================================== */
+
+  .data-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    overflow: visible;
+  }
+
+  .data-list > a {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    text-align: left;
+  }
+
+  /* ==================================================
+     BOTTOM TOOLS
+     ================================================== */
+
+  body > footer {
+    padding: 12px 12px 20px;
+  }
+
+  body > footer nav {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 4px;
+
+    padding: 5px;
+  }
+
+  body > footer button {
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 8px 5px;
+
+    font-size: 10px;
+  }
+}
