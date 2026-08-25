@@ -57,7 +57,39 @@ document.addEventListener("keydown", (event) => {
     menuButton.focus();
   }
 });
+/* ======================
+   SANDBOX LOGO EASTER EGG
+   ====================== */
 
+const sandboxLogo = document.querySelector(".brand");
+
+let logoClicks = 0;
+let logoTimer;
+
+sandboxLogo.addEventListener("click", () => {
+  logoClicks++;
+
+  clearTimeout(logoTimer);
+
+  logoTimer = setTimeout(() => {
+    logoClicks = 0;
+  }, 3000);
+
+  if (logoClicks === 5) {
+    logoClicks = 0;
+
+    const message = new SpeechSynthesisUtterance(
+      "Hello. Welcome to the Developer Sandbox. Curiosity detected.",
+    );
+
+    message.rate = 0.9;
+    message.pitch = 0.85;
+    message.volume = 0.65;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(message);
+  }
+});
 /* ======================
    SANDBOX UI SOUND
    ====================== */
@@ -82,7 +114,7 @@ function playInterfaceSound(frequency = 520, duration = 0.035, volume = 0.025) {
   const oscillator = audioContext.createOscillator();
   const gain = audioContext.createGain();
 
-  oscillator.type = "sine";
+  oscillator.type = "sawtooth";
   oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
 
   gain.gain.setValueAtTime(volume, audioContext.currentTime);
@@ -125,7 +157,7 @@ document.addEventListener("pointerover", (event) => {
     return;
   }
 
-  playInterfaceSound(540, 0.035, 0.018);
+  playInterfaceSound(540, 0.035, 0.03);
 });
 
 /* ---------- CLICK SOUND ---------- */
@@ -137,5 +169,5 @@ document.addEventListener("click", (event) => {
 
   enableAudio();
 
-  playInterfaceSound(760, 0.045, 0.025);
+  playInterfaceSound(760, 0.045, 0.04);
 });
