@@ -79,7 +79,7 @@ sandboxLogo.addEventListener("click", () => {
     logoClicks = 0;
 
     const message = new SpeechSynthesisUtterance(
-      "Hello. Welcome to the Developer Sandbox. Curiosity detected.",
+      "Hello. Welcome to Susan's Developer Sandbox. Curiosity detected.",
     );
 
     message.rate = 0.9;
