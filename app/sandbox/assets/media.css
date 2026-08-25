@@ -193,7 +193,7 @@
 
     background:
       linear-gradient(rgba(2, 7, 18, 0.16), rgba(2, 7, 18, 0.42)),
-      url("assets/sandbox-background.png") center top / cover fixed no-repeat;
+      url("sandbox-background.png") center top / cover fixed no-repeat;
   }
 
   /* ---------- HOME PANELS ---------- */
@@ -484,7 +484,7 @@
 
     background:
       linear-gradient(rgba(2, 7, 18, 0.22), rgba(2, 7, 18, 0.55)),
-      url("assets/sandbox-background.png") center top / cover fixed no-repeat;
+      url("sandbox-background.png") center top / cover fixed no-repeat;
   }
 
   /* ---------- HOME PANELS ---------- */
@@ -681,7 +681,7 @@
 
     background:
       linear-gradient(rgba(2, 7, 18, 0.22), rgba(2, 7, 18, 0.48)),
-      url("assets/innerPg.png") center top / cover fixed no-repeat;
+      url("innerPg.png") center top / cover fixed no-repeat;
   }
 
   /* ==================================================

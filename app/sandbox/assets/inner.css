@@ -18,7 +18,7 @@
 
   background:
     linear-gradient(rgba(2, 7, 18, 0.16), rgba(2, 7, 18, 0.32)),
-    url("assets/innerPg.png") center / cover fixed no-repeat;
+    url("innerPg.png") center / cover fixed no-repeat;
 }
 
 /* ==================================================
