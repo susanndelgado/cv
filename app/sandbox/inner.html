@@ -22,22 +22,32 @@
       </a>
 
       <nav id="primary-nav" aria-label="Developer Sandbox navigation">
-        <button type="button" aria-current="page">
+        <button type="button" onclick="window.location.href = '/app/sandbox/'">
           <span aria-hidden="true">⌂</span>
           Home
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          aria-current="page"
+          onclick="window.location.href = '/app/sandbox/inner.html'"
+        >
           <span aria-hidden="true">▱</span>
           Projects
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = '/app/sandbox/reference-guide.html'"
+        >
           <span aria-hidden="true">▤</span>
-          Guides
+          Reference Guides
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = '/app/sandbox/inner.html'"
+        >
           <span aria-hidden="true">◇</span>
           Rosetta Stones
         </button>
@@ -47,7 +57,10 @@
           System Guide
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = '/app/sandbox/inner.html'"
+        >
           <span aria-hidden="true">⚗</span>
           Lab
         </button>
@@ -93,7 +106,12 @@
         </header>
 
         <nav class="project-types" aria-label="Project types">
-          <button type="button" data-filter="all" aria-current="true">
+          <button
+            type="button"
+            data-filter="all"
+            aria-current="true"
+            onclick="window.location.href = 'inner.html'"
+          >
             <span aria-hidden="true">◇</span>
 
             <span>
@@ -102,7 +120,11 @@
             </span>
           </button>
 
-          <button type="button" data-filter="frontend">
+          <button
+            type="button"
+            data-filter="frontend"
+            onclick="window.location.href = 'inner.html'"
+          >
             <span aria-hidden="true">&lt;/&gt;</span>
 
             <span>
@@ -113,7 +135,11 @@
             </span>
           </button>
 
-          <button type="button" data-filter="backend">
+          <button
+            type="button"
+            data-filter="backend"
+            onclick="window.location.href = 'inner.html'"
+          >
             <span aria-hidden="true">↔</span>
 
             <span>
@@ -124,7 +150,11 @@
             </span>
           </button>
 
-          <button type="button" data-filter="database">
+          <button
+            type="button"
+            data-filter="database"
+            onclick="window.location.href = 'inner.html'"
+          >
             <span aria-hidden="true">◉</span>
 
             <span>
@@ -135,7 +165,11 @@
             </span>
           </button>
 
-          <button type="button" data-filter="visualization">
+          <button
+            type="button"
+            data-filter="visualization"
+            onclick="window.location.href = 'inner.html'"
+          >
             <span aria-hidden="true">▥</span>
 
             <span>
@@ -146,7 +180,11 @@
             </span>
           </button>
 
-          <button type="button" data-filter="lab">
+          <button
+            type="button"
+            data-filter="lab"
+            onclick="window.location.href = 'inner.html'"
+          >
             <span aria-hidden="true">⚗</span>
 
             <span>
@@ -186,7 +224,7 @@
           </header>
 
           <div class="project-grid">
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon blue">MA</span>
 
               <div>
@@ -195,7 +233,7 @@
               </div>
             </a>
 
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon cyan">MB</span>
 
               <div>
@@ -204,7 +242,7 @@
               </div>
             </a>
 
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon purple">PF</span>
 
               <div>
@@ -213,7 +251,7 @@
               </div>
             </a>
 
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon blue">MA</span>
 
               <div>
@@ -239,7 +277,7 @@
           </header>
 
           <div class="project-grid">
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon green">API</span>
 
               <div>
@@ -248,7 +286,7 @@
               </div>
             </a>
 
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon blue">PHP</span>
 
               <div>
@@ -274,7 +312,7 @@
           </header>
 
           <div class="project-grid">
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon purple">DB</span>
 
               <div>
@@ -283,7 +321,7 @@
               </div>
             </a>
 
-            <a href="reference-guide.html">
+            <a href="single-project.html">
               <span class="project-icon cyan">SQL</span>
 
               <div>
@@ -309,7 +347,7 @@
           </header>
 
           <div class="project-grid">
-            <a href="#">
+            <a href="single-project.html">
               <span class="project-icon cyan">PD</span>
 
               <div>
@@ -318,7 +356,7 @@
               </div>
             </a>
 
-            <a href="#">
+            <a href="single-project.html">
               <span class="project-icon gold">DV</span>
 
               <div>
@@ -344,7 +382,7 @@
           </header>
 
           <div class="project-grid">
-            <a href="#">
+            <a href="single-project.html">
               <span class="project-icon gold">CP</span>
 
               <div>
@@ -353,7 +391,7 @@
               </div>
             </a>
 
-            <a href="#">
+            <a href="single-project.html">
               <span class="project-icon blue">AI</span>
 
               <div>
@@ -362,7 +400,7 @@
               </div>
             </a>
 
-            <a href="#">
+            <a href="single-project.html">
               <span class="project-icon purple">RC</span>
 
               <div>
@@ -380,9 +418,13 @@
         <button type="button">
           <span aria-hidden="true">⌘</span>
           Terminal
+          <!-- Not sure this should be terminal unless you are planning to build it in which case make a tool tip coming soon pop up for now -->
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = 'https://github.com/susanndelgado'"
+        >
           <span aria-hidden="true">⑂</span>
           Git
         </button>
@@ -390,21 +432,26 @@
         <button type="button">
           <span aria-hidden="true">⬡</span>
           Docker
+          <!-- not even sure what to do with this link -->
         </button>
 
         <button type="button">
           <span aria-hidden="true">◉</span>
           Database
+
+          <!-- not even sure what to do with this link maybe invent my own database that works on static website and is used for sandbox then this link could lead to a page that explains it? but not actually link to it -->
         </button>
 
         <button type="button">
           <span aria-hidden="true">&lt;/&gt;</span>
           VS Code
+          <!-- I dont know if I want to include this but if we dont create it maybe this can link to a page that explains my set up in vs code and what I use -->
         </button>
 
         <button type="button">
           <span aria-hidden="true">↔</span>
           API Tools
+          <!-- really dont know about this -->
         </button>
       </nav>
     </footer>
