@@ -100,9 +100,7 @@ main {
     linear-gradient(rgba(2, 7, 18, 0.04), rgba(2, 7, 18, 0.08)),
     url("assets/sandbox-background.png") center / cover no-repeat;
 }
-/* ==================================================
-   2. TOP NAVIGATION
-   ================================================== */
+
 /* ==================================================
    2. TOP HEADER / NAVIGATION
    ================================================== */
@@ -229,7 +227,49 @@ body > header nav button:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: -3px;
 }
+/* ==================================================
+   MOBILE MENU BUTTON
+   hidden on desktop
+   ================================================== */
 
+.menu-toggle {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 10px;
+
+  border: 1px solid rgba(95, 200, 255, 0.35);
+  border-radius: 9px;
+
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent),
+    rgba(5, 18, 43, 0.82);
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.08),
+    0 0 12px rgba(64, 158, 255, 0.1);
+
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+
+  width: 100%;
+  height: 1px;
+
+  margin: 5px 0;
+
+  background: var(--blue);
+
+  box-shadow: 0 0 5px rgba(95, 200, 255, 0.7);
+
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
 /* ---------- TOP RIGHT TOOLS ---------- */
 
 body > header .top-tools {
@@ -379,82 +419,6 @@ body > header .close:hover,
 body > header .close:focus-visible {
   background: rgba(47, 141, 255, 0.12);
 }
-/* body > header {
-  position: fixed;
-  top: 28px;
-  left: 50%;
-  z-index: 50;
-
-  transform: translateX(-50%);
-}
-
-body > header nav {
-  display: flex;
-  overflow: hidden;
-
-  border: 1px solid rgba(117, 188, 255, 0.35);
-  border-radius: 9px;
-
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.07), transparent 30%),
-    rgba(5, 18, 43, 0.8);
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.3),
-    inset 0 1px rgba(255, 255, 255, 0.1),
-    0 0 18px rgba(64, 158, 255, 0.12);
-}
-
-body > header button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  min-height: 60px;
-  padding: 0 20px;
-
-  border: 0;
-  background: transparent;
-
-  color: #cbd9e9;
-
-  cursor: pointer;
-}
-
-body > header button + button {
-  border-left: 1px solid rgba(117, 188, 255, 0.1);
-}
-
-body > header button span {
-  color: var(--blue);
-  font-size: 17px;
-}
-
-body > header button:hover,
-body > header button:focus-visible {
-  color: white;
-
-  background: rgba(47, 141, 255, 0.15);
-}
-
-body > header button[aria-current="page"] {
-  color: white;
-
-  background: linear-gradient(
-    rgba(47, 141, 255, 0.25),
-    rgba(47, 141, 255, 0.08)
-  );
-
-  box-shadow: inset 0 -2px var(--blue);
-}
-
-body > header button:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: -3px;
-} */
-/* ==================================================
-   3. CENTER LOGO
-   ================================================== */
 /* ==================================================
    3. CENTER LOGO
    ================================================== */
@@ -623,19 +587,6 @@ body > header button:focus-visible {
   cursor: pointer;
 }
 .logo-stage img {
-  /* width: 100%;
-
-  opacity: 0.95;
-
-  filter: drop-shadow(0 0 4px rgba(220, 247, 255, 0.85))
-    drop-shadow(0 0 12px rgba(80, 185, 255, 0.7))
-    drop-shadow(0 0 24px rgba(64, 110, 255, 0.4));
-
-  transition:
-    transform 800ms ease,
-    filter 200ms ease;
- */
-
   position: relative;
   z-index: 2;
 
@@ -1819,10 +1770,10 @@ body > footer button:focus-visible {
   color: white;
 }
 /* ==================================================
-   11A. RESPONSIVE — HEADER
+   11A. RESPONSIVE — COLLAPSIBLE HEADER
    ================================================== */
 
-/* ---------- SMALLER DESKTOP / LAPTOP ---------- */
+/* ---------- SMALLER DESKTOP ---------- */
 
 @media (max-width: 1350px) {
   body > header .brand {
@@ -1851,77 +1802,149 @@ body > footer button:focus-visible {
   }
 }
 
-/* ---------- TABLET ---------- */
+/* ==================================================
+   COLLAPSED NAVIGATION
+   ================================================== */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   body > header {
     top: 16px;
-    padding: 0 16px;
-
-    justify-content: flex-start;
   }
 
-  /* brand stays upper left */
+  /* ---------- BRAND ---------- */
 
   body > header .brand {
-    position: relative;
+    left: 16px;
     top: 0;
-    left: 0;
   }
 
-  /* right controls stay upper right */
+  /* ---------- RIGHT CONTROLS ---------- */
 
   body > header .top-tools {
     top: 0;
     right: 16px;
+
+    align-items: center;
   }
 
-  /* navigation becomes its own row */
+  /* show menu button */
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* ---------- NAV DROPDOWN ---------- */
 
   body > header nav {
     position: absolute;
 
     top: 58px;
-    left: 16px;
     right: 16px;
 
-    justify-content: center;
+    width: 230px;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+    display: grid;
 
-    scrollbar-width: none;
+    overflow: hidden;
+
+    border: 1px solid rgba(117, 188, 255, 0.35);
+    border-radius: 9px;
+
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 30%),
+      rgba(5, 18, 43, 0.94);
+
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px rgba(255, 255, 255, 0.08),
+      0 0 20px rgba(64, 158, 255, 0.12);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-8px);
+
+    pointer-events: none;
+
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 180ms ease;
   }
 
-  body > header nav::-webkit-scrollbar {
-    display: none;
+  /* navigation opened by JavaScript */
+
+  body > header nav.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
   }
+
+  /* vertical buttons */
 
   body > header nav button {
-    flex: 0 0 auto;
-
+    width: 100%;
     min-height: 48px;
-    padding: 0 15px;
+
+    justify-content: flex-start;
+
+    padding: 0 16px;
+
+    border-radius: 0;
+
+    font-size: 12px;
   }
 
-  /* tooltip is unnecessary at this width */
+  /* no desktop vertical separators */
+
+  body > header nav button + button {
+    border-left: 0;
+
+    border-top: 1px solid rgba(117, 188, 255, 0.1);
+  }
+
+  body > header nav button[aria-current="page"] {
+    box-shadow: inset 2px 0 var(--blue);
+  }
+
+  /* ---------- MENU X STATE ---------- */
+
+  .menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* tooltip no longer stays open beside it */
 
   body > header .help > div {
     display: none;
   }
 }
 
-/* ---------- PHONE ---------- */
+/* ==================================================
+   PHONE
+   ================================================== */
 
 @media (max-width: 700px) {
   body > header {
     top: 12px;
-    padding: 0 12px;
   }
 
   /* ---------- BRAND ---------- */
 
   body > header .brand {
+    left: 12px;
+
     gap: 7px;
   }
 
@@ -1938,11 +1961,19 @@ body > footer button:focus-visible {
     font-size: 9px;
   }
 
-  /* ---------- RIGHT CONTROLS ---------- */
+  /* ---------- TOOLS ---------- */
 
   body > header .top-tools {
     right: 12px;
-    gap: 8px;
+
+    gap: 7px;
+  }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+
+    padding: 7px;
   }
 
   body > header .help > button {
@@ -1951,40 +1982,32 @@ body > footer button:focus-visible {
   }
 
   body > header .close {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
 
-    font-size: 22px;
+    font-size: 21px;
   }
 
-  /* hide return text;
-     close button still gives us the exit action */
+  /* remove return text on small phones */
 
   body > header .top-tools > a {
     display: none;
   }
 
-  /* ---------- NAVIGATION ---------- */
+  /* ---------- NAV ---------- */
 
   body > header nav {
-    top: 50px;
-    left: 12px;
+    top: 48px;
+
     right: 12px;
+    left: 12px;
 
-    justify-content: flex-start;
-
-    border-radius: 9px;
+    width: auto;
   }
 
   body > header nav button {
-    min-height: 44px;
+    min-height: 46px;
 
-    padding: 0 13px;
-
-    font-size: 10px;
-  }
-
-  body > header nav button span {
-    font-size: 15px;
+    font-size: 11px;
   }
 }

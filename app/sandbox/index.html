@@ -13,12 +13,14 @@
     <header>
       <a class="brand" href="#">
         <img src="assets/logo-blue.png" alt="" />
+
         <span>
           <strong>DEVELOPER SANDBOX</strong>
           <small>Academy of Mastery</small>
         </span>
       </a>
-      <nav aria-label="Developer Sandbox navigation">
+
+      <nav id="primary-nav" aria-label="Developer Sandbox navigation">
         <button type="button" aria-current="page">
           <span aria-hidden="true">⌂</span>
           Home
@@ -49,7 +51,20 @@
           Lab
         </button>
       </nav>
+
       <div class="top-tools">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
         <div class="help">
           <button type="button" aria-label="Get help and info"></button>
 
@@ -340,5 +355,6 @@
         </button>
       </nav>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
