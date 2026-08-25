@@ -12,7 +12,7 @@
 
   <body>
     <header>
-      <a class="brand" href="#">
+      <a class="brand" href="/app/sandbox/">
         <img src="assets/logo-blue.png" alt="" />
 
         <span>
@@ -22,12 +22,19 @@
       </a>
 
       <nav id="primary-nav" aria-label="Developer Sandbox navigation">
-        <button type="button" aria-current="page">
+        <button
+          type="button"
+          aria-current="page"
+          onclick="window.location.href = '/app/sandbox/'"
+        >
           <span aria-hidden="true">⌂</span>
           Home
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = '/app/sandbox/inner.html'"
+        >
           <span aria-hidden="true">▱</span>
           Projects
         </button>
@@ -37,7 +44,10 @@
           Guides
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = '/app/sandbox/inner.html'"
+        >
           <span aria-hidden="true">◇</span>
           Rosetta Stones
         </button>
@@ -47,7 +57,10 @@
           System Guide
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = '/app/sandbox/inner.html'"
+        >
           <span aria-hidden="true">⚗</span>
           Lab
         </button>
@@ -75,9 +88,16 @@
           </div>
         </div>
 
-        <a href="/work.html">Return to sdelgado</a>
+        <a href="/sdelgado.com/work.html">Return to sdelgado</a>
 
-        <button type="button" class="close" aria-label="Close">×</button>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          onclick="window.location.href = '/sdelgado.com/work.html'"
+        >
+          ×
+        </button>
       </div>
     </header>
 
@@ -115,7 +135,7 @@
                   <span>Responsive</span>
                 </div>
 
-                <a href="reference-guide.html">Explore Project ›</a>
+                <a href="single-project.html">Explore Project ›</a>
               </div>
             </article>
           </div>
@@ -136,21 +156,30 @@
         <h2>Rosetta Stones</h2>
 
         <div class="stones">
-          <button type="button">
+          <button
+            type="button"
+            onclick="window.location.href = '/app/sandbox/single-project.html'"
+          >
             <span class="stone gold">
               <span>JS</span>
             </span>
             <small>JavaScript</small>
           </button>
 
-          <button type="button">
+          <button
+            type="button"
+            onclick="window.location.href = '/app/sandbox/single-project.html'"
+          >
             <span class="stone blue">
               <span>TS</span>
             </span>
             <small>TypeScript</small>
           </button>
 
-          <button type="button">
+          <button
+            type="button"
+            onclick="window.location.href = '/app/sandbox/single-project.html'"
+          >
             <span class="stone cyan">
               <span>
                 <img src="assets/python.svg" alt="" />
@@ -159,14 +188,20 @@
             <small>Python</small>
           </button>
 
-          <button type="button">
+          <button
+            type="button"
+            onclick="window.location.href = '/app/sandbox/single-project.html'"
+          >
             <span class="stone purple">
               <span>DB</span>
             </span>
             <small>Database</small>
           </button>
 
-          <button type="button">
+          <button
+            type="button"
+            onclick="window.location.href = '/app/sandbox/single-project.html'"
+          >
             <span class="stone">
               <span>API</span>
             </span>
@@ -183,49 +218,49 @@
         <h2>Project Library</h2>
 
         <div class="projects">
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon">RC</span>
             <strong>Rosetta: Core</strong>
             <small>WEB</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon blue">MA</span>
             <strong>Modern Agenda</strong>
             <small>WEB</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon cyan">MB</span>
             <strong>Mini Browser</strong>
             <small>EXPERIMENT</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon purple">DB</span>
             <strong>Database Lab</strong>
             <small>LAB</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon gold">CP</span>
             <strong>Canvas Playground</strong>
             <small>EXPERIMENT</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon green">API</span>
             <strong>API Explorer</strong>
             <small>WEB</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon blue">AI</span>
             <strong>AI Sandbox</strong>
             <small>EXPERIMENT</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="project-icon cyan">PF</span>
             <strong>Portfolio Engine</strong>
             <small>WEB</small>
@@ -307,7 +342,7 @@
             <small>TensorFlow<br />Deep Learning project</small>
           </a>
 
-          <a href="inner.html">
+          <a href="single-project.html">
             <span class="data-icon gold">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -342,10 +377,12 @@
           <!-- Not sure this should be terminal unless you are planning to build it in which case make a tool tip coming soon pop up for now -->
         </button>
 
-        <button type="button">
+        <button
+          type="button"
+          onclick="window.location.href = 'https://github.com/susanndelgado'"
+        >
           <span aria-hidden="true">⑂</span>
           Git
-          <!-- link to https://github.com/susanndelgado -->
         </button>
 
         <button type="button">
