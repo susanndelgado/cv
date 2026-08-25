@@ -1,5 +1,16 @@
 /* ==========================================================================
-   STYLESHEET 
+   STYLESHEET
+
+   ORGANIZATION
+   01. Global / Foundations
+   02. Global / Navigation
+   03. Global / Shared Hero & Media
+   04. Page / Index
+   05. Page Group / Fine Arts
+   06. Page Group / Technical Work
+   07. Responsive / All Pages
+   08. Accessibility / Reduced Motion
+   09. Print / Resume
    ========================================================================== */
 
 /* ========================================================================
@@ -83,13 +94,13 @@ a {
 a,
 a:visited,
 .dropdown-item {
-  color: #60adb8;
+  color: #8a6a13;
 }
 
 a:hover,
 a:focus {
   background-color: transparent;
-  color: #d4af37;
+  color: #6f520d;
   outline: none !important;
   box-shadow: none !important;
 }
@@ -116,7 +127,7 @@ a:focus {
 }
 
 .btn-blk {
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
 }
 
@@ -159,7 +170,7 @@ a:focus {
 .btn-gold-solid:visited,
 a.btn-gold-solid,
 a.btn-gold-solid:visited {
-  background-color: #d4af37;
+  background-color: #8a6a13;
   border: 1px solid #111;
   color: #fff;
 }
@@ -196,7 +207,7 @@ a.btn-gold:focus {
 a.btn-blue,
 a.btn-blue:visited {
   background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid #60adb8;
+  border: 1px solid #5fc8ff;
   color: #fff;
 }
 
@@ -204,17 +215,13 @@ a.btn-blue:visited {
 .btn-blue:focus,
 a.btn-blue:hover,
 a.btn-blue:focus {
-  background-color: #60adb8;
-  border-color: #60adb8;
+  background-color: #5fc8ff;
+  border-color: #5fc8ff;
   color: #fff;
 }
 
 #work .btn,
 #work .btn:visited,
-#work .btn,
-#work .btn:visited,
-#resume .btn,
-#resume .btn:visited,
 #resume .btn,
 #resume .btn:visited {
   padding: 0.625rem 0.9375rem;
@@ -229,10 +236,6 @@ a.btn-blue:focus {
 
 #work .btn:hover,
 #work .btn:focus-visible,
-#work .btn:hover,
-#work .btn:focus-visible,
-#resume .btn:hover,
-#resume .btn:focus-visible,
 #resume .btn:hover,
 #resume .btn:focus-visible {
   background: #137a98;
@@ -260,7 +263,7 @@ header .nav-tabs {
 }
 
 header .nav-tabs .nav-link {
-  color: #60adb8;
+  color: #5fc8ff;
 }
 
 header .nav-tabs .nav-link:hover,
@@ -349,14 +352,14 @@ header .nav-tabs .nav-link.active:hover {
 #work .navbar .navbar-nav .nav-link:focus-visible,
 #work .navbar .navbar-nav .nav-link.active,
 #work .navbar .navbar-nav .nav-item.active > .nav-link {
-  color: #d4af37;
+  color: #137a98;
 }
 
 #work .navbar .navbar-nav .nav-link:hover::after,
 #work .navbar .navbar-nav .nav-link:focus-visible::after,
 #work .navbar .navbar-nav .nav-link.active::after,
 #work .navbar .navbar-nav .nav-item.active > .nav-link::after {
-  background-color: #d4af37;
+  background-color: #137a98;
 }
 /* ========================================================================
    GLOBAL / SHARED HERO & MEDIA
@@ -439,297 +442,6 @@ header .nav-tabs .nav-link.active:hover {
   border-top: 0.25rem solid #d4af37;
   color: #111;
   box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.15);
-}
-/* ==================================================
-   DEVELOPER SANDBOX ENTRY
-   ================================================== */
-
-.sandbox-entry {
-  position: relative;
-
-  width: 100%;
-
-  overflow: hidden;
-
-  margin: 0;
-  padding: clamp(55px, 8vw, 100px) 24px;
-
-  border-top: 1px solid rgba(95, 200, 255, 0.25);
-  border-bottom: 1px solid rgba(95, 200, 255, 0.25);
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(47, 141, 255, 0.18),
-      transparent 42%
-    ),
-    linear-gradient(145deg, #07162b, #020813 70%);
-
-  color: #edf6ff;
-
-  text-align: center;
-}
-
-/* ---------- CONTENT ---------- */
-
-.sandbox-entry-inner {
-  position: relative;
-  z-index: 2;
-
-  width: min(1000px, 100%);
-
-  margin-inline: auto;
-}
-
-/* ---------- LABEL ---------- */
-
-.sandbox-label {
-  display: block;
-
-  margin-bottom: 18px;
-
-  color: #5fc8ff;
-
-  font-size: 11px;
-  font-weight: 600;
-
-  letter-spacing: 0.2em;
-}
-
-/* ---------- SKILLS ---------- */
-
-.sandbox-skills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  gap: 7px 10px;
-
-  max-width: 900px;
-
-  margin: 0 auto 28px;
-
-  color: #98adc2;
-
-  font-size: 11px;
-  line-height: 1.5;
-
-  letter-spacing: 0.04em;
-
-  text-transform: uppercase;
-}
-
-.sandbox-skills span {
-  color: rgba(95, 200, 255, 0.55);
-}
-
-/* ---------- MAIN HEADING ---------- */
-
-.sandbox-entry h2 {
-  max-width: 900px;
-
-  margin: 0 auto 22px;
-
-  color: white;
-
-  font-size: clamp(38px, 6vw, 76px);
-  font-weight: 400;
-  line-height: 0.98;
-
-  letter-spacing: -0.035em;
-}
-
-.sandbox-entry h2 span {
-  display: block;
-
-  color: #74cfff;
-}
-
-/* ---------- DESCRIPTION ---------- */
-
-.sandbox-description {
-  max-width: 650px;
-
-  margin: 0 auto 32px;
-
-  color: #b4c3d2;
-
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-/* ==================================================
-   ENTER BUTTON
-   ================================================== */
-
-.sandbox-button {
-  position: relative;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-
-  min-width: 220px;
-
-  padding: 15px 22px;
-
-  overflow: hidden;
-
-  border: 1px solid rgba(95, 200, 255, 0.55);
-  border-radius: 8px;
-
-  background: linear-gradient(
-    145deg,
-    rgba(47, 141, 255, 0.18),
-    rgba(5, 18, 43, 0.85)
-  );
-
-  color: #dff5ff;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  letter-spacing: 0.1em;
-
-  text-decoration: none;
-  text-transform: uppercase;
-
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.08),
-    0 0 18px rgba(47, 141, 255, 0.14);
-
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.sandbox-button::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(95, 200, 255, 0.14),
-    transparent
-  );
-
-  transform: translateX(-110%);
-
-  transition: transform 500ms ease;
-}
-
-.sandbox-button span {
-  position: relative;
-  z-index: 1;
-}
-
-.sandbox-button span:last-child {
-  color: #5fc8ff;
-
-  font-size: 18px;
-
-  transition: transform 180ms ease;
-}
-
-/* ---------- HOVER ---------- */
-
-.sandbox-button:hover,
-.sandbox-button:focus-visible {
-  transform: translateY(-2px);
-
-  border-color: #5fc8ff;
-
-  background: linear-gradient(
-    145deg,
-    rgba(47, 141, 255, 0.28),
-    rgba(5, 18, 43, 0.95)
-  );
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.22),
-    0 0 28px rgba(47, 141, 255, 0.22);
-}
-
-.sandbox-button:hover::before,
-.sandbox-button:focus-visible::before {
-  transform: translateX(110%);
-}
-
-.sandbox-button:hover span:last-child,
-.sandbox-button:focus-visible span:last-child {
-  transform: translate(3px, -3px);
-}
-
-/* ==================================================
-   CODED GRID BACKGROUND
-   ================================================== */
-
-.sandbox-grid {
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.17;
-
-  background-image:
-    linear-gradient(rgba(95, 200, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(95, 200, 255, 0.12) 1px, transparent 1px);
-
-  background-size: 42px 42px;
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 25%,
-    black 75%,
-    transparent
-  );
-}
-
-/* ==================================================
-   MOBILE
-   ================================================== */
-
-@media (max-width: 700px) {
-  .sandbox-entry {
-    margin: 30px 0 50px;
-
-    padding: 50px 18px;
-  }
-
-  .sandbox-label {
-    font-size: 9px;
-  }
-
-  .sandbox-skills {
-    gap: 5px 7px;
-
-    margin-bottom: 22px;
-
-    font-size: 9px;
-  }
-
-  .sandbox-entry h2 {
-    font-size: clamp(34px, 11vw, 52px);
-
-    line-height: 1;
-  }
-
-  .sandbox-description {
-    font-size: 12px;
-  }
-
-  .sandbox-button {
-    width: 100%;
-    max-width: 320px;
-  }
 }
 /* ========================================================================
    PAGE / INDEX — PORTFOLIO SPLASH
@@ -915,7 +627,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 #arts .media-section h2 {
-  color: #d4af37;
+  color: #8a6a13;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.16rem;
@@ -1232,13 +944,9 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 .community a,
-.community a:visited,
-.community a,
 .community a:visited {
   color: #d4af37;
 }
-.community a:hover,
-.community a:focus,
 .community a:hover,
 .community a:focus {
   color: #fff;
@@ -1345,7 +1053,7 @@ header .nav-tabs .nav-link.active:hover {
 .node-step {
   display: block;
   margin-bottom: 0.3125rem;
-  color: #d4af37;
+  color: #8a6a13;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.125rem;
@@ -1661,7 +1369,7 @@ header .nav-tabs .nav-link.active:hover {
 .art-gallery-categories a:hover,
 .art-gallery-categories a:focus-visible,
 .art-gallery-categories a.active {
-  color: #d4af37;
+  color: #8a6a13;
 }
 
 .art-gallery-categories a:hover::after,
@@ -1892,7 +1600,7 @@ header .nav-tabs .nav-link.active:hover {
 #work .case-content .kicker,
 #work .kicker {
   margin: 0 0 0.75rem;
-  color: #60adb8;
+  color: #d4af37;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -2017,7 +1725,7 @@ header .nav-tabs .nav-link.active:hover {
 
 #work .project-meta {
   margin: 0 0 0.625rem;
-  color: #60adb8;
+  color: #d4af37;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -2045,7 +1753,7 @@ header .nav-tabs .nav-link.active:hover {
 
 #work .project-card h3 a:hover,
 #work .archive-card h3 a:hover {
-  color: #d4af37;
+  color: #137a98;
 }
 
 #work .project-copy h3 + p {
@@ -2080,7 +1788,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 #work .process-step .step {
-  color: #60adb8;
+  color: #d4af37;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -2108,7 +1816,7 @@ header .nav-tabs .nav-link.active:hover {
   padding: 1.875rem;
   background: #fff;
   border: 1px solid #dedede;
-  border-top: 3px solid #60adb8;
+  border-top: 3px solid #d4af37;
   color: #111;
 }
 
@@ -2197,8 +1905,8 @@ header .nav-tabs .nav-link.active:hover {
 #work .filter:hover,
 #work .filter:focus-visible,
 #work .filter.active {
-  background: #111;
-  border-color: #111;
+  background: #137a98;
+  border-color: #137a98;
   color: #fff;
 }
 
@@ -2221,6 +1929,260 @@ header .nav-tabs .nav-link.active:hover {
 
 #work .archive-card[hidden] {
   display: none;
+}
+
+/* ========================================================================
+   PAGE / TECHNICAL WORK — SANDBOX ENTRY
+   ======================================================================== */
+
+.sandbox-entry {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  margin: 0;
+  padding: clamp(55px, 8vw, 100px) 24px;
+
+  border-top: 1px solid rgba(95, 200, 255, 0.25);
+  border-bottom: 1px solid rgba(95, 200, 255, 0.25);
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(47, 141, 255, 0.18),
+      transparent 42%
+    ),
+    linear-gradient(145deg, #07162b, #020813 70%);
+
+  color: #edf6ff;
+
+  text-align: center;
+}
+
+/* ---------- CONTENT ---------- */
+
+.sandbox-entry-inner {
+  position: relative;
+  z-index: 2;
+
+  width: min(1000px, 100%);
+
+  margin-inline: auto;
+}
+
+/* ---------- LABEL ---------- */
+
+.sandbox-label {
+  display: block;
+
+  margin-bottom: 18px;
+
+  color: #5fc8ff;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+}
+
+/* ---------- SKILLS ---------- */
+
+.sandbox-skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 7px 10px;
+
+  max-width: 900px;
+
+  margin: 0 auto 28px;
+
+  color: #98adc2;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+.sandbox-skills span {
+  color: rgba(95, 200, 255, 0.55);
+}
+
+/* ---------- MAIN HEADING ---------- */
+
+.sandbox-entry h2 {
+  max-width: 900px;
+
+  margin: 0 auto 22px;
+
+  color: white;
+
+  font-size: clamp(38px, 6vw, 76px);
+  font-weight: 400;
+  line-height: 0.98;
+
+  letter-spacing: -0.035em;
+}
+
+.sandbox-entry h2 span {
+  display: block;
+
+  color: #74cfff;
+}
+
+/* ---------- DESCRIPTION ---------- */
+
+.sandbox-description {
+  max-width: 650px;
+
+  margin: 0 auto 32px;
+
+  color: #b4c3d2;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ==================================================
+   ENTER BUTTON
+   ================================================== */
+
+.sandbox-button,
+a.sandbox-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  min-width: 220px;
+
+  padding: 15px 22px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(95, 200, 255, 0.55);
+  border-radius: 8px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(47, 141, 255, 0.18),
+    rgba(5, 18, 43, 0.85)
+  );
+
+  color: #dff5ff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(47, 141, 255, 0.14);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.sandbox-button::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(95, 200, 255, 0.14),
+    transparent
+  );
+
+  transform: translateX(-110%);
+
+  transition: transform 500ms ease;
+}
+
+.sandbox-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.sandbox-button span:last-child {
+  color: #5fc8ff;
+
+  font-size: 18px;
+
+  transition: transform 180ms ease;
+}
+
+/* ---------- HOVER ---------- */
+
+.sandbox-button:hover,
+.sandbox-button:focus-visible {
+  transform: translateY(-2px);
+
+  border-color: #5fc8ff;
+
+  background: linear-gradient(
+    145deg,
+    rgba(47, 141, 255, 0.28),
+    rgba(5, 18, 43, 0.95)
+  );
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 0 28px rgba(47, 141, 255, 0.22);
+}
+
+.sandbox-button:hover::before,
+.sandbox-button:focus-visible::before {
+  transform: translateX(110%);
+}
+
+.sandbox-button:hover span:last-child,
+.sandbox-button:focus-visible span:last-child {
+  transform: translate(3px, -3px);
+}
+
+/* ==================================================
+   CODED GRID BACKGROUND
+   ================================================== */
+
+.sandbox-grid {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.17;
+
+  background-image:
+    linear-gradient(rgba(95, 200, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 200, 255, 0.12) 1px, transparent 1px);
+
+  background-size: 42px 42px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 25%,
+    black 75%,
+    transparent
+  );
 }
 
 /* ========================================================================
@@ -2295,7 +2257,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 #work .case-nav-all {
-  color: #60adb8;
+  color: #137a98;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -2306,7 +2268,7 @@ header .nav-tabs .nav-link.active:hover {
 
 #work .case-nav a:hover,
 #work .case-nav a:focus-visible {
-  color: #d4af37;
+  color: #174b5f;
 }
 
 #work .case-grid {
@@ -2376,7 +2338,7 @@ header .nav-tabs .nav-link.active:hover {
   padding: 1.75rem;
   background: #fff;
   border: 1px solid #ddd;
-  border-top: 4px solid #60adb8;
+  border-top: 4px solid #d4af37;
   color: #343a40;
 }
 
@@ -2387,7 +2349,7 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 #work .case-meta dt {
-  color: #60adb8;
+  color: #d4af37;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -2466,7 +2428,7 @@ header .nav-tabs .nav-link.active:hover {
   left: 0;
   width: 2.625rem;
   height: 3px;
-  background: #60adb8;
+  background: #d4af37;
 }
 
 #work .structure-node h3 {
@@ -2576,27 +2538,13 @@ header .nav-tabs .nav-link.active:hover {
 #work .status {
   padding: 1rem 1.125rem;
   background: #fff;
-  border-top: 3px solid #60adb8;
+  border-top: 3px solid #d4af37;
   color: #656b70;
 }
 
 /* ========================================================================
    PAGE / TECHNICAL WORK — CONTACT
    ======================================================================== */
-
-#work .section {
-  padding: 5.75rem 0;
-  background: #f6f6f6;
-}
-
-#work .section.white {
-  background: #fff;
-}
-
-#work .shell {
-  width: min(73.75rem, calc(100% - 2.5rem));
-  margin: 0 auto;
-}
 
 #work .contact-grid {
   display: grid;
@@ -2616,7 +2564,7 @@ header .nav-tabs .nav-link.active:hover {
 
 #work .kicker {
   margin: 0 0 0.75rem;
-  color: #60adb8;
+  color: #d4af37;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -2650,19 +2598,13 @@ header .nav-tabs .nav-link.active:hover {
   gap: 1.125rem;
   padding: 0.9375rem 0;
   border-bottom: 1px solid rgba(73, 80, 87, 0.17);
-  color: #60adb8;
+  color: #137a98;
   font-weight: 600;
   text-decoration: none;
 }
 
 #work .link-list a:hover {
-  color: #d4af37;
-}
-
-#work .cap-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  color: #174b5f;
 }
 
 #work .cap-card {
@@ -2989,10 +2931,14 @@ header .nav-tabs .nav-link.active:hover {
    ======================================================================== */
 
 @media (max-width: 62rem) {
+  /* ---------- FINE ARTS ---------- */
+
   .parallax-section,
   .mastery-parallax-window {
     background-attachment: scroll;
   }
+
+  /* ---------- TECHNICAL WORK ---------- */
 
   #work .feature-grid,
   #work .cap-grid,
@@ -3018,6 +2964,8 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 @media (max-width: 47.5rem) {
+  /* ---------- INDEX ---------- */
+
   .splash {
     padding: 1.125rem;
   }
@@ -3035,6 +2983,8 @@ header .nav-tabs .nav-link.active:hover {
     width: 100%;
     min-width: 0;
   }
+
+  /* ---------- FINE ARTS ---------- */
 
   .portfolio,
   .artisan-shop,
@@ -3084,9 +3034,10 @@ header .nav-tabs .nav-link.active:hover {
     columns: 1;
   }
 
+  /* ---------- TECHNICAL WORK ---------- */
+
   #work .shell,
-  #work .build-shell,
-  #work .shell {
+  #work .build-shell {
     width: min(100% - 1.75rem, 73.75rem);
   }
 
@@ -3129,6 +3080,8 @@ header .nav-tabs .nav-link.active:hover {
     grid-column: 1 / -1;
     grid-row: 2;
   }
+
+  /* ---------- RESUME ---------- */
 
   #resume {
     padding-right: 0.625rem;
@@ -3193,6 +3146,45 @@ header .nav-tabs .nav-link.active:hover {
 }
 
 /* ========================================================================
+   RESPONSIVE / TECHNICAL WORK — SANDBOX ENTRY
+   ======================================================================== */
+
+@media (max-width: 700px) {
+  .sandbox-entry {
+    margin: 30px 0 50px;
+
+    padding: 50px 18px;
+  }
+
+  .sandbox-label {
+    font-size: 9px;
+  }
+
+  .sandbox-skills {
+    gap: 5px 7px;
+
+    margin-bottom: 22px;
+
+    font-size: 9px;
+  }
+
+  .sandbox-entry h2 {
+    font-size: clamp(34px, 11vw, 52px);
+
+    line-height: 1;
+  }
+
+  .sandbox-description {
+    font-size: 12px;
+  }
+
+  .sandbox-button {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* ========================================================================
    ACCESSIBILITY / REDUCED MOTION
    ======================================================================== */
 
@@ -3218,66 +3210,8 @@ header .nav-tabs .nav-link.active:hover {
    ======================================================================== */
 
 @media print {
-  @page {
-    size: Letter;
-    margin: 0;
-  }
+  /* ---------- RESUME PRINT LAYOUT ---------- */
 
-  #work:has(#resume) > header,
-  #work:has(#resume) > footer,
-  #resume .resume-tools,
-  .sd-cursor,
-  .sd-cursor-dot,
-  .sd-cursor-ring {
-    display: none !important;
-  }
-
-  #work:has(#resume),
-  #resume {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #fff !important;
-  }
-
-  #resume .resume-document {
-    width: auto !important;
-    margin: 0 !important;
-  }
-
-  #resume .resume-page {
-    width: 8.5in !important;
-    height: 11in !important;
-    min-height: 11in !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0.43in 0.62in 0.42in 0.24in !important;
-    overflow: hidden !important;
-    box-shadow: none !important;
-    break-after: page;
-    page-break-after: always;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  #resume .resume-page:last-child {
-    break-after: auto;
-    page-break-after: auto;
-  }
-
-  #resume .resume-header {
-    position: absolute !important;
-    top: 0.34in !important;
-    right: 0.64in !important;
-    left: 0.24in !important;
-    display: flex !important;
-  }
-
-  #resume .resume-grid {
-    display: grid !important;
-    grid-template-columns: 2.5in minmax(0, 1fr) !important;
-    column-gap: 0.18in !important;
-    padding-top: 0.65in !important;
-  }
   @page {
     size: Letter;
     margin: 0;

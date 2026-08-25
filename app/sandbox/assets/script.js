@@ -57,6 +57,85 @@ document.addEventListener("keydown", (event) => {
     menuButton.focus();
   }
 });
+
 /* ======================
-    NAV END
- ====================== */
+   SANDBOX UI SOUND
+   ====================== */
+
+let audioContext;
+
+function enableAudio() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+}
+
+/* ---------- CREATE UI TONE ---------- */
+
+function playInterfaceSound(frequency = 520, duration = 0.035, volume = 0.025) {
+  if (!audioContext) return;
+
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+
+  gain.gain.setValueAtTime(volume, audioContext.currentTime);
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + duration,
+  );
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+
+  oscillator.stop(audioContext.currentTime + duration);
+}
+
+/* ---------- ENABLE AUDIO AFTER INTERACTION ---------- */
+
+document.addEventListener("pointerdown", enableAudio, {
+  once: true,
+});
+
+document.addEventListener("keydown", enableAudio, {
+  once: true,
+});
+
+/* ---------- HOVER SOUND ---------- */
+
+document.addEventListener("pointerover", (event) => {
+  const control = event.target.closest("a, button, .project-card");
+
+  if (!control) return;
+
+  /*
+   Prevent sound from repeating while moving
+   between children inside the same control.
+  */
+  if (event.relatedTarget && control.contains(event.relatedTarget)) {
+    return;
+  }
+
+  playInterfaceSound(540, 0.035, 0.018);
+});
+
+/* ---------- CLICK SOUND ---------- */
+
+document.addEventListener("click", (event) => {
+  const control = event.target.closest("a, button, .project-card");
+
+  if (!control) return;
+
+  enableAudio();
+
+  playInterfaceSound(760, 0.045, 0.025);
+});
