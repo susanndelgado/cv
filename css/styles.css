@@ -46,6 +46,8 @@ h6 {
   margin-bottom: 1.25rem;
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 400;
+  letter-spacing: 0.1875rem;
+  text-transform: uppercase;
 }
 
 h1 {
