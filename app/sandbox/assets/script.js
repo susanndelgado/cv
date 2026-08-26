@@ -195,19 +195,11 @@ if (isSandboxHome) {
   if (data.count === 3) {
     returnMessage = "Back again? I'm starting to think you like me.";
   }
-
-  if (data.count === 4) {
-    returnMessage = "Welcome back again.";
-  }
-
   if (data.count === 5) {
     returnMessage = "So, should I expect a call soon?";
   }
-  if (data.count === 7) {
-    returnMessage = "At this point we already know each other.";
-  }
   if (data.count === 9) {
-    returnMessage = "Might as well Skip the interview.";
+    returnMessage = "Time to Hire!";
   }
 
   /* ---------- QUEUE MESSAGE ---------- */
