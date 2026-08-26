@@ -182,9 +182,6 @@ The Fine Arts and Technical Work areas intentionally use different accent system
 |-- tpl/
 |   `-- Supporting templates
 |
-|-- Archived/
-|   `-- Archived project/site material
-|
 |-- CNAME
 |-- sitemap.xml
 |-- robots.txt
