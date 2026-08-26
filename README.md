@@ -250,6 +250,14 @@ Content, project case studies, visual presentation, responsive behavior, and tec
 
 ---
 
+## Archived
+
+Older **Archives** of the website may be stored in the archive directory 
+
+The Archived website files are intentionally not documented as part of this repository README at this stage as they will be removed when the website is finalized.
+
+---
+
 ## Developer Sandbox
 
 A separate **Developer Sandbox** is being developed as an interactive environment for experiments, technical studies, reference material, development projects, and application-oriented work.
