@@ -180,7 +180,7 @@ if (isSandboxHome) {
     Visit 8 becomes visit 1.
   */
 
-  if (data.count > 10) {
+  if (data.count > 30) {
     data.count = 1;
   }
 
@@ -195,13 +195,13 @@ if (isSandboxHome) {
   if (data.count === 1) {
     returnMessage = "Hello. Welcome to Susan's Developer Sandbox.";
   }
-  if (data.count === 3) {
+  if (data.count === 5) {
     returnMessage = "Back again? I'm starting to think you like me.";
   }
-  if (data.count === 5) {
-    returnMessage = "So, should I expect a call soon?";
-  }
   if (data.count === 9) {
+    returnMessage = "So, should I expect contact soon?";
+  }
+  if (data.count === 25) {
     returnMessage = "Time to Hire!";
   }
 
