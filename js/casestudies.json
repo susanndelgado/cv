@@ -164,20 +164,6 @@
       "content": "<p>The Parents Club of West Point – Serving New York and New Jersey is a 501(c)(3) nonprofit parent organization that supports West Point cadet families, promotes understanding of Academy and Army expectations, and organizes events celebrating cadet milestones and traditions.</p><p>Developed the coordinated visual identity for the 2018 Winter Ball across invitations, save-the-date materials, custom belly band and tags, RSVP and dinner-selection cards, hotel and directions information, sponsorship and silent-auction materials, the event program and supporting on-site graphics.</p><p>Created coordinated email materials that extended the same event identity into the club’s digital communications.</p>"
     },
     {
-      "id": "11",
-      "title": "ABIOMED 2017 SPONSOR MICROSITE",
-      "image": "showcase/img/abiomed-2017-header.jpg",
-      "thumb": "showcase/thumbs/abiomed-2017-thumb.jpg",
-      "link": "showcase/abiomed-2017.html",
-      "client": "The Cardiovascular Research Foundation (CRF)",
-      "role": "Front End Developer<br>Email Developer<br>CRF Employee",
-      "skills": "Front End Development<br>Responsive Web Development<br>HTML/CSS<br>JavaScript<br>jQuery<br>Bootstrap<br>Salesforce Pardot<br>Email Development<br>Email Scheduling & Distribution",
-      "filters": "conf web email dig",
-      "year": "2017",
-      "summary": "Responsive sponsor microsite and supporting email communications.",
-      "content": "<p>ABIOMED was a cardiovascular medical-device company focused on heart-recovery technology, including the Impella heart-pump platform. The 2017 project was a sponsor microsite developed within CRF’s conference ecosystem to provide dedicated event content for the company.</p><p>Developed the AngularJS-based responsive sponsor microsite and implemented the website content using HTML/CSS, JavaScript, jQuery, AngularJS and Bootstrap.</p><p>Developed, scheduled and distributed the supporting Salesforce Pardot email communications as part of the CRF front-end and email development role.</p>"
-    },
-    {
       "id": "12",
       "title": "CRF WOMEN’S HEART HEALTH INITIATIVE 2017",
       "image": "showcase/img/WHHI17-header.jpg",
@@ -471,20 +457,6 @@
       "heroLayout": "compact",
       "summary": "Custom Etsy vintage-shop branding for digital and print use.",
       "content": "<p>Eli &amp; Sir was a vintage shop operating on Etsy.</p><p>Created the shop identity, including the logo, Etsy banner, business card and branded sticker.</p><p>Applied the identity across the online storefront, printed customer materials and packaging.</p>"
-    },
-    {
-      "id": "33",
-      "title": "COLOR STREET MARKETING BUNDLES",
-      "image": "showcase/img/colorstreets-header.png",
-      "thumb": "showcase/thumbs/colorstreets-marketingbundle1.jpg",
-      "link": "showcase/colorstreet.html",
-      "client": "Color Street",
-      "role": "Graphic Designer<br>",
-      "skills": "Graphic Design<br>Template Design<br>Digital Design<br>Print Design<br>Adobe Photoshop<br>Adobe Illustrator<br>Canva",
-      "filters": "dig print",
-      "year": "",
-      "summary": "Editable Canva marketing templates based on original Adobe designs.",
-      "content": "<p>Color Street is a beauty company known for patented 100% real nail-polish strips and an Independent Stylist sales network. The marketing bundle was created for independent Color Street stylists who needed customizable materials for their individual businesses.</p><p>Designed the original marketing pieces in Adobe Photoshop and Illustrator, then rebuilt the system in Canva as editable digital templates.</p><p>Created the templates so stylists could personalize text, promotions and contact information while maintaining a polished, consistent visual system.</p>"
     },
     {
       "id": "34",

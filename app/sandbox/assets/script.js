@@ -192,6 +192,9 @@ if (isSandboxHome) {
 
   let returnMessage = "";
 
+  if (data.count === 1) {
+    returnMessage = "Hello. Welcome to Susan's Developer Sandbox.";
+  }
   if (data.count === 3) {
     returnMessage = "Back again? I'm starting to think you like me.";
   }
