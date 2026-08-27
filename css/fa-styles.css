@@ -1,0 +1,1265 @@
+/* ==========================================================================
+   FINE ARTS
+   Shared styles for all Fine Arts pages.
+
+   Body:
+   <body class="page finearts-page">
+   ========================================================================== */
+
+.btn-blk {
+  background-color: #000000;
+  color: #fff;
+}
+
+.btn-light-txt,
+.btn-light-txt:visited {
+  border: 1px solid #111;
+  color: #111;
+  background: transparent;
+}
+
+.btn-light-txt:hover,
+.btn-light-txt:focus {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn-dark-txt,
+.btn-dark-txt:visited {
+  display: inline-block;
+  padding: 0.75rem 1.875rem;
+  background: transparent;
+  border: 1px solid #fff;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1875rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.btn-dark-txt:hover,
+.btn-dark-txt:focus-visible {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.btn-gold-solid,
+.btn-gold-solid:visited,
+a.btn-gold-solid,
+a.btn-gold-solid:visited {
+  background-color: #8a6a13;
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.btn-gold-solid:hover,
+.btn-gold-solid:focus,
+a.btn-gold-solid:hover,
+a.btn-gold-solid:focus {
+  background-color: #111;
+  border-color: #fff;
+  color: #fff;
+}
+
+.btn-gold,
+.btn-gold:visited,
+a.btn-gold,
+a.btn-gold:visited {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #d4af37;
+  color: #fff;
+}
+
+.btn-gold:hover,
+.btn-gold:focus,
+a.btn-gold:hover,
+a.btn-gold:focus {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #111;
+}
+
+.btn-blue,
+.btn-blue:visited,
+a.btn-blue,
+a.btn-blue:visited {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #5fc8ff;
+  color: #fff;
+}
+
+.btn-blue:hover,
+.btn-blue:focus,
+a.btn-blue:hover,
+a.btn-blue:focus {
+  background-color: #5fc8ff;
+  border-color: #5fc8ff;
+  color: #fff;
+}
+
+.hero .seal-container {
+  margin-bottom: 1.5625rem;
+}
+
+.seal-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 11.25rem;
+  height: 11.25rem;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.seal-container img {
+  display: block;
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ========================================================================
+   PAGE / INDEX — PORTFOLIO SPLASH
+   ======================================================================== */
+
+#index {
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+
+  overflow-x: hidden;
+
+  background: #000;
+  color: #f7f3ec;
+
+  /* ------------------------------------------------------------------------
+     Page foundation
+     ------------------------------------------------------------------------ */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* ------------------------------------------------------------------------
+     Full-screen splash
+     ------------------------------------------------------------------------ */
+
+  .splash {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+
+    padding: 2.25rem 1.25rem;
+
+    overflow: hidden;
+
+    background: #000;
+
+    /* Background overlay */
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.18),
+        rgba(0, 0, 0, 0.05) 35%,
+        rgba(0, 0, 0, 0.08) 65%,
+        rgba(0, 0, 0, 0.24)
+      );
+
+      pointer-events: none;
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     Splash video
+     ------------------------------------------------------------------------ */
+
+  .splash-video {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    z-index: -4;
+
+    width: 102%;
+    height: 102%;
+
+    min-width: 100%;
+    min-height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform: translate3d(-50%, -50%, 0) scale(1.01);
+
+    pointer-events: none;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* ------------------------------------------------------------------------
+     Main content panel
+     ------------------------------------------------------------------------ */
+
+  .content-box {
+    width: min(55.625rem, 94vw);
+
+    padding: clamp(2.125rem, 6vw, 4.25rem) clamp(1.5rem, 7vw, 4.875rem);
+
+    background: rgba(8, 10, 12, 0.58);
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-top: 3px solid rgba(212, 175, 55, 0.9);
+
+    text-align: center;
+
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ------------------------------------------------------------------------
+     Seal
+     ------------------------------------------------------------------------ */
+
+  .seal-container {
+    width: clamp(6.625rem, 14vw, 8.875rem);
+    height: auto;
+
+    aspect-ratio: 1;
+
+    margin-bottom: 1.5625rem;
+    padding: 0.4375rem;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-width: 1px;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     Intro typography
+     ------------------------------------------------------------------------ */
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+
+    color: rgba(247, 243, 236, 0.78);
+  }
+
+  #splash-title {
+    margin: 0;
+
+    font-size: clamp(2rem, 1.5rem + 2vw, 2.5rem);
+  }
+
+  .rule {
+    width: 4.25rem;
+    height: 1px;
+
+    margin: 1.6875rem auto 1.5625rem;
+
+    background: #d4af37;
+
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+  }
+
+  .intro {
+    max-width: 46.25rem;
+
+    margin: 0 auto;
+
+    color: rgba(247, 243, 236, 0.84);
+  }
+
+  /* ------------------------------------------------------------------------
+     Actions
+     ------------------------------------------------------------------------ */
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 0.875rem;
+
+    margin-top: 2.125rem;
+
+    .btn {
+      min-width: 13.125rem;
+
+      padding: 0.9375rem 1.75rem;
+
+      &:hover,
+      &:focus-visible {
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     Philosophy line
+     ------------------------------------------------------------------------ */
+
+  .philosophy {
+    margin: 1.75rem 0 0;
+
+    color: rgba(247, 243, 236, 0.62);
+  }
+}
+
+#arts,
+[id^="arts "] {
+  background: #fff;
+  color: #111;
+}
+/* Interior Fine Arts heroes: About, Exhibitions, Chronicles, Galleries */
+#arts .process-hero,
+[id^="arts "] .process-hero,
+.art-gallery-build .process-hero {
+  justify-content: center;
+  padding: 5rem 0;
+  margin-top: 0;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+#arts .process-hero .master-title,
+[id^="arts "] .process-hero .master-title,
+.art-gallery-build .process-hero .master-title {
+  margin-bottom: 1.25rem;
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: 0.625rem;
+  text-transform: uppercase;
+}
+
+#arts .media-section .hero-intro {
+  max-width: 50rem;
+  margin: 0 auto;
+  color: #999;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 2;
+  letter-spacing: 0.125rem;
+}
+
+#arts .media-section h2 {
+  color: #8a6a13;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+.media-section .finearts-intro,
+.media-section,
+.media-section .process-hero {
+  padding: 3.5rem 1rem;
+}
+
+.media-section .process-hero .master-title {
+  font-size: 2.2rem;
+  letter-spacing: 0.3125rem;
+}
+
+.hero-divider {
+  width: 4.25rem;
+  height: 1px;
+  margin: 1.75rem auto 0;
+  background: #d4af37;
+}
+
+/* ========================================================================
+   PAGE / FINE ARTS — LANDING
+   ======================================================================== */
+
+.portfolio {
+  padding: 6.25rem 0;
+  background: #fff;
+}
+
+.art-card,
+.art-card:visited {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.7s cubic-bezier(0.15, 0, 0.15, 1),
+    box-shadow 0.7s cubic-bezier(0.15, 0, 0.15, 1);
+}
+
+.art-card:hover,
+.art-card:focus-visible {
+  transform: translateY(-0.75rem);
+  box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.08);
+}
+
+.art-card img,
+.art-card video {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 1.5s ease;
+}
+
+.art-card img {
+  height: 17.5rem;
+}
+
+.art-card video {
+  height: 20rem;
+}
+
+.art-card:hover img,
+.art-card:hover video,
+.art-card:focus-visible img,
+.art-card:focus-visible video {
+  transform: scale(1.04);
+}
+
+.art-card-overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.125rem;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.art-card:hover .art-card-overlay,
+.art-card:focus-visible .art-card-overlay {
+  opacity: 1;
+}
+
+.art-card-overlay h2 {
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  letter-spacing: 0.125rem;
+}
+
+.art-card-overlay p {
+  margin: 0;
+  color: #fff;
+}
+
+.art-card-caption {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  padding: 0.25rem 0.625rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.8125rem;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.media-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.media-section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.parallax-section {
+  min-height: 37.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.creative-process {
+  background-image: url("/img/4c9d2ecd-bbd4-4e25-a012-135bc383c512.jpeg");
+  background-position: center right;
+}
+
+.creative-process::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.archive-statement {
+  padding: 6.25rem 0;
+  background: #fff;
+  text-align: center;
+}
+
+.archive-statement h2 {
+  letter-spacing: 0.1875rem;
+  text-transform: uppercase;
+}
+
+.archive-statement p {
+  max-width: 50rem;
+  margin: 1.25rem auto 0;
+  color: #333;
+  line-height: 1.8;
+}
+
+.living-archive {
+  background-image: url("/img/462558539_900031218775586_409832144205821387_n.jpg");
+  background-position: center;
+}
+
+.living-archive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.living-archive .content-box {
+  background: rgba(26, 26, 26, 0.95);
+  border-color: rgba(255, 255, 255, 0.15);
+  border-top-color: #d4af37;
+  color: #f4f1ea;
+  box-shadow: 0 0.9375rem 2.1875rem rgba(0, 0, 0, 0.5);
+}
+
+.living-archive .content-box h2 {
+  color: #fff;
+}
+
+.living-archive .content-box p {
+  color: #d1d1d1;
+}
+
+.tutoring {
+  min-height: 25rem;
+  padding: 11.25rem 0;
+  background: #3d4246;
+}
+
+.support-statement {
+  padding: 5rem 0;
+  background: #111;
+  border-top: 1px solid #333;
+  color: #fff;
+  text-align: center;
+}
+
+.support-statement h3 {
+  color: #fff;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.support-statement p {
+  max-width: 50rem;
+  margin: 0 auto;
+  color: #999;
+  font-style: italic;
+  line-height: 2;
+}
+
+.artisan-shop {
+  padding: 6.25rem 0;
+  background: #fff;
+}
+
+.artisan-shop .container-fluid {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.artisan-shop h2 {
+  letter-spacing: 0.1875rem;
+  text-transform: uppercase;
+}
+
+.artisan-shop .text-center > p {
+  max-width: 50rem;
+  margin-right: auto;
+  margin-left: auto;
+  color: #666;
+}
+
+.artisan-shop .art-card video {
+  height: 20rem;
+}
+
+.resources {
+  padding: 5rem 0;
+  background: #f2f2f2;
+  border-top: 1px solid #e0e0e0;
+}
+
+.resources .content-box {
+  height: 100%;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.resources .content-box:hover {
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.9375rem 2.5rem rgba(0, 0, 0, 0.08);
+}
+
+.resources h4 {
+  letter-spacing: 0.25rem;
+  text-transform: uppercase;
+}
+
+.resources p {
+  margin-bottom: 2.1875rem;
+  color: #666;
+}
+
+.community {
+  padding: 5rem 0;
+  background: #111;
+  border-top: 1px solid #333;
+  color: #fff;
+}
+
+.community svg {
+  width: 100%;
+  max-width: 15.625rem;
+  height: auto;
+  opacity: 0.9;
+}
+
+.community h3 {
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.community p {
+  color: #999;
+  font-style: italic;
+  line-height: 2;
+}
+
+.community span {
+  color: #777;
+  font-size: 0.8rem;
+  letter-spacing: 0.125rem;
+}
+
+.community a,
+.community a:visited {
+  color: #d4af37;
+}
+.community a:hover,
+.community a:focus {
+  color: #fff;
+}
+
+.cre-cel-spark {
+  fill: none;
+  stroke: #d4af37;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.3125rem rgba(212, 175, 55, 0.4));
+}
+
+.cre-cel-line {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.community text.cre-cel-line {
+  font-size: 0.625rem;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+/* ========================================================================
+   PAGE / FINE ARTS — ABOUT & PROCESS
+   ======================================================================== */
+
+.process-tree-section {
+  padding: 5rem 0;
+  background: transparent;
+}
+
+.process-tree-section > .container > h2 {
+  font-weight: 300;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+}
+
+.process-wrap {
+  position: relative;
+  padding: 2.5rem 0;
+}
+
+.tree-trunk {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  width: 2px;
+  height: 100%;
+  background: #d4af37;
+  transform: translateX(-50%);
+}
+
+.process-node {
+  position: relative;
+  z-index: 5;
+  margin-bottom: 7.5rem;
+  opacity: 0;
+  transform: translateY(1.875rem);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.process-node.active,
+.process-node.active-node,
+.active-node {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.node-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 28.125rem;
+  min-height: 20.3125rem;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 0.3125rem;
+}
+
+.node-image-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.process-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.node-step {
+  display: block;
+  margin-bottom: 0.3125rem;
+  color: #8a6a13;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.node-title {
+  margin-bottom: 0.9375rem;
+  color: #333;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.node-text {
+  max-width: 31.25rem;
+  margin: 0 auto;
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.mastery-parallax-window {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 37.5rem;
+  margin-top: 5rem;
+  background-image: url("/img/Weanfae471459723_1265816627808422_3679522577518502338_n.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.mastery-parallax-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mastery-content-box {
+  position: relative;
+  z-index: 2;
+  max-width: 50rem;
+  padding: 3.75rem;
+  background: #fff;
+  border-top: 3px solid #d4af37;
+  text-align: center;
+  box-shadow: 0 1.875rem 4.375rem rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(1.875rem);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.mastery-content-box.active,
+.mastery-content-box.active-node {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mastery-content-box .node-title {
+  color: #111;
+}
+
+.mastery-content-box .node-text {
+  color: #333;
+  font-weight: 600;
+}
+
+/* ========================================================================
+   PAGE / FINE ARTS — EXHIBITIONS
+   ======================================================================== */
+
+.exhibitions-section {
+  padding: 5rem 0;
+  background: #f7f5f0;
+}
+
+.exhibition-list {
+  display: grid;
+  gap: 3.4375rem;
+}
+
+.exhibition-card {
+  overflow: hidden;
+  background: #fff;
+  border-top: 0.25rem solid #d4af37;
+  box-shadow: 0 1.125rem 2.8125rem rgba(0, 0, 0, 0.1);
+}
+
+.exhibition-copy {
+  padding: 2.625rem;
+}
+
+.exhibition-status {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: #8a6a13;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.exhibition-title {
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.exhibition-media {
+  color: #777;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09375rem;
+  text-transform: uppercase;
+}
+
+.exhibition-description {
+  margin: 1.375rem 0;
+  color: #333;
+  line-height: 1.85;
+}
+
+.exhibition-details {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: grid;
+    grid-template-columns: minmax(5.9375rem, 8.4375rem) 1fr;
+    gap: 0.875rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid #ece8df;
+    color: #444;
+  }
+  strong {
+    color: #111;
+    font-size: 0.78rem;
+    letter-spacing: 0.0625rem;
+    text-transform: uppercase;
+  }
+}
+.exhibition-link {
+  display: inline-block;
+  margin-top: 1.625rem;
+  padding: 0.6875rem 1.375rem;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.0875rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    background: #1a1a1a;
+    color: #fff;
+  }
+}
+
+.exhibition-carousel,
+.exhibition-carousel .carousel-inner,
+.exhibition-carousel .carousel-item {
+  height: 100%;
+  min-height: 28.75rem;
+}
+
+.exhibition-carousel img {
+  width: 100%;
+  height: 100%;
+  min-height: 28.75rem;
+  background: #181818;
+  object-fit: cover;
+}
+
+.exhibition-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28.75rem;
+  background: #1a1a1a;
+  color: #aaa;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.exhibition-loading,
+.exhibition-empty,
+.exhibition-error {
+  padding: 4.375rem 1.25rem;
+  text-align: center;
+}
+
+.exhibition-error {
+  color: #8b1d1d;
+}
+
+/* ========================================================================
+   PAGE / FINE ARTS — PROGRESS CHRONICLES
+   ======================================================================== */
+
+#chronicles-wing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  color: #111;
+  .chronicle-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 6.25rem;
+  }
+  .node-step {
+    margin-bottom: 0.625rem;
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+  }
+  .chronicle-title {
+    margin-bottom: 0.9375rem;
+    color: #111;
+    font-family: "Cinzel Decorative", "Playfair Display", Georgia, serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.09375rem;
+    text-transform: uppercase;
+  }
+  .chronicle-desc {
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .chronicle-meta {
+    margin-top: 0.9375rem;
+    color: #777;
+    font-size: 0.85rem;
+  }
+}
+
+#arts\ chronicals #raw-data-log {
+  display: none;
+}
+
+/* ========================================================================
+   PAGE / FINE ARTS — GALLERIES
+   ======================================================================== */
+
+.art-gallery-build {
+  margin: 0;
+  background: #fff;
+  color: #222;
+  main {
+    background: #fff;
+  }
+}
+
+.art-gallery-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 56.25rem;
+  margin: 2rem auto 0;
+  padding: 0;
+  gap: 0.75rem 1.75rem;
+  border: 0;
+  background: transparent;
+  text-align: center;
+
+  a,
+  a:visited {
+    position: relative;
+    padding: 0 0 0.3125rem;
+    color: #999;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.125rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: transparent;
+  }
+
+  a:hover,
+  a:focus-visible,
+  a.active {
+    color: #8a6a13;
+  }
+
+  a:hover::after,
+  a:focus-visible::after,
+  a.active::after {
+    background: #d4af37;
+  }
+}
+
+.art-gallery-shell {
+  width: min(82.5rem, 94vw);
+  margin: 0 auto;
+  padding: 3.625rem 0 5.5rem;
+}
+
+.art-gallery-grid {
+  display: block;
+  columns: 3 20rem;
+  column-gap: 2.25rem;
+  padding: 0;
+}
+
+.art-gallery-card {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 3.375rem;
+  break-inside: avoid;
+  background: transparent;
+  color: #222;
+  vertical-align: top;
+  button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    text-align: left;
+  }
+
+  button:hover img,
+  button:focus-visible img {
+    opacity: 0.94;
+    transform: scale(1.012);
+  }
+}
+
+.art-gallery-media-stage {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: #f3f3f3;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition:
+      transform 0.38s cubic-bezier(0.16, 0.8, 0.22, 1),
+      opacity 0.3s ease;
+  }
+}
+
+.art-gallery-caption {
+  padding: 0.875rem 0.125rem 0;
+  h2 {
+    margin: 0 0 0.3125rem;
+    color: #222;
+    font-size: 1.04rem;
+  }
+}
+
+.art-gallery-caption .art-gallery-meta {
+  margin: 0 0 0.4375rem;
+  color: #8b8b8b;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.art-gallery-description {
+  margin: 0;
+  color: #686868;
+  font-size: 0.9rem;
+  line-height: 1.58;
+}
+
+.art-gallery-empty {
+  padding: 4.375rem 0;
+  color: #888;
+  text-align: left;
+}
+
+.art-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: rgba(10, 10, 10, 0.96);
+  &.open {
+    display: flex;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 76vh;
+    margin: 0 0 1.125rem;
+    object-fit: contain;
+  }
+  h2 {
+    margin: 0 0 0.3125rem;
+    color: #fff;
+    font-size: 1.05rem;
+  }
+  p {
+    max-width: 47.5rem;
+    margin: 0;
+    color: #c5c5c5;
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+}
+
+.art-gallery-lightbox-dialog {
+  width: min(76.25rem, 94vw);
+  max-height: 92vh;
+  color: #fff;
+}
+
+.art-gallery-close {
+  position: fixed;
+  top: 1.375rem;
+  right: 1.75rem;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.art-gallery-close:hover,
+.art-gallery-close:focus {
+  background: transparent;
+  color: #d4af37;
+}
