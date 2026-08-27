@@ -821,52 +821,44 @@
   border-radius: 9px;
 
   background: rgba(3, 14, 34, 0.52);
-}
+  & > header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-/* ---------- SECTION HEADER ---------- */
+    padding: 14px 16px;
 
-.project-detail > header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    border-bottom: 1px solid rgba(95, 170, 255, 0.14);
 
-  padding: 14px 16px;
+    background: linear-gradient(
+      145deg,
+      rgba(47, 141, 255, 0.08),
+      transparent 65%
+    );
+  }
+  & > header span {
+    color: rgba(95, 200, 255, 0.5);
 
-  border-bottom: 1px solid rgba(95, 170, 255, 0.14);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+  h3 {
+    color: var(--blue);
 
-  background: linear-gradient(
-    145deg,
-    rgba(47, 141, 255, 0.08),
-    transparent 65%
-  );
-}
+    font-size: 13px;
+    font-weight: 500;
 
-.project-detail > header span {
-  color: rgba(95, 200, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  & > p {
+    padding: 16px;
 
-  font-size: 9px;
-  letter-spacing: 0.08em;
-}
+    color: #a6b8ca;
 
-.project-detail h3 {
-  color: var(--blue);
-
-  font-size: 13px;
-  font-weight: 500;
-
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-/* ---------- SECTION TEXT ---------- */
-
-.project-detail > p {
-  padding: 16px;
-
-  color: #a6b8ca;
-
-  font-size: 11px;
-  line-height: 1.65;
+    font-size: 11px;
+    line-height: 1.65;
+  }
 }
 
 /* ==================================================
@@ -876,35 +868,31 @@
 .project-meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
+  & > div {
+    min-width: 0;
 
-.project-meta > div {
-  min-width: 0;
+    padding: 15px;
+  }
+  & > div + div {
+    border-left: 1px solid rgba(95, 170, 255, 0.12);
+  }
+  small {
+    display: block;
 
-  padding: 15px;
-}
+    margin-bottom: 5px;
 
-.project-meta > div + div {
-  border-left: 1px solid rgba(95, 170, 255, 0.12);
-}
+    color: #718da8;
 
-.project-meta small {
-  display: block;
+    font-size: 8px;
+    letter-spacing: 0.07em;
+  }
+  strong {
+    color: #e5f1fb;
 
-  margin-bottom: 5px;
-
-  color: #718da8;
-
-  font-size: 8px;
-  letter-spacing: 0.07em;
-}
-
-.project-meta strong {
-  color: #e5f1fb;
-
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1.4;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
 }
 
 /* ==================================================
@@ -913,49 +901,44 @@
 
 .project-documents {
   display: grid;
-}
+  & > a {
+    position: relative;
 
-.project-documents > a {
-  position: relative;
+    display: grid;
+    grid-template-columns: minmax(130px, 180px) 1fr 20px;
+    gap: 14px;
+    align-items: center;
 
-  display: grid;
-  grid-template-columns: minmax(130px, 180px) 1fr 20px;
-  gap: 14px;
-  align-items: center;
+    padding: 13px 16px;
 
-  padding: 13px 16px;
+    transition: background 160ms ease;
+  }
+  & > a + a {
+    border-top: 1px solid rgba(95, 170, 255, 0.11);
+  }
+  & > a:hover,
+  & > a:focus-visible {
+    background: rgba(47, 141, 255, 0.08);
+  }
 
-  transition: background 160ms ease;
-}
+  strong {
+    color: #e5f1fb;
 
-.project-documents > a + a {
-  border-top: 1px solid rgba(95, 170, 255, 0.11);
-}
+    font-size: 11px;
+    font-weight: 500;
+  }
+  small {
+    color: #879db3;
 
-.project-documents > a:hover,
-.project-documents > a:focus-visible {
-  background: rgba(47, 141, 255, 0.08);
-}
+    font-size: 9px;
+    line-height: 1.4;
+  }
+  & > a > span {
+    color: var(--blue);
 
-.project-documents strong {
-  color: #e5f1fb;
-
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.project-documents small {
-  color: #879db3;
-
-  font-size: 9px;
-  line-height: 1.4;
-}
-
-.project-documents > a > span {
-  color: var(--blue);
-
-  font-size: 16px;
-  text-align: right;
+    font-size: 16px;
+    text-align: right;
+  }
 }
 
 /* ==================================================
@@ -968,13 +951,12 @@
   gap: 10px;
 
   padding: 14px;
-}
+  img {
+    width: 100%;
 
-.project-images img {
-  width: 100%;
+    border: 1px solid rgba(95, 170, 255, 0.15);
+    border-radius: 7px;
 
-  border: 1px solid rgba(95, 170, 255, 0.15);
-  border-radius: 7px;
-
-  object-fit: cover;
+    object-fit: cover;
+  }
 }
