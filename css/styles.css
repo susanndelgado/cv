@@ -699,7 +699,7 @@ a:focus {
   }
   section {
     position: relative;
-    padding: 0;
+    padding: 6.5rem 0;
     /* background: var(--tech-soft); */
     border-top: 1px solid rgba(19, 122, 152, 0.08);
     color: var(--tech-text);
@@ -1169,8 +1169,6 @@ a:focus {
    ======================================================================== */
 
 #resume {
-  background: #edf1f3;
-  color: #617d8d;
 }
 #resume h1,
 #resume h2,
@@ -1181,7 +1179,13 @@ a:focus {
   font-family: proxima-nova, "Open Sans", Arial, sans-serif;
 }
 #resume {
+  background: #edf1f3;
+  color: #617d8d;
   padding: 2.625rem 1.125rem 4.375rem;
+  section {
+    padding: 0;
+    border: none;
+  }
 }
 
 #resume .resume-tools,
