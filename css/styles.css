@@ -2034,10 +2034,8 @@ a:focus {
 
 /* ============================================
 TO BE WORKED ON CASE STUDIES PAGE
-=============================================== */
-
-/* ==========================================================================
-   RESPONSIVE — TABLET
+=============================================== */ /* ==========================================================================
+   TABLET
    ========================================================================== */
 
 @media (max-width: 62rem) {
@@ -2106,10 +2104,41 @@ TO BE WORKED ON CASE STUDIES PAGE
   .techical-work .contact-grid {
     grid-template-columns: 1fr;
   }
+
+  /* ---------- FINE ARTS ---------- */
+
+  .parallax-section,
+  .mastery-parallax-window {
+    background-attachment: scroll;
+  }
+
+  /* ---------- TECHNICAL WORK ---------- */
+
+  #work .feature-grid,
+  #work .cap-grid,
+  #work .archive,
+  #work .architecture,
+  #work .deliverables {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #work .process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #work .case-grid,
+  #work .case-content {
+    grid-template-columns: 1fr;
+  }
+
+  #work .build-contact-grid,
+  #work .contact-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ==========================================================================
-   RESPONSIVE — MOBILE
+   MOBILE
    ========================================================================== */
 
 @media (max-width: 47.5rem) {
@@ -2333,7 +2362,8 @@ TO BE WORKED ON CASE STUDIES PAGE
     max-width: 100%;
     height: auto;
   }
-  /* OLD CASE STUDEIS CODE  */
+
+  /* OLD CASE STUDEIS CODE */
 
   /* ---------- CASE STUDY NAV ---------- */
 
@@ -2369,46 +2399,7 @@ TO BE WORKED ON CASE STUDIES PAGE
   .techical-work .project-content .case-visual {
     padding: 0.625rem;
   }
-}
 
-/* ========================================================================
-   RESPONSIVE / ALL PAGES
-   ======================================================================== */
-
-@media (max-width: 62rem) {
-  /* ---------- FINE ARTS ---------- */
-
-  .parallax-section,
-  .mastery-parallax-window {
-    background-attachment: scroll;
-  }
-
-  /* ---------- TECHNICAL WORK ---------- */
-
-  #work .feature-grid,
-  #work .cap-grid,
-  #work .archive,
-  #work .architecture,
-  #work .deliverables {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  #work .process-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  #work .case-grid,
-  #work .case-content {
-    grid-template-columns: 1fr;
-  }
-
-  #work .build-contact-grid,
-  #work .contact-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 47.5rem) {
   /* ---------- INDEX ---------- */
 
   .splash {
@@ -2589,7 +2580,6 @@ TO BE WORKED ON CASE STUDIES PAGE
     grid-template-columns: 1fr;
   }
 }
-
 /* ========================================================================
    RESPONSIVE / TECHNICAL WORK — SANDBOX ENTRY
    ======================================================================== */
