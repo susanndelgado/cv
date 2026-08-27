@@ -798,7 +798,7 @@ a:focus {
     h1,
     h2,
     h3 {
-      color: var(--text-alt);
+      color: var(--tech-alt);
     }
     .section-head {
       border-bottom-color: rgba(95, 200, 255, 0.16);
@@ -825,6 +825,7 @@ a:focus {
     }
     .panel,
     .cap-card {
+      margin-bottom: 20px;
       padding: 1.9375rem;
       background: #fff;
       border: 1px solid var(--text-alt);
