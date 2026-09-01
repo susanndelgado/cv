@@ -171,7 +171,8 @@ a.btn-blue:focus {
     overflow: hidden;
 
     /* background: #000; */
-
+        background-position: center center;
+        background-size: cover;
     background-image: url("/img/bg.png");
     /* Background overlay */
 
