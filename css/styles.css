@@ -246,7 +246,9 @@ a:focus {
   padding: clamp(55px, 8vw, 100px) 24px;
   /* justify-content: center; */
   text-align: center;
-  background: var(--bg-alt);
+  /* background: var(--bg-alt); */
+background-position: center;
+    background-image: url("/img/bg.png");
   color: var(--text-alt);
   width: 100%;
 
@@ -264,7 +266,7 @@ a:focus {
     font-size: 1.4rem;
   }
   p {
-    max-width: 50rem;
+    /* max-width: 50rem; */
     margin-bottom: 2rem;
     line-height: 2;
   }
@@ -2258,6 +2260,7 @@ a:focus {
 
   .splash {
     padding: 1.125rem;
+    
   }
 
   #index .content-box {

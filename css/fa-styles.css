@@ -7,7 +7,8 @@
    ========================================================================== */
 
 .btn-blk {
-  background-color: #000000;
+  /* background-color: #000000; */
+  
   color: #fff;
 }
 
@@ -169,8 +170,9 @@ a.btn-blue:focus {
 
     overflow: hidden;
 
-    background: #000;
+    /* background: #000; */
 
+    background-image: url("/img/bg.png");
     /* Background overlay */
 
     &::before {
@@ -180,15 +182,17 @@ a.btn-blue:focus {
       inset: 0;
       z-index: -3;
 
-      background: linear-gradient(
+      /* background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.18),
         rgba(0, 0, 0, 0.05) 35%,
         rgba(0, 0, 0, 0.08) 65%,
         rgba(0, 0, 0, 0.24)
-      );
+      ); */
 
       pointer-events: none;
+
+      
     }
   }
 
@@ -351,7 +355,7 @@ a.btn-blue:focus {
   justify-content: center;
   padding: 5rem 0;
   margin-top: 0;
-  background: #111;
+  /* background: #111; */
   color: #fff;
   text-align: center;
 }
@@ -490,7 +494,7 @@ a.btn-blue:focus {
   top: 0.625rem;
   left: 0.625rem;
   padding: 0.25rem 0.625rem;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgb(0 12 41 / 87%);
   color: #fff;
   font-size: 0.8125rem;
   letter-spacing: 0.125rem;
@@ -563,7 +567,7 @@ a.btn-blue:focus {
 }
 
 .living-archive .content-box {
-  background: rgba(26, 26, 26, 0.95);
+  background: rgb(0 12 41 / 87%);
   border-color: rgba(255, 255, 255, 0.15);
   border-top-color: #d4af37;
   color: #f4f1ea;
@@ -586,7 +590,7 @@ a.btn-blue:focus {
 
 .support-statement {
   padding: 5rem 0;
-  background: #111;
+  background: #000e2c;
   border-top: 1px solid #333;
   color: #fff;
   text-align: center;
@@ -665,7 +669,7 @@ a.btn-blue:focus {
 
 .community {
   padding: 5rem 0;
-  background: #111;
+  background: #000e2c;
   border-top: 1px solid #333;
   color: #fff;
 }
