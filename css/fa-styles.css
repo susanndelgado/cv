@@ -564,7 +564,7 @@ text-align: center;
 }
 
 .living-archive .content-box {
-  background: rgb(0 12 41 / 87%);
+  background: rgb(0 8 36 / 87%);
   border-color: rgba(255, 255, 255, 0.15);
   border-top-color: #d4af37;
   color: #f4f1ea;
@@ -587,7 +587,7 @@ text-align: center;
 
 .support-statement {
   padding: 5rem 0;
-  background: #000e2c;
+  background:#000824;
   border-top: 1px solid #333;
   color: #fff;
   text-align: center;
@@ -666,7 +666,7 @@ text-align: center;
 
 .community {
   padding: 5rem 0;
-  background: #000e2c;
+  background: #000824;
   border-top: 1px solid #333;
   color: #fff;
 }
