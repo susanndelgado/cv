@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Learning + Rosetta Stone Preview | Susan Delgado</title>
+  </head>
+  <body>
+    <script>
+      fetch("/learning.html")
+        .then((response) => response.text())
+        .then((html) => {
+          const page = new DOMParser().parseFromString(html, "text/html");
+
+          const previewMeta = page.createElement("meta");
+          previewMeta.name = "robots";
+          previewMeta.content = "noindex,nofollow";
+          page.head.appendChild(previewMeta);
+
+          const rosettaStyles = page.createElement("link");
+          rosettaStyles.rel = "stylesheet";
+          rosettaStyles.href = "/css/learning-rosetta.css";
+          page.head.appendChild(rosettaStyles);
+
+          const section = page.createElement("section");
+          section.className = "section featured system";
+          section.id = "rosetta-stone";
+          section.innerHTML = `
+            <div class="shell">
+              <div class="section-head">
+                <div>
+                  <p class="kicker">Personal learning system · Comparative programming</p>
+                  <h2>Rosetta Stone.</h2>
+                  <p>
+                    I created Rosetta Stone for my personal learning as a comparative
+                    programming-learning system modeled on the idea of using the same
+                    recognizable source to understand multiple languages. A shared
+                    programming problem is rebuilt in different languages, frameworks,
+                    and runtime environments so the problem itself stays familiar while
+                    syntax, typing, libraries, architecture, data handling, and
+                    conventions change.
+                  </p>
+                </div>
+              </div>
+
+              <div class="split">
+                <article class="panel">
+                  <p class="kicker">One concept · Multiple languages</p>
+                  <h3>Same problem. Different implementation.</h3>
+                  <p>
+                    Each Rosetta Stone project preserves a recognizable programming
+                    problem while rebuilding it across different technologies, making
+                    the differences between implementations easier to see and retain.
+                  </p>
+                  <p class="project-role">
+                    Data modeling · Transformation · SQL · Validation · HTTP / APIs · Rendering · Applications
+                  </p>
+                </article>
+
+                <article class="panel">
+                  <p class="kicker">Applied comparative study</p>
+                  <h3>A growing technical reference system.</h3>
+                  <p>
+                    The collection ranges from focused programming concepts to larger
+                    application comparisons and is maintained alongside the Developer
+                    Sandbox as part of my active technical learning system.
+                  </p>
+                  <div class="actions">
+                    <a
+                      class="btn"
+                      href="https://susanndelgado.github.io/Rosetta-Stone/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Explore Rosetta Stone
+                    </a>
+                    <a class="btn secondary" href="/app/sandbox/">
+                      Developer Sandbox
+                    </a>
+                  </div>
+                </article>
+              </div>
+            </div>
+          `;
+
+          const hero = page.querySelector("main .hero");
+          hero.insertAdjacentElement("afterend", section);
+
+          document.open();
+          document.write("<!doctype html>" + page.documentElement.outerHTML);
+          document.close();
+        });
+    </script>
+  </body>
+</html>
