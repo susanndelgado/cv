@@ -236,6 +236,12 @@ a:focus {
   }
 }
 
+.system {
+  background:
+    linear-gradient(135deg, rgba(95, 200, 255, 0.08), transparent 52%),
+    var(--tech);
+}
+
 /* ========================================================================
    GLOBAL / SHARED HERO & MEDIA
    ======================================================================== */
@@ -247,10 +253,10 @@ a:focus {
   /* justify-content: center; */
   text-align: center;
   /* background: var(--bg-alt); */
-background-position: center;
-    background-image: url("/img/bg.png");
-            background-position: center center;
-        background-size: cover;
+  background-position: center;
+  background-image: url("/img/bg.png");
+  background-position: center center;
+  background-size: cover;
   color: var(--text-alt);
   width: 100%;
 
@@ -2262,7 +2268,6 @@ background-position: center;
 
   .splash {
     padding: 1.125rem;
-    
   }
 
   #index .content-box {

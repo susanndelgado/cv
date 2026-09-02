@@ -1,8 +1,0 @@
-/* Rosetta Stone feature treatment for the Learning preview.
-   Uses the primary Technical Work design tokens and existing page components. */
-
-.system {
-  background:
-    linear-gradient(135deg, rgba(95, 200, 255, 0.08), transparent 52%),
-    var(--tech);
-}
