@@ -1,0 +1,61 @@
+name: Fix work portfolio metadata
+
+on:
+  push:
+    paths:
+      - .github/workflows/fix-work-metadata.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update work page metadata
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("work.html")
+          text = path.read_text()
+
+          old_title = "Professional Development & Continuing Education | Susan Delgado"
+          new_title = "Web Developer & Designer Portfolio | Susan Delgado"
+
+          old_description = "Professional development, continuing education, skills refresh, certificates, current technical study and applied development work by Susan Delgado."
+          new_description = "Web developer and designer portfolio by Susan Delgado featuring front-end development, responsive UI, JavaScript, TypeScript, APIs and digital production."
+
+          old_alt = "Susan Delgado — Web Developer, Multimedia Designer, Fine Artist and Educator"
+          new_alt = "Susan Delgado — Web Developer and Designer Portfolio"
+
+          if old_title not in text:
+              raise SystemExit("Expected old title metadata was not found")
+          if old_description not in text:
+              raise SystemExit("Expected old description metadata was not found")
+
+          text = text.replace(old_title, new_title)
+          text = text.replace(old_description, new_description)
+          text = text.replace(old_alt, new_alt)
+
+          canonical = '  <link rel="canonical" href="https://sdelgado.com/work.html" />\n\n'
+          marker = '  <!-- Open Graph -->\n'
+          if 'rel="canonical"' not in text:
+              text = text.replace(marker, canonical + marker, 1)
+
+          path.write_text(text)
+
+      - name: Commit corrected metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add work.html
+          if git diff --cached --quiet; then
+            echo "Metadata already up to date."
+          else
+            git commit -m "Correct work portfolio metadata"
+            git push
+          fi
