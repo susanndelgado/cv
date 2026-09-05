@@ -25,11 +25,7 @@ jobs:
           path = Path("work.html")
           text = path.read_text(encoding="utf-8")
 
-          old_cta = '''          <!-- <a class="sandbox-button" href="#case-studies">
-            <span>Veiw Work</span>
-            <span aria-hidden="true">↗</span>
-          </a> -->
-          <a class="sandbox-button" href="https://sandbox.sdelgado.com/">
+          old_cta = '''          <a class="sandbox-button" href="https://sandbox.sdelgado.com/">
             <span>Enter Sandbox</span>
             <span aria-hidden="true">↗</span>
           </a>'''
@@ -60,7 +56,7 @@ jobs:
               </p>'''
 
           if old_cta not in text:
-              raise SystemExit("Expected hero CTA block was not found")
+              raise SystemExit("Expected sandbox CTA was not found")
           if old_practice not in text:
               raise SystemExit("Expected current development block was not found")
 
